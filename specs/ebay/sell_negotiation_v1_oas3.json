@@ -1,0 +1,845 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Negotiation API",
+        "description": "The <strong>Negotiation API</strong> gives sellers the ability to proactively send discount offers to buyers who have shown an \"interest\" in their listings.  <br><br>By sending buyers discount offers on listings where they have shown an interest, sellers can increase the velocity of their sales.  <br><br>There are various ways for a buyer to show \"interest\" in a listing. For example, if a buyer adds the listing to their <strong>Watch</strong> list, or if they add the listing to their shopping cart and later abandon the cart, they are deemed to have shown an interest in the listing.  <br><br>In the offers that sellers send, they can discount their listings by either a percentage off the listing price, or they can set a new discounted price that is lower than the original listing price.  <br><br>For details about how seller offers work, see <a href=\"/api-docs/sell/static/marketing/offers-to-buyers.html\" title=\"Selling Integration Guide\">Sending offers to buyers</a>.",
+        "contact": {
+            "name": "eBay Inc,"
+        },
+        "license": {
+            "name": "eBay API License Agreement",
+            "url": "https://developer.ebay.com/join/api-license-agreement"
+        },
+        "version": "v1.1.2"
+    },
+    "servers": [
+        {
+            "url": "https://api.ebay.com{basePath}",
+            "description": "Production",
+            "variables": {
+                "basePath": {
+                    "default": "/sell/negotiation/v1"
+                }
+            }
+        }
+    ],
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/find_eligible_items": {
+            "get": {
+                "tags": [
+                    "offer"
+                ],
+                "description": "This method evaluates a seller's current listings and returns the set of IDs that are eligible for a seller-initiated discount offer to a buyer.  <br><br>A listing ID is returned only when one or more buyers have shown an <i>interest</i> in the listing.  <br><br>If any buyers have shown interest in a listing, the seller can initiate a <i>negotiation</i> with them by calling <strong>sendOfferToInterestedBuyers</strong>, which sends all interested buyers a message that offers the listing at a discount.  <br><br>For details about how to create seller offers to buyers, see <a href=\"/api-docs/sell/static/marketing/offers-to-buyers.html\" title=\"Selling Integration Guide\">Sending offers to buyers</a>.",
+                "operationId": "findEligibleItems",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "This query parameter specifies the maximum number of items to return from the result set on a page in the paginated response.<br><br><strong>Minimum:</strong> 1<br><br><strong>Maximum:</strong> 200<br><br><strong>Default: </strong>10",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "This query parameter specifies the number of results to skip in the result set before returning the first result in the paginated response.  <br><br>Combine <strong>offset</strong> with the <strong>limit</strong> query parameter to control the items returned in the response. For example, if you supply an <strong>offset</strong> of <code>0</code> and a <strong>limit</strong> of <code>10</code>, the first page of the response contains the first 10 results from the complete list of items retrieved by the call. If <strong>offset</strong> is <code>10</code> and <strong>limit</strong> is <code>20</code>, the first page of the response contains items 11-30 from the complete result set. <br><br><strong>Default:</strong> 0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-EBAY-C-MARKETPLACE-ID",
+                        "in": "header",
+                        "description": "The eBay marketplace on which you want to search for eligible listings. <br><br>The Negotiation API is supported in the following marketplaces: <ul><li>Australia (EBAY_AU)</li><li>Canada (EBAY_CA)</li><li>Germany (EBAY_DE)</li><li>Spain (EBAY_ES)</li><li>France (EBAY_FR)</li><li>Great Britain (EBAY_GB)</li><li>Italy (EBAY_IT)</li><li>US (EBAY_US and EBAY_MOTORS_US)</li></ul>",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PagedEligibleItemCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "x-response-codes": {
+                            "errors": {
+                                "150002": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "The marketplace value {marketplaceId} is not supported. The supported values are: {marketplaceIds}"
+                                },
+                                "150003": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Invalid limit. Limit should be between {minLimit} and {maxLimit}."
+                                },
+                                "150001": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Mandatory headers are missing."
+                                },
+                                "150004": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Invalid offset. Offset cannot be less than 0."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "x-response-codes": {
+                            "errors": {
+                                "150000": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "APPLICATION",
+                                    "description": "Internal error. Please try the call again after a minute or two. If the error persists, contact eBay developer support for assistance."
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    }
+                },
+                "security": [
+                    {
+                        "api_auth": [
+                            "https://api.ebay.com/oauth/api_scope/sell.inventory.readonly",
+                            "https://api.ebay.com/oauth/api_scope/sell.inventory"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/send_offer_to_interested_buyers": {
+            "post": {
+                "tags": [
+                    "offer"
+                ],
+                "description": "This method sends eligible buyers offers to purchase items in a listing at a discount.  <br><br>When a buyer has shown <i>interest</i> in a listing, they become \"eligible\" to receive a seller-initiated offer to purchase the item(s).  <br><br>Sellers use <strong>findEligibleItems</strong> to get the set of listings that have interested buyers. If a listing has interested buyers, sellers can use this method (<strong>sendOfferToInterestedBuyers</strong>) to send an offer to the buyers who are interested in the listing. The offer gives buyers the ability to purchase the associated listings at a discounted price.  <br><br>For details about how to create seller offers to buyers, see <a href=\"/api-docs/sell/static/marketing/offers-to-buyers.html\" title=\"Selling Integration Guide\">Sending offers to buyers</a>.",
+                "operationId": "sendOfferToInterestedBuyers",
+                "parameters": [
+                    {
+                        "name": "X-EBAY-C-MARKETPLACE-ID",
+                        "in": "header",
+                        "description": "The eBay marketplace on which your listings with \"eligible\" buyers appear.  <br><br>The Negotiation API is supported in the following marketplaces: <ul><li>Australia (EBAY_AU)</li><li>Canada (EBAY_CA)</li><li>Germany (EBAY_DE)</li><li>Spain (EBAY_ES)</li><li>France (EBAY_FR)</li><li>Great Britain (EBAY_GB)</li><li>Italy (EBAY_IT)</li><li>US (EBAY_US and EBAY_MOTORS_US)</li></ul>",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "description": "This header indicates the format of the request body provided by the client. Its value should be set to <strong>application/json</strong>. <br><br> For more information, refer to <a href=\"/api-docs/static/rest-request-components.html#HTTP\" target=\"_blank \">HTTP request headers</a>.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Send offer to eligible items request.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Send offer to eligible items request.",
+                                "$ref": "#/components/schemas/CreateOffersRequest"
+                            }
+                        }
+                    },
+                    "required": false
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SendOfferToInterestedBuyersCollectionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "x-response-codes": {
+                            "errors": {
+                                "150002": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "The marketplace value {marketplaceId} is not supported. The supported values are: {marketplaceIds}"
+                                },
+                                "150001": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Mandatory headers are missing."
+                                },
+                                "150006": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Request cannot be null/empty."
+                                },
+                                "150007": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Both offer price and discount percentage cannot be present in the request."
+                                },
+                                "150005": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Offer contains multiple listings {listingIds}."
+                                },
+                                "150027": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Offer is invalid. Please specify a valid duration of {durationValue} {durationUnit}"
+                                },
+                                "150008": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Price must be at least {minPercentageDifference} less than your Buy It Now price."
+                                },
+                                "150009": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "REQUEST",
+                                    "description": "Invalid value for {fieldName}. {additionalInfo}"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "x-response-codes": {
+                            "errors": {
+                                "150000": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "APPLICATION",
+                                    "description": "Internal error. Please try the call again after a minute or two. If the error persists, contact eBay developer support for assistance."
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "x-response-codes": {
+                            "errors": {
+                                "150018": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. A best offer currently exists on the listing {listingId}."
+                                },
+                                "150019": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. Listing {listingId} currently has a seller-initiated negotiation."
+                                },
+                                "150016": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid price for listing {listingId}. Price value exceeds the listing price."
+                                },
+                                "150017": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Listing {listingId} does not support offer."
+                                },
+                                "150022": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. Maximum allowed offer limit reached."
+                                },
+                                "150023": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. Seller has exceeded their seller-initiated offer limit."
+                                },
+                                "150020": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Listing {listingId} has no interested buyers."
+                                },
+                                "150021": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Seller initiating the offer is not active."
+                                },
+                                "150026": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Listing ID {listingId} is invalid, sellers cannot initiate an offer to a buyer for a Motors listing."
+                                },
+                                "150024": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. Items are listed on different sites."
+                                },
+                                "150025": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Offer is invalid. {additionalInfo}"
+                                },
+                                "150010": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid message. Message cannot contain HTML or blocked words and cannot exceed maximum character limit of 2000."
+                                },
+                                "150011": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid listingId {listingId}. The listing for this offer has ended."
+                                },
+                                "150014": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Current available quantity for this listing {listingId} is less than the offer quantity."
+                                },
+                                "150015": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid price for listing {listingId}. Minimum offer price of {minPrice} not met."
+                                },
+                                "150012": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid listingId {listingId}. No such listing for this seller."
+                                },
+                                "150013": {
+                                    "domain": "API_NEGOTIATION",
+                                    "category": "BUSINESS",
+                                    "description": "Invalid listingId {listingId}. {additionalInfo}"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_auth": [
+                            "https://api.ebay.com/oauth/api_scope/sell.inventory"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Amount": {
+                "type": "object",
+				"required": ["currency", "value"],
+                "properties": {
+                    "currency": {
+                        "description": "The base currency applied to the <strong>value</strong> field to establish a monetary amount.  <br><br>The currency is represented as a 3-letter <a href=\"http://www.currency-iso.org/en/home/tables/table-a1.html\" title=\"www.currency-iso.org\" target=\"_blank\">ISO4217</a> currency code. For example, the code for the Canadian Dollar is <code>CAD</code>.  <br><br><strong>Default:</strong> The default currency of the eBay marketplace that hosts the listing.",
+                        "$ref": "#/components/schemas/CurrencyCodeEnum"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The monetary amount in the specified <strong>currency</strong>.<br><br><div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><strong><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></strong></span></span> For listings on the following marketplaces, a comma (<code>,</code>) must be used as the decimal separator:<br><ul><li>France</li><li>Canada (French Language)</li><li>Germany</li><li>Italy</li><li>Spain</li></ul>All other sites should use a period (<code>.</code>) as the decimal separator. If the incorrect decimal separator is used, the decimal point will be ignored.</p></div>"
+                    }
+                },
+                "description": "A complex type that describes the value of a monetary amount as represented by a global currency."
+            },
+            "CreateOffersRequest": {
+                "type": "object",
+				"required": ["offeredItems"],
+                "properties": {
+                    "allowCounterOffer": {
+                        "type": "boolean",
+                        "description": "If set to <code>true</code>, the buyer is allowed to make a counter-offer to the seller's offer.  <br><br><span class=\"tablenote\"><strong>Note:</strong> Currently, you must set this field to <code>false</code>; counter-offers are not supported in this release.</span>  <br><strong>Default:</strong> <code>false</code>"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A seller-defined message related to the offer being made.  <br><br>This message is sent to the list of \"interested\" buyers.  <br><br>To increase the conversion rate of the offers a seller makes to buyers, eBay recommends you always add a customized message to your offers.  <br><br><strong>Maximum length:</strong> 2,000 characters"
+                    },
+                    "offerDuration": {
+                        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><strong><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></strong></span></span> The <strong>offerDuration</strong> value will be set automatically based on the eBay marketplace, and each marketplace has one supported value. Due to this fact, we suggest that this container no longer be used. See <a href=\"/api-docs/sell/negotiation/overview.html#requirements\" target=\"_blank\">Negotiation API requirements and restrictions</a> for the <strong>offerDuration</strong> value for each marketplace.</p></div><br>The length of time, in days, the offer is valid from when it is created.<br><br>The duration of the offer begins at the date and time the offer is sent. When the span of time specified by <strong>offerDuration</strong> passes beyond the <strong>creationDate</strong>, the offer expires.",
+                        "$ref": "#/components/schemas/TimeDuration"
+                    },
+                    "offeredItems": {
+                        "type": "array",
+                        "description": "An array of objects where each object contains the details of an offer and the ID of the listing on which the offer is being made.  <br><br>Note that the service does not currently support the creation of multiple offers with a single call to <strong>sendOfferToInterestedBuyer</strong>. With this, each request can target only one listing at a time and you must populate this array with a single element that contains the details of one offer.",
+                        "items": {
+                            "$ref": "#/components/schemas/OfferedItem"
+                        }
+                    }
+                },
+                "description": "This complex type contains the fields needed to create an offer to a buyer that is initiated by the seller."
+            },
+            "CurrencyCodeEnum": {
+                "type": "object",
+                "enum": [
+                    "AED",
+                    "AFN",
+                    "ALL",
+                    "AMD",
+                    "ANG",
+                    "AOA",
+                    "ARS",
+                    "AUD",
+                    "AWG",
+                    "AZN",
+                    "BAM",
+                    "BBD",
+                    "BDT",
+                    "BGN",
+                    "BHD",
+                    "BIF",
+                    "BMD",
+                    "BND",
+                    "BOB",
+                    "BRL",
+                    "BSD",
+                    "BTN",
+                    "BWP",
+                    "BYR",
+                    "BZD",
+                    "CAD",
+                    "CDF",
+                    "CHF",
+                    "CLP",
+                    "CNY",
+                    "COP",
+                    "CRC",
+                    "CUP",
+                    "CVE",
+                    "CZK",
+                    "DJF",
+                    "DKK",
+                    "DOP",
+                    "DZD",
+                    "EGP",
+                    "ERN",
+                    "ETB",
+                    "EUR",
+                    "FJD",
+                    "FKP",
+                    "GBP",
+                    "GEL",
+                    "GHS",
+                    "GIP",
+                    "GMD",
+                    "GNF",
+                    "GTQ",
+                    "GYD",
+                    "HKD",
+                    "HNL",
+                    "HRK",
+                    "HTG",
+                    "HUF",
+                    "IDR",
+                    "ILS",
+                    "INR",
+                    "IQD",
+                    "IRR",
+                    "ISK",
+                    "JMD",
+                    "JOD",
+                    "JPY",
+                    "KES",
+                    "KGS",
+                    "KHR",
+                    "KMF",
+                    "KPW",
+                    "KRW",
+                    "KWD",
+                    "KYD",
+                    "KZT",
+                    "LAK",
+                    "LBP",
+                    "LKR",
+                    "LRD",
+                    "LSL",
+                    "LTL",
+                    "LYD",
+                    "MAD",
+                    "MDL",
+                    "MGA",
+                    "MKD",
+                    "MMK",
+                    "MNT",
+                    "MOP",
+                    "MRO",
+                    "MUR",
+                    "MVR",
+                    "MWK",
+                    "MXN",
+                    "MYR",
+                    "MZN",
+                    "NAD",
+                    "NGN",
+                    "NIO",
+                    "NOK",
+                    "NPR",
+                    "NZD",
+                    "OMR",
+                    "PAB",
+                    "PEN",
+                    "PGK",
+                    "PHP",
+                    "PKR",
+                    "PLN",
+                    "PYG",
+                    "QAR",
+                    "RON",
+                    "RSD",
+                    "RUB",
+                    "RWF",
+                    "SAR",
+                    "SBD",
+                    "SCR",
+                    "SDG",
+                    "SEK",
+                    "SGD",
+                    "SHP",
+                    "SLL",
+                    "SOS",
+                    "SRD",
+                    "STD",
+                    "SYP",
+                    "SZL",
+                    "THB",
+                    "TJS",
+                    "TMT",
+                    "TND",
+                    "TOP",
+                    "TRY",
+                    "TTD",
+                    "TWD",
+                    "TZS",
+                    "UAH",
+                    "UGX",
+                    "USD",
+                    "UYU",
+                    "UZS",
+                    "VEF",
+                    "VND",
+                    "VUV",
+                    "WST",
+                    "XAF",
+                    "XCD",
+                    "XOF",
+                    "XPF",
+                    "YER",
+                    "ZAR",
+                    "ZMW",
+                    "ZWL"
+                ],
+                "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar"
+            },
+            "EligibleItem": {
+                "type": "object",
+				"required": [ "listingId"],
+                "properties": {
+                    "listingId": {
+                        "type": "string",
+                        "description": "The unique eBay-assigned ID for an eBay listing.  <br><br>A <strong>listingId</strong> is assigned by eBay when a seller creates a listing with the Trading API."
+                    }
+                },
+                "description": "A listing that is eligible for a seller-initiated offer to a buyer.  <br><br>Listings are identified by a <strong>listingId</strong> value that is generated and assigned by eBay when a seller lists an item using the Trading API.  <br><br><strong>Note:</strong> The Negotiation API does not currently support listings that are managed with the Inventory API."
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "Identifies the type of erro."
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "Name for the primary system where the error occurred. This is relevant for application errors."
+                    },
+                    "errorId": {
+                        "type": "integer",
+                        "description": "A unique number to identify the error.",
+                        "format": "int32"
+                    },
+                    "inputRefIds": {
+                        "type": "array",
+                        "description": "An array of request elements most closely associated to the error.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "longMessage": {
+                        "type": "string",
+                        "description": "A more detailed explanation of the error."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Information on how to correct the problem, in the end user's terms and language where applicable."
+                    },
+                    "outputRefIds": {
+                        "type": "array",
+                        "description": "An array of request elements most closely associated to the error.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "parameters": {
+                        "type": "array",
+                        "description": "An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorParameter"
+                        }
+                    },
+                    "subdomain": {
+                        "type": "string",
+                        "description": "Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc."
+                    }
+                },
+                "description": "This type defines the fields that can be returned in an error."
+            },
+            "ErrorParameter": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The object of the error."
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value of the object."
+                    }
+                }
+            },
+            "Offer": {
+                "type": "object",
+				"required": ["allowCounterOffer", "buyer", "creationDate", "initiatedBy", "lastModifiedDate", "offerDuration", "offeredItems", "offerId", "offerType", "revision"],
+                "properties": {
+                    "allowCounterOffer": {
+                        "type": "boolean",
+                        "description": "If set to <code>true</code>, the buyer is allowed to make a counter-offer to the seller's offer."
+                    },
+                    "buyer": {
+                        "description": "The buyer who has been sent the offer.",
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "description": "The date and time when the seller's offer was created.  <br><br>The returned timestamp is formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org\" target=\"_blank\">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>"
+                    },
+                    "initiatedBy": {
+                        "type": "string",
+                        "description": "The eBay <strong>UserName</strong> of the user (seller) who initiated the offer.<br><br><span class=\"tablenote\"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href=\"/api-docs/static/data-handling-update.html\">Data Handling Compliance</a>.</span>"
+                    },
+                    "lastModifiedDate": {
+                        "type": "string",
+                        "description": "The date and time when the offer was last modified.  <br><br>The returned timestamp is formatted as an <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601</a> string."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A seller-defined message related to the offer being made. This message is sent to the list of \"interested\" buyers along with the offer message from eBay."
+                    },
+                    "offerDuration": {
+                        "description": "The length of time that the offer is valid.  <br><br>The duration of the offer begins at the date and time denoted by <strong>creationDate</strong>. When the span of time specified by <strong>offerDuration</strong> passes beyond the <strong>creationDate</strong>, the offer expires.",
+                        "$ref": "#/components/schemas/TimeDuration"
+                    },
+                    "offeredItems": {
+                        "type": "array",
+                        "description": "The list of items associated with the offer. <br><br>Currently, the offer list is restricted to a single offer.",
+                        "items": {
+                            "$ref": "#/components/schemas/OfferedItem"
+                        }
+                    },
+                    "offerId": {
+                        "type": "string",
+                        "description": "A unique eBay-assigned identifier for the offer."
+                    },
+                    "offerStatus": {
+                        "description": "The current state, or status, of an offer.  <br><br>Status states include <code>PENDING</code>, <code>COUNTERED</code>, <code>ACCEPTED</code>, and <code>DECLINED</code>.",
+                        "$ref": "#/components/schemas/OfferStatusEnum"
+                    },
+                    "offerType": {
+                        "description": "The type of offer being made.",
+                        "$ref": "#/components/schemas/OfferTypeEnum"
+                    },
+                    "revision": {
+                        "type": "string",
+                        "description": "A unique, eBay-assigned ID for the revision of the offer."
+                    }
+                },
+                "description": "A complex type that defines an offer that a seller makes to eligible buyers."
+            },
+            "OfferStatusEnum": {
+                "type": "object",
+                "enum": [
+                    "PENDING",
+                    "RETRACTED",
+                    "EXPIRED",
+                    "CANCELLED",
+                    "COUNTERED",
+                    "DECLINED",
+                    "AUTO_DECLINED",
+                    "AUTO_ACCEPTED",
+                    "ACCEPTED"
+                ],
+                "description": "The status of the offer that was extended to a buyer. | - **PENDING**: The offer is awaiting a response from the buyer. - **RETRACTED**: The offer has been RETRACTED by the seller and the offer is no longer available. - **EXPIRED**: The offer reached its deadline and is no longer available to the buyer. - **CANCELLED**: The offer has been CANCELLED by the buyer. - **COUNTERED**: The buyer has created a counter-offer for the listing. - **DECLINED**: The buyer has declined the seller's offer. - **AUTO_DECLINED**: The buyer's counter-offer has been declined because it is below the threshold amount set by the seller. - **AUTO_ACCEPTED**: The buyer's counter-offer has been accepted because it is above the threshold amount set by the seller. - **ACCEPTED**: The buyer has accepted the offer that was sent by the seller."
+            },
+            "OfferTypeEnum": {
+                "type": "object",
+                "enum": [
+                    "SELLER_INITIATED_OFFER"
+                ],
+                "description": "This enum describes the types of offers that can be made in a buyer-seller discount negotiation. | - **SELLER_INITIATED_OFFER**: The offer was created by the seller and made available to a buyer."
+            },
+            "OfferedItem": {
+                "type": "object",
+				"required": ["listingId"],
+                "properties": {
+                    "discountPercentage": {
+                        "type": "string",
+                        "description": "This value denotes the percentage (as either a whole number or decimal value) that the listing in the offer will be discounted from its original listed price.<br><br>The seller can specify either the exact price of the discounted items with the <strong>price</strong> field or they can use this field to specify the percentage that the listing will be discounted, but not both.<br><br><strong>Minimum:</strong> <code>5.0</code>  <br><br>This field is <i>required</i> if you do not specify a <strong>price</strong> value."
+                    },
+                    "listingId": {
+                        "type": "string",
+                        "description": "This value is a unique eBay-assigned ID that identifies the listing to which the offer pertains.  <br><br>A <strong>listingId</strong> value is generated by eBay when you list an item with the Trading API.<!--  <br><br><i>Required</i> if you do not specify an <strong>sku</strong> value.-->"
+                    },
+                    "price": {
+                        "description": "This value denotes the final discounted price of the listing in the offer being made to the buyer. This value must be lower than the original price of the item as stated in the original listing.  <br><br>The seller can use either this field to specify the exact discounted price of the listing or they can use the <strong>discountPercentage</strong> field to specify the percentage that the listing will be discounted, but not both.  <br><br><i>Required</i> if you do not specify a <strong>discountPercentage</strong> value.",
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "This integer value indicates the number of items in the eBay listing for which the offer is being made.  <br><br>The offer being made by the seller is an \"all or nothing\" offer, meaning the buyer must purchase the indicated quantity of items in order to receive the discount on the transaction.  <br><br><strong>Default:</strong> <code>1</code>",
+                        "format": "int32"
+                    }
+                },
+                "description": "A complex type that defines the offer being made to an \"interested\" buyer."
+            },
+            "PagedEligibleItemCollection": {
+                "type": "object",
+				"required": ["eligibleItems", "href", "limit", "offset", "total"],
+                "properties": {
+                    "eligibleItems": {
+                        "type": "array",
+                        "description": "A list of items that are eligible for a seller-initiated offer to a buyer.  <br><br>Each element in the list contains the listing ID<!-- <i>or</i> the SKU value--> of a listed item. These IDs represent the listings for which buyers have shown an interest.",
+                        "items": {
+                            "$ref": "#/components/schemas/EligibleItem"
+                        }
+                    },
+                    "href": {
+                        "type": "string",
+                        "description": "The URI of the current page of results from the result set."
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "The number of items returned on a single page from the result set. This value can be set in the request with the <strong>limit</strong> query parameter.",
+                        "format": "int32"
+                    },
+                    "next": {
+                        "type": "string",
+                        "description": "The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. <br><br><strong>Maximum length</strong>: 2048"
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "description": "The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class=\"tablenote\"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>",
+                        "format": "int32"
+                    },
+                    "prev": {
+                        "type": "string",
+                        "description": "The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. <br><br><strong>Maximum length</strong>: 2048"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "description": "The total number of items retrieved in the result set.  <br><br>If no items match the search criteria, the server returns the HTTP status code <br><code>204 No Content</code>.",
+                        "format": "int32"
+                    }
+                },
+                "description": "This complex type defines a collection of listings that are eligible for an offer to a buyer."
+            },
+            "SendOfferToInterestedBuyersCollectionResponse": {
+                "type": "object",
+				"required": ["offers"],
+                "properties": {
+                    "offers": {
+                        "type": "array",
+                        "description": "The <strong>offers</strong> container returns a list of the offers sent to buyers who have shown an interest in listings included in the offer.",
+                        "items": {
+                            "$ref": "#/components/schemas/Offer"
+                        }
+                    }
+                },
+                "description": "The response object returned from a <strong>SendOfferToInterestedBuyers</strong> request."
+            },
+            "TimeDuration": {
+                "type": "object",
+				"required": ["unit", "value"],
+                "properties": {
+                    "unit": {
+                        "description": "A time-measurement unit that specifies a singular period of time.  <br><br>A span of time is defined when you apply the value specified in the <strong>value</strong> field to the value specified for <strong>unit</strong>.  <br><br>Time-measurement units can be YEAR, MONTH, DAY, and so on. See <strong>TimeDurationUnitEnum</strong> for a complete list of possible time-measurement units.",
+                        "$ref": "#/components/schemas/TimeDurationUnitEnum"
+                    },
+                    "value": {
+                        "type": "integer",
+                        "description": "An integer that represents an amount of time, as measured by the time-measurement unit specified in the <strong>unit</strong> field.",
+                        "format": "int32"
+                    }
+                },
+                "description": "A complex type that specifies a period of time using a specified time-measurement unit."
+            },
+            "TimeDurationUnitEnum": {
+                "type": "object",
+                "enum": [
+                    "YEAR",
+                    "MONTH",
+                    "DAY",
+                    "HOUR",
+                    "CALENDAR_DAY",
+                    "BUSINESS_DAY",
+                    "MINUTE",
+                    "SECOND",
+                    "MILLISECOND"
+                ],
+                "description": "An enum value that specifies the time-measurement unit that's used to express a time span. | - **YEAR**: Time duration is based on a number of years. - **MONTH**: Time duration is based on a number of months. - **DAY**: Time duration is based on a number of days. - **HOUR**: Time duration is based on a number of hours. - **CALENDAR_DAY**: Time duration is based on a number of calendar days, including Saturday and Sunday. This time duration does not exclude holidays. - **BUSINESS_DAY**: Time duration is based on a number of business days, or 'working days' (normally Monday through Friday). This excludes Sunday and all holidays in the time duration and, depending on the location, can include or exclude Saturday. - **MINUTE**: Time duration is based on a number of minutes. - **SECOND**: Time duration is based on a number of seconds. - **MILLISECOND**: Time duration is based on a number of milliseconds."
+            },
+            "User": {
+                "type": "object",
+				"required": ["maskedUsername"],
+                "properties": {
+                    "maskedUsername": {
+                        "type": "string",
+                        "description": "The masked username is a username that has certain characters hidden for privacy of the user.<br><br><span class=\"tablenote\"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href=\"/api-docs/static/data-handling-update.html\">Data Handling Compliance</a>.</span> <!-- This field is populated only when the full username cannot be used.-->"
+                    }
+                },
+                "description": "This complex type identifies an eBay user<!-- by either their <strong>maskedUsername</strong> or their full <strong>username</strong>-->."
+            }
+        },
+        "securitySchemes": {
+            "api_auth": {
+                "type": "oauth2",
+                "description": "The security definitions for this API. Please check individual operations for applicable scopes.",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://auth.ebay.com/oauth2/authorize",
+                        "tokenUrl": "https://api.ebay.com/identity/v1/oauth2/token",
+                        "scopes": {
+                            "https://api.ebay.com/oauth/api_scope/sell.inventory": "View and manage your inventory and offers",
+                            "https://api.ebay.com/oauth/api_scope/sell.inventory.readonly": "View your inventory and offers"
+                        }
+                    }
+                }
+            },
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

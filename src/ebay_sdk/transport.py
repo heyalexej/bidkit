@@ -1,0 +1,252 @@
+from __future__ import annotations
+
+from collections.abc import AsyncIterator, Iterator, Mapping
+from contextlib import asynccontextmanager, contextmanager
+from typing import Any
+from urllib.parse import quote
+
+import httpx
+import orjson
+from pydantic import BaseModel, TypeAdapter
+
+from .auth import EbayAuth
+from .config import EbayConfig
+from .errors import EbayAPIError, EbayTransportError
+
+
+def _url(
+    config: EbayConfig,
+    service: Mapping[str, Any],
+    path: str,
+    path_params: Mapping[str, Any] | None,
+) -> str:
+    rendered_path = path
+    for key, value in (path_params or {}).items():
+        rendered_path = rendered_path.replace("{" + key + "}", quote(str(value), safe=""))
+    root = config.api_root(str(service.get("subdomain") or "api"))
+    return f"{root}{service['base_path']}{rendered_path}"
+
+
+def _headers(
+    config: EbayConfig,
+    service: Mapping[str, Any],
+    extra_headers: Mapping[str, str | None] | None,
+) -> dict[str, str]:
+    headers: dict[str, str] = {
+        "Accept": "application/json",
+        "X-EBAY-C-MARKETPLACE-ID": config.marketplace_id,
+    }
+    if config.accept_language:
+        headers["Accept-Language"] = config.accept_language
+    if config.content_language:
+        headers["Content-Language"] = config.content_language
+
+    if service.get("default_content_type"):
+        headers["Content-Type"] = str(service["default_content_type"])
+
+    for key, value in (extra_headers or {}).items():
+        if value is not None:
+            headers[key] = str(value)
+    return headers
+
+
+def _auth_scheme(service: Mapping[str, Any]) -> str:
+    return str(service.get("auth_scheme") or "Bearer")
+
+
+def _body_kwargs(*, body: Any, files: Mapping[str, Any] | None) -> dict[str, Any]:
+    if files is not None:
+        return {"files": files}
+    if body is None:
+        return {}
+    if isinstance(body, bytes | bytearray | memoryview):
+        return {"content": body}
+    if isinstance(body, BaseModel):
+        payload = body.model_dump(by_alias=True, exclude_none=True)
+    else:
+        payload = body
+    return {"content": orjson.dumps(payload)}
+
+
+def _handle_response(response: httpx.Response, response_model: Any, raw_response: bool) -> Any:
+    if raw_response:
+        return response
+    if response.status_code >= 400:
+        raise EbayAPIError.from_response(response)
+    if response.status_code == 204 or not response.content:
+        return None
+
+    content_type = response.headers.get("content-type", "")
+    if "json" not in content_type:
+        if response_model is str:
+            return response.text
+        return response.content
+    payload = orjson.loads(response.content)
+    if response_model is None:
+        return payload
+    return TypeAdapter(response_model).validate_python(payload)
+
+
+def _compact(values: Mapping[str, Any] | None) -> dict[str, Any]:
+    compacted: dict[str, Any] = {}
+    for key, value in (values or {}).items():
+        if value is None:
+            continue
+        compacted[key] = (
+            ",".join(str(item) for item in value)
+            if isinstance(value, list | tuple)
+            else value
+        )
+    return compacted
+
+
+class EbayTransport:
+    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx.Client) -> None:
+        self.config = config
+        self.auth = auth
+        self.client = client
+
+    def request(
+        self,
+        *,
+        service: Mapping[str, Any],
+        operation_id: str,
+        method: str,
+        path: str,
+        path_params: Mapping[str, Any] | None = None,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str | None] | None = None,
+        body: Any = None,
+        files: Mapping[str, Any] | None = None,
+        response_model: Any = None,
+        raw_response: bool = False,
+    ) -> Any:
+        request_headers = _headers(self.config, service, headers)
+        request_headers.update(self.auth.authorization_header(
+            self.client,
+            scheme=_auth_scheme(service),
+        ))
+        try:
+            response = self.client.request(
+                method,
+                _url(self.config, service, path, path_params),
+                params=_compact(params),
+                headers=request_headers,
+                **_body_kwargs(body=body, files=files),
+            )
+        except httpx.HTTPError as exc:
+            raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+
+        return _handle_response(response, response_model, raw_response)
+
+    @contextmanager
+    def stream(
+        self,
+        *,
+        service: Mapping[str, Any],
+        operation_id: str,
+        method: str,
+        path: str,
+        path_params: Mapping[str, Any] | None = None,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str | None] | None = None,
+        body: Any = None,
+        files: Mapping[str, Any] | None = None,
+    ) -> Iterator[httpx.Response]:
+        request_headers = _headers(self.config, service, headers)
+        request_headers.update(self.auth.authorization_header(
+            self.client,
+            scheme=_auth_scheme(service),
+        ))
+        try:
+            with self.client.stream(
+                method,
+                _url(self.config, service, path, path_params),
+                params=_compact(params),
+                headers=request_headers,
+                **_body_kwargs(body=body, files=files),
+            ) as response:
+                if response.status_code >= 400:
+                    response.read()
+                    raise EbayAPIError.from_response(response)
+                yield response
+        except EbayAPIError:
+            raise
+        except httpx.HTTPError as exc:
+            raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+
+
+class AsyncEbayTransport:
+    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx.AsyncClient) -> None:
+        self.config = config
+        self.auth = auth
+        self.client = client
+
+    async def request(
+        self,
+        *,
+        service: Mapping[str, Any],
+        operation_id: str,
+        method: str,
+        path: str,
+        path_params: Mapping[str, Any] | None = None,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str | None] | None = None,
+        body: Any = None,
+        files: Mapping[str, Any] | None = None,
+        response_model: Any = None,
+        raw_response: bool = False,
+    ) -> Any:
+        request_headers = _headers(self.config, service, headers)
+        request_headers.update(await self.auth.async_authorization_header(
+            self.client,
+            scheme=_auth_scheme(service),
+        ))
+        try:
+            response = await self.client.request(
+                method,
+                _url(self.config, service, path, path_params),
+                params=_compact(params),
+                headers=request_headers,
+                **_body_kwargs(body=body, files=files),
+            )
+        except httpx.HTTPError as exc:
+            raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+
+        return _handle_response(response, response_model, raw_response)
+
+    @asynccontextmanager
+    async def stream(
+        self,
+        *,
+        service: Mapping[str, Any],
+        operation_id: str,
+        method: str,
+        path: str,
+        path_params: Mapping[str, Any] | None = None,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str | None] | None = None,
+        body: Any = None,
+        files: Mapping[str, Any] | None = None,
+    ) -> AsyncIterator[httpx.Response]:
+        request_headers = _headers(self.config, service, headers)
+        request_headers.update(await self.auth.async_authorization_header(
+            self.client,
+            scheme=_auth_scheme(service),
+        ))
+        try:
+            async with self.client.stream(
+                method,
+                _url(self.config, service, path, path_params),
+                params=_compact(params),
+                headers=request_headers,
+                **_body_kwargs(body=body, files=files),
+            ) as response:
+                if response.status_code >= 400:
+                    await response.aread()
+                    raise EbayAPIError.from_response(response)
+                yield response
+        except EbayAPIError:
+            raise
+        except httpx.HTTPError as exc:
+            raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc

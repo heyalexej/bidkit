@@ -1,0 +1,489 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+directive @authorize(scopes: [String!]!) on OBJECT | FIELD_DEFINITION
+
+"""
+This type defines information about a specific category within the marketplace, including identifiers and hierarchical structure.
+"""
+type Category {
+  """
+  This array returns a list of one or more categories that are the ancestors of the current category. The list identifies the category's ancestry as a sequence of parent nodes, from the current node's immediate parent to the root node of the category tree. The first item in the array is the immediate ancestor, while the last element in list is the root category. 
+  **Note:** If this category is the root, the list will be empty.
+  """
+  ancestors: [Category!]!
+  """The unique identifier of the eBay category."""
+  categoryId: ID!
+  """
+  The level of the category in the hierarchy of the category.
+  **Note**: Root categories are always at level '0'.
+  """
+  level: Int!
+  """
+  The display name of the category. 
+  **Note:** This name is not localized.
+  """
+  name: String!
+  """Category Id (replaced by categoryId)"""
+  id: ID! @deprecated(reason: "Use 'categoryId' field instead")
+  """
+  This array returns a list of one or more categories that are the immediate children of the current category, as well as their children, recursively down the tree node. This array is returned in no guaranteed order.
+  **Note:** If this category has no children, this list will be empty.
+  """
+  children: [Category!]!
+  """
+  This boolean indicates whether or not the category is a leaf category. If 'true', this category is a leaf category in which items may be listed. If 'false', this category is not a leaf category.
+  """
+  leafCategory: Boolean!
+  """
+  This container returns information about this category's parent category, if applicable. If the category has no parent, this container will be returned null.
+  """
+  parent: Category
+}
+
+"""
+This type represents the eBay Product ID (e.g. ePID), which is the unique identifier of an eBay catalog product. 
+"""
+scalar Epid
+
+"""
+This type represents the specifics of a single external product. These details are used to create eBay Listing Previews.
+"""
+type ExternalProductDetails {
+  """An array of product aspect name-value pairs for an external product."""
+  aspects: [ExternalProductDetailsAspect!]
+  """
+  The full path to the listing category of the external product, such as `/Electronics/Cell Phones & Accessories/Smart Watches` This field will be returned as null if not provided for an external product.   
+  """
+  category: String
+  """
+  This object shows the Global Trade Identifier Number (GTIN) for an external product. This object will be returned as null if not provided for an external product.
+  """
+  externalProductIdentifier: ExternalProductIdentifier
+  """An array of URLs pointing to images of the product."""
+  images: [HttpOrHttpsUrl!]
+  """
+  Represents the seller-defined Stock Keeping Unit (SKU) of the external product. If the SKU was not provided for an external product, this field returns null.
+  """
+  sku: String
+  """
+  The title of the external product. This field will be returned as null if not provided for an external product.
+  """
+  title: String
+}
+
+"""
+This type is used to represent a specific feature or aspect of an external product. Each aspect is defined by a name and a list of one or more values.
+"""
+type ExternalProductDetailsAspect {
+  """The name of the aspect for the external product."""
+  name: String!
+  """A list of one or more corresponding values for the aspect."""
+  values: [String!]!
+}
+
+"""
+This type is used to specify product aspect name-value pairs of an external product. Each aspect is defined by a name and a list of one or more values. The maximum number of aspects allowed is 50.
+"""
+input ExternalProductDetailsAspectInput {
+  """
+   The name of the aspect for the external product.
+    
+  **Maximum length**: 100 characters
+  """
+  name: String!
+  """
+  An array of one or more corresponding values for the aspect.
+    
+  **Maximum length**: 100 characters
+  """
+  values: [String!]!
+}
+
+"""
+This type is used to provide details of external products. Product details include title, images, product identifiers, product aspects, category name, and SKU value.
+
+If product aspects are provided, a category name must also be provided or a listing preview cannot be generated for that external product. A SKU is optional, but it is highly recommended as it acts as a key to track/identify different external products. Include as many fields as possible to increase chances of creating higher-quality eBay listing previews.
+"""
+input ExternalProductDetailsInput {
+  """
+  An array of product aspect name-value pairs for the external product. If the array is included, it is required that it contain no null entries. Some aspects will only have one value and other aspects will have multiple values. **Example** `[{"name":"Color","values":["Black","Red"]},{"name":"Storage Capacity","values":["64GB"]}]`
+  """
+  aspects: [ExternalProductDetailsAspectInput!]
+  """
+  The listing category of the external product. A simple category name can be supplied here such as "Smart Watches", or you can provide the path to the category, such as /Electronics/Cell Phones & Accessories/Smart Watches.` 
+  """
+  categoryName: String
+  """
+  This object is used to provide a Global Trade Identifier Number (GTIN) for an external product. If a GTIN value is provided for an external product, no other data under **externalProductDetails** shall be provided.
+  """
+  externalProductIdentifierInput: ExternalProductIdentifierInput
+  """
+   An array of image URLs provided for the external product. Each provided image must be a valid URL that uses 'https'.  If the array is included, it is required that it contain no null entries.
+    
+  **Maximum images**: 24
+  """
+  images: [HttpOrHttpsUrl!]
+  """
+  The SKU (Stock Keeping Unit) of the external product. This value is a seller-defined identifier for the product. This is an optional field, but it is highly recommended as it acts as a key to track/identify different external products.
+  """
+  sku: String
+  """
+  The title of the external product. The title field should not contain HTML or JavaScript code. Any HTML characters will be treated as plain text. The title should be a string of characters, with support for all characters in the Unicode character set. An example of a title is **`Apple iPhone 11 Pro Max`**. 
+    
+  **Maximum length**: 250 characters  
+  """
+  title: String
+}
+
+"""
+This type is used to show the Global Trade Identifier Number (GTIN) for an external product. 
+"""
+type ExternalProductIdentifier {
+  """
+  The GTIN value of the external product, corresponding to the GTIN type specified in the **productType** field. This field will be returned as null if a GTIN was not provided for the external product.
+  """
+  productId: String!
+  """
+  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values. This field will be returned as null if a GTIN was not provided for the external product.
+  """
+  productType: ExternalProductIdentifierEnum!
+}
+
+"""
+An enumerated type defining values for different external product types. 
+"""
+enum ExternalProductIdentifierEnum {
+  """
+  A European Article Number (EAN) is a unique 8 or 13-digit identifier code that identifies products worldwide.
+  The EAN values are typically used across Europe.
+  """
+  EAN
+  """
+  An International Standard Book Number (ISBN) is a unique numeric commercial book identifier.
+  Both 10 and 13-character ISBNs are supported.
+  """
+  ISBN
+  """
+  Manufacturer Part Number (MPN) values are currently not supported, so please don't specify this value in the **productType** field.
+  """
+  MPN
+  """
+  A Universal Product Code (UPC) is a unique numerical identifier for commercial products.
+  UPC values are typically used in the US and Canada.
+  """
+  UPC
+}
+
+"""
+This type is used to provide a Global Trade Identifier Number (GTIN) for an external product. 
+"""
+input ExternalProductIdentifierInput {
+  """
+  The GTIN value of the external product, corresponding to the GTIN type specified in the **productType** field. The pattern of characters in this field should match the **productId** type.
+  """
+  productId: String!
+  """
+  The GTIN type of the external product. `UPC`, `ISBN`, and `EAN` are the supported values and one of these should be specified in this field. 
+  """
+  productType: ExternalProductIdentifierEnum!
+}
+
+"""A scalar representing a valid HTTP or HTTPS URL string value."""
+scalar HttpOrHttpsUrl
+
+"""
+This type provides details of an external product that could not be used to create an eBay listing preview. Each invalid product includes a **description** field that explains why the external product details were unsuitable for creating a listing preview. The description is not localized and may change over time. This field is intended as a debugging aid for humans—-do not use **description** for client-side handling logic.
+"""
+type InvalidExternalProductDetails {
+  """
+  The external product details originally provided through the mutation request.
+  """
+  clientProvidedProductDetails: ExternalProductDetails!
+  """
+  A human-readable description of why the external product details could not be used to create an eBay listing preview. This field is intended as a debugging aid for humans--do not use description for client-side handling logic.
+  """
+  description: String!
+}
+
+"""
+This type shows the listing previews, and the external product details used to generate each of the listing previews. A listing preview provides recommended details for key fields to be used in an eBay listing, such as eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided).
+
+A listing preview is neither a draft nor a live listing, but rather information generated from external product details that sellers can leverage when creating a listing in a subsequent step using eBay listing APIs.
+"""
+type ListingPreview {
+  """
+  eBay's recommended product aspect name-value pairs for the product, or if an eBay catalog product was found, the product aspect name-value pairs associated with the catalog product.
+  """
+  aspects: [ListingPreviewProductAspect!]
+  """
+  eBay's recommended eBay leaf category in which to list the product, or if an eBay catalog product was found, the eBay leaf category associated with the catalog product. A null value signifies that the data is unavailable or undefined under certain exceptional conditions.
+  """
+  category: Category
+  """
+  This object shows the provided details of the external product that was mapped to an eBay listing preview.
+  """
+  clientProvidedProductDetails: ExternalProductDetails!
+  """
+  eBay's recommendation for the description of the product, or if an eBay catalog product was found, the description used for the catalog product. A null value signifies that the data is unavailable or undefined under certain exceptional conditions.
+  """
+  description: String
+  """
+  An array of one or more EPS image URLs that can be used with the listing. If images were provided through the **images** array in the mutation request, eBay returns the corresponding EPS image URLs. Additionally, if an eBay catalog product was matched for the external product, the field may also include the catalog product's stock photo URL(s). If no images are available, the array will be null.
+  """
+  images: [HttpOrHttpsUrl!]
+  """
+  The unique identifier of this listing preview. Use this 25-character ID when creating or revising a listing based on the listing preview via related APIs.
+    
+  **Maximum length**: 25 characters
+  """
+  mappingReferenceId: String!
+  """
+  The eBay product ID (ePID) field under this object shows the eBay catalog product that the external product was matched to. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category. If the external product could not be mapped to an ePID, this field will be null.
+  """
+  product: Product
+  """
+  The seller-defined SKU of the external product. If the SKU was not provided for an external product, this field returns null.
+  """
+  sku: String
+  """
+  eBay's recommendation for the title of the product, or if an eBay catalog product was found, the title used for the catalog product. eBay listings only allow 80 characters for a listing title, so this recommended title may be shorter than the title provided for the external product. A null value signifies that the data is unavailable or undefined under certain exceptional conditions.
+  """
+  title: String
+}
+
+"""
+This type shows eBay's recommended product aspect name-value pairs for the product. Each aspect is defined by a name and a list of one or more values. The value in the **values.confidence** field will indicate how confident eBay is about that value being the right value for that corresponding aspect.
+**Edge cases to consider**
+While most aspects are expected to have a single value associated with it, some aspects may accept multiple values.
+Please cross-reference aspect properties for any given category through the **Taxonomy APIs**.
+For such aspects, multiple `PREFILL` values may be returned when available.
+For example, an aspect could be `Color` with values like `Red`, `Blue`, and `Green` and confidence levels `PREFILL` or `HINT`.
+"""
+type ListingPreviewProductAspect {
+  """An array of one or more values for the aspect."""
+  aspectValues: [String!]! @deprecated(reason: "This field is deprecated and has been superseded by the **values** array.")
+  """The name of the aspect."""
+  name: String!
+  """
+  An array that has one or more values for the corresponding aspect, and a **confidence** field that indicate how confident eBay is about indicate how confident eBay is about that value being the right value for that corresponding aspect
+  """
+  values: [ListingPreviewProductAspectValue!]!
+}
+
+"""
+This type shows the corresponding value(s) for an aspect and the confidence level that eBay has that a value is the right value for that  aspect.
+"""
+type ListingPreviewProductAspectValue {
+  """
+  The confidence level of the aspect value. See the **ListingPreviewProductAspectValueConfidenceEnum** type for descriptions of each supported value. This field will only be null under exceptional circumstances.
+  """
+  confidence: ListingPreviewProductAspectValueConfidenceEnum
+  """
+  The value of the aspect. This field will only be null under exceptional circumstances.
+  """
+  value: String
+}
+
+"""
+An enumerated type that represents the confidence level that eBay has that a recommended product aspect value is the correct one.
+"""
+enum ListingPreviewProductAspectValueConfidenceEnum {
+  """
+  This value indicates a medium to high confidence threshold for the suggested aspect value, making sellers more likely to select one of the recommended or hinted values from a set.
+  """
+  HINT
+  """
+  This value indicates a high confidence threshold for the suggested aspect value, meaning sellers are more likely to select this prefilled value over other options, when this aspect value is prefilled.
+  """
+  PREFILL
+}
+
+"""
+This type shows the ID and the results of a listing previews task that was generated with the mutation request. This asynchronous task can take some time to complete. The listing preview results cannot be returned until the task is complete.
+"""
+type ListingPreviewsCreationTask {
+  """
+  The unique identifier of the task. It is returned after a successful **StartListingPreviewsCreation** mutation.
+    
+  **Maximum length**: 25
+  """
+  id: ID!
+  """
+  This object provides the status and results of the listing previews creation Task. It remains null until the task has completed execution.
+  """
+  result: ListingPreviewsCreationTaskResult
+}
+
+"""
+The base type of the **listingPreviewsCreationTaskById** query request, where the **id** value for a listing preview task is passed in.
+"""
+input ListingPreviewsCreationTaskByIdInput {
+  """
+  The unique identifier of the listing preview task to retrieve. This **id** value is returned in the **StartListingPreviewsCreation** mutation response.
+    
+  **Maximum length**: 25 characters 
+  """
+  id: ID!
+}
+
+"""
+The base type of the **listingPreviewsCreationTaskById** query response. A successful query will return the **id** value for the task, and the listing preview results cannot be returned until the task is complete.
+"""
+type ListingPreviewsCreationTaskByIdOutput {
+  """
+  If a **ListingPreviewsCreationTask** corresponding to the **requestId** value exists, it will be returned here.
+  If no task with the **requestId** exists, this field will be null.
+  """
+  listingPreviewsCreationTask: ListingPreviewsCreationTask
+  """
+  The unique identifier of the listing preview task that was passed into the query request.
+    
+  **Maximum length** 25 characters
+  """
+  requestedId: ID!
+}
+
+"""
+This type is used to describe the outcome of a listing preview creation task.
+"""
+enum ListingPreviewsCreationTaskCompletionStatus {
+  """
+  This enumeration value indicates that the task has completed successfully with no errors.
+  """
+  COMPLETED
+  """
+  This enumeration value indicates that the task has completed successfully, but with one or more errors. Issues that would lead to this status include one or more products being invalid and/or unmapped. The task may have still completed successfully for other products.
+  """
+  COMPLETED_WITH_ERROR
+  """
+  This enumeration value indicates that the task was not completed successfully, and no listing previews were generated for any of the external products.
+  """
+  FAILED
+}
+
+"""
+This type is used to show the final outcome of a listing previews creation task, and includes the completion status and the actual eBay listing previews. If applicable, unprocessed external products, unmapped external products, and invalid external products are displayed in separate arrays.
+"""
+type ListingPreviewsCreationTaskResult {
+  """
+  This enumeration value indicates the success or failure of the **StartListingPreviewsCreation** mutation. Applicable values are `COMPLETED`, `COMPLETED_WITH_ERROR`, or `FAILED` 
+  """
+  completionStatus: ListingPreviewsCreationTaskCompletionStatus!
+  """
+  An array of invalid external products that could not be processed. Each invalid product will include a **description** field that indicates why the external product details could not be used to create a listing preview. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change. Do not use this description field for client-side handling logic. This array will be empty if there are no invalid products. 
+  """
+  invalidProducts: [InvalidExternalProductDetails!]!
+  """
+  This array will show the eBay listing previews that were successfully created based on the seller's provided external products. Each listing preview will contain the eBay product ID (if found), the title, the product description, the eBay category ID, one or more eBay Picture Service (ePS) image URLs, product aspect name-value pairs, and SKU (if provided). Additionally, this object will also have the **clientProvidedProductDetails** object that shows the client-provided details for the external products. 
+  """
+  listingPreviews: [ListingPreview!]!
+  """
+  An array of valid external products that were not successfully mapped by eBay into listing previews. These products should not be retried by the client. This array will be empty if there are no unmapped products. 
+  """
+  unmappedProducts: [ExternalProductDetails!]!
+  """
+  An array of external products that were not processed due to unforeseen circumstances. All of the details provided for each external product in the mutation request are returned under this array. Unprocessed external products can be included in a subsequent mutation request. This array will not be returned or will be null if there are no unprocessed products.
+  """
+  unprocessedProducts: [ExternalProductDetails!]!
+}
+
+"""The root mutation type for eBay's GraphQL API."""
+type Mutation {
+  """
+  The **startListingPreviewsCreation** mutation initiates a process that leverages a seller’s provided external product data (maximum 10 products) and uses this data to create an eBay listing preview for each provided product. This asynchronous process can take some time to complete, which is partially dependent on the number of external products being processed. The **startListingPreviewsCreation** mutation includes details of the external products. The output of the mutation will include the status and ID of the task, and may include errors if there are any issues. Once the listing previews task is complete, the mutation response will also include the results of the listing preview.
+    
+  The startListingPreviewsCreation mutation initiates a process that creates eBay Listing Previews from a seller's external products. This process is asynchronous and can take some time to complete. The mutation takes an input that includes details of the external products. The output of the mutation includes the details of the listing previews creation task and any errors that occurred during the process. This mutation is useful for sellers who want to convert their external products into eBay Listing Previews. The field will only be null when there is a server error prior to starting the preview creation process.
+  """
+  startListingPreviewsCreation(input: StartListingPreviewsCreationInput!): StartListingPreviewsCreationOutput @authorize(scopes: ["https://api.ebay.com/oauth/api_scope/sell.inventory.mapping&eBayUser"])
+}
+
+"""
+This type defines the details of a specific catalog product such as its title, identifier, product aspects, recommended category, and links to images of the product.
+"""
+type Product {
+  """
+  The unique identifier of an eBay catalog product. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category.
+  """
+  epid: Epid @deprecated(reason: "This field is deprecated and has been superseded by the **id** field.")
+  """
+  The unique identifier of an eBay catalog product. An ePID value can be used in eBay listing APIs to prefill a listing with product title, product description, product aspects, stock photo(s), and eBay category.
+  """
+  id: ID! @deprecated(reason: "Use 'productId' field instead")
+  """
+  This array returns a list of product aspects and values associated with this catalog product. 
+  """
+  aspects: [ProductAspect!]!
+  """
+  This container returns information about the leaf category for which eBay recommends to list this product, based on previous listings of similar products. 
+  """
+  category: Category!
+  """
+  This array returns a list of one or more image URLs associated with this catalog product. 
+  """
+  imageUrls: [String!]
+  """The eBay product identifier (ePID) of the product."""
+  productId: ID!
+  """The title of the catalog product. """
+  title: String!
+}
+
+"""
+This type defines the the product aspect name/value pair(s) associated with a product.
+"""
+type ProductAspect {
+  """
+  A list of valid values associated with the product aspect (for example: 'Red', 'Green', and 'Blue').
+  """
+  aspectValues: [String!]!
+  """
+  The name of the product aspect, localized for the specified marketplace (for example: 'Color").
+  """
+  displayName: String!
+}
+
+"""The root query type for eBay's GraphQL API."""
+type Query {
+  """
+  The listingPreviewsCreationTaskById query retrieves a ListingPreviewsCreationTask by ID. The data returned includes the task's status and results, including the listing previews created and any products not processed, unmapped, or invalid. Use this query to check task status or obtain the results of converting a seller's external products into eBay listing previews.
+    
+  You can call this query immediately after submitting the startListingPreviewsCreation mutation to check the task's status. However, if that mutation has not completed, the query may return a null or an incomplete result.
+  """
+  listingPreviewsCreationTaskById(input: ListingPreviewsCreationTaskByIdInput!): ListingPreviewsCreationTaskByIdOutput @authorize(scopes: ["https://api.ebay.com/oauth/api_scope/sell.inventory.mapping&eBayUser"])
+}
+
+"""
+This type is used to show any errors that occurred during the execution of a mutation or query.
+"""
+type StartListingPreviewsCreationError {
+  """
+  A description of an error that occurred while executing a mutation or query. This field is intended to be a debugging aid for humans. The description is not localized and is subject to change.  Do not use these error descriptions for client-side error handling logic.
+  """
+  errorDescription: String!
+}
+
+"""
+This is the base type for the **startListingPreviewsCreation** mutation. It contains an array of **externalProducts** that need to be converted into eBay listing previews.
+"""
+input StartListingPreviewsCreationInput {
+  """
+  This array is used to provide details of external products. Product details include title, images, product identifiers, product aspects, category name, and SKU value. In order to successfully identify an external product, send a title or an image, and include other fields such as product id (UPC, ISBN, or EAN). A SKU is optional, but it is highly recommended as it acts as a key to track/identify different external products. 
+  """
+  externalProducts: [ExternalProductDetailsInput!]
+}
+
+"""
+The base type of the **startListingPreviewsCreation** mutation response. A successful mutation will return the **id** value for the task, and the listing preview results cannot be returned until the task is complete.
+"""
+type StartListingPreviewsCreationOutput {
+  """
+  An array of one or more errors that may have been triggered with the mutation request. This field will be returned as null if there are no errors.
+  """
+  errors: [StartListingPreviewsCreationError!]
+  """
+  This base response object should be returned with a successful mutation, but the listing preview results cannot be returned until the task is complete.
+  """
+  listingPreviewsCreationTask: ListingPreviewsCreationTask
+}

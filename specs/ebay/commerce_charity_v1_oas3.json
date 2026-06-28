@@ -1,0 +1,718 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Charity API",
+        "description": "The Charity API allows third-party developers to search for and access details on supported charitable organizations.",
+        "contact": {
+            "name": "eBay Inc,"
+        },
+        "license": {
+            "name": "eBay API License Agreement",
+            "url": "https://developer.ebay.com/join/api-license-agreement"
+        },
+        "version": "v1.2.1"
+    },
+    "servers": [
+        {
+            "url": "https://api.ebay.com{basePath}",
+            "description": "Production",
+            "variables": {
+                "basePath": {
+                    "default": "/commerce/charity/v1"
+                }
+            }
+        }
+    ],
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/charity_org/{charity_org_id}": {
+            "get": {
+                "tags": [
+                    "charity_org"
+                ],
+                "description": "This call is used to retrieve detailed information about supported charitable organizations. It allows users to retrieve the details for a specific charitable organization using its charity organization ID.",
+                "operationId": "getCharityOrg",
+                "parameters": [
+                    {
+                        "name": "charity_org_id",
+                        "in": "path",
+                        "description": "The unique ID of the charitable organization.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-EBAY-C-MARKETPLACE-ID",
+                        "in": "header",
+                        "description": "A header used to specify the eBay marketplace ID.<br /><br /><b>Valid Values:</b> <code>EBAY_GB</code> and <code>EBAY_US</code>",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CharityOrg"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "x-response-codes": {
+                            "errors": {
+                                "165001": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "Invalid, missing or unsupported marketplace. Please refer to documentation."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "x-response-codes": {
+                            "errors": {
+                                "165000": {
+                                    "domain": "API_CHARITY",
+                                    "category": "APPLICATION",
+                                    "description": "There was a problem with an eBay internal system or process. Contact eBay developer support for assistance."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "x-response-codes": {
+                            "errors": {
+                                "165002": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "Charity Org Id is invalid or missing."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_auth": [
+                            "https://api.ebay.com/oauth/api_scope"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/charity_org": {
+            "get": {
+                "tags": [
+                    "charity_org"
+                ],
+                "description": "This call is used to search for supported charitable organizations. It allows users to search for a specific charitable organization, or for multiple charitable organizations, from a particular charitable domain and/or geographical region, or by using search criteria.<br /><br />The call returns paginated search results containing the charitable organizations that match the specified criteria.",
+                "operationId": "getCharityOrgs",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The number of items, from the result set, returned in a single page.<br /><br /><b>Valid Values:</b> <code>1-100</code><br /><br /><b>Default:</b> <code>20</code>",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Valid Values:</b> <code>0-10,000</code><br /><br /><b>Default:</b> <code>0</code>",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "A query string that matches the keywords in name, mission statement, or description.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "registration_ids",
+                        "in": "query",
+                        "description": "A comma-separated list of charitable organization registration IDs.<br /><br /><span class=\"tablenote\"><b>Note: </b>Do not specify this parameter for query-based searches. Specify either the <b>q</b> or <b>registration_ids</b> parameter, but not both.</span><br /><br /><b>Maximum Limit:</b> <code>20</code>",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-EBAY-C-MARKETPLACE-ID",
+                        "in": "header",
+                        "description": "A header used to specify the eBay marketplace ID.<br /><br /><b>Valid Values:</b> <code>EBAY_GB</code> and <code>EBAY_US</code>",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CharitySearchResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "x-response-codes": {
+                            "errors": {
+                                "165003": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "The specified limit is invalid. Maximum value supported is 100."
+                                },
+                                "165001": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "Invalid, missing or unsupported marketplace. Please refer to documentation."
+                                },
+                                "165004": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "The specified offset is invalid."
+                                },
+                                "165005": {
+                                    "domain": "API_CHARITY",
+                                    "category": "REQUEST",
+                                    "description": "Please specify registration_ids OR query text for the search."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "x-response-codes": {
+                            "errors": {
+                                "165000": {
+                                    "domain": "API_CHARITY",
+                                    "category": "APPLICATION",
+                                    "description": "There was a problem with an eBay internal system or process. Contact eBay developer support for assistance."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_auth": [
+                            "https://api.ebay.com/oauth/api_scope"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "The city of the charitable organization."
+                    },
+                    "stateOrProvince": {
+                        "type": "string",
+                        "description": "The state or province of the charitable organization."
+                    },
+                    "postalCode": {
+                        "type": "string",
+                        "description": "The postal code of the charitable organization."
+                    },
+                    "country": {
+                        "description": "The two-letter <a href=\"https://www.iso.org/iso-3166-country-codes.html \">ISO 3166</a> standard of the country of the address.",
+                        "$ref": "#/components/schemas/CountryCodeEnum"
+                    }
+                },
+                "description": "The physical location of the item."
+            },
+            "CharityOrg": {
+                "type": "object",
+                "required": ["charityOrgId", "name"],
+                "properties": {
+                    "charityOrgId": {
+                        "type": "string",
+                        "description": "The ID of the charitable organization."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the charitable organization."
+                    },
+                    "location": {
+                        "description": "The location details of the charitable organization.",
+                        "$ref": "#/components/schemas/Location"
+                    },
+                    "logoImage": {
+                        "description": "The logo of the charitable organization.",
+                        "$ref": "#/components/schemas/Image"
+                    },
+                    "missionStatement": {
+                        "type": "string",
+                        "description": "The mission statement of the charitable organization."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the charitable organization."
+                    },
+                    "registrationId": {
+                        "type": "string",
+                        "description": "The registration ID for the charitable organization.<br /><br /><span class=\"tablenote\"><span style=\"color:#004680\"><strong>Note:</strong></span> For the US marketplace, this is the EIN.</span>"
+                    },
+                    "website": {
+                        "type": "string",
+                        "description": "The link to the website for the charitable organization."
+                    }
+                },
+                "description": "The full location, ID, logo and other details of the charity organization."
+            },
+            "CharitySearchResponse": {
+                "type": "object",
+				"required": ["href"],
+                "properties": {
+                    "charityOrgs": {
+                        "type": "array",
+                        "description": "The list of charitable organizations that match the search criteria.",
+                        "items": {
+                            "$ref": "#/components/schemas/CharityOrg"
+                        }
+                    },
+                    "href": {
+                        "type": "string",
+                        "description": "The relative path to the current set of results."
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "The number of items, from the result set, returned in a single page.<br /><br /><b>Valid Values:</b> <code>1-100</code><br /><br /><b>Default:</b> <code>20</code>",
+                        "format": "int32"
+                    },
+                    "next": {
+                        "type": "string",
+                        "description": "The relative path to the next set of results."
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "description": "The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Valid Values:</b> <code>0-10,000</code><br /><br /><b>Default:</b> <code>0</code>",
+                        "format": "int32"
+                    },
+                    "prev": {
+                        "type": "string",
+                        "description": "The relative path to the previous set of results."
+                    },
+                    "total": {
+                        "type": "integer",
+                        "description": "The total number of matches for the search criteria.",
+                        "format": "int32"
+                    }
+                },
+                "description": "A single set of search results, with information for accessing other sets."
+            },
+            "CountryCodeEnum": {
+                "type": "object",
+                "description": "The two-letter <a href=\"https://www.iso.org/iso-3166-country-codes.html \">ISO 3166</a> standard of the country of the address. | - **AD**: Indicates the country is Andorra. - **AE**: Indicates the country is United Arab Emirates. - **AF**: Indicates the country is Afghanistan. - **AG**: Indicates the country is Antigua and Barbuda. - **AI**: Indicates the country is Anguilla. - **AL**: Indicates the country is Albania. - **AM**: Indicates the country is Armenia. - **AN**: Indicates the country is Netherlands Antilles. - **AO**: Indicates the country is Angola. - **AQ**: Indicates the country is Antarctica. - **AR**: Indicates the country is Argentina. - **AS**: Indicates the country is American Samoa. - **AT**: Indicates the country is Austria. - **AU**: Indicates the country is Australia. - **AW**: Indicates the country is Aruba. - **AX**: Indicates the country is Aland Islands**:   - **AZ**: Indicates the country is Azerbaijan. - **BA**: Indicates the country is Bosnia and Herzegovina. - **BB**: Indicates the country is Barbados. - **BD**: Indicates the country is Bangladesh. - **BE**: Indicates the country is Belgium. - **BF**: Indicates the country is Burkina Faso. - **BG**: Indicates the country is Bulgaria. - **BH**: Indicates the country is Bahrain. - **BI**: Indicates the country is Burundi. - **BJ**: Indicates the country is Benin. - **BL**: Indicates the country is Saint Barthelemy. - **BM**: Indicates the country is Bermuda. - **BN**: Indicates the country is Brunei Darussalam. - **BO**: Indicates the country is Bolivia. - **BQ**: Indicates the country is Bonaire, Sint Eustatius, and Saba. - **BR**: Indicates the country is Brazil. - **BS**: Indicates the country is Bahamas. - **BT**: Indicates the country is Bhutan. - **BV**: Indicates the country is Bouvet Island. - **BW**: Indicates the country is Botswana. - **BY**: Indicates the country is Belarus. - **BZ**: Indicates the country is Belize. - **CA**: Indicates the country is Canada. - **CC**: Indicates the country is Cocos (Keeling) Islands. - **CD**: Indicates the country is The Democratic Republic of the Congo. - **CF**: Indicates the country is Central African Republic. - **CG**: Indicates the country is Congo. - **CH**: Indicates the country is Switzerland. - **CI**: Indicates the country is Cote d'Ivoire. - **CK**: Indicates the country is Cook Islands. - **CL**: Indicates the country is Chile. - **CM**: Indicates the country is Cameroon. - **CN**: Indicates the country is China. - **CO**: Indicates the country is Colombia. - **CR**: Indicates the country is Costa Rica. - **CU**: Indicates the country is Cuba. - **CV**: Indicates the country is Cape Verde. - **CW**: Indicates the country is Curacao. - **CX**: Indicates the country is Christmas Island. - **CY**: Indicates the country is Cyprus. - **CZ**: Indicates the country is Czech Republic. - **DE**: Indicates the country is Germany. - **DJ**: Indicates the country is Djibouti. - **DK**: Indicates the country is Denmark. - **DM**: Indicates the country is Dominica. - **DO**: Indicates the country is Dominican Republic. - **DZ**: Indicates the country is Algeria. - **EC**: Indicates the country is Ecuador. - **EE**: Indicates the country is Estonia. - **EG**: Indicates the country is Egypt. - **EH**: Indicates the country is Western Sahara. - **ER**: Indicates the country is Eritrea. - **ES**: Indicates the country is Spain. - **ET**: Indicates the country is Ethiopia. - **FI**: Indicates the country is Finland. - **FJ**: Indicates the country is Fiji. - **FK**: Indicates the country is Falkland Islands (Malvinas). - **FM**: Indicates the country is Federated States of Micronesia. - **FO**: Indicates the country is Faroe Islands. - **FR**: Indicates the country is France. - **GA**: Indicates the country is Gabon. - **GB**: Indicates the country is United Kingdom. - **GD**: Indicates the country is Grenada. - **GE**: Indicates the country is Georgia. - **GF**: Indicates the country is French Guiana. - **GG**: Indicates the country is Guernsey. - **GH**: Indicates the country is Ghana. - **GI**: Indicates the country is Gibraltar. - **GL**: Indicates the country is Greenland. - **GM**: Indicates the country is Gambia. - **GN**: Indicates the country is Guinea. - **GP**: Indicates the country is Guadeloupe. - **GQ**: Indicates the country is Equatorial Guinea. - **GR**: Indicates the country is Greece. - **GS**: Indicates the country is South Georgia and the South Sandwich Islands. - **GT**: Indicates the country is Guatemala. - **GU**: Indicates the country is Guam. - **GW**: Indicates the country is Guinea-Bissau. - **GY**: Indicates the country is Guyana. - **HK**: Indicates the country is Hong Kong. - **HM**: Indicates the country is Heard Island and McDonald Islands. - **HN**: Indicates the country is Honduras. - **HR**: Indicates the country is Croatia. - **HT**: Indicates the country is Haiti. - **HU**: Indicates the country is Hungary. - **ID**: Indicates the country is Indonesia. - **IE**: Indicates the country is Ireland. - **IL**: Indicates the country is Israel. - **IM**: Indicates the country is Isle of Man. - **IN**: Indicates the country is India. - **IO**: Indicates the country is British Indian Ocean Territory. - **IQ**: Indicates the country is Iraq. - **IR**: Indicates the country is Islamic Republic of Iran. - **IS**: Indicates the country is Iceland. - **IT**: Indicates the country is Italy. - **JE**: Indicates the country is Jersey. - **JM**: Indicates the country is Jamaica. - **JO**: Indicates the country is Jordan. - **JP**: Indicates the country is Japan. - **KE**: Indicates the country is Kenya. - **KG**: Indicates the country is Kyrgyzstan. - **KH**: Indicates the country is Cambodia. - **KI**: Indicates the country is Kiribati. - **KM**: Indicates the country is Comoros. - **KN**: Indicates the country is Saint Kitts and Nevis. - **KP**: Indicates the country is Democratic People's Republic of Korea. - **KR**: Indicates the country is Republic of Korea. - **KW**: Indicates the country is Kuwait. - **KY**: Indicates the country is Cayman Islands. - **KZ**: Indicates the country is Kazakhstan. - **LA**: Indicates the country is Lao People's Democratic Republic. - **LB**: Indicates the country is Lebanon. - **LC**: Indicates the country is Saint Lucia. - **LI**: Indicates the country is Liechtenstein. - **LK**: Indicates the country is Sri Lanka. - **LR**: Indicates the country is Liberia. - **LS**: Indicates the country is Lesotho. - **LT**: Indicates the country is Lithuania. - **LU**: Indicates the country is Luxembourg. - **LV**: Indicates the country is Latvia. - **LY**: Indicates the country is Libyan Arab Jamahiriya. - **MA**: Indicates the country is Morocco. - **MC**: Indicates the country is Monaco. - **MD**: Indicates the country is Republic of Moldova. - **ME**: Indicates the country is Montenegro. - **MF**: Indicates the country is Saint Martin (French part). - **MG**: Indicates the country is Madagascar. - **MH**: Indicates the country is Marshall Islands. - **MK**: Indicates the country is The Former Yugoslav Republic of Macedonia. - **ML**: Indicates the country is Mali. - **MM**: Indicates the country is Myanmar. - **MN**: Indicates the country is Mongolia. - **MO**: Indicates the country is Macao. - **MP**: Indicates the country is Northern Mariana Islands. - **MQ**: Indicates the country is Martinique. - **MR**: Indicates the country is Mauritania. - **MS**: Indicates the country is Montserrat. - **MT**: Indicates the country is Malta. - **MU**: Indicates the country is Mauritius. - **MV**: Indicates the country is Maldives. - **MW**: Indicates the country is Malawi. - **MX**: Indicates the country is Mexico. - **MY**: Indicates the country is Malaysia. - **MZ**: Indicates the country is Mozambique. - **NA**: Indicates the country is Namibia. - **NC**: Indicates the country is New Caledonia. - **NE**: Indicates the country is Niger. - **NF**: Indicates the country is Norfolk Island. - **NG**: Indicates the country is Nigeria. - **NI**: Indicates the country is Nicaragua. - **NL**: Indicates the country is Netherlands. - **NO**: Indicates the country is Norway. - **NP**: Indicates the country is Nepal. - **NR**: Indicates the country is Nauru. - **NU**: Indicates the country is Niue. - **NZ**: Indicates the country is New Zealand. - **OM**: Indicates the country is Oman. - **PA**: Indicates the country is Panama. - **PE**: Indicates the country is Peru. - **PF**: Indicates the country is French Polynesia. Includes Tahiti. - **PG**: Indicates the country is Papua New Guinea. - **PH**: Indicates the country is Philippines. - **PK**: Indicates the country is Pakistan. - **PL**: Indicates the country is Poland. - **PM**: Indicates the country is Saint Pierre and Miquelon. - **PN**: Indicates the country is Pitcairn. - **PR**: Indicates the country is Puerto Rico. - **PS**: Indicates the country is Palestinian territory Occupied. - **PT**: Indicates the country is Portugal. - **PW**: Indicates the country is Palau. - **PY**: Indicates the country is Paraguay. - **QA**: Indicates the country is Qatar. - **RE**: Indicates the country is Reunion. - **RO**: Indicates the country is Romania. - **RS**: Indicates the country is Serbia. - **RU**: Indicates the country is Russian Federation. - **RW**: Indicates the country is Rwanda. - **SA**: Indicates the country is Saudi Arabia. - **SB**: Indicates the country is Solomon Islands. - **SC**: Indicates the country is Seychelles. - **SD**: Indicates the country is Sudan. - **SE**: Indicates the country is Sweden. - **SG**: Indicates the country is Singapore. - **SH**: Indicates the country is Saint Helena. - **SI**: Indicates the country is Slovenia. - **SJ**: Indicates the country is Svalbard and Jan Mayen. - **SK**: Indicates the country is Slovakia. - **SL**: Indicates the country is Sierra Leone. - **SM**: Indicates the country is San Marino. - **SN**: Indicates the country is Senegal. - **SO**: Indicates the country is Somalia. - **SR**: Indicates the country is Suriname. - **ST**: Indicates the country is Sao Tome and Principe. - **SV**: Indicates the country is El Salvador. - **SX**: Indicates the country is Sint Maarten (Dutch part). - **SY**: Indicates the country is Syrian Arab Republic. - **SZ**: Indicates the country is Swaziland. - **TC**: Indicates the country is Turks and Caicos Islands. - **TD**: Indicates the country is Chad. - **TF**: Indicates the country is French Southern Territories. - **TG**: Indicates the country is Togo. - **TH**: Indicates the country is Thailand. - **TJ**: Indicates the country is Tajikistan. - **TK**: Indicates the country is Tokelau. - **TL**: Indicates the country is Timor-Leste. - **TM**: Indicates the country is Turkmenistan. - **TN**: Indicates the country is Tunisia. - **TO**: Indicates the country is Tonga. - **TR**: Indicates the country is Turkey. - **TT**: Indicates the country is Trinidad and Tobago. - **TV**: Indicates the country is Tuvalu. - **TW**: Indicates the country is Taiwan. - **TZ**: Indicates the country is Tanzania. - **UA**: Indicates the country is Ukraine. - **UG**: Indicates the country is Uganda. - **UM**: Indicates the country is United States Minor Outlying Islands. - **US**: Indicates the country is United States. - **UY**: Indicates the country is Uruguay. - **UZ**: Indicates the country is Uzbekistan. - **VA**: Indicates the country is Holy See (Vatican City state). - **VC**: Indicates the country is Saint Vincent and the Grenadines. - **VE**: Indicates the country is Venezuela. - **VG**: Indicates the country is British Virgin Islands. - **VI**: Indicates the country is the U.S. Virgin Islands. - **VN**: Indicates the country is Vietnam. - **VU**: Indicates the country is Vanuatu. - **WF**: Indicates the country is Wallis and Futuna. - **WS**: Indicates the country is Samoa. - **YE**: Indicates the country is Yemen. - **YT**: Indicates the country is Mayotte. - **ZA**: Indicates the country is South Africa. - **ZM**: Indicates the country is Zambia. - **ZW**: Indicates the country is Zimbabwe. - **",
+                "enum": [
+                    "AD",
+                    "AE",
+                    "AF",
+                    "AG",
+                    "AI",
+                    "AL",
+                    "AM",
+                    "AN",
+                    "AO",
+                    "AQ",
+                    "AR",
+                    "AS",
+                    "AT",
+                    "AU",
+                    "AW",
+                    "AX",
+                    "AZ",
+                    "BA",
+                    "BB",
+                    "BD",
+                    "BE",
+                    "BF",
+                    "BG",
+                    "BH",
+                    "BI",
+                    "BJ",
+                    "BL",
+                    "BM",
+                    "BN",
+                    "BO",
+                    "BQ",
+                    "BR",
+                    "BS",
+                    "BT",
+                    "BV",
+                    "BW",
+                    "BY",
+                    "BZ",
+                    "CA",
+                    "CC",
+                    "CD",
+                    "CF",
+                    "CG",
+                    "CH",
+                    "CI",
+                    "CK",
+                    "CL",
+                    "CM",
+                    "CN",
+                    "CO",
+                    "CR",
+                    "CU",
+                    "CV",
+                    "CW",
+                    "CX",
+                    "CY",
+                    "CZ",
+                    "DE",
+                    "DJ",
+                    "DK",
+                    "DM",
+                    "DO",
+                    "DZ",
+                    "EC",
+                    "EE",
+                    "EG",
+                    "EH",
+                    "ER",
+                    "ES",
+                    "ET",
+                    "FI",
+                    "FJ",
+                    "FK",
+                    "FM",
+                    "FO",
+                    "FR",
+                    "GA",
+                    "GB",
+                    "GD",
+                    "GE",
+                    "GF",
+                    "GG",
+                    "GH",
+                    "GI",
+                    "GL",
+                    "GM",
+                    "GN",
+                    "GP",
+                    "GQ",
+                    "GR",
+                    "GS",
+                    "GT",
+                    "GU",
+                    "GW",
+                    "GY",
+                    "HK",
+                    "HM",
+                    "HN",
+                    "HR",
+                    "HT",
+                    "HU",
+                    "ID",
+                    "IE",
+                    "IL",
+                    "IM",
+                    "IN",
+                    "IO",
+                    "IQ",
+                    "IR",
+                    "IS",
+                    "IT",
+                    "JE",
+                    "JM",
+                    "JO",
+                    "JP",
+                    "KE",
+                    "KG",
+                    "KH",
+                    "KI",
+                    "KM",
+                    "KN",
+                    "KP",
+                    "KR",
+                    "KW",
+                    "KY",
+                    "KZ",
+                    "LA",
+                    "LB",
+                    "LC",
+                    "LI",
+                    "LK",
+                    "LR",
+                    "LS",
+                    "LT",
+                    "LU",
+                    "LV",
+                    "LY",
+                    "MA",
+                    "MC",
+                    "MD",
+                    "ME",
+                    "MF",
+                    "MG",
+                    "MH",
+                    "MK",
+                    "ML",
+                    "MM",
+                    "MN",
+                    "MO",
+                    "MP",
+                    "MQ",
+                    "MR",
+                    "MS",
+                    "MT",
+                    "MU",
+                    "MV",
+                    "MW",
+                    "MX",
+                    "MY",
+                    "MZ",
+                    "NA",
+                    "NC",
+                    "NE",
+                    "NF",
+                    "NG",
+                    "NI",
+                    "NL",
+                    "NO",
+                    "NP",
+                    "NR",
+                    "NU",
+                    "NZ",
+                    "OM",
+                    "PA",
+                    "PE",
+                    "PF",
+                    "PG",
+                    "PH",
+                    "PK",
+                    "PL",
+                    "PM",
+                    "PN",
+                    "PR",
+                    "PS",
+                    "PT",
+                    "PW",
+                    "PY",
+                    "QA",
+                    "RE",
+                    "RO",
+                    "RS",
+                    "RU",
+                    "RW",
+                    "SA",
+                    "SB",
+                    "SC",
+                    "SD",
+                    "SE",
+                    "SG",
+                    "SH",
+                    "SI",
+                    "SJ",
+                    "SK",
+                    "SL",
+                    "SM",
+                    "SN",
+                    "SO",
+                    "SR",
+                    "ST",
+                    "SV",
+                    "SX",
+                    "SY",
+                    "SZ",
+                    "TC",
+                    "TD",
+                    "TF",
+                    "TG",
+                    "TH",
+                    "TJ",
+                    "TK",
+                    "TL",
+                    "TM",
+                    "TN",
+                    "TO",
+                    "TR",
+                    "TT",
+                    "TV",
+                    "TW",
+                    "TZ",
+                    "UA",
+                    "UG",
+                    "UM",
+                    "US",
+                    "UY",
+                    "UZ",
+                    "VA",
+                    "VC",
+                    "VE",
+                    "VG",
+                    "VI",
+                    "VN",
+                    "VU",
+                    "WF",
+                    "WS",
+                    "YE",
+                    "YT",
+                    "ZA",
+                    "ZM",
+                    "ZW"
+                ]
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "Identifies the type of erro."
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "Name for the primary system where the error occurred. This is relevant for application errors."
+                    },
+                    "errorId": {
+                        "type": "integer",
+                        "description": "A unique number to identify the error.",
+                        "format": "int32"
+                    },
+                    "inputRefIds": {
+                        "type": "array",
+                        "description": "An array of request elements most closely associated to the error.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "longMessage": {
+                        "type": "string",
+                        "description": "A more detailed explanation of the error."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Information on how to correct the problem, in the end user's terms and language where applicable."
+                    },
+                    "outputRefIds": {
+                        "type": "array",
+                        "description": "An array of request elements most closely associated to the error.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "parameters": {
+                        "type": "array",
+                        "description": "An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorParameter"
+                        }
+                    },
+                    "subdomain": {
+                        "type": "string",
+                        "description": "Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc."
+                    }
+                },
+                "description": "This type defines the fields that can be returned in an error."
+            },
+            "ErrorParameter": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The object of the error."
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value of the object."
+                    }
+                }
+            },
+            "GeoCoordinates": {
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "type": "number",
+                        "description": "The latitude component of the geographic coordinate."
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "description": "The longitude component of the geographic coordinate."
+                    }
+                },
+                "description": "Defines the format of a geographic coordinate."
+            },
+            "Image": {
+                "type": "object",
+                "properties": {
+                    "height": {
+                        "type": "string",
+                        "description": "The height of the logo image."
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "description": "The URL to the logo image location."
+                    },
+                    "width": {
+                        "type": "string",
+                        "description": "The width of the logo image."
+                    }
+                },
+                "description": "The logo of the charitable organization."
+            },
+            "Location": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "description": "The address of the charitable organization.",
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "geoCoordinates": {
+                        "description": "The geo-coordinates of the charitable organization.",
+                        "$ref": "#/components/schemas/GeoCoordinates"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_auth": {
+                "type": "oauth2",
+                "description": "The security definitions for this API. Please check individual operations for applicable scopes.",
+                "flows": {
+                    "clientCredentials": {
+                        "tokenUrl": "https://api.ebay.com/identity/v1/oauth2/token",
+                        "scopes": {
+                            "https://api.ebay.com/oauth/api_scope": "View public data from eBay"
+                        }
+                    }
+                }
+            },
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

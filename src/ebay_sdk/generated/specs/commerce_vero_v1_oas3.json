@@ -1,0 +1,1199 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Vero Public API's",
+    "description": "The VeRO API has methods that allow owners of an intellectual property to report eBay listings that infringe on their intellectual property rights. It contains methods to report a listing, retrieve supported VeRO reason codes, and retrieve the status of reported items.",
+    "contact": {
+      "name": "eBay Inc,"
+    },
+    "license": {
+      "name": "eBay API License Agreement",
+      "url": "https://developer.ebay.com/join/api-license-agreement"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.ebay.com{basePath}",
+      "description": "Production",
+      "variables": {
+        "basePath": {
+          "default": "/commerce/vero/v1"
+        }
+      }
+    }
+  ],
+  "security": [
+    {}
+  ],
+  "paths": {
+    "/vero_reason_code/{vero_reason_code_id}": {
+      "get": {
+        "tags": [
+          "vero_reason_code"
+        ],
+        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><b><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></b></span></span> You must be a member of the Verified Rights Owner (VeRO) Program to use this call.</p></div><br>This method is used to retrieve the details of a specific VeRO reason code, including a description of the code and the marketplace associated with the code.<br><br>The <b>vero_reason_code_id</b> of the VeRO reason code for which to retrieve details is required as a path parameter.",
+        "operationId": "getVeroReasonCode",
+        "parameters": [
+          {
+            "name": "vero_reason_code_id",
+            "in": "path",
+            "description": "This path parameter specifies the unique identifier of the VeRO reason code that is to be retrieved.<br><br>Use the <a href=\"/develop/api/sell/vero_api#sell-vero_api-vero_reason_code-getveroreasoncodes\">getVeroReasonCodes</a> method to retrieve supported VeRO reason code IDs.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeroReasonCodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235001": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The veroReasonCodeId was not found."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235000": {
+                  "domain": "API_VERO",
+                  "category": "APPLICATION",
+                  "description": "There was a problem with an eBay internal system or process."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/api_scope/commerce.vero"
+            ]
+          }
+        ]
+      }
+    },
+    "/vero_reason_code": {
+      "get": {
+        "tags": [
+          "vero_reason_code"
+        ],
+        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><b><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></b></span></span> You must be a member of the Verified Rights Owner (VeRO) Program to use this call.</p></div><br>This method is used to retrieve the details of an array of VeRO reason codes. This information includes the descriptions of each code, as well as the marketplace associated with each code.<br><br> If the <b>X-EBAY-C-MARKETPLACE-ID</b> header is present, only VeRO reason codes for that specific site will be returned. If this header is not included, all reason codes for all sites are returned.",
+        "operationId": "getVeroReasonCodes",
+        "parameters": [
+          {
+            "name": "X-EBAY-C-MARKETPLACE-ID",
+            "in": "header",
+            "description": "This header identifies the eBay marketplace for which to retrieve VeRO reason codes. If this header is used, only VeRO reason codes for the specified marketplace will be returned in the response.<br><br>See <a href=\"/develop/api/sell/vero_api#sell-vero_api-vero_reason_code-getveroreasoncodes.veroreasoncode.marketplaceid\">MarketplaceIdEnum</a> for a list of supported values.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeroReasonCodeDetailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235000": {
+                  "domain": "API_VERO",
+                  "category": "APPLICATION",
+                  "description": "There was a problem with an eBay internal system or process."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/api_scope/commerce.vero"
+            ]
+          }
+        ]
+      }
+    },
+    "/vero_report": {
+      "post": {
+        "tags": [
+          "vero_report"
+        ],
+        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><b><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></b></span></span> You must be a member of the Verified Rights Owner (VeRO) Program to use this call.</p></div><br>This method can be used to create a VeRO report for a listing. VeRO reports can be used to report items that your copyright, trademark, or other intellectual property rights.<br><br>The <b>itemId</b> of the item being reported must be provided in the request, as well as the <b>veroReasonCodeId</b> of the claimed infringement.<br><br>You can report one or more items at a time using this method. A maximum of 150 items can be reported using this method.",
+        "operationId": "createVeroReport",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "This header indicates the format of the request body provided by the client. Its value should be set to <b>application/json</b>. <br><br>For more information, refer to <a href=\"/api-docs/static/rest-request-components.html#HTTP\" target=\"_blank \">HTTP request headers</a>.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeroReportItemsRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "description": "The <b>Location</b> response header returns the created report resource location."
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeroReportItemsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235024": {
+                  "domain": "API_VERO_REPORT",
+                  "category": "REQUEST",
+                  "description": "At least one item is required for this call."
+                },
+                "235015": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "At least one country is required for the specified reason code."
+                },
+                "235014": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The veroReasonCodeId is required for this call."
+                },
+                "235013": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The itemId is required for this call."
+                },
+                "235012": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Number of reported items exceeds maximum limit of 150 items."
+                },
+                "235019": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please verify brand, it should not exceed 50 characters."
+                },
+                "235017": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The patent is required for this call."
+                },
+                "235016": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The Regions specified are not allowed"
+                },
+                "235023": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please check report, there are duplicate item reports. A duplicate report is two report on the same itemId and veroReasonCodeId combination in one packet. The same combination itemId and veroReasonCodeId can be reported in a different packet."
+                },
+                "235022": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please verify messageToSeller, it should not exceed 1000 characters."
+                },
+                "235021": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please verify detailedMessage, it should not exceed 1000 characters."
+                },
+                "235020": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The detailedMessage is required for the specified reason code."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235018": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please verify patent, it should not exceed 15 characters."
+                },
+                "235000": {
+                  "domain": "API_VERO",
+                  "category": "APPLICATION",
+                  "description": "There was a problem with an eBay internal system or process."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/api_scope/commerce.vero"
+            ]
+          }
+        ]
+      }
+    },
+    "/vero_report/{vero_report_id}": {
+      "get": {
+        "tags": [
+          "vero_report"
+        ],
+        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><b><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></b></span></span> You must be a member of the Verified Rights Owner (VeRO) Program to use this call.</p></div><br>This method can be used to retrieve status information about a VeRO report you have submitted to eBay for copyright, trademark, or other intellectual property rights infringement.<br><br>The <b>vero_report_id</b> path parameter is used to specify the eBay report for which to retrieve status information.",
+        "operationId": "getVeroReport",
+        "parameters": [
+          {
+            "name": "includeItemDetails",
+            "in": "query",
+            "description": "Include this query and set it to <code>true</code> if you want to retrieve the <b>reportedItemDetails</b> container in the response, which contains item-level status information. This container may be helpful if you have reported violations on more than one eBay item in the report.<br><br>By default, this boolean is set to <code>false</code>.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vero_report_id",
+            "in": "path",
+            "description": "This path parameter specifies the unique identifier of the VeRO report being retrieved.<br><br>This value is returned when creating a VeRO report through the <a href=\"/develop/api/sell/vero_api#sell-vero_api-vero_report-createveroreport\">createVeroReport</a> method.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235010": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Not authorized to perform this operation. Vero report creator and requester are different."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235000": {
+                  "domain": "API_VERO",
+                  "category": "APPLICATION",
+                  "description": "There was a problem with an eBay internal system or process."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235011": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The veroReportId was not found."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/api_scope/commerce.vero"
+            ]
+          }
+        ]
+      }
+    },
+    "/vero_report_items": {
+      "get": {
+        "tags": [
+          "vero_report_items"
+        ],
+        "summary": "Retrieves status for VERO infringement reports by Brand.",
+        "description": "<div class=\"msgbox_important\"><p class=\"msgbox_importantInDiv\" data-mc-autonum=\"&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;\"><span class=\"autonumber\"><span><b><span style=\"color: #dd1e31;\" class=\"mcFormatColor\">Important!</span></b></span></span> You must be a member of the Verified Rights Owner (VeRO) Program to use this call.</p></div><br>This method can be used to retrieve status information about one or more VeRO reported items you have submitted.<br><br>Without the use of any query parameters, the default behavior of this method is to return the status of all VeRO reported items submitted by the seller during the last two years. Use the <b>itemId</b> query parameter to see a specific reported item, and use the <b>filter</b> query to retrieve the status of reported items submitted within a specific date range. Pagination is also available to limit the number of reported items that are retrieved per page of data.",
+        "operationId": "getVeroReportItems",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "This query parameter can be used to filter the result set by a date range. Only items reported within the specified time period will be returned.<br><br>This parameter will be ignored if <b>itemId</b> has been specified.<br><br><b>Format:</b> <code>YYYY-MM-DD HH:MM:SS</code><br><br><b>Example</b>: <code>reportSubmittedDate:[2024-11-14T07:47:48Z..2024-12-14T07:47:48Z]</code>.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "description": "This query parameter specifies the unique identifier of an eBay listing. Only the specified reported item will be returned.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of entries that can be returned on each page of the paginated response. Use this parameter in conjunction with the <b>offset</b> parameter to control the pagination of the output.<br><br><span class=\"tablenote\"><b>Note:</b> This feature employs a zero-based list, where the first item in the list has an offset of <code>0</code>.</span><br>For example, if <b>offset</b> is set to <code>10</code> and <b>limit</b> is set to <code>10</code>, the call retrieves entries 11 through 20 from the result set.<br><br>If this parameter is omitted, the default value is used.<br><br><b>Default:</b> 25",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The number of reports to skip in the result set before returning the first report in the paginated response. Combine offset with the <b>limit</b> query parameter to control the reports returned in the response. For example, if you supply an <b>offset</b> of <code>0</code> and a <b>limit</b> of <code>10</code>, the first page of the response contains the first 10 reports from the complete list of reports retrieved by the call. If this query parameter is not set, the default value is used and the first page of reports is returned.<br><br><b>Default:</b> 0",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeroReportStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235010": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Not authorized to perform this operation. Vero report creator and requester are different."
+                },
+                "235009": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The time interval specified is greater than what is allowed (90 days is the maximum)."
+                },
+                "235007": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "Please check the date range."
+                },
+                "235006": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "The itemId was not found."
+                },
+                "235005": {
+                  "domain": "API_VERO",
+                  "category": "REQUEST",
+                  "description": "A filter supplied in the request is invalid: {filterName}"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "x-response-codes": {
+              "errors": {
+                "235000": {
+                  "domain": "API_VERO",
+                  "category": "APPLICATION",
+                  "description": "There was a problem with an eBay internal system or process."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_auth": [
+              "https://api.ebay.com/oauth/scope/commerce.vero"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CountryCodeEnum": {
+        "type": "object",
+        "description": "This enumerated type lists the two-letter <a href=\"https://www.iso.org/iso-3166-country-codes.html \" target=\"_blank\">ISO 3166-1</a> country code representing supported countries. | - **AD**: Andorra - **AE**: United Arab Emirates - **AF**: Afghanistan - **AG**: Antigua and Barbuda - **AI**: Anguilla - **AL**: Albania - **AM**: Armenia - **AN**: Netherlands Antilles - **AO**: Angola - **AQ**: Antarctica - **AR**: Argentina - **AS**: American Samoa - **AT**: Austria - **AU**: Australia - **AW**: Aruba - **AX**: Aland Islands - **AZ**: Azerbaijan - **BA**: Bosnia and Herzegovina - **BB**: Barbados - **BD**: Bangladesh - **BE**: Belgium - **BF**: Burkina Faso - **BG**: Bulgaria - **BH**: Bahrain - **BI**: Burundi - **BJ**: Benin - **BL**: Saint Barthelemy - **BM**: Bermuda - **BN**: Brunei Darussalam - **BO**: Bolivia - **BQ**: Bonaire, Sint Eustatius, and Saba - **BR**: Brazil - **BS**: Bahamas - **BT**: Bhutan - **BV**: Bouvet Island - **BW**: Botswana - **BY**: Belarus - **BZ**: Belize - **CA**: Canada - **CC**: Cocos (Keeling) Islands - **CD**: The Democratic Republic of the Congo - **CF**: Central African Republic - **CG**: Congo - **CH**: Switzerland - **CI**: Cote d'Ivoire - **CK**: Cook Islands - **CL**: Chile - **CM**: Cameroon - **CN**: China - **CO**: Colombia - **CR**: Costa Rica - **CU**: Cuba - **CV**: Cape Verde - **CW**: Curacao - **CX**: Christmas Island - **CY**: Cyprus - **CZ**: Czech Republic - **DE**: Germany - **DJ**: Djibouti - **DK**: Denmark - **DM**: Dominica - **DO**: Dominican Republic - **DZ**: Algeria - **EC**: Ecuador - **EE**: Estonia - **EG**: Egypt - **EH**: Western Sahara - **ER**: Eritrea - **ES**: Spain - **ET**: Ethiopia - **FI**: Finland - **FJ**: Fiji - **FK**: Falkland Islands (Malvinas) - **FM**: Federated States of Micronesia - **FO**: Faroe Islands - **FR**: France - **GA**: Gabon - **GB**: United Kingdom - **GD**: Grenada - **GE**: Georgia - **GF**: French Guiana - **GG**: Guernsey - **GH**: Ghana - **GI**: Gibraltar - **GL**: Greenland - **GM**: Gambia - **GN**: Guinea - **GP**: Guadeloupe - **GQ**: Equatorial Guinea - **GR**: Greece - **GS**: South Georgia and the South Sandwich Islands - **GT**: Guatemala - **GU**: Guam - **GW**: Guinea-Bissau - **GY**: Guyana - **HK**: Hong Kong - **HM**: Heard Island and McDonald Islands - **HN**: Honduras - **HR**: Croatia - **HT**: Haiti - **HU**: Hungary - **ID**: Indonesia - **IE**: Ireland - **IL**: Israel - **IM**: Isle of Man - **IN**: India - **IO**: British Indian Ocean Territory - **IQ**: Iraq - **IR**: Islamic Republic of Iran - **IS**: Iceland - **IT**: Italy - **JE**: Jersey - **JM**: Jamaica - **JO**: Jordan - **JP**: Japan - **KE**: Kenya - **KG**: Kyrgyzstan - **KH**: Cambodia - **KI**: Kiribati - **KM**: Comoros - **KN**: Saint Kitts and Nevis - **KP**: Democratic People's Republic of Korea - **KR**: Republic of Korea - **KW**: Kuwait - **KY**: Cayman Islands - **KZ**: Kazakhstan - **LA**: Lao People's Democratic Republic - **LB**: Lebanon - **LC**: Saint Lucia - **LI**: Liechtenstein - **LK**: Sri Lanka - **LR**: Liberia - **LS**: Lesotho - **LT**: Lithuania - **LU**: Luxembourg - **LV**: Latvia - **LY**: Libyan Arab Jamahiriya - **MA**: Morocco - **MC**: Monaco - **MD**: Republic of Moldova - **ME**: Montenegro - **MF**: Saint Martin (French part) - **MG**: Madagascar - **MH**: Marshall Islands - **MK**: The Former Yugoslav Republic of Macedonia - **ML**: Mali - **MM**: Myanmar - **MN**: Mongolia - **MO**: Macao - **MP**: Northern Mariana Islands - **MQ**: Martinique - **MR**: Mauritania - **MS**: Montserrat - **MT**: Malta - **MU**: Mauritius - **MV**: Maldives - **MW**: Malawi - **MX**: Mexico - **MY**: Malaysia - **MZ**: Mozambique - **NA**: Namibia - **NC**: New Caledonia - **NE**: Niger - **NF**: Norfolk Island - **NG**: Nigeria - **NI**: Nicaragua - **NL**: Netherlands - **NO**: Norway - **NP**: Nepal - **NR**: Nauru - **NU**: Niue - **NZ**: New Zealand - **OM**: Oman - **PA**: Panama - **PE**: Peru - **PF**: French Polynesia. Includes Tahiti - **PG**: Papua New Guinea - **PH**: Philippines - **PK**: Pakistan - **PL**: Poland - **PM**: Saint Pierre and Miquelon - **PN**: Pitcairn - **PR**: Puerto Rico - **PS**: Palestinian territory Occupied - **PT**: Portugal - **PW**: Palau - **PY**: Paraguay - **QA**: Qatar - **RE**: Reunion - **RO**: Romania - **RS**: Serbia - **RU**: Russian Federation - **RW**: Rwanda - **SA**: Saudi Arabia - **SB**: Solomon Islands - **SC**: Seychelles - **SD**: Sudan - **SE**: Sweden - **SG**: Singapore - **SH**: Saint Helena - **SI**: Slovenia - **SJ**: Svalbard and Jan Mayen - **SK**: Slovakia - **SL**: Sierra Leone - **SM**: San Marino - **SN**: Senegal - **SO**: Somalia - **SR**: Suriname - **ST**: Sao Tome and Principe - **SV**: El Salvador - **SX**: Sint Maarten (Dutch part) - **SY**: Syrian Arab Republic - **SZ**: Swaziland - **TC**: Turks and Caicos Islands - **TD**: Chad - **TF**: French Southern Territories - **TG**: Togo - **TH**: Thailand - **TJ**: Tajikistan - **TK**: Tokelau - **TL**: Timor-Leste - **TM**: Turkmenistan - **TN**: Tunisia - **TO**: Tonga - **TR**: Turkey - **TT**: Trinidad and Tobago - **TV**: Tuvalu - **TW**: Taiwan - **TZ**: Tanzania - **UA**: Ukraine - **UG**: Uganda - **UM**: United States Minor Outlying Islands - **US**: United States - **UY**: Uruguay - **UZ**: Uzbekistan - **VA**: Holy See (Vatican City state) - **VC**: Saint Vincent and the Grenadines - **VE**: Venezuela - **VG**: British Virgin Islands - **VI**: the U.S. Virgin Islands - **VN**: Vietnam - **VU**: Vanuatu - **WF**: Wallis and Futuna - **WS**: Samoa - **YE**: Yemen - **YT**: Mayotte - **ZA**: South Africa - **ZM**: Zambia - **ZW**: Zimbabwe",
+        "enum": [
+          "AD",
+          "AE",
+          "AF",
+          "AG",
+          "AI",
+          "AL",
+          "AM",
+          "AN",
+          "AO",
+          "AQ",
+          "AR",
+          "AS",
+          "AT",
+          "AU",
+          "AW",
+          "AX",
+          "AZ",
+          "BA",
+          "BB",
+          "BD",
+          "BE",
+          "BF",
+          "BG",
+          "BH",
+          "BI",
+          "BJ",
+          "BL",
+          "BM",
+          "BN",
+          "BO",
+          "BQ",
+          "BR",
+          "BS",
+          "BT",
+          "BV",
+          "BW",
+          "BY",
+          "BZ",
+          "CA",
+          "CC",
+          "CD",
+          "CF",
+          "CG",
+          "CH",
+          "CI",
+          "CK",
+          "CL",
+          "CM",
+          "CN",
+          "CO",
+          "CR",
+          "CU",
+          "CV",
+          "CW",
+          "CX",
+          "CY",
+          "CZ",
+          "DE",
+          "DJ",
+          "DK",
+          "DM",
+          "DO",
+          "DZ",
+          "EC",
+          "EE",
+          "EG",
+          "EH",
+          "ER",
+          "ES",
+          "ET",
+          "FI",
+          "FJ",
+          "FK",
+          "FM",
+          "FO",
+          "FR",
+          "GA",
+          "GB",
+          "GD",
+          "GE",
+          "GF",
+          "GG",
+          "GH",
+          "GI",
+          "GL",
+          "GM",
+          "GN",
+          "GP",
+          "GQ",
+          "GR",
+          "GS",
+          "GT",
+          "GU",
+          "GW",
+          "GY",
+          "HK",
+          "HM",
+          "HN",
+          "HR",
+          "HT",
+          "HU",
+          "ID",
+          "IE",
+          "IL",
+          "IM",
+          "IN",
+          "IO",
+          "IQ",
+          "IR",
+          "IS",
+          "IT",
+          "JE",
+          "JM",
+          "JO",
+          "JP",
+          "KE",
+          "KG",
+          "KH",
+          "KI",
+          "KM",
+          "KN",
+          "KP",
+          "KR",
+          "KW",
+          "KY",
+          "KZ",
+          "LA",
+          "LB",
+          "LC",
+          "LI",
+          "LK",
+          "LR",
+          "LS",
+          "LT",
+          "LU",
+          "LV",
+          "LY",
+          "MA",
+          "MC",
+          "MD",
+          "ME",
+          "MF",
+          "MG",
+          "MH",
+          "MK",
+          "ML",
+          "MM",
+          "MN",
+          "MO",
+          "MP",
+          "MQ",
+          "MR",
+          "MS",
+          "MT",
+          "MU",
+          "MV",
+          "MW",
+          "MX",
+          "MY",
+          "MZ",
+          "NA",
+          "NC",
+          "NE",
+          "NF",
+          "NG",
+          "NI",
+          "NL",
+          "NO",
+          "NP",
+          "NR",
+          "NU",
+          "NZ",
+          "OM",
+          "PA",
+          "PE",
+          "PF",
+          "PG",
+          "PH",
+          "PK",
+          "PL",
+          "PM",
+          "PN",
+          "PR",
+          "PS",
+          "PT",
+          "PW",
+          "PY",
+          "QA",
+          "RE",
+          "RO",
+          "RS",
+          "RU",
+          "RW",
+          "SA",
+          "SB",
+          "SC",
+          "SD",
+          "SE",
+          "SG",
+          "SH",
+          "SI",
+          "SJ",
+          "SK",
+          "SL",
+          "SM",
+          "SN",
+          "SO",
+          "SR",
+          "ST",
+          "SV",
+          "SX",
+          "SY",
+          "SZ",
+          "TC",
+          "TD",
+          "TF",
+          "TG",
+          "TH",
+          "TJ",
+          "TK",
+          "TL",
+          "TM",
+          "TN",
+          "TO",
+          "TR",
+          "TT",
+          "TV",
+          "TW",
+          "TZ",
+          "UA",
+          "UG",
+          "UM",
+          "US",
+          "UY",
+          "UZ",
+          "VA",
+          "VC",
+          "VE",
+          "VG",
+          "VI",
+          "VN",
+          "VU",
+          "WF",
+          "WS",
+          "YE",
+          "YT",
+          "ZA",
+          "ZM",
+          "ZW"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Identifies the type of error."
+          },
+          "domain": {
+            "type": "string",
+            "description": "Name for the primary system where the error occurred. This is relevant for application errors."
+          },
+          "errorId": {
+            "type": "integer",
+            "description": "A unique number to identify the error.",
+            "format": "int32"
+          },
+          "inputRefIds": {
+            "type": "array",
+            "description": "An array of request elements most closely associated to the error.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "longMessage": {
+            "type": "string",
+            "description": "A more detailed explanation of the error."
+          },
+          "message": {
+            "type": "string",
+            "description": "Information on how to correct the problem, in the end user's terms and language where applicable."
+          },
+          "outputRefIds": {
+            "type": "array",
+            "description": "An array of request elements most closely associated to the error.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parameters": {
+            "type": "array",
+            "description": "An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.",
+            "items": {
+              "$ref": "#/components/schemas/ErrorParameter"
+            }
+          },
+          "subdomain": {
+            "type": "string",
+            "description": "Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc."
+          }
+        },
+        "description": "This type defines the fields that can be returned in an error."
+      },
+      "ErrorParameter": {
+        "type": "object",
+        "description": "This type defines the parameters returned in an error.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The object of the error."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the object."
+          }
+        }
+      },
+      "MarketplaceIdEnum": {
+        "type": "object",
+        "description": "This type contains enumerated values of the standard codes that represent each of the eBay marketplaces. | - **EBAY_US**: Indicates the eBay marketplace for the United States. - **EBAY_CA**: Indicates the eBay marketplace for Canada.<br><br><span class=\"tablenote\"><b>Note:</b> When targeting the French locale of the Canadian marketplace, add the <b>Accept-Language</b> request header and pass in <code>fr-CA</code>. If this locale is not specified, the language will default to English.</span> - **EBAY_GB**: Indicates the eBay marketplace for Great Britain (United Kingdom). - **EBAY_AU**: Indicates the eBay marketplace for Australia. - **EBAY_AT**: Indicates the eBay marketplace for Austria. - **EBAY_BE**: Indicates the eBay marketplace for Belgium. <br><br><span class=\"tablenote\"><b>Note:</b> When targeting the French locale of the Belgium marketplace, add the <b>Accept-Language</b> request header and pass in <code>fr-BE</code>. If this locale is not specified, the language will default to Dutch.</span> - **EBAY_DE**: Indicates the eBay marketplace for Germany. - **EBAY_IT**: Indicates the eBay marketplace for Italy. - **EBAY_NL**: Indicates the eBay marketplace for The Netherlands. - **EBAY_ES**: Indicates the eBay marketplace for Spain. - **EBAY_CH**: Indicates the eBay marketplace for Switzerland. - **EBAY_TW**: Indicates the eBay marketplace for Taiwan. - **EBAY_CZ**: Reserved for future use. - **EBAY_DK**: Reserved for future use. - **EBAY_FI**: Reserved for future use. - **EBAY_FR**: Indicates the eBay marketplace for France. - **EBAY_GR**: Reserved for future use. - **EBAY_HK**: Indicates the eBay marketplace for Hong Kong. - **EBAY_HU**: Reserved for future use. - **EBAY_IN**: Indicates the eBay marketplace for India.<br><br><b>Note</b>: eBay India is no longer a functioning eBay marketplace. - **EBAY_ID**: Reserved for future use. - **EBAY_IE**: Indicates the eBay marketplace for Indicates the eBay marketplace for Ireland. - **EBAY_IL**: Reserved for future use. - **EBAY_MY**: Indicates the eBay marketplace for Malaysia. - **EBAY_NZ**: Reserved for future use.. - **EBAY_NO**: Reserved for future use. - **EBAY_PH**: Indicates the eBay marketplace for the Philippines. - **EBAY_PL**: Indicates the eBay marketplace for Poland. - **EBAY_PT**: Reserved for future use. - **EBAY_PR**: Reserved for future use. - **EBAY_RU**: Reserved for future use. - **EBAY_SG**: Indicates the eBay marketplace for Singapore. - **EBAY_ZA**: Reserved for future use. - **EBAY_SE**: Reserved for future use. - **EBAY_TH**: Indicates the eBay marketplace for Thailand. - **EBAY_VN**: Indicates the eBay marketplace for Vietnam. - **EBAY_CN**: Reserved for future use. - **EBAY_JP**: Reserved for future use. - **EBAY_PE**: Reserved for future use. - **EBAY_HALF_US**: No longer used. - **EBAY_MOTORS_US**: Indicates the parent category for \"Auto Parts and Vehicles\" on the EBAY_US marketplace",
+        "enum": [
+          "EBAY_US",
+          "EBAY_CA",
+          "EBAY_GB",
+          "EBAY_AU",
+          "EBAY_AT",
+          "EBAY_BE",
+          "EBAY_DE",
+          "EBAY_IT",
+          "EBAY_NL",
+          "EBAY_ES",
+          "EBAY_CH",
+          "EBAY_TW",
+          "EBAY_CZ",
+          "EBAY_DK",
+          "EBAY_FI",
+          "EBAY_FR",
+          "EBAY_GR",
+          "EBAY_HK",
+          "EBAY_HU",
+          "EBAY_IN",
+          "EBAY_ID",
+          "EBAY_IE",
+          "EBAY_IL",
+          "EBAY_MY",
+          "EBAY_NZ",
+          "EBAY_NO",
+          "EBAY_PH",
+          "EBAY_PL",
+          "EBAY_PT",
+          "EBAY_PR",
+          "EBAY_RU",
+          "EBAY_SG",
+          "EBAY_ZA",
+          "EBAY_SE",
+          "EBAY_TH",
+          "EBAY_VN",
+          "EBAY_CN",
+          "EBAY_JP",
+          "EBAY_PE",
+          "EBAY_HALF_US",
+          "EBAY_MOTORS_US"
+        ]
+      },
+      "ReasonCodeDetailType": {
+        "type": "object",
+        "properties": {
+          "briefText": {
+            "type": "string",
+            "description": "The short description of the infringement associated with the reason code."
+          },
+          "detailedText": {
+            "type": "string",
+            "description": "The long description of the infringement associated with the reason code."
+          },
+          "veroReasonCodeId": {
+            "type": "string",
+            "description": "The unique identifier of a VeRO reason code."
+          }
+        },
+        "description": "This type defines the brief and detailed description of a VeRO infringement, as well as the ID associated with the infringement."
+      },
+      "ReportItemDetails": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "description": "The brand name of the item being reported for VeRO violation.<br><br><b>Max length:</b> 50 characters"
+          },
+          "copyEmailToRightsOwner": {
+            "type": "boolean",
+            "description": "If the VeRO Program member wants a copy of the Notice of Claimed Infringement (NOCI) document sent to their email address, this field should be included in the request and set to <code>true</code>. This same document is automatically sent to the seller of the reported item.<br><br>As this field defaults to <code>true</code>, the report will be automatically emailed if this field is omitted.<br><br><b>Default:</b> true"
+          },
+          "countries": {
+            "type": "array",
+            "description": "If the infringement type stated in the <b>VeroReasonCodeId</b> has anything to do with which country the item is being shipped to, each country that would trigger this infringement type should be specified in this comma-delimited array.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9037</code> (Item(s) is unlawful importation of product bearing trademark).",
+            "items": {
+              "$ref": "#/components/schemas/CountryCodeEnum"
+            }
+          },
+          "detailedMessage": {
+            "type": "string",
+            "description": "This field is used to provide further information about the VeRO reason code.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9052</code> or <code>7052</code> (Other - Provide details information in additional information box below).<br><br><b>Max length:</b> 1000 characters"
+          },
+          "itemId": {
+            "type": "string",
+            "description": "The unique identifier of the listing being reported for the alleged infringement."
+          },
+          "messageToSeller": {
+            "type": "string",
+            "description": "This field is used by the VeRO Program member to provide more details to the seller as to why the item is being reported for the alleged infringement.<br><br><b>Max length:</b> 1000 characters"
+          },
+          "patent": {
+            "type": "string",
+            "description": "This field is used to specify the number of a product patent that is being violated.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9048</code> (Item(s) infringes a valid patent).<br><br><b>Max length:</b> 15 characters"
+          },
+          "regions": {
+            "type": "array",
+            "description": "If the infringement type stated in the <b>veroReasonCodeId</b> has anything to do with which geographical region the item is being shipped to, each region that would trigger this infringement type should be specified in this comma-delimited array.",
+            "items": {
+              "$ref": "#/components/schemas/WorldRegionEnum"
+            }
+          },
+          "veroReasonCodeId": {
+            "type": "string",
+            "description": "The unique identifier for the type of claimed infringement.<br><br>Use <a href=\"/develop/api/sell/vero_api#sell-vero_api-vero_reason_code-getveroreasoncodes\">getVeroReasonCodes</a> to retrieve a list of valid reason codes for a given eBay site."
+          }
+        },
+        "description": "This type defines the details of an item being reported for violating a product owner's copyright, trademark, or intellectual property rights."
+      },
+      "ReportStatusResponse": {
+        "type": "object",
+        "properties": {
+          "reportedItemDetails": {
+            "type": "array",
+            "description": "This array returns the status for each eBay item that was included as part of the report.<br><br>This array is only returned if the <b>includeItemDetails</b> query parameter is set to <code>true</code>.",
+            "items": {
+              "$ref": "#/components/schemas/ReportedItem"
+            }
+          },
+          "veroReportId": {
+            "type": "string",
+            "description": "The unique packet identifier of the VeRO report."
+          },
+          "veroReportStatus": {
+            "description": "The processing status of the requested VeRO report.",
+            "$ref": "#/components/schemas/VeroReportStatusEnum"
+          }
+        },
+        "description": "This type defines the response fields of the <b>getVeroReport</b> method. "
+      },
+      "ReportedItem": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "description": "The unique identifier of the listing that is being reported for copyright, trademark, or intellectual right infringement."
+          },
+          "reasonForFailure": {
+            "type": "string",
+            "description": "This text explanation is submitted by eBay when the submission of a VeRO Report has failed or was blocked.<br><br>This field is conditionally returned if the <b>status</b> value of the report is <code>ClarificationRequired</code> or <code>SubmissionFailed</code>."
+          },
+          "status": {
+            "description": "The current status of the VeRO reported item.",
+            "$ref": "#/components/schemas/VeroReportedItemStatusEnum"
+          }
+        },
+        "description": "This type defines the item ID and status of a VeRO report. If applicable, a reason for report failure is also returned."
+      },
+      "VeroReasonCode": {
+        "type": "object",
+        "properties": {
+          "marketplaceId": {
+            "description": "The eBay site for which reason code details are returned.",
+            "$ref": "#/components/schemas/MarketplaceIdEnum"
+          },
+          "reasonCodeDetails": {
+            "type": "array",
+            "description": "This container includes both brief and detailed text descriptions for the VeRO program intellectual property right infringement reason, as well as the ID for the reason code.",
+            "items": {
+              "$ref": "#/components/schemas/ReasonCodeDetailType"
+            }
+          }
+        },
+        "description": "This type is used to define the details of a VeRO reason code for a specific site."
+      },
+      "VeroReasonCodeDetailResponse": {
+        "type": "object",
+        "properties": {
+          "veroReasonCodes": {
+            "type": "array",
+            "description": "This array provides a list of VeRO reason codes, as well as the ID and details of each code, based on the input criteria.<br><br>If a <b>X-EBAY-C-MARKETPLACE-ID</b> header is used, only VeRO reason codes for that specific site will be returned. If this header is not included, all reason codes for all sites are returned.  ",
+            "items": {
+              "$ref": "#/components/schemas/VeroReasonCode"
+            }
+          }
+        },
+        "description": "This type defines the response fields returned in the <b>getCeroReasonCodes</b> method."
+      },
+      "VeroReasonCodeResponse": {
+        "type": "object",
+        "description": "This type defines the response payload of the <b>getVeroReasonCode</b> method.",
+        "properties": {
+          "marketplaceId": {
+            "description": "The eBay site for which reason code details are returned.",
+            "$ref": "#/components/schemas/MarketplaceIdEnum"
+          },
+          "reasonCodeDetails": {
+            "description": "This container includes both brief and detailed text descriptions for the VeRO program intellectual property right infringement reason, as well as the ID for the reason code",
+            "$ref": "#/components/schemas/ReasonCodeDetailType"
+          }
+        }
+      },
+      "VeroReportItemsRequest": {
+        "type": "object",
+        "properties": {
+          "reportItems": {
+            "type": "array",
+            "description": "This array is used to report one or more eBay items that are allegedly violating the product owner's copyright, trademark, or intellectual property rights.<br><br>The <b>itemId</b> and <b>veroReasonCodeId</b> fields are required for each reported violation.<br><br><span class=\"tablenote\"><b>Note:</b> You can report the same item more than once if a different reason code is used each time.</span>",
+            "items": {
+              "$ref": "#/components/schemas/ReportItemDetails"
+            }
+          }
+        },
+        "description": "This type defines the request fields used in the <b>createVeroReport</b> method."
+      },
+      "VeroReportItemsResponse": {
+        "type": "object",
+        "properties": {
+          "veroReportId": {
+            "type": "string",
+            "description": "The unique identifier of the VeRO report that the item violations have been added to.<br><br><span class=\"tablenote\"><b>Note:</b> Users should keep track of the returned <b>veroReportId</b>, as there is no programmatic way to retrieve this value at this time.</span>"
+          },
+          "veroReportStatus": {
+            "description": "The processing status of the VeRO report.",
+            "$ref": "#/components/schemas/VeroReportStatusEnum"
+          }
+        },
+        "description": "This type defines the response fields used in the <b>createVeroReport</b> method."
+      },
+      "VeroReportStatusEnum": {
+        "type": "object",
+        "description": "This enumerated type defines the values that represent the status of a VeRO Report packet. | - **RECEIVED**: This enum value indicates that the VeRO Report packet has been received by eBay. - **IN_PROCESS**: This enum value indicates that eBay is in the process of reviewing the VeRO Report packet. - **PROCESSED**: This enum value indicates that the VeRO Report packed has been processed by eBay.",
+        "enum": [
+          "RECEIVED",
+          "IN_PROCESS",
+          "PROCESSED"
+        ]
+      },
+      "VeroReportStatusResponse": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "The URL to the current page of the VeRO reported item results."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The value of the <b>limit</b> parameter submitted in the request.",
+            "format": "int32"
+          },
+          "next": {
+            "type": "string",
+            "description": "The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "The value off the <b>offset</b> parameter submitted in the request.",
+            "format": "int32"
+          },
+          "prev": {
+            "type": "string",
+            "description": "The URI for the previous page of results. This is returned if there is a previous page of results from the result set."
+          },
+          "reportedItemDetails": {
+            "type": "array",
+            "description": "This array returns the item ID and statuses of the reported items being returned.",
+            "items": {
+              "$ref": "#/components/schemas/ReportedItem"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "This is the total number of records that match the input criteria.",
+            "format": "int32"
+          }
+        },
+        "description": "This type defines the response fields for the <b>getVeroReports</b> method."
+      },
+      "VeroReportedItemStatusEnum": {
+        "type": "object",
+        "description": "This enumerated type defines the status of a VeRO reported item. | - **NONE**: This enum value indicates that there is no VeRO report request for the item. - **RECEIVED**: This enum value indicates that the VeRO report request for the item has been received by eBay. - **SUBMITTED**: This enum value indicates that the VeRO report request for the item has been submitted to eBay. - **SUBMISSION_FAILED**: This enum value indicates that the VeRO report request for the item has failed. - **REMOVED**: This enum value indicates that the user has reported an inactive item. - **CLARIFICATION_REQUIRED**: This enum value indicates that the VeRO report request for the item has been received by eBay, but additional clarification is needed before eBay can end the item.",
+        "enum": [
+          "NONE",
+          "RECEIVED",
+          "SUBMITTED",
+          "SUBMISSION_FAILED",
+          "REMOVED",
+          "CLARIFICATION_REQUIRED"
+        ]
+      },
+      "WorldRegionEnum": {
+        "type": "object",
+        "description": "This enumerated type contains of list of world regions. | - **AFRICA**: This enumeration value indicates the world region is Africa. - **AMERICAS**: This enumeration value indicates the world region is the Americas. - **ASIA**: This enumeration value indicates the world region is Asia. - **CARIBBEAN**: This enumeration value indicates the world region is the Caribbean. - **EUROPE**: This enumeration value indicates the world region is Europe. - **EUROPE_UNION**: This enumeration value indicates the world region is the European Union. - **LATIN_AMERICA**: This enumeration value indicates the world region is Latin America. - **MIDDLE_EAST**: This enumeration value indicates the world region is the Middle East. - **NORTH_AMERICA**: This enumeration value indicates the world region is North America. - **OCEANIA**: This enumeration value indicates the world region is Oceania. - **SOUTH_AMERICA**: This enumeration value indicates the world region is South America. - **WORLDWIDE**: This enumeration value indicates the world region is world wide.",
+        "enum": [
+          "AFRICA",
+          "AMERICAS",
+          "ASIA",
+          "CARIBBEAN",
+          "EUROPE",
+          "EUROPE_UNION",
+          "LATIN_AMERICA",
+          "MIDDLE_EAST",
+          "NORTH_AMERICA",
+          "OCEANIA",
+          "SOUTH_AMERICA",
+          "WORLDWIDE"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "api_auth": {
+        "type": "oauth2",
+        "description": "The security definitions for this API. Please check individual operations for applicable scopes.",
+        "flows": {}
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

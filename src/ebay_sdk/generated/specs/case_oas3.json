@@ -1,0 +1,494 @@
+{
+  "openapi": "3.0.o",
+  "info": {
+    "version": "0.1",
+    "title": "Post Order Case Management API",
+    "description": "Custom Case Management API OAS definition."
+  },
+  "servers": [
+    {
+      "url": "https://api.ebay.com{basePath}",
+      "description": "Case management",
+      "variables": {
+        "basePath": {
+          "default": "/post-order/v2"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/casemanagement/{caseId}/appeal": {
+      "post": {
+        "description": "Buyer or seller appeals a case decision",
+        "operationId": "appealCaseDecision",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/casemanagement/{caseId}/close": {
+      "post": {
+        "description": "Buyer closes a case",
+        "operationId": "closeCase",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/casemanagement/{caseId}": {
+      "get": {
+        "description": "Retrieve the details related to a specific case",
+        "operationId": "getCase",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/casemanagement/{caseId}/issue_refund": {
+      "post": {
+        "description": "Seller issues a refund for a case",
+        "operationId": "issueCaseRefund",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/casemanagement/{caseId}/provide_shipment_info": {
+      "post": {
+        "description": "Buyer provides return shipment information",
+        "operationId": "provideReturnShipmentInfo",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shippingCarrierName",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackingNumber",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/casemanagement/{caseId}/provide_return_address": {
+      "post": {
+        "description": "Seller provides a return address to the buyer",
+        "operationId": "providesReturnAddress",
+        "parameters": [
+          {
+            "name": "caseId",
+            "in": "path",
+            "description": "The unique identifier of a case. This URI parameter is required in order to identify the case for which an appeal will be filed against. The case is identified by the caseId that is passed in as part of the call URI.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/casemanagement/search": {
+      "get": {
+        "description": "This call is used to search for cases using multiple filter types.",
+        "operationId": "search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "case_type_filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_status_filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyer_login_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostOrderAmount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "convertedFromCurrency": {
+            "type": "string"
+          },
+          "convertedFromValue": {
+            "type": "number"
+          },
+          "exchangeRate": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrderDateTime": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "formattedValue": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginationOutput": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "totalPages": {
+            "type": "integer"
+          },
+          "totalEntries": {
+            "type": "integer"
+          }
+        }
+      },
+      "CountSummary": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrderHistoryEntry": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "action": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "CaseSummary": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "integer"
+          },
+          "transactionId": {
+            "type": "integer"
+          },
+          "caseId": {
+            "type": "integer"
+          },
+          "buyer": {
+            "type": "string"
+          },
+          "seller": {
+            "type": "string"
+          },
+          "caseStatusEnum": {
+            "type": "string"
+          },
+          "claimAmount": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "respondByDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "creationDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "lastModifiedDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          }
+        }
+      },
+      "CaseSearchResponse": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CaseSummary"
+            }
+          },
+          "totalNumberOfCases": {
+            "type": "integer"
+          },
+          "paginationOutput": {
+            "$ref": "#/components/schemas/PaginationOutput"
+          }
+        }
+      },
+      "CaseHistoryDetails": {
+        "type": "object",
+        "properties": {
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrderHistoryEntry"
+            }
+          },
+          "buyerrequested": {
+            "type": "string"
+          },
+          "shipmentTrackingDetails": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "CaseDetail": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "caseType": {
+            "type": "string"
+          },
+          "itemId": {
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "string"
+          },
+          "returnId": {
+            "type": "string"
+          },
+          "claimAmount": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "shippingFee": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "caseQuantity": {
+            "type": "integer"
+          },
+          "initiator": {
+            "type": "string"
+          },
+          "creationDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "lastModifiedDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "sellerClosureReason": {
+            "type": "string"
+          },
+          "buyerClosureReason": {
+            "type": "string"
+          },
+          "caseDetails": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "actionDeadlines": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "appealDetails": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "buyer": {
+            "type": "string"
+          },
+          "seller": {
+            "type": "string"
+          },
+          "buyerOutcome": {
+            "type": "string"
+          },
+          "sellerOutcome": {
+            "type": "string"
+          },
+          "nextSteps": {
+            "type": "array",
+            "items": {}
+          },
+          "caseContentOnHold": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "fsnadnoSellerFault": {
+            "type": "boolean"
+          },
+          "caseHistoryDetails": {
+            "$ref": "#/components/schemas/CaseHistoryDetails"
+          }
+        }
+      }
+    }
+  }
+}

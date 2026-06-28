@@ -1,0 +1,527 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.1",
+    "title": "Post Order Inquiry API",
+    "description": "Custom Inquiry API OAS definition."
+  },
+  "servers": [
+    {
+      "url": "https://api.ebay.com{basePath}",
+      "description": "Case management",
+      "variables": {
+        "basePath": {
+          "default": "/post-order/v2"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/inquiry/check_eligibility": {
+      "post": {
+        "description": "Check if a buyer is eligible to open an inquiry on an order",
+        "operationId": "checkInquiryEligibility",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/close": {
+      "post": {
+        "description": "Close an inquiry for the buyer",
+        "operationId": "closeInquiry",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/confirm_refund": {
+      "post": {
+        "description": "Buyer confirms the refund from an inquiry was received",
+        "operationId": "confirmInquiryRefund",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry": {
+      "post": {
+        "description": "Buyer confirms the refund from an inquiry was received",
+        "operationId": "createInquiry",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/escalate": {
+      "post": {
+        "description": "Escalate an inquiry to an INR case",
+        "operationId": "escalateInquiry",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "escalateInquiryReason",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}": {
+      "get": {
+        "description": "Retrieve the history and details related to a specific inquiry",
+        "operationId": "getInquiry",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InquiryDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/issue_refund": {
+      "post": {
+        "description": "Issue a refund for an inquiry",
+        "operationId": "issueInquiryRefund",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/provide_refund_info": {
+      "post": {
+        "description": "Provide refund information about an inquiry to the buyer",
+        "operationId": "provideInquiryRefundInfo",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/{inquiryId}/provide_shipment_info": {
+      "post": {
+        "description": "Provide shipment information for an inquiry",
+        "operationId": "provideInquiryShipmentInfo",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inquiry/search": {
+      "get": {
+        "description": "This call is used to search for inquiries using multiple filter types.",
+        "operationId": "search",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InquirySearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inquiry_status_filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyer_login_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/inquiry/{inquiryId}/send_message": {
+      "post": {
+        "description": "Contact the buyer or seller about an inquiry",
+        "operationId": "sendInquiryMessage",
+        "parameters": [
+          {
+            "name": "inquiryId",
+            "in": "path",
+            "description": "The unique ID of the inquiry to be closed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostOrderAmount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "convertedFromCurrency": {
+            "type": "string"
+          },
+          "convertedFromValue": {
+            "type": "number"
+          },
+          "exchangeRate": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrderDateTime": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "formattedValue": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginationOutput": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "totalPages": {
+            "type": "integer"
+          },
+          "totalEntries": {
+            "type": "integer"
+          }
+        }
+      },
+      "CountSummary": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrderHistoryEntry": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "action": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "InquirySummary": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "integer"
+          },
+          "transactionId": {
+            "type": "integer"
+          },
+          "inquiryId": {
+            "type": "integer"
+          },
+          "buyer": {
+            "type": "string"
+          },
+          "seller": {
+            "type": "string"
+          },
+          "inquiryStatusEnum": {
+            "type": "string"
+          },
+          "claimAmount": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "respondByDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "creationDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "lastModifiedDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          }
+        }
+      },
+      "InquirySearchResponse": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InquirySummary"
+            }
+          },
+          "totalNumberOfInquiries": {
+            "type": "integer"
+          },
+          "paginationOutput": {
+            "$ref": "#/components/schemas/PaginationOutput"
+          },
+          "countSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountSummary"
+            }
+          }
+        }
+      },
+      "InquiryHistoryDetails": {
+        "type": "object",
+        "properties": {
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrderHistoryEntry"
+            }
+          },
+          "additionalInfo": {
+            "type": "string"
+          },
+          "buyerrequested": {
+            "type": "string"
+          },
+          "shipmentTrackingDetails": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "InquiryDetail": {
+        "type": "object",
+        "properties": {
+          "inquiryId": {
+            "type": "string"
+          },
+          "itemId": {
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "string"
+          },
+          "claimAmount": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "shippingCost": {
+            "$ref": "#/components/schemas/PostOrderAmount"
+          },
+          "inquiryQuantity": {
+            "type": "integer"
+          },
+          "initiator": {
+            "type": "string"
+          },
+          "sellerMakeItRightByDate": {
+            "$ref": "#/components/schemas/PostOrderDateTime"
+          },
+          "creationReason": {
+            "type": "string"
+          },
+          "buyer": {
+            "type": "string"
+          },
+          "seller": {
+            "type": "string"
+          },
+          "inquiryContentOnHold": {
+            "type": "boolean"
+          },
+          "inquiryDetails": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "inquiryHistoryDetails": {
+            "$ref": "#/components/schemas/InquiryHistoryDetails"
+          },
+          "state": {
+            "type": "string"
+          },
+          "itemDetails": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
