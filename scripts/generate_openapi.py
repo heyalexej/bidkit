@@ -6,6 +6,7 @@ import copy
 import keyword
 import re
 import subprocess
+import textwrap
 from collections import defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -875,7 +876,7 @@ def render_method(
     ]
     summary = clean_doc(operation.get("summary") or operation.get("description") or "")
     if summary:
-        lines.append(f"    {summary!r}")
+        lines.extend(doc_lines(summary))
 
     lines.append(f"    return {await_prefix}self._request(")
     lines.append(f"        {operation_id!r},")
@@ -1301,8 +1302,23 @@ def safe_identifier(value: str) -> str:
 def clean_doc(value: str) -> str:
     value = re.sub(r"<[^>]+>", "", value or "")
     value = re.sub(r"\s+", " ", value).strip()
-    value = value.replace('"""', '\\"\\"\\"')
-    return value[:300]
+    return value
+
+
+def doc_lines(summary: str, width: int = 92) -> list[str]:
+    """Render a cleaned summary as wrapped, triple-quoted docstring source lines."""
+
+    def esc(text: str) -> str:
+        # Neutralise backslashes and embedded triple-quotes for a """...""" literal.
+        return text.replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
+
+    wrapped = textwrap.wrap(summary, width=width) or [summary]
+    if len(wrapped) == 1 and not wrapped[0].endswith('"'):
+        return [f'    """{esc(wrapped[0])}"""']
+    lines = [f'    """{esc(wrapped[0])}']
+    lines.extend(f"    {esc(line)}" for line in wrapped[1:])
+    lines.append('    """')
+    return lines
 
 
 def indent(lines: Iterable[str], spaces: int) -> list[str]:
