@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from collections.abc import AsyncIterator, Iterator, Mapping
 from contextlib import asynccontextmanager, contextmanager
 from typing import Any
@@ -12,6 +13,7 @@ from pydantic import BaseModel, TypeAdapter
 from .auth import EbayAuth
 from .config import EbayConfig
 from .errors import EbayAPIError, EbayTransportError
+from .signing import MessageSigner
 
 
 def _url(
@@ -100,11 +102,36 @@ def _compact(values: Mapping[str, Any] | None) -> dict[str, Any]:
     return compacted
 
 
+def _build_signer(config: EbayConfig) -> MessageSigner | None:
+    if config.signing is None:
+        return None
+    return MessageSigner(
+        jwe=config.signing.jwe,
+        private_key_pem=config.signing.private_key_value,
+        digest=config.signing.digest,
+    )
+
+
+def _sign_request(signer: MessageSigner | None, request: httpx.Request) -> None:
+    if signer is None:
+        return
+    signature_headers = signer.headers(
+        method=request.method,
+        authority=request.url.host,
+        path=request.url.path,
+        body=request.content or None,
+        created=int(time.time()),
+    )
+    for key, value in signature_headers.items():
+        request.headers[key] = value
+
+
 class EbayTransport:
     def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx.Client) -> None:
         self.config = config
         self.auth = auth
         self.client = client
+        self._signer = _build_signer(config)
 
     def request(
         self,
@@ -127,13 +154,15 @@ class EbayTransport:
             scheme=_auth_scheme(service),
         ))
         try:
-            response = self.client.request(
+            request = self.client.build_request(
                 method,
                 _url(self.config, service, path, path_params),
                 params=_compact(params),
                 headers=request_headers,
                 **_body_kwargs(body=body, files=files),
             )
+            _sign_request(self._signer, request)
+            response = self.client.send(request)
         except httpx.HTTPError as exc:
             raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
@@ -158,18 +187,23 @@ class EbayTransport:
             self.client,
             scheme=_auth_scheme(service),
         ))
+        request = self.client.build_request(
+            method,
+            _url(self.config, service, path, path_params),
+            params=_compact(params),
+            headers=request_headers,
+            **_body_kwargs(body=body, files=files),
+        )
+        _sign_request(self._signer, request)
         try:
-            with self.client.stream(
-                method,
-                _url(self.config, service, path, path_params),
-                params=_compact(params),
-                headers=request_headers,
-                **_body_kwargs(body=body, files=files),
-            ) as response:
+            response = self.client.send(request, stream=True)
+            try:
                 if response.status_code >= 400:
                     response.read()
                     raise EbayAPIError.from_response(response)
                 yield response
+            finally:
+                response.close()
         except EbayAPIError:
             raise
         except httpx.HTTPError as exc:
@@ -181,6 +215,7 @@ class AsyncEbayTransport:
         self.config = config
         self.auth = auth
         self.client = client
+        self._signer = _build_signer(config)
 
     async def request(
         self,
@@ -203,13 +238,15 @@ class AsyncEbayTransport:
             scheme=_auth_scheme(service),
         ))
         try:
-            response = await self.client.request(
+            request = self.client.build_request(
                 method,
                 _url(self.config, service, path, path_params),
                 params=_compact(params),
                 headers=request_headers,
                 **_body_kwargs(body=body, files=files),
             )
+            _sign_request(self._signer, request)
+            response = await self.client.send(request)
         except httpx.HTTPError as exc:
             raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
@@ -234,18 +271,23 @@ class AsyncEbayTransport:
             self.client,
             scheme=_auth_scheme(service),
         ))
+        request = self.client.build_request(
+            method,
+            _url(self.config, service, path, path_params),
+            params=_compact(params),
+            headers=request_headers,
+            **_body_kwargs(body=body, files=files),
+        )
+        _sign_request(self._signer, request)
         try:
-            async with self.client.stream(
-                method,
-                _url(self.config, service, path, path_params),
-                params=_compact(params),
-                headers=request_headers,
-                **_body_kwargs(body=body, files=files),
-            ) as response:
+            response = await self.client.send(request, stream=True)
+            try:
                 if response.status_code >= 400:
                     await response.aread()
                     raise EbayAPIError.from_response(response)
                 yield response
+            finally:
+                await response.aclose()
         except EbayAPIError:
             raise
         except httpx.HTTPError as exc:

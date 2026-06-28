@@ -1,5 +1,5 @@
 from .client import AsyncEbayClient, EbayClient
-from .config import EbayConfig
+from .config import EbayConfig, EbaySigningConfig
 from .errors import (
     EbayAPIError,
     EbayAuthError,
@@ -16,5 +16,6 @@ __all__ = [
     "EbayConfig",
     "EbayConfigError",
     "EbaySDKError",
+    "EbaySigningConfig",
     "EbayTransportError",
 ]
