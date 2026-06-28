@@ -147,10 +147,10 @@ class BuyBrowseResource(BaseResource):
         )
 
     @overload
-    def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
         with other available filters.To get the Base64 image string, you can use sites such as
@@ -172,7 +172,7 @@ class BuyBrowseResource(BaseResource):
             '/item_summary/search_by_image',
             path_params={},
             params={'aspect_filter': aspect_filter, 'category_ids': category_ids, 'charity_ids': charity_ids, 'fieldgroups': fieldgroups, 'filter': filter, 'limit': limit, 'offset': offset, 'sort': sort},
-            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_browse_models.SearchPagedCollection,
             raw_response=raw_response,
@@ -314,10 +314,10 @@ class BuyBrowseResource(BaseResource):
         )
 
     @overload
-    def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.CompatibilityResponse: ...
+    def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.CompatibilityResponse: ...
     @overload
-    def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
+    def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
         """This method checks if a product is compatible with the specified item. You can use this
         method to check the compatibility of cars, trucks, and motorcycles with a specific part
         listed on eBay.For example, to check the compatibility of a part, you pass in the item_id of
@@ -340,7 +340,7 @@ class BuyBrowseResource(BaseResource):
             '/item/{item_id}/check_compatibility',
             path_params={'item_id': item_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_browse_models.CompatibilityResponse,
             raw_response=raw_response,
@@ -399,10 +399,10 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
         )
 
     @overload
-    async def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    async def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def search_by_image(self, *, content_type: str, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
         with other available filters.To get the Base64 image string, you can use sites such as
@@ -424,7 +424,7 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
             '/item_summary/search_by_image',
             path_params={},
             params={'aspect_filter': aspect_filter, 'category_ids': category_ids, 'charity_ids': charity_ids, 'fieldgroups': fieldgroups, 'filter': filter, 'limit': limit, 'offset': offset, 'sort': sort},
-            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_browse_models.SearchPagedCollection,
             raw_response=raw_response,
@@ -566,10 +566,10 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
         )
 
     @overload
-    async def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.CompatibilityResponse: ...
+    async def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.CompatibilityResponse: ...
     @overload
-    async def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def check_compatibility(self, item_id: str, *, content_type: str, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
+    async def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
         """This method checks if a product is compatible with the specified item. You can use this
         method to check the compatibility of cars, trucks, and motorcycles with a specific part
         listed on eBay.For example, to check the compatibility of a part, you pass in the item_id of
@@ -592,7 +592,7 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
             '/item/{item_id}/check_compatibility',
             path_params={'item_id': item_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_browse_models.CompatibilityResponse,
             raw_response=raw_response,
@@ -1536,10 +1536,10 @@ class BuyOfferResource(BaseResource):
         )
 
     @overload
-    def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_offer_models.PlaceProxyBidResponse: ...
+    def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_offer_models.PlaceProxyBidResponse: ...
     @overload
-    def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
+    def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
         """This method uses a user access token to place a proxy bid for the buyer on a specific
         auction item. The item must offer AUCTION as one of the buyingOptions. To place a bid, you
         pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount
@@ -1558,7 +1558,7 @@ class BuyOfferResource(BaseResource):
             '/bidding/{item_id}/place_proxy_bid',
             path_params={'item_id': item_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_offer_models.PlaceProxyBidResponse,
             raw_response=raw_response,
@@ -1598,10 +1598,10 @@ class AsyncBuyOfferResource(AsyncBaseResource):
         )
 
     @overload
-    async def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_offer_models.PlaceProxyBidResponse: ...
+    async def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_offer_models.PlaceProxyBidResponse: ...
     @overload
-    async def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def place_proxy_bid(self, item_id: str, *, content_type: str, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
+    async def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
         """This method uses a user access token to place a proxy bid for the buyer on a specific
         auction item. The item must offer AUCTION as one of the buyingOptions. To place a bid, you
         pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount
@@ -1620,7 +1620,7 @@ class AsyncBuyOfferResource(AsyncBaseResource):
             '/bidding/{item_id}/place_proxy_bid',
             path_params={'item_id': item_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_offer_models.PlaceProxyBidResponse,
             raw_response=raw_response,
@@ -1637,10 +1637,10 @@ class BuyOrderResource(BaseResource):
     }
 
     @overload
-    def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1655,7 +1655,7 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/{checkoutSessionId}/apply_coupon',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
@@ -1686,10 +1686,10 @@ class BuyOrderResource(BaseResource):
         )
 
     @overload
-    def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1711,17 +1711,17 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/initiate',
             path_params={},
             params={},
-            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1736,17 +1736,17 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/{checkoutSessionId}/remove_coupon',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1760,17 +1760,17 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_quantity',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1787,17 +1787,17 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_shipping_address',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1812,7 +1812,7 @@ class BuyOrderResource(BaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_shipping_option',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
@@ -1860,10 +1860,10 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     }
 
     @overload
-    async def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def apply_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1878,7 +1878,7 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/{checkoutSessionId}/apply_coupon',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
@@ -1909,10 +1909,10 @@ class AsyncBuyOrderResource(AsyncBaseResource):
         )
 
     @overload
-    async def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def initiate_guest_checkout_session(self, *, content_type: str, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1934,17 +1934,17 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/initiate',
             path_params={},
             params={},
-            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    async def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def remove_guest_coupon(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1959,17 +1959,17 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/{checkoutSessionId}/remove_coupon',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_guest_quantity(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -1983,17 +1983,17 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_quantity',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_guest_shipping_address(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -2010,17 +2010,17 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_shipping_address',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
+    async def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_order_models.GuestCheckoutSessionResponseV2: ...
     @overload
-    async def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_guest_shipping_option(self, checkout_session_id: str, *, content_type: str, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
+    async def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
         checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
         Release) This method is only available to select developers approved by business units.This
@@ -2035,7 +2035,7 @@ class AsyncBuyOrderResource(AsyncBaseResource):
             '/guest_checkout_session/{checkoutSessionId}/update_shipping_option',
             path_params={'checkoutSessionId': checkout_session_id},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'X-EBAY-C-ENDUSERCTX': x_ebay_c_enduserctx, 'Content-Type': 'application/json'},
             body=body,
             response_model=buy_order_models.GuestCheckoutSessionResponseV2,
             raw_response=raw_response,
@@ -2943,10 +2943,10 @@ class CommerceFeedbackResource(BaseResource):
         )
 
     @overload
-    def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.LeaveFeedbackResponse: ...
+    def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.LeaveFeedbackResponse: ...
     @overload
-    def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
+    def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
         """This method creates and submits feedback to the user's order partner for a line item in the
         order. For each order, the order partner is the other participant in the transaction, either
         the buyer or seller, depending on the eBay user associated with the user token. This method
@@ -2967,7 +2967,7 @@ class CommerceFeedbackResource(BaseResource):
             '/feedback',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_feedback_models.LeaveFeedbackResponse,
             raw_response=raw_response,
@@ -3002,10 +3002,10 @@ class CommerceFeedbackResource(BaseResource):
         )
 
     @overload
-    def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows users to respond to feedback provided by the order partner for a specific
         line item in an order. For each order, the order partner is the other participant in the
         transaction, either the buyer or seller, depending on the eBay user associated with the user
@@ -3023,7 +3023,7 @@ class CommerceFeedbackResource(BaseResource):
             '/respond_to_feedback',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -3104,10 +3104,10 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         )
 
     @overload
-    async def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.LeaveFeedbackResponse: ...
+    async def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.LeaveFeedbackResponse: ...
     @overload
-    async def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def leave_feedback(self, *, content_type: str, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
+    async def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
         """This method creates and submits feedback to the user's order partner for a line item in the
         order. For each order, the order partner is the other participant in the transaction, either
         the buyer or seller, depending on the eBay user associated with the user token. This method
@@ -3128,7 +3128,7 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
             '/feedback',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_feedback_models.LeaveFeedbackResponse,
             raw_response=raw_response,
@@ -3163,10 +3163,10 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         )
 
     @overload
-    async def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def respond_to_feedback(self, *, content_type: str, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def respond_to_feedback(self, *, body: commerce_feedback_models.RespondToFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows users to respond to feedback provided by the order partner for a specific
         line item in an order. For each order, the order partner is the other participant in the
         transaction, either the buyer or seller, depending on the eBay user associated with the user
@@ -3184,7 +3184,7 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
             '/respond_to_feedback',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -3305,10 +3305,10 @@ class CommerceMediaResource(BaseResource):
         )
 
     @overload
-    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.ImageResponse: ...
+    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.ImageResponse: ...
     @overload
-    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
+    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method uploads a picture to eBay Picture Services (EPS) from the specified URL. Specify
         the location of the picture on an external web server through the imageUrl field. All images
         must comply with eBay’s picture requirements, such as dimension and file size restrictions.
@@ -3333,7 +3333,7 @@ class CommerceMediaResource(BaseResource):
             '/image/create_image_from_url',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.ImageResponse,
             raw_response=raw_response,
@@ -3363,10 +3363,10 @@ class CommerceMediaResource(BaseResource):
         )
 
     @overload
-    def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates a video resource. When using this method, specify the title, size, and
         classification of the video resource to be created. Description is an optional field for
         this method.Tip: See Adding a video to your listing in the eBay Seller Center for details
@@ -3385,7 +3385,7 @@ class CommerceMediaResource(BaseResource):
             '/video',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -3455,10 +3455,10 @@ class CommerceMediaResource(BaseResource):
         )
 
     @overload
-    def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
+    def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
     @overload
-    def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
+    def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method stages a document to be uploaded, and requires the type of document to be
         uploaded, and the language(s) that the document contains. A successful call returns a
         documentId value that is then used as a path parameter in an uploadDocument call.When a
@@ -3480,17 +3480,17 @@ class CommerceMediaResource(BaseResource):
             '/document',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.CreateDocumentResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
+    def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
     @overload
-    def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
+    def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method downloads a document from the provided URL and adds that document to the user's
         account. This method requires the URL of the document, the type of document to be uploaded,
         and the language(s) that the document contains. When a document is successfully created, the
@@ -3512,7 +3512,7 @@ class CommerceMediaResource(BaseResource):
             '/document/create_document_from_url',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.CreateDocumentResponse,
             raw_response=raw_response,
@@ -3719,10 +3719,10 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.ImageResponse: ...
+    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.ImageResponse: ...
     @overload
-    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
+    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_image_from_url(self, *, body: commerce_media_models.CreateImageFromUrlRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method uploads a picture to eBay Picture Services (EPS) from the specified URL. Specify
         the location of the picture on an external web server through the imageUrl field. All images
         must comply with eBay’s picture requirements, such as dimension and file size restrictions.
@@ -3747,7 +3747,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
             '/image/create_image_from_url',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.ImageResponse,
             raw_response=raw_response,
@@ -3777,10 +3777,10 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_video(self, *, content_type: str, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates a video resource. When using this method, specify the title, size, and
         classification of the video resource to be created. Description is an optional field for
         this method.Tip: See Adding a video to your listing in the eBay Seller Center for details
@@ -3799,7 +3799,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
             '/video',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -3869,10 +3869,10 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
+    async def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
     @overload
-    async def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_document(self, *, content_type: str, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
+    async def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method stages a document to be uploaded, and requires the type of document to be
         uploaded, and the language(s) that the document contains. A successful call returns a
         documentId value that is then used as a path parameter in an uploadDocument call.When a
@@ -3894,17 +3894,17 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
             '/document',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.CreateDocumentResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
+    async def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_media_models.CreateDocumentResponse: ...
     @overload
-    async def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_document_from_url(self, *, content_type: str, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
+    async def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_document_from_url(self, *, body: commerce_media_models.CreateDocumentFromUrlRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method downloads a document from the provided URL and adds that document to the user's
         account. This method requires the URL of the document, the type of document to be uploaded,
         and the language(s) that the document contains. When a document is successfully created, the
@@ -3926,7 +3926,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
             '/document/create_document_from_url',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_media_models.CreateDocumentResponse,
             raw_response=raw_response,
@@ -4097,10 +4097,10 @@ class CommerceMessageResource(BaseResource):
     }
 
     @overload
-    def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.BulkUpdateConversationsResponse: ...
+    def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.BulkUpdateConversationsResponse: ...
     @overload
-    def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
+    def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
         """This method can be used to update the conversationStatus of up to 10 conversations.The
         conversationId, existing conversationType, and updated conversationStatus for each
         conversation to modify are required in the conversations array.Important! Although it cannot
@@ -4114,7 +4114,7 @@ class CommerceMessageResource(BaseResource):
             '/bulk_update_conversation',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_message_models.BulkUpdateConversationsResponse,
             raw_response=raw_response,
@@ -4164,10 +4164,10 @@ class CommerceMessageResource(BaseResource):
         )
 
     @overload
-    def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.SendMessageResponse: ...
+    def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.SendMessageResponse: ...
     @overload
-    def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
+    def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
         """This method can be used to start a conversation with another user or send a message in an
         existing conversation with another user based on the information provided in the request.To
         send a message, one of the conversationId or otherPartyUsername request fields is required.
@@ -4184,17 +4184,17 @@ class CommerceMessageResource(BaseResource):
             '/send_message',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_message_models.SendMessageResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method can be used to update the conversationStatus or the read status of a specified
         conversation.Note: Only one of these statuses can be updated at a time using this method. If
         both fields are included, only the read status of the specified conversation will be updated
@@ -4214,7 +4214,7 @@ class CommerceMessageResource(BaseResource):
             '/update_conversation',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -4231,10 +4231,10 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     }
 
     @overload
-    async def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.BulkUpdateConversationsResponse: ...
+    async def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.BulkUpdateConversationsResponse: ...
     @overload
-    async def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_conversation(self, *, content_type: str, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
+    async def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
         """This method can be used to update the conversationStatus of up to 10 conversations.The
         conversationId, existing conversationType, and updated conversationStatus for each
         conversation to modify are required in the conversations array.Important! Although it cannot
@@ -4248,7 +4248,7 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
             '/bulk_update_conversation',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_message_models.BulkUpdateConversationsResponse,
             raw_response=raw_response,
@@ -4298,10 +4298,10 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
         )
 
     @overload
-    async def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.SendMessageResponse: ...
+    async def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.SendMessageResponse: ...
     @overload
-    async def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def send_message(self, *, content_type: str, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
+    async def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
         """This method can be used to start a conversation with another user or send a message in an
         existing conversation with another user based on the information provided in the request.To
         send a message, one of the conversationId or otherPartyUsername request fields is required.
@@ -4318,17 +4318,17 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
             '/send_message',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_message_models.SendMessageResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_conversation(self, *, content_type: str, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method can be used to update the conversationStatus or the read status of a specified
         conversation.Note: Only one of these statuses can be updated at a time using this method. If
         both fields are included, only the read status of the specified conversation will be updated
@@ -4348,7 +4348,7 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
             '/update_conversation',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -4382,10 +4382,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to create a new configuration or update an existing
         configuration. This app-level configuration allows developers to set up alerts.
         """
@@ -4395,7 +4395,7 @@ class CommerceNotificationResource(BaseResource):
             '/config',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -4422,10 +4422,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a destination. A destination is an endpoint that
         receives HTTP push notifications.A single destination for all topics is valid, as is
         individual destinations for each topic.To update a destination, use the updateDestination
@@ -4439,7 +4439,7 @@ class CommerceNotificationResource(BaseResource):
             '/destination',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -4466,10 +4466,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a destination.Note: The destination should be
         created and ready to respond with the expected challengeResponse for the endpoint to be
         registered successfully.
@@ -4480,7 +4480,7 @@ class CommerceNotificationResource(BaseResource):
             '/destination/{destination_id}',
             path_params={'destination_id': destination_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -4555,10 +4555,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a subscription for a topic and supported schema
         version. Subscriptions allow applications to express interest in notifications and keep
         receiving the information relevant to their business.Each application and topic-schema
@@ -4574,17 +4574,17 @@ class CommerceNotificationResource(BaseResource):
             '/subscription',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a filter for a subscription. Filters allow
         applications to only be sent notifications that match a provided criteria. Notifications
         that do not match this criteria will not be sent to the destination.The filterSchema value
@@ -4607,7 +4607,7 @@ class CommerceNotificationResource(BaseResource):
             '/subscription/{subscription_id}/filter',
             path_params={'subscription_id': subscription_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -4636,10 +4636,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a subscription. Subscriptions allow applications
         to express interest in notifications and keep receiving the information relevant to their
         business.Note: This call returns an error if an application is not authorized to subscribe
@@ -4652,7 +4652,7 @@ class CommerceNotificationResource(BaseResource):
             '/subscription/{subscription_id}',
             path_params={'subscription_id': subscription_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -4859,10 +4859,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    async def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    async def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_config(self, *, content_type: str, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    async def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_config(self, *, body: commerce_notification_models.Config | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to create a new configuration or update an existing
         configuration. This app-level configuration allows developers to set up alerts.
         """
@@ -4872,7 +4872,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/config',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -4899,10 +4899,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_destination(self, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a destination. A destination is an endpoint that
         receives HTTP push notifications.A single destination for all topics is valid, as is
         individual destinations for each topic.To update a destination, use the updateDestination
@@ -4916,7 +4916,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/destination',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -4943,10 +4943,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    async def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    async def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_destination(self, destination_id: str, *, content_type: str, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    async def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a destination.Note: The destination should be
         created and ready to respond with the expected challengeResponse for the endpoint to be
         registered successfully.
@@ -4957,7 +4957,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/destination/{destination_id}',
             path_params={'destination_id': destination_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -5032,10 +5032,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_subscription(self, *, content_type: str, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a subscription for a topic and supported schema
         version. Subscriptions allow applications to express interest in notifications and keep
         receiving the information relevant to their business.Each application and topic-schema
@@ -5051,17 +5051,17 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/subscription',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    async def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_subscription_filter(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a filter for a subscription. Filters allow
         applications to only be sent notifications that match a provided criteria. Notifications
         that do not match this criteria will not be sent to the destination.The filterSchema value
@@ -5084,7 +5084,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/subscription/{subscription_id}/filter',
             path_params={'subscription_id': subscription_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -5113,10 +5113,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
+    async def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.Error: ...
     @overload
-    async def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_subscription(self, subscription_id: str, *, content_type: str, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
+    async def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a subscription. Subscriptions allow applications
         to express interest in notifications and keep receiving the information relevant to their
         business.Note: This call returns an error if an application is not authorized to subscribe
@@ -5129,7 +5129,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
             '/subscription/{subscription_id}',
             path_params={'subscription_id': subscription_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_notification_models.Error,
             raw_response=raw_response,
@@ -5681,10 +5681,10 @@ class CommerceTranslationResource(BaseResource):
     }
 
     @overload
-    def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_translation_models.TranslateResponse: ...
+    def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_translation_models.TranslateResponse: ...
     @overload
-    def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
+    def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
         """This method translates listing title and listing description text from one language into
         another. For a full list of supported language translations, see the table.
         """
@@ -5694,7 +5694,7 @@ class CommerceTranslationResource(BaseResource):
             '/translate',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_translation_models.TranslateResponse,
             raw_response=raw_response,
@@ -5711,10 +5711,10 @@ class AsyncCommerceTranslationResource(AsyncBaseResource):
     }
 
     @overload
-    async def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_translation_models.TranslateResponse: ...
+    async def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_translation_models.TranslateResponse: ...
     @overload
-    async def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def translate(self, *, body: commerce_translation_models.TranslateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
+    async def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
         """This method translates listing title and listing description text from one language into
         another. For a full list of supported language translations, see the table.
         """
@@ -5724,7 +5724,7 @@ class AsyncCommerceTranslationResource(AsyncBaseResource):
             '/translate',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_translation_models.TranslateResponse,
             raw_response=raw_response,
@@ -5785,10 +5785,10 @@ class CommerceVeroResource(BaseResource):
         )
 
     @overload
-    def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportItemsResponse: ...
+    def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportItemsResponse: ...
     @overload
-    def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
+    def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
         call.This method can be used to create a VeRO report for a listing. VeRO reports can be used
         to report items that your copyright, trademark, or other intellectual property rights.The
@@ -5802,7 +5802,7 @@ class CommerceVeroResource(BaseResource):
             '/vero_report',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_vero_models.VeroReportItemsResponse,
             raw_response=raw_response,
@@ -5902,10 +5902,10 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportItemsResponse: ...
+    async def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportItemsResponse: ...
     @overload
-    async def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_vero_report(self, *, content_type: str, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
+    async def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
         call.This method can be used to create a VeRO report for a listing. VeRO reports can be used
         to report items that your copyright, trademark, or other intellectual property rights.The
@@ -5919,7 +5919,7 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
             '/vero_report',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=commerce_vero_models.VeroReportItemsResponse,
             raw_response=raw_response,
@@ -6063,10 +6063,10 @@ class DeveloperClientRegistrationResource(BaseResource):
     }
 
     @overload
-    def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_client_registration_models.ClientDetails: ...
+    def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_client_registration_models.ClientDetails: ...
     @overload
-    def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_client_registration_models.ClientDetails | httpx.Response:
+    def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_client_registration_models.ClientDetails | httpx.Response:
         """Registers a new third party financial application with eBay."""
         return self._request(
             'registerClient',
@@ -6074,7 +6074,7 @@ class DeveloperClientRegistrationResource(BaseResource):
             '/client/register',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=developer_client_registration_models.ClientDetails,
             raw_response=raw_response,
@@ -6091,10 +6091,10 @@ class AsyncDeveloperClientRegistrationResource(AsyncBaseResource):
     }
 
     @overload
-    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_client_registration_models.ClientDetails: ...
+    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_client_registration_models.ClientDetails: ...
     @overload
-    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_client_registration_models.ClientDetails | httpx.Response:
+    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def register_client(self, *, body: developer_client_registration_models.ClientSettings, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_client_registration_models.ClientDetails | httpx.Response:
         """Registers a new third party financial application with eBay."""
         return await self._request(
             'registerClient',
@@ -6102,7 +6102,7 @@ class AsyncDeveloperClientRegistrationResource(AsyncBaseResource):
             '/client/register',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=developer_client_registration_models.ClientDetails,
             raw_response=raw_response,
@@ -6138,10 +6138,10 @@ class DeveloperKeyManagementResource(BaseResource):
         )
 
     @overload
-    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_key_management_models.SigningKey: ...
+    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_key_management_models.SigningKey: ...
     @overload
-    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_key_management_models.SigningKey | httpx.Response:
+    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_key_management_models.SigningKey | httpx.Response:
         """Creates keypairs using the selected cipher."""
         return self._request(
             'createSigningKey',
@@ -6149,7 +6149,7 @@ class DeveloperKeyManagementResource(BaseResource):
             '/signing_key',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=developer_key_management_models.SigningKey,
             raw_response=raw_response,
@@ -6204,10 +6204,10 @@ class AsyncDeveloperKeyManagementResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_key_management_models.SigningKey: ...
+    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> developer_key_management_models.SigningKey: ...
     @overload
-    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_key_management_models.SigningKey | httpx.Response:
+    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_signing_key(self, *, body: developer_key_management_models.CreateSigningKeyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> developer_key_management_models.SigningKey | httpx.Response:
         """Creates keypairs using the selected cipher."""
         return await self._request(
             'createSigningKey',
@@ -6215,7 +6215,7 @@ class AsyncDeveloperKeyManagementResource(AsyncBaseResource):
             '/signing_key',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=developer_key_management_models.SigningKey,
             raw_response=raw_response,
@@ -7814,10 +7814,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a new custom policy that specifies the seller's terms for complying with
         local governmental regulations. Each Custom Policy targets a policyType. Multiple policies
         may be created as using the following custom policy types:PRODUCT_COMPLIANCE: Product
@@ -7834,7 +7834,7 @@ class SellAccountV1Resource(BaseResource):
             '/custom_policy/',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -7858,10 +7858,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
+    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
     @overload
-    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
+    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method updates an existing custom policy specified by the custom_policy_id path
         parameter. Since this method overwrites the policy's name, label, and description fields,
         always include the complete and current text of all three policy fields in the request
@@ -7876,17 +7876,17 @@ class SellAccountV1Resource(BaseResource):
             '/custom_policy/{custom_policy_id}',
             path_params={'custom_policy_id': custom_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
+    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
     @overload
-    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
+    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method creates a new fulfillment policy for an eBay marketplace where the policy
         encapsulates seller's terms for fulfilling item purchases. Fulfillment policies include the
         shipment options that the seller offers to buyers. A successful request returns the
@@ -7900,7 +7900,7 @@ class SellAccountV1Resource(BaseResource):
             '/fulfillment_policy/',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetFulfillmentPolicyResponse,
             raw_response=raw_response,
@@ -7926,10 +7926,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
+    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
     @overload
-    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
+    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method updates an existing fulfillment policy. Specify the policy you want to update
         using the fulfillment_policy_id path parameter. Supply a complete policy payload with the
         updates you want to make; this call overwrites the existing policy with the new details
@@ -7941,7 +7941,7 @@ class SellAccountV1Resource(BaseResource):
             '/fulfillment_policy/{fulfillmentPolicyId}',
             path_params={'fulfillmentPolicyId': fulfillment_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetFulfillmentPolicyResponse,
             raw_response=raw_response,
@@ -7967,10 +7967,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicyResponse: ...
+    def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicyResponse: ...
     @overload
-    def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicyResponse | httpx.Response:
+    def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicyResponse | httpx.Response:
         """This method retrieves all the fulfillment policies configured for the marketplace you
         specify using the marketplace_id query parameter.
         """
@@ -7980,16 +7980,16 @@ class SellAccountV1Resource(BaseResource):
             '/fulfillment_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.FulfillmentPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicy: ...
+    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicy: ...
     @overload
-    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicy | httpx.Response:
+    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicy | httpx.Response:
         """This method retrieves the details for a specific fulfillment policy. In the request, supply
         both the policy name and its associated marketplace_id as query parameters.
         """
@@ -7999,16 +7999,16 @@ class SellAccountV1Resource(BaseResource):
             '/fulfillment_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.FulfillmentPolicy,
             raw_response=raw_response,
         )
 
     @overload
-    def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicyResponse: ...
+    def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicyResponse: ...
     @overload
-    def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicyResponse | httpx.Response:
+    def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicyResponse | httpx.Response:
         """This method retrieves all the payment business policies configured for the marketplace you
         specify using the marketplace_id query parameter.
         """
@@ -8018,16 +8018,16 @@ class SellAccountV1Resource(BaseResource):
             '/payment_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.PaymentPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
+    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
     @overload
-    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
+    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
         """This method creates a new payment policy where the policy encapsulates seller's terms for
         order payments. A successful request returns the getPaymentPolicy URI to the new policy in
         the Location response header and the ID for the new policy is returned in the response
@@ -8040,7 +8040,7 @@ class SellAccountV1Resource(BaseResource):
             '/payment_policy',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetPaymentPolicyResponse,
             raw_response=raw_response,
@@ -8066,10 +8066,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
+    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
     @overload
-    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
+    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
         """This method updates an existing payment policy. Specify the policy you want to update using
         the payment_policy_id path parameter. Supply a complete policy payload with the updates you
         want to make; this call overwrites the existing policy with the new details specified in the
@@ -8081,7 +8081,7 @@ class SellAccountV1Resource(BaseResource):
             '/payment_policy/{payment_policy_id}',
             path_params={'payment_policy_id': payment_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetPaymentPolicyResponse,
             raw_response=raw_response,
@@ -8107,10 +8107,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicy: ...
+    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicy: ...
     @overload
-    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicy | httpx.Response:
+    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicy | httpx.Response:
         """This method retrieves the details of a specific payment policy. Supply both the policy name
         and its associated marketplace_id in the request query parameters.
         """
@@ -8120,7 +8120,7 @@ class SellAccountV1Resource(BaseResource):
             '/payment_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.PaymentPolicy,
             raw_response=raw_response,
         )
@@ -8206,10 +8206,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller in to an eBay seller program. Refer to the ProgramTypeEnum for
         information about available eBay seller programs.Note: It can take up to 24-hours for eBay
         to process your request to opt-in to a Seller Program. Use the getOptedInPrograms call to
@@ -8221,17 +8221,17 @@ class SellAccountV1Resource(BaseResource):
             '/program/opt_in',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller out of a seller program in which they are currently opted in to.
         A seller can retrieve a list of the seller programs they are opted-in to using the
         getOptedInPrograms method.
@@ -8242,7 +8242,7 @@ class SellAccountV1Resource(BaseResource):
             '/program/opt_out',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -8280,10 +8280,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicyResponse: ...
+    def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicyResponse: ...
     @overload
-    def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicyResponse | httpx.Response:
+    def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicyResponse | httpx.Response:
         """This method retrieves all the return policies configured for the marketplace you specify
         using the marketplace_id query parameter.
         """
@@ -8293,16 +8293,16 @@ class SellAccountV1Resource(BaseResource):
             '/return_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.ReturnPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
+    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
     @overload
-    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
+    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method creates a new return policy where the policy encapsulates seller's terms for
         returning items. Each policy targets a specific marketplace, and you can create multiple
         policies for each marketplace. Return policies are not applicable to motor-vehicle
@@ -8317,7 +8317,7 @@ class SellAccountV1Resource(BaseResource):
             '/return_policy',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetReturnPolicyResponse,
             raw_response=raw_response,
@@ -8343,10 +8343,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
+    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
     @overload
-    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
+    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method updates an existing return policy. Specify the policy you want to update using
         the return_policy_id path parameter. Supply a complete policy payload with the updates you
         want to make; this call overwrites the existing policy with the new details specified in the
@@ -8358,7 +8358,7 @@ class SellAccountV1Resource(BaseResource):
             '/return_policy/{return_policy_id}',
             path_params={'return_policy_id': return_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetReturnPolicyResponse,
             raw_response=raw_response,
@@ -8384,10 +8384,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicy: ...
+    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicy: ...
     @overload
-    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicy | httpx.Response:
+    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicy | httpx.Response:
         """This method retrieves the details of a specific return policy. Supply both the policy name
         and its associated marketplace_id in the request query parameters.
         """
@@ -8397,7 +8397,7 @@ class SellAccountV1Resource(BaseResource):
             '/return_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.ReturnPolicy,
             raw_response=raw_response,
         )
@@ -8462,10 +8462,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
+    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
     @overload
-    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
+    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method creates or updates a sales-tax table entry for a jurisdiction. Specify the tax
         table entry you want to configure using the two path parameters: countryCode and
         jurisdictionId. A tax table entry for a jurisdiction is comprised of two fields: one for the
@@ -8487,7 +8487,7 @@ class SellAccountV1Resource(BaseResource):
             '/sales_tax/{countryCode}/{jurisdictionId}',
             path_params={'countryCode': country_code, 'jurisdictionId': jurisdiction_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.Error,
             raw_response=raw_response,
@@ -8628,10 +8628,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a new custom policy that specifies the seller's terms for complying with
         local governmental regulations. Each Custom Policy targets a policyType. Multiple policies
         may be created as using the following custom policy types:PRODUCT_COMPLIANCE: Product
@@ -8648,7 +8648,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/custom_policy/',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -8672,10 +8672,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
+    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
     @overload
-    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
+    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method updates an existing custom policy specified by the custom_policy_id path
         parameter. Since this method overwrites the policy's name, label, and description fields,
         always include the complete and current text of all three policy fields in the request
@@ -8690,17 +8690,17 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/custom_policy/{custom_policy_id}',
             path_params={'custom_policy_id': custom_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
+    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
     @overload
-    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
+    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method creates a new fulfillment policy for an eBay marketplace where the policy
         encapsulates seller's terms for fulfilling item purchases. Fulfillment policies include the
         shipment options that the seller offers to buyers. A successful request returns the
@@ -8714,7 +8714,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/fulfillment_policy/',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetFulfillmentPolicyResponse,
             raw_response=raw_response,
@@ -8740,10 +8740,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
+    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse: ...
     @overload
-    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
+    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_fulfillment_policy(self, fulfillment_policy_id: str, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method updates an existing fulfillment policy. Specify the policy you want to update
         using the fulfillment_policy_id path parameter. Supply a complete policy payload with the
         updates you want to make; this call overwrites the existing policy with the new details
@@ -8755,7 +8755,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/fulfillment_policy/{fulfillmentPolicyId}',
             path_params={'fulfillmentPolicyId': fulfillment_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetFulfillmentPolicyResponse,
             raw_response=raw_response,
@@ -8781,10 +8781,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicyResponse: ...
+    async def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicyResponse: ...
     @overload
-    async def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_fulfillment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicyResponse | httpx.Response:
+    async def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_fulfillment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicyResponse | httpx.Response:
         """This method retrieves all the fulfillment policies configured for the marketplace you
         specify using the marketplace_id query parameter.
         """
@@ -8794,16 +8794,16 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/fulfillment_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.FulfillmentPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicy: ...
+    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.FulfillmentPolicy: ...
     @overload
-    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicy | httpx.Response:
+    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_fulfillment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.FulfillmentPolicy | httpx.Response:
         """This method retrieves the details for a specific fulfillment policy. In the request, supply
         both the policy name and its associated marketplace_id as query parameters.
         """
@@ -8813,16 +8813,16 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/fulfillment_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.FulfillmentPolicy,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicyResponse: ...
+    async def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicyResponse: ...
     @overload
-    async def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_payment_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicyResponse | httpx.Response:
+    async def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_payment_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicyResponse | httpx.Response:
         """This method retrieves all the payment business policies configured for the marketplace you
         specify using the marketplace_id query parameter.
         """
@@ -8832,16 +8832,16 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/payment_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.PaymentPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
+    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
     @overload
-    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
+    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_payment_policy(self, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
         """This method creates a new payment policy where the policy encapsulates seller's terms for
         order payments. A successful request returns the getPaymentPolicy URI to the new policy in
         the Location response header and the ID for the new policy is returned in the response
@@ -8854,7 +8854,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/payment_policy',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetPaymentPolicyResponse,
             raw_response=raw_response,
@@ -8880,10 +8880,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
+    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetPaymentPolicyResponse: ...
     @overload
-    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
+    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_payment_policy(self, payment_policy_id: str, *, body: sell_account_v1_models.PaymentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetPaymentPolicyResponse | httpx.Response:
         """This method updates an existing payment policy. Specify the policy you want to update using
         the payment_policy_id path parameter. Supply a complete policy payload with the updates you
         want to make; this call overwrites the existing policy with the new details specified in the
@@ -8895,7 +8895,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/payment_policy/{payment_policy_id}',
             path_params={'payment_policy_id': payment_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetPaymentPolicyResponse,
             raw_response=raw_response,
@@ -8921,10 +8921,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicy: ...
+    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.PaymentPolicy: ...
     @overload
-    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicy | httpx.Response:
+    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_payment_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentPolicy | httpx.Response:
         """This method retrieves the details of a specific payment policy. Supply both the policy name
         and its associated marketplace_id in the request query parameters.
         """
@@ -8934,7 +8934,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/payment_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.PaymentPolicy,
             raw_response=raw_response,
         )
@@ -9020,10 +9020,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller in to an eBay seller program. Refer to the ProgramTypeEnum for
         information about available eBay seller programs.Note: It can take up to 24-hours for eBay
         to process your request to opt-in to a Seller Program. Use the getOptedInPrograms call to
@@ -9035,17 +9035,17 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/program/opt_in',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def opt_out_of_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller out of a seller program in which they are currently opted in to.
         A seller can retrieve a list of the seller programs they are opted-in to using the
         getOptedInPrograms method.
@@ -9056,7 +9056,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/program/opt_out',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -9094,10 +9094,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicyResponse: ...
+    async def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicyResponse: ...
     @overload
-    async def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_policies(self, *, marketplace_id: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicyResponse | httpx.Response:
+    async def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_return_policies(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicyResponse | httpx.Response:
         """This method retrieves all the return policies configured for the marketplace you specify
         using the marketplace_id query parameter.
         """
@@ -9107,16 +9107,16 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/return_policy',
             path_params={},
             params={'marketplace_id': marketplace_id},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.ReturnPolicyResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
+    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
     @overload
-    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
+    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method creates a new return policy where the policy encapsulates seller's terms for
         returning items. Each policy targets a specific marketplace, and you can create multiple
         policies for each marketplace. Return policies are not applicable to motor-vehicle
@@ -9131,7 +9131,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/return_policy',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetReturnPolicyResponse,
             raw_response=raw_response,
@@ -9157,10 +9157,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
+    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SetReturnPolicyResponse: ...
     @overload
-    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
+    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_return_policy(self, return_policy_id: str, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method updates an existing return policy. Specify the policy you want to update using
         the return_policy_id path parameter. Supply a complete policy payload with the updates you
         want to make; this call overwrites the existing policy with the new details specified in the
@@ -9172,7 +9172,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/return_policy/{return_policy_id}',
             path_params={'return_policy_id': return_policy_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.SetReturnPolicyResponse,
             raw_response=raw_response,
@@ -9198,10 +9198,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicy: ...
+    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.ReturnPolicy: ...
     @overload
-    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicy | httpx.Response:
+    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_return_policy_by_name(self, *, marketplace_id: str, name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.ReturnPolicy | httpx.Response:
         """This method retrieves the details of a specific return policy. Supply both the policy name
         and its associated marketplace_id in the request query parameters.
         """
@@ -9211,7 +9211,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/return_policy/get_by_policy_name',
             path_params={},
             params={'marketplace_id': marketplace_id, 'name': name},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_account_v1_models.ReturnPolicy,
             raw_response=raw_response,
         )
@@ -9276,10 +9276,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
+    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.Error: ...
     @overload
-    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
+    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method creates or updates a sales-tax table entry for a jurisdiction. Specify the tax
         table entry you want to configure using the two path parameters: countryCode and
         jurisdictionId. A tax table entry for a jurisdiction is comprised of two fields: one for the
@@ -9301,7 +9301,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
             '/sales_tax/{countryCode}/{jurisdictionId}',
             path_params={'countryCode': country_code, 'jurisdictionId': jurisdiction_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_account_v1_models.Error,
             raw_response=raw_response,
@@ -9440,10 +9440,10 @@ class SellAccountV2Resource(BaseResource):
         )
 
     @overload
-    def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Updates one or more shipping rates for a specific shipping rate table."""
         return self._request(
             'updateShippingCost',
@@ -9451,7 +9451,7 @@ class SellAccountV2Resource(BaseResource):
             '/rate_table/{rate_table_id}/update_shipping_cost',
             path_params={'rate_table_id': rate_table_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -9477,10 +9477,10 @@ class SellAccountV2Resource(BaseResource):
         )
 
     @overload
-    def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Updates the split-payout percentage for two payout instruments for sellers in mainland
         China.
         """
@@ -9490,7 +9490,7 @@ class SellAccountV2Resource(BaseResource):
             '/payout_settings/update_percentage',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -9661,10 +9661,10 @@ class SellAccountV2Resource(BaseResource):
         )
 
     @overload
-    def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Modifies one or more preferences for a seller on a specific marketplace."""
         return self._request(
             'setUserPreferences',
@@ -9672,7 +9672,7 @@ class SellAccountV2Resource(BaseResource):
             '/user_preferences',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -9706,10 +9706,10 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_shipping_cost(self, rate_table_id: str, *, content_type: str, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_shipping_cost(self, rate_table_id: str, *, body: sell_account_v2_models.RateTableUpdate | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Updates one or more shipping rates for a specific shipping rate table."""
         return await self._request(
             'updateShippingCost',
@@ -9717,7 +9717,7 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
             '/rate_table/{rate_table_id}/update_shipping_cost',
             path_params={'rate_table_id': rate_table_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -9743,10 +9743,10 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
         )
 
     @overload
-    async def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_payout_percentage(self, *, content_type: str, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_payout_percentage(self, *, body: sell_account_v2_models.UpdatePayoutPercentageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Updates the split-payout percentage for two payout instruments for sellers in mainland
         China.
         """
@@ -9756,7 +9756,7 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
             '/payout_settings/update_percentage',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -9927,10 +9927,10 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
         )
 
     @overload
-    async def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def set_user_preferences(self, *, content_type: str, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def set_user_preferences(self, *, body: sell_account_v2_models.SetUserPreferencesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Modifies one or more preferences for a seller on a specific marketplace."""
         return await self._request(
             'setUserPreferences',
@@ -9938,7 +9938,7 @@ class AsyncSellAccountV2Resource(AsyncBaseResource):
             '/user_preferences',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -11625,10 +11625,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an order download task with filter criteria for the order report. When
         using this method, specify the feedType, schemaVersion, and filterCriteria for the report.
         The method returns the location response header containing the getOrderTask call URI to
@@ -11650,7 +11650,7 @@ class SellFeedResource(BaseResource):
             '/order_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -11696,10 +11696,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an inventory-related download task for a specified feed type with
         optional filter criteria. When using this method, specify the feedType. This method returns
         the location response header containing the getInventoryTask call URI to retrieve the
@@ -11718,7 +11718,7 @@ class SellFeedResource(BaseResource):
             '/inventory_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -11764,10 +11764,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a schedule, which is a subscription to the specified schedule template.
         A schedule periodically generates a report for the feedType specified by the template.
         Specify the same feedType as the feedType of the associated schedule template. When creating
@@ -11793,7 +11793,7 @@ class SellFeedResource(BaseResource):
             '/schedule',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -11820,10 +11820,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method updates an existing schedule. Specify the schedule to update using the
         schedule_id path parameter. If the schedule template has changed after the schedule was
         created or updated, the input will be validated using the changed template. Note: Make sure
@@ -11838,7 +11838,7 @@ class SellFeedResource(BaseResource):
             '/schedule/{schedule_id}',
             path_params={'schedule_id': schedule_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -11961,10 +11961,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an upload task or a download task without filter criteria. When using
         this method, specify the feedType and the feed file schemaVersion. The feed type specified
         sets the task as a download or an upload task. For details about the upload and download
@@ -11983,7 +11983,7 @@ class SellFeedResource(BaseResource):
             '/task',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12075,10 +12075,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method associates the specified file with the specified task ID and uploads the input
         file. After the file has been uploaded, the processing of the file begins. Reports often
         take time to generate and it's common for this method to return an HTTP status of 202, which
@@ -12103,7 +12103,7 @@ class SellFeedResource(BaseResource):
             '/task/{task_id}/upload_file',
             path_params={'task_id': task_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
@@ -12129,10 +12129,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this method to create a customer service metrics download task with filter criteria for
         the customer service metrics report. When using this method, specify the feedType and
         filterCriteria including both evaluationMarketplaceId and customerServiceMetricType for the
@@ -12153,7 +12153,7 @@ class SellFeedResource(BaseResource):
             '/customer_service_metric_task',
             path_params={},
             params={},
-            headers={'Accept-Language': accept_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'Accept-Language': accept_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12215,10 +12215,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an order download task with filter criteria for the order report. When
         using this method, specify the feedType, schemaVersion, and filterCriteria for the report.
         The method returns the location response header containing the getOrderTask call URI to
@@ -12240,7 +12240,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/order_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12286,10 +12286,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an inventory-related download task for a specified feed type with
         optional filter criteria. When using this method, specify the feedType. This method returns
         the location response header containing the getInventoryTask call URI to retrieve the
@@ -12308,7 +12308,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/inventory_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12354,10 +12354,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_schedule(self, *, body: sell_feed_models.CreateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a schedule, which is a subscription to the specified schedule template.
         A schedule periodically generates a report for the feedType specified by the template.
         Specify the same feedType as the feedType of the associated schedule template. When creating
@@ -12383,7 +12383,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/schedule',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -12410,10 +12410,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_schedule(self, schedule_id: str, *, body: sell_feed_models.UpdateUserScheduleRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method updates an existing schedule. Specify the schedule to update using the
         schedule_id path parameter. If the schedule template has changed after the schedule was
         created or updated, the input will be validated using the changed template. Note: Make sure
@@ -12428,7 +12428,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/schedule/{schedule_id}',
             path_params={'schedule_id': schedule_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12551,10 +12551,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an upload task or a download task without filter criteria. When using
         this method, specify the feedType and the feed file schemaVersion. The feed type specified
         sets the task as a download or an upload task. For details about the upload and download
@@ -12573,7 +12573,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/task',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type, 'Accept-Language': accept_language},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Accept-Language': accept_language, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -12665,10 +12665,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def upload_file(self, task_id: str, *, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def upload_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method associates the specified file with the specified task ID and uploads the input
         file. After the file has been uploaded, the processing of the file begins. Reports often
         take time to generate and it's common for this method to return an HTTP status of 202, which
@@ -12693,7 +12693,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/task/{task_id}/upload_file',
             path_params={'task_id': task_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
@@ -12719,10 +12719,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_customer_service_metric_task(self, *, body: sell_feed_models.CreateServiceMetricsTaskRequest, accept_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this method to create a customer service metrics download task with filter criteria for
         the customer service metrics report. When using this method, specify the feedType and
         filterCriteria including both evaluationMarketplaceId and customerServiceMetricType for the
@@ -12743,7 +12743,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
             '/customer_service_metric_task',
             path_params={},
             params={},
-            headers={'Accept-Language': accept_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'Accept-Language': accept_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -13631,10 +13631,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.Refund: ...
+    def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.Refund: ...
     @overload
-    def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Refund | httpx.Response:
+    def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Refund | httpx.Response:
         """Issue Refund"""
         return self._request(
             'issueRefund',
@@ -13642,7 +13642,7 @@ class SellFulfillmentResource(BaseResource):
             '/order/{order_id}/issue_refund',
             path_params={'order_id': order_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_fulfillment_models.Refund,
             raw_response=raw_response,
@@ -13670,10 +13670,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """When you group an order's line items into one or more packages, each package requires a
         corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For
         each package, execute this call once to generate the shipping fulfillment associated with
@@ -13694,7 +13694,7 @@ class SellFulfillmentResource(BaseResource):
             '/order/{orderId}/shipping_fulfillment',
             path_params={'orderId': order_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -13800,10 +13800,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Contest Payment Dispute"""
         return self._request(
             'contestPaymentDispute',
@@ -13811,17 +13811,17 @@ class SellFulfillmentResource(BaseResource):
             '/payment_dispute/{payment_dispute_id}/contest',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
         )
 
     @overload
-    def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Accept Payment Dispute"""
         return self._request(
             'acceptPaymentDispute',
@@ -13829,7 +13829,7 @@ class SellFulfillmentResource(BaseResource):
             '/payment_dispute/{payment_dispute_id}/accept',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -13854,10 +13854,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse: ...
+    def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse: ...
     @overload
-    def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse | httpx.Response:
+    def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse | httpx.Response:
         """Add an Evidence File"""
         return self._request(
             'addEvidence',
@@ -13865,17 +13865,17 @@ class SellFulfillmentResource(BaseResource):
             '/payment_dispute/{payment_dispute_id}/add_evidence',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_fulfillment_models.AddEvidencePaymentDisputeResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Update evidence"""
         return self._request(
             'updateEvidence',
@@ -13883,7 +13883,7 @@ class SellFulfillmentResource(BaseResource):
             '/payment_dispute/{payment_dispute_id}/update_evidence',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -13958,10 +13958,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.Refund: ...
+    async def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.Refund: ...
     @overload
-    async def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def issue_refund(self, order_id: str, *, content_type: str, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Refund | httpx.Response:
+    async def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def issue_refund(self, order_id: str, *, body: sell_fulfillment_models.IssueRefundRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Refund | httpx.Response:
         """Issue Refund"""
         return await self._request(
             'issueRefund',
@@ -13969,7 +13969,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/order/{order_id}/issue_refund',
             path_params={'order_id': order_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_fulfillment_models.Refund,
             raw_response=raw_response,
@@ -13997,10 +13997,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """When you group an order's line items into one or more packages, each package requires a
         corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For
         each package, execute this call once to generate the shipping fulfillment associated with
@@ -14021,7 +14021,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/order/{orderId}/shipping_fulfillment',
             path_params={'orderId': order_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -14127,10 +14127,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def contest_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def contest_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.ContestPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Contest Payment Dispute"""
         return await self._request(
             'contestPaymentDispute',
@@ -14138,17 +14138,17 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/payment_dispute/{payment_dispute_id}/contest',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
         )
 
     @overload
-    async def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def accept_payment_dispute(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def accept_payment_dispute(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AcceptPaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Accept Payment Dispute"""
         return await self._request(
             'acceptPaymentDispute',
@@ -14156,7 +14156,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/payment_dispute/{payment_dispute_id}/accept',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -14181,10 +14181,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse: ...
+    async def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse: ...
     @overload
-    async def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def add_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse | httpx.Response:
+    async def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def add_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.AddEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.AddEvidencePaymentDisputeResponse | httpx.Response:
         """Add an Evidence File"""
         return await self._request(
             'addEvidence',
@@ -14192,17 +14192,17 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/payment_dispute/{payment_dispute_id}/add_evidence',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_fulfillment_models.AddEvidencePaymentDisputeResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_evidence(self, payment_dispute_id: str, *, content_type: str, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_evidence(self, payment_dispute_id: str, *, body: sell_fulfillment_models.UpdateEvidencePaymentDisputeRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Update evidence"""
         return await self._request(
             'updateEvidence',
@@ -14210,7 +14210,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             '/payment_dispute/{payment_dispute_id}/update_evidence',
             path_params={'payment_dispute_id': payment_dispute_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -14227,10 +14227,10 @@ class SellInventoryResource(BaseResource):
     }
 
     @overload
-    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkInventoryItemResponse: ...
+    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkInventoryItemResponse: ...
     @overload
-    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
+    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -14274,17 +14274,17 @@ class SellInventoryResource(BaseResource):
             '/bulk_create_or_replace_inventory_item',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkInventoryItemResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkGetInventoryItemResponse: ...
+    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkGetInventoryItemResponse: ...
     @overload
-    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
+    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
         """This call retrieves up to 25 inventory item records. The SKU value of each inventory item
         record to retrieve is specified in the request payload.Note: In addition to the
         authorization header, which is required for all Inventory API calls, this call also requires
@@ -14299,17 +14299,17 @@ class SellInventoryResource(BaseResource):
             '/bulk_get_inventory_item',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkGetInventoryItemResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPriceQuantityResponse: ...
+    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPriceQuantityResponse: ...
     @overload
-    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPriceQuantityResponse | httpx.Response:
+    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPriceQuantityResponse | httpx.Response:
         """This call is used by the seller to update the total ship-to-home quantity of one inventory
         item, and/or to update the price and/or quantity of one or more offers associated with one
         inventory item. Up to 25 offers associated with an inventory item may be updated with one
@@ -14337,7 +14337,7 @@ class SellInventoryResource(BaseResource):
             '/bulk_update_price_quantity',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkPriceQuantityResponse,
             raw_response=raw_response,
@@ -14369,10 +14369,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -14423,7 +14423,7 @@ class SellInventoryResource(BaseResource):
             '/inventory_item/{sku}',
             path_params={'sku': sku},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -14501,10 +14501,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """This call is used by the seller to create or replace a list of products that are compatible
         with the inventory item. The inventory item is identified with a SKU value in the URI.
         Product compatibility is currently only applicable to motor vehicle parts and accessory
@@ -14518,7 +14518,7 @@ class SellInventoryResource(BaseResource):
             '/inventory_item/{sku}/product_compatibility',
             path_params={'sku': sku},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -14566,10 +14566,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
         calendar day.This call creates a new inventory item group or updates an existing inventory
@@ -14610,7 +14610,7 @@ class SellInventoryResource(BaseResource):
             '/inventory_item_group/{inventoryItemGroupKey}',
             path_params={'inventoryItemGroupKey': inventory_item_group_key},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -14634,10 +14634,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkMigrateListingResponse: ...
+    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkMigrateListingResponse: ...
     @overload
-    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
+    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
         """This call is used to convert existing eBay Listings to the corresponding Inventory API
         objects. If an eBay listing is successfully migrated to the Inventory API model, new
         Inventory Location, Inventory Item, and Offer objects are created. For a multiple-variation
@@ -14693,7 +14693,7 @@ class SellInventoryResource(BaseResource):
             '/bulk_migrate_listing',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkMigrateListingResponse,
             raw_response=raw_response,
@@ -14724,10 +14724,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method allows sellers to map multiple fulfillment center locations to single-SKU
         listing, or to a single SKU within a multiple-variation listing. This allows eBay to
         leverage the location metadata associated with a seller’s fulfillment centers to calculate
@@ -14758,7 +14758,7 @@ class SellInventoryResource(BaseResource):
             '/listing/{listingId}/sku/{sku}/locations',
             path_params={'listingId': listing_id, 'sku': sku},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -14786,10 +14786,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkOfferResponse: ...
+    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkOfferResponse: ...
     @overload
-    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
+    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
         """This call creates multiple offers (up to 25) for specific inventory items on a specific eBay
         marketplace. Although it is not a requirement for the seller to create complete offers (with
         all necessary details) right from the start, eBay recommends that the seller provide all
@@ -14819,17 +14819,17 @@ class SellInventoryResource(BaseResource):
             '/bulk_create_offer',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkOfferResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPublishResponse: ...
+    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPublishResponse: ...
     @overload
-    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
+    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
         calendar day.This call is used to convert unpublished offers (up to 25) into published
@@ -14853,7 +14853,7 @@ class SellInventoryResource(BaseResource):
             '/bulk_publish_offer',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkPublishResponse,
             raw_response=raw_response,
@@ -14885,10 +14885,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
+    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
     @overload
-    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
+    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call creates an offer for a specific inventory item on a specific eBay marketplace. It
         is up to the sellers whether they want to create a complete offer (with all necessary
         details) right from the start, or sellers can provide only some information with the initial
@@ -14918,7 +14918,7 @@ class SellInventoryResource(BaseResource):
             '/offer',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.OfferResponse,
             raw_response=raw_response,
@@ -14946,10 +14946,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
+    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
     @overload
-    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
+    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call updates an existing offer. An existing offer may be in published state (active
         eBay listing), or in an unpublished state and yet to be published with the publishOffer
         call. The unique identifier (offerId) for the offer to update is passed in at the end of the
@@ -14978,7 +14978,7 @@ class SellInventoryResource(BaseResource):
             '/offer/{offerId}',
             path_params={'offerId': offer_id},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.OfferResponse,
             raw_response=raw_response,
@@ -15012,10 +15012,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.FeesSummaryResponse: ...
+    def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.FeesSummaryResponse: ...
     @overload
-    def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
+    def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
         """This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An
         array of one or more >offerId values are passed in under the offers container.In the
         response payload, all listing fees are grouped by eBay marketplace, and listing fees per
@@ -15030,7 +15030,7 @@ class SellInventoryResource(BaseResource):
             '/offer/get_listing_fees',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.FeesSummaryResponse,
             raw_response=raw_response,
@@ -15066,10 +15066,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.PublishResponse: ...
+    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.PublishResponse: ...
     @overload
-    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
+    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -15096,7 +15096,7 @@ class SellInventoryResource(BaseResource):
             '/offer/publish_by_inventory_item_group',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.PublishResponse,
             raw_response=raw_response,
@@ -15130,10 +15130,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This call is used to end a multiple-variation eBay listing that is associated with the
         specified inventory item group. This call only ends multiple-variation eBay listing
         associated with the inventory item group but does not delete the inventory item group
@@ -15148,7 +15148,7 @@ class SellInventoryResource(BaseResource):
             '/offer/withdraw_by_inventory_item_group',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -15175,10 +15175,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to create a new inventory location. In order to create and publish an offer
         (and create an eBay listing), a seller must have at least one location, as every offer must
         be associated with at least one location.Important!Publish offer note: Fields may be
@@ -15213,7 +15213,7 @@ class SellInventoryResource(BaseResource):
             '/location/{merchantLocationKey}',
             path_params={'merchantLocationKey': merchant_location_key},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -15312,10 +15312,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to update location details for an existing inventory location. Specify the
         inventory location you want to update using the merchantLocationKey path parameter. You can
         update the following text-based fields: name, phone, timeZoneId, geoCoordinates,
@@ -15338,7 +15338,7 @@ class SellInventoryResource(BaseResource):
             '/location/{merchantLocationKey}/update_location_details',
             path_params={'merchantLocationKey': merchant_location_key},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -15355,10 +15355,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     }
 
     @overload
-    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkInventoryItemResponse: ...
+    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkInventoryItemResponse: ...
     @overload
-    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, content_type: str, content_language: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
+    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -15402,17 +15402,17 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_create_or_replace_inventory_item',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkInventoryItemResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkGetInventoryItemResponse: ...
+    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkGetInventoryItemResponse: ...
     @overload
-    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
+    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
         """This call retrieves up to 25 inventory item records. The SKU value of each inventory item
         record to retrieve is specified in the request payload.Note: In addition to the
         authorization header, which is required for all Inventory API calls, this call also requires
@@ -15427,17 +15427,17 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_get_inventory_item',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkGetInventoryItemResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPriceQuantityResponse: ...
+    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPriceQuantityResponse: ...
     @overload
-    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPriceQuantityResponse | httpx.Response:
+    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_price_quantity(self, *, body: sell_inventory_models.BulkPriceQuantity, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPriceQuantityResponse | httpx.Response:
         """This call is used by the seller to update the total ship-to-home quantity of one inventory
         item, and/or to update the price and/or quantity of one or more offers associated with one
         inventory item. Up to 25 offers associated with an inventory item may be updated with one
@@ -15465,7 +15465,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_update_price_quantity',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkPriceQuantityResponse,
             raw_response=raw_response,
@@ -15497,10 +15497,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -15551,7 +15551,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/inventory_item/{sku}',
             path_params={'sku': sku},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -15629,10 +15629,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_or_replace_product_compatibility(self, sku: str, *, body: sell_inventory_models.Compatibility, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """This call is used by the seller to create or replace a list of products that are compatible
         with the inventory item. The inventory item is identified with a SKU value in the URI.
         Product compatibility is currently only applicable to motor vehicle parts and accessory
@@ -15646,7 +15646,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/inventory_item/{sku}/product_compatibility',
             path_params={'sku': sku},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -15694,10 +15694,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
+    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BaseResponse: ...
     @overload
-    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
+    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
         calendar day.This call creates a new inventory item group or updates an existing inventory
@@ -15738,7 +15738,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/inventory_item_group/{inventoryItemGroupKey}',
             path_params={'inventoryItemGroupKey': inventory_item_group_key},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BaseResponse,
             raw_response=raw_response,
@@ -15762,10 +15762,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkMigrateListingResponse: ...
+    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkMigrateListingResponse: ...
     @overload
-    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
+    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
         """This call is used to convert existing eBay Listings to the corresponding Inventory API
         objects. If an eBay listing is successfully migrated to the Inventory API model, new
         Inventory Location, Inventory Item, and Offer objects are created. For a multiple-variation
@@ -15821,7 +15821,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_migrate_listing',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkMigrateListingResponse,
             raw_response=raw_response,
@@ -15852,10 +15852,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_or_replace_sku_location_mapping(self, listing_id: str, sku: str, *, body: sell_inventory_models.LocationMapping, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method allows sellers to map multiple fulfillment center locations to single-SKU
         listing, or to a single SKU within a multiple-variation listing. This allows eBay to
         leverage the location metadata associated with a seller’s fulfillment centers to calculate
@@ -15886,7 +15886,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/listing/{listingId}/sku/{sku}/locations',
             path_params={'listingId': listing_id, 'sku': sku},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -15914,10 +15914,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkOfferResponse: ...
+    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkOfferResponse: ...
     @overload
-    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
+    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
         """This call creates multiple offers (up to 25) for specific inventory items on a specific eBay
         marketplace. Although it is not a requirement for the seller to create complete offers (with
         all necessary details) right from the start, eBay recommends that the seller provide all
@@ -15947,17 +15947,17 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_create_offer',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkOfferResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPublishResponse: ...
+    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.BulkPublishResponse: ...
     @overload
-    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
+    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
         calendar day.This call is used to convert unpublished offers (up to 25) into published
@@ -15981,7 +15981,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/bulk_publish_offer',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.BulkPublishResponse,
             raw_response=raw_response,
@@ -16013,10 +16013,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
+    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
     @overload
-    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
+    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_offer(self, *, body: sell_inventory_models.EbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call creates an offer for a specific inventory item on a specific eBay marketplace. It
         is up to the sellers whether they want to create a complete offer (with all necessary
         details) right from the start, or sellers can provide only some information with the initial
@@ -16046,7 +16046,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/offer',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.OfferResponse,
             raw_response=raw_response,
@@ -16074,10 +16074,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
+    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.OfferResponse: ...
     @overload
-    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, content_language: str, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
+    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call updates an existing offer. An existing offer may be in published state (active
         eBay listing), or in an unpublished state and yet to be published with the publishOffer
         call. The unique identifier (offerId) for the offer to update is passed in at the end of the
@@ -16106,7 +16106,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/offer/{offerId}',
             path_params={'offerId': offer_id},
             params={},
-            headers={'Content-Language': content_language, 'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.OfferResponse,
             raw_response=raw_response,
@@ -16140,10 +16140,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.FeesSummaryResponse: ...
+    async def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.FeesSummaryResponse: ...
     @overload
-    async def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_listing_fees(self, *, content_type: str, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
+    async def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
         """This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An
         array of one or more >offerId values are passed in under the offers container.In the
         response payload, all listing fees are grouped by eBay marketplace, and listing fees per
@@ -16158,7 +16158,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/offer/get_listing_fees',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.FeesSummaryResponse,
             raw_response=raw_response,
@@ -16194,10 +16194,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.PublishResponse: ...
+    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.PublishResponse: ...
     @overload
-    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
+    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
         relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
@@ -16224,7 +16224,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/offer/publish_by_inventory_item_group',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_inventory_models.PublishResponse,
             raw_response=raw_response,
@@ -16258,10 +16258,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def withdraw_offer_by_inventory_item_group(self, *, body: sell_inventory_models.WithdrawByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This call is used to end a multiple-variation eBay listing that is associated with the
         specified inventory item group. This call only ends multiple-variation eBay listing
         associated with the inventory item group but does not delete the inventory item group
@@ -16276,7 +16276,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/offer/withdraw_by_inventory_item_group',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -16303,10 +16303,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to create a new inventory location. In order to create and publish an offer
         (and create an eBay listing), a seller must have at least one location, as every offer must
         be associated with at least one location.Important!Publish offer note: Fields may be
@@ -16341,7 +16341,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/location/{merchantLocationKey}',
             path_params={'merchantLocationKey': merchant_location_key},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -16440,10 +16440,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to update location details for an existing inventory location. Specify the
         inventory location you want to update using the merchantLocationKey path parameter. You can
         update the following text-based fields: name, phone, timeZoneId, geoCoordinates,
@@ -16466,7 +16466,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
             '/location/{merchantLocationKey}/update_location_details',
             path_params={'merchantLocationKey': merchant_location_key},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -16589,10 +16589,10 @@ class SellListingResource(BaseResource):
     }
 
     @overload
-    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_listing_models.ItemDraftResponse: ...
+    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_listing_models.ItemDraftResponse: ...
     @overload
-    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_listing_models.ItemDraftResponse | httpx.Response:
+    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_listing_models.ItemDraftResponse | httpx.Response:
         """This call gives Partners the ability to create an eBay draft of a item for their seller
         using information from their site. This lets the Partner increase the exposure of items on
         their site and leverage the eBay user listing experience seamlessly. This experience
@@ -16607,7 +16607,7 @@ class SellListingResource(BaseResource):
             '/item_draft/',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_listing_models.ItemDraftResponse,
             raw_response=raw_response,
@@ -16624,10 +16624,10 @@ class AsyncSellListingResource(AsyncBaseResource):
     }
 
     @overload
-    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_listing_models.ItemDraftResponse: ...
+    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_listing_models.ItemDraftResponse: ...
     @overload
-    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, content_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_listing_models.ItemDraftResponse | httpx.Response:
+    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_item_draft(self, *, body: sell_listing_models.ItemDraft | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_listing_models.ItemDraftResponse | httpx.Response:
         """This call gives Partners the ability to create an eBay draft of a item for their seller
         using information from their site. This lets the Partner increase the exposure of items on
         their site and leverage the eBay user listing experience seamlessly. This experience
@@ -16642,7 +16642,7 @@ class AsyncSellListingResource(AsyncBaseResource):
             '/item_draft/',
             path_params={},
             params={},
-            headers={'Content-Language': content_language, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_listing_models.ItemDraftResponse,
             raw_response=raw_response,
@@ -16681,10 +16681,10 @@ class SellLogisticsResource(BaseResource):
         )
 
     @overload
-    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.Shipment: ...
+    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.Shipment: ...
     @overload
-    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.Shipment | httpx.Response:
+    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.Shipment | httpx.Response:
         """This method creates a shipment based on the shippingQuoteId and rateId values supplied in
         the request. The rate identified by the rateId value specifies the carrier and service for
         the package shipment, and the rate ID must be contained in the shipping quote identified by
@@ -16721,7 +16721,7 @@ class SellLogisticsResource(BaseResource):
             '/shipment/create_from_shipping_quote',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_logistics_models.Shipment,
             raw_response=raw_response,
@@ -16778,10 +16778,10 @@ class SellLogisticsResource(BaseResource):
         )
 
     @overload
-    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.ShippingQuote: ...
+    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.ShippingQuote: ...
     @overload
-    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.ShippingQuote | httpx.Response:
+    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.ShippingQuote | httpx.Response:
         """The createShippingQuote method returns a shipping quote that contains a list of live
         "rates." Each rate represents an offer made by a shipping carrier for a specific service and
         each offer has a live quote for the base service cost. Rates have a time window in which
@@ -16806,7 +16806,7 @@ class SellLogisticsResource(BaseResource):
             '/shipping_quote',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_logistics_models.ShippingQuote,
             raw_response=raw_response,
@@ -16867,10 +16867,10 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.Shipment: ...
+    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.Shipment: ...
     @overload
-    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.Shipment | httpx.Response:
+    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_from_shipping_quote(self, *, body: sell_logistics_models.CreateShipmentFromQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.Shipment | httpx.Response:
         """This method creates a shipment based on the shippingQuoteId and rateId values supplied in
         the request. The rate identified by the rateId value specifies the carrier and service for
         the package shipment, and the rate ID must be contained in the shipping quote identified by
@@ -16907,7 +16907,7 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
             '/shipment/create_from_shipping_quote',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_logistics_models.Shipment,
             raw_response=raw_response,
@@ -16964,10 +16964,10 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.ShippingQuote: ...
+    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_logistics_models.ShippingQuote: ...
     @overload
-    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.ShippingQuote | httpx.Response:
+    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_shipping_quote(self, *, body: sell_logistics_models.ShippingQuoteRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_logistics_models.ShippingQuote | httpx.Response:
         """The createShippingQuote method returns a shipping quote that contains a list of live
         "rates." Each rate represents an offer made by a shipping carrier for a specific service and
         each offer has a live quote for the base service cost. Rates have a time window in which
@@ -16992,7 +16992,7 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
             '/shipping_quote',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_logistics_models.ShippingQuote,
             raw_response=raw_response,
@@ -17031,10 +17031,10 @@ class SellMarketingResource(BaseResource):
     }
 
     @overload
-    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse: ...
+    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse: ...
     @overload
-    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
+    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
         """This method adds multiple listings that are managed with the Inventory API to an existing
         Promoted Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS)
         model, bulk ads may be directly created for the listing.For each listing specified in the
@@ -17054,17 +17054,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdResponse: ...
+    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdResponse: ...
     @overload
-    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
+    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
         """This method adds multiple listings to an existing Promoted Listings campaign using listingId
         values generated by the Trading API or Inventory API, or using values generated by an ad
         group ID.For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
@@ -17093,17 +17093,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_ads_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse: ...
+    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse: ...
     @overload
-    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
+    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
         """This method works with listings created with the Inventory API.The method deletes a set of
         ads, as specified by a list of inventory reference IDs, from the specified campaign.
         Inventory reference IDs are seller-defined IDs that are used with the Inventory API.Pass the
@@ -17120,17 +17120,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_delete_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdResponse: ...
+    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdResponse: ...
     @overload
-    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
+    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
         """This method works with listing IDs created with either the Trading API or the Inventory
         API.The method deletes a set of ads, as specified by a list of listingID values from a
         Promoted Listings campaign. A listing ID value is generated by eBay when a seller creates a
@@ -17149,17 +17149,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_delete_ads_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkDeleteAdResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse: ...
+    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse: ...
     @overload
-    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
+    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
         """This method works with listings created with either the Trading API or the Inventory API.
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
@@ -17176,17 +17176,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_bid_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateResponse: ...
+    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateResponse: ...
     @overload
-    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
+    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
         """This method works with listings created with either the Trading API or the Inventory API.
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
@@ -17203,17 +17203,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_bid_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusResponse: ...
+    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusResponse: ...
     @overload
-    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusResponse | httpx.Response:
+    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusResponse | httpx.Response:
         """Note: This method is only available for select partners who have been approved for the
         priority strategy program. For information about how to request access to this program,
         refer to Priority Strategy Access Requests in the Promoted Listings Playbook. To determine
@@ -17228,17 +17228,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_status',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateStatusResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse: ...
+    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse: ...
     @overload
-    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
+    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
         """The method updates the status of ads in bulk, based on listing ID values.Specify the
         campaign_id as a path parameter and supply a set of listing IDs with their updated adStatus
         values in the request body. An eBay listing ID is generated when a listing is created with
@@ -17251,7 +17251,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_status_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateStatusByListingIdResponse,
             raw_response=raw_response,
@@ -17283,10 +17283,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a listing to an existing Promoted Listings campaign using a listingId value
         generated by the Trading API or Inventory API, or using a value generated by an ad group ID.
         For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
@@ -17314,17 +17314,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdReferences: ...
+    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdReferences: ...
     @overload
-    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
+    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
         """This method adds a listing that is managed with the Inventory API to an existing Promoted
         Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS) funding
         model, an ad may be directly created for the listing.For each listing specified in the
@@ -17344,7 +17344,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/create_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.AdReferences,
             raw_response=raw_response,
@@ -17395,10 +17395,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdIds: ...
+    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdIds: ...
     @overload
-    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
+    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
         """This method works with listings that are managed with the Inventory API. The method deletes
         ads using a list of seller-defined inventory reference IDs, used with the Inventory API,
         that are associated with the specified campaign ID. Specify the campaign ID (as a path
@@ -17415,7 +17415,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/delete_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.AdIds,
             raw_response=raw_response,
@@ -17450,10 +17450,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the bid percentage (also known as the "ad rate") for the specified ad in
         the specified campaign. In the request, supply the campaign_id and ad_id as path parameters,
         and supply the new bidPercentage value in the payload of the call. Call getCampaigns to
@@ -17468,7 +17468,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad/{ad_id}/update_bid',
             path_params={'ad_id': ad_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -17495,10 +17495,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds an ad group to an existing priority strategy campaign that uses manual
         targeting.To create an ad group for a campaign, specify the defaultBid for the ad group in
         the payload of the request. Then specify the campaign to which the ad group should be
@@ -17511,7 +17511,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad_group',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -17539,10 +17539,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad group associated with a campaign.With this method, you can modify
         the default bid for the ad group, change the state of the ad group, or change the name of
         the ad group. Pass the ad_group_id you want to update as a URI parameter, and configure the
@@ -17555,17 +17555,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedBidsPagedCollection: ...
+    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedBidsPagedCollection: ...
     @overload
-    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedBidsPagedCollection | httpx.Response:
+    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedBidsPagedCollection | httpx.Response:
         """This method allows sellers to retrieve the suggested bids for input keywords and match type."""
         return self._request(
             'suggestBids',
@@ -17573,17 +17573,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}/suggest_bids',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.TargetedBidsPagedCollection,
             raw_response=raw_response,
         )
 
     @overload
-    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedKeywordsPagedCollection: ...
+    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedKeywordsPagedCollection: ...
     @overload
-    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedKeywordsPagedCollection | httpx.Response:
+    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedKeywordsPagedCollection | httpx.Response:
         """This method allows sellers to retrieve a list of keyword ideas to be targeted for Promoted
         Listings campaigns.
         """
@@ -17593,17 +17593,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}/suggest_keywords',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.TargetedKeywordsPagedCollection,
             raw_response=raw_response,
         )
 
     @overload
-    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method clones (makes a copy of) the specified campaign's campaign criterion. The
         campaign criterion is a container for the fields that define the criteria for a rule-based
         campaign.To clone a campaign, supply the campaign_id as a path parameter in your call. There
@@ -17620,7 +17620,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/clone',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -17651,10 +17651,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method can be used to create a Promoted Listings general, priority, or offsite
         campaign.A Promoted Listings campaign is the structure in which you place the ads or ad
         group for the listings you wish to promote.Note: Campaigns can only contain ads for a
@@ -17683,7 +17683,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -17883,10 +17883,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.SuggestMaxCpcResponse: ...
+    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.SuggestMaxCpcResponse: ...
     @overload
-    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
+    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
         """Note: This method is only supported for smart targeting priority strategy campaigns. Sellers
         can use the getAdvertisingEligibility method of the Account API v1 to determine if they are
         eligible for a priority strategy campaign.This method allows sellers to retrieve the
@@ -17900,17 +17900,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/suggest_max_cpc',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.SuggestMaxCpcResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad rate strategy for an existing rules-based general strategy ad
         campaign that uses the Cost Per Sale (CPS) funding model.Specify the campaign_id as a path
         parameter. You can retrieve the campaign IDs for a seller by calling the getCampaigns
@@ -17924,17 +17924,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/update_ad_rate_strategy',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method allows sellers to change the bidding strategy for a specified Cost Per Click
         (CPC) campaign that uses manual targeting. Available bidding strategies are:FIXEDWhen using
         a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
@@ -17954,17 +17954,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/update_bidding_strategy',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method updates the daily budget for a priority strategy campaign that uses the Cost Per
         Click (CPC) funding model.A click occurs when an eBay user finds and clicks on the seller’s
         listing (within the search results) after using a keyword that the seller has created for
@@ -17982,17 +17982,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/update_campaign_budget',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method can be used to change the name of a campaign, as well as modify the start or end
         dates. Specify the campaign_id you want to update as a URI parameter, and configure the
         campaignName and startDate in the request payload. If you want to change only the end date
@@ -18010,17 +18010,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/update_campaign_identification',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateKeywordResponse: ...
+    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateKeywordResponse: ...
     @overload
-    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
+    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
         """This method adds keywords, in bulk, to an existing priority strategy ad group in a campaign
         that uses manual targeting.This method also sets the CPC rate for each keyword, depending on
         the selected bidding strategy, as follows:FIXED: If the seller provides a keyword bid, that
@@ -18035,17 +18035,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateKeywordResponse: ...
+    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateKeywordResponse: ...
     @overload
-    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
+    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
         """This method updates the bids and statuses of keywords, in bulk, for an existing priority
         strategy campaign.In the request, supply the campaign_id as a path parameter.Call the
         getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
@@ -18056,7 +18056,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateKeywordResponse,
             raw_response=raw_response,
@@ -18086,10 +18086,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates keywords using a specified campaign ID for an existing priority strategy
         campaign that uses manual targeting.In the request, supply the campaign_id as a path
         parameter.Call the suggestKeywords method to retrieve a list of keyword ideas to be targeted
@@ -18102,7 +18102,7 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -18131,10 +18131,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateKeywordResponse: ...
+    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateKeywordResponse: ...
     @overload
-    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
+    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
         """This method updates keywords using a campaign ID and keyword ID for an existing priority
         strategy campaign.In the request, specify the campaign_id and keyword_id as path
         parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
@@ -18146,17 +18146,17 @@ class SellMarketingResource(BaseResource):
             '/ad_campaign/{campaign_id}/keyword/{keyword_id}',
             path_params={'campaign_id': campaign_id, 'keyword_id': keyword_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.UpdateKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse: ...
+    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse: ...
     @overload
-    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
+    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
         """This method adds negative keywords, in bulk, to an existing ad group in a priority strategy
         campaign that uses manual targeting.Specify the campaignId and adGroupId in the request
         body, along with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns
@@ -18168,17 +18168,17 @@ class SellMarketingResource(BaseResource):
             '/bulk_create_negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateNegativeKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse: ...
+    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse: ...
     @overload
-    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
+    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
         """This method updates the statuses of existing negative keywords, in bulk.Specify the
         negativeKeywordId and negativeKeywordStatus in the request body.
         """
@@ -18188,7 +18188,7 @@ class SellMarketingResource(BaseResource):
             '/bulk_update_negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateNegativeKeywordResponse,
             raw_response=raw_response,
@@ -18217,10 +18217,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a negative keyword to an existing ad group in a priority strategy campaign
         that uses manual targeting.Specify the campaignId and adGroupId in the request body, along
         with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns method to
@@ -18232,7 +18232,7 @@ class SellMarketingResource(BaseResource):
             '/negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -18258,10 +18258,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the status of an existing negative keyword.Specify the
         negative_keyword_id as a path parameter, and specify the negativeKeywordStatus in the
         request body.
@@ -18272,7 +18272,7 @@ class SellMarketingResource(BaseResource):
             '/negative_keyword/{negative_keyword_id}',
             path_params={'negative_keyword_id': negative_keyword_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -18390,10 +18390,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method creates a report task, which generates a Promoted Listings report based on the
         values specified in the call.The report is generated based on the criteria you specify,
         including the report type, the report's dimensions and metrics, the report's start and end
@@ -18429,7 +18429,7 @@ class SellMarketingResource(BaseResource):
             '/ad_report_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -18486,10 +18486,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -18525,7 +18525,7 @@ class SellMarketingResource(BaseResource):
             '/item_price_markdown',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -18554,10 +18554,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -18580,7 +18580,7 @@ class SellMarketingResource(BaseResource):
             '/item_price_markdown/{promotion_id}',
             path_params={'promotion_id': promotion_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -18611,10 +18611,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
+    def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
     @overload
-    def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
+    def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -18652,7 +18652,7 @@ class SellMarketingResource(BaseResource):
             '/item_promotion',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BaseResponse,
             raw_response=raw_response,
@@ -18681,10 +18681,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
+    def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
     @overload
-    def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
+    def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -18709,7 +18709,7 @@ class SellMarketingResource(BaseResource):
             '/item_promotion/{promotion_id}',
             path_params={'promotion_id': promotion_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BaseResponse,
             raw_response=raw_response,
@@ -18917,10 +18917,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CreateEmailCampaignResponse: ...
+    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CreateEmailCampaignResponse: ...
     @overload
-    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
+    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
         """This method creates a new email campaign. An eBay store owner can create six different types
         of email campaigns: Welcome, New products & collections, Coupon, Sale event + markdown,
         Order discount, and Volume pricing.A successful createEmailCampaign request returns the
@@ -18936,7 +18936,7 @@ class SellMarketingResource(BaseResource):
             '/email_campaign',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.CreateEmailCampaignResponse,
             raw_response=raw_response,
@@ -18963,10 +18963,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateEmailCampaignResponse: ...
+    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateEmailCampaignResponse: ...
     @overload
-    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
+    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
         """This method lets users update an existing email campaign. Pass the emailCampaignId in the
         request URL and specify the changes to field values in the request payload.Note: You can
         only update the custom fields of an email campaign. Fixed values, such as the
@@ -18979,7 +18979,7 @@ class SellMarketingResource(BaseResource):
             '/email_campaign/{email_campaign_id}',
             path_params={'email_campaign_id': email_campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.UpdateEmailCampaignResponse,
             raw_response=raw_response,
@@ -19086,10 +19086,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     }
 
     @overload
-    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse: ...
+    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse: ...
     @overload
-    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
+    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
         """This method adds multiple listings that are managed with the Inventory API to an existing
         Promoted Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS)
         model, bulk ads may be directly created for the listing.For each listing specified in the
@@ -19109,17 +19109,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdResponse: ...
+    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdResponse: ...
     @overload
-    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
+    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
         """This method adds multiple listings to an existing Promoted Listings campaign using listingId
         values generated by the Trading API or Inventory API, or using values generated by an ad
         group ID.For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
@@ -19148,17 +19148,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_ads_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse: ...
+    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse: ...
     @overload
-    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
+    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
         """This method works with listings created with the Inventory API.The method deletes a set of
         ads, as specified by a list of inventory reference IDs, from the specified campaign.
         Inventory reference IDs are seller-defined IDs that are used with the Inventory API.Pass the
@@ -19175,17 +19175,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_delete_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdResponse: ...
+    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkDeleteAdResponse: ...
     @overload
-    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
+    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
         """This method works with listing IDs created with either the Trading API or the Inventory
         API.The method deletes a set of ads, as specified by a list of listingID values from a
         Promoted Listings campaign. A listing ID value is generated by eBay when a seller creates a
@@ -19204,17 +19204,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_delete_ads_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkDeleteAdResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse: ...
+    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse: ...
     @overload
-    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
+    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
         """This method works with listings created with either the Trading API or the Inventory API.
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
@@ -19231,17 +19231,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_bid_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateResponse: ...
+    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateResponse: ...
     @overload
-    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
+    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
         """This method works with listings created with either the Trading API or the Inventory API.
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
@@ -19258,17 +19258,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_bid_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusResponse: ...
+    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusResponse: ...
     @overload
-    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusResponse | httpx.Response:
+    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_ads_status(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusResponse | httpx.Response:
         """Note: This method is only available for select partners who have been approved for the
         priority strategy program. For information about how to request access to this program,
         refer to Priority Strategy Access Requests in the Promoted Listings Playbook. To determine
@@ -19283,17 +19283,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_status',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateStatusResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse: ...
+    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse: ...
     @overload
-    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
+    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
         """The method updates the status of ads in bulk, based on listing ID values.Specify the
         campaign_id as a path parameter and supply a set of listing IDs with their updated adStatus
         values in the request body. An eBay listing ID is generated when a listing is created with
@@ -19306,7 +19306,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_ads_status_by_listing_id',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkAdUpdateStatusByListingIdResponse,
             raw_response=raw_response,
@@ -19338,10 +19338,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a listing to an existing Promoted Listings campaign using a listingId value
         generated by the Trading API or Inventory API, or using a value generated by an ad group ID.
         For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
@@ -19369,17 +19369,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdReferences: ...
+    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdReferences: ...
     @overload
-    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
+    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
         """This method adds a listing that is managed with the Inventory API to an existing Promoted
         Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS) funding
         model, an ad may be directly created for the listing.For each listing specified in the
@@ -19399,7 +19399,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/create_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.AdReferences,
             raw_response=raw_response,
@@ -19450,10 +19450,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdIds: ...
+    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdIds: ...
     @overload
-    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
+    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
         """This method works with listings that are managed with the Inventory API. The method deletes
         ads using a list of seller-defined inventory reference IDs, used with the Inventory API,
         that are associated with the specified campaign ID. Specify the campaign ID (as a path
@@ -19470,7 +19470,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/delete_ads_by_inventory_reference',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.AdIds,
             raw_response=raw_response,
@@ -19505,10 +19505,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_bid(self, ad_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateBidPercentageRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the bid percentage (also known as the "ad rate") for the specified ad in
         the specified campaign. In the request, supply the campaign_id and ad_id as path parameters,
         and supply the new bidPercentage value in the payload of the call. Call getCampaigns to
@@ -19523,7 +19523,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad/{ad_id}/update_bid',
             path_params={'ad_id': ad_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -19550,10 +19550,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds an ad group to an existing priority strategy campaign that uses manual
         targeting.To create an ad group for a campaign, specify the defaultBid for the ad group in
         the payload of the request. Then specify the campaign to which the ad group should be
@@ -19566,7 +19566,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad_group',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -19594,10 +19594,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad group associated with a campaign.With this method, you can modify
         the default bid for the ad group, change the state of the ad group, or change the name of
         the ad group. Pass the ad_group_id you want to update as a URI parameter, and configure the
@@ -19610,17 +19610,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedBidsPagedCollection: ...
+    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedBidsPagedCollection: ...
     @overload
-    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedBidsPagedCollection | httpx.Response:
+    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def suggest_bids(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedBidRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedBidsPagedCollection | httpx.Response:
         """This method allows sellers to retrieve the suggested bids for input keywords and match type."""
         return await self._request(
             'suggestBids',
@@ -19628,17 +19628,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}/suggest_bids',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.TargetedBidsPagedCollection,
             raw_response=raw_response,
         )
 
     @overload
-    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedKeywordsPagedCollection: ...
+    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedKeywordsPagedCollection: ...
     @overload
-    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, content_type: str, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedKeywordsPagedCollection | httpx.Response:
+    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def suggest_keywords(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.TargetedKeywordRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedKeywordsPagedCollection | httpx.Response:
         """This method allows sellers to retrieve a list of keyword ideas to be targeted for Promoted
         Listings campaigns.
         """
@@ -19648,17 +19648,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/ad_group/{ad_group_id}/suggest_keywords',
             path_params={'ad_group_id': ad_group_id, 'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.TargetedKeywordsPagedCollection,
             raw_response=raw_response,
         )
 
     @overload
-    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method clones (makes a copy of) the specified campaign's campaign criterion. The
         campaign criterion is a container for the fields that define the criteria for a rule-based
         campaign.To clone a campaign, supply the campaign_id as a path parameter in your call. There
@@ -19675,7 +19675,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/clone',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -19706,10 +19706,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method can be used to create a Promoted Listings general, priority, or offsite
         campaign.A Promoted Listings campaign is the structure in which you place the ads or ad
         group for the listings you wish to promote.Note: Campaigns can only contain ads for a
@@ -19738,7 +19738,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -19938,10 +19938,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.SuggestMaxCpcResponse: ...
+    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.SuggestMaxCpcResponse: ...
     @overload
-    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
+    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
         """Note: This method is only supported for smart targeting priority strategy campaigns. Sellers
         can use the getAdvertisingEligibility method of the Account API v1 to determine if they are
         eligible for a priority strategy campaign.This method allows sellers to retrieve the
@@ -19955,17 +19955,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/suggest_max_cpc',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.SuggestMaxCpcResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad rate strategy for an existing rules-based general strategy ad
         campaign that uses the Cost Per Sale (CPS) funding model.Specify the campaign_id as a path
         parameter. You can retrieve the campaign IDs for a seller by calling the getCampaigns
@@ -19979,17 +19979,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/update_ad_rate_strategy',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method allows sellers to change the bidding strategy for a specified Cost Per Click
         (CPC) campaign that uses manual targeting. Available bidding strategies are:FIXEDWhen using
         a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
@@ -20009,17 +20009,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/update_bidding_strategy',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method updates the daily budget for a priority strategy campaign that uses the Cost Per
         Click (CPC) funding model.A click occurs when an eBay user finds and clicks on the seller’s
         listing (within the search results) after using a keyword that the seller has created for
@@ -20037,17 +20037,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/update_campaign_budget',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
         )
 
     @overload
-    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method can be used to change the name of a campaign, as well as modify the start or end
         dates. Specify the campaign_id you want to update as a URI parameter, and configure the
         campaignName and startDate in the request payload. If you want to change only the end date
@@ -20065,17 +20065,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/update_campaign_identification',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateKeywordResponse: ...
+    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateKeywordResponse: ...
     @overload
-    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
+    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
         """This method adds keywords, in bulk, to an existing priority strategy ad group in a campaign
         that uses manual targeting.This method also sets the CPC rate for each keyword, depending on
         the selected bidding strategy, as follows:FIXED: If the seller provides a keyword bid, that
@@ -20090,17 +20090,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_create_keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateKeywordResponse: ...
+    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateKeywordResponse: ...
     @overload
-    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
+    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
         """This method updates the bids and statuses of keywords, in bulk, for an existing priority
         strategy campaign.In the request, supply the campaign_id as a path parameter.Call the
         getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
@@ -20111,7 +20111,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/bulk_update_keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateKeywordResponse,
             raw_response=raw_response,
@@ -20141,10 +20141,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates keywords using a specified campaign ID for an existing priority strategy
         campaign that uses manual targeting.In the request, supply the campaign_id as a path
         parameter.Call the suggestKeywords method to retrieve a list of keyword ideas to be targeted
@@ -20157,7 +20157,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/keyword',
             path_params={'campaign_id': campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -20186,10 +20186,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateKeywordResponse: ...
+    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateKeywordResponse: ...
     @overload
-    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
+    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
         """This method updates keywords using a campaign ID and keyword ID for an existing priority
         strategy campaign.In the request, specify the campaign_id and keyword_id as path
         parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
@@ -20201,17 +20201,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_campaign/{campaign_id}/keyword/{keyword_id}',
             path_params={'campaign_id': campaign_id, 'keyword_id': keyword_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.UpdateKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse: ...
+    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse: ...
     @overload
-    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
+    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
         """This method adds negative keywords, in bulk, to an existing ad group in a priority strategy
         campaign that uses manual targeting.Specify the campaignId and adGroupId in the request
         body, along with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns
@@ -20223,17 +20223,17 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/bulk_create_negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkCreateNegativeKeywordResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse: ...
+    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse: ...
     @overload
-    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
+    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
         """This method updates the statuses of existing negative keywords, in bulk.Specify the
         negativeKeywordId and negativeKeywordStatus in the request body.
         """
@@ -20243,7 +20243,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/bulk_update_negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BulkUpdateNegativeKeywordResponse,
             raw_response=raw_response,
@@ -20272,10 +20272,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a negative keyword to an existing ad group in a priority strategy campaign
         that uses manual targeting.Specify the campaignId and adGroupId in the request body, along
         with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns method to
@@ -20287,7 +20287,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/negative_keyword',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -20313,10 +20313,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the status of an existing negative keyword.Specify the
         negative_keyword_id as a path parameter, and specify the negativeKeywordStatus in the
         request body.
@@ -20327,7 +20327,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/negative_keyword/{negative_keyword_id}',
             path_params={'negative_keyword_id': negative_keyword_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -20445,10 +20445,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
+    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.Error: ...
     @overload
-    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
+    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method creates a report task, which generates a Promoted Listings report based on the
         values specified in the call.The report is generated based on the criteria you specify,
         including the report type, the report's dimensions and metrics, the report's start and end
@@ -20484,7 +20484,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/ad_report_task',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.Error,
             raw_response=raw_response,
@@ -20541,10 +20541,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_item_price_markdown_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -20580,7 +20580,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/item_price_markdown',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -20609,10 +20609,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
+    async def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> dict[str, Any]: ...
     @overload
-    async def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_item_price_markdown_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
+    async def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -20635,7 +20635,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/item_price_markdown/{promotion_id}',
             path_params={'promotion_id': promotion_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=dict[str, Any],
             raw_response=raw_response,
@@ -20666,10 +20666,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
+    async def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
     @overload
-    async def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_item_promotion(self, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
+    async def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -20707,7 +20707,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/item_promotion',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BaseResponse,
             raw_response=raw_response,
@@ -20736,10 +20736,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
+    async def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.BaseResponse: ...
     @overload
-    async def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_item_promotion(self, promotion_id: str, *, content_type: str, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
+    async def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made.This method
@@ -20764,7 +20764,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/item_promotion/{promotion_id}',
             path_params={'promotion_id': promotion_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.BaseResponse,
             raw_response=raw_response,
@@ -20972,10 +20972,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CreateEmailCampaignResponse: ...
+    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CreateEmailCampaignResponse: ...
     @overload
-    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
+    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
         """This method creates a new email campaign. An eBay store owner can create six different types
         of email campaigns: Welcome, New products & collections, Coupon, Sale event + markdown,
         Order discount, and Volume pricing.A successful createEmailCampaign request returns the
@@ -20991,7 +20991,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/email_campaign',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.CreateEmailCampaignResponse,
             raw_response=raw_response,
@@ -21018,10 +21018,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateEmailCampaignResponse: ...
+    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.UpdateEmailCampaignResponse: ...
     @overload
-    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
+    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
         """This method lets users update an existing email campaign. Pass the emailCampaignId in the
         request URL and specify the changes to field values in the request payload.Note: You can
         only update the custom fields of an email campaign. Fixed values, such as the
@@ -21034,7 +21034,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
             '/email_campaign/{email_campaign_id}',
             path_params={'email_campaign_id': email_campaign_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_marketing_models.UpdateEmailCampaignResponse,
             raw_response=raw_response,
@@ -21576,10 +21576,10 @@ class SellMetadataResource(BaseResource):
         )
 
     @overload
-    def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.SpecificationResponse: ...
+    def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.SpecificationResponse: ...
     @overload
-    def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
+    def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
         """This method is used to retrieve all compatible application name-value pairs for a part based
         on the provided specification(s).The part's relevant dimensions and/or characteristics can
         be provided through the specifications container. For example, when retrieving compatible
@@ -21597,17 +21597,17 @@ class SellMetadataResource(BaseResource):
             '/compatibilities/get_compatibilities_by_specification',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.SpecificationResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyNamesResponse: ...
+    def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyNamesResponse: ...
     @overload
-    def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
+    def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property names for the specified
         compatibility-enabled category.Compatibility property names can be used alongside the
         corresponding compatibility property value (retrieved using the
@@ -21624,17 +21624,17 @@ class SellMetadataResource(BaseResource):
             '/compatibilities/get_compatibility_property_names',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.PropertyNamesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyValuesResponse: ...
+    def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyValuesResponse: ...
     @overload
-    def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
+    def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with a
         single property name, in the specified category.Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
@@ -21652,17 +21652,17 @@ class SellMetadataResource(BaseResource):
             '/compatibilities/get_compatibility_property_values',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.PropertyValuesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse: ...
+    def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse: ...
     @overload
-    def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
+    def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with
         multiple property names, in the specified category.Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
@@ -21679,17 +21679,17 @@ class SellMetadataResource(BaseResource):
             '/compatibilities/get_multi_compatibility_property_values',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.MultiCompatibilityPropertyValuesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.ProductResponse: ...
+    def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.ProductResponse: ...
     @overload
-    def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
+    def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
         """This method is used to retrieve all available item compatibility details for the specified
         product.Item compatibility details can be used to see the properties for which an item is
         compatible. For example, if you are searching for a part for a specific vehicle, you can use
@@ -21709,7 +21709,7 @@ class SellMetadataResource(BaseResource):
             '/compatibilities/get_product_compatibilities',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.ProductResponse,
             raw_response=raw_response,
@@ -22308,10 +22308,10 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.SpecificationResponse: ...
+    async def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.SpecificationResponse: ...
     @overload
-    async def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_compatibilities_by_specification(self, *, content_type: str, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
+    async def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
         """This method is used to retrieve all compatible application name-value pairs for a part based
         on the provided specification(s).The part's relevant dimensions and/or characteristics can
         be provided through the specifications container. For example, when retrieving compatible
@@ -22329,17 +22329,17 @@ class AsyncSellMetadataResource(AsyncBaseResource):
             '/compatibilities/get_compatibilities_by_specification',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.SpecificationResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyNamesResponse: ...
+    async def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyNamesResponse: ...
     @overload
-    async def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_compatibility_property_names(self, *, content_type: str, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
+    async def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property names for the specified
         compatibility-enabled category.Compatibility property names can be used alongside the
         corresponding compatibility property value (retrieved using the
@@ -22356,17 +22356,17 @@ class AsyncSellMetadataResource(AsyncBaseResource):
             '/compatibilities/get_compatibility_property_names',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.PropertyNamesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyValuesResponse: ...
+    async def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.PropertyValuesResponse: ...
     @overload
-    async def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
+    async def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with a
         single property name, in the specified category.Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
@@ -22384,17 +22384,17 @@ class AsyncSellMetadataResource(AsyncBaseResource):
             '/compatibilities/get_compatibility_property_values',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.PropertyValuesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse: ...
+    async def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse: ...
     @overload
-    async def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_multi_compatibility_property_values(self, *, content_type: str, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
+    async def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with
         multiple property names, in the specified category.Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
@@ -22411,17 +22411,17 @@ class AsyncSellMetadataResource(AsyncBaseResource):
             '/compatibilities/get_multi_compatibility_property_values',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.MultiCompatibilityPropertyValuesResponse,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.ProductResponse: ...
+    async def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_metadata_models.ProductResponse: ...
     @overload
-    async def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_product_compatibilities(self, *, content_type: str, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
+    async def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
         """This method is used to retrieve all available item compatibility details for the specified
         product.Item compatibility details can be used to see the properties for which an item is
         compatible. For example, if you are searching for a part for a specific vehicle, you can use
@@ -22441,7 +22441,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
             '/compatibilities/get_product_compatibilities',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_metadata_models.ProductResponse,
             raw_response=raw_response,
@@ -22629,10 +22629,10 @@ class SellNegotiationResource(BaseResource):
         )
 
     @overload
-    def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse: ...
+    def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse: ...
     @overload
-    def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse | httpx.Response:
+    def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse | httpx.Response:
         """This method sends eligible buyers offers to purchase items in a listing at a discount. When
         a buyer has shown interest in a listing, they become "eligible" to receive a seller-
         initiated offer to purchase the item(s). Sellers use findEligibleItems to get the set of
@@ -22648,7 +22648,7 @@ class SellNegotiationResource(BaseResource):
             '/send_offer_to_interested_buyers',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse,
             raw_response=raw_response,
@@ -22689,10 +22689,10 @@ class AsyncSellNegotiationResource(AsyncBaseResource):
         )
 
     @overload
-    async def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse: ...
+    async def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse: ...
     @overload
-    async def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def send_offer_to_interested_buyers(self, *, content_type: str, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse | httpx.Response:
+    async def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def send_offer_to_interested_buyers(self, *, body: sell_negotiation_models.CreateOffersRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse | httpx.Response:
         """This method sends eligible buyers offers to purchase items in a listing at a discount. When
         a buyer has shown interest in a listing, they become "eligible" to receive a seller-
         initiated offer to purchase the item(s). Sellers use findEligibleItems to get the set of
@@ -22708,7 +22708,7 @@ class AsyncSellNegotiationResource(AsyncBaseResource):
             '/send_offer_to_interested_buyers',
             path_params={},
             params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': content_type},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=sell_negotiation_models.SendOfferToInterestedBuyersCollectionResponse,
             raw_response=raw_response,
@@ -22854,10 +22854,10 @@ class SellStoresResource(BaseResource):
         )
 
     @overload
-    def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to add a single new custom category to a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
@@ -22872,17 +22872,17 @@ class SellStoresResource(BaseResource):
             '/store/categories',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
         )
 
     @overload
-    def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to rename the single category of a user's eBay store through a
         synchronous request.
         """
@@ -22892,7 +22892,7 @@ class SellStoresResource(BaseResource):
             '/store/categories/{category_id}',
             path_params={'category_id': category_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -22980,10 +22980,10 @@ class SellStoresResource(BaseResource):
         )
 
     @overload
-    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to move an existing user's eBay store custom category through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. The user calls getStoreTask to retrieve the status of the move category
@@ -22997,7 +22997,7 @@ class SellStoresResource(BaseResource):
             '/store/categories/move_category',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -23033,10 +23033,10 @@ class AsyncSellStoresResource(AsyncBaseResource):
         )
 
     @overload
-    async def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def add_store_category(self, *, content_type: str, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to add a single new custom category to a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
@@ -23051,17 +23051,17 @@ class AsyncSellStoresResource(AsyncBaseResource):
             '/store/categories',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
         )
 
     @overload
-    async def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def rename_store_category(self, category_id: str, *, content_type: str, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def rename_store_category(self, category_id: str, *, body: sell_stores_models.RenameStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to rename the single category of a user's eBay store through a
         synchronous request.
         """
@@ -23071,7 +23071,7 @@ class AsyncSellStoresResource(AsyncBaseResource):
             '/store/categories/{category_id}',
             path_params={'category_id': category_id},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,
@@ -23159,10 +23159,10 @@ class AsyncSellStoresResource(AsyncBaseResource):
         )
 
     @overload
-    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
     @overload
-    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, content_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def move_store_category(self, *, body: sell_stores_models.MoveStoreCategoryRequestType, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to move an existing user's eBay store custom category through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. The user calls getStoreTask to retrieve the status of the move category
@@ -23176,7 +23176,7 @@ class AsyncSellStoresResource(AsyncBaseResource):
             '/store/categories/move_category',
             path_params={},
             params={},
-            headers={'Content-Type': content_type, 'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
             response_model=None,
             raw_response=raw_response,

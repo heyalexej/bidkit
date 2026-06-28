@@ -797,22 +797,15 @@ def render_method(
     parameters = with_optional_marketplace_header(parameters)
     request_body = body_parameter(service, operation)
     response_model = response_model_expr(service, operation, operation_info["method"])
-    if request_body and request_body["kind"] == "multipart":
-        parameters = [
-            param for param in parameters
-            if not (
-                param.get("in") == "header"
-                and param.get("name", "").lower() == "content-type"
-            )
-        ]
-    if request_body and request_body["kind"] == "binary" and request_body.get("content_type"):
-        parameters = [
-            param for param in parameters
-            if not (
-                param.get("in") == "header"
-                and param.get("name", "").lower() == "content-type"
-            )
-        ]
+    # The SDK derives Content-Type from the request body and Content-Language from config, so
+    # neither needs to be a caller-supplied parameter.
+    parameters = [
+        param for param in parameters
+        if not (
+            param.get("in") == "header"
+            and param.get("name", "").lower() in ("content-type", "content-language")
+        )
+    ]
 
     path_params = [param for param in parameters if param.get("in") == "path"]
     other_params = [param for param in parameters if param.get("in") != "path"]
