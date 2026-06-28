@@ -968,7 +968,7 @@
         }
       },
       "FeedbackAggregationTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type provides fields for describing the feedback aggregation. | - **AVG**: This value represents the average value of feedback ratings. The metric associated with this value represents the mean of all feedback scores returned over a specified period, providing a general measure of user satisfaction or performance. - **COUNT**: This value indicates the total number of feedback entries returned. - **UNIQUE_PROVIDER_COUNT**: This value refers to the number of unique users who have provided feedback, which helps to identify how many individual users have contributed feedback. - **POSITIVE_PERCENT_EXCLUDING_NEUTRAL_FEEDBACK**: This value represents the percentage of positive feedback returned, excluding neutral responses. The metric associated with this value focuses on feedback that is explicitly positive (without neutral feedback).",
         "enum": [
           "AVG",
@@ -978,7 +978,7 @@
         ]
       },
       "FeedbackCommentStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies the possible states of a feedback comment. It represents the current visibility of a comment associated with a feedback entry. | - **ENTERED**: This value indicates that the comment has been entered and is currently visible as submitted by the user. - **WITHDRAWN**: This value indicates that the comment has been withdrawn, typically by the user, and is no longer actively displayed. - **HIDDEN**: This value indicates that the comment is concealed from view, usually due to policy reasons or eBay moderation. - **REVISED**: This value indicates that the comment has been updated or modified after its initial entry.",
         "enum": [
           "ENTERED",
@@ -1232,7 +1232,7 @@
         "description": "This type defines fields for user feedback collection, including acceptable values, a default preselection value, and an early feedback message. It also provides fields to enable the template as well as limits and options for freetext characters, multi-value rating, and other similar features."
       },
       "FeedbackRatingTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the key for the type of rating. For example, the value <code>OVERALL_EXPERIENCE</code> indicates the rating is for the overall transaction experience. | - **OVERALL_EXPERIENCE**: This value indicates the rating applies to the overall transaction experience. - **OVERALL_EXPERIENCE_COMMENT**: This value indicates the comments are related to the overall experience. - **ON_TIME_DELIVERY**: This value indicates the rating applies to the timeliness of delivery. - **DSR_ITEM_AS_DESCRIBED**: This value indicates the Detailed Seller Rating applies to listing description accuracy. - **DSR_COMMUNICATION**: This value indicates the Detailed Seller Rating applies to communication. - **DSR_SHIPPING_CHARGES**: This value indicates the Detailed Seller Rating applies to shipping charges. - **DSR_SHIPPING_TIME**: This value indicates the Detailed Seller Rating applies to shipping time. - **ITEM_RATING**: This value indicates the rating specifically applies to the item itself.",
         "enum": [
           "OVERALL_EXPERIENCE",
@@ -1261,7 +1261,7 @@
         "description": "This type provides fields for an array listing the distribution values of the feedback ratings."
       },
       "FeedbackRatingValueTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the type of feedback values accepted. | - **RANGE**: This value indicates a numerical range and is used for star ratings of 1 through 5. For example, users can rate SHIPPING_TIME as 1 star for poor shipping time or 5 stars for on time shipping. - **FREETEXT**: This value indicates a free text input. - **PREDEFINED**: This value indicates a predefined format.",
         "enum": [
           "RANGE",
@@ -1270,7 +1270,7 @@
         ]
       },
       "FeedbackRatingValuesEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible rating values that can be assigned for specific feedback criteria when leaving feedback. | - **POSITIVE**: This value indicates that the feedback expresses satisfaction with the transaction or experience. This typically reflects a successful and favorable interaction between the buyer and seller. - **NEUTRAL**: This value indicates that the feedback is neither distinctly favorable nor unfavorable. The transaction was completed, but did not fully meet expectations, or was considered average. - **NEGATIVE**:This value indicates dissatisfaction with the transaction or experience. This type of feedback highlights issues or problems that occurred, signaling that the buyer or seller was not satisfied.",
         "enum": [
           "POSITIVE",
@@ -1279,7 +1279,7 @@
         ]
       },
       "FeedbackStarTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type provides the available visual star representation of a feedback score. | - **YELLOW_STAR**: A yellow feedback star assigned to users with scores in the designated range. - **BLUE_STAR**: A blue feedback star assigned to users with scores in the designated range. - **TURQUOISE_STAR**: A turquoise feedback star assigned to users with scores in the designated range. - **PURPLE_STAR**: A purple feedback star assigned to users with scores in the designated range. - **RED_STAR**: A red feedback star assigned to users with scores in the designated range. - **GREEN_STAR**: A green feedback star assigned to users with scores in the designated range. - **YELLOW_SHOOTING_STAR**: A yellow shooting feedback star assigned to users with scores in the designated range. - **TURQUOISE_SHOOTING_STAR**: A turquoise shooting feedback star assigned to users with scores in the designated range. - **PURPLE_SHOOTING_STAR**: A purple shooting feedback star assigned to users with scores in the designated range. - **RED_SHOOTING_STAR**: A red shooting feedback star assigned to users with scores in the designated range. - **GREEN_SHOOTING_STAR**: A green shooting feedback star assigned to users with scores in the designated range. - **SILVER_SHOOTING_STAR**: A silver shooting feedback star assigned to users with scores in the designated range.",
         "enum": [
           "YELLOW_STAR",
@@ -1297,7 +1297,7 @@
         ]
       },
       "FeedbackStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible states of feedback entries returned. | - **ENTERED**: This value indicates that the feedback has been submitted and is currently active. The feedback is visible to applicable parties. - **WITHDRAWN**: This value indicates that the feedback has been officially withdrawn and no longer has an effect on reputation calculations. - **HIDDEN**: This value indicates that the feedback has been hidden due to policy and is not visible to standard views. See <a href=\"https://www.ebay.com/help/policies/feedback-policies/feedback-policy?id=4208\" target=\"_blank\">Feedback policy</a> for more information. - **REVISED**: This value indicates that the feedback was edited after initial submission. The revised version is not active. - **REVISION_OPEN**: This value indicates that a request to revise the feedback is in progress but not yet completed. - **REVISION_DECLINED_OR_EXPIRED**: This value indicates that the feedback revision request was declined or has expired.",
         "enum": [
           "ENTERED",
@@ -1375,7 +1375,7 @@
         "description": "This type returns the number of line items awaiting feedback."
       },
       "KeyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the key for the type of feedback rating submitted. For example, the value <code>ON_TIME_DELIVERY</code> indicates the rating  provides feedback on if the item was delivered within the timeframe promised by the seller. | - **ON_TIME_DELIVERY**: This value indicates if the item was delivered within the timeframe promised by the seller. - **ITEM_AS_DESCRIBED**: This value reflects how accurately the item matched its description in the listing. - **COMMUNICATION**: This value evaluates the quality, responsiveness, and clarity of communication from the seller. - **SHIPPING_CHARGES**: This value rates the fairness and transparency of the shipping costs charged by the seller. - **SHIPPING_TIME**: This value assesses how quickly the seller shipped the item after payment was received.",
         "enum": [
           "ON_TIME_DELIVERY",
@@ -1478,7 +1478,7 @@
         "description": "This type describes line item attributes."
       },
       "OrderLineItemAttributesEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type provides fields to indicate special characteristics associated with an item or transaction. | - **PRIVATE_ITEM**: This value indicates the item was listed as private, meaning buyer identities are not publicly disclosed. - **MATURE_CATEGORY**: This value specifies that the item belongs to a mature or adult-only category. - **SOLD_AS_BEST_OFFER**: This value signifies that the item was sold using eBay's Best Offer feature, where the price was negotiated.",
         "enum": [
           "PRIVATE_ITEM",
@@ -1697,7 +1697,7 @@
         "description": "The type that defines the fields for the <strong>respondToFeedback</strong> request."
       },
       "ResponseTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type categorizes the nature of responses provided to feedback entries. | - **REPLY**: This value indicates the feedback is a direct response to the feedback received. - **FOLLOW_UP**: This value indicates the feedback is a subsequent response that provides additional information or updates after an initial reply has been made.",
         "enum": [
           "REPLY",
@@ -1723,7 +1723,7 @@
         "description": "This type provides fields for specific aspects of the seller's performance."
       },
       "ThresholdTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the comparison of thresholds applicable to the transaction period. | - **MORE_THAN**: This value indicates the transaction period is longer than the specified threshold. For example, if the threshold value was 30 days, this value indicates periods exceeding 30 days. - **LESS_THAN**: This value indicates the transaction period is shorter than the specified threshold. For example, if the threshold value was 30 days, this value indicates periods falling short of 30 days. - **EQUAL**: This value indicates the transaction period matches the specified threshold.",
         "enum": [
           "MORE_THAN",
@@ -1775,7 +1775,7 @@
         "description": "This type specifies the amount of time elapsed and the threshold associated with a transaction."
       },
       "UserAttributeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the user attribute names for the user who provided the feedback. | - **USER_VERIFIED**: This value indicates that the user's account has successfully passed eBay's identity verification processes. - **USER_REGISTERED**: This value indicates that the user has completed registration and has an active account on eBay. - **USER_SAME_AS_SIGNED_IN_USER**: This value indicates that the feedback is being given by the same user who is currently authenticated in the API session. - **USER_PROFILE_PRIVATE**: This value indicates that the user has set their eBay profile details to be private (not visible to other users).",
         "enum": [
           "USER_VERIFIED",
@@ -1785,7 +1785,7 @@
         ]
       },
       "UserRoleEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type provides fields that indicate the user's role associated with the feedback. | - **SELLER**: This value indicates feedback related to the user's role as a seller. - **BUYER**: This value indicates feedback related to the user's role as a buyer.",
         "enum": [
           "SELLER",

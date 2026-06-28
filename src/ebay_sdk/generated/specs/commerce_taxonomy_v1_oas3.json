@@ -894,14 +894,14 @@
         "description": "This type contains information about an item attribute (for example, color) that is appropriate or necessary for accurately describing items in a particular leaf category. Sellers are required or encouraged to provide one or more values of this aspect when offering an item in that category on eBay."
       },
       "AspectAdvancedDataTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates any additional requirements associated with the data type of an aspect. <br><br>Currently, the only supported value is <code>NUMERIC_RANGE</code>. | - **NUMERIC_RANGE**: This enum value indicates that the aspect value must be in numeric range format.",
         "enum": [
           "NUMERIC_RANGE"
         ]
       },
       "AspectApplicableToEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains values that indicate if an product aspect is applicable to an eBay catalog product within a category or applicable to a particular instance of an item/product. | - **ITEM**: This enum value indicates that the aspect identified by the <b>aspects.localizedAspectName</b> field is an item/instance aspect, the value of which can vary for each item/product in the specified category. Sellers can set this aspect to a different value for each listing as appropriate. For item/instance aspects, the seller should also pay attention to the <b>aspectMaxLength</b> field (if returned), as the value for this field will be the maximum number of characters that the seller can use for the corresponding value for the instance aspect. - **PRODUCT**: The aspect in the <b>aspects.localizedAspectName</b> field is a catalog product aspect, the value of which can vary for each eBay catalog product in the specified category, but cannot vary for eBay listings based on the same catalog product. Sellers cannot change the value of aspects that are based on a catalog product.",
         "enum": [
           "ITEM",
@@ -971,7 +971,7 @@
         "description": "This type contains information about the formatting, occurrence, and support of an aspect."
       },
       "AspectDataTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the available data types that can be specified as required for an aspect's values. | - **DATE**: This enum value indicates that the data type used for the product aspect value is a date. Dates can be expressed in different formats, so see the corresponding <b>aspectFormat</b> field for the required syntax/structure of date values for the product aspect value. - **NUMBER**: This enum value indicates that the data type used for the product aspect value is a a numeric value. Numeric values can be expressed in different formats, so see the corresponding <b>aspectFormat</b> field for the required syntax/structure of number values for the product aspect value. - **STRING**: This enum value indicates that the data type used for the product aspect value is a string. - **STRING_ARRAY**: This enum value is reserved for internal or future use.",
         "enum": [
           "DATE",
@@ -997,7 +997,7 @@
         "description": "This type is the container type for the response payload of the <b>getItemAspectsForCategory</b> call."
       },
       "AspectModeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the possible modes in which values of a product brand or aspect must be specified by the seller. | - **FREE_TEXT**: This enum value indicates that the seller can either select from a set of provided values, or manually enter a new value. - **SELECTION_ONLY**: This enum value indicates that the seller must select from a set of provided values.",
         "enum": [
           "FREE_TEXT",
@@ -1005,7 +1005,7 @@
         ]
       },
       "AspectUsageEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to indicate whether an aspect is recommended or optional. | - **RECOMMENDED**: This enum value is returned if the corresponding aspect is either required (<b>aspectRequired</b>: <code>true</code>) or recommended for the listing category. If a recommended aspect is not hard-mandated/required (<b>aspectRequired</b>: <code>false</code>), it is still highly recommended that the seller pass in the aspect name/value pair(s) if the aspect information is applicable and known, as this will ensure that the product listing is as complete and accurate as possible. It is also a good idea to pass in recommended aspects as these aspects may become mandated in the future. - **OPTIONAL**: This enum value indicates that the corresponding aspect is optional for the listing category. Like this enumeration value alludes to, it is optional that you pass in this aspect name/value pair, but if the aspect information is applicable and known, it is still a very good idea to pass in optional aspects, as this will ensure that the product listing is as complete and accurate as possible.",
         "enum": [
           "RECOMMENDED",
@@ -1464,7 +1464,7 @@
         "description": "The base response type of the <strong>getCompatibilityPropertyValues</strong> method."
       },
       "ItemToAspectCardinalityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates whether a given aspect can accept single or multiple values for items in a given category. | - **MULTI**: This enum value indicates that multiple values can be specified for this aspect of the category. - **SINGLE**: This enum value indicates that only a single value can be specified for this aspect of the category.",
         "enum": [
           "MULTI",
@@ -1472,7 +1472,7 @@
         ]
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: This enumeration value indicates that the eBay Marketplace is the Austria site (ebay.at). - **EBAY_AU**: This enumeration value indicates that the eBay Marketplace is the Australia site (ebay.com.au). - **EBAY_BE**: This enumeration value indicates that the eBay marketplace is the Belgium (Dutch) site (www.ebay.be). - **EBAY_CA**: This enumeration value indicates that the eBay Marketplace is the Canada (English) site (ebay.ca). - **EBAY_CH**: This enumeration value indicates that the eBay Marketplace is the Switzerland site (ebay.ch). - **EBAY_DE**: This enumeration value indicates that the eBay Marketplace is the Germany site (ebay.de). - **EBAY_ES**: This enumeration value indicates that the eBay Marketplace is the Spain site (ebay.es). - **EBAY_FR**: This enumeration value indicates that the eBay Marketplace is the France site (ebay.fr). - **EBAY_GB**: This enumeration value indicates that the eBay Marketplace is the UK site (ebay.co.uk). - **EBAY_HK**: This enumeration value indicates that the eBay Marketplace is the Hong Kong site (ebay.com.hk). - **EBAY_IE**: This enumeration value indicates that the eBay Marketplace is the Ireland site (ebay.ie). - **EBAY_IN**: This enumeration value indicates that the eBay Marketplace is the India site (ebay.in). Note: eBay India is no longer a functioning eBay marketplace. - **EBAY_IT**: This enumeration value indicates that the eBay Marketplace is the Italy site (ebay.it). - **EBAY_MOTORS_US**: This enumeration value indicates that the eBay Marketplace is the US eBay Motors site (ebay.com/motors). - **EBAY_MY**: This enumeration value indicates that the eBay Marketplace is the Malaysia site (ebay.com/my). - **EBAY_NL**: This enumeration value indicates that the eBay Marketplace is the Netherlands site (ebay.nl). - **EBAY_PH**: This enumeration value indicates that the eBay Marketplace is the Philippines site (ebay.ph). - **EBAY_PL**: This enumeration value indicates that the eBay Marketplace is the Poland site (ebay.pl). - **EBAY_RU**: This enumeration value indicates that the eBay Marketplace is the Russia site (ebay.com/sch/Russia). - **EBAY_SG**: This enumeration value indicates that the eBay Marketplace is the Singapore site (ebay.com/sg). - **EBAY_US**: This enumeration value indicates that the eBay Marketplace is the US site (ebay.com).",
         "enum": [
           "EBAY_AT",

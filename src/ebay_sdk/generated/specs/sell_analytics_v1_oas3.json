@@ -636,14 +636,14 @@
         "description": "This complex type defines the fields that comprise the benchmark against which the seller's performance is compared. The comparison determines the seller's rating for the metric."
       },
       "BenchmarkTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the different benchmark types supported by the <b>getCustomerServiceMetric</b> method.  <br><br>Currently, only <code>PEER_BENCHMARK</code> is supported. | - **PEER_BENCHMARK**: This type signifies the benchmark rating is calculated by comparing the seller's rate of requests for <code>ITEM_NOT_RECEIVED</code> or <code>ITEM_NOT_AS_DESCRIBED</code> transactions to the rate of requests received by the group of sellers offering similar products under similar circumstances (including the selling price, terms of sale, and shipping destination).<br><br>For more details, see <a href=\"https://www.ebay.com/help/selling/selling/monitor-service-metrics?id=4785#section1\" target=\"_blank\">Peer benchmarks</a>.",
         "enum": [
           "PEER_BENCHMARK"
         ]
       },
       "CustomerServiceMetricTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the type of customer service metric. | - **ITEM_NOT_AS_DESCRIBED**: The metric rating is based on Item not as described (INAD) transactions. - **ITEM_NOT_RECEIVED**: The metric rating is based on Item not received (INR) transactions.",
         "enum": [
           "ITEM_NOT_AS_DESCRIBED",
@@ -669,7 +669,7 @@
         "description": "A complex type that describes a program cycle."
       },
       "CycleTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the allowable cycle types. | - **CURRENT**: Indicates the evaluation that determines your currently effective seller level. - **PROJECTED**: Indicates the seller's profile level that will take effect on the next evaluation period, as calculated at the time of the request.",
         "enum": [
           "CURRENT",
@@ -744,7 +744,7 @@
         "description": "This complex type defines a the customer service metrics and seller benchmark performance related to a given dimension."
       },
       "DimensionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enum type defines the supported <b>dimensionType</b> values. | -**LISTING_CATEGORY**: This dimension type indicates the values in the associated <b>metric</b> container are based on transactions in the Level 1 (L1) listing categories in which the seller is active. When <code>ITEM_NOT_AS_DESCRIBED</code> is specified as the metric type in the request, the service sets <b>dimensionKey</b> to this value. - **SHIPPING_REGION**: This dimension type indicates the values in the associated <b>metric</b> container are based on transactions that were shipped to distinct world shipping regions.<br><br>When <code>ITEM_NOT_RECEIVED</code> is specified as the metric type in the request, the service sets <b>dimensionKey</b> to this value.<br><br>For details on the shipping regions, see the FAQ section on the following page: <a href=\"https://www.ebay.com/help/selling/selling/monitor-service-metrics?id=4785\" target=\"_blank\">Monitor your service metrics</a>.",
         "enum": [
           "LISTING_CATEGORY",
@@ -925,7 +925,7 @@
         "description": "This complex type describes the start and end dates of the of the time period over which the associated benchmark is computed.  <br><br>All timestamps are based on Mountain Standard Time (MST).  <br><br>The timestamp is formatted as an <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\" title=\"https://www.iso.org\" target=\"_blank\">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock."
       },
       "EvaluationTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the different available values for the type of evaluation you want to retrieve. | - **CURRENT**: This is a monthly evaluation that occurs on 20th of every month. - **PROJECTED**: This is a daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.",
         "enum": [
           "CURRENT",
@@ -1024,7 +1024,7 @@
       },
       "MarketplaceIdEnum": {
         "description": "This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)<br><span class=\"tablenote\"><strong>Note:</strong> eBay India is no longer a functioning eBay marketplace.</span> - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)",
-        "type": "object",
+        "type": "string",
         "enum": [
           "EBAY_AT",
           "EBAY_AU",
@@ -1176,7 +1176,7 @@
         "description": "This complex data type describes the metric distribution by basis."
       },
       "ProgramEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the regions to which a profile can apply. | - **PROGRAM_DE**: Indicates the program region is Germany, which includes DE (Germany), AT (Austria), and CH (Switzerland). - **PROGRAM_UK**: Indicates the program region is the United Kingdom, which includes both UK (United Kingdom) and IE (Ireland). - **PROGRAM_US**: Indicates the program region is the United States, which includes US (the United States) and US MOTORS. - **PROGRAM_GLOBAL**: Includes all defined programs, plus any marketplace countries where a seller has conducted business.",
         "enum": [
           "PROGRAM_DE",
@@ -1212,14 +1212,14 @@
         "description": "<b>Not currently supported</b>, this is a complex type that defines the fields that control filtering by a range of values."
       },
       "RatingAdjustmentTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the different classes of adjustments that can impact the rating given to a seller. | - **OVERRIDE**: An adjustment was made due to a system override.<br><br>If eBay determines that the calculated rating of a seller is impacted by circumstances beyond the normal control of the seller, they can issue an override to adjust the rating given to the seller.",
         "enum": [
           "OVERRIDE"
         ]
       },
       "RatingTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible rating values that can be given to a seller for the associated dimension. | - **LOW**: Indicates the deviation between the seller's metric rating compared to the benchmark rating is LOW. This is the best rating. - **AVERAGE**: Indicates the deviation between the seller's metric rating compared to the benchmark rating is AVERAGE. - **HIGH**: Indicates the deviation between the seller's metric rating compared to the benchmark rating is HIGH. - **VERY_HIGH**: Indicates the deviation between the seller's metric rating compared to the benchmark rating is VERY HIGH. - **NOT_APPLICABLE**: The seller does not have a rating for this dimension.<br><br>eBay does not provide a rating if there is not enough data to rate a seller. For example, the seller might not have the minimum number of transactions for the associated dimension, or there might not be enough sellers in the peer group to calculate a peer rating.",
         "enum": [
           "LOW",
@@ -1319,7 +1319,7 @@
         "description": "A complex type that defines the data and order that control how the result sets are sorted."
       },
       "SrlDataTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the types of the data returned in a traffic report. | - **NUMBER**:Indicates the value is a number value. - **STRING**: Indicates the value is a string. - **DATE**: Indicates the value is a date.",
         "enum": [
           "NUMBER",
@@ -1328,7 +1328,7 @@
         ]
       },
       "SspDataTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported data types. | - **AMOUNT**: Indicates the data type is an amount value. - **BOOLEAN**: Indicates the data type is a boolean value. - **DATE**: Indicates the data type is a date value. - **FRACTION**: Indicates the data type is a fraction value. - **NUMBER**: Indicates the data type is a number value. - **STRING**: Indicates the data type is a string value. ",
         "enum": [
           "AMOUNT",
@@ -1386,7 +1386,7 @@
         "description": "A complex type that defines a single metric which is evaluated as a part of a seller's standards profile.  <br><br>For the specified metric, the <code>metricKey</code> value is its name and the <code>level</code> specifies how the seller is doing meeting eBay's standards for that metric (either <code>TOP_RATED</code>, <code>ABOVE_STANDARD</code>, or <code>BELOW_STANDARD</code>). The metric's <code>value</code> is the absolute number of the metric's value for the associated seller. "
       },
       "StandardsLevelEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the eBay seller ratings. | - **TOP_RATED**: Indicates the seller or metric meets the Top Rated requirement. - **ABOVE_STANDARD**: Indicates the seller or metric meets the Above Standard requirement. - **BELOW_STANDARD**: Indicates the seller or metric does not meet the minimum standards performance requirement. ",
         "enum": [
           "TOP_RATED",

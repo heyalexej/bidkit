@@ -4,12 +4,15 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class ConfigurationsUsageEnum(EbayModel):
-    pass
+class ConfigurationsUsageEnum(StrEnum):
+    optional = 'OPTIONAL'
+    required = 'REQUIRED'
 
 
 class CreateTaskRequest(EbayModel):
@@ -25,8 +28,9 @@ class CreateTaskRequest(EbayModel):
     )
 
 
-class CustomerServiceMetricTypeEnum(EbayModel):
-    pass
+class CustomerServiceMetricTypeEnum(StrEnum):
+    item_not_as_described = 'ITEM_NOT_AS_DESCRIBED'
+    item_not_received = 'ITEM_NOT_RECEIVED'
 
 
 class DateRange(EbayModel):
@@ -41,8 +45,14 @@ class DateRange(EbayModel):
     )
 
 
-class DayOfWeekEnum(EbayModel):
-    pass
+class DayOfWeekEnum(StrEnum):
+    sun = 'SUN'
+    mon = 'MON'
+    tue = 'TUE'
+    wed = 'WED'
+    thu = 'THU'
+    fri = 'FRI'
+    sat = 'SAT'
 
 
 class ErrorParameter(EbayModel):
@@ -50,40 +60,99 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FeedStatusEnum(EbayModel):
-    pass
+class FeedStatusEnum(StrEnum):
+    created = 'CREATED'
+    queued = 'QUEUED'
+    in_process = 'IN_PROCESS'
+    completed = 'COMPLETED'
+    completed_with_error = 'COMPLETED_WITH_ERROR'
+    failed = 'FAILED'
+    partially_processed = 'PARTIALLY_PROCESSED'
 
 
-class FrequencyEnum(EbayModel):
-    pass
+class FrequencyEnum(StrEnum):
+    half_hour = 'HALF_HOUR'
+    one_hour = 'ONE_HOUR'
+    four_hours = 'FOUR_HOURS'
+    eight_hours = 'EIGHT_HOURS'
+    daily = 'DAILY'
+    weekly = 'WEEKLY'
+    monthly = 'MONTHLY'
+    quarterly = 'QUARTERLY'
 
 
 class InputStream(EbayModel):
     pass
 
 
-class ListingFormatEnum(EbayModel):
-    pass
+class ListingFormatEnum(StrEnum):
+    auction = 'AUCTION'
+    fixed_price = 'FIXED_PRICE'
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_at = 'EBAY_AT'
+    ebay_au = 'EBAY_AU'
+    ebay_be = 'EBAY_BE'
+    ebay_ca = 'EBAY_CA'
+    ebay_ch = 'EBAY_CH'
+    ebay_cn = 'EBAY_CN'
+    ebay_cz = 'EBAY_CZ'
+    ebay_de = 'EBAY_DE'
+    ebay_dk = 'EBAY_DK'
+    ebay_es = 'EBAY_ES'
+    ebay_fi = 'EBAY_FI'
+    ebay_fr = 'EBAY_FR'
+    ebay_gb = 'EBAY_GB'
+    ebay_gr = 'EBAY_GR'
+    ebay_hk = 'EBAY_HK'
+    ebay_hu = 'EBAY_HU'
+    ebay_id = 'EBAY_ID'
+    ebay_ie = 'EBAY_IE'
+    ebay_il = 'EBAY_IL'
+    ebay_in = 'EBAY_IN'
+    ebay_it = 'EBAY_IT'
+    ebay_jp = 'EBAY_JP'
+    ebay_my = 'EBAY_MY'
+    ebay_nl = 'EBAY_NL'
+    ebay_no = 'EBAY_NO'
+    ebay_nz = 'EBAY_NZ'
+    ebay_pe = 'EBAY_PE'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_pr = 'EBAY_PR'
+    ebay_pt = 'EBAY_PT'
+    ebay_ru = 'EBAY_RU'
+    ebay_se = 'EBAY_SE'
+    ebay_sg = 'EBAY_SG'
+    ebay_th = 'EBAY_TH'
+    ebay_tw = 'EBAY_TW'
+    ebay_us = 'EBAY_US'
+    ebay_vn = 'EBAY_VN'
+    ebay_za = 'EBAY_ZA'
+    ebay_half_us = 'EBAY_HALF_US'
+    ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class OrderStatusEnum(EbayModel):
-    pass
+class OrderStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    completed = 'COMPLETED'
 
 
-class ShippingRegionTypeEnum(EbayModel):
-    pass
+class ShippingRegionTypeEnum(StrEnum):
+    domestic = 'DOMESTIC'
+    international_matured_region = 'INTERNATIONAL_MATURED_REGION'
+    international_emerging_region = 'INTERNATIONAL_EMERGING_REGION'
 
 
-class StatusEnum(EbayModel):
-    pass
+class StatusEnum(StrEnum):
+    active = 'ACTIVE'
+    inactive = 'INACTIVE'
 
 
-class StatusReasonEnum(EbayModel):
-    pass
+class StatusReasonEnum(StrEnum):
+    schedule_end_date_reached = 'SCHEDULE_END_DATE_REACHED'
+    disabled_template = 'DISABLED_TEMPLATE'
 
 
 class StreamingOutput(EbayModel):

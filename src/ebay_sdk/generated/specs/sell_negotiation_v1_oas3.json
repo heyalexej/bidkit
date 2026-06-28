@@ -388,7 +388,7 @@
         "description": "This complex type contains the fields needed to create an offer to a buyer that is initiated by the seller."
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "enum": [
           "AED",
           "AFN",
@@ -696,7 +696,7 @@
         "description": "A complex type that defines an offer that a seller makes to eligible buyers."
       },
       "OfferStatusEnum": {
-        "type": "object",
+        "type": "string",
         "enum": [
           "PENDING",
           "RETRACTED",
@@ -711,7 +711,7 @@
         "description": "The status of the offer that was extended to a buyer. | - **PENDING**: The offer is awaiting a response from the buyer. - **RETRACTED**: The offer has been RETRACTED by the seller and the offer is no longer available. - **EXPIRED**: The offer reached its deadline and is no longer available to the buyer. - **CANCELLED**: The offer has been CANCELLED by the buyer. - **COUNTERED**: The buyer has created a counter-offer for the listing. - **DECLINED**: The buyer has declined the seller's offer. - **AUTO_DECLINED**: The buyer's counter-offer has been declined because it is below the threshold amount set by the seller. - **AUTO_ACCEPTED**: The buyer's counter-offer has been accepted because it is above the threshold amount set by the seller. - **ACCEPTED**: The buyer has accepted the offer that was sent by the seller."
       },
       "OfferTypeEnum": {
-        "type": "object",
+        "type": "string",
         "enum": [
           "SELLER_INITIATED_OFFER"
         ],
@@ -826,7 +826,7 @@
         "description": "A complex type that specifies a period of time using a specified time-measurement unit."
       },
       "TimeDurationUnitEnum": {
-        "type": "object",
+        "type": "string",
         "enum": [
           "YEAR",
           "MONTH",

@@ -29,6 +29,7 @@ RESPONSE_CONTENT_TYPES = (
     *sorted(BINARY_RESPONSE_CONTENT_TYPES),
     *sorted(TEXT_RESPONSE_CONTENT_TYPES),
 )
+MARKETPLACE_HEADER = "X-EBAY-C-MARKETPLACE-ID"
 POST_ORDER_SERVICES = {"cancellation", "case", "inquiry", "return"}
 POST_ORDER_QUERY_PARAMS = {
     ("case", "search"): [
@@ -222,8 +223,48 @@ def preprocess_spec(stem: str, spec: dict[str, Any]) -> dict[str, Any]:
 
 
 def normalize_component_schemas(schemas: dict[str, Any]) -> None:
+    normalize_scalar_enum_types(schemas)
     remove_boolean_schema_required_flags(schemas)
     move_misplaced_schema_descriptions(schemas)
+
+
+def normalize_scalar_enum_types(node: Any) -> None:
+    if isinstance(node, dict):
+        enum_values = node.get("enum")
+        if (
+            isinstance(enum_values, list)
+            and enum_values
+            and node.get("type") in {None, "object"}
+            and not any(
+                key in node
+                for key in ("$ref", "properties", "items", "allOf", "anyOf", "oneOf")
+            )
+        ):
+            inferred = infer_enum_type(enum_values)
+            if inferred:
+                node["type"] = inferred
+                if any(value is None for value in enum_values):
+                    node["nullable"] = True
+        for value in node.values():
+            normalize_scalar_enum_types(value)
+    elif isinstance(node, list):
+        for item in node:
+            normalize_scalar_enum_types(item)
+
+
+def infer_enum_type(values: list[Any]) -> str | None:
+    non_null = [value for value in values if value is not None]
+    if not non_null:
+        return None
+    if all(isinstance(value, str) for value in non_null):
+        return "string"
+    if all(isinstance(value, bool) for value in non_null):
+        return "boolean"
+    if all(isinstance(value, int) and not isinstance(value, bool) for value in non_null):
+        return "integer"
+    if all(isinstance(value, int | float) and not isinstance(value, bool) for value in non_null):
+        return "number"
+    return None
 
 
 def remove_boolean_schema_required_flags(node: Any) -> None:
@@ -743,6 +784,7 @@ def render_method(
     operation_id = operation.get("operationId") or fallback_operation_id(operation_info)
     method_name = safe_identifier(snake_case(operation_id))
     parameters = dedupe_parameters(operation_info["parameters"])
+    parameters = with_optional_marketplace_header(parameters)
     request_body = body_parameter(service, operation)
     response_model = response_model_expr(service, operation)
     if request_body and request_body["kind"] == "multipart":
@@ -951,6 +993,32 @@ def dedupe_parameters(parameters: list[dict[str, Any]]) -> list[dict[str, Any]]:
             continue
         seen.add(key)
         result.append(param)
+    return result
+
+
+def with_optional_marketplace_header(parameters: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    found = False
+    for param in parameters:
+        if (
+            param.get("in") == "header"
+            and str(param.get("name", "")).lower() == MARKETPLACE_HEADER.lower()
+        ):
+            patched = copy.deepcopy(param)
+            patched["required"] = False
+            patched["schema"] = {"type": "string"}
+            result.append(patched)
+            found = True
+        else:
+            result.append(param)
+
+    if not found:
+        result.append({
+            "name": MARKETPLACE_HEADER,
+            "in": "header",
+            "required": False,
+            "schema": {"type": "string"},
+        })
     return result
 
 

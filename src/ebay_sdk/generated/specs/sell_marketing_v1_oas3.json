@@ -15135,7 +15135,7 @@
         "description": "This type defines the details of a paged collection of ad groups.<br /><br /><span class=\"tablenote\"><b>Note:</b> This type only applies to the Cost Per Click (CPC) funding model; it does not apply to the Cost Per Sale (CPS) funding model.</span>"
       },
       "AdGroupStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the status of an existing ad group. | - **ACTIVE**: This enum value indicates that the ad group is active. Ads can be created if an ad group is in the active state. - **PAUSED**: This enum value indicates that the ad group is in the paused state. Ads can be created in this state, and the ad group can be moved back to the active state. - **ARCHIVED**: This enum value indicates that the ad group is in the archived state. Ads cannot be created in this state, and the ad group cannot be moved back to active again.",
         "enum": [
           "ACTIVE",
@@ -15206,7 +15206,7 @@
         "description": "This type defines the fields that paginate the ads returned by the request. The entire <i>result set</i> consists of 0 or more sequenced <i>response pages</i>, where each page consists of 0 or more items from the complete result set."
       },
       "AdRateStrategyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the ad rate strategy for an existing Promoted Listings Standard (PLS) ad campaign. | - **DYNAMIC**: This enum value indicates that the ad rate is dynamically chosen for campaigns that use this ad rate strategy. - **FIXED**: This enum value indicates that the ad rate is fixed for campaigns that use this ad rate strategy.",
         "enum": [
           "DYNAMIC",
@@ -15283,7 +15283,7 @@
         "description": "This type defines the fields returned in an ad response."
       },
       "AdStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the status of an existing ad. | - **ACTIVE**: This enum value indicates that the ad is active. - **PAUSED**: This enum value indicates that the ad is in the paused state. Ads can be moved back to the active state from the paused state. - **ARCHIVED**: This enum value indicates that the ad is in the archived state. Ads cannot be moved back to active state from the archived state. The ad must be recreated to become active.",
         "enum": [
           "ACTIVE",
@@ -15419,14 +15419,14 @@
         "description": "A type that defines the data produced for additional information about suggested keywords."
       },
       "AdditionalInfoEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the metric used to provide additional information about suggested keywords. | - **KEYWORD_INSIGHTS**: This enum value indicates that the additional data provided for a suggested keyword includes keyword insights.",
         "enum": [
           "KEYWORD_INSIGHTS"
         ]
       },
       "AdditionalRecordEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the kind of additional records that are provided for a report. | - **NON_PERFORMING_DATA**: This enum value indicates that the additional records provided for the report include non-performing data.<br><br><span class=\"tablenote\"><b>Note:</b>  Non-performing data is only applicable for account-level reports with no <i>day level</i> dimension. See <a href=\"/api-docs/restricted/sell/static/pl-playbook/pl-reports.html#types\" target=\"_blank\">Report Types</a> in the Promoted Listings Playbook to see which report types can include non-performing data.</span>",
         "enum": [
           "NON_PERFORMING_DATA"
@@ -15494,7 +15494,7 @@
         "description": "A type that contains the dimension fields."
       },
       "AlertTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type used to define the alert type field. | - **INVALID_BID_PERCENTAGE**: This enum value indicates that the bid percentage is invalid. - **INVALID_CAP_PERCENTAGE**: This enum value indicates that the ad rate cap is invalid.",
         "enum": [
           "INVALID_BID_PERCENTAGE",
@@ -15530,14 +15530,14 @@
         "description": "A type that contains the aspect fields."
       },
       "AspectKeyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type used to define the aspect key field. | - **MINIMUM_REQUIRED**: This enum values indicates that the aspect key is minimum required value.",
         "enum": [
           "MINIMUM_REQUIRED"
         ]
       },
       "AudienceTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies the audience type of the email campaign. | - **ALL_SUBSCRIBERS**: All users subscribed to the seller store. - **NEW_SUBSCRIBERS**: All of the subscribers added to the seller store within the past 30 days. - **CUSTOM**: A custom audience created by the store seller. A custom audience is comprised of manually selected buyers. - **BUYER_GROUP**: A buyer group that has been created by the store seller to receive coded coupons. Buyer groups can be created for users to have bought from a specific category, within a specific timeframe, and for other parameters.  - **FIRST_TIME_BUYERS**: All first time buyers from the seller store, regardless of when they made their first purchase. - **RECENT_BUYERS**: Buyers who have made a purchase from the eBay seller store between the last 31 - 365 days. - **MOST_RECENT_BUYERS**: Buyers who have made a purchase from the eBay seller store within the last 30 days. - **FOLLOWERS**: Followers of the eBay seller store. These are users who have saved the eBay seller. - **INTERESTED_BUYERS**: Those users who have marked that they are interested in a product from the seller store. - **NEW_FOLLOWERS**: All new followers of the seller store within the last 30 days. - **POST_CMPGN_NEW_BUYERS**: All users who became new buyers from the seller store after an email campaign.",
         "enum": [
           "ALL_SUBSCRIBERS",
@@ -15577,7 +15577,7 @@
         "description": "This type indicates the bidding preferences of a Smart Targeting campaign.<br><br><span class=\"tablenote\"><b>Note:</b> This type is only supported for CPC funding model campaigns with on-site channels.</span>"
       },
       "BiddingStrategyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the bidding strategies that can be used for an onsite Cost per Click (CPC) campaign that uses manual targeting. | - **FIXED**: Indicates that a seller will assign and adjust keyword bids for the specified CPC campaign.<br><br>This is the default value. - **DYNAMIC**: Indicates that eBay will manage a campaign's keyword bids and automatically update them daily to the suggested bid.<br /><br /><span class=\"tablenote\"><b>Note:</b> For a CPC campaign using dynamic bidding, sellers can continue to manually add keywords for the campaign, but they are no longer able to manually adjust their associated bid values. In order to manually adjust bid values, sellers must use the <code>FIXED</code> bidding strategy.</span> ",
         "enum": [
           "FIXED",
@@ -15633,7 +15633,7 @@
         "description": "This type defines the budget details of a Promoted Listings campaign that uses the Cost Per Click (CPC) funding model.<br /><br /><span class=\"tablenote\"><b>Note:</b> This container will only be returned for campaigns using the CPC funding model; it does not apply to the Cost Per Sale (CPS) funding model.</span>"
       },
       "BudgetStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the budget status of a Promoted Listings campaign that uses the Cost Per Click (CPC) funding model. | - **ALLOCATED**: This enum value indicates that the budget is allocated. - **OUT_OF_BUDGET**: This enum value indicates that the campaign is out of budget.<br><br><span class=\"tablenote\"><b>Note:</b> For more information about how CPC Promoted Listings campaigns function when the allocated budget has been exhausted, see <a href=\"/api-docs/sell/static/marketing/pl-overview.html#how-work\" target=\"_blank\" >How Promoted Listings campaigns work</a>.</span>",
         "enum": [
           "ALLOCATED",
@@ -16242,7 +16242,7 @@
         "description": "This type defines the fields that paginate the campaigns returned by the request. The entire <i>result set</i> consists of 0 or more sequenced <i>response pages</i>, where each page consists of 0 or more items from the complete result set."
       },
       "CampaignStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to define the possible states of a campaign. | - **DELETED**: Indicates the campaign is deleted and is no longer accessible. Only ended campaigns can be deleted. - **DRAFT**: Indicates that the campaign is inactive and in draft status. - **ENDED**: Indicates the campaign has ended and it cannot be restarted. The listings associated with this campaign are not being promoted. - **ENDING_SOON**: Indicates a request to end the campaign was received and the system is going through the process of ending the campaign. No further operations are possible on this campaign until it ends. - **PAUSED**: Indicates the campaign has been paused and the listings in that campaign are not being promoted. Sellers can pause campaigns when they want to temporarily suspend a campaign. For example, a seller can pause a campaign if they go on vacation. The campaign can restored to a running state at any time. - **PENDING**: Indicates the campaign is a criterion-based campaign and is in process of being created. - **RUNNING**: Indicates the campaign is active. Listings included in the campaign are actively being promoted with sponsored ads, which are displayed to buyers as they search for items on eBay. - **SCHEDULED**: Indicates the campaign has been created, but it is scheduled to start on specific date in the future. - **SYSTEM_PAUSED**: Indicates a system-generated, temporary pause on the campaign due to the seller's level dropping to Below Standard. Below Standard sellers cannot create new campaigns or edit their existing campaigns, but they can still view their campaign data and download reports. Once their seller level improves to Above Standard or Top Rated, sellers can resume using Promoted Listings and their campaigns will be automatically unpaused and return their last status. For more details on returning their seller level to Above Standard or Top Rated, sellers can refer to their seller dashboard on the eBay platform.  ",
         "enum": [
           "DELETED",
@@ -16257,7 +16257,7 @@
         ]
       },
       "CampaignTargetingTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to indicate the targeting type of an on-site priority strategy campaign. | - **MANUAL**: This enum value indicates that the campaign is a manual targeting campaign.<br><br>A manual targeting campaign gives the seller complete control over the campaign setup and ongoing optimization. A manual targeting campaign offers targeting control with keywords and keyword bids. - **SMART**: This enum value indicates that the campaign is a smart targeting campaign.<br><br>A smart targeting campaign automatically updates to optimize campaign settings. The seller selects the listing they would like to promote, and eBay takes care of the bidding and targeting.",
         "enum": [
           "MANUAL",
@@ -16265,7 +16265,7 @@
         ]
       },
       "CampaignTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains the different store email campaign types available. | - **WELCOME**: A Welcome email sent automatically to new subscribers. - **ITEM_SHOWCASE**: An email featuring new products & collections that the seller wants to highlight. - **COUPON**: An email containing a coupon code and up to 10 items that this coupon can be applied to. - **SALE_EVENT**: An email about a sale event and up to 10 items that the sale can be applied to. - **ORDER_DISCOUNT**: An email containing an order discount and up to 10 items that this discount can be applied to. - **VOLUME_PRICING**: An email containing up to 10 items that are eligible for volume pricing.",
         "enum": [
           "WELCOME",
@@ -16290,7 +16290,7 @@
         "description": "This type contains a list of campaigns."
       },
       "CategoryScopeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the source of the category identifier. This can be either an eBay category ID or the category ID of a seller's store. | - **MARKETPLACE**: Indicates the identifier is an eBay category ID. - **STORE**: Indicates the identifier is the category ID of a seller's store.",
         "enum": [
           "MARKETPLACE",
@@ -16298,7 +16298,7 @@
         ]
       },
       "CategoryTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains the different category types that can be used for a store email campaign. | - **EBAY**: This value indicates that the category associated with the email campaign is an eBay category. - **STORE**: This value indicates that the category associated with the email campaign is an eBay category.",
         "enum": [
           "EBAY",
@@ -16306,7 +16306,7 @@
         ]
       },
       "ChannelEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates if a priority strategy campaign is an Onsite or Offsite advertising campaign. When using the <b>createReportTask</b> method, this enumerated type indicates if the data being returned in the report is for an Onsite or Offsite advertising campaign. | - **ON_SITE**: This enum value indicates that the campaign is an Onsite Ads campaign. - **OFF_SITE**: This enum value indicates that the campaign is a Promoted Listings Promoted Offsite campaign that is being promoted on external channels.",
         "enum": [
           "ON_SITE",
@@ -16360,7 +16360,7 @@
         "description": "This type defines a coded coupon discount. It is required if the discount type is <code>CODED_COUPON</code>."
       },
       "CouponTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This type indicates the type of Coded Coupon discount. It is required when the discount type is <b>CODED_COUPON</b>. | - **PRIVATE_SINGLE_SELLER_COUPON**: Anyone can use and share the coupon code, but it isn't posted on eBay. - **PUBLIC_SINGLE_SELLER_COUPON**: Anyone can find the coupon code on eBay and use it.",
         "enum": [
           "PRIVATE_SINGLE_SELLER_COUPON",
@@ -16760,14 +16760,14 @@
         "description": "This type defines the rules that govern the generation of a report task and the criteria that's used to create the report. The report-generation rules include the starting and ending dates for the report. Report-task criteria includes the report dimensions, metrics, listings covered in the report, and so on. For information on the required and optional fields for each report type, see <a href=\"/api-docs/sell/static/marketing/pl-reports.html\" target=\"_blank\">Promoted Listings reporting</a>."
       },
       "CriterionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum that specifies the criterion upon which a selection-rules campaign is based. Currently, only <b>INVENTORY_PARTITION</b> is supported. | - **INVENTORY_PARTITION**: Indicates the criterion for a rules-based campaign is based on a seller's inventory reference IDs. An <i>inventory reference ID</i> can be either a seller-defined SKU value or an <b>inventoryItemGroupKey</b>.<br><br>An <i>inventoryItemGroupKey</i> is a value used by the <a href=\"/api-docs/sell/inventory/overview.html\" target=\"blank\">Inventory API</a> to indicate a listing that's the parent of an inventory item group (a multi-variation listing, such as a listing for a shirt that's available in multiple sizes and colors). To fully identify a such a listing, you must specify both its <b>inventory_reference_id</b> plus its <b>inventory_reference_type</b>.",
         "enum": [
           "INVENTORY_PARTITION"
         ]
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -16928,7 +16928,7 @@
         ]
       },
       "DataTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enum type defines the data type of the returned value. | - **DATE**: Indicates the value is a date.<br><br><b>Format (UTC):</b> <code>yyyy-MM-ddThh:mm:ss.sssZ</code> - **INTEGER**: Indicates the data type of the value is integer. - **DOUBLE**: Indicates the data type of the value is double. - **STRING**: Indicates the data type of the value is string. - **LONG**: Indicates the data type of the value is long. ",
         "enum": [
           "DATE",
@@ -17091,7 +17091,7 @@
         "description": "This type defines the annotation values associated with a dimension. Annotations are metadata of the dimension. For example, annotations for a listing ID could be <code>listing_title</code> or <code>listing_quantity_sold</code>."
       },
       "DimensionKeyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type used to define the dimension key field. | - **MARKETPLACE_ID**: This enum value indicates that the dimension key is marketplace ID. ",
         "enum": [
           "MARKETPLACE_ID"
@@ -17217,7 +17217,7 @@
         "description": "A type that defines the ad rate details for a general strategy ad campaign."
       },
       "EmailCampaignStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the current status of the email campaign. | - **ACTIVE**: The email campaign is active and ready to be sent. - **SENT**: The email campaign has been sent. - **ERROR**: There was an error when trying to create or update the email campaign. ",
         "enum": [
           "ACTIVE",
@@ -17358,14 +17358,14 @@
         "description": "This type defines the parameters for an error."
       },
       "ExclusionsEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type used to filter keyword recommendations. | - **ADOPTED_KEYWORDS**: This enum value indicates that the keywords currently used for seller listings shall be considered in requests for keyword suggestions so that only new and unique keyword recommendations are provided.",
         "enum": [
           "ADOPTED_KEYWORDS"
         ]
       },
       "FundingModelEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the funding models that specify how the Promoted Listing fee is calculated.<br /><br />The seller is assessed a Promoted Listing fee only if an item sells via a <i>Promoted Listing action</i>. For more information, see <a href=\"/api-docs/sell/static/marketing/pl-overview.html#funding-model\" target=\"_blank\">Funding Models</a>. | - **COST_PER_SALE**: This enum value indicates that the Promoted Listing fee is calculated by multiplying the <b>bidPercentage</b> by the final sales price of a transaction. - **COST_PER_CLICK**: This enum value indicates that the Promoted Listing fee is calculated on a Cost Per Click (CPC) basis.",
         "enum": [
           "COST_PER_SALE",
@@ -17684,7 +17684,7 @@
         "description": "This type defines either the selections rules or the list of listing IDs for the discount. The \"listing IDs\" are are either the seller's item IDs or the eBay listing IDs."
       },
       "InventoryCriterionEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the values that represent the inventory selection method for a discount. | - **INVENTORY_BY_RULE**: Indicates the discount inventory selection is based on rules and item aspects such as item condition or brand.<br><br><span class=\"tablenote\"><b>Note:</b> If <b>inventoryCriterionType</b> is set to this value, the request payload must have at least one rule in <b>ruleCriteria</b>.</span> - **INVENTORY_BY_VALUE**: Indicates the discount inventory selection is either a list of the seller's inventory reference IDs (also known as an \"SKU\" or \"custom label\") or eBay listing IDs.<br><br><span class=\"tablenote\"><b>Note:</b> If <b>inventoryCriterionType</b> is set to this value, the request payload must have at least one listing ID in <b>listingIds</b> or <b>inventoryItems</b>.</span> - **INVENTORY_ANY**: Indicates all the seller's inventory is discounted.<br><br><span class=\"tablenote\"><b>Note:</b> If <b>inventoryCriterionType</b> is set to this value, include an inventory selection rule. In the request payload, use <b>ruleCriteria</b> that contains criteria or <code>null</code>.</span>",
         "enum": [
           "INVENTORY_BY_RULE",
@@ -17721,7 +17721,7 @@
         "description": "This complex type is used to identify an item that is managed by the Inventory API. The type defines the fields contained in an inventory reference ID."
       },
       "InventoryReferenceTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type defining the type of the seller's inventory reference ID. When specifying an inventory item, you must always specify both <b>inventoryReferenceId</b> and <b>inventoryReferenceType</b>. | - **INVENTORY_ITEM**: This enum value is used if you want to identify a single-item listing by its item ID or SKU. - **INVENTORY_ITEM_GROUP**: This enum value is used if you want to identify a multi-variation listing by its item ID or <b>inventoryItemGroupKey</b> as defined in the Inventory API.",
         "enum": [
           "INVENTORY_ITEM",
@@ -17767,7 +17767,7 @@
       },
       "ItemMarkdownStatusEnum": {
         "description": "This enumerated type defines the item markdown status of a discount. | - **PENDING**: Indicates the system is still processing the item price markdown discount request. - **MARKED_DOWN**: Indicates item price markdown discount request succeeded and the discount has been scheduled. - **MARKED_UP**: Indicates the item is no longer in the markdown discount and the price has been \"marked up\" to its standard price. - **SKIPPED**: Indicates item price markdown discount has been skipped. - **FAILED**: Indicates item price markdown discount request failed. Check the configuration of your discount and resubmit the request.",
-        "type": "object",
+        "type": "string",
         "enum": [
           "PENDING",
           "MARKED_DOWN",
@@ -17997,7 +17997,7 @@
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>This complex type defines the fields returned for an item (threshold) discount."
       },
       "ItemSelectModeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enum type determines whether listings featured in an email campaign are selected by the seller or by eBay. | - **AUTO**: Automatic mode. The system will select items automatically based on the specified criteria such as price range and selected category. - **MANUAL**: Manual mode. The user selects eligible items manually and populates <b>itemIds</b> with listing codes.",
         "enum": [
           "AUTO",
@@ -18005,7 +18005,7 @@
         ]
       },
       "ItemSortEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies the sort rule for displaying listings included in the email campaign. The default sort rule used is <code>NEWLY_LISTED</code>. | - **ENDING_FIRST**: Display items by date ending, with listings ending soonest first. - **HIGHEST_PRICED**: Display items by price, from highest to lowest. - **LOWEST_PRICED**: Display items by price, from lowest to highest. - **NEWLY_LISTED**: Display items by date listed, from newest to oldest.  ",
         "enum": [
           "ENDING_FIRST",
@@ -18218,7 +18218,7 @@
         "description": "A type that defines the response fields used by the <b>Keyword</b> method."
       },
       "KeywordStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the status of existing keywords. | - **ACTIVE**: This enum value indicates that the keyword is active. - **PAUSED**: This enum value indicates that the keyword is in the paused state. Keywords can be moved back to the active state from the paused state. - **ARCHIVED**: This enum value indicates that the keyword is in the archived state. Keywords cannot be moved back to active state from the archived state. The keyword must be recreated to become active.",
         "enum": [
           "ACTIVE",
@@ -18290,7 +18290,7 @@
         "description": "This type defines the fields that describe a listing that is in a discount."
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the unique IDs for each of the eBay marketplaces. | - **EBAY_AT**: This enumeration value indicates that the eBay Marketplace is the Austria site (ebay.at). - **EBAY_AU**: This enumeration value indicates that the eBay Marketplace is the Australia site (ebay.com.au). - **EBAY_BE**: This enumeration value indicates that the eBay marketplace is the Belgium (Dutch) site (www.ebay.be). - **EBAY_CA**: This enumeration value indicates that the eBay Marketplace is the Canada (English) site (ebay.ca). - **EBAY_CH**: This enumeration value indicates that the eBay Marketplace is the Switzerland site (ebay.ch). - **EBAY_CN**: Reserved for future use. - **EBAY_CZ**: Reserved for future use. - **EBAY_DE**: This enumeration value indicates that the eBay Marketplace is the Germany site (ebay.de). - **EBAY_DK**: Reserved for future use. - **EBAY_ES**: This enumeration value indicates that the eBay Marketplace is the Spain site (ebay.es). - **EBAY_FI**: Reserved for future use. - **EBAY_FR**: This enumeration value indicates that the eBay Marketplace is the France site (ebay.fr). - **EBAY_GB**: This enumeration value indicates that the eBay Marketplace is the UK site (ebay.co.uk). - **EBAY_GR**: Reserved for future use. - **EBAY_HK**: This enumeration value indicates that the eBay Marketplace is the Hong Kong site (ebay.com.hk). - **EBAY_HU**: Reserved for future use. - **EBAY_ID**: Reserved for future use. - **EBAY_IE**: This enumeration value indicates that the eBay Marketplace is the Ireland site (ebay.ie). - **EBAY_IL**: Reserved for future use. - **EBAY_IN**: This enumeration value indicates that the eBay Marketplace is the India site (ebay.in). Note: eBay India is no longer a functioning eBay marketplace. - **EBAY_IT**: This enumeration value indicates that the eBay Marketplace is the Italy site (ebay.it). - **EBAY_JP**: Reserved for future use. - **EBAY_MY**: This enumeration value indicates that the eBay Marketplace is the Malaysia site (ebay.com/my). - **EBAY_NL**: This enumeration value indicates that the eBay Marketplace is the Netherlands site (ebay.nl). - **EBAY_NO**: Reserved for future use. - **EBAY_NZ**: Reserved for future use. - **EBAY_PE**: Reserved for future use. - **EBAY_PH**: This enumeration value indicates that the eBay Marketplace is the Philippines site (ebay.ph). - **EBAY_PL**: This enumeration value indicates that the eBay Marketplace is the Poland site (ebay.pl). - **EBAY_PR**: Reserved for future use. - **EBAY_PT**: Reserved for future use. - **EBAY_RU**: Reserved for future use. - **EBAY_SE**: Reserved for future use. - **EBAY_SG**: This enumeration value indicates that the eBay Marketplace is the Singapore site (ebay.com/sg). - **EBAY_TH**: This enumeration value indicates that the eBay Marketplace is the Thailand site (export.ebay.co.th). - **EBAY_TW**: This enumeration value indicates that the eBay Marketplace is the Taiwan site (ebay.com/tw). - **EBAY_US**: This enumeration value indicates that the eBay Marketplace is the US site (ebay.com). - **EBAY_VN**: This enumeration value indicates that the eBay Marketplace is the Vietnam site (ebay.vn). - **EBAY_ZA**: Reserved for future use. - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: Indicates the parent category for \"Auto Parts and Vehicles\" on the EBAY_US marketplace (https://www.ebay.com/motors).",
         "enum": [
           "EBAY_AT",
@@ -18337,7 +18337,7 @@
         ]
       },
       "MatchTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the accepted match type. | - **BROAD**: This enum value indicates that broad matches are accepted. - **EXACT**: This enum value indicates that only exact matches are accepted. - **PHRASE**: This enum value indicates that phrasal matches are accepted.",
         "enum": [
           "BROAD",
@@ -18356,7 +18356,7 @@
         }
       },
       "MetricEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the metric used to provide additional information about suggested keywords.<br /><br /><span class=\"tablenote\"><span style=\"color:#004680\"><strong>Note:</strong></span> All metric data is compiled for the marketplace associated with the specified campaign ID.</span> | - **ACTIVE_SELLER_COUNT**: This enum value indicates the approximate number of sellers who have bid on the suggested keyword. - **SEARCH_VOLUME**: This enum value indicates the search volume for the suggested keyword.",
         "enum": [
           "ACTIVE_SELLER_COUNT",
@@ -18418,7 +18418,7 @@
         "description": "A type that defines the fields for a negative keyword."
       },
       "NegativeKeywordMatchTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the accepted match type for negative keywords. | - **EXACT**: This enum value indicates that only exact matches are accepted. - **PHRASE**: This enum value indicates that phrasal matches are accepted.",
         "enum": [
           "EXACT",
@@ -18508,7 +18508,7 @@
         "description": "A type that defines the negative keyword response."
       },
       "NegativeKeywordStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the status of a request to create a negative keyword. | - **ACTIVE**: This enum value indicates that the negative keyword is active. - **ARCHIVED**: This enum value indicates that the negative keyword is archived. Negative keywords with this status cannot be set to <code>ACTIVE</code> again.",
         "enum": [
           "ACTIVE",
@@ -18600,7 +18600,7 @@
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>This type defines the fields that describe a discount. This includes all the information about a discount except for the listings that are a part of the discount."
       },
       "PromotionPriorityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>An enum that defines the values that represent the priority level of a discount, which is used to assign the precedence of a discount on the seller's <b>All Offers</b> page. | - **PRIORITY_1**: Indicates the rule is ranked first in priority. - **PRIORITY_2**: Indicates the rule is ranked second in priority. - **PRIORITY_3**: Indicates the rule is ranked third in priority. - **PRIORITY_4**: Indicates the rule is ranked fourth in priority. - **INVALID**: This is for internal use only for when priority specified in the request is invalid.",
         "enum": [
           "PRIORITY_1",
@@ -18699,7 +18699,7 @@
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>This type defines the fields in a discount-level report."
       },
       "PromotionSelectModeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>This enumerated type is used to indicate how a discount is selected, if one is added to the email campaign. | - **AUTO**: Automatic mode. The system will select items automatically based on the specified criteria such as price range and selected category. - **MANUAL**: Manual mode. The user must selects the discount and adds it in the <b>promotionId</b> field. This mode can only be used if the user selects the listings included in <b>itemIds</b>.",
         "enum": [
           "AUTO",
@@ -18707,7 +18707,7 @@
         ]
       },
       "PromotionStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>An enumerated type for the values that represent the different states that can be assigned to a discount. | - **SCHEDULED**: Indicates the discount start date is in future (greater than current date). The discount is not yet live. - **RUNNING**: Indicates the discount is live on the site. - **PAUSED**: Indicates the discount is currently on hold. Call <b>resumePromotion</b> to restart the discount. - **DRAFT**: Indicates the discount is a draft. Call <b>updateItemPromotion</b> to submit the full details of the discount, schedule it, and make it active. - **ENDED**: Indicates the discount has ended. - **INVALID**: This is for internal use only for when discount type specified in the request is invalid. ",
         "enum": [
           "SCHEDULED",
@@ -18719,7 +18719,7 @@
         ]
       },
       "PromotionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "<span class=\"tablenote\"><b>Note:</b> As of July 8th 2024, <i>promotions</i> are now being referred to as <i>discounts</i> on Seller Hub and eBay help pages. Sell Marketing API documentation has been updated to reflect this product name change, but note that no API interface changes have been made.</span><br>An enum that defines the types of supported Discounts Manager discounts.  <br />See the <a href=\"/api-docs/sell/static/marketing/promotions-manager.html\", target=\"_blank\">Discounts Manager</a> documentation for details. | - **CODED_COUPON**: Discount type for coupon code discount set with <b>createItemPromotion</b>. - **MARKDOWN_SALE**: Discount type for markdown discount set with <b>createItemPriceMarkdownPromotion</b>. - **ORDER_DISCOUNT**: Discount type for threshold discount set with <b>createItemPromotion</b>. - **VOLUME_DISCOUNT**: Discount type for volume pricing discount set with <b>createItemPromotion</b>.",
         "enum": [
           "CODED_COUPON",
@@ -18851,7 +18851,7 @@
         "description": "A type that defines the data for a payment amount, such as the sale price."
       },
       "ReportFormatEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enum defines the format of a report file. Currently, the only supported format is <code>TSV_GZIP</code>, which is a gzip file with tab separated values. | - **TSV_GZIP**: Indicates a gzip file with tab separated values.",
         "enum": [
           "TSV_GZIP"
@@ -19094,7 +19094,7 @@
         "description": "This type defines the fields that paginate the reports tasks returned by the request. The entire <i>result set</i> consists of 0 or more sequenced <i>response pages</i>, where each page consists of 0 or more items from the complete result set."
       },
       "ReportTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum that defines the type of reports you can generate.<br /><br /><span class=\"tablenote\"><b>Tip:</b> For details about which report types can be used for Promoted Listings general strategy ad campaigns or Promoted Listings priority strategy ad campaigns, see <a href=\"/api-docs/sell/static/marketing/pl-reports.html\" target=\"_blank\">Promoted Listings reporting</a>.</span> | - **ACCOUNT_PERFORMANCE_REPORT**: This enum value indicates that the report is based on the account performance. This report offers a <i>daily view</i> of the seller's Promoted Listings performance. - **ALL_CAMPAIGN_PERFORMANCE_SUMMARY_REPORT**: This enum value indicates that the report is based on campaign performance. This report provides performance data for all of a seller's campaigns. - **CAMPAIGN_PERFORMANCE_REPORT**: This enum value indicates that the report is a detailed item-based campaign performance report. This report offers an <i>item level view</i> of the performance of specific ad campaigns. - **CAMPAIGN_PERFORMANCE_SUMMARY_REPORT**: This enum value indicates that the report is a summary campaign performance report. This report offers a <i>daily summary view</i> of the performance of specific ad campaigns.  - **INVENTORY_PERFORMANCE_REPORT**: This enum value indicates that the report is an inventory performance report. This report offers a <i>listing view</i> of the performance of all the seller's Promoted Listings.<br><br><span class=\"tablenote\"><b>Note:</b>  The Inventory Performance Summary report is not currently available; availability date is pending.</span> - **LISTING_PERFORMANCE_REPORT**: This enum value indicates that the report is based on listings. This report offers a <i>daily view</i> of the performance of each listing. - **KEYWORD_PERFORMANCE_REPORT**: This enum value indicates that the report is a keyword performance report. This report provides keyword performance data for a specific campaign. - **TRANSACTION_REPORT**: This enum value indicates that the report is a transaction report. This report provides transaction-level details to sellers for both general strategy ad campaigns or priority strategy ad campaigns. - **SEARCH_QUERY_PERFORMANCE_REPORT**: This enum value indicates that the report is a search query performance report. This report offers details to sellers that help them understand buyer search patterns and behaviors, indicating which search queries most effectively led the buyers to their products and the impressions, clicks or amount of sales generated. This data can be used by sellers to choose more relevant keywords and negative keywords.  ",
         "enum": [
           "ACCOUNT_PERFORMANCE_REPORT",
@@ -19150,7 +19150,7 @@
         "description": "This type defines the fields for a set of inventory selection rules.  <br><br><b>Required:</b> When <b>inventoryCriterionType</b> is set to <code>INVENTORY_BY_RULE</code> or <code>INVENTORY_ANY</code>."
       },
       "ScheduleDateTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies whether the user or the eBay system has set the schedule date for the email campaign. | - **SYSTEM**: The schedule date is determined by the system. - **CUSTOM**: The seller has set a custom send date for the email campaign.",
         "enum": [
           "SYSTEM",
@@ -19501,14 +19501,14 @@
         "description": "A type that defines the targeted items."
       },
       "TargetingMetricsEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the basis for the targeted metrics. | - **SEARCH_IMPRESSIONS**: This enum value indicates that targeting metrics are based on search impressions in search slots.",
         "enum": [
           "SEARCH_IMPRESSIONS"
         ]
       },
       "TaskStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum that defines the possible states of a report task. | - **PENDING**: Indicates the report task is being worked upon. You cannot make changes to a task in this state. - **SUCCESS**: Indicates the report task ran successfully. - **FAILED**: Indicates the report task failed to run.",
         "enum": [
           "PENDING",

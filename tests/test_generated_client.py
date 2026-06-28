@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import ast
 import asyncio
 import inspect
+from enum import StrEnum
+from pathlib import Path
 from typing import assert_type
 
 import httpx
@@ -10,6 +13,7 @@ from ebay_sdk import AsyncEbayClient, EbayClient
 from ebay_sdk.config import EbayConfig
 from ebay_sdk.generated.models.buy_browse import Item
 from ebay_sdk.generated.models.case import CaseSearchResponse
+from ebay_sdk.generated.models.commerce_identity import MarketplaceIdEnum, UserResponse
 from ebay_sdk.generated.models.sell_inventory import InventoryItems, Offers
 
 
@@ -23,6 +27,38 @@ def test_generated_namespaces_are_installed() -> None:
     assert client.post_order.return_.__class__.__name__ == "ReturnResource"
     assert client.sell.account.__class__.__name__ == "SellAccountV1Resource"
     assert client.sell.account_v2.__class__.__name__ == "SellAccountV2Resource"
+
+
+def test_generated_enum_models_are_scalar_enums() -> None:
+    broken: list[str] = []
+    models_dir = Path("src/ebay_sdk/generated/models")
+
+    for path in models_dir.glob("*.py"):
+        tree = ast.parse(path.read_text())
+        for node in tree.body:
+            if not isinstance(node, ast.ClassDef) or not node.name.endswith("Enum"):
+                continue
+            bases = [ast.unparse(base) for base in node.bases]
+            is_empty_ebay_model = (
+                bases == ["EbayModel"]
+                and len(node.body) == 1
+                and isinstance(node.body[0], ast.Pass)
+            )
+            if is_empty_ebay_model:
+                broken.append(f"{path.name}:{node.name}")
+
+    assert broken == []
+
+
+def test_generated_enum_models_accept_live_string_values() -> None:
+    assert issubclass(MarketplaceIdEnum, StrEnum)
+
+    user = UserResponse.model_validate({
+        "username": "seller",
+        "registrationMarketplaceId": "EBAY_DE",
+    })
+
+    assert user.registration_marketplace_id is MarketplaceIdEnum.ebay_de
 
 
 def test_get_item_builds_request_and_parses_model() -> None:
@@ -50,6 +86,28 @@ def test_get_item_builds_request_and_parses_model() -> None:
     assert seen[0].url.raw_path == b"/buy/browse/v1/item/v1%7C1%7C0"
     assert seen[0].headers["authorization"] == "Bearer token"
     assert seen[0].headers["x-ebay-c-marketplace-id"] == "EBAY_DE"
+
+
+def test_marketplace_header_is_optional_and_globally_overrideable() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = EbayClient(
+        EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
+        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+
+    client.sell.finances.get_payouts(raw_response=True)
+    client.sell.account.get_custom_policies(
+        x_ebay_c_marketplace_id="EBAY_US",
+        raw_response=True,
+    )
+
+    assert seen[0].headers["x-ebay-c-marketplace-id"] == "EBAY_DE"
+    assert seen[1].headers["x-ebay-c-marketplace-id"] == "EBAY_US"
 
 
 def test_feedback_query_uses_generated_feedback_api() -> None:

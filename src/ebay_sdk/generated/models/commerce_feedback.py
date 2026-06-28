@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
@@ -24,12 +26,20 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FeedbackAggregationTypeEnum(EbayModel):
-    pass
+class FeedbackAggregationTypeEnum(StrEnum):
+    avg = 'AVG'
+    count = 'COUNT'
+    unique_provider_count = 'UNIQUE_PROVIDER_COUNT'
+    positive_percent_excluding_neutral_feedback = (
+        'POSITIVE_PERCENT_EXCLUDING_NEUTRAL_FEEDBACK'
+    )
 
 
-class FeedbackCommentStateEnum(EbayModel):
-    pass
+class FeedbackCommentStateEnum(StrEnum):
+    entered = 'ENTERED'
+    withdrawn = 'WITHDRAWN'
+    hidden = 'HIDDEN'
+    revised = 'REVISED'
 
 
 class FeedbackEnteredPeriod(EbayModel):
@@ -72,8 +82,15 @@ class FeedbackRatingAcceptableValue(EbayModel):
     )
 
 
-class FeedbackRatingTypeEnum(EbayModel):
-    pass
+class FeedbackRatingTypeEnum(StrEnum):
+    overall_experience = 'OVERALL_EXPERIENCE'
+    overall_experience_comment = 'OVERALL_EXPERIENCE_COMMENT'
+    on_time_delivery = 'ON_TIME_DELIVERY'
+    dsr_item_as_described = 'DSR_ITEM_AS_DESCRIBED'
+    dsr_communication = 'DSR_COMMUNICATION'
+    dsr_shipping_charges = 'DSR_SHIPPING_CHARGES'
+    dsr_shipping_time = 'DSR_SHIPPING_TIME'
+    item_rating = 'ITEM_RATING'
 
 
 class FeedbackRatingValueDistribution(EbayModel):
@@ -87,20 +104,40 @@ class FeedbackRatingValueDistribution(EbayModel):
     )
 
 
-class FeedbackRatingValueTypeEnum(EbayModel):
-    pass
+class FeedbackRatingValueTypeEnum(StrEnum):
+    range = 'RANGE'
+    freetext = 'FREETEXT'
+    predefined = 'PREDEFINED'
 
 
-class FeedbackRatingValuesEnum(EbayModel):
-    pass
+class FeedbackRatingValuesEnum(StrEnum):
+    positive = 'POSITIVE'
+    neutral = 'NEUTRAL'
+    negative = 'NEGATIVE'
 
 
-class FeedbackStarTypeEnum(EbayModel):
-    pass
+class FeedbackStarTypeEnum(StrEnum):
+    yellow_star = 'YELLOW_STAR'
+    blue_star = 'BLUE_STAR'
+    turquoise_star = 'TURQUOISE_STAR'
+    purple_star = 'PURPLE_STAR'
+    red_star = 'RED_STAR'
+    green_star = 'GREEN_STAR'
+    yellow_shooting_star = 'YELLOW_SHOOTING_STAR'
+    turquoise_shooting_star = 'TURQUOISE_SHOOTING_STAR'
+    purple_shooting_star = 'PURPLE_SHOOTING_STAR'
+    red_shooting_star = 'RED_SHOOTING_STAR'
+    green_shooting_star = 'GREEN_SHOOTING_STAR'
+    silver_shooting_star = 'SILVER_SHOOTING_STAR'
 
 
-class FeedbackStateEnum(EbayModel):
-    pass
+class FeedbackStateEnum(StrEnum):
+    entered = 'ENTERED'
+    withdrawn = 'WITHDRAWN'
+    hidden = 'HIDDEN'
+    revised = 'REVISED'
+    revision_open = 'REVISION_OPEN'
+    revision_declined_or_expired = 'REVISION_DECLINED_OR_EXPIRED'
 
 
 class Image(EbayModel):
@@ -123,8 +160,12 @@ class ItemsAwaitingFeedbackCount(EbayModel):
     )
 
 
-class KeyEnum(EbayModel):
-    pass
+class KeyEnum(StrEnum):
+    on_time_delivery = 'ON_TIME_DELIVERY'
+    item_as_described = 'ITEM_AS_DESCRIBED'
+    communication = 'COMMUNICATION'
+    shipping_charges = 'SHIPPING_CHARGES'
+    shipping_time = 'SHIPPING_TIME'
 
 
 class LeaveFeedbackResponse(EbayModel):
@@ -146,8 +187,10 @@ class ListingPrice(EbayModel):
     )
 
 
-class OrderLineItemAttributesEnum(EbayModel):
-    pass
+class OrderLineItemAttributesEnum(StrEnum):
+    private_item = 'PRIVATE_ITEM'
+    mature_category = 'MATURE_CATEGORY'
+    sold_as_best_offer = 'SOLD_AS_BEST_OFFER'
 
 
 class Pagination(EbayModel):
@@ -188,8 +231,9 @@ class Period(EbayModel):
     )
 
 
-class ResponseTypeEnum(EbayModel):
-    pass
+class ResponseTypeEnum(StrEnum):
+    reply = 'REPLY'
+    follow_up = 'FOLLOW_UP'
 
 
 class SellerRating(EbayModel):
@@ -203,8 +247,10 @@ class SellerRating(EbayModel):
     )
 
 
-class ThresholdTypeEnum(EbayModel):
-    pass
+class ThresholdTypeEnum(StrEnum):
+    more_than = 'MORE_THAN'
+    less_than = 'LESS_THAN'
+    equal = 'EQUAL'
 
 
 class Topic(EbayModel):
@@ -241,12 +287,16 @@ class TransactionPeriod(EbayModel):
     )
 
 
-class UserAttributeEnum(EbayModel):
-    pass
+class UserAttributeEnum(StrEnum):
+    user_verified = 'USER_VERIFIED'
+    user_registered = 'USER_REGISTERED'
+    user_same_as_signed_in_user = 'USER_SAME_AS_SIGNED_IN_USER'
+    user_profile_private = 'USER_PROFILE_PRIVATE'
 
 
-class UserRoleEnum(EbayModel):
-    pass
+class UserRoleEnum(StrEnum):
+    seller = 'SELLER'
+    buyer = 'BUYER'
 
 
 class Comment(EbayModel):

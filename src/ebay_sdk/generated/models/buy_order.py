@@ -4,20 +4,273 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class ApplicableChargeTypeEnum(EbayModel):
-    pass
+class ApplicableChargeTypeEnum(StrEnum):
+    customs = 'CUSTOMS'
 
 
-class AuthenticityVerificationStatusEnum(EbayModel):
-    pass
+class AuthenticityVerificationStatusEnum(StrEnum):
+    pending = 'PENDING'
+    passed = 'PASSED'
+    failed = 'FAILED'
+    ineligible = 'INELIGIBLE'
 
 
-class CountryCodeEnum(EbayModel):
-    pass
+class CountryCodeEnum(StrEnum):
+    ad = 'AD'
+    ae = 'AE'
+    af = 'AF'
+    ag = 'AG'
+    ai = 'AI'
+    al = 'AL'
+    am = 'AM'
+    an = 'AN'
+    ao = 'AO'
+    aq = 'AQ'
+    ar = 'AR'
+    as_ = 'AS'
+    at = 'AT'
+    au = 'AU'
+    aw = 'AW'
+    ax = 'AX'
+    az = 'AZ'
+    ba = 'BA'
+    bb = 'BB'
+    bd = 'BD'
+    be = 'BE'
+    bf = 'BF'
+    bg = 'BG'
+    bh = 'BH'
+    bi = 'BI'
+    bj = 'BJ'
+    bl = 'BL'
+    bm = 'BM'
+    bn = 'BN'
+    bo = 'BO'
+    bq = 'BQ'
+    br = 'BR'
+    bs = 'BS'
+    bt = 'BT'
+    bv = 'BV'
+    bw = 'BW'
+    by = 'BY'
+    bz = 'BZ'
+    ca = 'CA'
+    cc = 'CC'
+    cd = 'CD'
+    cf = 'CF'
+    cg = 'CG'
+    ch = 'CH'
+    ci = 'CI'
+    ck = 'CK'
+    cl = 'CL'
+    cm = 'CM'
+    cn = 'CN'
+    co = 'CO'
+    cr = 'CR'
+    cu = 'CU'
+    cv = 'CV'
+    cw = 'CW'
+    cx = 'CX'
+    cy = 'CY'
+    cz = 'CZ'
+    de = 'DE'
+    dj = 'DJ'
+    dk = 'DK'
+    dm = 'DM'
+    do = 'DO'
+    dz = 'DZ'
+    ec = 'EC'
+    ee = 'EE'
+    eg = 'EG'
+    eh = 'EH'
+    er = 'ER'
+    es = 'ES'
+    et = 'ET'
+    fi = 'FI'
+    fj = 'FJ'
+    fk = 'FK'
+    fm = 'FM'
+    fo = 'FO'
+    fr = 'FR'
+    ga = 'GA'
+    gb = 'GB'
+    gd = 'GD'
+    ge = 'GE'
+    gf = 'GF'
+    gg = 'GG'
+    gh = 'GH'
+    gi = 'GI'
+    gl = 'GL'
+    gm = 'GM'
+    gn = 'GN'
+    gp = 'GP'
+    gq = 'GQ'
+    gr = 'GR'
+    gs = 'GS'
+    gt = 'GT'
+    gu = 'GU'
+    gw = 'GW'
+    gy = 'GY'
+    hk = 'HK'
+    hm = 'HM'
+    hn = 'HN'
+    hr = 'HR'
+    ht = 'HT'
+    hu = 'HU'
+    id = 'ID'
+    ie = 'IE'
+    il = 'IL'
+    im = 'IM'
+    in_ = 'IN'
+    io = 'IO'
+    iq = 'IQ'
+    ir = 'IR'
+    is_ = 'IS'
+    it = 'IT'
+    je = 'JE'
+    jm = 'JM'
+    jo = 'JO'
+    jp = 'JP'
+    ke = 'KE'
+    kg = 'KG'
+    kh = 'KH'
+    ki = 'KI'
+    km = 'KM'
+    kn = 'KN'
+    kp = 'KP'
+    kr = 'KR'
+    kw = 'KW'
+    ky = 'KY'
+    kz = 'KZ'
+    la = 'LA'
+    lb = 'LB'
+    lc = 'LC'
+    li = 'LI'
+    lk = 'LK'
+    lr = 'LR'
+    ls = 'LS'
+    lt = 'LT'
+    lu = 'LU'
+    lv = 'LV'
+    ly = 'LY'
+    ma = 'MA'
+    mc = 'MC'
+    md = 'MD'
+    me = 'ME'
+    mf = 'MF'
+    mg = 'MG'
+    mh = 'MH'
+    mk = 'MK'
+    ml = 'ML'
+    mm = 'MM'
+    mn = 'MN'
+    mo = 'MO'
+    mp = 'MP'
+    mq = 'MQ'
+    mr = 'MR'
+    ms = 'MS'
+    mt = 'MT'
+    mu = 'MU'
+    mv = 'MV'
+    mw = 'MW'
+    mx = 'MX'
+    my = 'MY'
+    mz = 'MZ'
+    na = 'NA'
+    nc = 'NC'
+    ne = 'NE'
+    nf = 'NF'
+    ng = 'NG'
+    ni = 'NI'
+    nl = 'NL'
+    no = 'NO'
+    np = 'NP'
+    nr = 'NR'
+    nu = 'NU'
+    nz = 'NZ'
+    om = 'OM'
+    pa = 'PA'
+    pe = 'PE'
+    pf = 'PF'
+    pg = 'PG'
+    ph = 'PH'
+    pk = 'PK'
+    pl = 'PL'
+    pm = 'PM'
+    pn = 'PN'
+    pr = 'PR'
+    ps = 'PS'
+    pt = 'PT'
+    pw = 'PW'
+    py = 'PY'
+    qa = 'QA'
+    re = 'RE'
+    ro = 'RO'
+    rs = 'RS'
+    ru = 'RU'
+    rw = 'RW'
+    sa = 'SA'
+    sb = 'SB'
+    sc = 'SC'
+    sd = 'SD'
+    se = 'SE'
+    sg = 'SG'
+    sh = 'SH'
+    si = 'SI'
+    sj = 'SJ'
+    sk = 'SK'
+    sl = 'SL'
+    sm = 'SM'
+    sn = 'SN'
+    so = 'SO'
+    sr = 'SR'
+    st = 'ST'
+    sv = 'SV'
+    sx = 'SX'
+    sy = 'SY'
+    sz = 'SZ'
+    tc = 'TC'
+    td = 'TD'
+    tf = 'TF'
+    tg = 'TG'
+    th = 'TH'
+    tj = 'TJ'
+    tk = 'TK'
+    tl = 'TL'
+    tm = 'TM'
+    tn = 'TN'
+    to = 'TO'
+    tr = 'TR'
+    tt = 'TT'
+    tv = 'TV'
+    tw = 'TW'
+    tz = 'TZ'
+    ua = 'UA'
+    ug = 'UG'
+    um = 'UM'
+    us = 'US'
+    uy = 'UY'
+    uz = 'UZ'
+    va = 'VA'
+    vc = 'VC'
+    ve = 'VE'
+    vg = 'VG'
+    vi = 'VI'
+    vn = 'VN'
+    vu = 'VU'
+    wf = 'WF'
+    ws = 'WS'
+    ye = 'YE'
+    yt = 'YT'
+    za = 'ZA'
+    zm = 'ZM'
+    zw = 'ZW'
 
 
 class Coupon(EbayModel):
@@ -34,8 +287,162 @@ class CouponRequest(EbayModel):
     )
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    aoa = 'AOA'
+    ars = 'ARS'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    dkk = 'DKK'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    gbp = 'GBP'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    chf = 'CHF'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    xcd = 'XCD'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    npr = 'NPR'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    xpf = 'XPF'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    ils = 'ILS'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    nok = 'NOK'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    ang = 'ANG'
+    syp = 'SYP'
+    szl = 'SZL'
+    xaf = 'XAF'
+    xof = 'XOF'
+    thb = 'THB'
+    tjs = 'TJS'
+    nzd = 'NZD'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    aud = 'AUD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    yer = 'YER'
+    eur = 'EUR'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
 class ErrorParameter(EbayModel):
@@ -54,8 +461,13 @@ class ErrorParameterV3(EbayModel):
     )
 
 
-class FeeEnum(EbayModel):
-    pass
+class FeeEnum(StrEnum):
+    additional_fee = 'ADDITIONAL_FEE'
+    battery_recycling_fee = 'BATTERY_RECYCLING_FEE'
+    electronic_recycling_fee = 'ELECTRONIC_RECYCLING_FEE'
+    mattress_recycling_fee = 'MATTRESS_RECYCLING_FEE'
+    tire_recycling_fee = 'TIRE_RECYCLING_FEE'
+    white_goods_disposable_tax = 'WHITE_GOODS_DISPOSABLE_TAX'
 
 
 class Image(EbayModel):
@@ -64,8 +476,8 @@ class Image(EbayModel):
     )
 
 
-class ImportTaxTypeEnum(EbayModel):
-    pass
+class ImportTaxTypeEnum(StrEnum):
+    gst = 'GST'
 
 
 class LegacyReference(EbayModel):
@@ -97,20 +509,32 @@ class LineItemInput(EbayModel):
     )
 
 
-class LineItemPaymentStatusEnum(EbayModel):
-    pass
+class LineItemPaymentStatusEnum(StrEnum):
+    paid = 'PAID'
+    pending = 'PENDING'
+    failed = 'FAILED'
+    not_paid = 'NOT_PAID'
 
 
-class LineItemStatusEnum(EbayModel):
-    pass
+class LineItemStatusEnum(StrEnum):
+    pending = 'PENDING'
+    fulfillment_in_progress = 'FULFILLMENT_IN_PROGRESS'
+    delivered = 'DELIVERED'
+    cancelled = 'CANCELLED'
 
 
-class PurchaseOrderPaymentStatusEnum(EbayModel):
-    pass
+class PurchaseOrderPaymentStatusEnum(StrEnum):
+    pending = 'PENDING'
+    paid = 'PAID'
+    failed = 'FAILED'
+    partially_paid = 'PARTIALLY_PAID'
 
 
-class PurchaseOrderStatusEnum(EbayModel):
-    pass
+class PurchaseOrderStatusEnum(StrEnum):
+    pending = 'PENDING'
+    fulfillment_in_progress = 'FULFILLMENT_IN_PROGRESS'
+    delivered = 'DELIVERED'
+    cancelled = 'CANCELLED'
 
 
 class Recipient(EbayModel):
@@ -126,8 +550,12 @@ class Recipient(EbayModel):
     )
 
 
-class RegionTypeEnum(EbayModel):
-    pass
+class RegionTypeEnum(StrEnum):
+    country_region = 'COUNTRY_REGION'
+    state_or_province = 'STATE_OR_PROVINCE'
+    country = 'COUNTRY'
+    world_region = 'WORLD_REGION'
+    worldwide = 'WORLDWIDE'
 
 
 class Seller(EbayModel):
@@ -136,8 +564,9 @@ class Seller(EbayModel):
     )
 
 
-class ServiceTypeEnum(EbayModel):
-    pass
+class ServiceTypeEnum(StrEnum):
+    authenticity_guarantee = 'AUTHENTICITY_GUARANTEE'
+    buyer_protection = 'BUYER_PROTECTION'
 
 
 class ShippingAddress(EbayModel):
@@ -248,12 +677,26 @@ class ShippingDetail(EbayModel):
     )
 
 
-class TaxClassificationEnum(EbayModel):
-    pass
+class TaxClassificationEnum(StrEnum):
+    item_tax = 'ITEM_TAX'
+    shipping_tax = 'SHIPPING_TAX'
+    service_tax = 'SERVICE_TAX'
+    handling_tax = 'HANDLING_TAX'
+    international_leg_tax = 'INTERNATIONAL_LEG_TAX'
+    domestic_leg_tax = 'DOMESTIC_LEG_TAX'
+    import_tax = 'IMPORT_TAX'
+    shipping_import_tax = 'SHIPPING_IMPORT_TAX'
+    import_duty_tax = 'IMPORT_DUTY_TAX'
 
 
-class TaxType(EbayModel):
-    pass
+class TaxType(StrEnum):
+    state_sales_tax = 'STATE_SALES_TAX'
+    vat = 'VAT'
+    province_sales_tax = 'PROVINCE_SALES_TAX'
+    region = 'REGION'
+    gst = 'GST'
+    buyer_protection = 'BUYER_PROTECTION'
+    psa = 'PSA'
 
 
 class UpdateQuantity(EbayModel):

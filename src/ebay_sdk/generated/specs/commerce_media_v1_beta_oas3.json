@@ -1803,7 +1803,7 @@
   "components": {
     "schemas": {
       "Classification": {
-        "type": "object",
+        "type": "string",
         "description": "A required metadata field for the <strong>createVideo</strong> method. The only classification option currently is <code>ITEM</code>. | - **ITEM**: The ITEM classification is designated to videos created using the createVideo method. Classification helps associate videos with a seller’s product or store.",
         "enum": [
           "ITEM"

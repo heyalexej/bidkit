@@ -3172,7 +3172,7 @@
         "description": "This type specifies information about the newly created package, such as its estimated costs, tracking number, and package ID value."
       },
       "AddressTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the type of an address. | - **SHIP_FROM_ADDRESS**: This enum value indicates that the address is a ship-from address. - **RETURN_ADDRESS**: This enum value indicates that the address is a return address.",
         "enum": [
           "SHIP_FROM_ADDRESS",
@@ -3466,7 +3466,7 @@
         "description": "This type specifies the package ID, payment cost, tracking number, and last-mile tracking number (if applicable) for the cloned package."
       },
       "ComplaintTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the types of complaints supported by the <b>createComplaint</b> method. | - **ABNORMAL_COLLECTION_COMPLAINT**: This enum value indicates that the complaint is being filed for an abnormal collection. This means there was an issue with the postman collecting the package. - **LOST_PACKAGE_COMPLAINT**: This enum value indicates that the complaint is being filed because a package has been lost in transit.",
         "enum": [
           "ABNORMAL_COLLECTION_COMPLAINT",
@@ -3578,7 +3578,7 @@
         "description": "This type specifies the fields used to create a consign address."
       },
       "ConsignTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the type of consign address. | - **PICK_UP**: This enum value indicates that the consign address is a pickup-from address. - **DROP_OFF**: This enum value indicates that the consign address is a drop-off address. - **FORWARD_DEPLOYMENT**: This enum value indicates that the consign address is a forward deployment address. Confirm with customer service before using this method. - **RDC**: This enum value indicates that the consign address is for seller direct drop-off to a SpeedPAKC sorting center. - **CN_POST_DROP_OFF**: This enum value indicates that the consign address is for seller drop-off to a China Post pickup site. - **CN_POST_PICK_UP**: This enum value indicates that the consign address is for seller request China Post pickup service. - **HK_POST_DROP_OFF**: This enum value indicates that the consign address is for seller drop-off to a Hong Kong Postal office site.",
         "enum": [
           "PICK_UP",
@@ -3830,7 +3830,7 @@
         "description": "This type defines the unique identifier of the newly created consign address."
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -4996,7 +4996,8 @@
         "enum": [
           "DDP",
           "DDU"
-        ]
+        ],
+        "type": "string"
       },
       "ItemRequest": {
         "type": "object",
@@ -5204,7 +5205,7 @@
         "description": "This type defines item information for items in a package."
       },
       "LiBatteryTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the type of a battery. | - **NO_BATTERY**: This enum value indicates that there is no battery in the package. - **LITHIUM_ION_BATTERY_PACKED_WITH_EQUIPMENT**: This enum value indicates the battery is a lithium ion battery, and is packaged separately from the product. - **LITHIUM_ION_BATTERY_CONTAINED_IN_EQUIPMENT**: This enum value indicates that the battery is a lithium ion battery, and is shipped already installed in the product - **LITHIUM_METAL_BATTERY_PACKED_WITH_EQUIPMENT**: This enum value indicates that the battery is a lithium metal battery, and is packaged separately from the product. - **LITHIUM_METAL_BATTERY_CONTAINED_IN_EQUIPMENT**: This enum value indicates that the battery is a lithium metal battery, and is shipped already installed in the product. - **DRY_PACKED_WITH_EQUIPMENT**: This enum value indicates that the battery is dry packed with equipment. - **SPECIAL_GOODS_WITH_NO_BATTERY**: This enum value indicates there are special goods with no batteries in the package.",
         "enum": [
           "NO_BATTERY",
@@ -5298,7 +5299,7 @@
         "description": "This type is used to specify the package information needed to create a package."
       },
       "PackageStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported package status possible for a package. | - **DECLARED_FAILED**: This enum value indicates the declaration of the package failed. - **PACKAGE_INFO_LACK**: This enum value indicates the package is lacking required information for shipping. - **NO_USEFUL_SHIPPING**: This enum value indicates that the package did not pair with any valid shipping service. - **SELECTED_SHIPPING**: This enum value indicates the package has selected shipping. - **APPLIED_TRACKING_CODE**: This enum value indicates the package has applied the tracking code. - **TO_BE_SHIPPED**: This enum value indicates that the package is waiting to be shipped. - **TO_BE_RECEIVED**: This enum value indicates that the package is waiting to be received. - **DELIVERED**: This enum value indicates that the package has been delivered. - **ON_SHIPPING**: This enum value indicates the package is in transit. - **DELETED**: This enum value indicates that the package has been shipped. - **SHIPPED_ERROR**: This enum value indicates that there was an error when shipping the package. - **DELIVERY_ERROR**: This enum value indicates that there was an error when delivering the package. - **RETURNED**: This enum value indicates that the package has been returned. - **EXCEPTION**: This enum value indicates that the package has a shipping exception. - **FDCVALIDATIONFAILED**: This enum value indicates that FDC validation has failed for the package. - **FDCVALIDATIONINPROGRESS**: This enum value indicates that FDC validation is in progress for the package. - **DELIVERY_EXCEPTION**: This enum value indicates that the package has a delivery exception.",
         "enum": [
           "DECLARED_FAILED",
@@ -5321,7 +5322,7 @@
         ]
       },
       "PickUpTimeTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the pickup time window associated with a pickup-from address. | - **TIME_14_16**: This enum value indicates that the pickup window for the consign address is between 14:00 and 16:00. - **TIME_16_18**: This enum value indicates that the pickup window for the consign address is between 16:00 and 18:00. ",
         "enum": [
           "TIME_14_16",

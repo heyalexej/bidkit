@@ -540,7 +540,7 @@
         "description": "This type returns the amount charged for the lead service."
       },
       "LeadStatus": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to indicate whether or not the seller has responded to the lead. | - **NEW**: The enumeration value in this field indicates there is a new response to the lead. - **RESPONDED**: The enumeration value in this field indicates that the seller has responded to the lead.",
         "enum": [
           "NEW",

@@ -190,7 +190,7 @@
         "description": "A complex type that contains recommendations and information on how to configure Promoted Listings ad campaigns."
       },
       "Basis": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type at describes the different ways, or the <i>basis</i>, by which the bid percentage value is calculated.<br /><br /><span class=\"tablenote\"><b>Note:</b> Currently, <code>ITEM</code> and <code>TRENDING</code> are the only valid bases.</span> | - **ITEM**: This enum value indicates the recommended ad rate for a promoted item based on its features and attributes.<br><br>The recommendation is calculated based on a variety of factors such as item attributes, seasonality, and past performance. This helps sellers determine which items they should promote in their listing campaigns, when to promote those items, and the ad rate that should be set for those items. - **TRENDING**: This enum value indicates the average ad rate, as set by other sellers, for similar promoted items.<br><br>Setting the <b>bidPercentage</b> of your ad campaign to this rate will help the items you list be competitive with other items in the marketplace by improving the chances that your listings in the ad campaign will be displayed more often in the marketplace. ",
         "enum": [
           "ITEM",
@@ -359,7 +359,7 @@
         "description": "This type defines the set of Promoted Listings ad recommendations."
       },
       "PromoteWithAd": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type describes whether or not eBay recommends placing the associated listing in a Promoted Listings ad campaign. | - **RECOMMENDED**: Recommended listings are those with the highest potential of benefiting from being included in a Promoted Listings ad campaign.<br><br>This recommendation is determined by reviewing current marketplace trends, such as buyer demand and the competition in the item’s category, and eBay suggests you promote the <code>RECOMMENDED</code> listings first, although you can promote any of your eligible listings for greater visibility. - **UNDETERMINED**: eBay cannot determine the benefit of placing the associated listing in a Promoted Listings ad campaign.",
         "enum": [
           "RECOMMENDED",

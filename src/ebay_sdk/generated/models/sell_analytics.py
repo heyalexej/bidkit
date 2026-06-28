@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import Any
 
 from ebay_sdk.models import EbayModel
@@ -17,20 +18,23 @@ class BenchmarkMetadata(EbayModel):
     )
 
 
-class BenchmarkTypeEnum(EbayModel):
-    pass
+class BenchmarkTypeEnum(StrEnum):
+    peer_benchmark = 'PEER_BENCHMARK'
 
 
-class CustomerServiceMetricTypeEnum(EbayModel):
-    pass
+class CustomerServiceMetricTypeEnum(StrEnum):
+    item_not_as_described = 'ITEM_NOT_AS_DESCRIBED'
+    item_not_received = 'ITEM_NOT_RECEIVED'
 
 
-class CycleTypeEnum(EbayModel):
-    pass
+class CycleTypeEnum(StrEnum):
+    current = 'CURRENT'
+    projected = 'PROJECTED'
 
 
-class DimensionTypeEnum(EbayModel):
-    pass
+class DimensionTypeEnum(StrEnum):
+    listing_category = 'LISTING_CATEGORY'
+    shipping_region = 'SHIPPING_REGION'
 
 
 class Distribution(EbayModel):
@@ -55,12 +59,53 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class EvaluationTypeEnum(EbayModel):
-    pass
+class EvaluationTypeEnum(StrEnum):
+    current = 'CURRENT'
+    projected = 'PROJECTED'
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_at = 'EBAY_AT'
+    ebay_au = 'EBAY_AU'
+    ebay_be = 'EBAY_BE'
+    ebay_ca = 'EBAY_CA'
+    ebay_ch = 'EBAY_CH'
+    ebay_cn = 'EBAY_CN'
+    ebay_cz = 'EBAY_CZ'
+    ebay_de = 'EBAY_DE'
+    ebay_dk = 'EBAY_DK'
+    ebay_es = 'EBAY_ES'
+    ebay_fi = 'EBAY_FI'
+    ebay_fr = 'EBAY_FR'
+    ebay_gb = 'EBAY_GB'
+    ebay_gr = 'EBAY_GR'
+    ebay_hk = 'EBAY_HK'
+    ebay_hu = 'EBAY_HU'
+    ebay_id = 'EBAY_ID'
+    ebay_ie = 'EBAY_IE'
+    ebay_il = 'EBAY_IL'
+    ebay_in = 'EBAY_IN'
+    ebay_it = 'EBAY_IT'
+    ebay_jp = 'EBAY_JP'
+    ebay_my = 'EBAY_MY'
+    ebay_nl = 'EBAY_NL'
+    ebay_no = 'EBAY_NO'
+    ebay_nz = 'EBAY_NZ'
+    ebay_pe = 'EBAY_PE'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_pr = 'EBAY_PR'
+    ebay_pt = 'EBAY_PT'
+    ebay_ru = 'EBAY_RU'
+    ebay_se = 'EBAY_SE'
+    ebay_sg = 'EBAY_SG'
+    ebay_th = 'EBAY_TH'
+    ebay_tw = 'EBAY_TW'
+    ebay_us = 'EBAY_US'
+    ebay_vn = 'EBAY_VN'
+    ebay_za = 'EBAY_ZA'
+    ebay_half_us = 'EBAY_HALF_US'
+    ebay_motors_us = 'EBAY_MOTORS_US'
 
 
 class MetricDistribution(EbayModel):
@@ -74,8 +119,11 @@ class MetricDistribution(EbayModel):
     )
 
 
-class ProgramEnum(EbayModel):
-    pass
+class ProgramEnum(StrEnum):
+    program_de = 'PROGRAM_DE'
+    program_uk = 'PROGRAM_UK'
+    program_us = 'PROGRAM_US'
+    program_global = 'PROGRAM_GLOBAL'
 
 
 class RangeValue(EbayModel):
@@ -103,12 +151,16 @@ class RangeValue(EbayModel):
     )
 
 
-class RatingAdjustmentTypeEnum(EbayModel):
-    pass
+class RatingAdjustmentTypeEnum(StrEnum):
+    override = 'OVERRIDE'
 
 
-class RatingTypeEnum(EbayModel):
-    pass
+class RatingTypeEnum(StrEnum):
+    low = 'LOW'
+    average = 'AVERAGE'
+    high = 'HIGH'
+    very_high = 'VERY_HIGH'
+    not_applicable = 'NOT_APPLICABLE'
 
 
 class SortField(EbayModel):
@@ -122,16 +174,25 @@ class SortField(EbayModel):
     )
 
 
-class SrlDataTypeEnum(EbayModel):
-    pass
+class SrlDataTypeEnum(StrEnum):
+    number = 'NUMBER'
+    string = 'STRING'
+    date = 'DATE'
 
 
-class SspDataTypeEnum(EbayModel):
-    pass
+class SspDataTypeEnum(StrEnum):
+    amount = 'AMOUNT'
+    boolean = 'BOOLEAN'
+    date = 'DATE'
+    fraction = 'FRACTION'
+    number = 'NUMBER'
+    string = 'STRING'
 
 
-class StandardsLevelEnum(EbayModel):
-    pass
+class StandardsLevelEnum(StrEnum):
+    top_rated = 'TOP_RATED'
+    above_standard = 'ABOVE_STANDARD'
+    below_standard = 'BELOW_STANDARD'
 
 
 class Value(EbayModel):

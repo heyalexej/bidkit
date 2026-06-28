@@ -10,8 +10,8 @@ from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class Classification(EbayModel):
-    pass
+class Classification(StrEnum):
+    item = 'ITEM'
 
 
 class CreateImageFromUrlRequest(EbayModel):

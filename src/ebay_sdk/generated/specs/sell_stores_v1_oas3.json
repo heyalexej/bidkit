@@ -1052,7 +1052,7 @@
         "description": "This type is used to provide url of the seller's store logo."
       },
       "StoreTaskStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to provide the processing status of a task. | - **COMPLETED**: The category changes completed successfully. - **FAILED**: The category changes failed. - **PENDING**: The category changes are still pending.",
         "enum": [
           "COMPLETED",
@@ -1089,7 +1089,7 @@
         "description": "This type is used to provide details about the status of the Store Task."
       },
       "StoreTaskTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is used to provide the kind of store task being performed. | - **ADD_STORE_CATEGORY**: Add a single category to the store. - **MOVE_STORE_CATEGORY**: Move a single category from one place in the store category structure to another. - **DELETE_STORE_CATEGORY**: Delete a single category from the store.",
         "enum": [
           "ADD_STORE_CATEGORY",

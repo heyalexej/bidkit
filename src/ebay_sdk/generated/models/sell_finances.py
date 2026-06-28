@@ -4,12 +4,15 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class BookingEntryEnum(EbayModel):
-    pass
+class BookingEntryEnum(StrEnum):
+    credit = 'CREDIT'
+    debit = 'DEBIT'
 
 
 class Buyer(EbayModel):
@@ -29,8 +32,162 @@ class BuyerWithId(EbayModel):
     )
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    aoa = 'AOA'
+    ars = 'ARS'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    dkk = 'DKK'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    gbp = 'GBP'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    chf = 'CHF'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    xcd = 'XCD'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    npr = 'NPR'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    xpf = 'XPF'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    ils = 'ILS'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    nok = 'NOK'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    ang = 'ANG'
+    syp = 'SYP'
+    szl = 'SZL'
+    xaf = 'XAF'
+    xof = 'XOF'
+    thb = 'THB'
+    tjs = 'TJS'
+    nzd = 'NZD'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    aud = 'AUD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    yer = 'YER'
+    eur = 'EUR'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
 class ErrorParameter(EbayModel):
@@ -38,8 +195,64 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FeeTypeEnum(EbayModel):
-    pass
+class FeeTypeEnum(StrEnum):
+    below_standard_fee = 'BELOW_STANDARD_FEE'
+    below_standard_shipping_fee = 'BELOW_STANDARD_SHIPPING_FEE'
+    final_value_fee_fixed_per_order = 'FINAL_VALUE_FEE_FIXED_PER_ORDER'
+    final_value_fee = 'FINAL_VALUE_FEE'
+    international_fee = 'INTERNATIONAL_FEE'
+    high_item_not_as_described_fee = 'HIGH_ITEM_NOT_AS_DESCRIBED_FEE'
+    high_item_not_as_described_shipping_fee = 'HIGH_ITEM_NOT_AS_DESCRIBED_SHIPPING_FEE'
+    payment_processing_fee = 'PAYMENT_PROCESSING_FEE'
+    final_value_shipping_fee = 'FINAL_VALUE_SHIPPING_FEE'
+    insertion_fee = 'INSERTION_FEE'
+    bold_fee = 'BOLD_FEE'
+    finance_fee = 'FINANCE_FEE'
+    category_featured_fee = 'CATEGORY_FEATURED_FEE'
+    nsfcheck_fee = 'NSFCHECK_FEE'
+    promotional_credit = 'PROMOTIONAL_CREDIT'
+    gallery_fee = 'GALLERY_FEE'
+    featured_gallery_fee = 'FEATURED_GALLERY_FEE'
+    reserve_price_fee = 'RESERVE_PRICE_FEE'
+    ipixphoto_fee = 'IPIXPHOTO_FEE'
+    large_picture_fee = 'LARGE_PICTURE_FEE'
+    ebay_store_subscription_fee = 'EBAY_STORE_SUBSCRIPTION_FEE'
+    buy_it_now_fee = 'BUY_IT_NOW_FEE'
+    subtitle_fee = 'SUBTITLE_FEE'
+    international_listing_fee = 'INTERNATIONAL_LISTING_FEE'
+    pro_pack_bundle_fee = 'PRO_PACK_BUNDLE_FEE'
+    marketplace_research_pro_subscription_fee = (
+        'MARKETPLACE_RESEARCH_PRO_SUBSCRIPTION_FEE'
+    )
+    vehicle_local_subscription_fee = 'VEHICLE_LOCAL_SUBSCRIPTION_FEE'
+    vehicle_local_insertion_fee = 'VEHICLE_LOCAL_INSERTION_FEE'
+    value_pack_bundle_fee = 'VALUE_PACK_BUNDLE_FEE'
+    pro_pack_plus_bundle_fee = 'PRO_PACK_PLUS_BUNDLE_FEE'
+    gallery_plus_fee = 'GALLERY_PLUS_FEE'
+    ebay_motors_pro_fee = 'EBAY_MOTORS_PRO_FEE'
+    private_listing_fee = 'PRIVATE_LISTING_FEE'
+    auction_end_early_fee = 'AUCTION_END_EARLY_FEE'
+    store_subscription_early_termination_fee = (
+        'STORE_SUBSCRIPTION_EARLY_TERMINATION_FEE'
+    )
+    ad_fee = 'AD_FEE'
+    ebay_plus_subscription_fee = 'EBAY_PLUS_SUBSCRIPTION_FEE'
+    vehicle_subscription_fee = 'VEHICLE_SUBSCRIPTION_FEE'
+    co_funding_coupon_fee = 'CO_FUNDING_COUPON_FEE'
+    payment_dispute_fee = 'PAYMENT_DISPUTE_FEE'
+    premium_ad_fees = 'PREMIUM_AD_FEES'
+    vehicles_basic_package_fee = 'VEHICLES_BASIC_PACKAGE_FEE'
+    vehicles_plus_package_fee = 'VEHICLES_PLUS_PACKAGE_FEE'
+    vehicles_premium_package_fee = 'VEHICLES_PREMIUM_PACKAGE_FEE'
+    deposit_processing_fee = 'DEPOSIT_PROCESSING_FEE'
+    express_payout_fee = 'EXPRESS_PAYOUT_FEE'
+    tax_deduction_at_source = 'TAX_DEDUCTION_AT_SOURCE'
+    income_tax_withholding = 'INCOME_TAX_WITHHOLDING'
+    vat_withholding = 'VAT_WITHHOLDING'
+    bank_payout_fee = 'BANK_PAYOUT_FEE'
+    charity_donation = 'CHARITY_DONATION'
+    regulatory_operating_fee = 'REGULATORY_OPERATING_FEE'
+    other_fees = 'OTHER_FEES'
 
 
 class FundingSource(EbayModel):
@@ -92,8 +305,12 @@ class PayoutInstrument(EbayModel):
     )
 
 
-class PayoutStatusEnum(EbayModel):
-    pass
+class PayoutStatusEnum(StrEnum):
+    initiated = 'INITIATED'
+    succeeded = 'SUCCEEDED'
+    reversed = 'REVERSED'
+    retryable_failed = 'RETRYABLE_FAILED'
+    terminal_failed = 'TERMINAL_FAILED'
 
 
 class RangeValue(EbayModel):
@@ -103,12 +320,22 @@ class RangeValue(EbayModel):
     start: str | None = None
 
 
-class ReferenceTypeEnum(EbayModel):
-    pass
+class ReferenceTypeEnum(StrEnum):
+    cancellation_id = 'CANCELLATION_ID'
+    case_id = 'CASE_ID'
+    invoice = 'INVOICE'
+    item_id = 'ITEM_ID'
+    order_id = 'ORDER_ID'
+    payments_dispute_id = 'PAYMENTS_DISPUTE_ID'
+    refund_id = 'REFUND_ID'
+    loan_repayment_id = 'LOAN_REPAYMENT_ID'
+    return_id = 'RETURN_ID'
+    payout_id = 'PAYOUT_ID'
 
 
-class RegionTypeEnum(EbayModel):
-    pass
+class RegionTypeEnum(StrEnum):
+    country = 'COUNTRY'
+    state_or_province = 'STATE_OR_PROVINCE'
 
 
 class SortField(EbayModel):
@@ -116,16 +343,31 @@ class SortField(EbayModel):
     field: str | None = None
 
 
-class TaxTypeEnum(EbayModel):
-    pass
+class TaxTypeEnum(StrEnum):
+    vat = 'VAT'
 
 
-class TransactionStatusEnum(EbayModel):
-    pass
+class TransactionStatusEnum(StrEnum):
+    funds_on_hold = 'FUNDS_ON_HOLD'
+    funds_processing = 'FUNDS_PROCESSING'
+    funds_available_for_payout = 'FUNDS_AVAILABLE_FOR_PAYOUT'
+    payout = 'PAYOUT'
+    completed = 'COMPLETED'
+    failed = 'FAILED'
 
 
-class TransactionTypeEnum(EbayModel):
-    pass
+class TransactionTypeEnum(StrEnum):
+    sale = 'SALE'
+    refund = 'REFUND'
+    credit = 'CREDIT'
+    dispute = 'DISPUTE'
+    shipping_label = 'SHIPPING_LABEL'
+    transfer = 'TRANSFER'
+    non_sale_charge = 'NON_SALE_CHARGE'
+    adjustment = 'ADJUSTMENT'
+    withdrawal = 'WITHDRAWAL'
+    loan_repayment = 'LOAN_REPAYMENT'
+    purchase = 'PURCHASE'
 
 
 class Amount(EbayModel):

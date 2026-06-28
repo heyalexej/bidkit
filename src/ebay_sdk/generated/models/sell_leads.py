@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
@@ -59,8 +61,9 @@ class LeadFee(EbayModel):
     )
 
 
-class LeadStatus(EbayModel):
-    pass
+class LeadStatus(StrEnum):
+    new = 'NEW'
+    responded = 'RESPONDED'
 
 
 class Question(EbayModel):

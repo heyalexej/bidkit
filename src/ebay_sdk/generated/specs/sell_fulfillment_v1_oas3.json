@@ -1870,7 +1870,7 @@
         "description": "This type is used by base request of the <strong>acceptPaymentDispute</strong> method."
       },
       "AcknowledgeStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is reserved for internal or future use. | - **UNACKNOWLEDGED**: This value is reserved for internal or future use. - **ACKNOWLEDGED**: This value is reserved for internal or future use.",
         "enum": [
           "UNACKNOWLEDGED",
@@ -1878,7 +1878,7 @@
         ]
       },
       "ActivityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the different activities that can occur with a payment dispute. Different actors perform different activities. <p> <span class=\"tablenote\"><strong>Note:</strong> Presently, there is not an API method for the seller to appeal a dispute decision. <a href=\"https://www.ebay.com/help/selling/managing-returns-refunds/appeal-ebays-decision-return-missing-item-sellers?id=4369#section2 \" target=\"_blank\">How to appeal a decision</a> contains the process for starting an appeal.</span></p> | - **DISPUTE_OPENED**: This enumeration value indicates that the buyer opened up a payment dispute against the seller. - **ADDITIONAL_EVIDENCE_REQUEST**: This enumeration value indicates that eBay requested additional evidence from the seller to help settle the payment dispute. - **EVIDENCE_PROVIDED&**: This enumeration value indicates that the seller submitted an evidence file to help settle the payment dispute in their favor. - **EVIDENCE_REQUEST_OVERDUE**: This enumeration value indicates that the seller's response to an evidence request from eBay is overdue. - **DEFENCE_EXECUTED**: This enumeration value indicates that eBay has provided the seller's submitted evidence to the payment processor. - **DISPUTE_CLOSED**: This enumeration value indicates that the payment dispute has been closed. The seller would use a getPaymentDispute call and look for the resolution.reasonForClosure value in the response to see the outcome. - **SELLER_ACCEPT**: This enumeration value indicates that the seller accepted the payment dispute and agrees to issue a refund to buyer. - **SELLER_ACCEPT_WITH_RETURN** - This enumeration value indicates that the seller has accepted the payment dispute and agrees to issue a refund to buyer as soon as the item is returned to the seller. - **SELLER_CONTEST**: This enumeration value indicates that the seller is contesting the payment dispute. - **DISPUTE_UPDATED**: This enumeration value indicates that the payment dispute has been updated. - **SELLER_RESPONSE_OVERDUE**: This enumeration value indicates that the seller's response to the payment dispute is overdue. - **DISPUTE_REOPENED**: This enumeration value indicates that a previously closed payment dispute has been reopened. - **DISPUTE_REVERSED**: This enumeration value indicates that in the case of a dispute that was previously closed as Seller Lost, the decision has been reversed to Seller Won. eBay will credit back to the seller the amount that was recouped by eBay when the dispute was originally closed as Seller Lost. - **APPEAL_DENIED**: This enumeration value indicates eBay has declined the seller's appeal and upheld the original decision. - **APPEAL_GRANTED**: This enumeration value indicates eBay has granted the seller's appeal.",
         "enum": [
           "DISPUTE_OPENED",
@@ -1899,7 +1899,7 @@
         ]
       },
       "ActorEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible actors that may perform an action on a payment dispute. | - **SELLER**: This enumeration value indicates that the seller was the actor that performed the corresponding activity on the payment dispute. - **BUYER**: This enumeration value indicates that the buyer was the actor that performed the corresponding activity on the payment dispute. - **CS_AGENT**: This enumeration value indicates that eBay customer service was the actor that performed the corresponding activity on the payment dispute. - **SYSTEM**: This enumeration value indicates that the system was the actor that performed the corresponding activity on the payment dispute.",
         "enum": [
           "SELLER",
@@ -2064,7 +2064,7 @@
         "description": "This type contains information used by the installation provider concerning appointment details selected by the buyer."
       },
       "AppointmentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the appointment status of tire installation values. | - **ON_HOLD**: The appointment is on hold. - **CONFIRMED**: The appointment has been confirmed. - **CANCELLED**: The appointment has been canceled by the customer. - **FULFILLED**: The appointment has been completed.",
         "enum": [
           "ON_HOLD",
@@ -2074,7 +2074,7 @@
         ]
       },
       "AppointmentTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for appointment values. | - **TIME_SLOT**: Indicates this appointment has both start and end date-times. - **MACRO**: Indicates this appointment has both start date-time (<strong>appointmentStartTime</strong>) and may have a service provider appointment date (<strong>serviceProviderAppointmentDate</strong>).",
         "enum": [
           "TIME_SLOT",
@@ -2082,7 +2082,7 @@
         ]
       },
       "AppointmentWindowEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for window slot values. | - **MORNING**: Appointment window starts before noon. - **EVENING**: Appointment window starts after noon.",
         "enum": [
           "MORNING",
@@ -2090,7 +2090,7 @@
         ]
       },
       "AuthenticityVerificationReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the possible outcomes of an authentication verification inspection on an order line item. | - **NOT_AUTHENTIC**: This enumerated value indicates that the order line item could not be authenticated. This means that the order line item has failed the authenticity verification inspection. - **NOT_AS_DESCRIBED**: This enumeration value indicates that the order line item is not as described. This means that the order line item has failed the authenticity verification inspection because the order line item does not match the order line item's description. - **CUSTOMIZED**: This enumeration value indicates that the order line item is customized and will be sent to the buyer. This means that the order line item has been altered or customized and cannot be labeled as authentic. - **MISCATEGORIZED**: This enumeration value indicates that the order line item is miscategorized and will be sent to the buyer. This means that the item was in the wrong eBay category, and cannot be labeled as authentic. - **NOT_AUTHENTIC_NO_RETURN**: This enumeration value indicates that the order line item was found as counterfeit and cannot be returned to the seller because of legal constraints.",
         "enum": [
           "NOT_AUTHENTIC",
@@ -2101,7 +2101,7 @@
         ]
       },
       "AuthenticityVerificationStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines all possible statuses of an order line item going through an authenticity verification inspection. | - **PENDING**: This enumerated value indicates that the authentication status is PENDING. The item's authenticity is still unknown. - **PASSED**: This enumerated value indicates that the authentication status has PASSED. The item is authentic. - **FAILED**: This enumerated value indicates that the authentication has FAILED. The item's authenticity could not be verified. - **PASSED_WITH_EXCEPTION**: This enumerated value indicates that the authentication status has PASSED_WITH_EXCEPTION. There may be legal reasons or requirements such that the item cannot be labeled authentic.",
         "enum": [
           "PENDING",
@@ -2168,7 +2168,7 @@
         "description": "This type contains information about a buyer request to cancel an order."
       },
       "CancelRequestStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the possible status of an order cancellation request. | - **COMPLETED**: This value indicates that the order cancellation request was successfully processed and completed. - **REJECTED**: This value indicates that the buyer's request to cancel the order has been rejected by the seller. - **REQUESTED**: This value indicates that the buyer has requested that a particular order be cancelled, but the seller has yet to accept or reject the cancellation request.",
         "enum": [
           "COMPLETED",
@@ -2177,7 +2177,7 @@
         ]
       },
       "CancelStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the states that can apply to an order with regard to cancellation. | - **CANCELED**: This value indicates the order has been cancelled. - **IN_PROGRESS**: This value indicated that one or more cancellation requests have been made against the order. - **NONE_REQUESTED**: This value indicates that no cancellation requests have been made against the order.",
         "enum": [
           "CANCELED",
@@ -2224,14 +2224,14 @@
         "description": "This type is used to display the charge type and the amount of the charge against the buyer."
       },
       "ChargeTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains the type of charges that may be returned under the <strong>charges</strong> array. | - **BUYER_PROTECTION**: This enumeration value indicates that the buyer was charged a Buyer Protection fee. This fee applies only when a buyer purchases an item from a private seller on the eBay UK marketplace and includes both the fee and applicable tax against the fee.",
         "enum": [
           "BUYER_PROTECTION"
         ]
       },
       "CollectionMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the collection methods that are used to collect either 'Collect and Remit' sales tax in the US, or 'Good and Services' tax in Australia and New Zealand.<br><br><span class=\"tablenote\"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span> | - **INVOICE**: This enumeration value is for future use only and will not currently be returned in the <strong>collectionMethod</strong> field. - **NET**: This enumeration value is always returned in the <strong>collectionMethod</strong> field for 'Collect and Remit' taxes, but the <strong>collectionMethod</strong> field is currently for future use.",
         "enum": [
           "INVOICE",
@@ -2261,7 +2261,7 @@
         "description": "This type is used by the request payload of the <strong>contestPaymentDispute</strong> method."
       },
       "CountryCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the two-letter <a href=\"https://www.iso.org/iso/country_codes\" target=\"_blank\">ISO 3166&#8209;1 Alpha&#8209;2</a> code representing a country. | - **AD**: Andorra - **AE**: United Arab Emirates - **AF**: Afghanistan - **AG**: Antigua and Barbuda - **AI**: Anguilla - **AL**: Albania - **AM**: Armenia - **AN**: Netherlands Antilles - **AO**: Angola - **AQ**: Antarctica - **AR**: Argentina - **AS**: American Samoa - **AT**: Austria - **AU**: Australia - **AW**: Aruba - **AX**: Aland Islands - **AZ**: Azerbaijan - **BA**: Bosnia and Herzegovina - **BB**: Barbados - **BD**: Bangladesh - **BE**: Belgium - **BF**: Burkina Faso - **BG**: Bulgaria - **BH**: Bahrain - **BI**: Burundi - **BJ**: Benin - **BL**: Saint Barthelemy - **BM**: Bermuda - **BN**: Brunei Darussalam - **BO**: Bolivia - **BQ**: Bonaire, Sint Eustatius, and Saba - **BR**: Brazil - **BS**: Bahamas - **BT**: Bhutan - **BV**: Bouvet Island - **BW**: Botswana - **BY**: Belarus - **BZ**: Belize - **CA**: Canada - **CC**: Cocos (Keeling) Islands - **CD**: The Democratic Republic of the Congo - **CF**: Central African Republic - **CG**: Congo - **CH**: Switzerland - **CI**: Cote d'Ivoire - **CK**: Cook Islands - **CL**: Chile - **CM**: Cameroon - **CN**: China - **CO**: Colombia - **CR**: Costa Rica - **CU**: Cuba - **CV**: Cape Verde - **CW**: Curacao - **CX**: Christmas Island - **CY**: Cyprus - **CZ**: Czech Republic - **DE**: Germany - **DJ**: Djibouti - **DK**: Denmark - **DM**: Dominica - **DO**: Dominican Republic - **DZ**: Algeria - **EC**: Ecuador - **EE**: Estonia - **EG**: Egypt - **EH**: Western Sahara - **ER**: Eritrea - **ES**: Spain - **ET**: Ethiopia - **FI**: Finland - **FJ**: Fiji - **FK**: Falkland Islands (Malvinas) - **FM**: Federated States of Micronesia - **FO**: Faroe Islands - **FR**: France - **GA**: Gabon - **GB**: United Kingdom - **GD**: Grenada - **GE**: Georgia - **GF**: French Guiana - **GG**: Guernsey - **GH**: Ghana - **GI**: Gibraltar - **GL**: Greenland - **GM**: Gambia - **GN**: Guinea - **GP**: Guadeloupe - **GQ**: Equatorial Guinea - **GR**: Greece - **GS**: South Georgia and the South Sandwich Islands - **GT**: Guatemala - **GU**: Guam - **GW**: Guinea-Bissau - **GY**: Guyana - **HK**: Hong Kong - **HM**: Heard Island and McDonald Islands - **HN**: Honduras - **HR**: Croatia - **HT**: Haiti - **HU**: Hungary - **ID**: Indonesia - **IE**: Ireland - **IL**: Israel - **IM**: Isle of Man - **IN**: India - **IO**: British Indian Ocean Territory - **IQ**: Iraq - **IR**: Islamic Republic of Iran - **IS**: Iceland - **IT**: Italy - **JE**: Jersey - **JM**: Jamaica - **JO**: Jordan - **JP**: Japan - **KE**: Kenya - **KG**: Kyrgyzstan - **KH**: Cambodia - **KI**: Kiribati - **KM**: Comoros - **KN**: Saint Kitts and Nevis - **KP**: Democratic People's Republic of Korea - **KR**: Republic of Korea - **KW**: Kuwait - **KY**: Cayman Islands - **KZ**: Kazakhstan - **LA**: Lao People's Democratic Republic - **LB**: Lebanon - **LC**: Saint Lucia - **LI**: Liechtenstein - **LK**: Sri Lanka - **LR**: Liberia - **LS**: Lesotho - **LT**: Lithuania - **LU**: Luxembourg - **LV**: Latvia - **LY**: Libyan Arab Jamahiriya - **MA**: Morocco - **MC**: Monaco - **MD**: Republic of Moldova - **ME**: Montenegro - **MF**: Saint Martin (French part) - **MG**: Madagascar - **MH**: Marshall Islands - **MK**: The Former Yugoslav Republic of Macedonia - **ML**: Mali - **MM**: Myanmar - **MN**: Mongolia - **MO**: Macao - **MP**: Northern Mariana Islands - **MQ**: Martinique - **MR**: Mauritania - **MS**: Montserrat - **MT**: Malta - **MU**: Mauritius - **MV**: Maldives - **MW**: Malawi - **MX**: Mexico - **MY**: Malaysia - **MZ**: Mozambique - **NA**: Namibia - **NC**: New Caledonia - **NE**: Niger - **NF**: Norfolk Island - **NG**: Nigeria - **NI**: Nicaragua - **NL**: Netherlands - **NO**: Norway - **NP**: Nepal - **NR**: Nauru - **NU**: Niue - **NZ**: New Zealand - **OM**: Oman - **PA**: Panama - **PE**: Peru - **PF**: French Polynesia. Includes Tahiti - **PG**: Papua New Guinea - **PH**: Philippines - **PK**: Pakistan - **PL**: Poland - **PM**: Saint Pierre and Miquelon - **PN**: Pitcairn - **PR**: Puerto Rico - **PS**: Palestinian territory Occupied - **PT**: Portugal - **PW**: Palau - **PY**: Paraguay - **QA**: Qatar - **RE**: Reunion - **RO**: Romania - **RS**: Serbia - **RU**: Russian Federation - **RW**: Rwanda - **SA**: Saudi Arabia - **SB**: Solomon Islands - **SC**: Seychelles - **SD**: Sudan - **SE**: Sweden - **SG**: Singapore - **SH**: Saint Helena - **SI**: Slovenia - **SJ**: Svalbard and Jan Mayen - **SK**: Slovakia - **SL**: Sierra Leone - **SM**: San Marino - **SN**: Senegal - **SO**: Somalia - **SR**: Suriname - **ST**: Sao Tome and Principe - **SV**: El Salvador - **SX**: Sint Maarten (Dutch part) - **SY**: Syrian Arab Republic - **SZ**: Swaziland - **TC**: Turks and Caicos Islands - **TD**: Chad - **TF**: French Southern Territories - **TG**: Togo - **TH**: Thailand - **TJ**: Tajikistan - **TK**: Tokelau - **TL**: Timor-Leste - **TM**: Turkmenistan - **TN**: Tunisia - **TO**: Tonga - **TR**: Turkey - **TT**: Trinidad and Tobago - **TV**: Tuvalu - **TW**: Taiwan - **TZ**: Tanzania - **UA**: Ukraine - **UG**: Uganda - **UM**: United States Minor Outlying Islands - **US**: United States - **UY**: Uruguay - **UZ**: Uzbekistan - **VA**: Holy See (Vatican City state) - **VC**: Saint Vincent and the Grenadines - **VE**: Venezuela - **VG**: British Virgin Islands - **VI**: the U.S. Virgin Islands - **VN**: Vietnam - **VU**: Vanuatu - **WF**: Wallis and Futuna - **WS**: Samoa - **YE**: Yemen - **YT**: Mayotte - **ZA**: South Africa - **ZM**: Zambia - **ZW**: Zimbabwe",
         "enum": [
           "AD",
@@ -2516,7 +2516,7 @@
         ]
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -2779,7 +2779,7 @@
         "description": "This type is used by the <strong>evidence</strong> array that is returned in the <strong>getPaymentDispute</strong> response if one or more evidential documents are associated with the payment dispute. "
       },
       "DisputeReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible reasons why a buyer may open up a payment dispute against a seller. | - **TRANSACTION_ISSUE**: This enumeration value may be returned if a buyer opened a payment dispute against the seller, but eBay cannot determine the exact reason why the payment dispute was opened. - **FRAUD**: This enumeration value indicates that the payment dispute was opened because the buyer did not recognize the transaction. - **ITEM_NOT_RECEIVED**: This enumeration value indicates that the payment dispute was opened because the buyer has paid for the order, but has yet to recieve the item. - **SIGNIFICANTLY_NOT_AS_DESCRIBED**: This enumeration value indicates that the payment dispute was opened because the buyer claims that the received item is 'Significantly Not As Described' (aka SNAD case). Note: If the Dispute Reason is SIGNIFICANTLY_NOT_AS_DESCRIBED, returnAddress is required when contesting a payment dispute. - **CREDIT_NOT_PROCESSED**: This enumeration value indicates that the payment dispute was opened because the buyer has yet to receive the expected refund. - **COUNTERFEIT**: This enumeration value indicates that the payment dispute was opened due to a possible counterfeit or inauthentic item. - **DUPLICATE_AMOUNT**: This enumeration value indicates that the payment dispute was opened because the buyer was charged twice. - **INCORRECT_AMOUNT**: This enumeration value indicates that the payment dispute was opened due to the buyer being charged an incorrect amount. - **CANCELLATION**: This enumeration value indicates that the payment dispute was opened because the order was cancelled but a refund has yet to be issued. - **RETURN_REFUND_NOT_PROCESSED**: This enumeration value indicates that the payment dispute was opened because the buyer returned an item, but the seller has yet to issue a refund. - **AUTHORIZATION_FAILED**: This enumeration value indicates that the payment dispute was opened because the required authorization for the payment failed.",
         "enum": [
           "TRANSACTION_ISSUE",
@@ -2796,7 +2796,7 @@
         ]
       },
       "DisputeStateEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the different states of a payment dispute. | - **OPEN**: This enumeration value indicates the payment dispute is open, but there is no action required by the seller at the present time. - **ACTION_NEEDED**: This enumeration value indicates the payment dispute is open, and the seller is required to take action at the present time. The seller's choices for action are returned in the <strong>availableChoices</strong> array of the <strong>getPaymentDispute</strong> response. The seller should respond by the date/time specified in the <strong>respondByDate</strong> field in the <strong>getPaymentDispute</strong> response. - **CLOSED**: This enumeration value indicates the payment dispute is closed. The reason for the closure of the payment dispute can be viewed in the <strong>resolution.reasonForClosure</strong> field of the <strong>getPaymentDispute</strong> response, and closure date can be found in the <strong>closedDate/<strong> field of the </strong>getPaymentDispute<strong> response.",
         "enum": [
           "OPEN",
@@ -2928,7 +2928,7 @@
         "description": "This type describes the VAT tax details. The eBay VAT tax type and the eBay VAT identifier number will be returned if a VAT tax is applicable for the order.<br>"
       },
       "EbayVaultFulfillmentTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type specifies which <strong>EbayVaultProgram</strong> has been selected for an order. | - **SELLER_TO_VAULT**: This enumeration type indicates that the seller will ship the order to an authenticator. When using this program, <strong>fulfillmentInstructionsType</strong> will be set to <code>SHIP_TO</code> and the order will be shipped to the authenticator's shipping address. - **VAULT_TO_VAULT**: This enumeration type indicates that eBay will ship the order from an eBay vault to the buyer's vault. - **VAULT_TO_BUYER**: This enumeration type indicates that eBay will ship the order from an eBay vault to the shipping address provided by the buyer.",
         "enum": [
           "SELLER_TO_VAULT",
@@ -3107,7 +3107,7 @@
         "description": "This type is used by the <strong>evidenceRequests</strong> array that is returned in the <strong>getPaymentDispute</strong> response if one or more evidential documents are being requested to help resolve the payment dispute."
       },
       "EvidenceTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the different types of evidential documentation. | - **PROOF_OF_DELIVERY**: <strong>Important!</strong> This enum value is currently not supported for adding shipment tracking information for proof of delivery. Instead, use the createShippingFulfillment method to provide shipment tracking information evidence for a dispute.<br>This enumeration value indicates that the evidential documentation is for proof of order delivery. An example is shipment tracking information from a shipping carrier. A PROOF_OF_DELIVERY document might be needed if the buyer initiated the payment dispute for not receiving the item. - **PROOF_OF_AUTHENTICITY**: This enumeration value indicates that the evidential documentation is for proof of item authenticity. A PROOF_OF_AUTHENTICITY document/image might be needed if the buyer initiated the payment dispute due to suspecting that the item may be counterfeit. - **PROOF_OF_ITEM_AS_DESCRIBED**: This enumeration value indicates that the evidential documentation is to show that the item is as described. This document may be a photo. A PROOF_OF_ITEM_AS_DESCRIBED document might be needed if the buyer initiated the payment dispute because they thought the item was not as subscribed. - **PROOF_OF_CREDIT_NOT_DUE**: This enumeration value indicates that the evidential documentation is for proof of credit not due. A PROOF_OF_CREDIT_NOT_DUE document/image might be needed if the buyer initiated the payment dispute due to expecting a credit. - **PROOF_OF_RETURN_NOT_RECEIVED**: This enumeration value indicates that the evidential documentation is for proof that a return item has not been received by the seller, so a refund has not yet been issued. - **PROOF_OF_DELIVERY_AS_FILE**: This enumeration value indicates that the evidential documentation is a file that is proof of order delivery. - **PROOF_OF_DELIVERY_SIGNATURE**: This enumeration value indicates that the evidential documentation is a delivery signature file. - **PROOF_OF_PICKUP**: This enumeration value indicates that the evidential documentation is for buy online, pick up in store. - **OPTIONAL_SUPPORTING_DOCUMENTS**: This enumeration value indicates that the evidential documentation is optional.",
         "enum": [
           "PROOF_OF_DELIVERY",
@@ -3226,7 +3226,7 @@
         "description": "This type contains the criteria for narrowing down the collection of orders that will be returned by the <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> call.<br><br><span class=\"tablenote\"><strong>Note:</strong> The <strong>FilterField</strong> type provides the underlying data structure for the <strong>filter</strong> parameter for orders returned by a search, which combines the <strong>field</strong>, <strong>range</strong>, <strong>set</strong>, and <strong>value</strong> fields in a single string. However, this type is not used directly in the call.</span>"
       },
       "FulfillmentInstructionsType": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the available methods of fulfillment for a set of line items. | - **DIGITAL**: This enumeration value indicates the order contains one or more digital gift card line items that are sent to the recipient by email. - **PREPARE_FOR_PICKUP**: This enumeration value indicates that the order is an In-Store Pickup order or a Click and Collect order. If this value is returned for an In-Store Pickup order, the seller can look at the pickupStep container to see the specific store where the buyer will pick up the order. If this value is returned for a Click and Collect order, the seller will look at the <strong>shippingStep</strong> container to see which store the buyer will pick up the item. The seller is then responsible for shipping the order to that store location. - **SELLER_DEFINED**: This enumeration value indicates that the seller will determine how to deliver these line items to the buyer. - **SHIP_TO**: This enumeration value indicates that the seller will package and ship these line items. If this value is returned, the seller can look at the <strong>shippingStep</strong> container to see the specific shipping details, including the shipping address and the shipping service option that will be used. - **FULFILLED_BY_EBAY**: This enumeration value indicates that eBay will package and ship an order as specified by <strong>fulfillmentType</strong>.",
         "enum": [
           "DIGITAL",
@@ -3566,7 +3566,7 @@
         "description": "This type contains the specifications for processing the fulfillment of a line item, including the handling window and the delivery window. These fields provide guidance for <i>eBay Guaranteed Delivery</i> as well as for non-guaranteed delivery."
       },
       "LineItemFulfillmentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "The current status of all activity required to complete fulfillment of a line item. | - **FULFILLED**: The line item has been processed, packaged, and shipped. <span class=\"tablenote\"><strong>Note</strong>: A line item is considered fulfilled as soon as any one unit or component of the line item is assigned to a fulfillment.</span> - **IN_PROGRESS**: Applies only to orders with more than one line item. Indicates the seller has begun packaging and shipping one or more line items from the order, but not all line items have been shipped. - **NOT_STARTED**: The seller has not yet begun packaging the line item.",
         "enum": [
           "FULFILLED",
@@ -3681,7 +3681,7 @@
         "description": "This type contains data on a line item that is related to, but not a part of, the order."
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)<br><span class=\"tablenote\"><strong>Note:</strong> eBay India is no longer a functioning eBay marketplace.</span> - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)",
         "enum": [
           "EBAY_AT",
@@ -3750,7 +3750,7 @@
         "description": "This type is used to provide details about one or more monetary transactions that occur as part of a payment dispute."
       },
       "MonetaryTransactionReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type is a list of reasons why monetary transactions occur with payment disputes. | - **DISPUTE_FEE**: This enumeration value indicates that the monetary transaction was a dispute fee charged to the seller. eBay charges the seller a dispute fee if the seller contests, but loses a payment dispute. - **RECOUP_AMOUNT**: This enumeration value indicates that the monetary transaction involved eBay recouping money from the seller for an amount that was not protected under eBay's seller protection policy after a buyer wins a dispute.",
         "enum": [
           "DISPUTE_FEE",
@@ -3758,7 +3758,7 @@
         ]
       },
       "MonetaryTransactionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type indicates if the monetary transaction was a charge or a credit to the seller. | - **CHARGE**: This enumeration value indicates that the monetary transaction involves eBay recouping money from the Seller. Generally, this is the amount that the seller is liable to pay to eBay after a dispute is lost. - **CREDIT**: This enumeration value indicates that the monetary transaction is a credit to the seller. Generally, a credit may be due back to the seller after a disputed outcome reversal or an appeal.",
         "enum": [
           "CHARGE",
@@ -3886,7 +3886,7 @@
         "description": "This type contains the details of an order, including information about the buyer, order history, shipping fulfillments, line items, costs, payments, and order fulfillment status."
       },
       "OrderFulfillmentStatus": {
-        "type": "object",
+        "type": "string",
         "description": "The current status of all activity required to complete fulfillment of an order. | - **FULFILLED**: The entire order has been shipped. <strong>Note</strong>: When any quantity of a line item is assigned to a fulfillment, that line item is marked as FULFILLED, even if the total quantity of the line item has not yet shipped. - **IN_PROGRESS**: Applies only to orders with more than one line item. Indicates the seller has begun packaging and shipping line items from the order, but not all line items have been shipped. - **NOT_STARTED**: The seller has not yet begun packaging any line items from the order.",
         "enum": [
           "FULFILLED",
@@ -3913,7 +3913,7 @@
         "description": "This type is used by the <strong>lineItems</strong> array that is used to identify one or more line items in the order with the payment dispute."
       },
       "OrderPaymentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains the possible payment states of an order, or in case of a refund request, the possible states of a buyer refund. | - **FAILED**: This enumeration value indicates that buyer payment or refund has failed. - **FULLY_REFUNDED**: This enumeration value indicates that the full amount of the order has been refunded to the buyer. This value is only applicable to return requests or order cancellations. - **PAID**: This enumeration value indicates that the order has been paid in full. Once this PAID value is returned in an order management call, it is safe for the seller to ship the order to the buyer. - **PARTIALLY_REFUNDED**: This enumeration value indicates that a partial amount of the order has been refunded to the buyer. - **PENDING**: This enumeration value indicates that buyer payment or a refund from the seller is in the pending state.",
         "enum": [
           "FAILED",
@@ -4004,7 +4004,7 @@
         "description": "This type contains the specifications for the collection of orders that match the search or filter criteria of a <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a> call. The collection is grouped into a result set, and based on the query parameters that are set (including the <strong>limit</strong> and <strong>offset</strong> parameters), the result set may included multiple pages, but only one page of the result set can be viewed at a time."
       },
       "OutcomeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the possible outcomes of a payment dispute. | - **SELLER_LOST**: This enumeration value indicates that the seller contested the payment dispute, but lost to the buyer. - **SELLER_WON**: This enumeration value indicates that the seller contested the payment dispute and won the dispute over the buyer. - **SELLER_ACCEPT**: This enumeration value indicates that the seller accepted the payment dispute, so the dispute never went through an evidence collecting/resolution process.",
         "enum": [
           "SELLER_LOST",
@@ -4289,7 +4289,7 @@
         "description": "This type contains information about a hold placed on a payment to a seller for an order, including the reason why the buyer's payment for the order is being held, the expected release date of the funds into the seller's account, the current state of the hold, the actual release date if the payment has been released, and possible actions the seller can take to expedite the payout of funds into their account."
       },
       "PaymentMethodTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains the payment methods that a buyer may use for order payment. | - **CREDIT_CARD**: This enumeration value indicates that the buyer used a credit card to pay for the order. - **PAYPAL**: This enumeration value indicates that the buyer used PayPal to pay for the order. <strong>Note</strong>: This value should no longer be returned, as eBay manages all online payments from buyers. When eBay does handle the online payment from the buyer, the <code>EBAY</code> value will be returned instead. - **CASHIER_CHECK**: This enumeration value indicates that the buyer used a cashier's check to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **PERSONAL_CHECK**: This enumeration value indicates that the buyer used a personal check to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **CASH_ON_PICKUP**: This enumeration value indicates that the buyer used cash to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this value will only appear if the seller updates the completed order with the payment details. - **EFT**: This enumeration value indicates that the buyer used an Electronic Funds Transfer (EFT) to pay for the order. This form of payment can only be used for payment transactions off of eBay's platform, and this vaue will only appear if the seller updates the completed order with the payment details. - **EBAY**: This enumeration value is returned whenever eBay handles the online payment from the buyer. - **ESCROW**: This enumeration value indicates that the buyer used Escrow to pay for the order. This form of payment is used for high-value orders.",
         "enum": [
           "CREDIT_CARD",
@@ -4303,7 +4303,7 @@
         ]
       },
       "PaymentStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines all possible order payment states. | - **FAILED**: This enumeration value indicates that the buyer attempted to pay for the order, but the payment has failed. - **PAID**: This enumeration value indicates that the item has been paid in full. Once this PAID value is returned in an order management call, it is safe for the seller to ship the item to the buyer. - **PENDING**: This enumeration value indicates that payment on the order is still in the pending state and has not completed.",
         "enum": [
           "FAILED",
@@ -4479,7 +4479,7 @@
         "description": "This type defines the property name and value for an order."
       },
       "ProtectionStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the values that indicate the level of protection for a seller for an eBay order. Whether or not a seller is fully protected, partially protected, or not protected at all by eBay depends on the eBay category and actions of the buyer and seller. | - **FULLY_PROTECTED**: This enumeration value indicates that the seller is fully protected by eBay for the buyer-initiated payment dispute. - **PARTIALLY_PROTECTED**: This enumeration value indicates that the seller is partially protected by eBay for the buyer-initiated payment dispute. - **NOT_PROTECTED**: This enumeration value indicates that the seller is not protected by eBay for the buyer-initiated payment dispute. - **MANUAL_REVIEW**: This enumeration value indicates that eBay will have to do a manual review to see if the seller is eligible for protection against the buyer-initiated payment dispute.",
         "enum": [
           "FULLY_PROTECTED",
@@ -4515,7 +4515,7 @@
         "description": "This type contains the criteria for specifying a range of values of a field.<br><br><span class=\"tablenote\"><strong>Note:</strong> The <strong>RangeValue</strong> type provides the underlying data structure for the <strong>FilterField.range</strong> field for orders returned by a search. However, this type is not used directly in any call.</span>"
       },
       "ReasonForRefundEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This type defines the enumeration values that can be used in the <strong>reasonForRefund</strong> field to identify the reason why a buyer refund is being issued for the order. | - **BUYER_CANCEL**: This enumeration value is used if a full refund is being issued because the buyer initiated the cancellation of an order. - **SELLER_CANCEL**: This enumeration value is used if a full refund is being issued because the seller initiated the cancellation of an order. A seller might cancel an order if an item is out of stock, or perhaps has become damaged since the creation of the listing. - **ITEM_NOT_RECEIVED**: This enumeration value is used if a full refund is being issued because the buyer never received the item. - **BUYER_RETURN**: This enumeration value is used if a full refund is being issued because the buyer has returned the buyer returned the item due to buyer remorse or another reason besides 'Not as Described'. - **ITEM_NOT_AS_DESCRIBED**: This enumeration value is used if a partial or full refund is being issued because the buyer has stated that the item is 'Not as Described'. - **OTHER_ADJUSTMENT**: This enumeration value should be used if a partial or full refund is being issued for no specific reason. - **SHIPPING_DISCOUNT**: This enumeration value is used if a partial refund is being issued due to the seller wanting to pass on a shipping discount to the buyer.",
         "enum": [
           "BUYER_CANCEL",
@@ -4563,7 +4563,7 @@
         "description": "This type is used if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <strong>orderLevelRefundAmount</strong> container to specify the amount of the refund for the entire order."
       },
       "RefundStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the degree of completion of a refund being made to the buyer. | - **FAILED**: This enumeration value indicates that the refund process was initiated by the seller, but was not successful. If this value is returned in the <strong>issueRefund</strong> response, it indicates that the <strong>issueRefund</strong> operation was not successful at issuing the buyer refund. Any returned error codes may give more insight on why the operation failed. - **PENDING**: This enumeration value indicates that the refund process has been initiated by the seller, but not yet completed. This value is returned in the <strong>issueRefund</strong> response if the issueRefund operation was successful. Buyer refunds initiated through the <strong>issueRefund</strong> operation are processed asynchronously, so the seller can track the status of the refund by using the getOrder operation. - **REFUNDED**: This enumeration value indicates that the refund has been successfully submitted to the buyer. This value should never be returned in the <strong>issueRefund</strong> response since buyer refunds initiated through the <strong>issueRefund</strong> operation are processed asynchronously.",
         "enum": [
           "FAILED",
@@ -4572,7 +4572,7 @@
         ]
       },
       "RefundTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type is reserved for internal or future use. | - **PAYMENT_REFUND**: This value is reserved for internal or future use. - **STORE_CREDIT**: This value is reserved for internal or future use.",
         "enum": [
           "PAYMENT_REFUND",
@@ -4632,7 +4632,7 @@
         "description": "This type is used to state possible action(s) that a seller can take to release a payment hold placed against an order."
       },
       "SellerDecisionEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the different options that a seller can take against a payment dispute initiated by a buyer. | - **SELLER_ACCEPT**: This enumeration value indicates that the seller has the option of accepting the payment dispute and agrees to issue a refund to buyer. - **SELLER_ACCEPT_WITH_RETURN**: This enumeration value indicates that the seller has the option of accepting the payment dispute and agrees to issue a refund to buyer as soon as the item is returned to the seller. - **SELLER_CONTEST**: This enumeration value indicates that the seller has the option of contesting the payment dispute.",
         "enum": [
           "SELLER_ACCEPT",
@@ -4641,7 +4641,7 @@
         ]
       },
       "SellerResponseEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the different options that a seller has taken against a payment dispute initiated by a buyer. | - **SELLER_ACCEPT**: This enumeration value indicates that the seller has accepted the payment dispute and agrees to issue a refund to buyer. - **SELLER_ACCEPT_WITH_RETURN**: This enumeration value indicates that the seller has accepted the payment dispute and agrees to issue a refund to buyer as soon as the item is returned to the seller. - **SELLER_CONTEST**: This enumeration value indicates that the seller is contesting the payment dispute. - **SELLER_RESPONSE_OVERDUE**: This enumeration value indicates that the seller has yet to respond to the payment dispute, and the response is now overdue. The seller should respond the payment dispute as soon as possible.",
         "enum": [
           "SELLER_ACCEPT",
@@ -4782,7 +4782,7 @@
         "description": "This type defines the monetary value of the payment dispute, and the currency used."
       },
       "SoldFormatEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the listing formats for which a line item may be sold. | - **AUCTION**: This enumeration value indicates that the line item was purchased through an auction listing. Note that this value will be returned even if the buyer purchases the item through the 'Buy it Now' feature or if the buyer proposes and the seller accepts a 'Best Offer' for the auction item. Both the 'Buy it Now' and 'Best Offer' features get turned off on the listing as soon as the active auction listing has at least one qualifying bid. - **FIXED_PRICE**: This enumeration value indicates that the line item was purchased through a fixed-price listing. Note that this value will be returned whether the buyer purchases the item at the 'Fixed Price' or if the buyer proposes and the seller accepts a 'Best Offer' price. The 'Buy it Now' feature is not applicable to fixed-price listings. With fixed-price listings, buyer may purchase multiple units of the same line item if inventory is available. - **OTHER**: This enumeration value may be returned if the listing type cannot be determined by eBay. - **SECOND_CHANCE_OFFER**: This enumeration value indicates that the line item was purchased through a 'Second Chance Offer'. Sellers can propose a 'Second Chance Offer' to a non-winning bidder on an ended auction listing when either the winning bidder has failed to pay for an item or if the seller has more inventory of the auction item. A seller can create a 'Second Chance Offer' immediately after a listing ends, all the way up to 60 days after the end of the listing. A 'Second Chance Offer' can be proposed through the eBay UI, or the seller also can use the <strong>AddSecondChanceItem</strong> call of the Trading API. Based on the seller's preference, a prospective buyer can have up to seven days to make a decision on purchasing the item.",
         "enum": [
           "AUCTION",
@@ -4846,7 +4846,7 @@
         "description": "This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class=\"tablenote\"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders\" target=\"_blank\">getOrders</a>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <a href=\"/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder\" target=\"_blank\">getOrder</a> call against that order ID. </span>"
       },
       "TaxIdentifierTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the different tax identification types being used by buyers. This includes Spanish, Italian, and Guatamalan buyers, as well as buyers from other countries using a value-added tax identifier number (VATIN). | - **CODICE_FISCALE**: This value indicates that the <strong>taxpayerId</strong> value is a Codice Fiscale ID, which is an identifier used by the Italian government to identify taxpayers in Italy. - **CURP**: This value indicates that the <strong>taxpayerId</strong> value is a CURP number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Clave Única de Registro de Población'. - **DNI**: This value indicates that the <strong>taxpayerId</strong> value is a Spanish National Identity Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. In Spanish, this ID is known as the 'Documento nacional de identidad'. The other tax identifier for Spanish residents is the NIE number, or 'Numero de Identidad de Extranjero'. - **NIE**: This value indicates that the <strong>taxpayerId</strong> value is a NIE Number, which is one identifier used by the Spanish government to identify taxpayers in Spain. 'NIE' stands for 'Numero de Identidad de Extranjero'. The other tax identifier for Spanish residents is the DNI number, or 'Documento nacional de identidad'. Spanish residents can also be identified by their Spanish VAT (Value-Added Tax) number, which is also called the 'Numero de Identificacion Fiscal' or NIF. - **NIF**: This value indicates that the <strong>taxpayerId</strong> value is an NIF Number, which is also known as their Spanish VAT (Value-Added Tax) number. 'NIF' stands for 'Numero de Identificacion Fiscal'. Spanish residents can also be identified by their DNI ('Documento nacional de identidad') number or their NIE ('Numero de Identidad de Extranjero') number. - **NIT**: This value indicates that the <strong>taxpayerId</strong> value is a NIT number, which is an identifier used by the Guatemalan government to identify taxpayers in Guatemala. In Spanish, this ID is known as the 'Numero de identificacion tributaria'. - **RFC**: This value indicates taxpayerId value is a RFC number, which is one identifier used by the Mexican tax authorities (SAT) to identify taxpayers in Mexico. In Spanish, this ID is known as the 'Registro Federal de Contribuyentes'. - **RUT**: This value indicates that the <strong>taxpayerId</strong> value is a Tax Registration Number, which is an identifier used by the Chileans government to identify taxpayers in Chile. In Spanish, this ID is known as the 'Rol Único Tributario'. - **VATIN**: This value indicates that the <strong>taxpayerId</strong> value is a VATIN number, which is the value-added tax identification number for the buyer. This identifier is used for value added tax purposes in many countries, including the countries of the European Union.",
         "enum": [
           "CODICE_FISCALE",
@@ -4861,7 +4861,7 @@
         ]
       },
       "TaxTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type defines the sales tax types that may be collected by eBay and remitted to the appropriate taxing authority for a given line item in an order. Although not all sales tax is subject to be collected and remitted by eBay, this type is only used by the <strong>eBayCollectAndRemitTaxes</strong> container, so all of these tax types will be subject to 'Collect and Remit'. | - **STATE_SALES_TAX**: This enumeration value indicates that US state sales tax was charged to the buyer against the order line item. EBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. — any sales tax rate set up by the seller for the buyer's state will be ignored. However, sellers may continue to set sales tax rates for the following US territories: <ul><li>American Samoa (AS)</li><li>Guam (GU)</li><li>Northern Mariana Islands (MP)</li><li>Palau (PW)</li><li>US Virgin Islands (VI)</li></ul> - **PROVINCE_SALES_TAX**: This enumeration value indicates that provincial sales tax was charged to the buyer against the order line item. In provinces that mandate sales tax, any sales tax rate set up by the seller for the buyer's province will be ignored, and the seller is not involved with the collection of this tax at all. - **REGION**: This enumeration value indicates that regional sales tax was charged to the buyer against the order line item. In regions that mandate sales tax, any sales tax rate set up by the seller for the buyer's region will be ignored, and the seller is not involved with the collection of this tax at all. - **VAT**: This enumeration value indicates that Value-Added tax (VAT) was charged to the buyer against the order line item. VAT is not applicable in all countries, including the United States. - **GST**: This enumeration value indicates that a Goods and Services Tax was charged to the buyer against the order line item. This tax type applies to: <ul><li>Australia and New Zealand: this is an import tax charged to buyers outside of these two countries</li><li>Canada: GST indicates that a Federal Sales Tax was charged to the buyer against the order line item. Depending on the province this can be either Goods and Services Tax (GST) or Harmonized Sales Tax (HST).<li>Jersey: this is a transactional tax on sales of goods and services supplied.</li></ul> - **ELECTRONIC_RECYCLING_FEE**: This enumeration value indicates that an Electronic Recycling Fee was charged to the buyer against the order line item. This fee is imposed on the retail sale or lease of certain electronic products that have been identified as covered electronic devices (CEDs). This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **MATTRESS_RECYCLING_FEE**: This enumeration value indicates that a mattress waste recycling fee was charged to the buyer against the order line item for each mattress, box spring, foundation, and base sold. This recycling fee is per piece. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **ADDITIONAL_FEE**: This enumeration value indicates that an additional recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **BATTERY_RECYCLING_FEE**: This enumeration value indicates that the battery recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **TIRE_RECYCLING_FEE**: This enumeration value indicates that the tire recycling fee was charged to the buyer against the order line item. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **WHITE_GOODS_DISPOSABLE_TAX**: This enumeration value indicates that the disposal tax for white goods was charged to the buyer against the order line item (White Goods Disposal Tax). White goods includes items like refrigerators, ranges, water heaters, freezers, unit air conditioners, washing machines, clothes dryers, and other similar domestic and commercial large appliances. This is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. - **IMPORT_VAT**: This enumeration value indicates that the Value-Added Tax (VAT) was charged to the buyer against an imported order line item (only applies to international orders). VAT is not applicable in all countries, including the United States. - **SST**: This enumeration value indicates that a Sales & Service Tax was charged to the buyer against the order line item. SST only applies to Malaysia.",
         "enum": [
           "STATE_SALES_TAX",

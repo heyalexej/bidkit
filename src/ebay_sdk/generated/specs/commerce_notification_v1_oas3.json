@@ -2336,7 +2336,7 @@
         "description": "The type that defines the fields for the <b>alertEmail</b> field."
       },
       "ContextEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that represents the business context of a notification. | **BUY**: This value represents notifications related to buyer-side use cases (buying flows and behavior). - **SELL**: This value represents notifications related to seller-side use cases (listing, selling, and order handling). - **COMMERCE**: This value represents notifications that apply to broader commerce flows spanning buy/sell (e.g., account or marketplace–level events). - **DEVELOPER**: This value represents notifications aimed at developer-level concerns or tooling.",
         "enum": [
           "BUY",
@@ -2482,7 +2482,7 @@
         "description": "A type that contains information about the destination search response."
       },
       "DestinationStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that describes the current status of a notification destination endpoint. | - **ENABLED**: This enumeration value indicates the destination is active and can receive notifications. - **DISABLED**: This enumeration value indicates the destination exists but is turned off and will not receive notifications. - **MARKED_DOWN**: This enumeration value indicates the destination has been automatically marked down by eBay systems (e.g., due to failures) and this value cannot be set via create/update calls.",
         "enum": [
           "ENABLED",
@@ -2557,7 +2557,7 @@
         }
       },
       "FormatTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that describes the format of the subscription's payload. | - **JSON**: Presently, only <code>JSON</code> is supported.",
         "enum": [
           "JSON"
@@ -2594,7 +2594,7 @@
         "description": "A type that describes the details about a topic's payload."
       },
       "ProtocolEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the allowed transport protocol for payload delivery. | - **HTTPS**: Presently, <code>HTTPS</code> is the only supported format.",
         "enum": [
           "HTTPS"
@@ -2624,7 +2624,7 @@
         "description": "A type that defines the public key for a unique key ID."
       },
       "ScopeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates whether a notification topic is scoped to an application or to an individual user. | - **APPLICATION**: This enumeration value indicates the topic is subscribed to and managed at the application level. - **USER**: This enumeration value indicates the topic is subscribed to and managed per user account.",
         "enum": [
           "APPLICATION",
@@ -2632,7 +2632,7 @@
         ]
       },
       "StatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that represents the status of the notification topic. | - **ENABLED**: This enumeration value indicates the topic is active and can be subscribed to and used. - **DISABLED**: This enumeration value indicates the topic is turned off and not available for active use. - **DEPRECATED**: This enumeration value indicates the topic is deprecated and will be removed or replaced.",
         "enum": [
           "ENABLED",
@@ -2704,7 +2704,7 @@
         }
       },
       "SubscriptionFilterStatus": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates the current status of the subscription filter. | - **DISABLED**: The subscription filter exists but is currently turned off; it does not affect which notifications are sent. - **ENABLED**: The subscription filter is active and is being applied to determine which notifications are delivered. - **PENDING**: The subscription filter has been created but is not yet active (e.g., awaiting processing/activation).",
         "enum": [
           "DISABLED",
@@ -2767,7 +2767,7 @@
         "description": "A type that describes the details of the subscription search response."
       },
       "SubscriptionStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that describes whether a subscription is active. | - **ENABLED**: The subscription is active and eBay will send notifications for that subscription. - **DISABLED**: The subscription is turned off and no notifications will be sent for that subscription.",
         "enum": [
           "ENABLED",

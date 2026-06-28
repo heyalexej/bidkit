@@ -2628,7 +2628,7 @@
   "components": {
     "schemas": {
       "ConfigurationsUsageEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the values that represent whether the configuration parameter specified is required. | - **OPTIONAL**: This value represents that the associated configuration parameter does not need to be specified. If a default value is provided, that value will be used unless overwritten. - **REQUIRED**: This value represents that the associated configuration parameter needs to be specified.",
         "enum": [
           "OPTIONAL",
@@ -2815,7 +2815,7 @@
         "description": "This type defines the customer service metric task response fields."
       },
       "CustomerServiceMetricTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the Customer Service Metric types that are available for Customer Service Metric reports generated with the Feed API. | - **ITEM_NOT_AS_DESCRIBED**: The metric rating is based on Item not as described (SNAD) transactions. - **ITEM_NOT_RECEIVED**: The metric rating is based on Item not received (INR) transactions.",
         "enum": [
           "ITEM_NOT_AS_DESCRIBED",
@@ -2869,7 +2869,7 @@
         "description": "This type defines the fields for a date range."
       },
       "DayOfWeekEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type defining the days of the week. | - **SUN**: Indicates Sunday - **MON**: Indicates Monday - **TUE**: Indicates Tuesday - **WED**: Indicates Wednesday - **THU**: Indicates Thursday - **FRI**: Indicates Friday - **SAT**: Indicates Saturday",
         "enum": [
           "SUN",
@@ -2947,7 +2947,7 @@
         }
       },
       "FeedStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the values that represent the state of the task. | - **CREATED**: Indicates the task has been created. - **QUEUED**: Indicates the task has been added to the queue. - **IN_PROCESS**: Indicates the task is being processed. - **COMPLETED**: Indicates the task has finished being processed. - **COMPLETED_WITH_ERROR**: Indicates the task has completed but there are errors. If there are errors, they will be indicated in the report. - **FAILED**: Indicates the task has failed to complete. - **PARTIALLY_PROCESSED**: Indicates the task has failed to complete but was partially processed.",
         "enum": [
           "CREATED",
@@ -2960,7 +2960,7 @@
         ]
       },
       "FrequencyEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the values that represent the frequency (specified by the template) for triggering the schedule. | - **HALF_HOUR**: Triggered every 30 minutes (every half hour) - **ONE_HOUR**: Triggered every 60 minutes (every hour) - **FOUR_HOURS**: Triggered every 240 minutes (every four hours) - **EIGHT_HOURS**: Triggered every 480 minutes (every eight hours) - **DAILY**: Triggered every 1440 minutes (every day) - **WEEKLY**: Triggered every 10080 minutes (every week) - **MONTHLY**: Triggered every month - **QUARTERLY**: Triggered every quarter (3 months)",
         "enum": [
           "HALF_HOUR",
@@ -3085,7 +3085,7 @@
         }
       },
       "ListingFormatEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that represents the type of buying option for the order. | - **AUCTION**: This enumeration value indicates an AUCTION buying option. - **FIXED_PRICE**: This enumeration value indicates a FIXED_PRICE buying option.",
         "enum": [
           "AUCTION",
@@ -3093,7 +3093,7 @@
         ]
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the values that represent the unique eBay-assigned IDs for each of the eBay marketplaces. | - **EBAY_AT**: Indicates the eBay marketplace for Austria (https://www.ebay.at). - **EBAY_AU**: Indicates the eBay marketplace for Australia (https://www.ebay.com.au). - **EBAY_BE**: Indicates the eBay marketplace for Belgium (https://www.ebay.be/). - **EBAY_CA**: Indicates the eBay marketplace for Canada (https://www.ebay.ca). - **EBAY_CH**: Indicates the eBay marketplace for Switzerland (https://www.ebay.ch). - **EBAY_CN**: Reserved for future use. - **EBAY_CZ**: Reserved for future use. - **EBAY_DE**: Indicates the eBay marketplace for Germany (https://www.ebay.de). - **EBAY_DK**: Reserved for future use. - **EBAY_ES**: Indicates the eBay marketplace for Spain (https://www.ebay.es). - **EBAY_FI**: Reserved for future use. - **EBAY_FR**: Indicates the eBay marketplace for France (https://www.ebay.fr). - **EBAY_GB**: Indicates the eBay marketplace for Great Britain (https://www.ebay.co.uk). - **EBAY_GR**: Reserved for future use. - **EBAY_HK**: Indicates the eBay marketplace for Hong Kong (https://www.ebay.com.hk). - **EBAY_HU**: Reserved for future use. - **EBAY_ID**: Reserved for future use. - **EBAY_IE**: Indicates the eBay marketplace for Ireland (https://www.ebay.ie). - **EBAY_IL**: Reserved for future use. - **EBAY_IN**: Indicates the eBay marketplace for India (https://www.ebay.in). - **EBAY_IT**: Indicates the eBay marketplace for Italy (https://www.ebay.it). - **EBAY_JP**: Reserved for future use. - **EBAY_MY**: Indicates the eBay marketplace for Malaysia (https://www.ebay.com.my). - **EBAY_NL**: Indicates the eBay marketplace for the Netherlands (https://www.ebay.nl). - **EBAY_NO**: Reserved for future use. - **EBAY_NZ**: Reserved for future use. - **EBAY_PE**: Reserved for future use. - **EBAY_PH**: Indicates the eBay marketplace for the Philippines (https://www.ebay.ph). - **EBAY_PL**: Indicates the eBay marketplace for Poland (https://www.ebay.pl). - **EBAY_PR**: Reserved for future use. - **EBAY_PT**: Reserved for future use. - **EBAY_RU**: Reserved for future use. - **EBAY_SE**: Reserved for future use. - **EBAY_SG**: Indicates the eBay marketplace for Singapore (https://www.ebay.com.sg). - **EBAY_TH**: Indicates the eBay marketplace for Thailand (https://info.ebay.co.th). - **EBAY_TW**: Indicates the eBay marketplace for Taiwan (https://www.ebay.com.tw). - **EBAY_US**: Indicates the eBay marketplace for the United States (https://www.ebay.com). - **EBAY_VN**: Indicates the eBay marketplace for Vietnam (https://www.ebay.vn). - **EBAY_ZA**: Reserved for future use. - **EBAY_HALF_US**: No longer used. - **EBAY_MOTORS_US**: Indicates the parent category for \"Auto Parts and Vehicles\" on the EBAY_US marketplace (https://www.ebay.com/motors).",
         "enum": [
           "EBAY_AT",
@@ -3158,7 +3158,7 @@
         "description": "The type that defines the fields for the order filters."
       },
       "OrderStatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type for the values that represent the state of the order. This is used by Large Merchant Services (LMS) sellers only. | - **ACTIVE**: Indicates the buyer has not paid for the order. - **COMPLETED**: Indicates the buyer has paid for the order and checkout is complete.",
         "enum": [
           "ACTIVE",
@@ -3396,7 +3396,7 @@
         "description": "This type defines customer service metric task response fields."
       },
       "ShippingRegionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the types that are available for Shipping Regions. | - **DOMESTIC**: Listing and Item Shipped market places are the same. - **INTERNATIONAL_MATURED_REGION**: Items are shipped outside of the listing marketplace and shipped to one of the countries described in policy page. https://www.ebay.com/help/selling/selling/monitor-service-metrics?id=4785#section4 - **INTERNATIONAL_EMERGING_REGION**: Items are shipped outside of the listing marketplace and shipped to countries which is not part of International Mature region. https://www.ebay.com/help/selling/selling/monitor-service-metrics?id=4785#section4",
         "enum": [
           "DOMESTIC",
@@ -3405,7 +3405,7 @@
         ]
       },
       "StatusEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration value indicates the state of the schedule template. | - **ACTIVE**: Indicates the buyer has not paid for the order. - **INACTIVE**: Indicates the buyer has paid for the order and checkout is complete.",
         "enum": [
           "ACTIVE",
@@ -3413,7 +3413,7 @@
         ]
       },
       "StatusReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "The enumeration value that indicates the reason the schedule template is <code>INACTIVE</code>. | - **SCHEDULE_END_DATE_REACHED**: The active period for the schedule template has expired. Use the getScheduleTemplates method to find available active templates. - **DISABLED_TEMPLATE**: The template was disabled. Use the getScheduleTemplates method to find available active templates.",
         "enum": [
           "SCHEDULE_END_DATE_REACHED",

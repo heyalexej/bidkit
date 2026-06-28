@@ -1245,7 +1245,7 @@
   "components": {
     "schemas": {
       "AvailabilityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type represents the item's availability.<br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **TEMPORARILY_UNAVAILABLE**: Indicates the item is not available now but could be available again in a near future. This could be due to an out-of-stock condition, the seller is on vacation, etc. - **AVAILABLE**: Indicates there are items available for purchase. - **UNAVAILABLE**: Indicates that the item is no longer available. This could be due to the seller ending the listing or the listing being removed due to a listing violation.",
         "enum": [
           "TEMPORARILY_UNAVAILABLE",
@@ -1254,14 +1254,14 @@
         ]
       },
       "AvailabilityThresholdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the availability of an item based on the display item quantity preference set by the seller. <br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **MORE_THAN**: This value indicates the quantity of the item is more than 10. If the quantity is less than 10, the estimated quantity is returned in the <strong>estimatedAvailableQuantity</strong> column.",
         "enum": [
           "MORE_THAN"
         ]
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -1422,7 +1422,7 @@
         ]
       },
       "DeliveryOptionsEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates how an item can be delivered to the buyer. You use this information to filter for items that can be shipped. <br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **SHIP_TO_HOME**: This value indicates the item can be shipped to the recipient. - **SELLER_ARRANGED_LOCAL_PICKUP**: This value indicates the seller will arrange to have the buyer pick-up the item. (Local delivery option) - **IN_STORE_PICKUP**: This value indicates that the item is picked up by the recipient at the store location. - **PICKUP_DROP_OFF**: This value indicates the item is dropped off or sent to a pick-up location and the recipient collects the item at that location.",
         "enum": [
           "SHIP_TO_HOME",
@@ -2498,7 +2498,7 @@
         "description": "The type that defines the array for the items returned in the <b>Hourly Snapshot</b> feed file."
       },
       "LengthUnitOfMeasureEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the unit of measurement of the length of the item. | - **INCH**: This value indicates the length value is in inches. - **FEET**: This value indicates the length value is in feet. - **CENTIMETER**: This value indicates the length value is in centimeters. - **METER**: This value indicates the length value is in meters.",
         "enum": [
           "INCH",
@@ -2508,7 +2508,7 @@
         ]
       },
       "OptionalityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies whether a service is mandatory or optional for an item. | - **MANDATORY**: This enum value indicates that the specified service is required for an item. - **OPTIONAL**: This enum value indicates that the specified service is optional for an item.",
         "enum": [
           "MANDATORY",
@@ -2567,7 +2567,7 @@
         "description": "The type that defines the array for the products returned in the <b>Product</b> feed file."
       },
       "RefundMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated value represents how a refund is given to the buyer when an item is returned.<br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **MONEY_BACK**: This value indicates the buyer gets their money back for the returned item. If the item has a restocking fee, the buyer's refund will be reduced by this amount. - **MERCHANDISE_CREDIT**: This value indicates the buyer has the option of getting their money back or requesting an exchange or replacement for the returned item. The value in the <strong>returnMethod</strong> column will indicate whether the seller does exchanges or replacements.",
         "enum": [
           "MONEY_BACK",
@@ -2575,7 +2575,7 @@
         ]
       },
       "ReturnMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that represents the alternative methods for a full refund when an item is returned.<br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **REPLACEMENT**: This value indicates that the buyer has the option of receiving money back for the returned item, or they can choose to have the seller replace the item with an identical item. - **EXCHANGE**: This value indicates that the buyer has the option of receiving money back for the returned item, or they can exchange the item for another similar item.",
         "enum": [
           "REPLACEMENT",
@@ -2583,7 +2583,7 @@
         ]
       },
       "ReturnShippingCostPayerEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type represents who will pay the return shipping costs. | - **SELLER**: This value indicates the seller will pay for the shipping costs to return the item. - **BUYER**: This value indicates the buyer will pay for the shipping costs to return the item.",
         "enum": [
           "SELLER",
@@ -2591,7 +2591,7 @@
         ]
       },
       "SellerTrustLevelEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the eBay seller's trust level. <br><br><b>Valid Values:</b> <code>TOP_RATED</code>, <code>ABOVE_STANDARD</code>, or an empty value. <br><br>An empty value indicates a return of anything other than <code>TOP_RATED</code> or <code>ABOVE_STANDARD</code>.<br><br>When you create your code, ensure that your app gracefully handles any future changes to this list. | - **TOP_RATED**: This value indicates the seller is an eBay top rated seller (the highest standing). - **ABOVE_STANDARD**: This value indicates the seller is above the eBay standard.",
         "enum": [
           "TOP_RATED",
@@ -2599,7 +2599,7 @@
         ]
       },
       "TimeDurationUnitEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type represents the period of time being used. | - **YEAR**: This value indicates the time duration is based on the number of years. - **MONTH**: This value indicates the time duration is based on the number of months. - **DAY**: This value indicates the time duration is based on the number of days. - **HOUR**: This value indicates the time duration is based on the number of hours. - **CALENDAR_DAY**: This value indicates the time duration is based on the calendar, meaning Sunday through Saturday and does not exclude holidays. - **BUSINESS_DAY**: This value indicates the time duration is based on the number of business days, meaning 'working days'. So it excludes all holidays for the location and in some locations can include Saturday. - **MINUTE**: This value indicates the time duration is based on the number of minutes. - **SECOND**: This value indicates the time duration is based on the number of seconds. - **MILLISECOND**: This value indicates the time duration is based on the number of milliseconds.",
         "enum": [
           "YEAR",
@@ -2614,7 +2614,7 @@
         ]
       },
       "WeightUnitOfMeasureEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type indicates the unit of weight used to describe the item. | - **POUND**: This value indicates the weight is in pounds. - **KILOGRAM**: This value indicates the weight is in kilograms. - **OUNCE**: This value indicates the weight is in ounces. - **GRAM**: This value indicates the weight is in grams.",
         "enum": [
           "POUND",

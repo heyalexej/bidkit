@@ -4,24 +4,36 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AdFormatEnabledEnum(EbayModel):
-    pass
+class AdFormatEnabledEnum(StrEnum):
+    disabled = 'DISABLED'
+    enabled = 'ENABLED'
+    only = 'ONLY'
+    classified_ad_enabled = 'CLASSIFIED_AD_ENABLED'
+    classified_ad_only = 'CLASSIFIED_AD_ONLY'
+    local_market_best_offer_only = 'LOCAL_MARKET_BEST_OFFER_ONLY'
 
 
-class CardinalityEnum(EbayModel):
-    pass
+class CardinalityEnum(StrEnum):
+    single = 'SINGLE'
+    multi = 'MULTI'
 
 
-class ClassifiedAdBestOfferEnabledEnum(EbayModel):
-    pass
+class ClassifiedAdBestOfferEnabledEnum(StrEnum):
+    disabled = 'DISABLED'
+    enabled = 'ENABLED'
+    required = 'REQUIRED'
 
 
-class ClassifiedAdPaymentMethodEnabledEnum(EbayModel):
-    pass
+class ClassifiedAdPaymentMethodEnabledEnum(StrEnum):
+    enabled_with_checkout = 'ENABLED_WITH_CHECKOUT'
+    enabled_without_checkout = 'ENABLED_WITHOUT_CHECKOUT'
+    not_supported = 'NOT_SUPPORTED'
 
 
 class ClassifiedAdPolicy(EbayModel):
@@ -122,24 +134,448 @@ class CompatibilityDetails(EbayModel):
     )
 
 
-class CompatibilityTypeEnum(EbayModel):
-    pass
+class CompatibilityTypeEnum(StrEnum):
+    specifications = 'SPECIFICATIONS'
+    assembly = 'ASSEMBLY'
 
 
-class CompatibleVehicleTypeEnum(EbayModel):
-    pass
+class CompatibleVehicleTypeEnum(StrEnum):
+    us_cars_and_trucks = 'US_CARS_AND_TRUCKS'
+    us_motorcycles = 'US_MOTORCYCLES'
+    de_cars_and_trucks = 'DE_CARS_AND_TRUCKS'
+    uk_cars_and_trucks = 'UK_CARS_AND_TRUCKS'
+    us_atv = 'US_ATV'
+    au_cars_and_trucks = 'AU_CARS_AND_TRUCKS'
+    us_boats = 'US_BOATS'
+    us_atv_utv = 'US_ATV_UTV'
+    us_snowmobiles = 'US_SNOWMOBILES'
+    us_powersports = 'US_POWERSPORTS'
+    us_scooters = 'US_SCOOTERS'
+    us_golf_carts = 'US_GOLF_CARTS'
+    us_watercrafts = 'US_WATERCRAFTS'
+    de_motorcycles = 'DE_MOTORCYCLES'
+    de_scooters = 'DE_SCOOTERS'
+    uk_motorcycles = 'UK_MOTORCYCLES'
+    uk_scooters = 'UK_SCOOTERS'
+    it_cars_and_trucks = 'IT_CARS_AND_TRUCKS'
+    fr_cars_and_trucks = 'FR_CARS_AND_TRUCKS'
+    es_cars_and_trucks = 'ES_CARS_AND_TRUCKS'
+    ca_cars_and_trucks = 'CA_CARS_AND_TRUCKS'
+    default_value = 'DEFAULT_VALUE'
 
 
-class CountryCodeEnum(EbayModel):
-    pass
+class CountryCodeEnum(StrEnum):
+    ad = 'AD'
+    ae = 'AE'
+    af = 'AF'
+    ag = 'AG'
+    ai = 'AI'
+    al = 'AL'
+    am = 'AM'
+    an = 'AN'
+    ao = 'AO'
+    aq = 'AQ'
+    ar = 'AR'
+    as_ = 'AS'
+    at = 'AT'
+    au = 'AU'
+    aw = 'AW'
+    ax = 'AX'
+    az = 'AZ'
+    ba = 'BA'
+    bb = 'BB'
+    bd = 'BD'
+    be = 'BE'
+    bf = 'BF'
+    bg = 'BG'
+    bh = 'BH'
+    bi = 'BI'
+    bj = 'BJ'
+    bl = 'BL'
+    bm = 'BM'
+    bn = 'BN'
+    bo = 'BO'
+    bq = 'BQ'
+    br = 'BR'
+    bs = 'BS'
+    bt = 'BT'
+    bv = 'BV'
+    bw = 'BW'
+    by = 'BY'
+    bz = 'BZ'
+    ca = 'CA'
+    cc = 'CC'
+    cd = 'CD'
+    cf = 'CF'
+    cg = 'CG'
+    ch = 'CH'
+    ci = 'CI'
+    ck = 'CK'
+    cl = 'CL'
+    cm = 'CM'
+    cn = 'CN'
+    co = 'CO'
+    cr = 'CR'
+    cu = 'CU'
+    cv = 'CV'
+    cw = 'CW'
+    cx = 'CX'
+    cy = 'CY'
+    cz = 'CZ'
+    de = 'DE'
+    dj = 'DJ'
+    dk = 'DK'
+    dm = 'DM'
+    do = 'DO'
+    dz = 'DZ'
+    ec = 'EC'
+    ee = 'EE'
+    eg = 'EG'
+    eh = 'EH'
+    er = 'ER'
+    es = 'ES'
+    et = 'ET'
+    fi = 'FI'
+    fj = 'FJ'
+    fk = 'FK'
+    fm = 'FM'
+    fo = 'FO'
+    fr = 'FR'
+    ga = 'GA'
+    gb = 'GB'
+    gd = 'GD'
+    ge = 'GE'
+    gf = 'GF'
+    gg = 'GG'
+    gh = 'GH'
+    gi = 'GI'
+    gl = 'GL'
+    gm = 'GM'
+    gn = 'GN'
+    gp = 'GP'
+    gq = 'GQ'
+    gr = 'GR'
+    gs = 'GS'
+    gt = 'GT'
+    gu = 'GU'
+    gw = 'GW'
+    gy = 'GY'
+    hk = 'HK'
+    hm = 'HM'
+    hn = 'HN'
+    hr = 'HR'
+    ht = 'HT'
+    hu = 'HU'
+    id = 'ID'
+    ie = 'IE'
+    il = 'IL'
+    im = 'IM'
+    in_ = 'IN'
+    io = 'IO'
+    iq = 'IQ'
+    ir = 'IR'
+    is_ = 'IS'
+    it = 'IT'
+    je = 'JE'
+    jm = 'JM'
+    jo = 'JO'
+    jp = 'JP'
+    ke = 'KE'
+    kg = 'KG'
+    kh = 'KH'
+    ki = 'KI'
+    km = 'KM'
+    kn = 'KN'
+    kp = 'KP'
+    kr = 'KR'
+    kw = 'KW'
+    ky = 'KY'
+    kz = 'KZ'
+    la = 'LA'
+    lb = 'LB'
+    lc = 'LC'
+    li = 'LI'
+    lk = 'LK'
+    lr = 'LR'
+    ls = 'LS'
+    lt = 'LT'
+    lu = 'LU'
+    lv = 'LV'
+    ly = 'LY'
+    ma = 'MA'
+    mc = 'MC'
+    md = 'MD'
+    me = 'ME'
+    mf = 'MF'
+    mg = 'MG'
+    mh = 'MH'
+    mk = 'MK'
+    ml = 'ML'
+    mm = 'MM'
+    mn = 'MN'
+    mo = 'MO'
+    mp = 'MP'
+    mq = 'MQ'
+    mr = 'MR'
+    ms = 'MS'
+    mt = 'MT'
+    mu = 'MU'
+    mv = 'MV'
+    mw = 'MW'
+    mx = 'MX'
+    my = 'MY'
+    mz = 'MZ'
+    na = 'NA'
+    nc = 'NC'
+    ne = 'NE'
+    nf = 'NF'
+    ng = 'NG'
+    ni = 'NI'
+    nl = 'NL'
+    no = 'NO'
+    np = 'NP'
+    nr = 'NR'
+    nu = 'NU'
+    nz = 'NZ'
+    om = 'OM'
+    pa = 'PA'
+    pe = 'PE'
+    pf = 'PF'
+    pg = 'PG'
+    ph = 'PH'
+    pk = 'PK'
+    pl = 'PL'
+    pm = 'PM'
+    pn = 'PN'
+    pr = 'PR'
+    ps = 'PS'
+    pt = 'PT'
+    pw = 'PW'
+    py = 'PY'
+    qa = 'QA'
+    re = 'RE'
+    ro = 'RO'
+    rs = 'RS'
+    ru = 'RU'
+    rw = 'RW'
+    sa = 'SA'
+    sb = 'SB'
+    sc = 'SC'
+    sd = 'SD'
+    se = 'SE'
+    sg = 'SG'
+    sh = 'SH'
+    si = 'SI'
+    sj = 'SJ'
+    sk = 'SK'
+    sl = 'SL'
+    sm = 'SM'
+    sn = 'SN'
+    so = 'SO'
+    sr = 'SR'
+    st = 'ST'
+    sv = 'SV'
+    sx = 'SX'
+    sy = 'SY'
+    sz = 'SZ'
+    tc = 'TC'
+    td = 'TD'
+    tf = 'TF'
+    tg = 'TG'
+    th = 'TH'
+    tj = 'TJ'
+    tk = 'TK'
+    tl = 'TL'
+    tm = 'TM'
+    tn = 'TN'
+    to = 'TO'
+    tr = 'TR'
+    tt = 'TT'
+    tv = 'TV'
+    tw = 'TW'
+    tz = 'TZ'
+    ua = 'UA'
+    ug = 'UG'
+    um = 'UM'
+    us = 'US'
+    uy = 'UY'
+    uz = 'UZ'
+    va = 'VA'
+    vc = 'VC'
+    ve = 'VE'
+    vg = 'VG'
+    vi = 'VI'
+    vn = 'VN'
+    vu = 'VU'
+    wf = 'WF'
+    ws = 'WS'
+    ye = 'YE'
+    yt = 'YT'
+    za = 'ZA'
+    zm = 'ZM'
+    zw = 'ZW'
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    aoa = 'AOA'
+    ars = 'ARS'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    dkk = 'DKK'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    gbp = 'GBP'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    chf = 'CHF'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    xcd = 'XCD'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    npr = 'NPR'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    xpf = 'XPF'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    ils = 'ILS'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    nok = 'NOK'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    ang = 'ANG'
+    syp = 'SYP'
+    szl = 'SZL'
+    xaf = 'XAF'
+    xof = 'XOF'
+    thb = 'THB'
+    tjs = 'TJS'
+    nzd = 'NZD'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    aud = 'AUD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    yer = 'YER'
+    eur = 'EUR'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
-class DescriptorUsageEnum(EbayModel):
-    pass
+class DescriptorUsageEnum(StrEnum):
+    required = 'REQUIRED'
 
 
 class DisabledProductFilter(EbayModel):
@@ -155,12 +591,23 @@ class DisabledProductFilter(EbayModel):
     )
 
 
-class DistanceType(EbayModel):
-    pass
+class DistanceType(StrEnum):
+    local_listing_distances_regular = 'LOCAL_LISTING_DISTANCES_REGULAR'
+    local_listing_distances_specialty = 'LOCAL_LISTING_DISTANCES_SPECIALTY'
+    local_listing_distances_non_subscription = (
+        'LOCAL_LISTING_DISTANCES_NON_SUBSCRIPTION'
+    )
 
 
-class DurationEnum(EbayModel):
-    pass
+class DurationEnum(StrEnum):
+    gtc = 'GTC'
+    days_1 = 'DAYS_1'
+    days_3 = 'DAYS_3'
+    days_5 = 'DAYS_5'
+    days_7 = 'DAYS_7'
+    days_10 = 'DAYS_10'
+    days_30 = 'DAYS_30'
+    days_90 = 'DAYS_90'
 
 
 class ErrorParameter(EbayModel):
@@ -175,16 +622,22 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class ExtendedProducerResponsibilityEnum(EbayModel):
-    pass
+class ExtendedProducerResponsibilityEnum(StrEnum):
+    eco_participation_fee = 'ECO_PARTICIPATION_FEE'
+    take_back_policy = 'TAKE_BACK_POLICY'
+    repair_score = 'REPAIR_SCORE'
 
 
-class GenericUsageEnum(EbayModel):
-    pass
+class GenericUsageEnum(StrEnum):
+    optional = 'OPTIONAL'
+    recommended = 'RECOMMENDED'
+    required = 'REQUIRED'
 
 
-class GeographicExposureEnum(EbayModel):
-    pass
+class GeographicExposureEnum(StrEnum):
+    national = 'National'
+    local_only = 'LocalOnly'
+    local_optional = 'LocalOptional'
 
 
 class HazardStatement(EbayModel):
@@ -231,8 +684,12 @@ class ListingStructurePolicy(EbayModel):
     )
 
 
-class ListingTypeEnum(EbayModel):
-    pass
+class ListingTypeEnum(StrEnum):
+    auction = 'AUCTION'
+    ad_type = 'AD_TYPE'
+    personal_offer = 'PERSONAL_OFFER'
+    fixed_price_item = 'FIXED_PRICE_ITEM'
+    lead_generation = 'LEAD_GENERATION'
 
 
 class LocalListingDistance(EbayModel):
@@ -247,12 +704,53 @@ class LocalListingDistance(EbayModel):
     )
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_us = 'EBAY_US'
+    ebay_ca = 'EBAY_CA'
+    ebay_gb = 'EBAY_GB'
+    ebay_au = 'EBAY_AU'
+    ebay_at = 'EBAY_AT'
+    ebay_be = 'EBAY_BE'
+    ebay_de = 'EBAY_DE'
+    ebay_it = 'EBAY_IT'
+    ebay_nl = 'EBAY_NL'
+    ebay_es = 'EBAY_ES'
+    ebay_ch = 'EBAY_CH'
+    ebay_tw = 'EBAY_TW'
+    ebay_cz = 'EBAY_CZ'
+    ebay_dk = 'EBAY_DK'
+    ebay_fi = 'EBAY_FI'
+    ebay_fr = 'EBAY_FR'
+    ebay_gr = 'EBAY_GR'
+    ebay_hk = 'EBAY_HK'
+    ebay_hu = 'EBAY_HU'
+    ebay_in = 'EBAY_IN'
+    ebay_id = 'EBAY_ID'
+    ebay_ie = 'EBAY_IE'
+    ebay_il = 'EBAY_IL'
+    ebay_my = 'EBAY_MY'
+    ebay_nz = 'EBAY_NZ'
+    ebay_no = 'EBAY_NO'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_pt = 'EBAY_PT'
+    ebay_pr = 'EBAY_PR'
+    ebay_ru = 'EBAY_RU'
+    ebay_sg = 'EBAY_SG'
+    ebay_za = 'EBAY_ZA'
+    ebay_se = 'EBAY_SE'
+    ebay_th = 'EBAY_TH'
+    ebay_vn = 'EBAY_VN'
+    ebay_cn = 'EBAY_CN'
+    ebay_jp = 'EBAY_JP'
+    ebay_pe = 'EBAY_PE'
+    ebay_half_us = 'EBAY_HALF_US'
+    ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class ModeEnum(EbayModel):
-    pass
+class ModeEnum(StrEnum):
+    selection_only = 'SELECTION_ONLY'
+    free_text = 'FREE_TEXT'
 
 
 class MotorsListingPolicy(EbayModel):
@@ -622,8 +1120,12 @@ class PaginationInput(EbayModel):
     )
 
 
-class PaymentEnum(EbayModel):
-    pass
+class PaymentEnum(StrEnum):
+    cash_on_pickup = 'CASH_ON_PICKUP'
+    payment_see_description = 'PAYMENT_SEE_DESCRIPTION'
+    mocc = 'MOCC'
+    personal_check = 'PERSONAL_CHECK'
+    other = 'OTHER'
 
 
 class Pictogram(EbayModel):
@@ -642,8 +1144,10 @@ class Pictogram(EbayModel):
     )
 
 
-class ProductIdentiferEnabledEnum(EbayModel):
-    pass
+class ProductIdentiferEnabledEnum(StrEnum):
+    disabled = 'DISABLED'
+    enabled = 'ENABLED'
+    required = 'REQUIRED'
 
 
 class ProductIdentifier(EbayModel):
@@ -818,20 +1322,24 @@ class PropertyValuesResponse(EbayModel):
     )
 
 
-class RefundMethodEnum(EbayModel):
-    pass
+class RefundMethodEnum(StrEnum):
+    money_back = 'MONEY_BACK'
 
 
-class RegulatoryAttributeEnum(EbayModel):
-    pass
+class RegulatoryAttributeEnum(StrEnum):
+    hazmat = 'HAZMAT'
+    energy_efficiency = 'ENERGY_EFFICIENCY'
+    manufacturer_contact = 'MANUFACTURER_CONTACT'
+    product_safety = 'PRODUCT_SAFETY'
 
 
-class ReturnMethodEnum(EbayModel):
-    pass
+class ReturnMethodEnum(StrEnum):
+    replacement = 'REPLACEMENT'
 
 
-class ReturnShippingCostPayerEnum(EbayModel):
-    pass
+class ReturnShippingCostPayerEnum(StrEnum):
+    buyer = 'BUYER'
+    seller = 'SELLER'
 
 
 class SalesTaxJurisdiction(EbayModel):
@@ -1044,12 +1552,20 @@ class SortOrderProperties(EbayModel):
     )
 
 
-class TimeDurationUnitEnum(EbayModel):
-    pass
+class TimeDurationUnitEnum(StrEnum):
+    year = 'YEAR'
+    month = 'MONTH'
+    day = 'DAY'
+    hour = 'HOUR'
+    calendar_day = 'CALENDAR_DAY'
+    business_day = 'BUSINESS_DAY'
+    minute = 'MINUTE'
+    second = 'SECOND'
+    millisecond = 'MILLISECOND'
 
 
-class UsageEnum(EbayModel):
-    pass
+class UsageEnum(StrEnum):
+    restricted = 'RESTRICTED'
 
 
 class Amount(EbayModel):

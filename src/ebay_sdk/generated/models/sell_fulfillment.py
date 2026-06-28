@@ -4,20 +4,40 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AcknowledgeStatusEnum(EbayModel):
-    pass
+class AcknowledgeStatusEnum(StrEnum):
+    unacknowledged = 'UNACKNOWLEDGED'
+    acknowledged = 'ACKNOWLEDGED'
 
 
-class ActivityEnum(EbayModel):
-    pass
+class ActivityEnum(StrEnum):
+    dispute_opened = 'DISPUTE_OPENED'
+    additional_evidence_request = 'ADDITIONAL_EVIDENCE_REQUEST'
+    evidence_provided = 'EVIDENCE_PROVIDED'
+    evidence_request_overdue = 'EVIDENCE_REQUEST_OVERDUE'
+    defence_executed = 'DEFENCE_EXECUTED'
+    dispute_closed = 'DISPUTE_CLOSED'
+    seller_accept = 'SELLER_ACCEPT'
+    seller_accept_with_return = 'SELLER_ACCEPT_WITH_RETURN'
+    seller_contest = 'SELLER_CONTEST'
+    dispute_updated = 'DISPUTE_UPDATED'
+    seller_response_overdue = 'SELLER_RESPONSE_OVERDUE'
+    dispute_reopened = 'DISPUTE_REOPENED'
+    dispute_reversed = 'DISPUTE_REVERSED'
+    appeal_denied = 'APPEAL_DENIED'
+    appeal_granted = 'APPEAL_GRANTED'
 
 
-class ActorEnum(EbayModel):
-    pass
+class ActorEnum(StrEnum):
+    seller = 'SELLER'
+    buyer = 'BUYER'
+    cs_agent = 'CS_AGENT'
+    system = 'SYSTEM'
 
 
 class AddEvidencePaymentDisputeResponse(EbayModel):
@@ -28,48 +48,467 @@ class AddEvidencePaymentDisputeResponse(EbayModel):
     )
 
 
-class AppointmentStatusEnum(EbayModel):
-    pass
+class AppointmentStatusEnum(StrEnum):
+    on_hold = 'ON_HOLD'
+    confirmed = 'CONFIRMED'
+    cancelled = 'CANCELLED'
+    fulfilled = 'FULFILLED'
 
 
-class AppointmentTypeEnum(EbayModel):
-    pass
+class AppointmentTypeEnum(StrEnum):
+    time_slot = 'TIME_SLOT'
+    macro = 'MACRO'
 
 
-class AppointmentWindowEnum(EbayModel):
-    pass
+class AppointmentWindowEnum(StrEnum):
+    morning = 'MORNING'
+    evening = 'EVENING'
 
 
-class AuthenticityVerificationReasonEnum(EbayModel):
-    pass
+class AuthenticityVerificationReasonEnum(StrEnum):
+    not_authentic = 'NOT_AUTHENTIC'
+    not_as_described = 'NOT_AS_DESCRIBED'
+    customized = 'CUSTOMIZED'
+    miscategorized = 'MISCATEGORIZED'
+    not_authentic_no_return = 'NOT_AUTHENTIC_NO_RETURN'
 
 
-class AuthenticityVerificationStatusEnum(EbayModel):
-    pass
+class AuthenticityVerificationStatusEnum(StrEnum):
+    pending = 'PENDING'
+    passed = 'PASSED'
+    failed = 'FAILED'
+    passed_with_exception = 'PASSED_WITH_EXCEPTION'
 
 
-class CancelRequestStateEnum(EbayModel):
-    pass
+class CancelRequestStateEnum(StrEnum):
+    completed = 'COMPLETED'
+    rejected = 'REJECTED'
+    requested = 'REQUESTED'
 
 
-class CancelStateEnum(EbayModel):
-    pass
+class CancelStateEnum(StrEnum):
+    canceled = 'CANCELED'
+    in_progress = 'IN_PROGRESS'
+    none_requested = 'NONE_REQUESTED'
 
 
-class ChargeTypeEnum(EbayModel):
-    pass
+class ChargeTypeEnum(StrEnum):
+    buyer_protection = 'BUYER_PROTECTION'
 
 
-class CollectionMethodEnum(EbayModel):
-    pass
+class CollectionMethodEnum(StrEnum):
+    invoice = 'INVOICE'
+    net = 'NET'
 
 
-class CountryCodeEnum(EbayModel):
-    pass
+class CountryCodeEnum(StrEnum):
+    ad = 'AD'
+    ae = 'AE'
+    af = 'AF'
+    ag = 'AG'
+    ai = 'AI'
+    al = 'AL'
+    am = 'AM'
+    an = 'AN'
+    ao = 'AO'
+    aq = 'AQ'
+    ar = 'AR'
+    as_ = 'AS'
+    at = 'AT'
+    au = 'AU'
+    aw = 'AW'
+    ax = 'AX'
+    az = 'AZ'
+    ba = 'BA'
+    bb = 'BB'
+    bd = 'BD'
+    be = 'BE'
+    bf = 'BF'
+    bg = 'BG'
+    bh = 'BH'
+    bi = 'BI'
+    bj = 'BJ'
+    bl = 'BL'
+    bm = 'BM'
+    bn = 'BN'
+    bo = 'BO'
+    bq = 'BQ'
+    br = 'BR'
+    bs = 'BS'
+    bt = 'BT'
+    bv = 'BV'
+    bw = 'BW'
+    by = 'BY'
+    bz = 'BZ'
+    ca = 'CA'
+    cc = 'CC'
+    cd = 'CD'
+    cf = 'CF'
+    cg = 'CG'
+    ch = 'CH'
+    ci = 'CI'
+    ck = 'CK'
+    cl = 'CL'
+    cm = 'CM'
+    cn = 'CN'
+    co = 'CO'
+    cr = 'CR'
+    cu = 'CU'
+    cv = 'CV'
+    cw = 'CW'
+    cx = 'CX'
+    cy = 'CY'
+    cz = 'CZ'
+    de = 'DE'
+    dj = 'DJ'
+    dk = 'DK'
+    dm = 'DM'
+    do = 'DO'
+    dz = 'DZ'
+    ec = 'EC'
+    ee = 'EE'
+    eg = 'EG'
+    eh = 'EH'
+    er = 'ER'
+    es = 'ES'
+    et = 'ET'
+    fi = 'FI'
+    fj = 'FJ'
+    fk = 'FK'
+    fm = 'FM'
+    fo = 'FO'
+    fr = 'FR'
+    ga = 'GA'
+    gb = 'GB'
+    gd = 'GD'
+    ge = 'GE'
+    gf = 'GF'
+    gg = 'GG'
+    gh = 'GH'
+    gi = 'GI'
+    gl = 'GL'
+    gm = 'GM'
+    gn = 'GN'
+    gp = 'GP'
+    gq = 'GQ'
+    gr = 'GR'
+    gs = 'GS'
+    gt = 'GT'
+    gu = 'GU'
+    gw = 'GW'
+    gy = 'GY'
+    hk = 'HK'
+    hm = 'HM'
+    hn = 'HN'
+    hr = 'HR'
+    ht = 'HT'
+    hu = 'HU'
+    id = 'ID'
+    ie = 'IE'
+    il = 'IL'
+    im = 'IM'
+    in_ = 'IN'
+    io = 'IO'
+    iq = 'IQ'
+    ir = 'IR'
+    is_ = 'IS'
+    it = 'IT'
+    je = 'JE'
+    jm = 'JM'
+    jo = 'JO'
+    jp = 'JP'
+    ke = 'KE'
+    kg = 'KG'
+    kh = 'KH'
+    ki = 'KI'
+    km = 'KM'
+    kn = 'KN'
+    kp = 'KP'
+    kr = 'KR'
+    kw = 'KW'
+    ky = 'KY'
+    kz = 'KZ'
+    la = 'LA'
+    lb = 'LB'
+    lc = 'LC'
+    li = 'LI'
+    lk = 'LK'
+    lr = 'LR'
+    ls = 'LS'
+    lt = 'LT'
+    lu = 'LU'
+    lv = 'LV'
+    ly = 'LY'
+    ma = 'MA'
+    mc = 'MC'
+    md = 'MD'
+    me = 'ME'
+    mf = 'MF'
+    mg = 'MG'
+    mh = 'MH'
+    mk = 'MK'
+    ml = 'ML'
+    mm = 'MM'
+    mn = 'MN'
+    mo = 'MO'
+    mp = 'MP'
+    mq = 'MQ'
+    mr = 'MR'
+    ms = 'MS'
+    mt = 'MT'
+    mu = 'MU'
+    mv = 'MV'
+    mw = 'MW'
+    mx = 'MX'
+    my = 'MY'
+    mz = 'MZ'
+    na = 'NA'
+    nc = 'NC'
+    ne = 'NE'
+    nf = 'NF'
+    ng = 'NG'
+    ni = 'NI'
+    nl = 'NL'
+    no = 'NO'
+    np = 'NP'
+    nr = 'NR'
+    nu = 'NU'
+    nz = 'NZ'
+    om = 'OM'
+    pa = 'PA'
+    pe = 'PE'
+    pf = 'PF'
+    pg = 'PG'
+    ph = 'PH'
+    pk = 'PK'
+    pl = 'PL'
+    pm = 'PM'
+    pn = 'PN'
+    pr = 'PR'
+    ps = 'PS'
+    pt = 'PT'
+    pw = 'PW'
+    py = 'PY'
+    qa = 'QA'
+    re = 'RE'
+    ro = 'RO'
+    rs = 'RS'
+    ru = 'RU'
+    rw = 'RW'
+    sa = 'SA'
+    sb = 'SB'
+    sc = 'SC'
+    sd = 'SD'
+    se = 'SE'
+    sg = 'SG'
+    sh = 'SH'
+    si = 'SI'
+    sj = 'SJ'
+    sk = 'SK'
+    sl = 'SL'
+    sm = 'SM'
+    sn = 'SN'
+    so = 'SO'
+    sr = 'SR'
+    st = 'ST'
+    sv = 'SV'
+    sx = 'SX'
+    sy = 'SY'
+    sz = 'SZ'
+    tc = 'TC'
+    td = 'TD'
+    tf = 'TF'
+    tg = 'TG'
+    th = 'TH'
+    tj = 'TJ'
+    tk = 'TK'
+    tl = 'TL'
+    tm = 'TM'
+    tn = 'TN'
+    to = 'TO'
+    tr = 'TR'
+    tt = 'TT'
+    tv = 'TV'
+    tw = 'TW'
+    tz = 'TZ'
+    ua = 'UA'
+    ug = 'UG'
+    um = 'UM'
+    us = 'US'
+    uy = 'UY'
+    uz = 'UZ'
+    va = 'VA'
+    vc = 'VC'
+    ve = 'VE'
+    vg = 'VG'
+    vi = 'VI'
+    vn = 'VN'
+    vu = 'VU'
+    wf = 'WF'
+    ws = 'WS'
+    ye = 'YE'
+    yt = 'YT'
+    za = 'ZA'
+    zm = 'ZM'
+    zw = 'ZW'
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    aoa = 'AOA'
+    ars = 'ARS'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    dkk = 'DKK'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    gbp = 'GBP'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    chf = 'CHF'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    xcd = 'XCD'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    npr = 'NPR'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    xpf = 'XPF'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    ils = 'ILS'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    nok = 'NOK'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    ang = 'ANG'
+    syp = 'SYP'
+    szl = 'SZL'
+    xaf = 'XAF'
+    xof = 'XOF'
+    thb = 'THB'
+    tjs = 'TJS'
+    nzd = 'NZD'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    aud = 'AUD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    yer = 'YER'
+    eur = 'EUR'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
 class DisputeAmount(EbayModel):
@@ -98,12 +537,24 @@ class DisputeAmount(EbayModel):
     )
 
 
-class DisputeReasonEnum(EbayModel):
-    pass
+class DisputeReasonEnum(StrEnum):
+    transaction_issue = 'TRANSACTION_ISSUE'
+    fraud = 'FRAUD'
+    item_not_received = 'ITEM_NOT_RECEIVED'
+    significantly_not_as_described = 'SIGNIFICANTLY_NOT_AS_DESCRIBED'
+    credit_not_processed = 'CREDIT_NOT_PROCESSED'
+    counterfeit = 'COUNTERFEIT'
+    duplicate_amount = 'DUPLICATE_AMOUNT'
+    incorrect_amount = 'INCORRECT_AMOUNT'
+    cancellation = 'CANCELLATION'
+    return_refund_not_processed = 'RETURN_REFUND_NOT_PROCESSED'
+    authorization_failed = 'AUTHORIZATION_FAILED'
 
 
-class DisputeStateEnum(EbayModel):
-    pass
+class DisputeStateEnum(StrEnum):
+    open = 'OPEN'
+    action_needed = 'ACTION_NEEDED'
+    closed = 'CLOSED'
 
 
 class EbayFulfillmentProgram(EbayModel):
@@ -141,8 +592,10 @@ class EbayTaxReference(EbayModel):
     )
 
 
-class EbayVaultFulfillmentTypeEnum(EbayModel):
-    pass
+class EbayVaultFulfillmentTypeEnum(StrEnum):
+    seller_to_vault = 'SELLER_TO_VAULT'
+    vault_to_vault = 'VAULT_TO_VAULT'
+    vault_to_buyer = 'VAULT_TO_BUYER'
 
 
 class EbayVaultProgram(EbayModel):
@@ -169,8 +622,16 @@ class ErrorParameterV3(EbayModel):
     )
 
 
-class EvidenceTypeEnum(EbayModel):
-    pass
+class EvidenceTypeEnum(StrEnum):
+    proof_of_delivery = 'PROOF_OF_DELIVERY'
+    proof_of_authenticity = 'PROOF_OF_AUTHENTICITY'
+    proof_of_item_as_described = 'PROOF_OF_ITEM_AS_DESCRIBED'
+    proof_of_credit_not_due = 'PROOF_OF_CREDIT_NOT_DUE'
+    proof_of_return_not_received = 'PROOF_OF_RETURN_NOT_RECEIVED'
+    proof_of_delivery_as_file = 'PROOF_OF_DELIVERY_AS_FILE'
+    proof_of_delivery_signature = 'PROOF_OF_DELIVERY_SIGNATURE'
+    proof_of_pickup = 'PROOF_OF_PICKUP'
+    optional_supporting_documents = 'OPTIONAL_SUPPORTING_DOCUMENTS'
 
 
 class FileEvidence(EbayModel):
@@ -200,8 +661,12 @@ class FileInfo(EbayModel):
     )
 
 
-class FulfillmentInstructionsType(EbayModel):
-    pass
+class FulfillmentInstructionsType(StrEnum):
+    digital = 'DIGITAL'
+    prepare_for_pickup = 'PREPARE_FOR_PICKUP'
+    seller_defined = 'SELLER_DEFINED'
+    ship_to = 'SHIP_TO'
+    fulfilled_by_ebay = 'FULFILLED_BY_EBAY'
 
 
 class GiftDetails(EbayModel):
@@ -282,8 +747,10 @@ class LineItemFulfillmentInstructions(EbayModel):
     )
 
 
-class LineItemFulfillmentStatusEnum(EbayModel):
-    pass
+class LineItemFulfillmentStatusEnum(StrEnum):
+    fulfilled = 'FULFILLED'
+    in_progress = 'IN_PROGRESS'
+    not_started = 'NOT_STARTED'
 
 
 class LineItemProperties(EbayModel):
@@ -316,16 +783,58 @@ class LineItemReference(EbayModel):
     )
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_at = 'EBAY_AT'
+    ebay_au = 'EBAY_AU'
+    ebay_be = 'EBAY_BE'
+    ebay_ca = 'EBAY_CA'
+    ebay_ch = 'EBAY_CH'
+    ebay_cn = 'EBAY_CN'
+    ebay_cz = 'EBAY_CZ'
+    ebay_de = 'EBAY_DE'
+    ebay_dk = 'EBAY_DK'
+    ebay_es = 'EBAY_ES'
+    ebay_fi = 'EBAY_FI'
+    ebay_fr = 'EBAY_FR'
+    ebay_gb = 'EBAY_GB'
+    ebay_gr = 'EBAY_GR'
+    ebay_hk = 'EBAY_HK'
+    ebay_hu = 'EBAY_HU'
+    ebay_id = 'EBAY_ID'
+    ebay_ie = 'EBAY_IE'
+    ebay_il = 'EBAY_IL'
+    ebay_in = 'EBAY_IN'
+    ebay_it = 'EBAY_IT'
+    ebay_jp = 'EBAY_JP'
+    ebay_my = 'EBAY_MY'
+    ebay_nl = 'EBAY_NL'
+    ebay_no = 'EBAY_NO'
+    ebay_nz = 'EBAY_NZ'
+    ebay_pe = 'EBAY_PE'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_pr = 'EBAY_PR'
+    ebay_pt = 'EBAY_PT'
+    ebay_ru = 'EBAY_RU'
+    ebay_se = 'EBAY_SE'
+    ebay_sg = 'EBAY_SG'
+    ebay_th = 'EBAY_TH'
+    ebay_tw = 'EBAY_TW'
+    ebay_us = 'EBAY_US'
+    ebay_vn = 'EBAY_VN'
+    ebay_za = 'EBAY_ZA'
+    ebay_half_us = 'EBAY_HALF_US'
+    ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class MonetaryTransactionReasonEnum(EbayModel):
-    pass
+class MonetaryTransactionReasonEnum(StrEnum):
+    dispute_fee = 'DISPUTE_FEE'
+    recoup_amount = 'RECOUP_AMOUNT'
 
 
-class MonetaryTransactionTypeEnum(EbayModel):
-    pass
+class MonetaryTransactionTypeEnum(StrEnum):
+    charge = 'CHARGE'
+    credit = 'CREDIT'
 
 
 class NameValuePair(EbayModel):
@@ -339,8 +848,10 @@ class NameValuePair(EbayModel):
     )
 
 
-class OrderFulfillmentStatus(EbayModel):
-    pass
+class OrderFulfillmentStatus(StrEnum):
+    fulfilled = 'FULFILLED'
+    in_progress = 'IN_PROGRESS'
+    not_started = 'NOT_STARTED'
 
 
 class OrderLineItems(EbayModel):
@@ -356,12 +867,18 @@ class OrderLineItems(EbayModel):
     )
 
 
-class OrderPaymentStatusEnum(EbayModel):
-    pass
+class OrderPaymentStatusEnum(StrEnum):
+    failed = 'FAILED'
+    fully_refunded = 'FULLY_REFUNDED'
+    paid = 'PAID'
+    partially_refunded = 'PARTIALLY_REFUNDED'
+    pending = 'PENDING'
 
 
-class OutcomeEnum(EbayModel):
-    pass
+class OutcomeEnum(StrEnum):
+    seller_lost = 'SELLER_LOST'
+    seller_won = 'SELLER_WON'
+    seller_accept = 'SELLER_ACCEPT'
 
 
 class PaymentDisputeActivity(EbayModel):
@@ -388,12 +905,21 @@ class PaymentDisputeActivityHistory(EbayModel):
     )
 
 
-class PaymentMethodTypeEnum(EbayModel):
-    pass
+class PaymentMethodTypeEnum(StrEnum):
+    credit_card = 'CREDIT_CARD'
+    paypal = 'PAYPAL'
+    cashier_check = 'CASHIER_CHECK'
+    personal_check = 'PERSONAL_CHECK'
+    cash_on_pickup = 'CASH_ON_PICKUP'
+    eft = 'EFT'
+    ebay = 'EBAY'
+    escrow = 'ESCROW'
 
 
-class PaymentStatusEnum(EbayModel):
-    pass
+class PaymentStatusEnum(StrEnum):
+    failed = 'FAILED'
+    paid = 'PAID'
+    pending = 'PENDING'
 
 
 class Phone(EbayModel):
@@ -482,8 +1008,11 @@ class Property(EbayModel):
     )
 
 
-class ProtectionStatusEnum(EbayModel):
-    pass
+class ProtectionStatusEnum(StrEnum):
+    fully_protected = 'FULLY_PROTECTED'
+    partially_protected = 'PARTIALLY_PROTECTED'
+    not_protected = 'NOT_PROTECTED'
+    manual_review = 'MANUAL_REVIEW'
 
 
 class RangeValue(EbayModel):
@@ -509,16 +1038,25 @@ class RangeValue(EbayModel):
     )
 
 
-class ReasonForRefundEnum(EbayModel):
-    pass
+class ReasonForRefundEnum(StrEnum):
+    buyer_cancel = 'BUYER_CANCEL'
+    seller_cancel = 'SELLER_CANCEL'
+    item_not_received = 'ITEM_NOT_RECEIVED'
+    buyer_return = 'BUYER_RETURN'
+    item_not_as_described = 'ITEM_NOT_AS_DESCRIBED'
+    other_adjustment = 'OTHER_ADJUSTMENT'
+    shipping_discount = 'SHIPPING_DISCOUNT'
 
 
-class RefundStatusEnum(EbayModel):
-    pass
+class RefundStatusEnum(StrEnum):
+    failed = 'FAILED'
+    pending = 'PENDING'
+    refunded = 'REFUNDED'
 
 
-class RefundTypeEnum(EbayModel):
-    pass
+class RefundTypeEnum(StrEnum):
+    payment_refund = 'PAYMENT_REFUND'
+    store_credit = 'STORE_CREDIT'
 
 
 class ReturnAddress(EbayModel):
@@ -565,12 +1103,17 @@ class SellerActionsToRelease(EbayModel):
     )
 
 
-class SellerDecisionEnum(EbayModel):
-    pass
+class SellerDecisionEnum(StrEnum):
+    seller_accept = 'SELLER_ACCEPT'
+    seller_accept_with_return = 'SELLER_ACCEPT_WITH_RETURN'
+    seller_contest = 'SELLER_CONTEST'
 
 
-class SellerResponseEnum(EbayModel):
-    pass
+class SellerResponseEnum(StrEnum):
+    seller_accept = 'SELLER_ACCEPT'
+    seller_accept_with_return = 'SELLER_ACCEPT_WITH_RETURN'
+    seller_contest = 'SELLER_CONTEST'
+    seller_response_overdue = 'SELLER_RESPONSE_OVERDUE'
 
 
 class ShippingFulfillment(EbayModel):
@@ -635,8 +1178,11 @@ class SimpleAmount(EbayModel):
     )
 
 
-class SoldFormatEnum(EbayModel):
-    pass
+class SoldFormatEnum(StrEnum):
+    auction = 'AUCTION'
+    fixed_price = 'FIXED_PRICE'
+    other = 'OTHER'
+    second_chance_offer = 'SECOND_CHANCE_OFFER'
 
 
 class TaxAddress(EbayModel):
@@ -660,12 +1206,32 @@ class TaxAddress(EbayModel):
     )
 
 
-class TaxIdentifierTypeEnum(EbayModel):
-    pass
+class TaxIdentifierTypeEnum(StrEnum):
+    codice_fiscale = 'CODICE_FISCALE'
+    curp = 'CURP'
+    dni = 'DNI'
+    nie = 'NIE'
+    nif = 'NIF'
+    nit = 'NIT'
+    rfc = 'RFC'
+    rut = 'RUT'
+    vatin = 'VATIN'
 
 
-class TaxTypeEnum(EbayModel):
-    pass
+class TaxTypeEnum(StrEnum):
+    state_sales_tax = 'STATE_SALES_TAX'
+    province_sales_tax = 'PROVINCE_SALES_TAX'
+    region = 'REGION'
+    vat = 'VAT'
+    gst = 'GST'
+    electronic_recycling_fee = 'ELECTRONIC_RECYCLING_FEE'
+    mattress_recycling_fee = 'MATTRESS_RECYCLING_FEE'
+    additional_fee = 'ADDITIONAL_FEE'
+    battery_recycling_fee = 'BATTERY_RECYCLING_FEE'
+    tire_recycling_fee = 'TIRE_RECYCLING_FEE'
+    white_goods_disposable_tax = 'WHITE_GOODS_DISPOSABLE_TAX'
+    import_vat = 'IMPORT_VAT'
+    sst = 'SST'
 
 
 class TrackingInfo(EbayModel):

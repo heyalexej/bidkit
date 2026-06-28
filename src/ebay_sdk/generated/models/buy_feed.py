@@ -4,24 +4,185 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AvailabilityEnum(EbayModel):
-    pass
+class AvailabilityEnum(StrEnum):
+    temporarily_unavailable = 'TEMPORARILY_UNAVAILABLE'
+    available = 'AVAILABLE'
+    unavailable = 'UNAVAILABLE'
 
 
-class AvailabilityThresholdEnum(EbayModel):
-    pass
+class AvailabilityThresholdEnum(StrEnum):
+    more_than = 'MORE_THAN'
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    ang = 'ANG'
+    aoa = 'AOA'
+    ars = 'ARS'
+    aud = 'AUD'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    chf = 'CHF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dkk = 'DKK'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    eur = 'EUR'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gbp = 'GBP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    ils = 'ILS'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    nok = 'NOK'
+    npr = 'NPR'
+    nzd = 'NZD'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    syp = 'SYP'
+    szl = 'SZL'
+    thb = 'THB'
+    tjs = 'TJS'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    xaf = 'XAF'
+    xcd = 'XCD'
+    xof = 'XOF'
+    xpf = 'XPF'
+    yer = 'YER'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
-class DeliveryOptionsEnum(EbayModel):
-    pass
+class DeliveryOptionsEnum(StrEnum):
+    ship_to_home = 'SHIP_TO_HOME'
+    seller_arranged_local_pickup = 'SELLER_ARRANGED_LOCAL_PICKUP'
+    in_store_pickup = 'IN_STORE_PICKUP'
+    pickup_drop_off = 'PICKUP_DROP_OFF'
 
 
 class ErrorParameter(EbayModel):
@@ -125,12 +286,16 @@ class ItemPriorityResponse(EbayModel):
     )
 
 
-class LengthUnitOfMeasureEnum(EbayModel):
-    pass
+class LengthUnitOfMeasureEnum(StrEnum):
+    inch = 'INCH'
+    feet = 'FEET'
+    centimeter = 'CENTIMETER'
+    meter = 'METER'
 
 
-class OptionalityEnum(EbayModel):
-    pass
+class OptionalityEnum(StrEnum):
+    mandatory = 'MANDATORY'
+    optional = 'OPTIONAL'
 
 
 class Product(EbayModel):
@@ -169,28 +334,43 @@ class ProductResponse(EbayModel):
     )
 
 
-class RefundMethodEnum(EbayModel):
-    pass
+class RefundMethodEnum(StrEnum):
+    money_back = 'MONEY_BACK'
+    merchandise_credit = 'MERCHANDISE_CREDIT'
 
 
-class ReturnMethodEnum(EbayModel):
-    pass
+class ReturnMethodEnum(StrEnum):
+    replacement = 'REPLACEMENT'
+    exchange = 'EXCHANGE'
 
 
-class ReturnShippingCostPayerEnum(EbayModel):
-    pass
+class ReturnShippingCostPayerEnum(StrEnum):
+    seller = 'SELLER'
+    buyer = 'BUYER'
 
 
-class SellerTrustLevelEnum(EbayModel):
-    pass
+class SellerTrustLevelEnum(StrEnum):
+    top_rated = 'TOP_RATED'
+    above_standard = 'ABOVE_STANDARD'
 
 
-class TimeDurationUnitEnum(EbayModel):
-    pass
+class TimeDurationUnitEnum(StrEnum):
+    year = 'YEAR'
+    month = 'MONTH'
+    day = 'DAY'
+    hour = 'HOUR'
+    calendar_day = 'CALENDAR_DAY'
+    business_day = 'BUSINESS_DAY'
+    minute = 'MINUTE'
+    second = 'SECOND'
+    millisecond = 'MILLISECOND'
 
 
-class WeightUnitOfMeasureEnum(EbayModel):
-    pass
+class WeightUnitOfMeasureEnum(StrEnum):
+    pound = 'POUND'
+    kilogram = 'KILOGRAM'
+    ounce = 'OUNCE'
+    gram = 'GRAM'
 
 
 class Error(EbayModel):

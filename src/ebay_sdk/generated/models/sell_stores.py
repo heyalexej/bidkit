@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
@@ -95,12 +97,16 @@ class StoreLogoType(EbayModel):
     url: str | None = Field(None, description="The URL of the seller's store logo.")
 
 
-class StoreTaskStatusEnum(EbayModel):
-    pass
+class StoreTaskStatusEnum(StrEnum):
+    completed = 'COMPLETED'
+    failed = 'FAILED'
+    pending = 'PENDING'
 
 
-class StoreTaskTypeEnum(EbayModel):
-    pass
+class StoreTaskTypeEnum(StrEnum):
+    add_store_category = 'ADD_STORE_CATEGORY'
+    move_store_category = 'MOVE_STORE_CATEGORY'
+    delete_store_category = 'DELETE_STORE_CATEGORY'
 
 
 class Error(EbayModel):

@@ -4094,7 +4094,7 @@
   "components": {
     "schemas": {
       "AdvertisingProgramEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the eBay advertising program for which a seller may be eligible. | - **PROMOTED_LISTINGS_STANDARD**: This value indicates that the eBay advertising program is Promoted Listings general campaign strategy (formerly Promoted Listings Standard (PLS)). - **PROMOTED_LISTINGS_ADVANCED**: This value indicates that the eBay advertising program is Promoted listings priority campaign strategy (formerly Promoted Listings Advanced (PLA)). - **OFFSITE_ADS**: This value indicates that the eBay advertising program is Promoted Listings Promoted Offsite (formerly Offsite Ads).",
         "enum": [
           "PROMOTED_LISTINGS_STANDARD",
@@ -4146,7 +4146,7 @@
         "description": "The category type discerns whether the policy applies to motor vehicle listings, or to any other items except motor vehicle listings. <br><br>Each business policy can be associated with either or both categories ('MOTORS_VEHICLES' and 'ALL_EXCLUDING_MOTORS_VEHICLES'); however, return business policies are not applicable for motor vehicle listings."
       },
       "CategoryTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum type that describes the category type (motor vehicles or non-motor vehicles). | - **MOTORS_VEHICLES**: This values indicates that the business policy applies to motor vehicle listings. - **ALL_EXCLUDING_MOTORS_VEHICLES**: This values indicates that the business policy applies to all listings besides motor vehicle listings.",
         "enum": [
           "MOTORS_VEHICLES",
@@ -4182,7 +4182,7 @@
         "description": "The response payload for requests that return a list of custom policies."
       },
       "CountryCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the two-letter <a href=\"https://www.iso.org/iso/country_codes\" target=\"_blank\">ISO 3166&#8209;1 Alpha&#8209;2</a> code representing a country. | - **AD**: Andorra - **AE**: United Arab Emirates - **AF**: Afghanistan - **AG**: Antigua and Barbuda - **AI**: Anguilla - **AL**: Albania - **AM**: Armenia - **AN**: Netherlands Antilles - **AO**: Angola - **AQ**: Antarctica - **AR**: Argentina - **AS**: American Samoa - **AT**: Austria - **AU**: Australia - **AW**: Aruba - **AX**: Aland Islands - **AZ**: Azerbaijan - **BA**: Bosnia and Herzegovina - **BB**: Barbados - **BD**: Bangladesh - **BE**: Belgium - **BF**: Burkina Faso - **BG**: Bulgaria - **BH**: Bahrain - **BI**: Burundi - **BJ**: Benin - **BL**: Saint Barthelemy - **BM**: Bermuda - **BN**: Brunei Darussalam - **BO**: Bolivia - **BQ**: Bonaire, Sint Eustatius, and Saba - **BR**: Brazil - **BS**: Bahamas - **BT**: Bhutan - **BV**: Bouvet Island - **BW**: Botswana - **BY**: Belarus - **BZ**: Belize - **CA**: Canada - **CC**: Cocos (Keeling) Islands - **CD**: The Democratic Republic of the Congo - **CF**: Central African Republic - **CG**: Congo - **CH**: Switzerland - **CI**: Cote d'Ivoire - **CK**: Cook Islands - **CL**: Chile - **CM**: Cameroon - **CN**: China - **CO**: Colombia - **CR**: Costa Rica - **CU**: Cuba - **CV**: Cape Verde - **CW**: Curacao - **CX**: Christmas Island - **CY**: Cyprus - **CZ**: Czech Republic - **DE**: Germany - **DJ**: Djibouti - **DK**: Denmark - **DM**: Dominica - **DO**: Dominican Republic - **DZ**: Algeria - **EC**: Ecuador - **EE**: Estonia - **EG**: Egypt - **EH**: Western Sahara - **ER**: Eritrea - **ES**: Spain - **ET**: Ethiopia - **FI**: Finland - **FJ**: Fiji - **FK**: Falkland Islands (Malvinas) - **FM**: Federated States of Micronesia - **FO**: Faroe Islands - **FR**: France - **GA**: Gabon - **GB**: United Kingdom - **GD**: Grenada - **GE**: Georgia - **GF**: French Guiana - **GG**: Guernsey - **GH**: Ghana - **GI**: Gibraltar - **GL**: Greenland - **GM**: Gambia - **GN**: Guinea - **GP**: Guadeloupe - **GQ**: Equatorial Guinea - **GR**: Greece - **GS**: South Georgia and the South Sandwich Islands - **GT**: Guatemala - **GU**: Guam - **GW**: Guinea-Bissau - **GY**: Guyana - **HK**: Hong Kong - **HM**: Heard Island and McDonald Islands - **HN**: Honduras - **HR**: Croatia - **HT**: Haiti - **HU**: Hungary - **ID**: Indonesia - **IE**: Ireland - **IL**: Israel - **IM**: Isle of Man - **IN**: India - **IO**: British Indian Ocean Territory - **IQ**: Iraq - **IR**: Islamic Republic of Iran - **IS**: Iceland - **IT**: Italy - **JE**: Jersey - **JM**: Jamaica - **JO**: Jordan - **JP**: Japan - **KE**: Kenya - **KG**: Kyrgyzstan - **KH**: Cambodia - **KI**: Kiribati - **KM**: Comoros - **KN**: Saint Kitts and Nevis - **KP**: Democratic People's Republic of Korea - **KR**: Republic of Korea - **KW**: Kuwait - **KY**: Cayman Islands - **KZ**: Kazakhstan - **LA**: Lao People's Democratic Republic - **LB**: Lebanon - **LC**: Saint Lucia - **LI**: Liechtenstein - **LK**: Sri Lanka - **LR**: Liberia - **LS**: Lesotho - **LT**: Lithuania - **LU**: Luxembourg - **LV**: Latvia - **LY**: Libyan Arab Jamahiriya - **MA**: Morocco - **MC**: Monaco - **MD**: Republic of Moldova - **ME**: Montenegro - **MF**: Saint Martin (French part) - **MG**: Madagascar - **MH**: Marshall Islands - **MK**: The Former Yugoslav Republic of Macedonia - **ML**: Mali - **MM**: Myanmar - **MN**: Mongolia - **MO**: Macao - **MP**: Northern Mariana Islands - **MQ**: Martinique - **MR**: Mauritania - **MS**: Montserrat - **MT**: Malta - **MU**: Mauritius - **MV**: Maldives - **MW**: Malawi - **MX**: Mexico - **MY**: Malaysia - **MZ**: Mozambique - **NA**: Namibia - **NC**: New Caledonia - **NE**: Niger - **NF**: Norfolk Island - **NG**: Nigeria - **NI**: Nicaragua - **NL**: Netherlands - **NO**: Norway - **NP**: Nepal - **NR**: Nauru - **NU**: Niue - **NZ**: New Zealand - **OM**: Oman - **PA**: Panama - **PE**: Peru - **PF**: French Polynesia. Includes Tahiti - **PG**: Papua New Guinea - **PH**: Philippines - **PK**: Pakistan - **PL**: Poland - **PM**: Saint Pierre and Miquelon - **PN**: Pitcairn - **PR**: Puerto Rico - **PS**: Palestinian territory Occupied - **PT**: Portugal - **PW**: Palau - **PY**: Paraguay - **QA**: Qatar - **RE**: Reunion - **RO**: Romania - **RS**: Serbia - **RU**: Russian Federation - **RW**: Rwanda - **SA**: Saudi Arabia - **SB**: Solomon Islands - **SC**: Seychelles - **SD**: Sudan - **SE**: Sweden - **SG**: Singapore - **SH**: Saint Helena - **SI**: Slovenia - **SJ**: Svalbard and Jan Mayen - **SK**: Slovakia - **SL**: Sierra Leone - **SM**: San Marino - **SN**: Senegal - **SO**: Somalia - **SR**: Suriname - **ST**: Sao Tome and Principe - **SV**: El Salvador - **SX**: Sint Maarten (Dutch part) - **SY**: Syrian Arab Republic - **SZ**: Swaziland - **TC**: Turks and Caicos Islands - **TD**: Chad - **TF**: French Southern Territories - **TG**: Togo - **TH**: Thailand - **TJ**: Tajikistan - **TK**: Tokelau - **TL**: Timor-Leste - **TM**: Turkmenistan - **TN**: Tunisia - **TO**: Tonga - **TR**: Turkey - **TT**: Trinidad and Tobago - **TV**: Tuvalu - **TW**: Taiwan - **TZ**: Tanzania - **UA**: Ukraine - **UG**: Uganda - **UM**: United States Minor Outlying Islands - **US**: United States - **UY**: Uruguay - **UZ**: Uzbekistan - **VA**: Holy See (Vatican City state) - **VC**: Saint Vincent and the Grenadines - **VE**: Venezuela - **VG**: British Virgin Islands - **VI**: the U.S. Virgin Islands - **VN**: Vietnam - **VU**: Vanuatu - **WF**: Wallis and Futuna - **WS**: Samoa - **YE**: Yemen - **YT**: Mayotte - **ZA**: South Africa - **ZM**: Zambia - **ZW**: Zimbabwe",
         "enum": [
           "AD",
@@ -4437,7 +4437,7 @@
         ]
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 4217</a> code representing the supported world currencies. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -4725,7 +4725,7 @@
         "description": "The response payload for requests that return a list of custom policies."
       },
       "CustomPolicyTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumeration type that defines the supported types of Custom Policies. | - **PRODUCT_COMPLIANCE**: This enumeration value indicates that the custom policy is a product compliance policy. - **TAKE_BACK**: This enumeration value indicates that the custom policy is a product takeback policy.",
         "enum": [
           "PRODUCT_COMPLIANCE",
@@ -4754,7 +4754,7 @@
         "description": "This type is used to specify/indicate that an initial deposit is required for a motor vehicle listing."
       },
       "DetailsType": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the types of details that may be needed for a KYC check. | - **COMPANY_DETAILS**: This enumeration value indicates that the seller is required to provide information about their company. More information about the check is shown in the <strong>detailMessage</strong> and other applicable, corresponding fields. - **INDIVIDUAL_DETAILS**: This enumeration value indicates that the seller is required to provide personal information. More information about the check is shown in the <strong>detailMessage</strong> and other applicable, corresponding fields. - **BANK_DETAILS**: This enumeration value indicates that the seller is required to provide information about their bank. More information about the check is shown in the <strong>detailMessage</strong> and other applicable, corresponding fields.",
         "enum": [
           "COMPANY_DETAILS",
@@ -5130,7 +5130,7 @@
         "description": "This is the base response type of the <b>getKYC</b> method."
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of the standard codes that represent each of the eBay marketplaces. | - **EBAY_AT**: eBay Austria (ebay.at) - **EBAY_AU**: eBay Australia (ebay.com/au) - **EBAY_BE**: eBay Belgium (ebay.com/sch/Belgium) - **EBAY_CA**: eBay Canada (English) (ebay.ca) - **EBAY_CH**: eBay Switzerland (ebay.ch) - **EBAY_CN**: eBay China (ebay.com/sch/China) - **EBAY_CZ**: eBay Czech Republic (ebay.com/sch/Czech-Republic) - **EBAY_DE**: eBay Germany (ebay.de) - **EBAY_DK**: eBay Denmark (ebay.com/sch/Denmark) - **EBAY_ES**: eBay Spain (ebay.es) - **EBAY_FI**: eBay Finland (ebay.com/sch/Finland) - **EBAY_FR**: eBay France (ebay.fr) - **EBAY_GB**: eBay UK (ebay.co.uk) - **EBAY_GR**: eBay Greece (ebay.com/sch/Greece) - **EBAY_HK**: eBay Hong Kong (ebay.com.hk) - **EBAY_HU**: eBay Hungary (ebay.com/sch/Hungary) - **EBAY_ID**: eBay Indonesia (id.ebay.com) - **EBAY_IE**: eBay Ireland (ebay.ie) - **EBAY_IL**: eBay Israel (ebay.com/sch/Israel) - **EBAY_IN**: eBay India (ebay.in)<br><span class=\"tablenote\"><strong>Note:</strong> eBay India is no longer a functioning eBay marketplace.</span> - **EBAY_IT**: eBay Italy (ebay.it) - **EBAY_JP**: eBay Japan (ebay.co.jp) - **EBAY_MY**: eBay Malaysia (ebay.com/my) - **EBAY_NL**: eBay Netherlands (ebay.nl) - **EBAY_NO**: eBay Norway (ebay.com/sch/Norway) - **EBAY_NZ**: eBay New Zealand (ebay.com/sch/New-Zealand) - **EBAY_PE**: eBay Peru (ebay.com/sch/Peru) - **EBAY_PH**: eBay Philippines (ebay.ph) - **EBAY_PL**: eBay Poland (ebay.pl) - **EBAY_PR**: eBay Puerto Rico (ebay.com/sch/Puerto-Rico) - **EBAY_PT**: eBay Portugal (ebay.com/sch/Portugal) - **EBAY_RU**: eBay Russia (ebay.com/sch/Russia) - **EBAY_SE**: eBay Sweden (ebay.com/sch/Sweden) - **EBAY_SG**: eBay Singapore (ebay.com/sg) - **EBAY_TH**: eBay Thailand (export.ebay.co.th) - **EBAY_TW**: eBay Taiwan (ebay.com/tw) - **EBAY_US**: eBay US (ebay.com) - **EBAY_VN**: eBay Vietnam (ebay.vn) - **EBAY_ZA**: eBay South Africa (ebay.com/sch/South-Africa) - **EBAY_HALF_US**: This enumeration value is no longer applicable as the Half.com site no longer exists. - **EBAY_MOTORS_US**: eBay Motors US (ebay.com/motors)",
         "enum": [
           "EBAY_AT",
@@ -5177,7 +5177,7 @@
         ]
       },
       "PaymentInstrumentBrandEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type defining the supported credit card brand names. <br><br> <span class=\"tablenote\"><b>Note</b>: This enumeration type and the values defined in it are no longer applicable, since eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods. </span> | - **AMERICAN_EXPRESS**: American Express card - **DISCOVER**: Discover card - **MASTERCARD**: MasterCard - **VISA**: Visa card",
         "enum": [
           "AMERICAN_EXPRESS",
@@ -5208,7 +5208,7 @@
         "description": "This type is used by the <b>paymentMethods</b> container, which is used by the seller to specify one or more offline payment methods. <br><br> <span class=\"tablenote\"><b>Note</b>: eBay now controls all electronic payment methods available for a marketplace, so a seller will no longer use this type to specify any electronic payment methods.</span>"
       },
       "PaymentMethodTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumeration type that defines the supported payment methods.<br><br> <span class=\"tablenote\"><b>Note</b>: eBay manages all electronic payment methods that are available to buyers, so sellers only need to specify one or more offline payment methods for listings that support or require payment that occurs off of the eBay platform. All electronic payment method enum values are no longer applicable, and are marked as such. </span> | - **CASH_IN_PERSON**: This enumeration value indicates that the payment method will be cash, and the transaction will occur in-person. - **CASH_ON_DELIVERY**: This enumeration value indicates that the payment method will be cash, and the transaction will occur after the item is delivered to the buyer. - **CASH_ON_PICKUP**: This enumeration value indicates that the payment method will be cash, and the transaction will occur when the buyer picks up the item. - **CASHIER_CHECK**: This enumeration value indicates that the payment method will be a Cashier Check. - **CREDIT_CARD**: This payment method is no longer valid. - **ESCROW**: This enumeration value indicates that escrow was used as the payment method to pay for the order. This form of payment is used for high-value orders. - **INTEGRATED_MERCHANT_CREDIT_CARD**: This payment method is no longer valid. - **LOAN_CHECK**: This payment method is no longer valid. - **MONEY_ORDER**: This enumeration value indicates that the payment method will be by a Money Order. - **PAISA_PAY**: This payment method is no longer valid. - **PAISA_PAY_ESCROW**: This payment method is no longer valid. - **PAISA_PAY_ESCROW_EMI**: This payment method is no longer valid. - **PAYPAL**: This payment method is no longer valid. - **PERSONAL_CHECK**: This enumeration value indicates that the payment method will be a Personal check. - **OTHER**: This enumeration value indicates that the seller is offering an offline payment method not otherwise covered.",
         "enum": [
           "CASH_IN_PERSON",
@@ -5407,7 +5407,7 @@
         "description": "Type used by the payments program onboarding response"
       },
       "PaymentsProgramOnboardingStatus": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration value indicates the eligibility of payment onboarding for the registered site. | - **ELIGIBLE_TO_ONBOARD**: This enumeration value indicates that the seller can start or continue the onboarding process. When starting the onboarding process, the first step in the registration process is returned in the steps array with a <strong>status</strong> of <code>NOT_STARTED<code>. A link in the webUrl field opens a page for the seller to complete the first step. When the seller has completed all steps, the payments capability becomes available to the seller. - **NOT_ELIGIBLE**: This enumeration value indicates that the seller's marketplace supports eBay managed payments, but the seller is not yet eligible. Eligibility is determined by eBay daily. Check onboardingStatus regularly. - **PREBOARDED**: This enumeration value indicates that the seller has completed all the necessary onboarding steps for eBay managed payments. The seller must wait for eBay to activate eBay managed payments for their account. - **ONBOARDED**: This enumeration value indicates that the seller is fully onboarded and that eBay managed payments has been activated on the seller's account.",
         "enum": [
           "ELIGIBLE_TO_ONBOARD",
@@ -5417,7 +5417,7 @@
         ]
       },
       "PaymentsProgramOnboardingStepStatus": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration value indicates the status of the present onboarding step. | - **NOT_STARTED**: This enumeration value indicates that the present step has not started. - **IN_PROGRESS**: This enumeration value indicates that the present step has started but has not completed. - **COMPLETED**: This enumeration value indicates that the present step has completed.",
         "enum": [
           "NOT_STARTED",
@@ -5472,7 +5472,7 @@
         "description": "The response object containing the sellers status with regards to the specified payment program."
       },
       "PaymentsProgramStatus": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the different possible statuses relating to whether or not a seller is opted-in to a payments program. | - **OPTED_IN**: Status indicating the seller is opted-in to the associated payment program. - **NOT_OPTED_IN**: Status indicating the seller is not opted-in to the associated payment program.",
         "enum": [
           "OPTED_IN",
@@ -5480,7 +5480,7 @@
         ]
       },
       "PaymentsProgramType": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported payment programs. | - **EBAY_PAYMENTS**: This value indicates the eBay-managed payments program.",
         "enum": [
           "EBAY_PAYMENTS"
@@ -5500,7 +5500,7 @@
         "description": "The seller program to opt in to when part of an <b>optInToProgram</b> request, or out of when part of an  <b>optOutOfProgram</b> request."
       },
       "ProgramTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported seller programs. | - **OUT_OF_STOCK_CONTROL**: If a seller's account is opted in to the out-of-stock control program, active fixed-price listings will be kept 'alive' (but not surfaced in search results) even when the quantity for the listing has been depleted to 0. This feature allows the seller to update/revise the listing with more quantity, and prevents the seller from having to relist the item. - **PARTNER_MOTORS_DEALER**: The Partner Motors Program that sellers can participate in by opting-in to the program. Sellers must be registered business users to opt-in to this program. - **SELLING_POLICY_MANAGEMENT**: If a seller's account is opted in to this program, sellers can associate business policies (payment, return policy, fulfillment) to their listings. Being opted in to business policies is a requirement for using the <strong>Inventory API</strong>.",
         "enum": [
           "OUT_OF_STOCK_CONTROL",
@@ -5583,14 +5583,14 @@
         "description": "<span class=\"tablenote\"><b>Note</b>: This type is no longer applicable. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.</span>"
       },
       "RecipientAccountReferenceTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "<span class=\"tablenote\"><b>Note</b>: This type is no longer applicable. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.</span> | - **PAYPAL_EMAIL**: This is the PayPal email address of the seller.",
         "enum": [
           "PAYPAL_EMAIL"
         ]
       },
       "RefundMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported refund types for buyer returns. | - **MERCHANDISE_CREDIT**: <strong>Do not use/No longer supported.</strong> - **MONEY_BACK**: This enumeration value indicates that the buyer will get their money back (refund) for a returned item.",
         "enum": [
           "MERCHANDISE_CREDIT",
@@ -5636,7 +5636,7 @@
         "description": "This type consists of the <b>regionIncluded</b> and <b>regionExcluded</b> arrays, which indicate the areas to where the seller does and doesn't ship."
       },
       "RegionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines shipping region types.<br><span class=\"tablenote\"> <strong>Note:</strong> These enumeration values are not currently being used by fulfillment policy methods, but may be used in the future.</span> | - **COUNTRY**: A single country. - **COUNTRY_REGION**: A domestic region or special location within a country. In the US, these domestic region/special location include 'Alaska/Hawaii' and 'PO Box'. - **STATE_OR_PROVINCE**: A state or province, such as California (CA) or New York (NY) in the US, or British Columbia (BC) or Ontario (ON) in Canada. - **WORLD_REGION**: A world region, such as Europe, the Middle East, or Southeast Asia. - **WORLDWIDE**: The entire world as we know it.",
         "enum": [
           "COUNTRY",
@@ -5647,7 +5647,7 @@
         ]
       },
       "ReturnMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the return options (other than 'money back') that a seller may offer to the buyer for a return request. | - **EXCHANGE**: <strong>Do not use/No longer supported.</strong> - **REPLACEMENT**: This value indicates that the seller offers a replacement (identical) item as an alternative to 'money back' when the buyer is returning an item.",
         "enum": [
           "EXCHANGE",
@@ -5839,7 +5839,7 @@
         "description": "The response payload for the <b>getReturnPolicies</b> method. <br><br><span class=\"tablenote\"><b>Note</b>: Pagination has not yet been enabled for <b>getReturnPolicies</b>, so all of the pagination-related fields are for future use.</span>"
       },
       "ReturnShippingCostPayerEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines who is responsible for the return shipping cost. Note that the seller is always responsible for the return shipping cost of SNAD-related returns. | - **BUYER**: Return shipping cost paid by BUYER. - **SELLER**: Return shipping cost paid by SELLER.",
         "enum": [
           "BUYER",
@@ -5927,7 +5927,7 @@
         "description": "This type is used by the root response of the <b>getSalesTaxes</b> method."
       },
       "SellerEligibilityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the seller eligibility status for a specified eBay advertising program. | - **ELIGIBLE**: This value indicates that the seller is eligible for the specified eBay advertising program. - **INELIGIBLE**: This value indicates that the seller is ineligible for the specified eBay advertising program.",
         "enum": [
           "ELIGIBLE",
@@ -5973,7 +5973,7 @@
         "description": "A type that is used to provide the seller's eligibility status for an eBay advertising program."
       },
       "SellerIneligibleReasonEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the reason why a seller is ineligible for an eBay advertising program. | - **NOT_ENOUGH_ACTIVITY**: This value indicates that the seller is ineligible for the eBay advertising program due to lack of activity.<br><br>New accounts take a few weeks to become eligible for eBay Promoted Listings. If the seller account is in good standing (Above Standard or Top Rated), the account should become eligible within a few weeks. - **NOT_IN_GOOD_STANDING**: This value indicates that the seller is ineligible for the eBay advertising program because their account is not currently in good standing.<br><br>Below Standard sellers cannot use eBay advertising programs to create new campaigns or edit their existing campaigns. Existing campaigns will be paused by the system. - **RESTRICTED**: This value indicates that the seller is currently restricted from using the corresponding eBay advertising program.",
         "enum": [
           "NOT_ENOUGH_ACTIVITY",
@@ -6242,7 +6242,7 @@
         "description": "A complex type that is populated with a response containing a return policies."
       },
       "ShippingCostTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the shipping cost models. | - **CALCULATED**: This value indicates that calculated shipping is used by the seller. With calculated shipping, the shipping cost varies according to the shipping location and the size and weight of the package. - **FLAT_RATE**: This value indicates that flat-rate shipping is used by the seller. With flat-rate shipping, the shipping cost will be the same for all buyers, or buyers within a specified region if the seller uses shipping rate tables. - **NOT_SPECIFIED**: This value indicates that the shipping cost type has not been specified.",
         "enum": [
           "CALCULATED",
@@ -6296,7 +6296,7 @@
         "description": "This type is used by the <b>shippingOptions</b> array, which is used to provide detailed information on the domestic and international shipping options available for the policy. A separate <b>ShippingOption</b> object covers domestic shipping service options and international shipping service options (if the seller ships to international locations)."
       },
       "ShippingOptionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines whether the corresponding shipping service options are domestic or international shipping service options. a region that is either domestic (within the country from where the item is listed or shipped) or international (a country outside the country from where the item is listed or shipped). | - **DOMESTIC**: This value indicates that the corresponding shipping service options are domestic shipping service options. - **INTERNATIONAL**: This value indicates that the corresponding shipping service options are international shipping service options.",
         "enum": [
           "DOMESTIC",
@@ -6419,7 +6419,7 @@
         "description": "This type is used by the response payload for the <b>getSubscription</b> method.<br><br><span class=\"tablenote\"><b>Note</b>: Pagination has not yet been enabled for <b>getSubscription</b>, so all of the pagination-related fields are for future use.</span>"
       },
       "SubscriptionTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the types of subscriptions that may be associated with a seller account, such as an eBay store subscription. | - **STORE_PLAN**: This value indicates an eBay store subscription.",
         "enum": [
           "STORE_PLAN"
@@ -6441,7 +6441,7 @@
         "description": "A type used to specify a period of time using a specified time-measurement unit. Payment, return, and fulfillment business policies all use this type to specify time windows.<br><br>Whenever a container that uses this type is used in a request, both of these fields are required. Similarly, whenever a container that uses this type is returned in a response, both of these fields are always returned."
       },
       "TimeDurationUnitEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies the time-measurement unit that's used to express a time span. | - **YEAR**: This value indicates that the time measurement unit used is based on a number of years. This enum is not currently used by the Account API v1. - **MONTH**: This value indicates that the time measurement unit used is based on a number of months. This enum is not currently used by the Account API v1. - **DAY**: This value indicates that the time measurement unit used is based on a number of days. This enum is used for handling time in fulfillment business policies, for <strong>fullPaymentDueIn</strong> field for motor vehicle listing payment business policies, and for the return period for return business policies. - **HOUR**: This value indicates that the time measurement unit used is based on a number of hours. This enum is used for a motor vehicle deposit due date for motor vehicle listing payment business policies. - **CALENDAR_DAY**: This value indicates that the time measurement unit used is based on a number of calendar days, including Saturday and Sunday. This time measurement unit does not exclude holidays. This enum is not currently used by the Account API v1. - **BUSINESS_DAY**: This value indicates that the time measurement unit used is based on a number of business days or 'working days'. This generally excludes Sunday and all holidays (for the marketplace) in the time duration and, depending on the location, can include or exclude Saturday. This enum is not currently used by the Account API v1. - **MINUTE**: This value indicates that the time measurement unit used is based on a number of minutes. This enum is not currently used by the Account API v1. - **SECOND**: This value indicates that the time measurement unit used is based on a number of seconds. This enum is not currently used by the Account API v1. - **MILLISECOND**: This value indicates that the time measurement unit used is based on a number of milliseconds. This enum is not currently used by the Account API v1.",
         "enum": [
           "YEAR",

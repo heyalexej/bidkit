@@ -2756,7 +2756,7 @@
   "components": {
     "schemas": {
       "AdFormatEnabledEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains a list of values indicating type or status of available ad formats for an eBay site or for an eBay category. | - **DISABLED**: This value indicates that the Classified Ad format feature is disabled for the site or category. - **ENABLED**: This value indicates that the Classified Ad format feature is enabled for the site or category. - **ONLY**: This value indicates that the Classified Ad format is the only listing type supported by the eBay category. This value is not applicable at the eBay site level. - **CLASSIFIED_AD_ENABLED**: This value indicates that the lead-generation Classified Ad format is the only listing type supported by the eBay category. This value is not applicable at the eBay site level. - **CLASSIFIED_AD_ONLY**: This value indicates that the lead-generation Classified Ad format is the only listing type supported by the eBay category. This value is not applicable at the eBay site level. - **LOCAL_MARKET_BEST_OFFER_ONLY**: This value indicates that eBay Motors Local Market listings are enabled for the site or category.",
         "enum": [
           "DISABLED",
@@ -2838,7 +2838,7 @@
         }
       },
       "CardinalityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type is used to indicate whether a condition descriptor can have just a single value or multiple values. | - **SINGLE**: This enumeration value indicates that only a single value can be used for the condition descriptor. - **MULTI**: This enumeration value indicates that multiple values can be used for the condition descriptor.",
         "enum": [
           "SINGLE",
@@ -2955,7 +2955,7 @@
         "description": "This type contains applicable policy metadata for the leaf categories returned for the marketplace."
       },
       "ClassifiedAdBestOfferEnabledEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines values that indicate whether the category supports Classified Ad Best Offers. | - **DISABLED**: This value indicates that Classified Ad Best Offer feature is disabled for most categories. - **ENABLED**: This value indicates that Classified Ad Best Offer feature is enabled for most categories. - **REQUIRED**: This value indicates that Classified Ad Best Offer feature is required for a specific category. ",
         "enum": [
           "DISABLED",
@@ -2964,7 +2964,7 @@
         ]
       },
       "ClassifiedAdPaymentMethodEnabledEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines values that indicate whether the payment method will be displayed for a category. | - **ENABLED_WITH_CHECKOUT**: This value indicates display of the payment method and permits checkout. - **ENABLED_WITHOUT_CHECKOUT**: This value indicates display of the payment method and suppresses checkout. - **NOT_SUPPORTED**: This value indicates the payment method is not displayed.",
         "enum": [
           "ENABLED_WITH_CHECKOUT",
@@ -3100,14 +3100,14 @@
       },
       "CompatibilityTypeEnum": {
         "description": "This enumerated type defines how the compatibility details are listed on the specified category. | - **SPECIFICATIONS**: The compatibility details are listed by the specifications of the part. For example, dimensions or other defining characteristics of the part. - **ASSEMBLY**: The compatibility details are listed by by the vehicle assembly information, such as make, model, year of production, and so on.",
-        "type": "object",
+        "type": "string",
         "enum": [
           "SPECIFICATIONS",
           "ASSEMBLY"
         ]
       },
       "CompatibleVehicleTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This type contains enumerated values defining different motor vehicle groups across eBay marketplaces. | - **US_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the US Motors marketplace. - **US_MOTORCYCLES**: This value indicates that the corresponding leaf category contains Motorcycles on the United States marketplace. - **DE_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Germany marketplace. - **UK_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Great Britain marketplace. - **US_ATV**: This value indicates that the corresponding leaf category contains ATVs on the United States marketplace. - **AU_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Australia marketplace. - **US_BOATS**: This value indicates that the corresponding leaf category contains Boats on the United States marketplace. - **US_ATV_UTV**: This value indicates that the corresponding leaf category contains ATVs and UTVs on the United States marketplace. - **US_SNOWMOBILES**: This value indicates that the corresponding leaf category contains Snowmobiles on the United States marketplace. - **US_POWERSPORTS**: This value indicates that the corresponding leaf category contains Powersports vehicles on the United States marketplace. - **US_SCOOTERS**: This value indicates that the corresponding leaf category contains Scooters on the United States marketplace. - **US_GOLF_CARTS**: This value indicates that the corresponding leaf category contains Golf Carts on the United States marketplace. - **US_WATERCRAFTS**: This value indicates that the corresponding leaf category contains Watercraft vehicles on the United States marketplace. - **DE_MOTORCYCLES**: This value indicates that the corresponding leaf category contains Motorcycles on the Germany marketplace. - **DE_SCOOTERS**: This value indicates that the corresponding leaf category contains Scooters on the Germany marketplace. - **UK_MOTORCYCLES**: This value indicates that the corresponding leaf category contains Motorcycles on the Great Britain marketplace. - **UK_SCOOTERS**: This value indicates that the corresponding leaf category contains Scooters on the Great Britain marketplace. - **IT_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Italy marketplace. - **FR_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the France marketplace. - **ES_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Spain marketplace. - **CA_CARS_AND_TRUCKS**: This value indicates that the corresponding leaf category contains Cars & Trucks listings on the on the Canada marketplace. - **DEFAULT_VALUE**: This enumeration value may be returned if the vehicle group cannot be determined.",
         "enum": [
           "US_CARS_AND_TRUCKS",
@@ -3135,7 +3135,7 @@
         ]
       },
       "CountryCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type lists the two-letter <a href=\"https://www.iso.org/iso-3166-country-codes.html \" title=\"https://www.iso.org \" target=\"_blank\">ISO 3166</a> code representing a country. | - **AD**: Andorra - **AE**: United Arab Emirates - **AF**: Afghanistan - **AG**: Antigua and Barbuda - **AI**: Anguilla - **AL**: Albania - **AM**: Armenia - **AN**: Netherlands Antilles - **AO**: Angola - **AQ**: Antarctica - **AR**: Argentina - **AS**: American Samoa - **AT**: Austria - **AU**: Australia - **AW**: Aruba - **AX**: Aland Islands - **AZ**: Azerbaijan - **BA**: Bosnia and Herzegovina - **BB**: Barbados - **BD**: Bangladesh - **BE**: Belgium - **BF**: Burkina Faso - **BG**: Bulgaria - **BH**: Bahrain - **BI**: Burundi - **BJ**: Benin - **BL**: Saint Barthelemy - **BM**: Bermuda - **BN**: Brunei Darussalam - **BO**: Bolivia - **BQ**: Bonaire, Sint Eustatius, and Saba - **BR**: Brazil - **BS**: Bahamas - **BT**: Bhutan - **BV**: Bouvet Island - **BW**: Botswana - **BY**: Belarus - **BZ**: Belize - **CA**: Canada - **CC**: Cocos (Keeling) Islands - **CD**: The Democratic Republic of the Congo - **CF**: Central African Republic - **CG**: Congo - **CH**: Switzerland - **CI**: Cote d'Ivoire - **CK**: Cook Islands - **CL**: Chile - **CM**: Cameroon - **CN**: China - **CO**: Colombia - **CR**: Costa Rica - **CU**: Cuba - **CV**: Cape Verde - **CW**: Curacao - **CX**: Christmas Island - **CY**: Cyprus - **CZ**: Czech Republic - **DE**: Germany - **DJ**: Djibouti - **DK**: Denmark - **DM**: Dominica - **DO**: Dominican Republic - **DZ**: Algeria - **EC**: Ecuador - **EE**: Estonia - **EG**: Egypt - **EH**: Western Sahara - **ER**: Eritrea - **ES**: Spain - **ET**: Ethiopia - **FI**: Finland - **FJ**: Fiji - **FK**: Falkland Islands (Malvinas) - **FM**: Federated States of Micronesia - **FO**: Faroe Islands - **FR**: France - **GA**: Gabon - **GB**: United Kingdom - **GD**: Grenada - **GE**: Georgia - **GF**: French Guiana - **GG**: Guernsey - **GH**: Ghana - **GI**: Gibraltar - **GL**: Greenland - **GM**: Gambia - **GN**: Guinea - **GP**: Guadeloupe - **GQ**: Equatorial Guinea - **GR**: Greece - **GS**: South Georgia and the South Sandwich Islands - **GT**: Guatemala - **GU**: Guam - **GW**: Guinea-Bissau - **GY**: Guyana - **HK**: Hong Kong - **HM**: Heard Island and McDonald Islands - **HN**: Honduras - **HR**: Croatia - **HT**: Haiti - **HU**: Hungary - **ID**: Indonesia - **IE**: Ireland - **IL**: Israel - **IM**: Isle of Man - **IN**: India - **IO**: British Indian Ocean Territory - **IQ**: Iraq - **IR**: Islamic Republic of Iran - **IS**: Iceland - **IT**: Italy - **JE**: Jersey - **JM**: Jamaica - **JO**: Jordan - **JP**: Japan - **KE**: Kenya - **KG**: Kyrgyzstan - **KH**: Cambodia - **KI**: Kiribati - **KM**: Comoros - **KN**: Saint Kitts and Nevis - **KP**: Democratic People's Republic of Korea - **KR**: Republic of Korea - **KW**: Kuwait - **KY**: Cayman Islands - **KZ**: Kazakhstan - **LA**: Lao People's Democratic Republic - **LB**: Lebanon - **LC**: Saint Lucia - **LI**: Liechtenstein - **LK**: Sri Lanka - **LR**: Liberia - **LS**: Lesotho - **LT**: Lithuania - **LU**: Luxembourg - **LV**: Latvia - **LY**: Libyan Arab Jamahiriya - **MA**: Morocco - **MC**: Monaco - **MD**: Republic of Moldova - **ME**: Montenegro - **MF**: Saint Martin (French part) - **MG**: Madagascar - **MH**: Marshall Islands - **MK**: The Former Yugoslav Republic of Macedonia - **ML**: Mali - **MM**: Myanmar - **MN**: Mongolia - **MO**: Macao - **MP**: Northern Mariana Islands - **MQ**: Martinique - **MR**: Mauritania - **MS**: Montserrat - **MT**: Malta - **MU**: Mauritius - **MV**: Maldives - **MW**: Malawi - **MX**: Mexico - **MY**: Malaysia - **MZ**: Mozambique - **NA**: Namibia - **NC**: New Caledonia - **NE**: Niger - **NF**: Norfolk Island - **NG**: Nigeria - **NI**: Nicaragua - **NL**: Netherlands - **NO**: Norway - **NP**: Nepal - **NR**: Nauru - **NU**: Niue - **NZ**: New Zealand - **OM**: Oman - **PA**: Panama - **PE**: Peru - **PF**: French Polynesia. Includes Tahiti - **PG**: Papua New Guinea - **PH**: Philippines - **PK**: Pakistan - **PL**: Poland - **PM**: Saint Pierre and Miquelon - **PN**: Pitcairn - **PR**: Puerto Rico - **PS**: Palestinian territory Occupied - **PT**: Portugal - **PW**: Palau - **PY**: Paraguay - **QA**: Qatar - **RE**: Reunion - **RO**: Romania - **RS**: Serbia - **RU**: Russian Federation - **RW**: Rwanda - **SA**: Saudi Arabia - **SB**: Solomon Islands - **SC**: Seychelles - **SD**: Sudan - **SE**: Sweden - **SG**: Singapore - **SH**: Saint Helena - **SI**: Slovenia - **SJ**: Svalbard and Jan Mayen - **SK**: Slovakia - **SL**: Sierra Leone - **SM**: San Marino - **SN**: Senegal - **SO**: Somalia - **SR**: Suriname - **ST**: Sao Tome and Principe - **SV**: El Salvador - **SX**: Sint Maarten (Dutch part) - **SY**: Syrian Arab Republic - **SZ**: Swaziland - **TC**: Turks and Caicos Islands - **TD**: Chad - **TF**: French Southern Territories - **TG**: Togo - **TH**: Thailand - **TJ**: Tajikistan - **TK**: Tokelau - **TL**: Timor-Leste - **TM**: Turkmenistan - **TN**: Tunisia - **TO**: Tonga - **TR**: Turkey - **TT**: Trinidad and Tobago - **TV**: Tuvalu - **TW**: Taiwan - **TZ**: Tanzania - **UA**: Ukraine - **UG**: Uganda - **UM**: United States Minor Outlying Islands - **US**: United States - **UY**: Uruguay - **UZ**: Uzbekistan - **VA**: Holy See (Vatican City state) - **VC**: Saint Vincent and the Grenadines - **VE**: Venezuela - **VG**: British Virgin Islands - **VI**: the U.S. Virgin Islands - **VN**: Vietnam - **VU**: Vanuatu - **WF**: Wallis and Futuna - **WS**: Samoa - **YE**: Yemen - **YT**: Mayotte - **ZA**: South Africa - **ZM**: Zambia - **ZW**: Zimbabwe",
         "enum": [
           "AD",
@@ -3408,7 +3408,7 @@
         "description": "The type defining valid currencies for the marketplace."
       },
       "CurrencyCodeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "The three-letter <a href=\"https://www.iso.org/iso-4217-currency-codes.html \" target=\"_blank\">ISO 4217</a> code representing a world currency. | - **AED**: United Arab Emirates dirham - **AFN**: Afghan afghani - **ALL**: Albanian lek - **AMD**: Armenian dram - **ANG**: Netherlands Antillean guilder - **AOA**: Angolan kwanza - **ARS**: Argentine peso - **AUD**: Australian dollar - **AWG**: Aruban florin - **AZN**: Azerbaijani manat - **BAM**: Bosnia and Herzegovina convertible mark - **BBD**: Barbados dollar - **BDT**: Bangladeshi taka - **BGN**: Bulgarian lev - **BHD**: Bahraini dinar - **BIF**: Burundian franc - **BMD**: Bermudian dollar - **BND**: Brunei dollar - **BOB**: Bolivian Boliviano - **BRL**: Brazilian real - **BSD**: Bahamian dollar - **BTN**: Bhutanese ngultrum - **BWP**: Botswana pula - **BYR**: Belarusian ruble - **BZD**: Belize dollar - **CAD**: Canadian dollar - **CDF**: Congolese franc - **CHF**: Swiss franc - **CLP**: Chilean peso - **CNY**: Chinese yuan renminbi - **COP**: Colombian peso - **CRC**: Costa Rican colon - **CUP**: Cuban peso - **CVE**: Cape Verde escudo - **CZK**: Czech koruna - **DJF**: Djiboutian franc - **DKK**: Danish krone - **DOP**: Dominican peso - **DZD**: Algerian dinar - **EGP**: Egyptian pound - **ERN**: Eritrean nakfa - **ETB**: Ethiopian birr - **EUR**: European Union euro - **FJD**: Fiji dollar - **FKP**: Falkland Islands pound - **GBP**: British pound sterling - **GEL**: Georgian lari - **GHS**: Ghanaian cedi - **GIP**: Gibraltar pound - **GMD**: Gambian dalasi - **GNF**: Guinean franc - **GTQ**: Guatemalan quetzal - **GYD**: Guyanese dollar - **HKD**: Hong Kong dollar - **HNL**: Honduran lempira - **HRK**: Croatian kuna - **HTG**: Haitian gourde - **HUF**: Hungarian forint - **IDR**: Indonesian rupiah - **ILS**: Israeli new shekel - **INR**: Indian rupee - **IQD**: Iraqi dinar - **IRR**: Iranian rial - **ISK**: Icelandic krona - **JMD**: Jamaican dollar - **JOD**: Jordanian dinar - **JPY**: Japanese yen - **KES**: Kenyan shilling - **KGS**: Kyrgyzstani som - **KHR**: Cambodian riel - **KMF**: Comoro franc - **KPW**: North Korean won - **KRW**: South Korean won - **KWD**: Kuwaiti dinar - **KYD**: Cayman Islands dollar - **KZT**: Kazakhstani tenge - **LAK**: Lao kip - **LBP**: Lebanese pound - **LKR**: Sri Lankan rupee - **LRD**: Liberian dollar - **LSL**: Lesotho loti - **LTL**: Lithuanian litas - **LYD**: Libyan dinar - **MAD**: Moroccan dirham - **MDL**: Moldovan leu - **MGA**: Malagasy ariary - **MKD**: Macedonian denar - **MMK**: Myanmar kyat - **MNT**: Mongolian tugrik - **MOP**: Macanese pataca - **MRO**: Mauritanian ouguiya - **MUR**: Mauritian rupee - **MVR**: Maldivian rufiyaa - **MWK**: Malawian kwacha - **MXN**: Mexican peso - **MYR**: Malaysian ringgit - **MZN**: Mozambican metical - **NAD**: Namibian dollar - **NGN**: Nigerian naira - **NIO**: Nicaraguan cordoba oro - **NOK**: Norwegian krone - **NPR**: Nepalese rupee - **NZD**: New Zealand dollar - **OMR**: Omani rial - **PAB**: Panamanian balboa - **PEN**: Peruvian sol - **PGK**: Papua New Guinean kina - **PHP**: Philippine peso - **PKR**: Pakistani rupee - **PLN**: Polish zloty - **PYG**: Paraguayan guarani - **QAR**: Qatari riyal - **RON**: Romanian leu - **RSD**: Serbian dinar - **RUB**: Russian ruble - **RWF**: Rwandan franc - **SAR**: Saudi riyal - **SBD**: Solomon Islands dollar - **SCR**: Seychelles rupee - **SDG**: Sudanese pound - **SEK**: Swedish krona - **SGD**: Singapore dollar - **SHP**: Saint Helena pound - **SLL**: Sierra Leonean leone - **SOS**: Somali shilling - **SRD**: Surinamese dollar - **STD**: Sao Tome and Principe dobra - **SYP**: Syrian pound - **SZL**: Swazi lilangeni - **THB**: Thai baht - **TJS**: Tajikistani somoni - **TMT**: Turkmenistani manat - **TND**: Tunisian dinar - **TOP**: Tongan pa'anga - **TRY**: Turkish lira - **TTD**: Trinidad and Tobago dollar - **TWD**: New Taiwan dollar - **TZS**: Tanzanian shilling - **UAH**: Ukrainian hryvnia - **UGX**: Ugandan shilling - **USD**: United States dollar - **UYU**: Uruguayan peso - **UZS**: Uzbekistani som - **VEF**: Venezuelan bolivar - **VND**: Vietnamese dong - **VUV**: Vanuatu vatu - **WST**: Samoan tala - **XAF**: CFA franc BEAC - **XCD**: East Caribbean dollar - **XOF**: CFA franc BCEAO - **XPF**: CFP franc - **YER**: Yemeni rial - **ZAR**: South African rand - **ZMW**: Zambian kwacha - **ZWL**: Zimbabwean dollar",
         "enum": [
           "AED",
@@ -3569,7 +3569,7 @@
         ]
       },
       "DescriptorUsageEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type indicates if there are any usage restrictions for the corresponding condition descriptor in the corresponding category. Currently, the only supported value is <code>REQUIRED</code>. | - **REQUIRED**: This value indicates that the usage of the condition descriptor in the corresponding category is required. ",
         "enum": [
           "REQUIRED"
@@ -3590,7 +3590,7 @@
         "description": "This type defines the booleans used to determine if a product is excluded from eBay selling and/or review."
       },
       "DistanceType": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type indicates support of local listing distances for items listed by sellers. | - **LOCAL_LISTING_DISTANCES_REGULAR**: Indicates that one or more eBay marketplaces allow dealership subscribers with a regular subscription to specify local market radius for Motors Local Market listings. - **LOCAL_LISTING_DISTANCES_SPECIALTY**: Indicates that one or more eBay marketplaces allow dealership subscribers with a specialty subscription to specify local market radius for Motors Local Market listings. - **LOCAL_LISTING_DISTANCES_NON_SUBSCRIPTION**: Indicates that one or more eBay marketplaces allow dealership subscribers without a subscription to specify local market radius for Motors Local Market listings.  ",
         "enum": [
           "LOCAL_LISTING_DISTANCES_REGULAR",
@@ -3599,7 +3599,7 @@
         ]
       },
       "DurationEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type defines the supported listing duration periods. | - **GTC**: This value indicates that the corresponding leaf category and listing type supports GTC (Good 'til Cancelled) listing duration. GTC is typically the only supported value for fixed-price listings. - **DAYS_1**: This enumerated value indicates that the listing is valid for 1 day.<br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_1</code> is supported for your listing category, use <code>Days_1</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_3**: This value indicates that the corresponding leaf category and listing type supports a 3-day listing duration.<br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_3</code> is supported for your listing category, use <code>Days_3</code> when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_5**: This value indicates that the corresponding leaf category and listing type supports a 5-day listing duration.<br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_5</code> is supported for your listing category, use <code>Days_5</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_7**: This value indicates that the corresponding leaf category and listing type supports a 7-day listing duration. <br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_7</code> is supported for your listing category, use <code>Days_7</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_10**: This value indicates that the corresponding leaf category and listing type supports a 10-day listing duration. <br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_10</code> is supported for your listing category, use <code>Days_10</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_30**: This value indicates that the corresponding leaf category and listing type supports a 30-day listing duration. This is a typical listing duration for Classified Ad listings. <br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_30</code> is supported for your listing category, use <code>Days_30</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span> - **DAYS_90**: This value indicates that the corresponding leaf category and listing type supports a 90-day listing duration. This is a typical listing duration for Classified Ad listings. <br><br><span class=\"tablenote\"><b>Note</b>: Legacy support: If <code>DAYS_90</code> is supported for your listing category, use <code>Days_90</code> as the value in the <a href=\"/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ListingType \" target=\"_blank\">ListingDuration</a> field when creating/revising a listing with the <b>Trading API</b>.</span>",
         "enum": [
           "GTC",
@@ -3767,7 +3767,7 @@
         "description": "A type that defines the attributes of an Extended Producer Responsibility policy."
       },
       "ExtendedProducerResponsibilityEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that identifies the attributes used in Extended Producer Responsibility policies.<span class=\"tablenote\"><span style=\"color:#478415\"><strong>Note: </strong></span>Extended Producer Responsibility IDs are no longer set at the listing level so category-level metadata is no longer returned for <code>PRODUCER_PRODUCT_ID</code>, <code>PRODUCT_DOCUMENTATION_ID</code>, <code>PRODUCT_PACKAGE_ID</code>, and <code>SHIPMENT_PACKAGE_ID</code>. Sellers will provide/manage these IDs at the account level by going to <a href=\"https://accountsettings.ebay.fr/epr-fr \" target=\"_blank\">Account Settings</a>.</span> | - **ECO_PARTICIPATION_FEE**: This enum value is used to identify the eco participation fee attribute. - **TAKE_BACK_POLICY**: This enum value is used to identify the take-back policy attribute. - **REPAIR_SCORE**: This enum value is used to identify the repair score attribute. ",
         "enum": [
           "ECO_PARTICIPATION_FEE",
@@ -3825,7 +3825,7 @@
         "description": "A type that defines the response fields for the <b>getExtendedProducerResponsibilityPolicies</b> method."
       },
       "GenericUsageEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates whether an Extended Producer Responsibility attribute is optional, recommended, or required. | - **OPTIONAL**: This enum value indicates that the attribute is optional. - **RECOMMENDED**: This enum value indicates that the attribute is recommended. - **REQUIRED**: This enum value indicates that the attribute is required.",
         "enum": [
           "OPTIONAL",
@@ -3834,7 +3834,7 @@
         ]
       },
       "GeographicExposureEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates if an eBay site or category supports Motors National Listings and/or Motors Local Market listings. | - **National**: This enumeration value indicates the eBay site or category only supports Motors National Listings for the corresponding Motors dealer subscription level/type. - **LocalOnly**: This enumeration value the eBay site or category only supports Motors Local Market Listings for the corresponding Motors dealer subscription level/type. - **LocalOptional**: This enumeration value the eBay site or category supports Motors National Listings and Motors Local Market listing for the corresponding Motors dealer subscription level/type.",
         "enum": [
           "National",
@@ -4180,7 +4180,7 @@
         }
       },
       "ListingTypeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type contains the selling formats for eBay listings. | - **AUCTION**: This value indicates that the corresponding leaf category supports auction listings. - **AD_TYPE**: This value indicates that the corresponding leaf category supports classified ads in a Real Estate category listings. - **PERSONAL_OFFER**: This value indicates that the corresponding leaf category supports Second chance offer made to a non-winning bidder listings. - **FIXED_PRICE_ITEM**: This value indicates that the corresponding leaf category supports fixed-price listings. - **LEAD_GENERATION**: This value indicates that the corresponding leaf category supports non-Real Estate classified ad listings (the <code>AD_TYPE</code> enumeration value represents Real Estate classified ads).",
         "enum": [
           "AUCTION",
@@ -4264,7 +4264,7 @@
         "description": "This type contains the kind of distance and radius of the selling area for Local Market Vehicle listings."
       },
       "MarketplaceIdEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This type contains enumerated values of the standard codes that represent each of the eBay marketplaces. | - **EBAY_US**: Indicates the eBay marketplace for the United States. - **EBAY_CA**: Indicates the eBay marketplace for Canada.<br><br><span class=\"tablenote\"><b>Note:</b> When targeting the French locale of the Canadian marketplace, add the <b>Accept-Language</b> request header and pass in <code>fr-CA</code>. If this locale is not specified, the language will default to English.</span> - **EBAY_GB**: Indicates the eBay marketplace for Great Britain (United Kingdom). - **EBAY_AU**: Indicates the eBay marketplace for Australia. - **EBAY_AT**: Indicates the eBay marketplace for Austria. - **EBAY_BE**: Indicates the eBay marketplace for Belgium. <br><br><span class=\"tablenote\"><b>Note:</b> When targeting the French locale of the Belgium marketplace, add the <b>Accept-Language</b> request header and pass in <code>fr-BE</code>. If this locale is not specified, the language will default to Dutch.</span> - **EBAY_DE**: Indicates the eBay marketplace for Germany. - **EBAY_IT**: Indicates the eBay marketplace for Italy. - **EBAY_NL**: Indicates the eBay marketplace for The Netherlands. - **EBAY_ES**: Indicates the eBay marketplace for Spain. - **EBAY_CH**: Indicates the eBay marketplace for Switzerland. - **EBAY_TW**: Indicates the eBay marketplace for Taiwan. - **EBAY_CZ**: This marketplace is not currently supported. - **EBAY_DK**: This marketplace is not currently supported. - **EBAY_FI**: This marketplace is not currently supported. - **EBAY_FR**: Indicates the eBay marketplace for France. - **EBAY_GR**: This marketplace is not currently supported. - **EBAY_HK**: Indicates the eBay marketplace for Hong Kong. - **EBAY_HU**: This marketplace is not currently supported. - **EBAY_IN**: This marketplace is not currently supported. - **EBAY_ID**: This marketplace is not currently supported. - **EBAY_IE**: Indicates the eBay marketplace for Indicates the eBay marketplace for Ireland. - **EBAY_IL**: This marketplace is not currently supported. - **EBAY_MY**: Indicates the eBay marketplace for Malaysia. - **EBAY_NZ**: This marketplace is not currently supported. - **EBAY_NO**: This marketplace is not currently supported. - **EBAY_PH**: This marketplace is not currently supported. - **EBAY_PL**: Indicates the eBay marketplace for Poland. - **EBAY_PT**: Indicates the eBay marketplace for Portugal. - **EBAY_PR**: This marketplace is not currently supported. - **EBAY_RU**: This marketplace is not currently supported. - **EBAY_SG**: Indicates the eBay marketplace for Singapore. - **EBAY_ZA**: This marketplace is not currently supported. - **EBAY_SE**: This marketplace is not currently supported. - **EBAY_TH**: This marketplace is not currently supported. - **EBAY_VN**: This marketplace is not currently supported. - **EBAY_CN**: This marketplace is not currently supported. - **EBAY_JP**: This marketplace is not currently supported. - **EBAY_PE**: This marketplace is not currently supported. - **EBAY_HALF_US**: No longer used. - **EBAY_MOTORS_US**: Indicates the eBay marketplace is eBay Motors.",
         "enum": [
           "EBAY_US",
@@ -4338,7 +4338,7 @@
         "description": "This type defines the minimum starting prices for the supported types of eBay listings"
       },
       "ModeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration value indicates whether a condition descriptor input is selection only or free text. | - **SELECTION_ONLY**: This enum indicates that the input is selection only. - **FREE_TEXT**: This enum indicates that the input is free text.",
         "enum": [
           "SELECTION_ONLY",
@@ -4779,7 +4779,7 @@
         "description": "This type defines the fields used to control the pagination of the result set."
       },
       "PaymentEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that defines the different payment methods that can be used by buyers to pay sellers for purchases.<p><span class=\"tablenote\"><span style=\"color:#004680\"><strong>Note: </strong>This value is only applicable for offline payments.</span></p> | - **CASH_ON_PICKUP**: This enumeration value indicates that cash on pickup is accepted for payment. This value is only applicable for offline payments. - **PAYMENT_SEE_DESCRIPTION**: This enumeration value indicates that payment format is described in the listing description. This value is only applicable for offline payments and is not supported on all marketplaces. - **MOCC**: This enumeration value indicates that a money order or cashiers check is accepted for payment. This value is only applicable for offline payments and is not supported on all marketplaces. - **PERSONAL_CHECK**: This enumeration value indicates that a personal check is accepted for payment. This value is only applicable for offline payments and is not supported on all marketplaces. - **OTHER**: This enumeration value indicates that the payment format accepted for payment is not described by any of the other payment methods. This value is only applicable for offline payments.",
         "enum": [
           "CASH_ON_PICKUP",
@@ -4808,7 +4808,7 @@
         "description": "A type that describes pictograms for hazardous materials labels."
       },
       "ProductIdentiferEnabledEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumerated type specifies whether a leaf category supports or requires a Universal Product Code (UPC), International Standard Book Number (ISBN), or European Article Number (EAN) for products. Collectively, these identifiers are referred to as Global Trade Item Numbers (GTINs).</p> | - **DISABLED**: This value indicates that the corresponding Global Trade Item Number (GTIN) type is not supported for the leaf category. - **ENABLED**: This value indicates that the corresponding Global Trade Item Number (GTIN) type is supported as applicable, but not required for the leaf category - **REQUIRED**: This value indicates that the corresponding Global Trade Item Number (GTIN) type is required for the leaf category, and an Add/Revise operation will fail without this information.",
         "enum": [
           "DISABLED",
@@ -5171,7 +5171,7 @@
         "description": "This type defines the response fields used in the <b>getCompatibilityPropertyValues</b> method."
       },
       "RefundMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum list that defines the values you can supply for specifying a refund. | - **MONEY_BACK**: This value indicates that the seller will issue a refund for the cost of the item if the item is returned.",
         "enum": [
           "MONEY_BACK"
@@ -5196,7 +5196,7 @@
         "description": "A type that defines the attributes of a regulatory policy."
       },
       "RegulatoryAttributeEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enumerated type that indicates supported regulatory attributes. | - **HAZMAT**: Indicates hazardous materials labels support in listing flows. - **ENERGY_EFFICIENCY**: Indicates energy efficiency class support in listing flows. - **MANUFACTURER_CONTACT**: Indicates support for manufacturer contacts in listing flows. - **PRODUCT_SAFETY**: Indicates product safety support in listing flows. ",
         "enum": [
           "HAZMAT",
@@ -5255,7 +5255,7 @@
         "description": "A type that defines the response fields for the <b>getRegulatoryPolicies</b> method."
       },
       "ReturnMethodEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum list that defines the values you can supply for specifying a return. | - **REPLACEMENT**: This value indicates that the buy may request a replacement instead of a monetary refund if they return an item. This value is valid only within the US marketplace.",
         "enum": [
           "REPLACEMENT"
@@ -5357,7 +5357,7 @@
         }
       },
       "ReturnShippingCostPayerEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum list that defines the values you can supply for who pays for the return shipping cost. | - **BUYER**: Indicates the buyer pays for the return shipping cost.<br><br>Note that the seller is responsible for the return shipping cost for all SNAD-related returns. - **SELLER**: Indicates the seller pays for the return shipping cost.",
         "enum": [
           "BUYER",
@@ -5865,7 +5865,7 @@
         "description": "A complex type that specifies a period of time using a specified time-measurement unit."
       },
       "TimeDurationUnitEnum": {
-        "type": "object",
+        "type": "string",
         "description": "An enum value that specifies the time-measurement unit that's used to express a time span. | - **YEAR**: Time duration is based on a number of years. - **MONTH**: Time duration is based on a number of months - **DAY**: Time duration is based on a number of days. - **HOUR**: Time duration is based on a number of hours. - **CALENDAR_DAY**: Time duration is based on a number of calendar days, including Saturday and Sunday. This time duration does not exclude holidays. - **BUSINESS_DAY**: Time duration is based on a number of business days, or 'working days' (normally Monday through Friday). This excludes Sunday and all holidays in the time duration and, depending on the location, can include or exclude Saturday. - **MINUTE**: Time duration is based on a number of minutes. - **SECOND**: Time duration is based on a number of seconds. - **MILLISECOND**: Time duration is based on a number of milliseconds.",
         "enum": [
           "YEAR",
@@ -5880,7 +5880,7 @@
         ]
       },
       "UsageEnum": {
-        "type": "object",
+        "type": "string",
         "description": "This enumeration type contains a list of usage values for using item conditions. Currently, the only supported value is <code>RESTRICTED</code>. | - **RESTRICTED**: This value indicates that the usage of the corresponding item condition in the corresponding category is restricted to users who are eligible to use that item condition in the category. <code>usage:RESTRICTED</code> applies to items with these conditions:<ul><li>ConditionId 2000 (CERTIFIED_REFURBISHED)</li><li>ConditionId 2010 (EXCELLENT_REFURBISHED)</li><li>ConditionId 2020 (VERY_GOOD_REFURBISHED)</li><li>ConditionId 2030 (GOOD_REFURBISHED)</li></ul><span class=\"tablenote\"><b>Note: </b>Condition IDs 2010, 2020, and 2030 are only usable in the category <b>Cell Phones & Smartphones - 9355</b>. These IDs will become available beginning September 1, 2021. Sellers must be pre-approved to use these item conditions.</span>",
         "enum": [
           "RESTRICTED"

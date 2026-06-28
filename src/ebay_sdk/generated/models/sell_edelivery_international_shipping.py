@@ -4,14 +4,15 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AddressTypeEnum(EbayModel):
-    pass
+class AddressTypeEnum(StrEnum):
+    ship_from_address = 'SHIP_FROM_ADDRESS'
+    return_address = 'RETURN_ADDRESS'
 
 
 class AgentInfoData(EbayModel):
@@ -83,8 +84,9 @@ class CancelPackagesResponsesData(EbayModel):
     )
 
 
-class ComplaintTypeEnum(EbayModel):
-    pass
+class ComplaintTypeEnum(StrEnum):
+    abnormal_collection_complaint = 'ABNORMAL_COLLECTION_COMPLAINT'
+    lost_package_complaint = 'LOST_PACKAGE_COMPLAINT'
 
 
 class ConfirmPackagesRequestData(EbayModel):
@@ -112,8 +114,14 @@ class ConfirmPackagesResponsesData(EbayModel):
     )
 
 
-class ConsignTypeEnum(EbayModel):
-    pass
+class ConsignTypeEnum(StrEnum):
+    pick_up = 'PICK_UP'
+    drop_off = 'DROP_OFF'
+    forward_deployment = 'FORWARD_DEPLOYMENT'
+    rdc = 'RDC'
+    cn_post_drop_off = 'CN_POST_DROP_OFF'
+    cn_post_pick_up = 'CN_POST_PICK_UP'
+    hk_post_drop_off = 'HK_POST_DROP_OFF'
 
 
 class CreateAddressPreferenceRequestData(EbayModel):
@@ -205,8 +213,162 @@ class CreateConsignPreferenceResponsesData(EbayModel):
     )
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    aoa = 'AOA'
+    ars = 'ARS'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    dkk = 'DKK'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    gbp = 'GBP'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    chf = 'CHF'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    xcd = 'XCD'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    npr = 'NPR'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    xpf = 'XPF'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    ils = 'ILS'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    nok = 'NOK'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    ang = 'ANG'
+    syp = 'SYP'
+    szl = 'SZL'
+    xaf = 'XAF'
+    xof = 'XOF'
+    thb = 'THB'
+    tjs = 'TJS'
+    nzd = 'NZD'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    aud = 'AUD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    yer = 'YER'
+    eur = 'EUR'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
 class DeletePackagesRequestData(EbayModel):
@@ -477,21 +639,52 @@ class GetTrackingDetailResponsesData(EbayModel):
     )
 
 
-class IncotermEnum(Enum):
+class IncotermEnum(StrEnum):
     ddp = 'DDP'
     ddu = 'DDU'
 
 
-class LiBatteryTypeEnum(EbayModel):
-    pass
+class LiBatteryTypeEnum(StrEnum):
+    no_battery = 'NO_BATTERY'
+    lithium_ion_battery_packed_with_equipment = (
+        'LITHIUM_ION_BATTERY_PACKED_WITH_EQUIPMENT'
+    )
+    lithium_ion_battery_contained_in_equipment = (
+        'LITHIUM_ION_BATTERY_CONTAINED_IN_EQUIPMENT'
+    )
+    lithium_metal_battery_packed_with_equipment = (
+        'LITHIUM_METAL_BATTERY_PACKED_WITH_EQUIPMENT'
+    )
+    lithium_metal_battery_contained_in_equipment = (
+        'LITHIUM_METAL_BATTERY_CONTAINED_IN_EQUIPMENT'
+    )
+    dry_packed_with_equipment = 'DRY_PACKED_WITH_EQUIPMENT'
+    special_goods_with_no_battery = 'SPECIAL_GOODS_WITH_NO_BATTERY'
 
 
-class PackageStatusEnum(EbayModel):
-    pass
+class PackageStatusEnum(StrEnum):
+    declared_failed = 'DECLARED_FAILED'
+    package_info_lack = 'PACKAGE_INFO_LACK'
+    no_useful_shipping = 'NO_USEFUL_SHIPPING'
+    selected_shipping = 'SELECTED_SHIPPING'
+    applied_tracking_code = 'APPLIED_TRACKING_CODE'
+    to_be_shipped = 'TO_BE_SHIPPED'
+    to_be_received = 'TO_BE_RECEIVED'
+    delivered = 'DELIVERED'
+    on_shipping = 'ON_SHIPPING'
+    deleted = 'DELETED'
+    shipped_error = 'SHIPPED_ERROR'
+    delivery_error = 'DELIVERY_ERROR'
+    returned = 'RETURNED'
+    exception = 'EXCEPTION'
+    fdcvalidationfailed = 'FDCVALIDATIONFAILED'
+    fdcvalidationinprogress = 'FDCVALIDATIONINPROGRESS'
+    delivery_exception = 'DELIVERY_EXCEPTION'
 
 
-class PickUpTimeTypeEnum(EbayModel):
-    pass
+class PickUpTimeTypeEnum(StrEnum):
+    time_14_16 = 'TIME_14_16'
+    time_16_18 = 'TIME_16_18'
 
 
 class PickupAddressRequestData(EbayModel):

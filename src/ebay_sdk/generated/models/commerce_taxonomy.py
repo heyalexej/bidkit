@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
@@ -31,24 +33,30 @@ class AncestorReference(EbayModel):
     )
 
 
-class AspectAdvancedDataTypeEnum(EbayModel):
-    pass
+class AspectAdvancedDataTypeEnum(StrEnum):
+    numeric_range = 'NUMERIC_RANGE'
 
 
-class AspectApplicableToEnum(EbayModel):
-    pass
+class AspectApplicableToEnum(StrEnum):
+    item = 'ITEM'
+    product = 'PRODUCT'
 
 
-class AspectDataTypeEnum(EbayModel):
-    pass
+class AspectDataTypeEnum(StrEnum):
+    date = 'DATE'
+    number = 'NUMBER'
+    string = 'STRING'
+    string_array = 'STRING_ARRAY'
 
 
-class AspectModeEnum(EbayModel):
-    pass
+class AspectModeEnum(StrEnum):
+    free_text = 'FREE_TEXT'
+    selection_only = 'SELECTION_ONLY'
 
 
-class AspectUsageEnum(EbayModel):
-    pass
+class AspectUsageEnum(StrEnum):
+    recommended = 'RECOMMENDED'
+    optional = 'OPTIONAL'
 
 
 class BaseCategoryTree(EbayModel):
@@ -193,12 +201,33 @@ class GetCompatibilityPropertyValuesResponse(EbayModel):
     )
 
 
-class ItemToAspectCardinalityEnum(EbayModel):
-    pass
+class ItemToAspectCardinalityEnum(StrEnum):
+    multi = 'MULTI'
+    single = 'SINGLE'
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_at = 'EBAY_AT'
+    ebay_au = 'EBAY_AU'
+    ebay_be = 'EBAY_BE'
+    ebay_ca = 'EBAY_CA'
+    ebay_ch = 'EBAY_CH'
+    ebay_de = 'EBAY_DE'
+    ebay_es = 'EBAY_ES'
+    ebay_fr = 'EBAY_FR'
+    ebay_gb = 'EBAY_GB'
+    ebay_hk = 'EBAY_HK'
+    ebay_ie = 'EBAY_IE'
+    ebay_in = 'EBAY_IN'
+    ebay_it = 'EBAY_IT'
+    ebay_motors_us = 'EBAY_MOTORS_US'
+    ebay_my = 'EBAY_MY'
+    ebay_nl = 'EBAY_NL'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_ru = 'EBAY_RU'
+    ebay_sg = 'EBAY_SG'
+    ebay_us = 'EBAY_US'
 
 
 class RangeValue(EbayModel):

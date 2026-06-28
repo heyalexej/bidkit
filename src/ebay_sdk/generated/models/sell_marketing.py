@@ -4,14 +4,17 @@
 
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import Any
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field, RootModel
 
 
-class AdGroupStatusEnum(EbayModel):
-    pass
+class AdGroupStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    paused = 'PAUSED'
+    archived = 'ARCHIVED'
 
 
 class AdIds(EbayModel):
@@ -22,8 +25,9 @@ class AdIds(EbayModel):
     )
 
 
-class AdRateStrategyEnum(EbayModel):
-    pass
+class AdRateStrategyEnum(StrEnum):
+    dynamic = 'DYNAMIC'
+    fixed = 'FIXED'
 
 
 class AdReference(EbayModel):
@@ -45,36 +49,51 @@ class AdReferences(EbayModel):
     )
 
 
-class AdStatusEnum(EbayModel):
-    pass
+class AdStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    paused = 'PAUSED'
+    archived = 'ARCHIVED'
 
 
-class AdditionalInfoEnum(EbayModel):
-    pass
+class AdditionalInfoEnum(StrEnum):
+    keyword_insights = 'KEYWORD_INSIGHTS'
 
 
-class AdditionalRecordEnum(EbayModel):
-    pass
+class AdditionalRecordEnum(StrEnum):
+    non_performing_data = 'NON_PERFORMING_DATA'
 
 
-class AlertTypeEnum(EbayModel):
-    pass
+class AlertTypeEnum(StrEnum):
+    invalid_bid_percentage = 'INVALID_BID_PERCENTAGE'
+    invalid_cap_percentage = 'INVALID_CAP_PERCENTAGE'
 
 
-class AspectKeyEnum(EbayModel):
-    pass
+class AspectKeyEnum(StrEnum):
+    minimum_required = 'MINIMUM_REQUIRED'
 
 
-class AudienceTypeEnum(EbayModel):
-    pass
+class AudienceTypeEnum(StrEnum):
+    all_subscribers = 'ALL_SUBSCRIBERS'
+    new_subscribers = 'NEW_SUBSCRIBERS'
+    custom = 'CUSTOM'
+    buyer_group = 'BUYER_GROUP'
+    first_time_buyers = 'FIRST_TIME_BUYERS'
+    recent_buyers = 'RECENT_BUYERS'
+    most_recent_buyers = 'MOST_RECENT_BUYERS'
+    followers = 'FOLLOWERS'
+    interested_buyers = 'INTERESTED_BUYERS'
+    new_followers = 'NEW_FOLLOWERS'
+    post_cmpgn_new_buyers = 'POST_CMPGN_NEW_BUYERS'
 
 
-class BiddingStrategyEnum(EbayModel):
-    pass
+class BiddingStrategyEnum(StrEnum):
+    fixed = 'FIXED'
+    dynamic = 'DYNAMIC'
 
 
-class BudgetStatusEnum(EbayModel):
-    pass
+class BudgetStatusEnum(StrEnum):
+    allocated = 'ALLOCATED'
+    out_of_budget = 'OUT_OF_BUDGET'
 
 
 class CampaignAudience(EbayModel):
@@ -87,32 +106,50 @@ class CampaignAudience(EbayModel):
     name: str | None = Field(None, description='The display name for an audience.')
 
 
-class CampaignStatusEnum(EbayModel):
-    pass
+class CampaignStatusEnum(StrEnum):
+    deleted = 'DELETED'
+    draft = 'DRAFT'
+    ended = 'ENDED'
+    ending_soon = 'ENDING_SOON'
+    paused = 'PAUSED'
+    pending = 'PENDING'
+    running = 'RUNNING'
+    scheduled = 'SCHEDULED'
+    system_paused = 'SYSTEM_PAUSED'
 
 
-class CampaignTargetingTypeEnum(EbayModel):
-    pass
+class CampaignTargetingTypeEnum(StrEnum):
+    manual = 'MANUAL'
+    smart = 'SMART'
 
 
-class CampaignTypeEnum(EbayModel):
-    pass
+class CampaignTypeEnum(StrEnum):
+    welcome = 'WELCOME'
+    item_showcase = 'ITEM_SHOWCASE'
+    coupon = 'COUPON'
+    sale_event = 'SALE_EVENT'
+    order_discount = 'ORDER_DISCOUNT'
+    volume_pricing = 'VOLUME_PRICING'
 
 
-class CategoryScopeEnum(EbayModel):
-    pass
+class CategoryScopeEnum(StrEnum):
+    marketplace = 'MARKETPLACE'
+    store = 'STORE'
 
 
-class CategoryTypeEnum(EbayModel):
-    pass
+class CategoryTypeEnum(StrEnum):
+    ebay = 'EBAY'
+    store = 'STORE'
 
 
-class ChannelEnum(EbayModel):
-    pass
+class ChannelEnum(StrEnum):
+    on_site = 'ON_SITE'
+    off_site = 'OFF_SITE'
 
 
-class CouponTypeEnum(EbayModel):
-    pass
+class CouponTypeEnum(StrEnum):
+    private_single_seller_coupon = 'PRIVATE_SINGLE_SELLER_COUPON'
+    public_single_seller_coupon = 'PUBLIC_SINGLE_SELLER_COUPON'
 
 
 class CreateAdRequest(EbayModel):
@@ -131,16 +168,174 @@ class CreateAdRequest(EbayModel):
     )
 
 
-class CriterionTypeEnum(EbayModel):
-    pass
+class CriterionTypeEnum(StrEnum):
+    inventory_partition = 'INVENTORY_PARTITION'
 
 
-class CurrencyCodeEnum(EbayModel):
-    pass
+class CurrencyCodeEnum(StrEnum):
+    aed = 'AED'
+    afn = 'AFN'
+    all = 'ALL'
+    amd = 'AMD'
+    ang = 'ANG'
+    aoa = 'AOA'
+    ars = 'ARS'
+    aud = 'AUD'
+    awg = 'AWG'
+    azn = 'AZN'
+    bam = 'BAM'
+    bbd = 'BBD'
+    bdt = 'BDT'
+    bgn = 'BGN'
+    bhd = 'BHD'
+    bif = 'BIF'
+    bmd = 'BMD'
+    bnd = 'BND'
+    bob = 'BOB'
+    brl = 'BRL'
+    bsd = 'BSD'
+    btn = 'BTN'
+    bwp = 'BWP'
+    byr = 'BYR'
+    bzd = 'BZD'
+    cad = 'CAD'
+    cdf = 'CDF'
+    chf = 'CHF'
+    clp = 'CLP'
+    cny = 'CNY'
+    cop = 'COP'
+    crc = 'CRC'
+    cup = 'CUP'
+    cve = 'CVE'
+    czk = 'CZK'
+    djf = 'DJF'
+    dkk = 'DKK'
+    dop = 'DOP'
+    dzd = 'DZD'
+    egp = 'EGP'
+    ern = 'ERN'
+    etb = 'ETB'
+    eur = 'EUR'
+    fjd = 'FJD'
+    fkp = 'FKP'
+    gbp = 'GBP'
+    gel = 'GEL'
+    ghs = 'GHS'
+    gip = 'GIP'
+    gmd = 'GMD'
+    gnf = 'GNF'
+    gtq = 'GTQ'
+    gyd = 'GYD'
+    hkd = 'HKD'
+    hnl = 'HNL'
+    hrk = 'HRK'
+    htg = 'HTG'
+    huf = 'HUF'
+    idr = 'IDR'
+    ils = 'ILS'
+    inr = 'INR'
+    iqd = 'IQD'
+    irr = 'IRR'
+    isk = 'ISK'
+    jmd = 'JMD'
+    jod = 'JOD'
+    jpy = 'JPY'
+    kes = 'KES'
+    kgs = 'KGS'
+    khr = 'KHR'
+    kmf = 'KMF'
+    kpw = 'KPW'
+    krw = 'KRW'
+    kwd = 'KWD'
+    kyd = 'KYD'
+    kzt = 'KZT'
+    lak = 'LAK'
+    lbp = 'LBP'
+    lkr = 'LKR'
+    lrd = 'LRD'
+    lsl = 'LSL'
+    ltl = 'LTL'
+    lyd = 'LYD'
+    mad = 'MAD'
+    mdl = 'MDL'
+    mga = 'MGA'
+    mkd = 'MKD'
+    mmk = 'MMK'
+    mnt = 'MNT'
+    mop = 'MOP'
+    mro_1 = 'MRO'
+    mur = 'MUR'
+    mvr = 'MVR'
+    mwk = 'MWK'
+    mxn = 'MXN'
+    myr = 'MYR'
+    mzn = 'MZN'
+    nad = 'NAD'
+    ngn = 'NGN'
+    nio = 'NIO'
+    nok = 'NOK'
+    npr = 'NPR'
+    nzd = 'NZD'
+    omr = 'OMR'
+    pab = 'PAB'
+    pen = 'PEN'
+    pgk = 'PGK'
+    php = 'PHP'
+    pkr = 'PKR'
+    pln = 'PLN'
+    pyg = 'PYG'
+    qar = 'QAR'
+    ron = 'RON'
+    rsd = 'RSD'
+    rub = 'RUB'
+    rwf = 'RWF'
+    sar = 'SAR'
+    sbd = 'SBD'
+    scr = 'SCR'
+    sdg = 'SDG'
+    sek = 'SEK'
+    sgd = 'SGD'
+    shp = 'SHP'
+    sll = 'SLL'
+    sos = 'SOS'
+    srd = 'SRD'
+    std = 'STD'
+    syp = 'SYP'
+    szl = 'SZL'
+    thb = 'THB'
+    tjs = 'TJS'
+    tmt = 'TMT'
+    tnd = 'TND'
+    top = 'TOP'
+    try_ = 'TRY'
+    ttd = 'TTD'
+    twd = 'TWD'
+    tzs = 'TZS'
+    uah = 'UAH'
+    ugx = 'UGX'
+    usd = 'USD'
+    uyu = 'UYU'
+    uzs = 'UZS'
+    vef = 'VEF'
+    vnd = 'VND'
+    vuv = 'VUV'
+    wst = 'WST'
+    xaf = 'XAF'
+    xcd = 'XCD'
+    xof = 'XOF'
+    xpf = 'XPF'
+    yer = 'YER'
+    zar = 'ZAR'
+    zmw = 'ZMW'
+    zwl = 'ZWL'
 
 
-class DataTypeEnum(EbayModel):
-    pass
+class DataTypeEnum(StrEnum):
+    date = 'DATE'
+    integer = 'INTEGER'
+    double = 'DOUBLE'
+    string = 'STRING'
+    long = 'LONG'
 
 
 class DeleteAdRequest(EbayModel):
@@ -183,8 +378,8 @@ class DimensionKeyAnnotation(EbayModel):
     )
 
 
-class DimensionKeyEnum(EbayModel):
-    pass
+class DimensionKeyEnum(StrEnum):
+    marketplace_id = 'MARKETPLACE_ID'
 
 
 class DimensionMetadata(EbayModel):
@@ -218,8 +413,10 @@ class DynamicAdRatePreference(EbayModel):
     )
 
 
-class EmailCampaignStatusEnum(EbayModel):
-    pass
+class EmailCampaignStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    sent = 'SENT'
+    error = 'ERROR'
 
 
 class ErrorParameter(EbayModel):
@@ -234,12 +431,13 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class ExclusionsEnum(EbayModel):
-    pass
+class ExclusionsEnum(StrEnum):
+    adopted_keywords = 'ADOPTED_KEYWORDS'
 
 
-class FundingModelEnum(EbayModel):
-    pass
+class FundingModelEnum(StrEnum):
+    cost_per_sale = 'COST_PER_SALE'
+    cost_per_click = 'COST_PER_CLICK'
 
 
 class GetEmailCampaignAudiencesResponse(EbayModel):
@@ -285,40 +483,96 @@ class GetEmailPreviewResponse(EbayModel):
     )
 
 
-class InventoryCriterionEnum(EbayModel):
-    pass
+class InventoryCriterionEnum(StrEnum):
+    inventory_by_rule = 'INVENTORY_BY_RULE'
+    inventory_by_value = 'INVENTORY_BY_VALUE'
+    inventory_any = 'INVENTORY_ANY'
 
 
-class InventoryReferenceTypeEnum(EbayModel):
-    pass
+class InventoryReferenceTypeEnum(StrEnum):
+    inventory_item = 'INVENTORY_ITEM'
+    inventory_item_group = 'INVENTORY_ITEM_GROUP'
 
 
-class ItemMarkdownStatusEnum(EbayModel):
-    pass
+class ItemMarkdownStatusEnum(StrEnum):
+    pending = 'PENDING'
+    marked_down = 'MARKED_DOWN'
+    marked_up = 'MARKED_UP'
+    skipped = 'SKIPPED'
+    failed = 'FAILED'
 
 
-class ItemSelectModeEnum(EbayModel):
-    pass
+class ItemSelectModeEnum(StrEnum):
+    auto = 'AUTO'
+    manual = 'MANUAL'
 
 
-class ItemSortEnum(EbayModel):
-    pass
+class ItemSortEnum(StrEnum):
+    ending_first = 'ENDING_FIRST'
+    highest_priced = 'HIGHEST_PRICED'
+    lowest_priced = 'LOWEST_PRICED'
+    newly_listed = 'NEWLY_LISTED'
 
 
-class KeywordStatusEnum(EbayModel):
-    pass
+class KeywordStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    paused = 'PAUSED'
+    archived = 'ARCHIVED'
 
 
-class MarketplaceIdEnum(EbayModel):
-    pass
+class MarketplaceIdEnum(StrEnum):
+    ebay_at = 'EBAY_AT'
+    ebay_au = 'EBAY_AU'
+    ebay_be = 'EBAY_BE'
+    ebay_ca = 'EBAY_CA'
+    ebay_ch = 'EBAY_CH'
+    ebay_cn = 'EBAY_CN'
+    ebay_cz = 'EBAY_CZ'
+    ebay_de = 'EBAY_DE'
+    ebay_dk = 'EBAY_DK'
+    ebay_es = 'EBAY_ES'
+    ebay_fi = 'EBAY_FI'
+    ebay_fr = 'EBAY_FR'
+    ebay_gb = 'EBAY_GB'
+    ebay_gr = 'EBAY_GR'
+    ebay_hk = 'EBAY_HK'
+    ebay_hu = 'EBAY_HU'
+    ebay_id = 'EBAY_ID'
+    ebay_ie = 'EBAY_IE'
+    ebay_il = 'EBAY_IL'
+    ebay_in = 'EBAY_IN'
+    ebay_it = 'EBAY_IT'
+    ebay_jp = 'EBAY_JP'
+    ebay_my = 'EBAY_MY'
+    ebay_nl = 'EBAY_NL'
+    ebay_no = 'EBAY_NO'
+    ebay_nz = 'EBAY_NZ'
+    ebay_pe = 'EBAY_PE'
+    ebay_ph = 'EBAY_PH'
+    ebay_pl = 'EBAY_PL'
+    ebay_pr = 'EBAY_PR'
+    ebay_pt = 'EBAY_PT'
+    ebay_ru = 'EBAY_RU'
+    ebay_se = 'EBAY_SE'
+    ebay_sg = 'EBAY_SG'
+    ebay_th = 'EBAY_TH'
+    ebay_tw = 'EBAY_TW'
+    ebay_us = 'EBAY_US'
+    ebay_vn = 'EBAY_VN'
+    ebay_za = 'EBAY_ZA'
+    ebay_half_us = 'EBAY_HALF_US'
+    ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class MatchTypeEnum(EbayModel):
-    pass
+class MatchTypeEnum(StrEnum):
+    broad = 'BROAD'
+    exact = 'EXACT'
+    phrase = 'PHRASE'
 
 
-class MetricEnum(EbayModel):
-    pass
+class MetricEnum(StrEnum):
+    active_seller_count = 'ACTIVE_SELLER_COUNT'
+    search_volume = 'SEARCH_VOLUME'
 
 
 class MetricMetadata(EbayModel):
@@ -332,12 +586,14 @@ class MetricMetadata(EbayModel):
     )
 
 
-class NegativeKeywordMatchTypeEnum(EbayModel):
-    pass
+class NegativeKeywordMatchTypeEnum(StrEnum):
+    exact = 'EXACT'
+    phrase = 'PHRASE'
 
 
-class NegativeKeywordStatusEnum(EbayModel):
-    pass
+class NegativeKeywordStatusEnum(StrEnum):
+    active = 'ACTIVE'
+    archived = 'ARCHIVED'
 
 
 class PriceRange(EbayModel):
@@ -355,20 +611,33 @@ class PriceRange(EbayModel):
     )
 
 
-class PromotionPriorityEnum(EbayModel):
-    pass
+class PromotionPriorityEnum(StrEnum):
+    priority_1 = 'PRIORITY_1'
+    priority_2 = 'PRIORITY_2'
+    priority_3 = 'PRIORITY_3'
+    priority_4 = 'PRIORITY_4'
+    invalid = 'INVALID'
 
 
-class PromotionSelectModeEnum(EbayModel):
-    pass
+class PromotionSelectModeEnum(StrEnum):
+    auto = 'AUTO'
+    manual = 'MANUAL'
 
 
-class PromotionStatusEnum(EbayModel):
-    pass
+class PromotionStatusEnum(StrEnum):
+    scheduled = 'SCHEDULED'
+    running = 'RUNNING'
+    paused = 'PAUSED'
+    draft = 'DRAFT'
+    ended = 'ENDED'
+    invalid = 'INVALID'
 
 
-class PromotionTypeEnum(EbayModel):
-    pass
+class PromotionTypeEnum(StrEnum):
+    coded_coupon = 'CODED_COUPON'
+    markdown_sale = 'MARKDOWN_SALE'
+    order_discount = 'ORDER_DISCOUNT'
+    volume_discount = 'VOLUME_DISCOUNT'
 
 
 class ProposedBid(EbayModel):
@@ -389,16 +658,25 @@ class ProposedBid(EbayModel):
     value: str | None = Field(None, description='The value of the proposed bid.')
 
 
-class ReportFormatEnum(EbayModel):
-    pass
+class ReportFormatEnum(StrEnum):
+    tsv_gzip = 'TSV_GZIP'
 
 
-class ReportTypeEnum(EbayModel):
-    pass
+class ReportTypeEnum(StrEnum):
+    account_performance_report = 'ACCOUNT_PERFORMANCE_REPORT'
+    all_campaign_performance_summary_report = 'ALL_CAMPAIGN_PERFORMANCE_SUMMARY_REPORT'
+    campaign_performance_report = 'CAMPAIGN_PERFORMANCE_REPORT'
+    campaign_performance_summary_report = 'CAMPAIGN_PERFORMANCE_SUMMARY_REPORT'
+    inventory_performance_report = 'INVENTORY_PERFORMANCE_REPORT'
+    listing_performance_report = 'LISTING_PERFORMANCE_REPORT'
+    keyword_performance_report = 'KEYWORD_PERFORMANCE_REPORT'
+    transaction_report = 'TRANSACTION_REPORT'
+    search_query_performance_report = 'SEARCH_QUERY_PERFORMANCE_REPORT'
 
 
-class ScheduleDateTypeEnum(EbayModel):
-    pass
+class ScheduleDateTypeEnum(StrEnum):
+    system = 'SYSTEM'
+    custom = 'CUSTOM'
 
 
 class SortField(EbayModel):
@@ -471,12 +749,14 @@ class TargetedKeywordRequest(EbayModel):
     )
 
 
-class TargetingMetricsEnum(EbayModel):
-    pass
+class TargetingMetricsEnum(StrEnum):
+    search_impressions = 'SEARCH_IMPRESSIONS'
 
 
-class TaskStatusEnum(EbayModel):
-    pass
+class TaskStatusEnum(StrEnum):
+    pending = 'PENDING'
+    success = 'SUCCESS'
+    failed = 'FAILED'
 
 
 class UpdateAdStatusByListingIdRequest(EbayModel):
