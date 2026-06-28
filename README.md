@@ -114,6 +114,27 @@ The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and
 supported. `from_env` also reads `EBAY_SIGNING_KEY_FILE` or
 `EBAY_SIGNING_JWE` + `EBAY_SIGNING_PRIVATE_KEY`.
 
+## Pagination
+
+`paginate` (and `paginate_async`) drive any list endpoint across pages and yield the individual
+items, following eBay's `next` URL when present and falling back to `limit`/`offset` arithmetic
+otherwise:
+
+```python
+from ebay_sdk import paginate
+
+for payout in paginate(client.sell.finances.get_payouts, limit="50"):
+    print(payout.payout_id)
+
+# async
+async for item in paginate_async(client.sell.inventory.get_inventory_items, limit="100"):
+    ...
+```
+
+Positional path params and query keywords are forwarded to the method; `offset`/`limit` are
+managed for you. Use `max_items=N` to cap iteration, and `items_field="..."` to disambiguate
+responses that carry more than one array.
+
 ## Retries & rate limiting
 
 Transient responses are retried automatically. By default `429 Too Many Requests` and

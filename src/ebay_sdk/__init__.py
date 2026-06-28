@@ -7,6 +7,7 @@ from .errors import (
     EbaySDKError,
     EbayTransportError,
 )
+from .pagination import paginate, paginate_async
 
 __all__ = [
     "AsyncEbayClient",
@@ -18,4 +19,6 @@ __all__ = [
     "EbaySDKError",
     "EbaySigningConfig",
     "EbayTransportError",
+    "paginate",
+    "paginate_async",
 ]
