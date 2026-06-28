@@ -1,3 +1,4 @@
+from .auth import OAuthTokens
 from .client import AsyncEbayClient, EbayClient
 from .config import EbayConfig, EbaySigningConfig
 from .errors import (
@@ -19,6 +20,7 @@ __all__ = [
     "EbaySDKError",
     "EbaySigningConfig",
     "EbayTransportError",
+    "OAuthTokens",
     "paginate",
     "paginate_async",
 ]

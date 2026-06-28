@@ -23,6 +23,27 @@ class TokenData(BaseModel):
         return self.expires_at <= datetime.now(UTC) + timedelta(minutes=5)
 
 
+class OAuthTokens(BaseModel):
+    """Result of an authorization-code exchange.
+
+    ``refresh_token`` is the long-lived credential to persist and pass back as
+    ``EbayConfig.refresh_token``; ``access_token`` is the short-lived user token.
+    """
+
+    access_token: str
+    token_expiry: datetime
+    refresh_token: str | None = None
+    refresh_token_expiry: datetime | None = None
+    token_type: str = "User Access Token"
+
+    def to_token_data(self) -> TokenData:
+        return TokenData(
+            access_token=self.access_token,
+            expires_at=self.token_expiry,
+            token_type=self.token_type,
+        )
+
+
 class TokenCache(Protocol):
     def get(self, key: str) -> TokenData | None: ...
 
@@ -70,6 +91,47 @@ class EbayAuth:
         if prompt:
             query["prompt"] = prompt
         return f"https://{host}/oauth2/authorize?{urlencode(query)}"
+
+    def exchange_code(
+        self,
+        client: httpx.Client,
+        code: str,
+        *,
+        ru_name: str | None = None,
+    ) -> OAuthTokens:
+        """Exchange an authorization code for user access + refresh tokens."""
+        response = client.post(
+            self.config.oauth_token_url,
+            data=self._exchange_data(code, ru_name),
+            auth=self._client_credentials(),
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        return self._parse_oauth_tokens(response)
+
+    async def async_exchange_code(
+        self,
+        client: httpx.AsyncClient,
+        code: str,
+        *,
+        ru_name: str | None = None,
+    ) -> OAuthTokens:
+        response = await client.post(
+            self.config.oauth_token_url,
+            data=self._exchange_data(code, ru_name),
+            auth=self._client_credentials(),
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        return self._parse_oauth_tokens(response)
+
+    def _exchange_data(self, code: str, ru_name: str | None) -> dict[str, str]:
+        redirect_uri = ru_name or self.config.ru_name
+        if not redirect_uri:
+            raise EbayConfigError("ru_name is required to exchange an authorization code")
+        return {
+            "grant_type": "authorization_code",
+            "code": code,
+            "redirect_uri": redirect_uri,
+        }
 
     def authorization_header(
         self,
@@ -193,7 +255,7 @@ class EbayAuth:
             raise EbayConfigError("refresh_token is required to refresh a user token")
         return refresh_token
 
-    def _parse_token_response(self, response: httpx.Response) -> TokenData:
+    def _decode_token_response(self, response: httpx.Response) -> dict:
         if response.status_code >= 400:
             try:
                 detail = orjson.loads(response.content)
@@ -202,12 +264,29 @@ class EbayAuth:
             raise EbayAuthError(f"OAuth token request failed: {detail}")
 
         payload = orjson.loads(response.content)
-        access_token = payload.get("access_token")
-        if not access_token:
+        if not payload.get("access_token"):
             raise EbayAuthError("OAuth token response did not include access_token")
+        return payload
+
+    def _parse_token_response(self, response: httpx.Response) -> TokenData:
+        payload = self._decode_token_response(response)
         expires_in = int(payload.get("expires_in", 7200))
         return TokenData(
-            access_token=access_token,
+            access_token=payload["access_token"],
             expires_at=datetime.now(UTC) + timedelta(seconds=expires_in),
             token_type=payload.get("token_type", "Bearer"),
+        )
+
+    def _parse_oauth_tokens(self, response: httpx.Response) -> OAuthTokens:
+        payload = self._decode_token_response(response)
+        now = datetime.now(UTC)
+        refresh_expiry = None
+        if payload.get("refresh_token_expires_in") is not None:
+            refresh_expiry = now + timedelta(seconds=int(payload["refresh_token_expires_in"]))
+        return OAuthTokens(
+            access_token=payload["access_token"],
+            token_expiry=now + timedelta(seconds=int(payload.get("expires_in", 7200))),
+            refresh_token=payload.get("refresh_token"),
+            refresh_token_expiry=refresh_expiry,
+            token_type=payload.get("token_type", "User Access Token"),
         )

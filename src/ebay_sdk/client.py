@@ -6,9 +6,37 @@ from typing import TYPE_CHECKING, Any
 
 import httpx
 
-from .auth import EbayAuth, TokenCache
+from .auth import EbayAuth, OAuthTokens, TokenCache
 from .config import EbayConfig
+from .errors import EbayConfigError
 from .transport import AsyncEbayTransport, EbayTransport
+
+
+def _authorization_url(
+    config: EbayConfig,
+    *,
+    state: str | None,
+    prompt: str | None,
+    scopes: tuple[str, ...] | None,
+) -> str:
+    if not config.app_id or not config.ru_name:
+        raise EbayConfigError("app_id and ru_name are required to build an authorization URL")
+    return EbayAuth.authorization_url(
+        app_id=config.app_id,
+        ru_name=config.ru_name,
+        scopes=scopes or config.scopes,
+        sandbox=config.sandbox,
+        state=state,
+        prompt=prompt,
+    )
+
+
+def _seed_user_tokens(config: EbayConfig, auth: EbayAuth, tokens: OAuthTokens) -> None:
+    """Make the freshly exchanged tokens usable by subsequent requests."""
+    if tokens.refresh_token:
+        config.refresh_token = tokens.refresh_token
+    auth.cache.set(auth._cache_key(), tokens.to_token_data())
+
 
 if TYPE_CHECKING:
     from .generated.resources import (
@@ -54,6 +82,22 @@ class EbayClient:
     def from_env(cls) -> EbayClient:
         return cls(EbayConfig.from_env())
 
+    def authorization_url(
+        self,
+        *,
+        state: str | None = None,
+        prompt: str | None = None,
+        scopes: tuple[str, ...] | None = None,
+    ) -> str:
+        """Build the eBay consent URL to send a user to (authorization-code flow)."""
+        return _authorization_url(self.config, state=state, prompt=prompt, scopes=scopes)
+
+    def exchange_code(self, code: str, *, ru_name: str | None = None) -> OAuthTokens:
+        """Exchange a consent ``code`` for tokens and authenticate this client with them."""
+        tokens = self.auth.exchange_code(self.http, code, ru_name=ru_name)
+        _seed_user_tokens(self.config, self.auth, tokens)
+        return tokens
+
     def close(self) -> None:
         self.http.close()
 
@@ -98,6 +142,22 @@ class AsyncEbayClient:
     @classmethod
     def from_env(cls) -> AsyncEbayClient:
         return cls(EbayConfig.from_env())
+
+    def authorization_url(
+        self,
+        *,
+        state: str | None = None,
+        prompt: str | None = None,
+        scopes: tuple[str, ...] | None = None,
+    ) -> str:
+        """Build the eBay consent URL to send a user to (authorization-code flow)."""
+        return _authorization_url(self.config, state=state, prompt=prompt, scopes=scopes)
+
+    async def exchange_code(self, code: str, *, ru_name: str | None = None) -> OAuthTokens:
+        """Exchange a consent ``code`` for tokens and authenticate this client with them."""
+        tokens = await self.auth.async_exchange_code(self.http, code, ru_name=ru_name)
+        _seed_user_tokens(self.config, self.auth, tokens)
+        return tokens
 
     async def close(self) -> None:
         await self.http.aclose()

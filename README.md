@@ -114,6 +114,29 @@ The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and
 supported. `from_env` also reads `EBAY_SIGNING_KEY_FILE` or
 `EBAY_SIGNING_JWE` + `EBAY_SIGNING_PRIVATE_KEY`.
 
+## Getting a user token (OAuth)
+
+To act on behalf of a seller you need a user `refresh_token`. The authorization-code flow is a
+one-time, three-step exchange:
+
+```python
+client = EbayClient(EbayConfig(app_id="...", cert_id="...", ru_name="...", scopes=(...,)))
+
+# 1. Send the user to this URL to grant consent.
+print(client.authorization_url(state="..."))
+
+# 2. eBay redirects to your RuName's accepted URL with ?code=<...>; grab that code.
+# 3. Exchange it — this also authenticates the client immediately.
+tokens = client.exchange_code(code)
+print(tokens.refresh_token)  # persist this; pass it back as EbayConfig(refresh_token=...)
+```
+
+Only the **redirect capture** (step 2) needs the HTTPS "accepted URL" you registered for your
+RuName in the eBay developer console — the exchange itself is a plain backend call. You can
+capture the `code` with your own redirect handler, by copying it from the browser, or via
+browser automation; the SDK only needs the resulting `code`. `AsyncEbayClient.exchange_code`
+is the async equivalent.
+
 ## Pagination
 
 `paginate` (and `paginate_async`) drive any list endpoint across pages and yield the individual
