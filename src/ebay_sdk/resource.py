@@ -1,10 +1,33 @@
 from __future__ import annotations
 
+import importlib
 from collections.abc import Mapping
 from contextlib import AbstractAsyncContextManager, AbstractContextManager
 from typing import Any, NotRequired, TypedDict
 
 import httpx
+
+
+class _LazyModule:
+    """Import a generated model module on first attribute access.
+
+    Resource bodies reference models as ``<service>_models.SomeModel``. Binding that alias to
+    this proxy defers the (expensive) model import until a method of that service is actually
+    called, so constructing a client no longer imports all 40+ model modules up front.
+    """
+
+    __slots__ = ("_name", "_module")
+
+    def __init__(self, name: str) -> None:
+        self._name = name
+        self._module: Any = None
+
+    def __getattr__(self, attr: str) -> Any:
+        module = self._module
+        if module is None:
+            module = importlib.import_module(self._name)
+            self._module = module
+        return getattr(module, attr)
 
 
 class Service(TypedDict):

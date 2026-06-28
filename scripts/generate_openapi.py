@@ -697,15 +697,24 @@ def write_resources(path: Path, services: list[Service]) -> None:
         "",
         "from collections.abc import Mapping",
         "from contextlib import AbstractAsyncContextManager, AbstractContextManager",
-        "from typing import Any, Literal, overload",
+        "from typing import TYPE_CHECKING, Any, Literal, overload",
         "",
         "import httpx",
         "",
-        "from ebay_sdk.resource import AsyncBaseResource, BaseResource",
+        "from ebay_sdk.resource import AsyncBaseResource, BaseResource, _LazyModule",
         "",
     ]
+    # Model modules are bound lazily: the checker sees the real modules, while at runtime each
+    # alias is a proxy that imports its module only when a method of that service is first called.
+    lines.append("if TYPE_CHECKING:")
     for service in services:
-        lines.append(f"from .models import {service.module_name} as {service.model_alias}")
+        lines.append(f"    from .models import {service.module_name} as {service.model_alias}")
+    lines.append("else:")
+    for service in services:
+        lines.append(
+            f'    {service.model_alias} = '
+            f'_LazyModule("ebay_sdk.generated.models.{service.module_name}")'
+        )
     lines.extend(["", ""])
 
     for service in services:

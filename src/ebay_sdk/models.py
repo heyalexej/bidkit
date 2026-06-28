@@ -16,4 +16,5 @@ class EbayModel(BaseModel):
         extra="allow",
         populate_by_name=True,
         protected_namespaces=(),
+        defer_build=True,
     )

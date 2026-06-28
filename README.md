@@ -6,9 +6,11 @@ Design goals:
 
 - Pydantic v2 request/response models
 - `httpx` sync and async transports
+- `orjson` for fast JSON serialization and parsing
 - generated REST resource clients from eBay OpenAPI specs
 - generated Pydantic v2 models via `datamodel-code-generator`
 - small hand-written runtime core for auth, headers, retries, errors, and uploads
+- lazy-loaded model modules for fast client construction
 - Pythonic namespace layout, for example `client.buy.browse.get_item(...)`
 
 Raw eBay OpenAPI specs are copied into `specs/ebay`. The generator preprocesses those specs
@@ -218,6 +220,21 @@ EbayConfig(
     respect_retry_after=True,
 )
 ```
+
+## Performance
+
+The generated layer is large (40+ model modules), so importing all of it eagerly would make
+client construction slow. Instead, model modules are **lazy-loaded**: each `<service>_models`
+alias in the generated resources is a proxy that imports its module only when a method of that
+service is first called. Constructing a client therefore loads **no** model modules, and you
+only ever pay for the services you actually use — calling `client.buy.browse.*` never imports
+the (much larger) marketing or metadata models.
+
+Generated models also set `defer_build=True`, so Pydantic compiles a model's validators on its
+first `model_validate(...)` rather than at import time. Combined, this takes first client
+construction from well over a second down to tens of milliseconds, with the remaining per-model
+cost amortized across first use. Static typing is unaffected — type checkers still resolve the
+real model types via a `TYPE_CHECKING` import block.
 
 Regenerate clients:
 

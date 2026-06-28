@@ -3,53 +3,96 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from contextlib import AbstractAsyncContextManager, AbstractContextManager
-from typing import Any, Literal, overload
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 import httpx
 
-from ebay_sdk.resource import AsyncBaseResource, BaseResource
+from ebay_sdk.resource import AsyncBaseResource, BaseResource, _LazyModule
 
-from .models import buy_browse as buy_browse_models
-from .models import buy_deal as buy_deal_models
-from .models import buy_feed as buy_feed_models
-from .models import buy_marketing as buy_marketing_models
-from .models import buy_marketplace_insights as buy_marketplace_insights_models
-from .models import buy_offer as buy_offer_models
-from .models import buy_order as buy_order_models
-from .models import cancellation as cancellation_models
-from .models import case as case_models
-from .models import commerce_catalog as commerce_catalog_models
-from .models import commerce_charity as commerce_charity_models
-from .models import commerce_feedback as commerce_feedback_models
-from .models import commerce_identity as commerce_identity_models
-from .models import commerce_media as commerce_media_models
-from .models import commerce_message as commerce_message_models
-from .models import commerce_notification as commerce_notification_models
-from .models import commerce_taxonomy as commerce_taxonomy_models
-from .models import commerce_translation as commerce_translation_models
-from .models import commerce_vero as commerce_vero_models
-from .models import developer_analytics as developer_analytics_models
-from .models import developer_client_registration as developer_client_registration_models
-from .models import developer_key_management as developer_key_management_models
-from .models import inquiry as inquiry_models
-from .models import return_ as return__models
-from .models import sell_account_v1 as sell_account_v1_models
-from .models import sell_account_v2 as sell_account_v2_models
-from .models import sell_analytics as sell_analytics_models
-from .models import sell_compliance as sell_compliance_models
-from .models import sell_edelivery_international_shipping as sell_edelivery_international_shipping_models
-from .models import sell_feed as sell_feed_models
-from .models import sell_finances as sell_finances_models
-from .models import sell_fulfillment as sell_fulfillment_models
-from .models import sell_inventory as sell_inventory_models
-from .models import sell_leads as sell_leads_models
-from .models import sell_listing as sell_listing_models
-from .models import sell_logistics as sell_logistics_models
-from .models import sell_marketing as sell_marketing_models
-from .models import sell_metadata as sell_metadata_models
-from .models import sell_negotiation as sell_negotiation_models
-from .models import sell_recommendation as sell_recommendation_models
-from .models import sell_stores as sell_stores_models
+if TYPE_CHECKING:
+    from .models import buy_browse as buy_browse_models
+    from .models import buy_deal as buy_deal_models
+    from .models import buy_feed as buy_feed_models
+    from .models import buy_marketing as buy_marketing_models
+    from .models import buy_marketplace_insights as buy_marketplace_insights_models
+    from .models import buy_offer as buy_offer_models
+    from .models import buy_order as buy_order_models
+    from .models import cancellation as cancellation_models
+    from .models import case as case_models
+    from .models import commerce_catalog as commerce_catalog_models
+    from .models import commerce_charity as commerce_charity_models
+    from .models import commerce_feedback as commerce_feedback_models
+    from .models import commerce_identity as commerce_identity_models
+    from .models import commerce_media as commerce_media_models
+    from .models import commerce_message as commerce_message_models
+    from .models import commerce_notification as commerce_notification_models
+    from .models import commerce_taxonomy as commerce_taxonomy_models
+    from .models import commerce_translation as commerce_translation_models
+    from .models import commerce_vero as commerce_vero_models
+    from .models import developer_analytics as developer_analytics_models
+    from .models import developer_client_registration as developer_client_registration_models
+    from .models import developer_key_management as developer_key_management_models
+    from .models import inquiry as inquiry_models
+    from .models import return_ as return__models
+    from .models import sell_account_v1 as sell_account_v1_models
+    from .models import sell_account_v2 as sell_account_v2_models
+    from .models import sell_analytics as sell_analytics_models
+    from .models import sell_compliance as sell_compliance_models
+    from .models import sell_edelivery_international_shipping as sell_edelivery_international_shipping_models
+    from .models import sell_feed as sell_feed_models
+    from .models import sell_finances as sell_finances_models
+    from .models import sell_fulfillment as sell_fulfillment_models
+    from .models import sell_inventory as sell_inventory_models
+    from .models import sell_leads as sell_leads_models
+    from .models import sell_listing as sell_listing_models
+    from .models import sell_logistics as sell_logistics_models
+    from .models import sell_marketing as sell_marketing_models
+    from .models import sell_metadata as sell_metadata_models
+    from .models import sell_negotiation as sell_negotiation_models
+    from .models import sell_recommendation as sell_recommendation_models
+    from .models import sell_stores as sell_stores_models
+else:
+    buy_browse_models = _LazyModule("ebay_sdk.generated.models.buy_browse")
+    buy_deal_models = _LazyModule("ebay_sdk.generated.models.buy_deal")
+    buy_feed_models = _LazyModule("ebay_sdk.generated.models.buy_feed")
+    buy_marketing_models = _LazyModule("ebay_sdk.generated.models.buy_marketing")
+    buy_marketplace_insights_models = _LazyModule("ebay_sdk.generated.models.buy_marketplace_insights")
+    buy_offer_models = _LazyModule("ebay_sdk.generated.models.buy_offer")
+    buy_order_models = _LazyModule("ebay_sdk.generated.models.buy_order")
+    cancellation_models = _LazyModule("ebay_sdk.generated.models.cancellation")
+    case_models = _LazyModule("ebay_sdk.generated.models.case")
+    commerce_catalog_models = _LazyModule("ebay_sdk.generated.models.commerce_catalog")
+    commerce_charity_models = _LazyModule("ebay_sdk.generated.models.commerce_charity")
+    commerce_feedback_models = _LazyModule("ebay_sdk.generated.models.commerce_feedback")
+    commerce_identity_models = _LazyModule("ebay_sdk.generated.models.commerce_identity")
+    commerce_media_models = _LazyModule("ebay_sdk.generated.models.commerce_media")
+    commerce_message_models = _LazyModule("ebay_sdk.generated.models.commerce_message")
+    commerce_notification_models = _LazyModule("ebay_sdk.generated.models.commerce_notification")
+    commerce_taxonomy_models = _LazyModule("ebay_sdk.generated.models.commerce_taxonomy")
+    commerce_translation_models = _LazyModule("ebay_sdk.generated.models.commerce_translation")
+    commerce_vero_models = _LazyModule("ebay_sdk.generated.models.commerce_vero")
+    developer_analytics_models = _LazyModule("ebay_sdk.generated.models.developer_analytics")
+    developer_client_registration_models = _LazyModule("ebay_sdk.generated.models.developer_client_registration")
+    developer_key_management_models = _LazyModule("ebay_sdk.generated.models.developer_key_management")
+    inquiry_models = _LazyModule("ebay_sdk.generated.models.inquiry")
+    return__models = _LazyModule("ebay_sdk.generated.models.return_")
+    sell_account_v1_models = _LazyModule("ebay_sdk.generated.models.sell_account_v1")
+    sell_account_v2_models = _LazyModule("ebay_sdk.generated.models.sell_account_v2")
+    sell_analytics_models = _LazyModule("ebay_sdk.generated.models.sell_analytics")
+    sell_compliance_models = _LazyModule("ebay_sdk.generated.models.sell_compliance")
+    sell_edelivery_international_shipping_models = _LazyModule("ebay_sdk.generated.models.sell_edelivery_international_shipping")
+    sell_feed_models = _LazyModule("ebay_sdk.generated.models.sell_feed")
+    sell_finances_models = _LazyModule("ebay_sdk.generated.models.sell_finances")
+    sell_fulfillment_models = _LazyModule("ebay_sdk.generated.models.sell_fulfillment")
+    sell_inventory_models = _LazyModule("ebay_sdk.generated.models.sell_inventory")
+    sell_leads_models = _LazyModule("ebay_sdk.generated.models.sell_leads")
+    sell_listing_models = _LazyModule("ebay_sdk.generated.models.sell_listing")
+    sell_logistics_models = _LazyModule("ebay_sdk.generated.models.sell_logistics")
+    sell_marketing_models = _LazyModule("ebay_sdk.generated.models.sell_marketing")
+    sell_metadata_models = _LazyModule("ebay_sdk.generated.models.sell_metadata")
+    sell_negotiation_models = _LazyModule("ebay_sdk.generated.models.sell_negotiation")
+    sell_recommendation_models = _LazyModule("ebay_sdk.generated.models.sell_recommendation")
+    sell_stores_models = _LazyModule("ebay_sdk.generated.models.sell_stores")
 
 
 class BuyBrowseResource(BaseResource):
