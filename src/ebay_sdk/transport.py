@@ -14,26 +14,26 @@ from pydantic import BaseModel, TypeAdapter
 from .auth import EbayAuth
 from .config import EbayConfig
 from .errors import EbayAPIError, EbayTransportError
-from .retry import compute_delay, should_retry_exception, should_retry_status
+from .resource import Service
+from .retry import exception_retry_delay, status_retry_delay
 from .signing import MessageSigner
 
 
 def _url(
     config: EbayConfig,
-    service: Mapping[str, Any],
+    service: Service,
     path: str,
     path_params: Mapping[str, Any] | None,
 ) -> str:
     rendered_path = path
     for key, value in (path_params or {}).items():
         rendered_path = rendered_path.replace("{" + key + "}", quote(str(value), safe=""))
-    root = config.api_root(str(service.get("subdomain") or "api"))
+    root = config.api_root(service.get("subdomain") or "api")
     return f"{root}{service['base_path']}{rendered_path}"
 
 
 def _headers(
     config: EbayConfig,
-    service: Mapping[str, Any],
     extra_headers: Mapping[str, str | None] | None,
 ) -> dict[str, str]:
     headers: dict[str, str] = {
@@ -45,17 +45,14 @@ def _headers(
     if config.content_language:
         headers["Content-Language"] = config.content_language
 
-    if service.get("default_content_type"):
-        headers["Content-Type"] = str(service["default_content_type"])
-
     for key, value in (extra_headers or {}).items():
         if value is not None:
             headers[key] = str(value)
     return headers
 
 
-def _auth_scheme(service: Mapping[str, Any]) -> str:
-    return str(service.get("auth_scheme") or "Bearer")
+def _auth_scheme(service: Service) -> str:
+    return service.get("auth_scheme") or "Bearer"
 
 
 def _body_kwargs(*, body: Any, files: Mapping[str, Any] | None) -> dict[str, Any]:
@@ -138,7 +135,7 @@ class EbayTransport:
     def request(
         self,
         *,
-        service: Mapping[str, Any],
+        service: Service,
         operation_id: str,
         method: str,
         path: str,
@@ -152,7 +149,7 @@ class EbayTransport:
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, service, headers)
+        request_headers = _headers(self.config, headers)
         request_headers.update(self.auth.authorization_header(
             self.client,
             scheme=_auth_scheme(service),
@@ -168,30 +165,29 @@ class EbayTransport:
             try:
                 response = self.client.send(request)
             except httpx.TransportError as exc:
-                if attempt < self.config.max_retries and should_retry_exception(method):
-                    time.sleep(compute_delay(attempt, None, self.config))
-                    continue
-                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                delay = exception_retry_delay(attempt, method, self.config)
+                if delay is None:
+                    raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                time.sleep(delay)
+                continue
             except httpx.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
-            if attempt < self.config.max_retries and should_retry_status(
-                method, response.status_code, self.config
-            ):
-                delay = compute_delay(attempt, response, self.config)
-                response.close()
-                time.sleep(delay)
-                continue
-            break
+            delay = status_retry_delay(attempt, response, method, self.config)
+            if delay is None:
+                break
+            response.close()
+            time.sleep(delay)
 
-        assert response is not None
+        if response is None:  # pragma: no cover - the loop always runs at least once
+            raise EbayTransportError(f"{operation_id} produced no response")
         return _handle_response(response, response_model, raw_response)
 
     @contextmanager
     def stream(
         self,
         *,
-        service: Mapping[str, Any],
+        service: Service,
         operation_id: str,
         method: str,
         path: str,
@@ -203,7 +199,7 @@ class EbayTransport:
     ) -> Iterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, service, headers)
+        request_headers = _headers(self.config, headers)
         request_headers.update(self.auth.authorization_header(
             self.client,
             scheme=_auth_scheme(service),
@@ -219,24 +215,23 @@ class EbayTransport:
             try:
                 response = self.client.send(request, stream=True)
             except httpx.TransportError as exc:
-                if attempt < self.config.max_retries and should_retry_exception(method):
-                    time.sleep(compute_delay(attempt, None, self.config))
-                    continue
-                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                delay = exception_retry_delay(attempt, method, self.config)
+                if delay is None:
+                    raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                time.sleep(delay)
+                continue
             except httpx.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
 
-            if attempt < self.config.max_retries and should_retry_status(
-                method, response.status_code, self.config
-            ):
-                response.read()
-                delay = compute_delay(attempt, response, self.config)
-                response.close()
-                time.sleep(delay)
-                continue
-            break
+            delay = status_retry_delay(attempt, response, method, self.config)
+            if delay is None:
+                break
+            response.read()
+            response.close()
+            time.sleep(delay)
 
-        assert response is not None
+        if response is None:  # pragma: no cover - the loop always runs at least once
+            raise EbayTransportError(f"{operation_id} produced no response")
         try:
             if response.status_code >= 400:
                 response.read()
@@ -256,7 +251,7 @@ class AsyncEbayTransport:
     async def request(
         self,
         *,
-        service: Mapping[str, Any],
+        service: Service,
         operation_id: str,
         method: str,
         path: str,
@@ -270,7 +265,7 @@ class AsyncEbayTransport:
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, service, headers)
+        request_headers = _headers(self.config, headers)
         request_headers.update(await self.auth.async_authorization_header(
             self.client,
             scheme=_auth_scheme(service),
@@ -286,30 +281,29 @@ class AsyncEbayTransport:
             try:
                 response = await self.client.send(request)
             except httpx.TransportError as exc:
-                if attempt < self.config.max_retries and should_retry_exception(method):
-                    await asyncio.sleep(compute_delay(attempt, None, self.config))
-                    continue
-                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                delay = exception_retry_delay(attempt, method, self.config)
+                if delay is None:
+                    raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                await asyncio.sleep(delay)
+                continue
             except httpx.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
-            if attempt < self.config.max_retries and should_retry_status(
-                method, response.status_code, self.config
-            ):
-                delay = compute_delay(attempt, response, self.config)
-                await response.aclose()
-                await asyncio.sleep(delay)
-                continue
-            break
+            delay = status_retry_delay(attempt, response, method, self.config)
+            if delay is None:
+                break
+            await response.aclose()
+            await asyncio.sleep(delay)
 
-        assert response is not None
+        if response is None:  # pragma: no cover - the loop always runs at least once
+            raise EbayTransportError(f"{operation_id} produced no response")
         return _handle_response(response, response_model, raw_response)
 
     @asynccontextmanager
     async def stream(
         self,
         *,
-        service: Mapping[str, Any],
+        service: Service,
         operation_id: str,
         method: str,
         path: str,
@@ -321,7 +315,7 @@ class AsyncEbayTransport:
     ) -> AsyncIterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, service, headers)
+        request_headers = _headers(self.config, headers)
         request_headers.update(await self.auth.async_authorization_header(
             self.client,
             scheme=_auth_scheme(service),
@@ -337,24 +331,23 @@ class AsyncEbayTransport:
             try:
                 response = await self.client.send(request, stream=True)
             except httpx.TransportError as exc:
-                if attempt < self.config.max_retries and should_retry_exception(method):
-                    await asyncio.sleep(compute_delay(attempt, None, self.config))
-                    continue
-                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                delay = exception_retry_delay(attempt, method, self.config)
+                if delay is None:
+                    raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                await asyncio.sleep(delay)
+                continue
             except httpx.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
 
-            if attempt < self.config.max_retries and should_retry_status(
-                method, response.status_code, self.config
-            ):
-                await response.aread()
-                delay = compute_delay(attempt, response, self.config)
-                await response.aclose()
-                await asyncio.sleep(delay)
-                continue
-            break
+            delay = status_retry_delay(attempt, response, method, self.config)
+            if delay is None:
+                break
+            await response.aread()
+            await response.aclose()
+            await asyncio.sleep(delay)
 
-        assert response is not None
+        if response is None:  # pragma: no cover - the loop always runs at least once
+            raise EbayTransportError(f"{operation_id} produced no response")
         try:
             if response.status_code >= 400:
                 await response.aread()

@@ -2,13 +2,24 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from contextlib import AbstractAsyncContextManager, AbstractContextManager
-from typing import Any
+from typing import Any, NotRequired, TypedDict
 
 import httpx
 
 
+class Service(TypedDict):
+    """Static descriptor of a generated eBay API, attached to each resource class."""
+
+    key: str
+    title: str
+    version: str
+    base_path: str
+    subdomain: str
+    auth_scheme: NotRequired[str]
+
+
 class BaseResource:
-    service: Mapping[str, Any]
+    service: Service
 
     def __init__(self, client: Any) -> None:
         self._client = client

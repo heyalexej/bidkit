@@ -49,6 +49,24 @@ def _retry_after_seconds(response: httpx.Response) -> float | None:
     return max(0.0, (when - now).total_seconds())
 
 
+def status_retry_delay(
+    attempt: int, response: httpx.Response, method: str, config: EbayConfig
+) -> float | None:
+    """Delay before retrying a response, or ``None`` if it should not be retried."""
+    if attempt >= config.max_retries or not should_retry_status(
+        method, response.status_code, config
+    ):
+        return None
+    return compute_delay(attempt, response, config)
+
+
+def exception_retry_delay(attempt: int, method: str, config: EbayConfig) -> float | None:
+    """Delay before retrying after a connection error, or ``None`` if it should not be retried."""
+    if attempt >= config.max_retries or not should_retry_exception(method):
+        return None
+    return compute_delay(attempt, None, config)
+
+
 def compute_delay(attempt: int, response: httpx.Response | None, config: EbayConfig) -> float:
     """Seconds to wait before the next attempt (0-indexed ``attempt``).
 
