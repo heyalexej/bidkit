@@ -170,6 +170,9 @@ uv run --extra dev scripts/oauth_login.py        # reads app/cert/ru/scopes from
 # two-step (no interactive prompt): print the URL, consent, then pass the redirect back
 uv run --extra dev scripts/oauth_login.py --no-browser
 uv run --extra dev scripts/oauth_login.py --redirect-url 'https://your-ru-url/?code=...'
+
+# persist the result: writes refresh_token + expiries back into --config (other fields kept)
+uv run --extra dev scripts/oauth_login.py --redirect-url '...' --write-config
 ```
 
 The keyset environment is checked against `--sandbox`: a production App ID (`...-PRD-...`) used

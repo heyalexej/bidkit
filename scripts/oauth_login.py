@@ -22,8 +22,35 @@ from urllib.parse import parse_qs, unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from ebay_sdk import EbayClient, EbayConfig  # noqa: E402
+from ebay_sdk import EbayClient, EbayConfig, OAuthTokens  # noqa: E402
 from ebay_sdk.errors import EbayAuthError, EbayConfigError  # noqa: E402
+
+
+def write_tokens_to_config(path: Path, tokens: OAuthTokens) -> None:
+    """Persist the minted tokens and their expiries into an ebay-cli style config file.
+
+    Existing fields (app_id, scopes, ...) are preserved; only token/expiry fields change.
+    """
+    data: dict = json.loads(path.read_text()) if path.exists() else {}
+    creds = data.setdefault("credentials", {})
+    creds["refresh_token"] = tokens.refresh_token
+    creds["access_token"] = tokens.access_token
+    creds["token_type"] = tokens.token_type
+    creds["access_token_expiry"] = tokens.token_expiry.isoformat()
+    if tokens.refresh_token_expiry is not None:
+        creds["refresh_token_expiry"] = tokens.refresh_token_expiry.isoformat()
+
+    # Keep any pre-existing metadata block's expiry fields consistent.
+    meta = data.get("metadata")
+    if isinstance(meta, dict):
+        meta["access_token_expires_at"] = tokens.token_expiry.isoformat()
+        meta["access_token_expires_at_epoch"] = int(tokens.token_expiry.timestamp())
+        if tokens.refresh_token_expiry is not None:
+            meta["refresh_token_expires_at"] = tokens.refresh_token_expiry.isoformat()
+            meta["refresh_token_expires_at_epoch"] = int(tokens.refresh_token_expiry.timestamp())
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2) + "\n")
 
 
 def extract_code(pasted: str) -> str:
@@ -94,6 +121,11 @@ def main() -> None:
         help="the full URL eBay redirected to after consent (skips the interactive prompt)",
     )
     parser.add_argument("--code", help="the authorization code itself (skips the prompt)")
+    parser.add_argument(
+        "--write-config",
+        action="store_true",
+        help="write the minted tokens + expiries back into --config",
+    )
     args = parser.parse_args()
 
     config = load_config(args)
@@ -151,6 +183,11 @@ def main() -> None:
     print(f"   refresh_token: {tokens.refresh_token}")
     print(f"   refresh_token_expiry: {tokens.refresh_token_expiry}")
     print(f"   access_token (short-lived): {tokens.access_token[:24]}...")
+
+    if args.write_config:
+        target = Path(args.config).expanduser()
+        write_tokens_to_config(target, tokens)
+        print(f"\n   wrote refresh_token + expiries to {target}")
 
 
 if __name__ == "__main__":
