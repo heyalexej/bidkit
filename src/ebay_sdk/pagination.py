@@ -41,15 +41,27 @@ def _collection_field(model: BaseModel, items_field: str | None) -> str:
     )
 
 
-def _next_page_kwargs(model: BaseModel) -> dict[str, str] | None:
+def _paging_source(model: BaseModel) -> BaseModel:
+    """The object carrying the paging fields.
+
+    Most eBay responses expose ``next``/``offset``/``limit``/``total`` at the top level, but
+    some (e.g. the Feedback API) nest them under a ``pagination`` object.
+    """
+    if getattr(model, "next", None) or getattr(model, "offset", None) is not None:
+        return model
+    nested = getattr(model, "pagination", None)
+    return nested if isinstance(nested, BaseModel) else model
+
+
+def _next_page_kwargs(source: BaseModel) -> dict[str, str] | None:
     """Paging kwargs for the next page, or ``None`` when the last page was reached."""
-    next_url = getattr(model, "next", None)
+    next_url = getattr(source, "next", None)
     if isinstance(next_url, str) and next_url:
         query = parse_qs(urlsplit(next_url).query)
         update = {key: query[key][0] for key in ("offset", "limit") if key in query}
         return update or None
 
-    total, limit, offset = (getattr(model, name, None) for name in ("total", "limit", "offset"))
+    total, limit, offset = (getattr(source, name, None) for name in ("total", "limit", "offset"))
     if total is None or limit is None or offset is None:
         return None
     try:
@@ -65,7 +77,7 @@ def _advance(model: object, kwargs: dict[str, Any], seen_offsets: set[str]) -> b
     """Mutate ``kwargs`` toward the next page. Returns False to stop."""
     if not isinstance(model, BaseModel):
         return False
-    update = _next_page_kwargs(model)
+    update = _next_page_kwargs(_paging_source(model))
     if not update:
         return False
     offset = update.get("offset")

@@ -92,6 +92,45 @@ def test_paginate_single_page_without_pagination_metadata() -> None:
     assert seen == ["0"]
 
 
+def test_paginate_follows_nested_pagination_object() -> None:
+    # The Feedback API nests paging under a `pagination` object rather than the top level.
+    pages = {
+        "0": {
+            "feedbackEntries": [{"feedbackId": "f1"}, {"feedbackId": "f2"}],
+            "pagination": {
+                "total": 3,
+                "limit": 2,
+                "offset": 0,
+                "next": "https://api.ebay.com/commerce/feedback/v1/feedback?limit=2&offset=2",
+            },
+        },
+        "2": {
+            "feedbackEntries": [{"feedbackId": "f3"}],
+            "pagination": {"total": 3, "limit": 2, "offset": 2},
+        },
+    }
+    seen: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        offset = request.url.params.get("offset", "0")
+        seen.append(offset)
+        return httpx.Response(200, json=pages[offset])
+
+    client = _client(handler)
+    ids = [
+        entry.feedback_id
+        for entry in paginate(
+            client.commerce.feedback.get_feedback,
+            feedback_type="FEEDBACK_RECEIVED",
+            user_id="seller",
+            limit="2",
+        )
+    ]
+
+    assert ids == ["f1", "f2", "f3"]
+    assert seen == ["0", "2"]
+
+
 def test_paginate_async_follows_next_url() -> None:
     async def run() -> None:
         pages = {
