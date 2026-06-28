@@ -137,6 +137,13 @@ capture the `code` with your own redirect handler, by copying it from the browse
 browser automation; the SDK only needs the resulting `code`. `AsyncEbayClient.exchange_code`
 is the async equivalent.
 
+For an interactive run, `scripts/oauth_login.py` opens the system browser for consent and
+exchanges the redirect URL you paste back:
+
+```bash
+uv run --extra dev scripts/oauth_login.py        # reads app/cert/ru/scopes from ebay-cli config
+```
+
 ## Pagination
 
 `paginate` (and `paginate_async`) drive any list endpoint across pages and yield the individual
