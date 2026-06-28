@@ -1,0 +1,20 @@
+{
+  "environment": "production",
+  "marketplace_default": "EBAY_DE",
+  "credentials": {
+    "app_id": "YourApp-AppName-PRD-0123456789-0a1b2c3d",
+    "cert_id": "PRD-0123456789ab-0a1b-2c3d-4e5f-6789",
+    "dev_id": "01234567-89ab-cdef-0123-456789abcdef",
+    "ru_name": "Your_Company-YourApp-AppNam-abcdefg",
+    "refresh_token": "v^1.1#i^1#...your-user-refresh-token...",
+    "granted_scopes": [
+      "https://api.ebay.com/oauth/api_scope",
+      "https://api.ebay.com/oauth/api_scope/sell.inventory",
+      "https://api.ebay.com/oauth/api_scope/sell.account",
+      "https://api.ebay.com/oauth/api_scope/sell.fulfillment",
+      "https://api.ebay.com/oauth/api_scope/sell.marketing",
+      "https://api.ebay.com/oauth/api_scope/sell.finances",
+      "https://api.ebay.com/oauth/api_scope/commerce.identity.readonly"
+    ]
+  }
+}

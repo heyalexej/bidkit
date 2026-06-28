@@ -1,0 +1,6 @@
+{
+  "signingKeyCipher": "ED25519",
+  "jwe": "eyJ...the-JWE-returned-by-the-Key-Management-API...",
+  "privateKeyPem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEI...base64...\n-----END PRIVATE KEY-----\n",
+  "cipher": "sha256"
+}

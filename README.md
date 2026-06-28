@@ -114,6 +114,29 @@ The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and
 supported. `from_env` also reads `EBAY_SIGNING_KEY_FILE` or
 `EBAY_SIGNING_JWE` + `EBAY_SIGNING_PRIVATE_KEY`.
 
+## Script config files
+
+The bundled scripts (`scripts/oauth_login.py`, `scripts/smoke_de.py`) read credentials from an
+ebay-cli style config; see [`examples/`](examples/) for templates.
+
+`~/.config/ebay-cli/config.json`:
+
+| Field (`credentials.*`) | Used for | Notes |
+|---|---|---|
+| `app_id` | OAuth + all calls | aka `client_id`; the keyset encodes the env (`-PRD-`/`-SBX-`) |
+| `cert_id` | OAuth + all calls | aka `client_secret` |
+| `ru_name` | code exchange | aka `redirect_uri`; the registered RuName |
+| `refresh_token` | calling as a seller | mint it with `oauth_login.py` |
+| `granted_scopes` | OAuth + scopes | aka `scopes`; list of scope URLs |
+| `dev_id` | optional | |
+
+Top-level `environment` and `marketplace_default` are convenience hints. `~/.config/ebay-cli/
+signing-key.json` (`jwe` + `privateKeyPem`, optional `cipher`) feeds the Finances signing layer
+and maps to `EbaySigningConfig.from_key_file(...)`.
+
+These fields map directly onto `EbayConfig` / `EbaySigningConfig` if you construct the client in
+code instead.
+
 ## Getting a user token (OAuth)
 
 To act on behalf of a seller you need a user `refresh_token`. The authorization-code flow is a
