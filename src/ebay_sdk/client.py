@@ -70,6 +70,7 @@ class EbayClient:
         self.config = (
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
+        self._owns_http = http_client is None
         self.http = http_client or httpx.Client(timeout=self.config.timeout)
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = EbayTransport(self.config, self.auth, self.http)
@@ -99,7 +100,9 @@ class EbayClient:
         return tokens
 
     def close(self) -> None:
-        self.http.close()
+        # Only close the transport the SDK created; never an injected, caller-owned client.
+        if self._owns_http:
+            self.http.close()
 
     def __enter__(self) -> EbayClient:
         return self
@@ -131,6 +134,7 @@ class AsyncEbayClient:
         self.config = (
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
+        self._owns_http = http_client is None
         self.http = http_client or httpx.AsyncClient(timeout=self.config.timeout)
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = AsyncEbayTransport(self.config, self.auth, self.http)
@@ -160,7 +164,9 @@ class AsyncEbayClient:
         return tokens
 
     async def close(self) -> None:
-        await self.http.aclose()
+        # Only close the transport the SDK created; never an injected, caller-owned client.
+        if self._owns_http:
+            await self.http.aclose()
 
     async def __aenter__(self) -> AsyncEbayClient:
         return self

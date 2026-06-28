@@ -2109,10 +2109,10 @@ class CancellationResource(BaseResource):
         )
 
     @overload
-    def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Request or perform an order cancellation"""
         return self._request(
             'getCancellation',
@@ -2121,7 +2121,7 @@ class CancellationResource(BaseResource):
             path_params={'cancelId': cancel_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -2143,10 +2143,10 @@ class CancellationResource(BaseResource):
         )
 
     @overload
-    def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Search for cancellations"""
         return self._request(
             'search',
@@ -2155,7 +2155,7 @@ class CancellationResource(BaseResource):
             path_params={},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -2239,10 +2239,10 @@ class AsyncCancellationResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_cancellation(self, cancel_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Request or perform an order cancellation"""
         return await self._request(
             'getCancellation',
@@ -2251,7 +2251,7 @@ class AsyncCancellationResource(AsyncBaseResource):
             path_params={'cancelId': cancel_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -2273,10 +2273,10 @@ class AsyncCancellationResource(AsyncBaseResource):
         )
 
     @overload
-    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Search for cancellations"""
         return await self._request(
             'search',
@@ -2285,7 +2285,7 @@ class AsyncCancellationResource(AsyncBaseResource):
             path_params={},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -6656,10 +6656,10 @@ class ReturnResource(BaseResource):
         )
 
     @overload
-    def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Validate the eligibility of an existing shipping label"""
         return self._request(
             'checkShippingLabelEligibility',
@@ -6668,7 +6668,7 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -6775,10 +6775,10 @@ class ReturnResource(BaseResource):
         )
 
     @overload
-    def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve a return draft"""
         return self._request(
             'getReturnDraft',
@@ -6787,7 +6787,7 @@ class ReturnResource(BaseResource):
             path_params={'draftId': draft_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -6809,10 +6809,10 @@ class ReturnResource(BaseResource):
         )
 
     @overload
-    def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the files associated with a return draft"""
         return self._request(
             'getReturnDraftFiles',
@@ -6821,7 +6821,7 @@ class ReturnResource(BaseResource):
             path_params={'draftId': draft_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -6845,10 +6845,10 @@ class ReturnResource(BaseResource):
         )
 
     @overload
-    def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the files associated with a return"""
         return self._request(
             'getReturnFiles',
@@ -6857,7 +6857,7 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -6896,10 +6896,10 @@ class ReturnResource(BaseResource):
         )
 
     @overload
-    def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the data for an existing shipping label"""
         return self._request(
             'getReturnShippingLabel',
@@ -6908,15 +6908,15 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
     @overload
-    def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve shipment tracking activity for a return"""
         return self._request(
             'getShipmentTrackingInfo',
@@ -6925,7 +6925,7 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -7230,10 +7230,10 @@ class AsyncReturnResource(AsyncBaseResource):
         )
 
     @overload
-    async def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def check_shipping_label_eligibility(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Validate the eligibility of an existing shipping label"""
         return await self._request(
             'checkShippingLabelEligibility',
@@ -7242,7 +7242,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -7349,10 +7349,10 @@ class AsyncReturnResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_return_draft(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve a return draft"""
         return await self._request(
             'getReturnDraft',
@@ -7361,7 +7361,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'draftId': draft_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -7383,10 +7383,10 @@ class AsyncReturnResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_return_draft_files(self, draft_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the files associated with a return draft"""
         return await self._request(
             'getReturnDraftFiles',
@@ -7395,7 +7395,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'draftId': draft_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -7419,10 +7419,10 @@ class AsyncReturnResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_return_files(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the files associated with a return"""
         return await self._request(
             'getReturnFiles',
@@ -7431,7 +7431,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
@@ -7470,10 +7470,10 @@ class AsyncReturnResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_return_shipping_label(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve the data for an existing shipping label"""
         return await self._request(
             'getReturnShippingLabel',
@@ -7482,15 +7482,15 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 
     @overload
-    async def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
+    async def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> Any: ...
     @overload
     async def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
+    async def get_shipment_tracking_info(self, return_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> Any | httpx.Response:
         """Retrieve shipment tracking activity for a return"""
         return await self._request(
             'getShipmentTrackingInfo',
@@ -7499,7 +7499,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=None,
+            response_model=Any,
             raw_response=raw_response,
         )
 

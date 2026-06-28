@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from typing import Protocol
@@ -184,8 +185,16 @@ class EbayAuth:
         return token.access_token
 
     def _cache_key(self) -> str:
-        kind = "refresh" if self.config.refresh_token else "client"
-        return f"{kind}:{self.config.sandbox}:{' '.join(self.config.scopes)}"
+        # Identify the exact grant so a shared cache never returns another tenant's token:
+        # app credentials + the specific refresh token (hashed, not stored) + env + scopes.
+        if self.config.refresh_token:
+            digest = hashlib.sha256((self.config.refresh_token_value or "").encode()).hexdigest()
+            grant = f"refresh:{digest[:16]}"
+        else:
+            grant = "client"
+        env = "sandbox" if self.config.sandbox else "production"
+        app_id = self.config.app_id or "-"
+        return f"{grant}:{app_id}:{env}:{' '.join(self.config.scopes)}"
 
     def _client_token(self, client: httpx.Client) -> TokenData:
         client_auth = self._client_credentials()

@@ -787,7 +787,7 @@ def render_method(
     parameters = dedupe_parameters(operation_info["parameters"])
     parameters = with_optional_marketplace_header(parameters)
     request_body = body_parameter(service, operation)
-    response_model = response_model_expr(service, operation)
+    response_model = response_model_expr(service, operation, operation_info["method"])
     if request_body and request_body["kind"] == "multipart":
         parameters = [
             param for param in parameters
@@ -1078,13 +1078,21 @@ def request_body_type(schema: dict[str, Any], service: Service) -> str:
     return "Any | Mapping[str, Any]"
 
 
-def response_model_expr(service: Service, operation: dict[str, Any]) -> str:
+def response_model_expr(service: Service, operation: dict[str, Any], method: str = "get") -> str:
     responses = operation.get("responses", {})
     for status in SUCCESS_STATUSES:
         response = responses.get(status)
         if not response:
             continue
-        return response_type_from_content(response.get("content", {}), service)
+        content = response.get("content", {})
+        if content:
+            return response_type_from_content(content, service)
+        # Success status with no documented body. 204 is genuinely empty. Otherwise eBay often
+        # omits the schema for GETs that still return JSON (e.g. post-order), so type those `Any`
+        # rather than the false `None`; write verbs without a body stay `None`.
+        if status != "204" and method.lower() == "get":
+            return "Any"
+        return "None"
     if default_response := responses.get("default"):
         return response_type_from_content(default_response.get("content", {}), service)
     return "None"
