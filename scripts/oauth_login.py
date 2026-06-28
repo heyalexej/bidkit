@@ -38,6 +38,16 @@ def extract_code(pasted: str) -> str:
     return unquote(pasted)
 
 
+def keyset_env(app_id: str) -> str | None:
+    """eBay App IDs encode the environment as a segment: ...-PRD-... or ...-SBX-..."""
+    parts = app_id.split("-")
+    if "SBX" in parts:
+        return "sandbox"
+    if "PRD" in parts:
+        return "production"
+    return None
+
+
 def load_config(args: argparse.Namespace) -> EbayConfig:
     creds: dict = {}
     config_path = Path(args.config).expanduser()
@@ -79,22 +89,56 @@ def main() -> None:
     parser.add_argument(
         "--no-browser", action="store_true", help="print the URL instead of opening it"
     )
+    parser.add_argument(
+        "--redirect-url",
+        help="the full URL eBay redirected to after consent (skips the interactive prompt)",
+    )
+    parser.add_argument("--code", help="the authorization code itself (skips the prompt)")
     args = parser.parse_args()
 
-    client = EbayClient(load_config(args))
-    try:
-        url = client.authorization_url(state="cli")
-    except EbayConfigError as exc:
-        raise SystemExit(str(exc)) from exc
+    config = load_config(args)
 
-    print("\n1) Grant consent in your browser:")
-    print(f"   {url}\n")
-    if not args.no_browser:
-        webbrowser.open(url)
+    env = keyset_env(config.app_id or "")
+    if env == "production" and args.sandbox:
+        raise SystemExit(
+            f"App ID '{config.app_id}' is a PRODUCTION keyset (-PRD-), but --sandbox was set, "
+            "which authenticates against eBay's sandbox and fails with 'invalid_client'. "
+            "Drop --sandbox, or use a sandbox (-SBX-) keyset."
+        )
+    if env == "sandbox" and not args.sandbox:
+        raise SystemExit(
+            f"App ID '{config.app_id}' is a SANDBOX keyset (-SBX-); add --sandbox."
+        )
 
-    print("2) After consent, eBay redirects to your RuName's accepted URL.")
-    pasted = input("   Paste the full redirect URL (or just the code): ")
-    code = extract_code(pasted)
+    client = EbayClient(config)
+
+    # If the code was supplied up front, exchange straight away (no browser, no prompt).
+    if args.code or args.redirect_url:
+        code = args.code or extract_code(args.redirect_url or "")
+    else:
+        try:
+            url = client.authorization_url(state="cli")
+        except EbayConfigError as exc:
+            raise SystemExit(str(exc)) from exc
+
+        print("\n1) Grant consent in your browser:")
+        print(f"   {url}\n")
+        if not args.no_browser:
+            webbrowser.open(url)
+
+        print("2) After consent, eBay redirects to your RuName's accepted URL.")
+        print("   Copy that URL from the address bar and paste it here (then press Enter).")
+        print("   Tip: you can also re-run with --redirect-url '<that url>' to skip this prompt.")
+        try:
+            pasted = input("\n   redirect URL or code> ").strip()
+        except EOFError:
+            raise SystemExit(
+                "\nNo input received. Re-run passing the value directly:\n"
+                "   uv run --extra dev scripts/oauth_login.py --redirect-url '<pasted url>'"
+            ) from None
+        if not pasted:
+            raise SystemExit("No redirect URL or code provided.")
+        code = extract_code(pasted)
 
     try:
         tokens = client.exchange_code(code)

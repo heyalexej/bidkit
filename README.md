@@ -137,12 +137,21 @@ capture the `code` with your own redirect handler, by copying it from the browse
 browser automation; the SDK only needs the resulting `code`. `AsyncEbayClient.exchange_code`
 is the async equivalent.
 
-For an interactive run, `scripts/oauth_login.py` opens the system browser for consent and
-exchanges the redirect URL you paste back:
+`scripts/oauth_login.py` runs the whole flow. Interactively it opens the system browser and
+prompts for the redirect URL; or pass the value as a flag to skip the prompt entirely:
 
 ```bash
+# interactive: opens the browser, then paste the redirect URL at the prompt
 uv run --extra dev scripts/oauth_login.py        # reads app/cert/ru/scopes from ebay-cli config
+
+# two-step (no interactive prompt): print the URL, consent, then pass the redirect back
+uv run --extra dev scripts/oauth_login.py --no-browser
+uv run --extra dev scripts/oauth_login.py --redirect-url 'https://your-ru-url/?code=...'
 ```
+
+The keyset environment is checked against `--sandbox`: a production App ID (`...-PRD-...`) used
+with `--sandbox` fails eBay auth with `invalid_client`, so the script stops early and tells you
+to drop `--sandbox` (sandbox needs a separate `...-SBX-...` keyset).
 
 ## Pagination
 
