@@ -66,6 +66,13 @@ class EbayConfig(BaseModel):
     timeout: float = Field(default=30.0, gt=0)
     base_url_override: str | None = None
 
+    # Retry policy for transient responses (429 + transient 5xx) and connection errors.
+    max_retries: int = Field(default=2, ge=0)
+    retry_statuses: tuple[int, ...] = (429, 500, 502, 503, 504)
+    retry_backoff: float = Field(default=0.5, ge=0)
+    retry_max_backoff: float = Field(default=60.0, ge=0)
+    respect_retry_after: bool = True
+
     @classmethod
     def from_env(cls, prefix: str = "EBAY_") -> EbayConfig:
         def value(name: str) -> str | None:

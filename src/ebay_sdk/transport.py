@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import time
 from collections.abc import AsyncIterator, Iterator, Mapping
 from contextlib import asynccontextmanager, contextmanager
@@ -13,6 +14,7 @@ from pydantic import BaseModel, TypeAdapter
 from .auth import EbayAuth
 from .config import EbayConfig
 from .errors import EbayAPIError, EbayTransportError
+from .retry import compute_delay, should_retry_exception, should_retry_status
 from .signing import MessageSigner
 
 
@@ -148,24 +150,41 @@ class EbayTransport:
         response_model: Any = None,
         raw_response: bool = False,
     ) -> Any:
+        url = _url(self.config, service, path, path_params)
+        compacted = _compact(params)
         request_headers = _headers(self.config, service, headers)
         request_headers.update(self.auth.authorization_header(
             self.client,
             scheme=_auth_scheme(service),
         ))
-        try:
+        body_kwargs = _body_kwargs(body=body, files=files)
+
+        response: httpx.Response | None = None
+        for attempt in range(self.config.max_retries + 1):
             request = self.client.build_request(
-                method,
-                _url(self.config, service, path, path_params),
-                params=_compact(params),
-                headers=request_headers,
-                **_body_kwargs(body=body, files=files),
+                method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
-            response = self.client.send(request)
-        except httpx.HTTPError as exc:
-            raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+            try:
+                response = self.client.send(request)
+            except httpx.TransportError as exc:
+                if attempt < self.config.max_retries and should_retry_exception(method):
+                    time.sleep(compute_delay(attempt, None, self.config))
+                    continue
+                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+            except httpx.HTTPError as exc:
+                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
+            if attempt < self.config.max_retries and should_retry_status(
+                method, response.status_code, self.config
+            ):
+                delay = compute_delay(attempt, response, self.config)
+                response.close()
+                time.sleep(delay)
+                continue
+            break
+
+        assert response is not None
         return _handle_response(response, response_model, raw_response)
 
     @contextmanager
@@ -182,32 +201,49 @@ class EbayTransport:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
     ) -> Iterator[httpx.Response]:
+        url = _url(self.config, service, path, path_params)
+        compacted = _compact(params)
         request_headers = _headers(self.config, service, headers)
         request_headers.update(self.auth.authorization_header(
             self.client,
             scheme=_auth_scheme(service),
         ))
-        request = self.client.build_request(
-            method,
-            _url(self.config, service, path, path_params),
-            params=_compact(params),
-            headers=request_headers,
-            **_body_kwargs(body=body, files=files),
-        )
-        _sign_request(self._signer, request)
-        try:
-            response = self.client.send(request, stream=True)
+        body_kwargs = _body_kwargs(body=body, files=files)
+
+        response: httpx.Response | None = None
+        for attempt in range(self.config.max_retries + 1):
+            request = self.client.build_request(
+                method, url, params=compacted, headers=request_headers, **body_kwargs
+            )
+            _sign_request(self._signer, request)
             try:
-                if response.status_code >= 400:
-                    response.read()
-                    raise EbayAPIError.from_response(response)
-                yield response
-            finally:
+                response = self.client.send(request, stream=True)
+            except httpx.TransportError as exc:
+                if attempt < self.config.max_retries and should_retry_exception(method):
+                    time.sleep(compute_delay(attempt, None, self.config))
+                    continue
+                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+            except httpx.HTTPError as exc:
+                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+
+            if attempt < self.config.max_retries and should_retry_status(
+                method, response.status_code, self.config
+            ):
+                response.read()
+                delay = compute_delay(attempt, response, self.config)
                 response.close()
-        except EbayAPIError:
-            raise
-        except httpx.HTTPError as exc:
-            raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                time.sleep(delay)
+                continue
+            break
+
+        assert response is not None
+        try:
+            if response.status_code >= 400:
+                response.read()
+                raise EbayAPIError.from_response(response)
+            yield response
+        finally:
+            response.close()
 
 
 class AsyncEbayTransport:
@@ -232,24 +268,41 @@ class AsyncEbayTransport:
         response_model: Any = None,
         raw_response: bool = False,
     ) -> Any:
+        url = _url(self.config, service, path, path_params)
+        compacted = _compact(params)
         request_headers = _headers(self.config, service, headers)
         request_headers.update(await self.auth.async_authorization_header(
             self.client,
             scheme=_auth_scheme(service),
         ))
-        try:
+        body_kwargs = _body_kwargs(body=body, files=files)
+
+        response: httpx.Response | None = None
+        for attempt in range(self.config.max_retries + 1):
             request = self.client.build_request(
-                method,
-                _url(self.config, service, path, path_params),
-                params=_compact(params),
-                headers=request_headers,
-                **_body_kwargs(body=body, files=files),
+                method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
-            response = await self.client.send(request)
-        except httpx.HTTPError as exc:
-            raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+            try:
+                response = await self.client.send(request)
+            except httpx.TransportError as exc:
+                if attempt < self.config.max_retries and should_retry_exception(method):
+                    await asyncio.sleep(compute_delay(attempt, None, self.config))
+                    continue
+                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+            except httpx.HTTPError as exc:
+                raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
+            if attempt < self.config.max_retries and should_retry_status(
+                method, response.status_code, self.config
+            ):
+                delay = compute_delay(attempt, response, self.config)
+                await response.aclose()
+                await asyncio.sleep(delay)
+                continue
+            break
+
+        assert response is not None
         return _handle_response(response, response_model, raw_response)
 
     @asynccontextmanager
@@ -266,29 +319,46 @@ class AsyncEbayTransport:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
     ) -> AsyncIterator[httpx.Response]:
+        url = _url(self.config, service, path, path_params)
+        compacted = _compact(params)
         request_headers = _headers(self.config, service, headers)
         request_headers.update(await self.auth.async_authorization_header(
             self.client,
             scheme=_auth_scheme(service),
         ))
-        request = self.client.build_request(
-            method,
-            _url(self.config, service, path, path_params),
-            params=_compact(params),
-            headers=request_headers,
-            **_body_kwargs(body=body, files=files),
-        )
-        _sign_request(self._signer, request)
-        try:
-            response = await self.client.send(request, stream=True)
+        body_kwargs = _body_kwargs(body=body, files=files)
+
+        response: httpx.Response | None = None
+        for attempt in range(self.config.max_retries + 1):
+            request = self.client.build_request(
+                method, url, params=compacted, headers=request_headers, **body_kwargs
+            )
+            _sign_request(self._signer, request)
             try:
-                if response.status_code >= 400:
-                    await response.aread()
-                    raise EbayAPIError.from_response(response)
-                yield response
-            finally:
+                response = await self.client.send(request, stream=True)
+            except httpx.TransportError as exc:
+                if attempt < self.config.max_retries and should_retry_exception(method):
+                    await asyncio.sleep(compute_delay(attempt, None, self.config))
+                    continue
+                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+            except httpx.HTTPError as exc:
+                raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+
+            if attempt < self.config.max_retries and should_retry_status(
+                method, response.status_code, self.config
+            ):
+                await response.aread()
+                delay = compute_delay(attempt, response, self.config)
                 await response.aclose()
-        except EbayAPIError:
-            raise
-        except httpx.HTTPError as exc:
-            raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                await asyncio.sleep(delay)
+                continue
+            break
+
+        assert response is not None
+        try:
+            if response.status_code >= 400:
+                await response.aread()
+                raise EbayAPIError.from_response(response)
+            yield response
+        finally:
+            await response.aclose()

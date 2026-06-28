@@ -114,6 +114,25 @@ The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and
 supported. `from_env` also reads `EBAY_SIGNING_KEY_FILE` or
 `EBAY_SIGNING_JWE` + `EBAY_SIGNING_PRIVATE_KEY`.
 
+## Retries & rate limiting
+
+Transient responses are retried automatically. By default `429 Too Many Requests` and
+transient `5xx` (500/502/503/504) are retried up to `max_retries` times with exponential
+backoff + full jitter, honoring the `Retry-After` header when eBay sends one. Retries are
+method-aware: idempotent methods (`GET`/`HEAD`/`OPTIONS`/`PUT`/`DELETE`) are replayed on both
+429 and 5xx, while non-idempotent `POST` is replayed only on 429 (the request was rejected
+before processing). Tune via `EbayConfig`:
+
+```python
+EbayConfig(
+    max_retries=2,                       # 0 disables retries
+    retry_statuses=(429, 500, 502, 503, 504),
+    retry_backoff=0.5,                   # base seconds; delay = backoff * 2**attempt (jittered)
+    retry_max_backoff=60.0,
+    respect_retry_after=True,
+)
+```
+
 Regenerate clients:
 
 ```bash
