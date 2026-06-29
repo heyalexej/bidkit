@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class Classification(StrEnum):
+class Classification(OpenStrEnum):
     item = 'ITEM'
 
 
@@ -53,7 +53,7 @@ class DocumentMetadata(EbayModel):
     )
 
 
-class DocumentStatusEnum(StrEnum):
+class DocumentStatusEnum(OpenStrEnum):
     submitted = 'SUBMITTED'
     accepted = 'ACCEPTED'
     rejected = 'REJECTED'
@@ -61,7 +61,7 @@ class DocumentStatusEnum(StrEnum):
     expired = 'EXPIRED'
 
 
-class DocumentTypeEnum(StrEnum):
+class DocumentTypeEnum(OpenStrEnum):
     certificate_of_analysis = 'CERTIFICATE_OF_ANALYSIS'
     certificate_of_conformity = 'CERTIFICATE_OF_CONFORMITY'
     declaration_of_conformity = 'DECLARATION_OF_CONFORMITY'
@@ -119,7 +119,7 @@ class ImageResponse(EbayModel):
     )
 
 
-class LanguageEnum(StrEnum):
+class LanguageEnum(OpenStrEnum):
     english = 'ENGLISH'
     spanish = 'SPANISH'
     italian = 'ITALIAN'
@@ -132,12 +132,12 @@ class LanguageEnum(StrEnum):
     other = 'OTHER'
 
 
-class ProtocolEnum(StrEnum):
+class ProtocolEnum(OpenStrEnum):
     dash = 'DASH'
     hls = 'HLS'
 
 
-class RejectReasonEnum(StrEnum):
+class RejectReasonEnum(OpenStrEnum):
     max_length_exceeded = 'MAX_LENGTH_EXCEEDED'
     pixelated = 'PIXELATED'
     blurred = 'BLURRED'
@@ -150,7 +150,7 @@ class RejectReasonEnum(StrEnum):
     other_policy_violation = 'OTHER_POLICY_VIOLATION'
 
 
-class VideoStatusEnum(StrEnum):
+class VideoStatusEnum(OpenStrEnum):
     pending_upload = 'PENDING_UPLOAD'
     processing = 'PROCESSING'
     processing_failed = 'PROCESSING_FAILED'

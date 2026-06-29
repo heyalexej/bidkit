@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -15,7 +15,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class SigningKeyCipher(StrEnum):
+class SigningKeyCipher(OpenStrEnum):
     ed25519 = 'ED25519'
     rsa = 'RSA'
 

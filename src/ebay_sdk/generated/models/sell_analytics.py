@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 from typing import Any
 
 from ebay_sdk.models import EbayModel
@@ -18,21 +18,21 @@ class BenchmarkMetadata(EbayModel):
     )
 
 
-class BenchmarkTypeEnum(StrEnum):
+class BenchmarkTypeEnum(OpenStrEnum):
     peer_benchmark = 'PEER_BENCHMARK'
 
 
-class CustomerServiceMetricTypeEnum(StrEnum):
+class CustomerServiceMetricTypeEnum(OpenStrEnum):
     item_not_as_described = 'ITEM_NOT_AS_DESCRIBED'
     item_not_received = 'ITEM_NOT_RECEIVED'
 
 
-class CycleTypeEnum(StrEnum):
+class CycleTypeEnum(OpenStrEnum):
     current = 'CURRENT'
     projected = 'PROJECTED'
 
 
-class DimensionTypeEnum(StrEnum):
+class DimensionTypeEnum(OpenStrEnum):
     listing_category = 'LISTING_CATEGORY'
     shipping_region = 'SHIPPING_REGION'
 
@@ -59,12 +59,12 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class EvaluationTypeEnum(StrEnum):
+class EvaluationTypeEnum(OpenStrEnum):
     current = 'CURRENT'
     projected = 'PROJECTED'
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -119,7 +119,7 @@ class MetricDistribution(EbayModel):
     )
 
 
-class ProgramEnum(StrEnum):
+class ProgramEnum(OpenStrEnum):
     program_de = 'PROGRAM_DE'
     program_uk = 'PROGRAM_UK'
     program_us = 'PROGRAM_US'
@@ -151,11 +151,11 @@ class RangeValue(EbayModel):
     )
 
 
-class RatingAdjustmentTypeEnum(StrEnum):
+class RatingAdjustmentTypeEnum(OpenStrEnum):
     override = 'OVERRIDE'
 
 
-class RatingTypeEnum(StrEnum):
+class RatingTypeEnum(OpenStrEnum):
     low = 'LOW'
     average = 'AVERAGE'
     high = 'HIGH'
@@ -174,13 +174,13 @@ class SortField(EbayModel):
     )
 
 
-class SrlDataTypeEnum(StrEnum):
+class SrlDataTypeEnum(OpenStrEnum):
     number = 'NUMBER'
     string = 'STRING'
     date = 'DATE'
 
 
-class SspDataTypeEnum(StrEnum):
+class SspDataTypeEnum(OpenStrEnum):
     amount = 'AMOUNT'
     boolean = 'BOOLEAN'
     date = 'DATE'
@@ -189,7 +189,7 @@ class SspDataTypeEnum(StrEnum):
     string = 'STRING'
 
 
-class StandardsLevelEnum(StrEnum):
+class StandardsLevelEnum(OpenStrEnum):
     top_rated = 'TOP_RATED'
     above_standard = 'ABOVE_STANDARD'
     below_standard = 'BELOW_STANDARD'

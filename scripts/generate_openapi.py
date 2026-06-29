@@ -686,8 +686,16 @@ def write_model_module(models_dir: Path, service: Service) -> None:
     ]
     subprocess.run(command, check=True)
     generated = output.read_text()
+    # Make generated enums forward-compatible: unknown eBay values are preserved instead of
+    # failing validation (see ebay_sdk.models.OpenStrEnum).
+    if "(StrEnum)" in generated:
+        generated = generated.replace("(StrEnum)", "(OpenStrEnum)")
+        generated = generated.replace(
+            "from enum import StrEnum", "from ebay_sdk.models import OpenStrEnum"
+        )
     if "# ruff: noqa" not in generated.splitlines()[:3]:
-        output.write_text("# ruff: noqa\n" + generated)
+        generated = "# ruff: noqa\n" + generated
+    output.write_text(generated)
 
 
 def write_resources(path: Path, services: list[Service]) -> None:

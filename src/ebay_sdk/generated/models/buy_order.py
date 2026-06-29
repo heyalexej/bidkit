@@ -4,24 +4,24 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class ApplicableChargeTypeEnum(StrEnum):
+class ApplicableChargeTypeEnum(OpenStrEnum):
     customs = 'CUSTOMS'
 
 
-class AuthenticityVerificationStatusEnum(StrEnum):
+class AuthenticityVerificationStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     passed = 'PASSED'
     failed = 'FAILED'
     ineligible = 'INELIGIBLE'
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -287,7 +287,7 @@ class CouponRequest(EbayModel):
     )
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -461,7 +461,7 @@ class ErrorParameterV3(EbayModel):
     )
 
 
-class FeeEnum(StrEnum):
+class FeeEnum(OpenStrEnum):
     additional_fee = 'ADDITIONAL_FEE'
     battery_recycling_fee = 'BATTERY_RECYCLING_FEE'
     electronic_recycling_fee = 'ELECTRONIC_RECYCLING_FEE'
@@ -476,7 +476,7 @@ class Image(EbayModel):
     )
 
 
-class ImportTaxTypeEnum(StrEnum):
+class ImportTaxTypeEnum(OpenStrEnum):
     gst = 'GST'
 
 
@@ -509,28 +509,28 @@ class LineItemInput(EbayModel):
     )
 
 
-class LineItemPaymentStatusEnum(StrEnum):
+class LineItemPaymentStatusEnum(OpenStrEnum):
     paid = 'PAID'
     pending = 'PENDING'
     failed = 'FAILED'
     not_paid = 'NOT_PAID'
 
 
-class LineItemStatusEnum(StrEnum):
+class LineItemStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     fulfillment_in_progress = 'FULFILLMENT_IN_PROGRESS'
     delivered = 'DELIVERED'
     cancelled = 'CANCELLED'
 
 
-class PurchaseOrderPaymentStatusEnum(StrEnum):
+class PurchaseOrderPaymentStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     paid = 'PAID'
     failed = 'FAILED'
     partially_paid = 'PARTIALLY_PAID'
 
 
-class PurchaseOrderStatusEnum(StrEnum):
+class PurchaseOrderStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     fulfillment_in_progress = 'FULFILLMENT_IN_PROGRESS'
     delivered = 'DELIVERED'
@@ -550,7 +550,7 @@ class Recipient(EbayModel):
     )
 
 
-class RegionTypeEnum(StrEnum):
+class RegionTypeEnum(OpenStrEnum):
     country_region = 'COUNTRY_REGION'
     state_or_province = 'STATE_OR_PROVINCE'
     country = 'COUNTRY'
@@ -564,7 +564,7 @@ class Seller(EbayModel):
     )
 
 
-class ServiceTypeEnum(StrEnum):
+class ServiceTypeEnum(OpenStrEnum):
     authenticity_guarantee = 'AUTHENTICITY_GUARANTEE'
     buyer_protection = 'BUYER_PROTECTION'
 
@@ -677,7 +677,7 @@ class ShippingDetail(EbayModel):
     )
 
 
-class TaxClassificationEnum(StrEnum):
+class TaxClassificationEnum(OpenStrEnum):
     item_tax = 'ITEM_TAX'
     shipping_tax = 'SHIPPING_TAX'
     service_tax = 'SERVICE_TAX'
@@ -689,7 +689,7 @@ class TaxClassificationEnum(StrEnum):
     import_duty_tax = 'IMPORT_DUTY_TAX'
 
 
-class TaxType(StrEnum):
+class TaxType(OpenStrEnum):
     state_sales_tax = 'STATE_SALES_TAX'
     vat = 'VAT'
     province_sales_tax = 'PROVINCE_SALES_TAX'

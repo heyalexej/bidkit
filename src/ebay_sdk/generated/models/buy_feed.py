@@ -4,23 +4,23 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AvailabilityEnum(StrEnum):
+class AvailabilityEnum(OpenStrEnum):
     temporarily_unavailable = 'TEMPORARILY_UNAVAILABLE'
     available = 'AVAILABLE'
     unavailable = 'UNAVAILABLE'
 
 
-class AvailabilityThresholdEnum(StrEnum):
+class AvailabilityThresholdEnum(OpenStrEnum):
     more_than = 'MORE_THAN'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -178,7 +178,7 @@ class CurrencyCodeEnum(StrEnum):
     zwl = 'ZWL'
 
 
-class DeliveryOptionsEnum(StrEnum):
+class DeliveryOptionsEnum(OpenStrEnum):
     ship_to_home = 'SHIP_TO_HOME'
     seller_arranged_local_pickup = 'SELLER_ARRANGED_LOCAL_PICKUP'
     in_store_pickup = 'IN_STORE_PICKUP'
@@ -286,14 +286,14 @@ class ItemPriorityResponse(EbayModel):
     )
 
 
-class LengthUnitOfMeasureEnum(StrEnum):
+class LengthUnitOfMeasureEnum(OpenStrEnum):
     inch = 'INCH'
     feet = 'FEET'
     centimeter = 'CENTIMETER'
     meter = 'METER'
 
 
-class OptionalityEnum(StrEnum):
+class OptionalityEnum(OpenStrEnum):
     mandatory = 'MANDATORY'
     optional = 'OPTIONAL'
 
@@ -334,27 +334,27 @@ class ProductResponse(EbayModel):
     )
 
 
-class RefundMethodEnum(StrEnum):
+class RefundMethodEnum(OpenStrEnum):
     money_back = 'MONEY_BACK'
     merchandise_credit = 'MERCHANDISE_CREDIT'
 
 
-class ReturnMethodEnum(StrEnum):
+class ReturnMethodEnum(OpenStrEnum):
     replacement = 'REPLACEMENT'
     exchange = 'EXCHANGE'
 
 
-class ReturnShippingCostPayerEnum(StrEnum):
+class ReturnShippingCostPayerEnum(OpenStrEnum):
     seller = 'SELLER'
     buyer = 'BUYER'
 
 
-class SellerTrustLevelEnum(StrEnum):
+class SellerTrustLevelEnum(OpenStrEnum):
     top_rated = 'TOP_RATED'
     above_standard = 'ABOVE_STANDARD'
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'
@@ -366,7 +366,7 @@ class TimeDurationUnitEnum(StrEnum):
     millisecond = 'MILLISECOND'
 
 
-class WeightUnitOfMeasureEnum(StrEnum):
+class WeightUnitOfMeasureEnum(OpenStrEnum):
     pound = 'POUND'
     kilogram = 'KILOGRAM'
     ounce = 'OUNCE'

@@ -4,24 +4,24 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AdvertisingProgramEnum(StrEnum):
+class AdvertisingProgramEnum(OpenStrEnum):
     promoted_listings_standard = 'PROMOTED_LISTINGS_STANDARD'
     promoted_listings_advanced = 'PROMOTED_LISTINGS_ADVANCED'
     offsite_ads = 'OFFSITE_ADS'
 
 
-class CategoryTypeEnum(StrEnum):
+class CategoryTypeEnum(OpenStrEnum):
     motors_vehicles = 'MOTORS_VEHICLES'
     all_excluding_motors_vehicles = 'ALL_EXCLUDING_MOTORS_VEHICLES'
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -273,7 +273,7 @@ class CountryCodeEnum(StrEnum):
     zw = 'ZW'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -446,12 +446,12 @@ class CustomPolicyRequest(EbayModel):
     )
 
 
-class CustomPolicyTypeEnum(StrEnum):
+class CustomPolicyTypeEnum(OpenStrEnum):
     product_compliance = 'PRODUCT_COMPLIANCE'
     take_back = 'TAKE_BACK'
 
 
-class DetailsType(StrEnum):
+class DetailsType(OpenStrEnum):
     company_details = 'COMPANY_DETAILS'
     individual_details = 'INDIVIDUAL_DETAILS'
     bank_details = 'BANK_DETAILS'
@@ -506,7 +506,7 @@ class KycResponse(EbayModel):
     )
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -550,14 +550,14 @@ class MarketplaceIdEnum(StrEnum):
     ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class PaymentInstrumentBrandEnum(StrEnum):
+class PaymentInstrumentBrandEnum(OpenStrEnum):
     american_express = 'AMERICAN_EXPRESS'
     discover = 'DISCOVER'
     mastercard = 'MASTERCARD'
     visa = 'VISA'
 
 
-class PaymentMethodTypeEnum(StrEnum):
+class PaymentMethodTypeEnum(OpenStrEnum):
     cash_in_person = 'CASH_IN_PERSON'
     cash_on_delivery = 'CASH_ON_DELIVERY'
     cash_on_pickup = 'CASH_ON_PICKUP'
@@ -575,14 +575,14 @@ class PaymentMethodTypeEnum(StrEnum):
     other = 'OTHER'
 
 
-class PaymentsProgramOnboardingStatus(StrEnum):
+class PaymentsProgramOnboardingStatus(OpenStrEnum):
     eligible_to_onboard = 'ELIGIBLE_TO_ONBOARD'
     not_eligible = 'NOT_ELIGIBLE'
     preboarded = 'PREBOARDED'
     onboarded = 'ONBOARDED'
 
 
-class PaymentsProgramOnboardingStepStatus(StrEnum):
+class PaymentsProgramOnboardingStepStatus(OpenStrEnum):
     not_started = 'NOT_STARTED'
     in_progress = 'IN_PROGRESS'
     completed = 'COMPLETED'
@@ -604,31 +604,31 @@ class PaymentsProgramOnboardingSteps(EbayModel):
     )
 
 
-class PaymentsProgramStatus(StrEnum):
+class PaymentsProgramStatus(OpenStrEnum):
     opted_in = 'OPTED_IN'
     not_opted_in = 'NOT_OPTED_IN'
 
 
-class PaymentsProgramType(StrEnum):
+class PaymentsProgramType(OpenStrEnum):
     ebay_payments = 'EBAY_PAYMENTS'
 
 
-class ProgramTypeEnum(StrEnum):
+class ProgramTypeEnum(OpenStrEnum):
     out_of_stock_control = 'OUT_OF_STOCK_CONTROL'
     partner_motors_dealer = 'PARTNER_MOTORS_DEALER'
     selling_policy_management = 'SELLING_POLICY_MANAGEMENT'
 
 
-class RecipientAccountReferenceTypeEnum(StrEnum):
+class RecipientAccountReferenceTypeEnum(OpenStrEnum):
     paypal_email = 'PAYPAL_EMAIL'
 
 
-class RefundMethodEnum(StrEnum):
+class RefundMethodEnum(OpenStrEnum):
     merchandise_credit = 'MERCHANDISE_CREDIT'
     money_back = 'MONEY_BACK'
 
 
-class RegionTypeEnum(StrEnum):
+class RegionTypeEnum(OpenStrEnum):
     country = 'COUNTRY'
     country_region = 'COUNTRY_REGION'
     state_or_province = 'STATE_OR_PROVINCE'
@@ -636,12 +636,12 @@ class RegionTypeEnum(StrEnum):
     worldwide = 'WORLDWIDE'
 
 
-class ReturnMethodEnum(StrEnum):
+class ReturnMethodEnum(OpenStrEnum):
     exchange = 'EXCHANGE'
     replacement = 'REPLACEMENT'
 
 
-class ReturnShippingCostPayerEnum(StrEnum):
+class ReturnShippingCostPayerEnum(OpenStrEnum):
     buyer = 'BUYER'
     seller = 'SELLER'
 
@@ -713,33 +713,33 @@ class SalesTaxes(EbayModel):
     )
 
 
-class SellerEligibilityEnum(StrEnum):
+class SellerEligibilityEnum(OpenStrEnum):
     eligible = 'ELIGIBLE'
     ineligible = 'INELIGIBLE'
 
 
-class SellerIneligibleReasonEnum(StrEnum):
+class SellerIneligibleReasonEnum(OpenStrEnum):
     not_enough_activity = 'NOT_ENOUGH_ACTIVITY'
     not_in_good_standing = 'NOT_IN_GOOD_STANDING'
     restricted = 'RESTRICTED'
 
 
-class ShippingCostTypeEnum(StrEnum):
+class ShippingCostTypeEnum(OpenStrEnum):
     calculated = 'CALCULATED'
     flat_rate = 'FLAT_RATE'
     not_specified = 'NOT_SPECIFIED'
 
 
-class ShippingOptionTypeEnum(StrEnum):
+class ShippingOptionTypeEnum(OpenStrEnum):
     domestic = 'DOMESTIC'
     international = 'INTERNATIONAL'
 
 
-class SubscriptionTypeEnum(StrEnum):
+class SubscriptionTypeEnum(OpenStrEnum):
     store_plan = 'STORE_PLAN'
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'

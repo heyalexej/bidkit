@@ -4,18 +4,18 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AddonServiceSelectionEnum(StrEnum):
+class AddonServiceSelectionEnum(OpenStrEnum):
     optional = 'OPTIONAL'
     required = 'REQUIRED'
 
 
-class AddonServiceTypeEnum(StrEnum):
+class AddonServiceTypeEnum(OpenStrEnum):
     authenticity_guarantee = 'AUTHENTICITY_GUARANTEE'
 
 
@@ -98,13 +98,13 @@ class AutoCorrections(EbayModel):
     )
 
 
-class AvailabilityStatusEnum(StrEnum):
+class AvailabilityStatusEnum(OpenStrEnum):
     in_stock = 'IN_STOCK'
     limited_stock = 'LIMITED_STOCK'
     out_of_stock = 'OUT_OF_STOCK'
 
 
-class AvailabilityThresholdEnum(StrEnum):
+class AvailabilityThresholdEnum(OpenStrEnum):
     more_than = 'MORE_THAN'
 
 
@@ -166,7 +166,7 @@ class CommonDescriptions(EbayModel):
     )
 
 
-class CompatibilityMatchEnum(StrEnum):
+class CompatibilityMatchEnum(OpenStrEnum):
     exact = 'EXACT'
     possible = 'POSSIBLE'
 
@@ -195,7 +195,7 @@ class CompatibilityProperty(EbayModel):
     )
 
 
-class CompatibilityStatus(StrEnum):
+class CompatibilityStatus(OpenStrEnum):
     compatible = 'COMPATIBLE'
     not_compatible = 'NOT_COMPATIBLE'
     undetermined = 'UNDETERMINED'
@@ -235,7 +235,7 @@ class ConditionDistribution(EbayModel):
     )
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -495,11 +495,11 @@ class CouponConstraint(EbayModel):
     )
 
 
-class CouponDiscountType(StrEnum):
+class CouponDiscountType(OpenStrEnum):
     item_price = 'ITEM_PRICE'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -657,7 +657,7 @@ class CurrencyCodeEnum(StrEnum):
     zwl = 'ZWL'
 
 
-class DeliveryOptionsEnum(StrEnum):
+class DeliveryOptionsEnum(OpenStrEnum):
     ship_to_home = 'SHIP_TO_HOME'
     seller_arranged_local_pickup = 'SELLER_ARRANGED_LOCAL_PICKUP'
     in_store_pickup = 'IN_STORE_PICKUP'
@@ -761,7 +761,7 @@ class EstimatedAvailability(EbayModel):
     )
 
 
-class FulfilledThroughEnum(StrEnum):
+class FulfilledThroughEnum(OpenStrEnum):
     global_shipping = 'GLOBAL_SHIPPING'
     international_shipping = 'INTERNATIONAL_SHIPPING'
 
@@ -843,7 +843,7 @@ class ItemCharityTerms(EbayModel):
     website: str | None = Field(None, description="The URL to the charity's eBay page.")
 
 
-class ItemGroupTypeEnum(StrEnum):
+class ItemGroupTypeEnum(OpenStrEnum):
     seller_defined_variations = 'SELLER_DEFINED_VARIATIONS'
 
 
@@ -909,7 +909,7 @@ class LegalAddress(EbayModel):
     )
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_au = 'EBAY_AU'
     ebay_at = 'EBAY_AT'
     ebay_be = 'EBAY_BE'
@@ -953,7 +953,7 @@ class MarketplaceIdEnum(StrEnum):
     ebay_za = 'EBAY_ZA'
 
 
-class PaymentInstructionEnum(StrEnum):
+class PaymentInstructionEnum(OpenStrEnum):
     direct_debit = 'DIRECT_DEBIT'
     ach = 'ACH'
     eft = 'EFT'
@@ -966,7 +966,7 @@ class PaymentInstructionEnum(StrEnum):
     pay_upon_invoice = 'PAY_UPON_INVOICE'
 
 
-class PaymentMethodBrandEnum(StrEnum):
+class PaymentMethodBrandEnum(OpenStrEnum):
     visa = 'VISA'
     mastercard = 'MASTERCARD'
     discover = 'DISCOVER'
@@ -988,7 +988,7 @@ class PaymentMethodBrandEnum(StrEnum):
     qiwi = 'QIWI'
 
 
-class PaymentMethodTypeEnum(StrEnum):
+class PaymentMethodTypeEnum(OpenStrEnum):
     credit_card = 'CREDIT_CARD'
     wallet = 'WALLET'
     debit_card = 'DEBIT_CARD'
@@ -1010,13 +1010,13 @@ class PickupOptionSummary(EbayModel):
     )
 
 
-class PriceDisplayConditionEnum(StrEnum):
+class PriceDisplayConditionEnum(OpenStrEnum):
     only_show_when_added_in_cart = 'ONLY_SHOW_WHEN_ADDED_IN_CART'
     only_show_on_request = 'ONLY_SHOW_ON_REQUEST'
     always_show = 'ALWAYS_SHOW'
 
 
-class PriceTreatmentEnum(StrEnum):
+class PriceTreatmentEnum(OpenStrEnum):
     minimum_advertised_price = 'MINIMUM_ADVERTISED_PRICE'
     list_price = 'LIST_PRICE'
     markdown = 'MARKDOWN'
@@ -1108,12 +1108,12 @@ class RatingHistogram(EbayModel):
     )
 
 
-class RefundMethodEnum(StrEnum):
+class RefundMethodEnum(OpenStrEnum):
     money_back = 'MONEY_BACK'
     merchandise_credit = 'MERCHANDISE_CREDIT'
 
 
-class RegionTypeEnum(StrEnum):
+class RegionTypeEnum(OpenStrEnum):
     country_region = 'COUNTRY_REGION'
     state_or_province = 'STATE_OR_PROVINCE'
     country = 'COUNTRY'
@@ -1121,16 +1121,16 @@ class RegionTypeEnum(StrEnum):
     worldwide = 'WORLDWIDE'
 
 
-class ResponsiblePersonTypeEnum(StrEnum):
+class ResponsiblePersonTypeEnum(OpenStrEnum):
     eu_responsible_person = 'EU_RESPONSIBLE_PERSON'
 
 
-class ReturnMethodEnum(StrEnum):
+class ReturnMethodEnum(OpenStrEnum):
     replacement = 'REPLACEMENT'
     exchange = 'EXCHANGE'
 
 
-class ReturnShippingCostPayerEnum(StrEnum):
+class ReturnShippingCostPayerEnum(OpenStrEnum):
     seller = 'SELLER'
     buyer = 'BUYER'
 
@@ -1182,12 +1182,12 @@ class Seller(EbayModel):
     )
 
 
-class SellerCustomPolicyTypeEnum(StrEnum):
+class SellerCustomPolicyTypeEnum(OpenStrEnum):
     product_compliance = 'PRODUCT_COMPLIANCE'
     take_back = 'TAKE_BACK'
 
 
-class SellerInstructionEnum(StrEnum):
+class SellerInstructionEnum(OpenStrEnum):
     accepts_credit_card = 'ACCEPTS_CREDIT_CARD'
     see_description = 'SEE_DESCRIPTION'
 
@@ -1245,7 +1245,7 @@ class TargetLocation(EbayModel):
     )
 
 
-class TaxType(StrEnum):
+class TaxType(OpenStrEnum):
     state_sales_tax = 'STATE_SALES_TAX'
     vat = 'VAT'
     province_sales_tax = 'PROVINCE_SALES_TAX'
@@ -1253,7 +1253,7 @@ class TaxType(StrEnum):
     gst = 'GST'
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'
@@ -1265,7 +1265,7 @@ class TimeDurationUnitEnum(StrEnum):
     millisecond = 'MILLISECOND'
 
 
-class ValueTypeEnum(StrEnum):
+class ValueTypeEnum(OpenStrEnum):
     string = 'STRING'
     string_array = 'STRING_ARRAY'
 

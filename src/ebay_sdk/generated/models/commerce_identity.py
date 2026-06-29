@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AccountTypeEnum(StrEnum):
+class AccountTypeEnum(OpenStrEnum):
     individual = 'INDIVIDUAL'
     business = 'BUSINESS'
 
@@ -24,7 +24,7 @@ class Contact(EbayModel):
     )
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -281,7 +281,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -341,7 +341,7 @@ class Phone(EbayModel):
     )
 
 
-class UserStatusEnum(StrEnum):
+class UserStatusEnum(OpenStrEnum):
     confirmed = 'CONFIRMED'
     unconfirmed = 'UNCONFIRMED'
     accountonhold = 'ACCOUNTONHOLD'

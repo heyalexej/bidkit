@@ -4,18 +4,18 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AcknowledgeStatusEnum(StrEnum):
+class AcknowledgeStatusEnum(OpenStrEnum):
     unacknowledged = 'UNACKNOWLEDGED'
     acknowledged = 'ACKNOWLEDGED'
 
 
-class ActivityEnum(StrEnum):
+class ActivityEnum(OpenStrEnum):
     dispute_opened = 'DISPUTE_OPENED'
     additional_evidence_request = 'ADDITIONAL_EVIDENCE_REQUEST'
     evidence_provided = 'EVIDENCE_PROVIDED'
@@ -33,7 +33,7 @@ class ActivityEnum(StrEnum):
     appeal_granted = 'APPEAL_GRANTED'
 
 
-class ActorEnum(StrEnum):
+class ActorEnum(OpenStrEnum):
     seller = 'SELLER'
     buyer = 'BUYER'
     cs_agent = 'CS_AGENT'
@@ -48,24 +48,24 @@ class AddEvidencePaymentDisputeResponse(EbayModel):
     )
 
 
-class AppointmentStatusEnum(StrEnum):
+class AppointmentStatusEnum(OpenStrEnum):
     on_hold = 'ON_HOLD'
     confirmed = 'CONFIRMED'
     cancelled = 'CANCELLED'
     fulfilled = 'FULFILLED'
 
 
-class AppointmentTypeEnum(StrEnum):
+class AppointmentTypeEnum(OpenStrEnum):
     time_slot = 'TIME_SLOT'
     macro = 'MACRO'
 
 
-class AppointmentWindowEnum(StrEnum):
+class AppointmentWindowEnum(OpenStrEnum):
     morning = 'MORNING'
     evening = 'EVENING'
 
 
-class AuthenticityVerificationReasonEnum(StrEnum):
+class AuthenticityVerificationReasonEnum(OpenStrEnum):
     not_authentic = 'NOT_AUTHENTIC'
     not_as_described = 'NOT_AS_DESCRIBED'
     customized = 'CUSTOMIZED'
@@ -73,35 +73,35 @@ class AuthenticityVerificationReasonEnum(StrEnum):
     not_authentic_no_return = 'NOT_AUTHENTIC_NO_RETURN'
 
 
-class AuthenticityVerificationStatusEnum(StrEnum):
+class AuthenticityVerificationStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     passed = 'PASSED'
     failed = 'FAILED'
     passed_with_exception = 'PASSED_WITH_EXCEPTION'
 
 
-class CancelRequestStateEnum(StrEnum):
+class CancelRequestStateEnum(OpenStrEnum):
     completed = 'COMPLETED'
     rejected = 'REJECTED'
     requested = 'REQUESTED'
 
 
-class CancelStateEnum(StrEnum):
+class CancelStateEnum(OpenStrEnum):
     canceled = 'CANCELED'
     in_progress = 'IN_PROGRESS'
     none_requested = 'NONE_REQUESTED'
 
 
-class ChargeTypeEnum(StrEnum):
+class ChargeTypeEnum(OpenStrEnum):
     buyer_protection = 'BUYER_PROTECTION'
 
 
-class CollectionMethodEnum(StrEnum):
+class CollectionMethodEnum(OpenStrEnum):
     invoice = 'INVOICE'
     net = 'NET'
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -353,7 +353,7 @@ class CountryCodeEnum(StrEnum):
     zw = 'ZW'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -537,7 +537,7 @@ class DisputeAmount(EbayModel):
     )
 
 
-class DisputeReasonEnum(StrEnum):
+class DisputeReasonEnum(OpenStrEnum):
     transaction_issue = 'TRANSACTION_ISSUE'
     fraud = 'FRAUD'
     item_not_received = 'ITEM_NOT_RECEIVED'
@@ -551,7 +551,7 @@ class DisputeReasonEnum(StrEnum):
     authorization_failed = 'AUTHORIZATION_FAILED'
 
 
-class DisputeStateEnum(StrEnum):
+class DisputeStateEnum(OpenStrEnum):
     open = 'OPEN'
     action_needed = 'ACTION_NEEDED'
     closed = 'CLOSED'
@@ -592,7 +592,7 @@ class EbayTaxReference(EbayModel):
     )
 
 
-class EbayVaultFulfillmentTypeEnum(StrEnum):
+class EbayVaultFulfillmentTypeEnum(OpenStrEnum):
     seller_to_vault = 'SELLER_TO_VAULT'
     vault_to_vault = 'VAULT_TO_VAULT'
     vault_to_buyer = 'VAULT_TO_BUYER'
@@ -622,7 +622,7 @@ class ErrorParameterV3(EbayModel):
     )
 
 
-class EvidenceTypeEnum(StrEnum):
+class EvidenceTypeEnum(OpenStrEnum):
     proof_of_delivery = 'PROOF_OF_DELIVERY'
     proof_of_authenticity = 'PROOF_OF_AUTHENTICITY'
     proof_of_item_as_described = 'PROOF_OF_ITEM_AS_DESCRIBED'
@@ -661,7 +661,7 @@ class FileInfo(EbayModel):
     )
 
 
-class FulfillmentInstructionsType(StrEnum):
+class FulfillmentInstructionsType(OpenStrEnum):
     digital = 'DIGITAL'
     prepare_for_pickup = 'PREPARE_FOR_PICKUP'
     seller_defined = 'SELLER_DEFINED'
@@ -747,7 +747,7 @@ class LineItemFulfillmentInstructions(EbayModel):
     )
 
 
-class LineItemFulfillmentStatusEnum(StrEnum):
+class LineItemFulfillmentStatusEnum(OpenStrEnum):
     fulfilled = 'FULFILLED'
     in_progress = 'IN_PROGRESS'
     not_started = 'NOT_STARTED'
@@ -783,7 +783,7 @@ class LineItemReference(EbayModel):
     )
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -827,12 +827,12 @@ class MarketplaceIdEnum(StrEnum):
     ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class MonetaryTransactionReasonEnum(StrEnum):
+class MonetaryTransactionReasonEnum(OpenStrEnum):
     dispute_fee = 'DISPUTE_FEE'
     recoup_amount = 'RECOUP_AMOUNT'
 
 
-class MonetaryTransactionTypeEnum(StrEnum):
+class MonetaryTransactionTypeEnum(OpenStrEnum):
     charge = 'CHARGE'
     credit = 'CREDIT'
 
@@ -848,7 +848,7 @@ class NameValuePair(EbayModel):
     )
 
 
-class OrderFulfillmentStatus(StrEnum):
+class OrderFulfillmentStatus(OpenStrEnum):
     fulfilled = 'FULFILLED'
     in_progress = 'IN_PROGRESS'
     not_started = 'NOT_STARTED'
@@ -867,7 +867,7 @@ class OrderLineItems(EbayModel):
     )
 
 
-class OrderPaymentStatusEnum(StrEnum):
+class OrderPaymentStatusEnum(OpenStrEnum):
     failed = 'FAILED'
     fully_refunded = 'FULLY_REFUNDED'
     paid = 'PAID'
@@ -875,7 +875,7 @@ class OrderPaymentStatusEnum(StrEnum):
     pending = 'PENDING'
 
 
-class OutcomeEnum(StrEnum):
+class OutcomeEnum(OpenStrEnum):
     seller_lost = 'SELLER_LOST'
     seller_won = 'SELLER_WON'
     seller_accept = 'SELLER_ACCEPT'
@@ -905,7 +905,7 @@ class PaymentDisputeActivityHistory(EbayModel):
     )
 
 
-class PaymentMethodTypeEnum(StrEnum):
+class PaymentMethodTypeEnum(OpenStrEnum):
     credit_card = 'CREDIT_CARD'
     paypal = 'PAYPAL'
     cashier_check = 'CASHIER_CHECK'
@@ -916,7 +916,7 @@ class PaymentMethodTypeEnum(StrEnum):
     escrow = 'ESCROW'
 
 
-class PaymentStatusEnum(StrEnum):
+class PaymentStatusEnum(OpenStrEnum):
     failed = 'FAILED'
     paid = 'PAID'
     pending = 'PENDING'
@@ -1008,7 +1008,7 @@ class Property(EbayModel):
     )
 
 
-class ProtectionStatusEnum(StrEnum):
+class ProtectionStatusEnum(OpenStrEnum):
     fully_protected = 'FULLY_PROTECTED'
     partially_protected = 'PARTIALLY_PROTECTED'
     not_protected = 'NOT_PROTECTED'
@@ -1038,7 +1038,7 @@ class RangeValue(EbayModel):
     )
 
 
-class ReasonForRefundEnum(StrEnum):
+class ReasonForRefundEnum(OpenStrEnum):
     buyer_cancel = 'BUYER_CANCEL'
     seller_cancel = 'SELLER_CANCEL'
     item_not_received = 'ITEM_NOT_RECEIVED'
@@ -1048,13 +1048,13 @@ class ReasonForRefundEnum(StrEnum):
     shipping_discount = 'SHIPPING_DISCOUNT'
 
 
-class RefundStatusEnum(StrEnum):
+class RefundStatusEnum(OpenStrEnum):
     failed = 'FAILED'
     pending = 'PENDING'
     refunded = 'REFUNDED'
 
 
-class RefundTypeEnum(StrEnum):
+class RefundTypeEnum(OpenStrEnum):
     payment_refund = 'PAYMENT_REFUND'
     store_credit = 'STORE_CREDIT'
 
@@ -1103,13 +1103,13 @@ class SellerActionsToRelease(EbayModel):
     )
 
 
-class SellerDecisionEnum(StrEnum):
+class SellerDecisionEnum(OpenStrEnum):
     seller_accept = 'SELLER_ACCEPT'
     seller_accept_with_return = 'SELLER_ACCEPT_WITH_RETURN'
     seller_contest = 'SELLER_CONTEST'
 
 
-class SellerResponseEnum(StrEnum):
+class SellerResponseEnum(OpenStrEnum):
     seller_accept = 'SELLER_ACCEPT'
     seller_accept_with_return = 'SELLER_ACCEPT_WITH_RETURN'
     seller_contest = 'SELLER_CONTEST'
@@ -1178,7 +1178,7 @@ class SimpleAmount(EbayModel):
     )
 
 
-class SoldFormatEnum(StrEnum):
+class SoldFormatEnum(OpenStrEnum):
     auction = 'AUCTION'
     fixed_price = 'FIXED_PRICE'
     other = 'OTHER'
@@ -1206,7 +1206,7 @@ class TaxAddress(EbayModel):
     )
 
 
-class TaxIdentifierTypeEnum(StrEnum):
+class TaxIdentifierTypeEnum(OpenStrEnum):
     codice_fiscale = 'CODICE_FISCALE'
     curp = 'CURP'
     dni = 'DNI'
@@ -1218,7 +1218,7 @@ class TaxIdentifierTypeEnum(StrEnum):
     vatin = 'VATIN'
 
 
-class TaxTypeEnum(StrEnum):
+class TaxTypeEnum(OpenStrEnum):
     state_sales_tax = 'STATE_SALES_TAX'
     province_sales_tax = 'PROVINCE_SALES_TAX'
     region = 'REGION'

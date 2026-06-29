@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class ConfigurationsUsageEnum(StrEnum):
+class ConfigurationsUsageEnum(OpenStrEnum):
     optional = 'OPTIONAL'
     required = 'REQUIRED'
 
@@ -28,7 +28,7 @@ class CreateTaskRequest(EbayModel):
     )
 
 
-class CustomerServiceMetricTypeEnum(StrEnum):
+class CustomerServiceMetricTypeEnum(OpenStrEnum):
     item_not_as_described = 'ITEM_NOT_AS_DESCRIBED'
     item_not_received = 'ITEM_NOT_RECEIVED'
 
@@ -45,7 +45,7 @@ class DateRange(EbayModel):
     )
 
 
-class DayOfWeekEnum(StrEnum):
+class DayOfWeekEnum(OpenStrEnum):
     sun = 'SUN'
     mon = 'MON'
     tue = 'TUE'
@@ -60,7 +60,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FeedStatusEnum(StrEnum):
+class FeedStatusEnum(OpenStrEnum):
     created = 'CREATED'
     queued = 'QUEUED'
     in_process = 'IN_PROCESS'
@@ -70,7 +70,7 @@ class FeedStatusEnum(StrEnum):
     partially_processed = 'PARTIALLY_PROCESSED'
 
 
-class FrequencyEnum(StrEnum):
+class FrequencyEnum(OpenStrEnum):
     half_hour = 'HALF_HOUR'
     one_hour = 'ONE_HOUR'
     four_hours = 'FOUR_HOURS'
@@ -85,12 +85,12 @@ class InputStream(EbayModel):
     pass
 
 
-class ListingFormatEnum(StrEnum):
+class ListingFormatEnum(OpenStrEnum):
     auction = 'AUCTION'
     fixed_price = 'FIXED_PRICE'
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -134,23 +134,23 @@ class MarketplaceIdEnum(StrEnum):
     ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class OrderStatusEnum(StrEnum):
+class OrderStatusEnum(OpenStrEnum):
     active = 'ACTIVE'
     completed = 'COMPLETED'
 
 
-class ShippingRegionTypeEnum(StrEnum):
+class ShippingRegionTypeEnum(OpenStrEnum):
     domestic = 'DOMESTIC'
     international_matured_region = 'INTERNATIONAL_MATURED_REGION'
     international_emerging_region = 'INTERNATIONAL_EMERGING_REGION'
 
 
-class StatusEnum(StrEnum):
+class StatusEnum(OpenStrEnum):
     active = 'ACTIVE'
     inactive = 'INACTIVE'
 
 
-class StatusReasonEnum(StrEnum):
+class StatusReasonEnum(OpenStrEnum):
     schedule_end_date_reached = 'SCHEDULE_END_DATE_REACHED'
     disabled_template = 'DISABLED_TEMPLATE'
 

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -262,7 +262,7 @@ class CountryCodeEnum(StrEnum):
     zw = 'ZW'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -432,7 +432,7 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class LengthUnitOfMeasureEnum(StrEnum):
+class LengthUnitOfMeasureEnum(OpenStrEnum):
     inch = 'INCH'
     feet = 'FEET'
     centimeter = 'CENTIMETER'
@@ -480,13 +480,13 @@ class PickupSlot(EbayModel):
     )
 
 
-class PickupTypeEnum(StrEnum):
+class PickupTypeEnum(OpenStrEnum):
     regular_pickup = 'REGULAR_PICKUP'
     scheduled_pickup = 'SCHEDULED_PICKUP'
     drop_off = 'DROP_OFF'
 
 
-class RateRecommendationEnum(StrEnum):
+class RateRecommendationEnum(OpenStrEnum):
     buyer_chosen = 'BUYER_CHOSEN'
     cheapest_on_time = 'CHEAPEST_ON_TIME'
     ebay_plus_ok = 'EBAY_PLUS_OK'
@@ -494,13 +494,13 @@ class RateRecommendationEnum(StrEnum):
     guaranteed_delivery_ok = 'GUARANTEED_DELIVERY_OK'
 
 
-class ShipmentCancellationStatusEnum(StrEnum):
+class ShipmentCancellationStatusEnum(OpenStrEnum):
     cancellation_requested = 'CANCELLATION_REQUESTED'
     cancellation_accepted = 'CANCELLATION_ACCEPTED'
     cancellation_rejected = 'CANCELLATION_REJECTED'
 
 
-class WeightUnitOfMeasureEnum(StrEnum):
+class WeightUnitOfMeasureEnum(OpenStrEnum):
     gram = 'GRAM'
     kilogram = 'KILOGRAM'
     ounce = 'OUNCE'

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -267,7 +267,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_us = 'EBAY_US'
     ebay_ca = 'EBAY_CA'
     ebay_gb = 'EBAY_GB'
@@ -363,13 +363,13 @@ class VeroReasonCodeResponse(EbayModel):
     )
 
 
-class VeroReportStatusEnum(StrEnum):
+class VeroReportStatusEnum(OpenStrEnum):
     received = 'RECEIVED'
     in_process = 'IN_PROCESS'
     processed = 'PROCESSED'
 
 
-class VeroReportedItemStatusEnum(StrEnum):
+class VeroReportedItemStatusEnum(OpenStrEnum):
     none = 'NONE'
     received = 'RECEIVED'
     submitted = 'SUBMITTED'
@@ -378,7 +378,7 @@ class VeroReportedItemStatusEnum(StrEnum):
     clarification_required = 'CLARIFICATION_REQUIRED'
 
 
-class WorldRegionEnum(StrEnum):
+class WorldRegionEnum(OpenStrEnum):
     africa = 'AFRICA'
     americas = 'AMERICAS'
     asia = 'ASIA'

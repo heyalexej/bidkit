@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 from typing import Any
 
 from ebay_sdk.models import EbayModel
@@ -19,7 +19,7 @@ class Config(EbayModel):
     )
 
 
-class ContextEnum(StrEnum):
+class ContextEnum(OpenStrEnum):
     buy = 'BUY'
     sell = 'SELL'
     commerce = 'COMMERCE'
@@ -46,7 +46,7 @@ class DeliveryConfig(EbayModel):
     )
 
 
-class DestinationStatusEnum(StrEnum):
+class DestinationStatusEnum(OpenStrEnum):
     enabled = 'ENABLED'
     disabled = 'DISABLED'
     marked_down = 'MARKED_DOWN'
@@ -57,11 +57,11 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FormatTypeEnum(StrEnum):
+class FormatTypeEnum(OpenStrEnum):
     json = 'JSON'
 
 
-class ProtocolEnum(StrEnum):
+class ProtocolEnum(OpenStrEnum):
     https = 'HTTPS'
 
 
@@ -80,18 +80,18 @@ class PublicKey(EbayModel):
     )
 
 
-class ScopeEnum(StrEnum):
+class ScopeEnum(OpenStrEnum):
     application = 'APPLICATION'
     user = 'USER'
 
 
-class StatusEnum(StrEnum):
+class StatusEnum(OpenStrEnum):
     enabled = 'ENABLED'
     disabled = 'DISABLED'
     deprecated = 'DEPRECATED'
 
 
-class SubscriptionFilterStatus(StrEnum):
+class SubscriptionFilterStatus(OpenStrEnum):
     disabled = 'DISABLED'
     enabled = 'ENABLED'
     pending = 'PENDING'
@@ -114,7 +114,7 @@ class SubscriptionPayloadDetail(EbayModel):
     )
 
 
-class SubscriptionStatusEnum(StrEnum):
+class SubscriptionStatusEnum(OpenStrEnum):
     enabled = 'ENABLED'
     disabled = 'DISABLED'
 

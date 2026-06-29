@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -88,7 +88,7 @@ class ClientSettings(EbayModel):
     )
 
 
-class Error1(StrEnum):
+class Error1(OpenStrEnum):
     invalid_policy_uri = 'invalid_policy_uri'
     invalid_contact_email = 'invalid_contact_email'
     invalid_software_statement = 'invalid_software_statement'
@@ -119,7 +119,7 @@ class Error(EbayModel):
     )
 
 
-class ClientRegistrationErrorEnum(StrEnum):
+class ClientRegistrationErrorEnum(OpenStrEnum):
     invalid_policy_uri = 'invalid_policy_uri'
     invalid_contact_email = 'invalid_contact_email'
     invalid_software_statement = 'invalid_software_statement'

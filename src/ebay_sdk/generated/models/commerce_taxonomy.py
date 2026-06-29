@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -33,28 +33,28 @@ class AncestorReference(EbayModel):
     )
 
 
-class AspectAdvancedDataTypeEnum(StrEnum):
+class AspectAdvancedDataTypeEnum(OpenStrEnum):
     numeric_range = 'NUMERIC_RANGE'
 
 
-class AspectApplicableToEnum(StrEnum):
+class AspectApplicableToEnum(OpenStrEnum):
     item = 'ITEM'
     product = 'PRODUCT'
 
 
-class AspectDataTypeEnum(StrEnum):
+class AspectDataTypeEnum(OpenStrEnum):
     date = 'DATE'
     number = 'NUMBER'
     string = 'STRING'
     string_array = 'STRING_ARRAY'
 
 
-class AspectModeEnum(StrEnum):
+class AspectModeEnum(OpenStrEnum):
     free_text = 'FREE_TEXT'
     selection_only = 'SELECTION_ONLY'
 
 
-class AspectUsageEnum(StrEnum):
+class AspectUsageEnum(OpenStrEnum):
     recommended = 'RECOMMENDED'
     optional = 'OPTIONAL'
 
@@ -201,12 +201,12 @@ class GetCompatibilityPropertyValuesResponse(EbayModel):
     )
 
 
-class ItemToAspectCardinalityEnum(StrEnum):
+class ItemToAspectCardinalityEnum(OpenStrEnum):
     multi = 'MULTI'
     single = 'SINGLE'
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'

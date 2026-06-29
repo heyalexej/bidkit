@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AdFormatEnabledEnum(StrEnum):
+class AdFormatEnabledEnum(OpenStrEnum):
     disabled = 'DISABLED'
     enabled = 'ENABLED'
     only = 'ONLY'
@@ -19,18 +19,18 @@ class AdFormatEnabledEnum(StrEnum):
     local_market_best_offer_only = 'LOCAL_MARKET_BEST_OFFER_ONLY'
 
 
-class CardinalityEnum(StrEnum):
+class CardinalityEnum(OpenStrEnum):
     single = 'SINGLE'
     multi = 'MULTI'
 
 
-class ClassifiedAdBestOfferEnabledEnum(StrEnum):
+class ClassifiedAdBestOfferEnabledEnum(OpenStrEnum):
     disabled = 'DISABLED'
     enabled = 'ENABLED'
     required = 'REQUIRED'
 
 
-class ClassifiedAdPaymentMethodEnabledEnum(StrEnum):
+class ClassifiedAdPaymentMethodEnabledEnum(OpenStrEnum):
     enabled_with_checkout = 'ENABLED_WITH_CHECKOUT'
     enabled_without_checkout = 'ENABLED_WITHOUT_CHECKOUT'
     not_supported = 'NOT_SUPPORTED'
@@ -134,12 +134,12 @@ class CompatibilityDetails(EbayModel):
     )
 
 
-class CompatibilityTypeEnum(StrEnum):
+class CompatibilityTypeEnum(OpenStrEnum):
     specifications = 'SPECIFICATIONS'
     assembly = 'ASSEMBLY'
 
 
-class CompatibleVehicleTypeEnum(StrEnum):
+class CompatibleVehicleTypeEnum(OpenStrEnum):
     us_cars_and_trucks = 'US_CARS_AND_TRUCKS'
     us_motorcycles = 'US_MOTORCYCLES'
     de_cars_and_trucks = 'DE_CARS_AND_TRUCKS'
@@ -164,7 +164,7 @@ class CompatibleVehicleTypeEnum(StrEnum):
     default_value = 'DEFAULT_VALUE'
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -416,7 +416,7 @@ class CountryCodeEnum(StrEnum):
     zw = 'ZW'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -574,7 +574,7 @@ class CurrencyCodeEnum(StrEnum):
     zwl = 'ZWL'
 
 
-class DescriptorUsageEnum(StrEnum):
+class DescriptorUsageEnum(OpenStrEnum):
     required = 'REQUIRED'
 
 
@@ -591,7 +591,7 @@ class DisabledProductFilter(EbayModel):
     )
 
 
-class DistanceType(StrEnum):
+class DistanceType(OpenStrEnum):
     local_listing_distances_regular = 'LOCAL_LISTING_DISTANCES_REGULAR'
     local_listing_distances_specialty = 'LOCAL_LISTING_DISTANCES_SPECIALTY'
     local_listing_distances_non_subscription = (
@@ -599,7 +599,7 @@ class DistanceType(StrEnum):
     )
 
 
-class DurationEnum(StrEnum):
+class DurationEnum(OpenStrEnum):
     gtc = 'GTC'
     days_1 = 'DAYS_1'
     days_3 = 'DAYS_3'
@@ -622,19 +622,19 @@ class ErrorParameterV3(EbayModel):
     value: str | None = Field(None, description='A description of the error.')
 
 
-class ExtendedProducerResponsibilityEnum(StrEnum):
+class ExtendedProducerResponsibilityEnum(OpenStrEnum):
     eco_participation_fee = 'ECO_PARTICIPATION_FEE'
     take_back_policy = 'TAKE_BACK_POLICY'
     repair_score = 'REPAIR_SCORE'
 
 
-class GenericUsageEnum(StrEnum):
+class GenericUsageEnum(OpenStrEnum):
     optional = 'OPTIONAL'
     recommended = 'RECOMMENDED'
     required = 'REQUIRED'
 
 
-class GeographicExposureEnum(StrEnum):
+class GeographicExposureEnum(OpenStrEnum):
     national = 'National'
     local_only = 'LocalOnly'
     local_optional = 'LocalOptional'
@@ -684,7 +684,7 @@ class ListingStructurePolicy(EbayModel):
     )
 
 
-class ListingTypeEnum(StrEnum):
+class ListingTypeEnum(OpenStrEnum):
     auction = 'AUCTION'
     ad_type = 'AD_TYPE'
     personal_offer = 'PERSONAL_OFFER'
@@ -704,7 +704,7 @@ class LocalListingDistance(EbayModel):
     )
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_us = 'EBAY_US'
     ebay_ca = 'EBAY_CA'
     ebay_gb = 'EBAY_GB'
@@ -748,7 +748,7 @@ class MarketplaceIdEnum(StrEnum):
     ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class ModeEnum(StrEnum):
+class ModeEnum(OpenStrEnum):
     selection_only = 'SELECTION_ONLY'
     free_text = 'FREE_TEXT'
 
@@ -1120,7 +1120,7 @@ class PaginationInput(EbayModel):
     )
 
 
-class PaymentEnum(StrEnum):
+class PaymentEnum(OpenStrEnum):
     cash_on_pickup = 'CASH_ON_PICKUP'
     payment_see_description = 'PAYMENT_SEE_DESCRIPTION'
     mocc = 'MOCC'
@@ -1144,7 +1144,7 @@ class Pictogram(EbayModel):
     )
 
 
-class ProductIdentiferEnabledEnum(StrEnum):
+class ProductIdentiferEnabledEnum(OpenStrEnum):
     disabled = 'DISABLED'
     enabled = 'ENABLED'
     required = 'REQUIRED'
@@ -1322,22 +1322,22 @@ class PropertyValuesResponse(EbayModel):
     )
 
 
-class RefundMethodEnum(StrEnum):
+class RefundMethodEnum(OpenStrEnum):
     money_back = 'MONEY_BACK'
 
 
-class RegulatoryAttributeEnum(StrEnum):
+class RegulatoryAttributeEnum(OpenStrEnum):
     hazmat = 'HAZMAT'
     energy_efficiency = 'ENERGY_EFFICIENCY'
     manufacturer_contact = 'MANUFACTURER_CONTACT'
     product_safety = 'PRODUCT_SAFETY'
 
 
-class ReturnMethodEnum(StrEnum):
+class ReturnMethodEnum(OpenStrEnum):
     replacement = 'REPLACEMENT'
 
 
-class ReturnShippingCostPayerEnum(StrEnum):
+class ReturnShippingCostPayerEnum(OpenStrEnum):
     buyer = 'BUYER'
     seller = 'SELLER'
 
@@ -1552,7 +1552,7 @@ class SortOrderProperties(EbayModel):
     )
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'
@@ -1564,7 +1564,7 @@ class TimeDurationUnitEnum(StrEnum):
     millisecond = 'MILLISECOND'
 
 
-class UsageEnum(StrEnum):
+class UsageEnum(OpenStrEnum):
     restricted = 'RESTRICTED'
 
 

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AddressTypeEnum(StrEnum):
+class AddressTypeEnum(OpenStrEnum):
     ship_from_address = 'SHIP_FROM_ADDRESS'
     return_address = 'RETURN_ADDRESS'
 
@@ -84,7 +84,7 @@ class CancelPackagesResponsesData(EbayModel):
     )
 
 
-class ComplaintTypeEnum(StrEnum):
+class ComplaintTypeEnum(OpenStrEnum):
     abnormal_collection_complaint = 'ABNORMAL_COLLECTION_COMPLAINT'
     lost_package_complaint = 'LOST_PACKAGE_COMPLAINT'
 
@@ -114,7 +114,7 @@ class ConfirmPackagesResponsesData(EbayModel):
     )
 
 
-class ConsignTypeEnum(StrEnum):
+class ConsignTypeEnum(OpenStrEnum):
     pick_up = 'PICK_UP'
     drop_off = 'DROP_OFF'
     forward_deployment = 'FORWARD_DEPLOYMENT'
@@ -213,7 +213,7 @@ class CreateConsignPreferenceResponsesData(EbayModel):
     )
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -639,12 +639,12 @@ class GetTrackingDetailResponsesData(EbayModel):
     )
 
 
-class IncotermEnum(StrEnum):
+class IncotermEnum(OpenStrEnum):
     ddp = 'DDP'
     ddu = 'DDU'
 
 
-class LiBatteryTypeEnum(StrEnum):
+class LiBatteryTypeEnum(OpenStrEnum):
     no_battery = 'NO_BATTERY'
     lithium_ion_battery_packed_with_equipment = (
         'LITHIUM_ION_BATTERY_PACKED_WITH_EQUIPMENT'
@@ -662,7 +662,7 @@ class LiBatteryTypeEnum(StrEnum):
     special_goods_with_no_battery = 'SPECIAL_GOODS_WITH_NO_BATTERY'
 
 
-class PackageStatusEnum(StrEnum):
+class PackageStatusEnum(OpenStrEnum):
     declared_failed = 'DECLARED_FAILED'
     package_info_lack = 'PACKAGE_INFO_LACK'
     no_useful_shipping = 'NO_USEFUL_SHIPPING'
@@ -682,7 +682,7 @@ class PackageStatusEnum(StrEnum):
     delivery_exception = 'DELIVERY_EXCEPTION'
 
 
-class PickUpTimeTypeEnum(StrEnum):
+class PickUpTimeTypeEnum(OpenStrEnum):
     time_14_16 = 'TIME_14_16'
     time_16_18 = 'TIME_16_18'
 

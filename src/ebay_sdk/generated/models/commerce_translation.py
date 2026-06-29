@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -15,7 +15,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class LanguageEnum(StrEnum):
+class LanguageEnum(OpenStrEnum):
     de = 'de'
     en = 'en'
     es = 'es'
@@ -41,7 +41,7 @@ class Translation(EbayModel):
     )
 
 
-class TranslationContextEnum(StrEnum):
+class TranslationContextEnum(OpenStrEnum):
     item_title = 'ITEM_TITLE'
     item_description = 'ITEM_DESCRIPTION'
 

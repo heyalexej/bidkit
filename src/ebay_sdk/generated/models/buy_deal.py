@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -182,17 +182,17 @@ class Image(EbayModel):
     width: str | None = Field(None, description='The width of the image.')
 
 
-class ItemGroupTypeEnum(StrEnum):
+class ItemGroupTypeEnum(OpenStrEnum):
     seller_defined_variations = 'SELLER_DEFINED_VARIATIONS'
 
 
-class PriceTreatmentEnum(StrEnum):
+class PriceTreatmentEnum(OpenStrEnum):
     minimum_advertised_price = 'MINIMUM_ADVERTISED_PRICE'
     list_price = 'LIST_PRICE'
     markdown = 'MARKDOWN'
 
 
-class ProgramEnum(StrEnum):
+class ProgramEnum(OpenStrEnum):
     ebay_plus = 'EBAY_PLUS'
 
 

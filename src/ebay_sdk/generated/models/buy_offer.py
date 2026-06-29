@@ -4,18 +4,18 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class AuctionStatusEnum(StrEnum):
+class AuctionStatusEnum(OpenStrEnum):
     active = 'ACTIVE'
     ended = 'ENDED'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'

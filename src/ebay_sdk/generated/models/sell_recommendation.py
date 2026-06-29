@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class Basis(StrEnum):
+class Basis(OpenStrEnum):
     item = 'ITEM'
     trending = 'TRENDING'
 
@@ -39,7 +39,7 @@ class FindListingRecommendationRequest(EbayModel):
     )
 
 
-class PromoteWithAd(StrEnum):
+class PromoteWithAd(OpenStrEnum):
     recommended = 'RECOMMENDED'
     undetermined = 'UNDETERMINED'
 

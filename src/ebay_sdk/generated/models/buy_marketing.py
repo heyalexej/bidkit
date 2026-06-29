@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -23,7 +23,7 @@ class Category(EbayModel):
     )
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -276,7 +276,7 @@ class CountryCodeEnum(StrEnum):
     zw = 'ZW'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -465,7 +465,7 @@ class ItemLocation(EbayModel):
     )
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_us = 'EBAY_US'
     ebay_ca = 'EBAY_CA'
     ebay_gb = 'EBAY_GB'

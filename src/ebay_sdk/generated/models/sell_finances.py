@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class BookingEntryEnum(StrEnum):
+class BookingEntryEnum(OpenStrEnum):
     credit = 'CREDIT'
     debit = 'DEBIT'
 
@@ -32,7 +32,7 @@ class BuyerWithId(EbayModel):
     )
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -195,7 +195,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class FeeTypeEnum(StrEnum):
+class FeeTypeEnum(OpenStrEnum):
     below_standard_fee = 'BELOW_STANDARD_FEE'
     below_standard_shipping_fee = 'BELOW_STANDARD_SHIPPING_FEE'
     final_value_fee_fixed_per_order = 'FINAL_VALUE_FEE_FIXED_PER_ORDER'
@@ -305,7 +305,7 @@ class PayoutInstrument(EbayModel):
     )
 
 
-class PayoutStatusEnum(StrEnum):
+class PayoutStatusEnum(OpenStrEnum):
     initiated = 'INITIATED'
     succeeded = 'SUCCEEDED'
     reversed = 'REVERSED'
@@ -320,7 +320,7 @@ class RangeValue(EbayModel):
     start: str | None = None
 
 
-class ReferenceTypeEnum(StrEnum):
+class ReferenceTypeEnum(OpenStrEnum):
     cancellation_id = 'CANCELLATION_ID'
     case_id = 'CASE_ID'
     invoice = 'INVOICE'
@@ -333,7 +333,7 @@ class ReferenceTypeEnum(StrEnum):
     payout_id = 'PAYOUT_ID'
 
 
-class RegionTypeEnum(StrEnum):
+class RegionTypeEnum(OpenStrEnum):
     country = 'COUNTRY'
     state_or_province = 'STATE_OR_PROVINCE'
 
@@ -343,11 +343,11 @@ class SortField(EbayModel):
     field: str | None = None
 
 
-class TaxTypeEnum(StrEnum):
+class TaxTypeEnum(OpenStrEnum):
     vat = 'VAT'
 
 
-class TransactionStatusEnum(StrEnum):
+class TransactionStatusEnum(OpenStrEnum):
     funds_on_hold = 'FUNDS_ON_HOLD'
     funds_processing = 'FUNDS_PROCESSING'
     funds_available_for_payout = 'FUNDS_AVAILABLE_FOR_PAYOUT'
@@ -356,7 +356,7 @@ class TransactionStatusEnum(StrEnum):
     failed = 'FAILED'
 
 
-class TransactionTypeEnum(StrEnum):
+class TransactionTypeEnum(OpenStrEnum):
     sale = 'SALE'
     refund = 'REFUND'
     credit = 'CREDIT'

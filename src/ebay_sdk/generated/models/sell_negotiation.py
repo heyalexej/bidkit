@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -181,7 +181,7 @@ class ErrorParameter(EbayModel):
     value: str | None = Field(None, description='The value of the object.')
 
 
-class OfferStatusEnum(StrEnum):
+class OfferStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     retracted = 'RETRACTED'
     expired = 'EXPIRED'
@@ -193,7 +193,7 @@ class OfferStatusEnum(StrEnum):
     accepted = 'ACCEPTED'
 
 
-class OfferTypeEnum(StrEnum):
+class OfferTypeEnum(OpenStrEnum):
     seller_initiated_offer = 'SELLER_INITIATED_OFFER'
 
 
@@ -228,7 +228,7 @@ class PagedEligibleItemCollection(EbayModel):
     )
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'

@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -83,13 +83,13 @@ class UpdatePayoutPercentageRequest(EbayModel):
     )
 
 
-class CombinedPaymentOptionEnum(StrEnum):
+class CombinedPaymentOptionEnum(OpenStrEnum):
     no_combined_payment = 'NO_COMBINED_PAYMENT'
     discount_specified = 'DISCOUNT_SPECIFIED'
     specify_discount_later = 'SPECIFY_DISCOUNT_LATER'
 
 
-class CombinedPaymentPeriodEnum(StrEnum):
+class CombinedPaymentPeriodEnum(OpenStrEnum):
     days_14 = 'DAYS_14'
     days_3 = 'DAYS_3'
     days_30 = 'DAYS_30'
@@ -98,7 +98,7 @@ class CombinedPaymentPeriodEnum(StrEnum):
     ineligible = 'INELIGIBLE'
 
 
-class CombinedShippingRuleTypeEnum(StrEnum):
+class CombinedShippingRuleTypeEnum(OpenStrEnum):
     combined_item_weight = 'COMBINED_ITEM_WEIGHT'
     each_additional_amount = 'EACH_ADDITIONAL_AMOUNT'
     each_additional_amount_off = 'EACH_ADDITIONAL_AMOUNT_OFF'
@@ -110,7 +110,7 @@ class CombinedShippingRuleTypeEnum(StrEnum):
     weight_off = 'WEIGHT_OFF'
 
 
-class CombinedShippingRuleTypeHandlingEnum(StrEnum):
+class CombinedShippingRuleTypeHandlingEnum(OpenStrEnum):
     combined_handling_fee = 'COMBINED_HANDLING_FEE'
     each_additional_amount = 'EACH_ADDITIONAL_AMOUNT'
     each_additional_amount_off = 'EACH_ADDITIONAL_AMOUNT_OFF'
@@ -118,7 +118,7 @@ class CombinedShippingRuleTypeHandlingEnum(StrEnum):
     individual_handling_fee = 'INDIVIDUAL_HANDLING_FEE'
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -276,26 +276,26 @@ class CurrencyCodeEnum(StrEnum):
     zwl = 'ZWL'
 
 
-class EndOfAuctionLogoTypeEnum(StrEnum):
+class EndOfAuctionLogoTypeEnum(OpenStrEnum):
     winning_bidder_notice = 'WINNING_BIDDER_NOTICE'
     store = 'STORE'
     customized = 'CUSTOMIZED'
     none = 'NONE'
 
 
-class FedexRateOptionEnum(StrEnum):
+class FedexRateOptionEnum(OpenStrEnum):
     fedex_standard_list = 'FEDEX_STANDARD_LIST'
     fedex_counter = 'FEDEX_COUNTER'
 
 
-class InstrumentStatusEnum(StrEnum):
+class InstrumentStatusEnum(OpenStrEnum):
     pending = 'PENDING'
     active = 'ACTIVE'
     verification_failed = 'VERIFICATION_FAILED'
     inactive = 'INACTIVE'
 
 
-class MarketplaceIdEnum(StrEnum):
+class MarketplaceIdEnum(OpenStrEnum):
     ebay_at = 'EBAY_AT'
     ebay_au = 'EBAY_AU'
     ebay_be = 'EBAY_BE'
@@ -339,7 +339,7 @@ class MarketplaceIdEnum(StrEnum):
     ebay_motors_us = 'EBAY_MOTORS_US'
 
 
-class ShippingCategoryEnum(StrEnum):
+class ShippingCategoryEnum(OpenStrEnum):
     one_day = 'ONE_DAY'
     expedited = 'EXPEDITED'
     standard = 'STANDARD'
@@ -347,23 +347,23 @@ class ShippingCategoryEnum(StrEnum):
     express = 'EXPRESS'
 
 
-class ShippingOptionTypeEnum(StrEnum):
+class ShippingOptionTypeEnum(OpenStrEnum):
     domestic = 'DOMESTIC'
     international = 'INTERNATIONAL'
 
 
-class ShippingRateCalculationEnum(StrEnum):
+class ShippingRateCalculationEnum(OpenStrEnum):
     item = 'ITEM'
     weight = 'WEIGHT'
     surcharge = 'SURCHARGE'
 
 
-class UPSRateOptionEnum(StrEnum):
+class UPSRateOptionEnum(OpenStrEnum):
     ups_daily_rates = 'UPS_DAILY_RATES'
     ups_on_demand_rates = 'UPS_ON_DEMAND_RATES'
 
 
-class WeightUnitOfMeasureEnum(StrEnum):
+class WeightUnitOfMeasureEnum(OpenStrEnum):
     pound = 'POUND'
     kilogram = 'KILOGRAM'
     ounce = 'OUNCE'

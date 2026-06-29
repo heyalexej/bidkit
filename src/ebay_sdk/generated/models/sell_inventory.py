@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
+from ebay_sdk.models import OpenStrEnum
 
 from ebay_sdk.models import EbayModel
 from pydantic import Field
@@ -21,7 +21,7 @@ class Amount(EbayModel):
     )
 
 
-class AvailabilityTypeEnum(StrEnum):
+class AvailabilityTypeEnum(OpenStrEnum):
     in_stock = 'IN_STOCK'
     out_of_stock = 'OUT_OF_STOCK'
     ship_to_store = 'SHIP_TO_STORE'
@@ -74,7 +74,7 @@ class ConditionDescriptor(EbayModel):
     )
 
 
-class ConditionEnum(StrEnum):
+class ConditionEnum(OpenStrEnum):
     new = 'NEW'
     like_new = 'LIKE_NEW'
     new_other = 'NEW_OTHER'
@@ -94,7 +94,7 @@ class ConditionEnum(StrEnum):
     pre_owned_fair = 'PRE_OWNED_FAIR'
 
 
-class CountryCodeEnum(StrEnum):
+class CountryCodeEnum(OpenStrEnum):
     ad = 'AD'
     ae = 'AE'
     af = 'AF'
@@ -358,7 +358,7 @@ class CountryPolicy(EbayModel):
     )
 
 
-class CurrencyCodeEnum(StrEnum):
+class CurrencyCodeEnum(OpenStrEnum):
     aed = 'AED'
     afn = 'AFN'
     all = 'ALL'
@@ -516,7 +516,7 @@ class CurrencyCodeEnum(StrEnum):
     zwl = 'ZWL'
 
 
-class DayOfWeekEnum(StrEnum):
+class DayOfWeekEnum(OpenStrEnum):
     monday = 'MONDAY'
     tuesday = 'TUESDAY'
     wednesday = 'WEDNESDAY'
@@ -625,7 +625,7 @@ class FormatAllocation(EbayModel):
     )
 
 
-class FormatTypeEnum(StrEnum):
+class FormatTypeEnum(OpenStrEnum):
     auction = 'AUCTION'
     fixed_price = 'FIXED_PRICE'
 
@@ -691,14 +691,14 @@ class InventoryItemListing(EbayModel):
     )
 
 
-class LengthUnitOfMeasureEnum(StrEnum):
+class LengthUnitOfMeasureEnum(OpenStrEnum):
     inch = 'INCH'
     feet = 'FEET'
     centimeter = 'CENTIMETER'
     meter = 'METER'
 
 
-class ListingDurationEnum(StrEnum):
+class ListingDurationEnum(OpenStrEnum):
     days_1 = 'DAYS_1'
     days_3 = 'DAYS_3'
     days_5 = 'DAYS_5'
@@ -709,7 +709,7 @@ class ListingDurationEnum(StrEnum):
     gtc = 'GTC'
 
 
-class ListingStatusEnum(StrEnum):
+class ListingStatusEnum(OpenStrEnum):
     active = 'ACTIVE'
     out_of_stock = 'OUT_OF_STOCK'
     inactive = 'INACTIVE'
@@ -718,7 +718,7 @@ class ListingStatusEnum(StrEnum):
     not_listed = 'NOT_LISTED'
 
 
-class LocaleEnum(StrEnum):
+class LocaleEnum(OpenStrEnum):
     en_us = 'en_US'
     en_ca = 'en_CA'
     fr_ca = 'fr_CA'
@@ -810,7 +810,7 @@ class Manufacturer(EbayModel):
     )
 
 
-class MarketplaceEnum(StrEnum):
+class MarketplaceEnum(OpenStrEnum):
     ebay_us = 'EBAY_US'
     ebay_motors = 'EBAY_MOTORS'
     ebay_ca = 'EBAY_CA'
@@ -861,7 +861,7 @@ class MigrateListing(EbayModel):
     )
 
 
-class MinimumAdvertisedPriceHandlingEnum(StrEnum):
+class MinimumAdvertisedPriceHandlingEnum(OpenStrEnum):
     none = 'NONE'
     pre_checkout = 'PRE_CHECKOUT'
     during_checkout = 'DURING_CHECKOUT'
@@ -910,7 +910,7 @@ class OfferPriceQuantity(EbayModel):
     )
 
 
-class OfferStatusEnum(StrEnum):
+class OfferStatusEnum(OpenStrEnum):
     published = 'PUBLISHED'
     unpublished = 'UNPUBLISHED'
 
@@ -945,7 +945,7 @@ class Overrides(EbayModel):
     )
 
 
-class PackageTypeEnum(StrEnum):
+class PackageTypeEnum(OpenStrEnum):
     letter = 'LETTER'
     bulky_goods = 'BULKY_GOODS'
     caravan = 'CARAVAN'
@@ -1112,16 +1112,16 @@ class RegionalTakeBackPolicies(EbayModel):
     )
 
 
-class ResponsiblePersonTypeEnum(StrEnum):
+class ResponsiblePersonTypeEnum(OpenStrEnum):
     eu_responsible_person = 'EU_RESPONSIBLE_PERSON'
 
 
-class ShippingServiceTypeEnum(StrEnum):
+class ShippingServiceTypeEnum(OpenStrEnum):
     domestic = 'DOMESTIC'
     international = 'INTERNATIONAL'
 
 
-class SoldOnEnum(StrEnum):
+class SoldOnEnum(OpenStrEnum):
     on_ebay = 'ON_EBAY'
     off_ebay = 'OFF_EBAY'
     on_and_off_ebay = 'ON_AND_OFF_EBAY'
@@ -1149,12 +1149,12 @@ class Specification(EbayModel):
     )
 
 
-class StatusEnum(StrEnum):
+class StatusEnum(OpenStrEnum):
     disabled = 'DISABLED'
     enabled = 'ENABLED'
 
 
-class StoreTypeEnum(StrEnum):
+class StoreTypeEnum(OpenStrEnum):
     store = 'STORE'
     warehouse = 'WAREHOUSE'
     fulfillment_center = 'FULFILLMENT_CENTER'
@@ -1178,7 +1178,7 @@ class Tax(EbayModel):
     )
 
 
-class TimeDurationUnitEnum(StrEnum):
+class TimeDurationUnitEnum(OpenStrEnum):
     year = 'YEAR'
     month = 'MONTH'
     day = 'DAY'
@@ -1222,7 +1222,7 @@ class WeeklySchedule(EbayModel):
     )
 
 
-class WeightUnitOfMeasureEnum(StrEnum):
+class WeightUnitOfMeasureEnum(OpenStrEnum):
     pound = 'POUND'
     kilogram = 'KILOGRAM'
     ounce = 'OUNCE'
