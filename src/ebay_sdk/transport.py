@@ -149,15 +149,18 @@ class EbayTransport:
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, headers)
-        request_headers.update(self.auth.authorization_header(
-            self.client,
-            scheme=_auth_scheme(service),
-        ))
         body_kwargs = _body_kwargs(body=body, files=files)
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
+            # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
+            # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
+            # refresh is actually due (and it picks up a token another caller just refreshed).
+            request_headers = _headers(self.config, headers)
+            request_headers.update(self.auth.authorization_header(
+                self.client,
+                scheme=_auth_scheme(service),
+            ))
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -199,15 +202,18 @@ class EbayTransport:
     ) -> Iterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, headers)
-        request_headers.update(self.auth.authorization_header(
-            self.client,
-            scheme=_auth_scheme(service),
-        ))
         body_kwargs = _body_kwargs(body=body, files=files)
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
+            # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
+            # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
+            # refresh is actually due (and it picks up a token another caller just refreshed).
+            request_headers = _headers(self.config, headers)
+            request_headers.update(self.auth.authorization_header(
+                self.client,
+                scheme=_auth_scheme(service),
+            ))
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -265,15 +271,18 @@ class AsyncEbayTransport:
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, headers)
-        request_headers.update(await self.auth.async_authorization_header(
-            self.client,
-            scheme=_auth_scheme(service),
-        ))
         body_kwargs = _body_kwargs(body=body, files=files)
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
+            # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
+            # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
+            # refresh is actually due (and it picks up a token another caller just refreshed).
+            request_headers = _headers(self.config, headers)
+            request_headers.update(await self.auth.async_authorization_header(
+                self.client,
+                scheme=_auth_scheme(service),
+            ))
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -315,15 +324,18 @@ class AsyncEbayTransport:
     ) -> AsyncIterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
-        request_headers = _headers(self.config, headers)
-        request_headers.update(await self.auth.async_authorization_header(
-            self.client,
-            scheme=_auth_scheme(service),
-        ))
         body_kwargs = _body_kwargs(body=body, files=files)
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
+            # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
+            # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
+            # refresh is actually due (and it picks up a token another caller just refreshed).
+            request_headers = _headers(self.config, headers)
+            request_headers.update(await self.auth.async_authorization_header(
+                self.client,
+                scheme=_auth_scheme(service),
+            ))
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
