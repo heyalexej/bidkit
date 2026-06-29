@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import asyncio
 import hashlib
+import threading
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from typing import Protocol
@@ -69,6 +71,13 @@ class EbayAuth:
     def __init__(self, config: EbayConfig, cache: TokenCache | None = None) -> None:
         self.config = config
         self.cache = cache or InMemoryTokenCache()
+        # Serialize token refreshes per cache key so concurrent callers hitting a stale
+        # token trigger a single refresh instead of a stampede on the OAuth endpoint. The
+        # sync and async paths use their own primitive; _locks_guard protects the lazy
+        # creation of both maps.
+        self._locks_guard = threading.Lock()
+        self._sync_locks: dict[str, threading.Lock] = {}
+        self._async_locks: dict[str, asyncio.Lock] = {}
 
     @staticmethod
     def authorization_url(
@@ -155,34 +164,60 @@ class EbayAuth:
         if static_token:
             return static_token
 
-        cached = self.cache.get(self._cache_key())
+        key = self._cache_key()
+        cached = self.cache.get(key)
         if cached and not cached.is_stale:
             return cached.access_token
 
-        token = (
-            self._refresh_user_token(client)
-            if self.config.refresh_token
-            else self._client_token(client)
-        )
-        self.cache.set(self._cache_key(), token)
-        return token.access_token
+        with self._sync_lock(key):
+            # Re-check inside the lock: another thread may have refreshed while we waited.
+            cached = self.cache.get(key)
+            if cached and not cached.is_stale:
+                return cached.access_token
+            token = (
+                self._refresh_user_token(client)
+                if self.config.refresh_token
+                else self._client_token(client)
+            )
+            self.cache.set(key, token)
+            return token.access_token
 
     async def async_access_token(self, client: httpx.AsyncClient) -> str:
         static_token = self.config.bearer_token
         if static_token:
             return static_token
 
-        cached = self.cache.get(self._cache_key())
+        key = self._cache_key()
+        cached = self.cache.get(key)
         if cached and not cached.is_stale:
             return cached.access_token
 
-        token = (
-            await self._async_refresh_user_token(client)
-            if self.config.refresh_token
-            else await self._async_client_token(client)
-        )
-        self.cache.set(self._cache_key(), token)
-        return token.access_token
+        async with self._async_lock(key):
+            # Re-check inside the lock: another coroutine may have refreshed while we waited.
+            cached = self.cache.get(key)
+            if cached and not cached.is_stale:
+                return cached.access_token
+            token = (
+                await self._async_refresh_user_token(client)
+                if self.config.refresh_token
+                else await self._async_client_token(client)
+            )
+            self.cache.set(key, token)
+            return token.access_token
+
+    def _sync_lock(self, key: str) -> threading.Lock:
+        with self._locks_guard:
+            lock = self._sync_locks.get(key)
+            if lock is None:
+                lock = self._sync_locks[key] = threading.Lock()
+            return lock
+
+    def _async_lock(self, key: str) -> asyncio.Lock:
+        with self._locks_guard:
+            lock = self._async_locks.get(key)
+            if lock is None:
+                lock = self._async_locks[key] = asyncio.Lock()
+            return lock
 
     def _cache_key(self) -> str:
         # Identify the exact grant so a shared cache never returns another tenant's token:
