@@ -1572,6 +1572,7 @@ class CancellationResource(BaseResource):
             path_params={'cancelId': cancel_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -1623,6 +1624,7 @@ class CancellationResource(BaseResource):
             path_params={},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -1702,6 +1704,7 @@ class AsyncCancellationResource(AsyncBaseResource):
             path_params={'cancelId': cancel_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -1753,6 +1756,7 @@ class AsyncCancellationResource(AsyncBaseResource):
             path_params={},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -6045,6 +6049,7 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -6620,6 +6625,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )

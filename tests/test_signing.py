@@ -196,6 +196,30 @@ def test_fulfillment_issue_refund_is_signed() -> None:
     assert request.headers["signature"].startswith("sig1=:")
 
 
+def test_post_order_return_and_cancellation_signature_ops_are_signed() -> None:
+    """eBay's Key Management spec lists six Post-Order signature-required methods;
+    the process/approve/create ones were missing from the first allowlist."""
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = _signing_client(handler)
+    client.post_order.return_.process_return_request("5000", raw_response=True)
+    client.post_order.cancellation.approve_cancellation_request("5001", raw_response=True)
+    client.post_order.cancellation.create_cancellation(raw_response=True)
+
+    assert [str(r.url.path) for r in seen] == [
+        "/post-order/v2/return/5000/decide",
+        "/post-order/v2/cancellation/5001/approve",
+        "/post-order/v2/cancellation",
+    ]
+    for request in seen:
+        assert request.headers["x-ebay-enforce-signature"] == "true"
+        assert request.headers["signature"].startswith("sig1=:")
+
+
 def test_post_order_issue_case_refund_is_signed() -> None:
     seen: list[httpx.Request] = []
 

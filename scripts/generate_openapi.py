@@ -33,16 +33,21 @@ RESPONSE_CONTENT_TYPES = (
 )
 MARKETPLACE_HEADER = "X-EBAY-C-MARKETPLACE-ID"
 POST_ORDER_SERVICES = {"cancellation", "case", "inquiry", "return"}
-# eBay requires RFC 9421 digital signatures only for these calls (see "Digital
-# Signatures for APIs"): every Finances API method, plus the refund operations
-# below when made on behalf of EU/UK sellers. Everything else must NOT carry
-# x-ebay-enforce-signature.
+# eBay requires RFC 9421 digital signatures only for these calls, enumerated in the
+# Key Management spec's own description (specs/ebay/developer_key_management_v1_oas3.json):
+# every Finances API method, Fulfillment issueRefund, and six Post-Order methods, all
+# when made on behalf of EU/UK sellers. Everything else must NOT carry
+# x-ebay-enforce-signature. (Trading GetAccount is also listed but XML APIs are out
+# of scope.)
 SIGNED_SERVICES = {"sell_finances"}
 SIGNED_OPERATIONS = {
     ("sell_fulfillment", "issueRefund"),
     ("case", "issueCaseRefund"),
     ("inquiry", "issueInquiryRefund"),
     ("return", "issueReturnRefund"),
+    ("return", "processReturnRequest"),
+    ("cancellation", "approveCancellationRequest"),
+    ("cancellation", "createCancellation"),
 }
 POST_ORDER_QUERY_PARAMS = {
     ("case", "search"): [
@@ -258,8 +263,10 @@ def normalize_descriptions(node: Any) -> None:
 def clean_description(value: str) -> str:
     # Strip tags BEFORE unescaping: eBay attribute values embed escaped HTML
     # (data-mc-autonum="&lt;b&gt;..."), which unescaping first would turn into
-    # broken tags that the strip regex cannot match.
-    value = re.sub(r"<[^>]+>", " ", value)
+    # broken tags that the strip regex cannot match. The tag pattern requires a
+    # letter (or /letter, !) after "<" so literal prose like "quantity < 10 and
+    # price > 5" is not eaten as a pseudo-tag.
+    value = re.sub(r"</?[A-Za-z][^<>]*>|<!--.*?-->", " ", value)
     value = html.unescape(value)
     value = re.sub(r"\s+", " ", value).strip()
     # Restore the sentence break the HTML stripping swallowed: "parameter.Retrieving".
@@ -1432,9 +1439,9 @@ def safe_identifier(value: str) -> str:
 
 
 def clean_doc(value: str) -> str:
-    value = re.sub(r"<[^>]+>", "", value or "")
-    value = re.sub(r"\s+", " ", value).strip()
-    return value
+    # Operation summaries do not pass through normalize_descriptions (which only
+    # touches "description" keys), so apply the same cleaning pipeline here.
+    return trim_description(clean_description(value or ""))
 
 
 def doc_lines(summary: str, width: int = 92) -> list[str]:

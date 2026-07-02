@@ -433,7 +433,7 @@ class Item(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The ID of the category of the item. For example: The ID for Toys & Hobbies|Action Figures|Comic Book Heroes is 158671 .',
+        description='The ID of the category of the item.<br For example: The ID for Toys & Hobbies|Action Figures|Comic Book Heroes is 158671 .',
     )
     buying_options: str | None = Field(
         None,

@@ -289,24 +289,20 @@ class AspectFilter(EbayModel):
 
 class ProductSearchResponse(EbayModel):
     href: str | None = Field(
-        None,
-        description='This field is reserved for internal or future use. search method request that produced this result set. -->',
+        None, description='This field is reserved for internal or future use.'
     )
     limit: int | None = Field(
         None,
         description='The number of product summaries returned in the response. This is the result set , a subset of the full collection of products that match the search or filter criteria of this call. If the limit query parameter was included in the request, this field will have the same value. Default: 50',
     )
     next: str | None = Field(
-        None,
-        description='This field is reserved for internal or future use. Returned only if there are more product records to retrieve from the current collection of matching products, this field contains the search call URI for the next result set.',
+        None, description='This field is reserved for internal or future use.'
     )
     offset: int | None = Field(
-        None,
-        description='This field is reserved for internal or future use. offset query parameter was included in the request, this field will have the same value. The offset value is used in conjunction with the limit value to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10 , the call retrieves products 31 thru 40 from the resulting collection of products.',
+        None, description='This field is reserved for internal or future use.'
     )
     prev: str | None = Field(
-        None,
-        description='This field is reserved for internal or future use. Not returned if the currently returned result set is the first set of product records from the current collection of matching products. This field contains the search call URI for the previous result set.',
+        None, description='This field is reserved for internal or future use.'
     )
     product_summaries: list[ProductSummary] | None = Field(
         None,

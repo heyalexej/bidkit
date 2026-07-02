@@ -3516,7 +3516,7 @@ class SelectedInventoryDiscount(EbayModel):
     rule_order: int | None = Field(
         None,
         alias='ruleOrder',
-        description='For markdown discounts, this field is reserved for future use. ruleOrder value) takes precedence over criteria with a lower precedence.-->',
+        description='For markdown discounts, this field is reserved for future use.',
     )
 
 

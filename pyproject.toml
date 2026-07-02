@@ -60,7 +60,7 @@ packages = ["src/bidkit"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "scripts"]
 
 # Coverage is measured over the hand-written runtime only: the generated layer is
 # lazy-loaded by design (most model modules are intentionally never imported) and its
@@ -81,3 +81,6 @@ extend-exclude = ["src/bidkit/generated"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ty.environment]
+extra-paths = ["scripts"]
