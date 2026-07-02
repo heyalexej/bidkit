@@ -12,7 +12,9 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  # Newer docs deploys supersede older ones; cancelling the stale run avoids
+  # spurious red ✗s from deployments that Pages itself abandons.
+  cancel-in-progress: true
 
 jobs:
   # Keep in sync with the docs job in ci.yml (the PR gate).
