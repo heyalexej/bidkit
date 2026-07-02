@@ -63,7 +63,7 @@ def test_sync_retry_refetches_auth_after_token_goes_stale() -> None:
         http_client=httpx.Client(transport=httpx.MockTransport(_make_handler(bearers, state))),
     )
 
-    resp = client.request(
+    resp = client._request(
         service=SERVICE, operation_id="getThing", method="GET", path="/item/x", raw_response=True
     )
 
@@ -84,7 +84,7 @@ def test_async_retry_refetches_auth_after_token_goes_stale() -> None:
             ),
         )
 
-        resp = await client.request(
+        resp = await client._request(
             service=SERVICE,
             operation_id="getThing",
             method="GET",

@@ -31,13 +31,6 @@ def _authorization_url(
     )
 
 
-def _seed_user_tokens(config: EbayConfig, auth: EbayAuth, tokens: OAuthTokens) -> None:
-    """Make the freshly exchanged tokens usable by subsequent requests."""
-    if tokens.refresh_token:
-        config.refresh_token = tokens.refresh_token
-    auth.cache.set(auth._cache_key(), tokens.to_token_data())
-
-
 def _overridden_config(config: EbayConfig, overrides: Mapping[str, Any]) -> EbayConfig:
     """Re-validate the explicitly-set fields plus ``overrides`` into a new config."""
     data = {name: getattr(config, name) for name in config.model_fields_set}
@@ -116,9 +109,13 @@ class EbayClient:
         return _authorization_url(self.config, state=state, prompt=prompt, scopes=scopes)
 
     def exchange_code(self, code: str, *, ru_name: str | None = None) -> OAuthTokens:
-        """Exchange a consent ``code`` for tokens and authenticate this client with them."""
+        """Exchange a consent ``code`` for tokens and authenticate this client with them.
+
+        Note: this mutates ``self.config`` — the returned ``refresh_token`` is stored on
+        the config so subsequent calls run as the newly authorized user.
+        """
         tokens = self.auth.exchange_code(self.http, code, ru_name=ru_name)
-        _seed_user_tokens(self.config, self.auth, tokens)
+        self.auth.seed_tokens(tokens)
         return tokens
 
     def close(self) -> None:
@@ -132,10 +129,10 @@ class EbayClient:
     def __exit__(self, *_exc: object) -> None:
         self.close()
 
-    def request(self, **kwargs: Any) -> Any:
+    def _request(self, **kwargs: Any) -> Any:
         return self._transport.request(**kwargs)
 
-    def stream(self, **kwargs: Any) -> AbstractContextManager[httpx.Response]:
+    def _stream(self, **kwargs: Any) -> AbstractContextManager[httpx.Response]:
         return self._transport.stream(**kwargs)
 
 
@@ -188,9 +185,13 @@ class AsyncEbayClient:
         return _authorization_url(self.config, state=state, prompt=prompt, scopes=scopes)
 
     async def exchange_code(self, code: str, *, ru_name: str | None = None) -> OAuthTokens:
-        """Exchange a consent ``code`` for tokens and authenticate this client with them."""
+        """Exchange a consent ``code`` for tokens and authenticate this client with them.
+
+        Note: this mutates ``self.config`` — the returned ``refresh_token`` is stored on
+        the config so subsequent calls run as the newly authorized user.
+        """
         tokens = await self.auth.async_exchange_code(self.http, code, ru_name=ru_name)
-        _seed_user_tokens(self.config, self.auth, tokens)
+        self.auth.seed_tokens(tokens)
         return tokens
 
     async def close(self) -> None:
@@ -204,8 +205,8 @@ class AsyncEbayClient:
     async def __aexit__(self, *_exc: object) -> None:
         await self.close()
 
-    async def request(self, **kwargs: Any) -> Any:
+    async def _request(self, **kwargs: Any) -> Any:
         return await self._transport.request(**kwargs)
 
-    def stream(self, **kwargs: Any) -> AbstractAsyncContextManager[httpx.Response]:
+    def _stream(self, **kwargs: Any) -> AbstractAsyncContextManager[httpx.Response]:
         return self._transport.stream(**kwargs)

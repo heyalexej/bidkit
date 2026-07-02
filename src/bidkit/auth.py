@@ -277,6 +277,16 @@ class EbayAuth:
             self._log_token_acquired(token)
             return token.access_token
 
+    def seed_tokens(self, tokens: OAuthTokens) -> None:
+        """Make freshly exchanged tokens usable by subsequent requests.
+
+        Stores the refresh token on the config (so the cache key resolves to the new
+        grant) and primes the cache with the short-lived access token.
+        """
+        if tokens.refresh_token:
+            self.config.refresh_token = tokens.refresh_token
+        self.cache.set(self._cache_key(), tokens.to_token_data())
+
     def _log_token_acquired(self, token: TokenData) -> None:
         """Log token acquisition without ever touching the token values themselves."""
         if not logger.isEnabledFor(logging.INFO):

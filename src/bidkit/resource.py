@@ -65,7 +65,7 @@ class BaseResource:
         raw_response: bool = False,
         sign: bool | None = None,
     ) -> Any:
-        return self._client.request(
+        return self._client._request(
             service=self.service,
             operation_id=operation_id,
             method=method,
@@ -92,7 +92,7 @@ class BaseResource:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
     ) -> AbstractContextManager[httpx.Response]:
-        return self._client.stream(
+        return self._client._stream(
             service=self.service,
             operation_id=operation_id,
             method=method,
@@ -126,7 +126,7 @@ class AsyncBaseResource:
         raw_response: bool = False,
         sign: bool | None = None,
     ) -> Any:
-        return await self._client.request(
+        return await self._client._request(
             service=self.service,
             operation_id=operation_id,
             method=method,
@@ -153,7 +153,7 @@ class AsyncBaseResource:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
     ) -> AbstractAsyncContextManager[httpx.Response]:
-        return self._client.stream(
+        return self._client._stream(
             service=self.service,
             operation_id=operation_id,
             method=method,
