@@ -1,0 +1,47 @@
+name: Docs
+
+on:
+  # Manual until the repository is public and GitHub Pages is enabled
+  # (Settings -> Pages -> Source: GitHub Actions); then add:
+  #   push:
+  #     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Build site
+        run: |
+          uv sync --extra docs
+          uv run mkdocs build --strict
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
