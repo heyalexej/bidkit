@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / usage help
+    url: https://github.com/heyalexej/bidkit/discussions
+    about: Ask questions and share usage tips in Discussions.
+  - name: Security issue
+    url: https://github.com/heyalexej/bidkit/security/advisories/new
+    about: Please report vulnerabilities privately, never as a public issue.
+  - name: eBay API behavior (not an SDK bug)
+    url: https://developer.ebay.com/support
+    about: Problems with the eBay APIs themselves belong to eBay developer support.

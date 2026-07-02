@@ -1,0 +1,39 @@
+name: Bug report
+description: Something behaves incorrectly
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: >-
+        Smallest snippet that shows the problem. Strip credentials; an httpx.MockTransport
+        repro is ideal.
+      render: python
+  - type: input
+    id: version
+    attributes:
+      label: bidkit version
+      placeholder: python -c "import bidkit; print(bidkit.__version__)"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version & OS
+      placeholder: "3.12.4 on macOS 15"
+    validations:
+      required: true
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Traceback / logs
+      description: Full traceback if there is one. Redact tokens and account data.
+      render: text
