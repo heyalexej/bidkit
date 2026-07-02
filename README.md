@@ -150,6 +150,12 @@ EbayConfig(
 )
 ```
 
+For a scoped override, `client.with_options(max_retries=0, timeout=5.0)` returns a client
+sharing the same connection pool and token cache with those fields changed. eBay does not
+send quota headers on responses; remaining call quota is queried via
+`client.developer.analytics.get_rate_limits()` (application quota) or
+`get_user_rate_limits()` (per-user quota).
+
 ## Logging
 
 bidkit is silent by default and logs through the standard library under the `bidkit`
