@@ -1,3 +1,5 @@
+from importlib.metadata import PackageNotFoundError, version
+
 from .auth import OAuthTokens
 from .client import AsyncEbayClient, EbayClient
 from .config import EbayConfig, EbaySigningConfig
@@ -9,6 +11,11 @@ from .errors import (
     EbayTransportError,
 )
 from .pagination import paginate, paginate_async
+
+try:
+    __version__ = version("ebay-sdk")
+except PackageNotFoundError:  # running from a source tree without an installed dist
+    __version__ = "0.0.0"
 
 __all__ = [
     "AsyncEbayClient",
