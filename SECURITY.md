@@ -8,7 +8,7 @@ take vulnerability reports seriously.
 **Please do not open a public issue for security problems.**
 
 - Preferred: [GitHub private vulnerability reporting](https://github.com/heyalexej/bidkit/security/advisories/new)
-- Alternatively: email alexej@friblo.com with "bidkit security" in the subject
+- Alternatively: email heyalexej@gmail.com with "bidkit security" in the subject
 
 You will get an acknowledgement within a few days. Please include a reproduction or enough
 detail to assess impact, and give us a reasonable window to ship a fix before public
