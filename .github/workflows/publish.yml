@@ -3,6 +3,10 @@ name: Publish to PyPI
 on:
   release:
     types: [published]
+  # release-please creates releases with GITHUB_TOKEN, which does NOT fire the
+  # release event for other workflows; dispatch this manually after merging the
+  # release PR (gh workflow run publish.yml).
+  workflow_dispatch:
 
 jobs:
   pypi:
