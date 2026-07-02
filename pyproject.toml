@@ -40,6 +40,7 @@ Issues = "https://github.com/heyalexej/bidkit/issues"
 dev = [
   "datamodel-code-generator[http]>=0.31",
   "pytest>=8.0",
+  "pytest-cov>=7.1.0",
   "ruff>=0.8",
   "ty>=0.0.1",
 ]
@@ -56,6 +57,16 @@ packages = ["src/bidkit"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+# Coverage is measured over the hand-written runtime only: the generated layer is
+# lazy-loaded by design (most model modules are intentionally never imported) and its
+# correctness is covered by the wire-level tests plus the CI drift check.
+[tool.coverage.run]
+source = ["bidkit"]
+omit = ["src/bidkit/generated/*"]
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.ruff]
 line-length = 100
