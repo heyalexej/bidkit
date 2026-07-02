@@ -25,6 +25,12 @@ dev = [
   "ty>=0.0.1",
 ]
 
+# The eBay OpenAPI specs are committed for regeneration and review, but they are
+# (c) eBay Inc. under the eBay API License Agreement and are deliberately kept out
+# of every published artifact; only the generated code ships.
+[tool.hatch.build.targets.sdist]
+exclude = ["specs"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/ebay_sdk"]
 
