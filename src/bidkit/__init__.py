@@ -1,7 +1,7 @@
 import logging
 from importlib.metadata import PackageNotFoundError, version
 
-from .auth import OAuthTokens
+from .auth import FileTokenCache, InMemoryTokenCache, OAuthTokens, TokenCache
 from .client import AsyncEbayClient, EbayClient
 from .config import EbayConfig, EbaySigningConfig
 from .errors import (
@@ -32,7 +32,10 @@ __all__ = [
     "EbaySDKError",
     "EbaySigningConfig",
     "EbayTransportError",
+    "FileTokenCache",
+    "InMemoryTokenCache",
     "OAuthTokens",
+    "TokenCache",
     "paginate",
     "paginate_async",
 ]

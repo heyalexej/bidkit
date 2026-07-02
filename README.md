@@ -96,6 +96,20 @@ The keyset environment is checked against `--sandbox`: a production App ID (`...
 with `--sandbox` fails eBay auth with `invalid_client`, so the script stops early and tells you
 to drop `--sandbox` (sandbox needs a separate `...-SBX-...` keyset).
 
+### Token caching
+
+Access tokens are cached in memory by default, so every new process mints a fresh one. Pass a
+`FileTokenCache` to persist tokens across runs (stored 0600 under `~/.cache/bidkit/`):
+
+```python
+from bidkit import EbayClient, FileTokenCache
+
+client = EbayClient(config, token_cache=FileTokenCache())  # or FileTokenCache(path)
+```
+
+Any object implementing the two-method `TokenCache` protocol (`get`/`set`) works — e.g. a
+Redis-backed cache for multi-host deployments.
+
 ## Pagination
 
 `paginate` (and `paginate_async`) drive any list endpoint across pages and yield the individual

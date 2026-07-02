@@ -3,15 +3,17 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import logging
+import os
 import threading
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
-from typing import Protocol
+from pathlib import Path
+from typing import Any, Protocol
 from urllib.parse import urlencode
 
 import httpx
 import orjson
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from .config import EbayConfig
 from .errors import EbayAuthError, EbayConfigError
@@ -68,6 +70,71 @@ class InMemoryTokenCache:
 
     def set(self, key: str, token: TokenData) -> None:
         self._tokens[key] = token
+
+
+class FileTokenCache:
+    """Persist access tokens across processes in a 0600 JSON file.
+
+    Drop-in :class:`TokenCache`::
+
+        client = EbayClient(config, token_cache=FileTokenCache())
+
+    Defaults to ``$XDG_CACHE_HOME/bidkit/tokens.json`` (``~/.cache/bidkit/tokens.json``).
+    Each entry maps an :meth:`EbayAuth._cache_key` (which never contains token values) to
+    the token data; the file itself holds live access tokens, hence the restrictive mode.
+    Writes are atomic and expired entries are pruned on every write; a corrupt or foreign
+    file is treated as empty rather than raising.
+    """
+
+    def __init__(self, path: str | Path | None = None) -> None:
+        if path is None:
+            cache_home = os.environ.get("XDG_CACHE_HOME") or "~/.cache"
+            path = Path(cache_home) / "bidkit" / "tokens.json"
+        self.path = Path(path).expanduser()
+        self._lock = threading.Lock()
+
+    def get(self, key: str) -> TokenData | None:
+        with self._lock:
+            entry = self._load().get(key)
+        if not isinstance(entry, dict):
+            return None
+        try:
+            return TokenData.model_validate(entry)
+        except ValidationError:
+            return None
+
+    def set(self, key: str, token: TokenData) -> None:
+        with self._lock:
+            entries = self._load()
+            entries[key] = token.model_dump(mode="json")
+            entries = {k: v for k, v in entries.items() if self._is_live(v)}
+            self._write(entries)
+
+    @staticmethod
+    def _is_live(entry: Any) -> bool:
+        try:
+            return TokenData.model_validate(entry).expires_at > datetime.now(UTC)
+        except ValidationError:
+            return False
+
+    def _load(self) -> dict[str, Any]:
+        try:
+            data = orjson.loads(self.path.read_bytes())
+        except (OSError, orjson.JSONDecodeError):
+            return {}
+        return data if isinstance(data, dict) else {}
+
+    def _write(self, entries: dict[str, Any]) -> None:
+        self.path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        tmp = self.path.with_name(self.path.name + f".{os.getpid()}.tmp")
+        fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        try:
+            with os.fdopen(fd, "wb") as handle:
+                handle.write(orjson.dumps(entries, option=orjson.OPT_INDENT_2))
+            os.replace(tmp, self.path)  # atomic; inherits the 0600 mode
+        except BaseException:
+            tmp.unlink(missing_ok=True)
+            raise
 
 
 class EbayAuth:
