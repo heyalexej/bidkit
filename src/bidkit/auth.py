@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import logging
 import threading
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
@@ -14,6 +15,8 @@ from pydantic import BaseModel
 
 from .config import EbayConfig
 from .errors import EbayAuthError, EbayConfigError
+
+logger = logging.getLogger("bidkit.auth")
 
 
 class TokenData(BaseModel):
@@ -180,6 +183,7 @@ class EbayAuth:
                 else self._client_token(client)
             )
             self.cache.set(key, token)
+            self._log_token_acquired(token)
             return token.access_token
 
     async def async_access_token(self, client: httpx.AsyncClient) -> str:
@@ -203,7 +207,28 @@ class EbayAuth:
                 else await self._async_client_token(client)
             )
             self.cache.set(key, token)
+            self._log_token_acquired(token)
             return token.access_token
+
+    def _log_token_acquired(self, token: TokenData) -> None:
+        """Log token acquisition without ever touching the token values themselves."""
+        if not logger.isEnabledFor(logging.INFO):
+            return
+        expires_in = int((token.expires_at - datetime.now(UTC)).total_seconds())
+        if self.config.refresh_token:
+            digest = hashlib.sha256((self.config.refresh_token_value or "").encode()).hexdigest()
+            logger.info(
+                "refreshed user token for refresh:%s… (expires in %d s)",
+                digest[:8],
+                expires_in,
+                extra={"grant": "user", "expires_in": expires_in},
+            )
+        else:
+            logger.info(
+                "minted client token (expires in %d s)",
+                expires_in,
+                extra={"grant": "client", "expires_in": expires_in},
+            )
 
     def _sync_lock(self, key: str) -> threading.Lock:
         with self._locks_guard:

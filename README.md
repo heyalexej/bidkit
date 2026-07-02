@@ -136,6 +136,33 @@ EbayConfig(
 )
 ```
 
+## Logging
+
+bidkit is silent by default and logs through the standard library under the `bidkit`
+namespace, so it composes with whatever your application uses (plain `logging`, structlog,
+JSON formatters, OpenTelemetry handlers). Opt in per subsystem:
+
+```python
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("bidkit").setLevel(logging.DEBUG)   # or just "bidkit.retry"
+```
+
+```
+DEBUG:bidkit.transport:getPayouts GET https://apiz.ebay.com/sell/finances/v1/payout -> 200 (312 ms)
+INFO:bidkit.auth:refreshed user token for refresh:1a2b3c4d… (expires in 7200 s)
+WARNING:bidkit.retry:getOrders attempt 1/3: HTTP 429, retrying in 1.8 s (Retry-After)
+```
+
+Levels: requests at `DEBUG` (`bidkit.transport`), token acquisition at `INFO`
+(`bidkit.auth`), retries at `WARNING` (`bidkit.retry`); failures raise exceptions instead of
+being logged twice. Every record also carries structured fields (`operation`, `method`,
+`status`, `elapsed_ms`, `attempt`, `delay_s`, …) for JSON/structured formatters. Secrets —
+tokens, Authorization headers, request bodies — are never logged. For wire-level detail,
+enable the `httpx`/`httpcore` loggers; for tracing, the OpenTelemetry httpx instrumentation
+works out of the box since bidkit rides on httpx.
+
 ## Digital signatures (Finances API)
 
 The Finances API and several payout/refund operations reject requests unless they carry an

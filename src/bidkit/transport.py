@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import time
 from collections.abc import AsyncIterator, Iterator, Mapping
 from contextlib import asynccontextmanager, contextmanager
@@ -17,6 +18,9 @@ from .errors import EbayAPIError, EbayTransportError
 from .resource import Service
 from .retry import exception_retry_delay, status_retry_delay
 from .signing import MessageSigner
+
+logger = logging.getLogger("bidkit.transport")
+retry_logger = logging.getLogger("bidkit.retry")
 
 
 def _url(
@@ -109,6 +113,72 @@ def _build_signer(config: EbayConfig) -> MessageSigner | None:
     )
 
 
+def _log_response(
+    operation_id: str, request: httpx.Request, response: httpx.Response, started: float
+) -> None:
+    if not logger.isEnabledFor(logging.DEBUG):
+        return
+    elapsed_ms = int((time.monotonic() - started) * 1000)
+    logger.debug(
+        "%s %s %s -> %d (%d ms)",
+        operation_id,
+        request.method,
+        request.url,
+        response.status_code,
+        elapsed_ms,
+        extra={
+            "operation": operation_id,
+            "method": request.method,
+            "url": str(request.url),
+            "status": response.status_code,
+            "elapsed_ms": elapsed_ms,
+        },
+    )
+
+
+def _log_status_retry(
+    operation_id: str, attempt: int, config: EbayConfig, response: httpx.Response, delay: float
+) -> None:
+    from_header = config.respect_retry_after and "retry-after" in response.headers
+    retry_logger.warning(
+        "%s attempt %d/%d: HTTP %d, retrying in %.1f s%s",
+        operation_id,
+        attempt + 1,
+        config.max_retries + 1,
+        response.status_code,
+        delay,
+        " (Retry-After)" if from_header else "",
+        extra={
+            "operation": operation_id,
+            "attempt": attempt + 1,
+            "max_attempts": config.max_retries + 1,
+            "status": response.status_code,
+            "delay_s": round(delay, 3),
+            "reason": "retry-after" if from_header else "backoff",
+        },
+    )
+
+
+def _log_exception_retry(
+    operation_id: str, attempt: int, config: EbayConfig, exc: Exception, delay: float
+) -> None:
+    retry_logger.warning(
+        "%s attempt %d/%d: %s, retrying in %.1f s",
+        operation_id,
+        attempt + 1,
+        config.max_retries + 1,
+        type(exc).__name__,
+        delay,
+        extra={
+            "operation": operation_id,
+            "attempt": attempt + 1,
+            "max_attempts": config.max_retries + 1,
+            "error": type(exc).__name__,
+            "delay_s": round(delay, 3),
+        },
+    )
+
+
 def _sign_request(signer: MessageSigner | None, request: httpx.Request) -> None:
     if signer is None:
         return
@@ -165,12 +235,14 @@ class EbayTransport:
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
+            started = time.monotonic()
             try:
                 response = self.client.send(request)
             except httpx.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 time.sleep(delay)
                 continue
             except httpx.HTTPError as exc:
@@ -178,7 +250,9 @@ class EbayTransport:
 
             delay = status_retry_delay(attempt, response, method, self.config)
             if delay is None:
+                _log_response(operation_id, request, response, started)
                 break
+            _log_status_retry(operation_id, attempt, self.config, response, delay)
             response.close()
             time.sleep(delay)
 
@@ -220,12 +294,14 @@ class EbayTransport:
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
+            started = time.monotonic()
             try:
                 response = self.client.send(request, stream=True)
             except httpx.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 time.sleep(delay)
                 continue
             except httpx.HTTPError as exc:
@@ -233,7 +309,9 @@ class EbayTransport:
 
             delay = status_retry_delay(attempt, response, method, self.config)
             if delay is None:
+                _log_response(operation_id, request, response, started)
                 break
+            _log_status_retry(operation_id, attempt, self.config, response, delay)
             response.read()
             response.close()
             time.sleep(delay)
@@ -291,12 +369,14 @@ class AsyncEbayTransport:
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
+            started = time.monotonic()
             try:
                 response = await self.client.send(request)
             except httpx.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
+                _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 await asyncio.sleep(delay)
                 continue
             except httpx.HTTPError as exc:
@@ -304,7 +384,9 @@ class AsyncEbayTransport:
 
             delay = status_retry_delay(attempt, response, method, self.config)
             if delay is None:
+                _log_response(operation_id, request, response, started)
                 break
+            _log_status_retry(operation_id, attempt, self.config, response, delay)
             await response.aclose()
             await asyncio.sleep(delay)
 
@@ -346,12 +428,14 @@ class AsyncEbayTransport:
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
             _sign_request(self._signer, request)
+            started = time.monotonic()
             try:
                 response = await self.client.send(request, stream=True)
             except httpx.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
+                _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 await asyncio.sleep(delay)
                 continue
             except httpx.HTTPError as exc:
@@ -359,7 +443,9 @@ class AsyncEbayTransport:
 
             delay = status_retry_delay(attempt, response, method, self.config)
             if delay is None:
+                _log_response(operation_id, request, response, started)
                 break
+            _log_status_retry(operation_id, attempt, self.config, response, delay)
             await response.aread()
             await response.aclose()
             await asyncio.sleep(delay)

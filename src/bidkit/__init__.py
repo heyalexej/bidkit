@@ -1,3 +1,4 @@
+import logging
 from importlib.metadata import PackageNotFoundError, version
 
 from .auth import OAuthTokens
@@ -16,6 +17,10 @@ try:
     __version__ = version("bidkit")
 except PackageNotFoundError:  # running from a source tree without an installed dist
     __version__ = "0.0.0"
+
+# Library logging convention: silent unless the application opts in, e.g.
+#   logging.getLogger("bidkit").setLevel(logging.DEBUG)
+logging.getLogger("bidkit").addHandler(logging.NullHandler())
 
 __all__ = [
     "AsyncEbayClient",
