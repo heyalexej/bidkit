@@ -4,7 +4,7 @@ import asyncio
 
 import httpx
 
-from ebay_sdk import AsyncEbayClient, EbayClient, EbayConfig
+from bidkit import AsyncEbayClient, EbayClient, EbayConfig
 
 # A minimal service descriptor so we can drive the transport directly without a generated method.
 SERVICE = {

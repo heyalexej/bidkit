@@ -4,8 +4,8 @@ import asyncio
 
 import httpx
 
-from ebay_sdk import AsyncEbayClient, EbayClient, EbayConfig
-from ebay_sdk.auth import EbayAuth
+from bidkit import AsyncEbayClient, EbayClient, EbayConfig
+from bidkit.auth import EbayAuth
 
 
 def _cache_key(**config) -> str:

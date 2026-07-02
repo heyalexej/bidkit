@@ -4,8 +4,8 @@ import inspect
 
 import httpx
 
-from ebay_sdk import EbayClient, EbayConfig
-from ebay_sdk.generated.models.sell_inventory import BulkEbayOfferDetailsWithKeys
+from bidkit import EbayClient, EbayConfig
+from bidkit.generated.models.sell_inventory import BulkEbayOfferDetailsWithKeys
 
 
 def _client(handler) -> EbayClient:

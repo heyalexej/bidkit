@@ -7,8 +7,8 @@ import httpx
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
-from ebay_sdk import EbayClient, EbayConfig, EbaySigningConfig
-from ebay_sdk.signing import MessageSigner, base_string, content_digest, signature_input
+from bidkit import EbayClient, EbayConfig, EbaySigningConfig
+from bidkit.signing import MessageSigner, base_string, content_digest, signature_input
 
 JWE = "eyJ.fake.jwe"
 

@@ -6,8 +6,8 @@ from urllib.parse import parse_qs, urlsplit
 import httpx
 import pytest
 
-from ebay_sdk import AsyncEbayClient, EbayClient, EbayConfig, OAuthTokens
-from ebay_sdk.errors import EbayConfigError
+from bidkit import AsyncEbayClient, EbayClient, EbayConfig, OAuthTokens
+from bidkit.errors import EbayConfigError
 
 TOKEN_RESPONSE = {
     "access_token": "user-access-token",

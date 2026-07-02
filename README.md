@@ -1,4 +1,4 @@
-# ebay-sdk
+# bidkit
 
 This is a new generator-backed Python SDK prototype for eBay APIs.
 
@@ -103,7 +103,7 @@ RFC 9421-style HTTP message signature (`x-ebay-signature-key` + `Signature` head
 signing material via `EbaySigningConfig` and every request is signed automatically:
 
 ```python
-from ebay_sdk import EbayClient, EbayConfig, EbaySigningConfig
+from bidkit import EbayClient, EbayConfig, EbaySigningConfig
 
 client = EbayClient(EbayConfig(
     refresh_token="...",
@@ -188,7 +188,7 @@ items, following eBay's `next` URL when present and falling back to `limit`/`off
 otherwise:
 
 ```python
-from ebay_sdk import paginate
+from bidkit import paginate
 
 for payout in paginate(client.sell.finances.get_payouts, limit="50"):
     print(payout.payout_id)

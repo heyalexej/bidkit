@@ -3,7 +3,7 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ebay-sdk"
+name = "bidkit"
 version = "0.1.0"
 description = "A modern, typed Python SDK for the eBay REST APIs (unofficial)."
 readme = "README.md"
@@ -50,7 +50,7 @@ dev = [
 exclude = ["specs"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ebay_sdk"]
+packages = ["src/bidkit"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

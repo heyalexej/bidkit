@@ -13,7 +13,7 @@ from typing import Any, cast
 import httpx
 import orjson
 
-from ebay_sdk import EbayClient, EbayConfig
+from bidkit import EbayClient, EbayConfig
 
 TEST_SKU = "DYDYDDYDYDYDABABABABABAAAAAAAAA"
 TEST_TITLE = "DYDYDDYDYDYD ABABABABABA AAAAAAAAA"

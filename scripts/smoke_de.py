@@ -1,4 +1,4 @@
-"""Comprehensive read-only smoke of the local ebay-sdk against eBay PRODUCTION (EBAY_DE).
+"""Comprehensive read-only smoke of the local bidkit SDK against eBay PRODUCTION (EBAY_DE).
 
 Covers the read-only (GET) surface, chaining real IDs discovered at runtime
 (sku -> offer, order, campaign, inventory location, ...) and exercising the
@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from pydantic import BaseModel, ValidationError  # noqa: E402
 
-from ebay_sdk import (  # noqa: E402
+from bidkit import (  # noqa: E402
     EbayAPIError,
     EbayClient,
     EbayConfig,

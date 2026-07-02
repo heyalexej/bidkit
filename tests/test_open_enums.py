@@ -4,9 +4,9 @@ from enum import StrEnum
 
 import orjson
 
-from ebay_sdk.generated.models.commerce_identity import MarketplaceIdEnum
-from ebay_sdk.generated.models.sell_inventory import ConditionEnum, InventoryItem
-from ebay_sdk.models import OpenStrEnum
+from bidkit.generated.models.commerce_identity import MarketplaceIdEnum
+from bidkit.generated.models.sell_inventory import ConditionEnum, InventoryItem
+from bidkit.models import OpenStrEnum
 
 
 def test_generated_enums_are_open() -> None:

@@ -4,7 +4,7 @@ import asyncio
 
 import httpx
 
-from ebay_sdk import AsyncEbayClient, EbayClient, EbayConfig, paginate, paginate_async
+from bidkit import AsyncEbayClient, EbayClient, EbayConfig, paginate, paginate_async
 
 
 def _inventory_handler(pages: dict[str, dict]):

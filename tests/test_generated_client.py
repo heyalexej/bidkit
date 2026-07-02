@@ -9,12 +9,12 @@ from typing import assert_type
 
 import httpx
 
-from ebay_sdk import AsyncEbayClient, EbayClient
-from ebay_sdk.config import EbayConfig
-from ebay_sdk.generated.models.buy_browse import Item
-from ebay_sdk.generated.models.case import CaseSearchResponse
-from ebay_sdk.generated.models.commerce_identity import MarketplaceIdEnum, UserResponse
-from ebay_sdk.generated.models.sell_inventory import InventoryItems, Offers
+from bidkit import AsyncEbayClient, EbayClient
+from bidkit.config import EbayConfig
+from bidkit.generated.models.buy_browse import Item
+from bidkit.generated.models.case import CaseSearchResponse
+from bidkit.generated.models.commerce_identity import MarketplaceIdEnum, UserResponse
+from bidkit.generated.models.sell_inventory import InventoryItems, Offers
 
 
 def test_generated_namespaces_are_installed() -> None:
@@ -31,7 +31,7 @@ def test_generated_namespaces_are_installed() -> None:
 
 def test_generated_enum_models_are_scalar_enums() -> None:
     broken: list[str] = []
-    models_dir = Path("src/ebay_sdk/generated/models")
+    models_dir = Path("src/bidkit/generated/models")
 
     for path in models_dir.glob("*.py"):
         tree = ast.parse(path.read_text())

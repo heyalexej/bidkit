@@ -5,8 +5,8 @@ import asyncio
 import httpx
 import pytest
 
-from ebay_sdk import AsyncEbayClient, EbayAPIError, EbayClient, EbayConfig
-from ebay_sdk.retry import (
+from bidkit import AsyncEbayClient, EbayAPIError, EbayClient, EbayConfig
+from bidkit.retry import (
     compute_delay,
     should_retry_exception,
     should_retry_status,

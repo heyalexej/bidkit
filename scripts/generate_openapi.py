@@ -131,7 +131,7 @@ class Service:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--spec-dir", type=Path, default=Path("specs/ebay"))
-    parser.add_argument("--package-dir", type=Path, default=Path("src/ebay_sdk"))
+    parser.add_argument("--package-dir", type=Path, default=Path("src/bidkit"))
     # Generator intermediate only; kept outside the package tree so it can never
     # end up in a built wheel or sdist.
     parser.add_argument("--normalized-dir", type=Path, default=Path("specs/normalized"))
@@ -663,7 +663,7 @@ def write_model_module(models_dir: Path, service: Service) -> None:
             "# ruff: noqa\n"
             "from __future__ import annotations\n\n"
             "from typing import Any\n\n"
-            "from ebay_sdk.models import EbayModel\n",
+            "from bidkit.models import EbayModel\n",
         )
         return
 
@@ -678,7 +678,7 @@ def write_model_module(models_dir: Path, service: Service) -> None:
         "--output-model-type",
         "pydantic_v2.BaseModel",
         "--base-class",
-        "ebay_sdk.models.EbayModel",
+        "bidkit.models.EbayModel",
         "--target-python-version",
         "3.11",
         "--snake-case-field",
@@ -690,11 +690,11 @@ def write_model_module(models_dir: Path, service: Service) -> None:
     subprocess.run(command, check=True)
     generated = output.read_text()
     # Make generated enums forward-compatible: unknown eBay values are preserved instead of
-    # failing validation (see ebay_sdk.models.OpenStrEnum).
+    # failing validation (see bidkit.models.OpenStrEnum).
     if "(StrEnum)" in generated:
         generated = generated.replace("(StrEnum)", "(OpenStrEnum)")
         generated = generated.replace(
-            "from enum import StrEnum", "from ebay_sdk.models import OpenStrEnum"
+            "from enum import StrEnum", "from bidkit.models import OpenStrEnum"
         )
     if "# ruff: noqa" not in generated.splitlines()[:3]:
         generated = "# ruff: noqa\n" + generated
@@ -712,7 +712,7 @@ def write_resources(path: Path, services: list[Service]) -> None:
         "",
         "import httpx",
         "",
-        "from ebay_sdk.resource import AsyncBaseResource, BaseResource, _LazyModule",
+        "from bidkit.resource import AsyncBaseResource, BaseResource, _LazyModule",
         "",
     ]
     # Model modules are bound lazily: the checker sees the real modules, while at runtime each
@@ -724,7 +724,7 @@ def write_resources(path: Path, services: list[Service]) -> None:
     for service in services:
         lines.append(
             f'    {service.model_alias} = '
-            f'_LazyModule("ebay_sdk.generated.models.{service.module_name}")'
+            f'_LazyModule("bidkit.generated.models.{service.module_name}")'
         )
     lines.extend(["", ""])
 

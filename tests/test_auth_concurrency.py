@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 
-from ebay_sdk import AsyncEbayClient, EbayClient, EbayConfig
+from bidkit import AsyncEbayClient, EbayClient, EbayConfig
 
 TOKEN_RESPONSE = {
     "access_token": "user-access-token",

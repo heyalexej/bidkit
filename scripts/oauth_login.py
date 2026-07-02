@@ -22,8 +22,8 @@ from urllib.parse import parse_qs, unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from ebay_sdk import EbayClient, EbayConfig, OAuthTokens  # noqa: E402
-from ebay_sdk.errors import EbayAuthError, EbayConfigError  # noqa: E402
+from bidkit import EbayClient, EbayConfig, OAuthTokens  # noqa: E402
+from bidkit.errors import EbayAuthError, EbayConfigError  # noqa: E402
 
 
 def write_tokens_to_config(path: Path, tokens: OAuthTokens) -> None:
