@@ -147,3 +147,87 @@ def test_transport_skips_signing_when_unconfigured() -> None:
 
     assert "signature" not in seen[0].headers
     assert "x-ebay-signature-key" not in seen[0].headers
+
+
+def _signing_client(handler) -> EbayClient:
+    pem, _ = _ed25519_pem()
+    return EbayClient(
+        EbayConfig(
+            access_token="token",
+            marketplace_id="EBAY_DE",
+            signing=EbaySigningConfig(jwe=JWE, private_key=pem),
+        ),
+        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+
+
+def test_transport_does_not_sign_apis_that_do_not_require_it() -> None:
+    """eBay rejects nothing without a signature outside the required set, so bidkit
+    must not send x-ebay-enforce-signature on e.g. Browse calls (D10)."""
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = _signing_client(handler)
+    client.buy.browse.get_item("v1|1|0", raw_response=True)
+    client.sell.fulfillment.get_orders(raw_response=True)
+
+    for request in seen:
+        assert "signature" not in request.headers
+        assert "x-ebay-enforce-signature" not in request.headers
+        assert "x-ebay-signature-key" not in request.headers
+
+
+def test_fulfillment_issue_refund_is_signed() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = _signing_client(handler)
+    client.sell.fulfillment.issue_refund("11-11111-11111", raw_response=True)
+
+    request = seen[0]
+    assert request.method == "POST"
+    assert request.headers["x-ebay-enforce-signature"] == "true"
+    assert request.headers["signature"].startswith("sig1=:")
+
+
+def test_post_order_issue_case_refund_is_signed() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = _signing_client(handler)
+    client.post_order.case.issue_case_refund("5000000000", raw_response=True)
+
+    request = seen[0]
+    assert request.url.path == "/post-order/v2/casemanagement/5000000000/issue_refund"
+    assert request.headers["x-ebay-enforce-signature"] == "true"
+    assert request.headers["signature"].startswith("sig1=:")
+
+
+def test_sign_all_escape_hatch_signs_everything() -> None:
+    pem, _ = _ed25519_pem()
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    client = EbayClient(
+        EbayConfig(
+            access_token="token",
+            signing=EbaySigningConfig(jwe=JWE, private_key=pem, sign_all=True),
+        ),
+        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+    client.buy.browse.get_item("v1|1|0", raw_response=True)
+
+    assert seen[0].headers["x-ebay-enforce-signature"] == "true"
+    assert seen[0].headers["signature"].startswith("sig1=:")

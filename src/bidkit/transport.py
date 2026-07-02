@@ -179,6 +179,20 @@ def _log_exception_retry(
     )
 
 
+def _should_sign(config: EbayConfig, service: Service, sign: bool | None) -> bool:
+    """Sign only what eBay requires: the Finances API (service-level flag), the
+    operations generated with ``sign=True`` (refund calls), or everything when the
+    application opts into ``EbaySigningConfig(sign_all=True)`` as an escape hatch
+    for APIs eBay adds to the signature list faster than the SDK updates."""
+    if config.signing is None:
+        return False
+    if config.signing.sign_all:
+        return True
+    if sign is not None:
+        return sign
+    return bool(service.get("requires_signature"))
+
+
 def _sign_request(signer: MessageSigner | None, request: httpx.Request) -> None:
     if signer is None:
         return
@@ -214,10 +228,12 @@ class EbayTransport:
         files: Mapping[str, Any] | None = None,
         response_model: Any = None,
         raw_response: bool = False,
+        sign: bool | None = None,
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
+        signer = self._signer if _should_sign(self.config, service, sign) else None
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -234,7 +250,7 @@ class EbayTransport:
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
-            _sign_request(self._signer, request)
+            _sign_request(signer, request)
             started = time.monotonic()
             try:
                 response = self.client.send(request)
@@ -273,10 +289,12 @@ class EbayTransport:
         headers: Mapping[str, str | None] | None = None,
         body: Any = None,
         files: Mapping[str, Any] | None = None,
+        sign: bool | None = None,
     ) -> Iterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
+        signer = self._signer if _should_sign(self.config, service, sign) else None
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -293,7 +311,7 @@ class EbayTransport:
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
-            _sign_request(self._signer, request)
+            _sign_request(signer, request)
             started = time.monotonic()
             try:
                 response = self.client.send(request, stream=True)
@@ -348,10 +366,12 @@ class AsyncEbayTransport:
         files: Mapping[str, Any] | None = None,
         response_model: Any = None,
         raw_response: bool = False,
+        sign: bool | None = None,
     ) -> Any:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
+        signer = self._signer if _should_sign(self.config, service, sign) else None
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -368,7 +388,7 @@ class AsyncEbayTransport:
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
-            _sign_request(self._signer, request)
+            _sign_request(signer, request)
             started = time.monotonic()
             try:
                 response = await self.client.send(request)
@@ -407,10 +427,12 @@ class AsyncEbayTransport:
         headers: Mapping[str, str | None] | None = None,
         body: Any = None,
         files: Mapping[str, Any] | None = None,
+        sign: bool | None = None,
     ) -> AsyncIterator[httpx.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
+        signer = self._signer if _should_sign(self.config, service, sign) else None
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -427,7 +449,7 @@ class AsyncEbayTransport:
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
-            _sign_request(self._signer, request)
+            _sign_request(signer, request)
             started = time.monotonic()
             try:
                 response = await self.client.send(request, stream=True)

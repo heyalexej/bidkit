@@ -32,6 +32,17 @@ RESPONSE_CONTENT_TYPES = (
 )
 MARKETPLACE_HEADER = "X-EBAY-C-MARKETPLACE-ID"
 POST_ORDER_SERVICES = {"cancellation", "case", "inquiry", "return"}
+# eBay requires RFC 9421 digital signatures only for these calls (see "Digital
+# Signatures for APIs"): every Finances API method, plus the refund operations
+# below when made on behalf of EU/UK sellers. Everything else must NOT carry
+# x-ebay-enforce-signature.
+SIGNED_SERVICES = {"sell_finances"}
+SIGNED_OPERATIONS = {
+    ("sell_fulfillment", "issueRefund"),
+    ("case", "issueCaseRefund"),
+    ("inquiry", "issueInquiryRefund"),
+    ("return", "issueReturnRefund"),
+}
 POST_ORDER_QUERY_PARAMS = {
     ("case", "search"): [
         ("case_type_filter", "string"),
@@ -784,6 +795,8 @@ def resource_class(service: Service, *, async_resource: bool) -> list[str]:
     ]
     if service.key in POST_ORDER_SERVICES:
         lines.append("        'auth_scheme': 'TOKEN',")
+    if service.key in SIGNED_SERVICES:
+        lines.append("        'requires_signature': True,")
     lines.extend(
         [
             "    }",
@@ -949,6 +962,8 @@ def render_method(
         lines.append("        files=files,")
     elif request_body:
         lines.append("        body=body,")
+    if (service.key, operation_id) in SIGNED_OPERATIONS:
+        lines.append("        sign=True,")
     lines.append(f"        response_model={response_model},")
     lines.append("        raw_response=raw_response,")
     lines.append("    )")

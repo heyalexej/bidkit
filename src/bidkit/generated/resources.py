@@ -2407,6 +2407,7 @@ class CaseResource(BaseResource):
             path_params={'caseId': case_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -2537,6 +2538,7 @@ class AsyncCaseResource(AsyncBaseResource):
             path_params={'caseId': case_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -6366,6 +6368,7 @@ class InquiryResource(BaseResource):
             path_params={'inquiryId': inquiry_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -6564,6 +6567,7 @@ class AsyncInquiryResource(AsyncBaseResource):
             path_params={'inquiryId': inquiry_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -6985,6 +6989,7 @@ class ReturnResource(BaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -7559,6 +7564,7 @@ class AsyncReturnResource(AsyncBaseResource):
             path_params={'returnId': return_id},
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
+            sign=True,
             response_model=None,
             raw_response=raw_response,
         )
@@ -12776,6 +12782,7 @@ class SellFinancesResource(BaseResource):
         'version': 'v1.19.0',
         'base_path': '/sell/finances/v1',
         'subdomain': 'apiz',
+        'requires_signature': True,
     }
 
     @overload
@@ -13173,6 +13180,7 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         'version': 'v1.19.0',
         'base_path': '/sell/finances/v1',
         'subdomain': 'apiz',
+        'requires_signature': True,
     }
 
     @overload
@@ -13644,6 +13652,7 @@ class SellFulfillmentResource(BaseResource):
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
+            sign=True,
             response_model=sell_fulfillment_models.Refund,
             raw_response=raw_response,
         )
@@ -13971,6 +13980,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
             params={},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
             body=body,
+            sign=True,
             response_model=sell_fulfillment_models.Refund,
             raw_response=raw_response,
         )

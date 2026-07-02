@@ -24,6 +24,10 @@ class EbaySigningConfig(BaseModel):
     jwe: str
     private_key: SecretValue
     digest: Literal["sha256", "sha512"] = "sha256"
+    # Escape hatch: sign every request instead of only the operations eBay
+    # requires signatures for, in case eBay expands the signed-API list before
+    # the SDK catches up.
+    sign_all: bool = False
 
     @property
     def private_key_value(self) -> str:

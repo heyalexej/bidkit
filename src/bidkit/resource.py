@@ -39,6 +39,9 @@ class Service(TypedDict):
     base_path: str
     subdomain: str
     auth_scheme: NotRequired[str]
+    # True for APIs where every operation needs an RFC 9421 digital signature
+    # (the Finances API); per-operation cases pass sign=True instead.
+    requires_signature: NotRequired[bool]
 
 
 class BaseResource:
@@ -60,6 +63,7 @@ class BaseResource:
         files: Mapping[str, Any] | None = None,
         response_model: Any = None,
         raw_response: bool = False,
+        sign: bool | None = None,
     ) -> Any:
         return self._client.request(
             service=self.service,
@@ -73,6 +77,7 @@ class BaseResource:
             files=files,
             response_model=response_model,
             raw_response=raw_response,
+            sign=sign,
         )
 
     def _stream(
@@ -119,6 +124,7 @@ class AsyncBaseResource:
         files: Mapping[str, Any] | None = None,
         response_model: Any = None,
         raw_response: bool = False,
+        sign: bool | None = None,
     ) -> Any:
         return await self._client.request(
             service=self.service,
@@ -132,6 +138,7 @@ class AsyncBaseResource:
             files=files,
             response_model=response_model,
             raw_response=raw_response,
+            sign=sign,
         )
 
     def _stream(

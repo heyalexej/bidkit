@@ -165,9 +165,12 @@ works out of the box since bidkit rides on httpx.
 
 ## Digital signatures (Finances API)
 
-The Finances API and several payout/refund operations reject requests unless they carry an
-RFC 9421-style HTTP message signature (`x-ebay-signature-key` + `Signature` headers). Provide
-signing material via `EbaySigningConfig` and every request is signed automatically:
+The Finances API and several refund operations (Fulfillment `issueRefund`, the Post-Order
+issue-refund calls) reject requests unless they carry an RFC 9421-style HTTP message
+signature (`x-ebay-signature-key` + `Signature` headers). Provide signing material via
+`EbaySigningConfig` and exactly those operations are signed automatically — other APIs are
+left untouched, since eBay does not expect signatures there. If eBay expands the signed list
+before the SDK catches up, `EbaySigningConfig(..., sign_all=True)` signs every request:
 
 ```python
 from bidkit import EbayClient, EbayConfig, EbaySigningConfig
