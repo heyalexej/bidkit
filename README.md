@@ -200,6 +200,31 @@ The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and
 supported. `from_env` also reads `EBAY_SIGNING_KEY_FILE` or
 `EBAY_SIGNING_JWE` + `EBAY_SIGNING_PRIVATE_KEY`.
 
+## Verifying eBay push notifications
+
+Production apps must expose a notification endpoint (at minimum for the mandatory
+marketplace-account-deletion topic). bidkit verifies eBay's signatures and answers the
+endpoint-validation challenge:
+
+```python
+from bidkit import EbayClient, NotificationVerifier, challenge_response
+
+verifier = NotificationVerifier(client)   # app credentials suffice; keys are cached ~1 h
+
+# GET ?challenge_code=...  ->  200, application/json
+challenge_response(challenge_code, VERIFICATION_TOKEN, "https://your.app/ebay/notifications")
+
+# POST (notification delivery): verify the RAW body before parsing it
+if verifier.verify(raw_body_bytes, request.headers["x-ebay-signature"]):
+    ...  # handle, respond 204
+else:
+    ...  # respond 412; eBay will retry
+```
+
+`AsyncNotificationVerifier` is the drop-in for async frameworks. `verify` returns `False`
+for bad signatures and raises only on operational failures (key fetch, unsupported key) —
+respond `500` for those so eBay retries later.
+
 ## Supported APIs
 
 All **41 eBay APIs** below are generated and wired into the client across **5 namespaces**

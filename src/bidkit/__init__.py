@@ -11,6 +11,11 @@ from .errors import (
     EbaySDKError,
     EbayTransportError,
 )
+from .notifications import (
+    AsyncNotificationVerifier,
+    NotificationVerifier,
+    challenge_response,
+)
 from .pagination import paginate, paginate_async
 
 try:
@@ -24,6 +29,7 @@ logging.getLogger("bidkit").addHandler(logging.NullHandler())
 
 __all__ = [
     "AsyncEbayClient",
+    "AsyncNotificationVerifier",
     "EbayAPIError",
     "EbayAuthError",
     "EbayClient",
@@ -34,8 +40,10 @@ __all__ = [
     "EbayTransportError",
     "FileTokenCache",
     "InMemoryTokenCache",
+    "NotificationVerifier",
     "OAuthTokens",
     "TokenCache",
+    "challenge_response",
     "paginate",
     "paginate_async",
 ]
