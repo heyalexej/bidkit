@@ -54,6 +54,46 @@ def test_expired_entries_are_pruned_on_write(tmp_path: Path) -> None:
     assert cache.get("live") is not None
 
 
+def test_naive_expires_at_entries_do_not_crash(tmp_path: Path) -> None:
+    """Foreign tools may write tz-naive timestamps; both get() and set() must survive."""
+    path = tmp_path / "tokens.json"
+    path.write_text('{"foreign": {"access_token": "a", "expires_at": "2099-01-01T00:00:00"}}')
+    cache = FileTokenCache(path)
+
+    loaded = cache.get("foreign")
+    assert loaded is not None
+    assert loaded.expires_at.tzinfo is not None  # pinned to UTC
+    assert loaded.is_stale is False
+    cache.set("mine", _token())  # prune pass over the naive entry must not raise
+    assert cache.get("mine") is not None
+
+
+def test_get_serves_from_snapshot_until_file_changes(tmp_path: Path) -> None:
+    path = tmp_path / "tokens.json"
+    cache = FileTokenCache(path)
+    cache.set("key-1", _token())
+    assert cache.get("key-1") is not None
+
+    reads = {"n": 0}
+    original = Path.read_bytes
+
+    def counting_read(self: Path) -> bytes:
+        reads["n"] += 1
+        return original(self)
+
+    Path.read_bytes = counting_read  # type: ignore[method-assign]
+    try:
+        for _ in range(5):
+            assert cache.get("key-1") is not None
+        assert reads["n"] == 0  # unchanged file -> served from the stat-validated snapshot
+
+        FileTokenCache(path).set("key-2", _token())  # external write changes mtime/size
+        assert cache.get("key-2") is not None
+        assert reads["n"] >= 1  # snapshot invalidated, file re-read once
+    finally:
+        Path.read_bytes = original  # type: ignore[method-assign]
+
+
 def test_second_client_reuses_persisted_token_without_oauth_call(tmp_path: Path) -> None:
     token_requests = {"n": 0}
 

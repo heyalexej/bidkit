@@ -5,6 +5,8 @@ import hashlib
 import logging
 import os
 import threading
+from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -13,7 +15,7 @@ from urllib.parse import urlencode
 
 import httpx
 import orjson
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ValidationError, field_validator
 
 from .config import EbayConfig
 from .errors import EbayAuthError, EbayConfigError
@@ -25,6 +27,13 @@ class TokenData(BaseModel):
     access_token: str
     expires_at: datetime
     token_type: str = "Bearer"
+
+    @field_validator("expires_at")
+    @classmethod
+    def _ensure_timezone(cls, value: datetime) -> datetime:
+        # Foreign/hand-edited cache files may carry naive timestamps; comparing those
+        # against aware datetimes raises TypeError, so pin them to UTC instead.
+        return value if value.tzinfo else value.replace(tzinfo=UTC)
 
     @property
     def is_stale(self) -> bool:
@@ -92,6 +101,9 @@ class FileTokenCache:
             path = Path(cache_home) / "bidkit" / "tokens.json"
         self.path = Path(path).expanduser()
         self._lock = threading.Lock()
+        # (st_mtime_ns, st_size) -> parsed entries; avoids re-reading the file on the
+        # per-request hot path (auth consults the cache before every request).
+        self._snapshot: tuple[tuple[int, int], dict[str, Any]] | None = None
 
     def get(self, key: str) -> TokenData | None:
         with self._lock:
@@ -104,11 +116,31 @@ class FileTokenCache:
             return None
 
     def set(self, key: str, token: TokenData) -> None:
-        with self._lock:
+        # flock (best effort) makes the read-modify-write atomic across processes,
+        # not just across threads; without it concurrent processes overwrite each
+        # other's freshly minted tokens.
+        with self._lock, self._file_lock():
+            self._snapshot = None
             entries = self._load()
             entries[key] = token.model_dump(mode="json")
             entries = {k: v for k, v in entries.items() if self._is_live(v)}
             self._write(entries)
+
+    @contextmanager
+    def _file_lock(self) -> Iterator[None]:
+        try:
+            import fcntl
+        except ImportError:  # pragma: no cover - Windows; thread lock still applies
+            yield
+            return
+        self.path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        fd = os.open(self.path.with_name(self.path.name + ".lock"), os.O_CREAT | os.O_RDWR, 0o600)
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX)
+            yield
+        finally:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            os.close(fd)
 
     @staticmethod
     def _is_live(entry: Any) -> bool:
@@ -119,10 +151,17 @@ class FileTokenCache:
 
     def _load(self) -> dict[str, Any]:
         try:
+            stat = self.path.stat()
+            stamp = (stat.st_mtime_ns, stat.st_size)
+            if self._snapshot is not None and self._snapshot[0] == stamp:
+                return dict(self._snapshot[1])
             data = orjson.loads(self.path.read_bytes())
         except (OSError, orjson.JSONDecodeError):
+            self._snapshot = None
             return {}
-        return data if isinstance(data, dict) else {}
+        entries = data if isinstance(data, dict) else {}
+        self._snapshot = (stamp, dict(entries))
+        return entries
 
     def _write(self, entries: dict[str, Any]) -> None:
         self.path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
