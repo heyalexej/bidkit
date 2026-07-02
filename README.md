@@ -11,6 +11,9 @@ OpenAPI contracts.
 [![Python](https://img.shields.io/pypi/pyversions/bidkit?cacheSeconds=3600)](https://pypi.org/project/bidkit/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+**Documentation: [heyalexej.github.io/bidkit](https://heyalexej.github.io/bidkit/)** — guides,
+API reference, and the full generated reference for all 41 APIs.
+
 - **41 eBay APIs, 455 typed operations** across `buy`, `commerce`, `developer`, `post_order`,
   and `sell` namespaces — one client: `client.buy.browse.search(q="...")`
 - **Pydantic v2 models** for every request and response, generated from eBay's own OpenAPI

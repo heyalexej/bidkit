@@ -33,8 +33,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/heyalexej/bidkit"
+Documentation = "https://heyalexej.github.io/bidkit/"
 Repository = "https://github.com/heyalexej/bidkit"
 Issues = "https://github.com/heyalexej/bidkit/issues"
+Changelog = "https://github.com/heyalexej/bidkit/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
