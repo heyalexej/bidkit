@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.1](https://github.com/heyalexej/bidkit/compare/v0.1.0...v0.1.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* **pagination:** stop cleanly when an endpoint returns an empty body ([9fec5e7](https://github.com/heyalexej/bidkit/commit/9fec5e7bfeb19833e68a8da9845d3dd7983247fe))
+
+
+### Documentation
+
+* link the documentation site from README, PyPI metadata, and the repo ([67535da](https://github.com/heyalexej/bidkit/commit/67535da92b5a0567e8f991ca69bd9dcca499b27d))
+* **readme:** cache-bust the PyPI badges ([3f91e58](https://github.com/heyalexej/bidkit/commit/3f91e58d2cf0868b913c804baedbc074d02f8348))
+* render the full generated reference, one page per eBay API ([e1459b5](https://github.com/heyalexej/bidkit/commit/e1459b541e7a4fb38df9cc9663a6774c955fa739))
+* update contact address ([1300708](https://github.com/heyalexej/bidkit/commit/130070851f1cced12b3afdff469a7abf3e0d773f))
+
 ## 0.1.0 (2026-07-02)
 
 
