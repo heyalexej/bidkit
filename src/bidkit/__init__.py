@@ -21,7 +21,7 @@ from .pagination import paginate, paginate_async
 try:
     __version__ = version("bidkit")
 except PackageNotFoundError:  # running from a source tree without an installed dist
-    __version__ = "0.0.0"
+    __version__ = "0.1.0"
 
 # Library logging convention: silent unless the application opts in, e.g.
 #   logging.getLogger("bidkit").setLevel(logging.DEBUG)
