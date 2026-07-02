@@ -94,9 +94,7 @@ def _compact(values: Mapping[str, Any] | None) -> dict[str, Any]:
         if value is None:
             continue
         compacted[key] = (
-            ",".join(str(item) for item in value)
-            if isinstance(value, list | tuple)
-            else value
+            ",".join(str(item) for item in value) if isinstance(value, list | tuple) else value
         )
     return compacted
 
@@ -157,10 +155,12 @@ class EbayTransport:
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
             # refresh is actually due (and it picks up a token another caller just refreshed).
             request_headers = _headers(self.config, headers)
-            request_headers.update(self.auth.authorization_header(
-                self.client,
-                scheme=_auth_scheme(service),
-            ))
+            request_headers.update(
+                self.auth.authorization_header(
+                    self.client,
+                    scheme=_auth_scheme(service),
+                )
+            )
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -210,10 +210,12 @@ class EbayTransport:
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
             # refresh is actually due (and it picks up a token another caller just refreshed).
             request_headers = _headers(self.config, headers)
-            request_headers.update(self.auth.authorization_header(
-                self.client,
-                scheme=_auth_scheme(service),
-            ))
+            request_headers.update(
+                self.auth.authorization_header(
+                    self.client,
+                    scheme=_auth_scheme(service),
+                )
+            )
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -279,10 +281,12 @@ class AsyncEbayTransport:
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
             # refresh is actually due (and it picks up a token another caller just refreshed).
             request_headers = _headers(self.config, headers)
-            request_headers.update(await self.auth.async_authorization_header(
-                self.client,
-                scheme=_auth_scheme(service),
-            ))
+            request_headers.update(
+                await self.auth.async_authorization_header(
+                    self.client,
+                    scheme=_auth_scheme(service),
+                )
+            )
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )
@@ -332,10 +336,12 @@ class AsyncEbayTransport:
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
             # refresh is actually due (and it picks up a token another caller just refreshed).
             request_headers = _headers(self.config, headers)
-            request_headers.update(await self.auth.async_authorization_header(
-                self.client,
-                scheme=_auth_scheme(service),
-            ))
+            request_headers.update(
+                await self.auth.async_authorization_header(
+                    self.client,
+                    scheme=_auth_scheme(service),
+                )
+            )
             request = self.client.build_request(
                 method, url, params=compacted, headers=request_headers, **body_kwargs
             )

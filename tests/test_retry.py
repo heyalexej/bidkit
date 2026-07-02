@@ -31,9 +31,7 @@ def _client(handler, *, max_retries: int) -> EbayClient:
 
 
 def _post(client: EbayClient, **kwargs):
-    return client.request(
-        service=SERVICE, operation_id="op", method="POST", path="/op", **kwargs
-    )
+    return client.request(service=SERVICE, operation_id="op", method="POST", path="/op", **kwargs)
 
 
 def test_retries_transient_5xx_then_succeeds() -> None:

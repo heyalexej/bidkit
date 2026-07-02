@@ -60,6 +60,9 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+# Generated code is produced by the generator's own renderer/formatter and is
+# guarded by the CI drift check instead of lint/format.
+extend-exclude = ["src/bidkit/generated"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]

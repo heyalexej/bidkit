@@ -181,11 +181,7 @@ def load_service(path: Path) -> Service:
     server = (spec.get("servers") or [{}])[0]
     url = server.get("url", "https://api.ebay.com")
     subdomain_match = re.search(r"https://([a-z0-9-]+)\.", url)
-    base_path = (
-        server.get("variables", {})
-        .get("basePath", {})
-        .get("default")
-    )
+    base_path = server.get("variables", {}).get("basePath", {}).get("default")
     if not base_path:
         base_path = "/" + "/".join(part for part in path_parts_from_paths(spec)[:3])
     return Service(
@@ -240,8 +236,7 @@ def normalize_scalar_enum_types(node: Any) -> None:
             and enum_values
             and node.get("type") in {None, "object"}
             and not any(
-                key in node
-                for key in ("$ref", "properties", "items", "allOf", "anyOf", "oneOf")
+                key in node for key in ("$ref", "properties", "items", "allOf", "anyOf", "oneOf")
             )
         ):
             inferred = infer_enum_type(enum_values)
@@ -330,11 +325,7 @@ def patch_missing_binary_request_bodies(key: str, spec: dict[str, Any]) -> None:
 
 def multipart_request_body(fields: tuple[tuple[str, bool], ...]) -> dict[str, Any]:
     properties = {
-        name: (
-            {"type": "string", "format": "binary"}
-            if is_file
-            else {"type": "string"}
-        )
+        name: ({"type": "string", "format": "binary"} if is_file else {"type": "string"})
         for name, is_file in fields
     }
     return {
@@ -390,57 +381,67 @@ def patch_sell_inventory_spec(spec: dict[str, Any]) -> None:
 
 def patch_case_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
     add_common_post_order_schemas(schemas)
-    schemas.update({
-        "CaseSummary": object_schema({
-            "itemId": integer_schema(),
-            "transactionId": integer_schema(),
-            "caseId": integer_schema(),
-            "buyer": string_schema(),
-            "seller": string_schema(),
-            "caseStatusEnum": string_schema(),
-            "claimAmount": ref_schema("PostOrderAmount"),
-            "respondByDate": ref_schema("PostOrderDateTime"),
-            "creationDate": ref_schema("PostOrderDateTime"),
-            "lastModifiedDate": ref_schema("PostOrderDateTime"),
-        }),
-        "CaseSearchResponse": object_schema({
-            "members": array_schema(ref_schema("CaseSummary")),
-            "totalNumberOfCases": integer_schema(),
-            "paginationOutput": ref_schema("PaginationOutput"),
-        }),
-        "CaseHistoryDetails": object_schema({
-            "history": array_schema(ref_schema("PostOrderHistoryEntry")),
-            "buyerrequested": string_schema(),
-            "shipmentTrackingDetails": any_object_schema(),
-        }),
-        "CaseDetail": object_schema({
-            "caseId": string_schema(),
-            "caseType": string_schema(),
-            "itemId": string_schema(),
-            "transactionId": string_schema(),
-            "returnId": string_schema(),
-            "claimAmount": ref_schema("PostOrderAmount"),
-            "shippingFee": ref_schema("PostOrderAmount"),
-            "caseQuantity": integer_schema(),
-            "initiator": string_schema(),
-            "creationDate": ref_schema("PostOrderDateTime"),
-            "lastModifiedDate": ref_schema("PostOrderDateTime"),
-            "sellerClosureReason": string_schema(),
-            "buyerClosureReason": string_schema(),
-            "caseDetails": any_object_schema(),
-            "actionDeadlines": any_object_schema(),
-            "appealDetails": any_object_schema(),
-            "buyer": string_schema(),
-            "seller": string_schema(),
-            "buyerOutcome": string_schema(),
-            "sellerOutcome": string_schema(),
-            "nextSteps": array_schema({}),
-            "caseContentOnHold": boolean_schema(),
-            "status": string_schema(),
-            "fsnadnoSellerFault": boolean_schema(),
-            "caseHistoryDetails": ref_schema("CaseHistoryDetails"),
-        }),
-    })
+    schemas.update(
+        {
+            "CaseSummary": object_schema(
+                {
+                    "itemId": integer_schema(),
+                    "transactionId": integer_schema(),
+                    "caseId": integer_schema(),
+                    "buyer": string_schema(),
+                    "seller": string_schema(),
+                    "caseStatusEnum": string_schema(),
+                    "claimAmount": ref_schema("PostOrderAmount"),
+                    "respondByDate": ref_schema("PostOrderDateTime"),
+                    "creationDate": ref_schema("PostOrderDateTime"),
+                    "lastModifiedDate": ref_schema("PostOrderDateTime"),
+                }
+            ),
+            "CaseSearchResponse": object_schema(
+                {
+                    "members": array_schema(ref_schema("CaseSummary")),
+                    "totalNumberOfCases": integer_schema(),
+                    "paginationOutput": ref_schema("PaginationOutput"),
+                }
+            ),
+            "CaseHistoryDetails": object_schema(
+                {
+                    "history": array_schema(ref_schema("PostOrderHistoryEntry")),
+                    "buyerrequested": string_schema(),
+                    "shipmentTrackingDetails": any_object_schema(),
+                }
+            ),
+            "CaseDetail": object_schema(
+                {
+                    "caseId": string_schema(),
+                    "caseType": string_schema(),
+                    "itemId": string_schema(),
+                    "transactionId": string_schema(),
+                    "returnId": string_schema(),
+                    "claimAmount": ref_schema("PostOrderAmount"),
+                    "shippingFee": ref_schema("PostOrderAmount"),
+                    "caseQuantity": integer_schema(),
+                    "initiator": string_schema(),
+                    "creationDate": ref_schema("PostOrderDateTime"),
+                    "lastModifiedDate": ref_schema("PostOrderDateTime"),
+                    "sellerClosureReason": string_schema(),
+                    "buyerClosureReason": string_schema(),
+                    "caseDetails": any_object_schema(),
+                    "actionDeadlines": any_object_schema(),
+                    "appealDetails": any_object_schema(),
+                    "buyer": string_schema(),
+                    "seller": string_schema(),
+                    "buyerOutcome": string_schema(),
+                    "sellerOutcome": string_schema(),
+                    "nextSteps": array_schema({}),
+                    "caseContentOnHold": boolean_schema(),
+                    "status": string_schema(),
+                    "fsnadnoSellerFault": boolean_schema(),
+                    "caseHistoryDetails": ref_schema("CaseHistoryDetails"),
+                }
+            ),
+        }
+    )
     add_post_order_search_params(spec, "/casemanagement/search", "case")
     set_json_response(spec, "/casemanagement/search", "get", "CaseSearchResponse")
     set_json_response(spec, "/casemanagement/{caseId}", "get", "CaseDetail")
@@ -448,51 +449,61 @@ def patch_case_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
 
 def patch_inquiry_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
     add_common_post_order_schemas(schemas)
-    schemas.update({
-        "InquirySummary": object_schema({
-            "itemId": integer_schema(),
-            "transactionId": integer_schema(),
-            "inquiryId": integer_schema(),
-            "buyer": string_schema(),
-            "seller": string_schema(),
-            "inquiryStatusEnum": string_schema(),
-            "claimAmount": ref_schema("PostOrderAmount"),
-            "respondByDate": ref_schema("PostOrderDateTime"),
-            "creationDate": ref_schema("PostOrderDateTime"),
-            "lastModifiedDate": ref_schema("PostOrderDateTime"),
-        }),
-        "InquirySearchResponse": object_schema({
-            "members": array_schema(ref_schema("InquirySummary")),
-            "totalNumberOfInquiries": integer_schema(),
-            "paginationOutput": ref_schema("PaginationOutput"),
-            "countSummary": array_schema(ref_schema("CountSummary")),
-        }),
-        "InquiryHistoryDetails": object_schema({
-            "history": array_schema(ref_schema("PostOrderHistoryEntry")),
-            "additionalInfo": string_schema(),
-            "buyerrequested": string_schema(),
-            "shipmentTrackingDetails": any_object_schema(),
-        }),
-        "InquiryDetail": object_schema({
-            "inquiryId": string_schema(),
-            "itemId": string_schema(),
-            "transactionId": string_schema(),
-            "claimAmount": ref_schema("PostOrderAmount"),
-            "shippingCost": ref_schema("PostOrderAmount"),
-            "inquiryQuantity": integer_schema(),
-            "initiator": string_schema(),
-            "sellerMakeItRightByDate": ref_schema("PostOrderDateTime"),
-            "creationReason": string_schema(),
-            "buyer": string_schema(),
-            "seller": string_schema(),
-            "inquiryContentOnHold": boolean_schema(),
-            "inquiryDetails": any_object_schema(),
-            "inquiryHistoryDetails": ref_schema("InquiryHistoryDetails"),
-            "state": string_schema(),
-            "itemDetails": any_object_schema(),
-            "status": string_schema(),
-        }),
-    })
+    schemas.update(
+        {
+            "InquirySummary": object_schema(
+                {
+                    "itemId": integer_schema(),
+                    "transactionId": integer_schema(),
+                    "inquiryId": integer_schema(),
+                    "buyer": string_schema(),
+                    "seller": string_schema(),
+                    "inquiryStatusEnum": string_schema(),
+                    "claimAmount": ref_schema("PostOrderAmount"),
+                    "respondByDate": ref_schema("PostOrderDateTime"),
+                    "creationDate": ref_schema("PostOrderDateTime"),
+                    "lastModifiedDate": ref_schema("PostOrderDateTime"),
+                }
+            ),
+            "InquirySearchResponse": object_schema(
+                {
+                    "members": array_schema(ref_schema("InquirySummary")),
+                    "totalNumberOfInquiries": integer_schema(),
+                    "paginationOutput": ref_schema("PaginationOutput"),
+                    "countSummary": array_schema(ref_schema("CountSummary")),
+                }
+            ),
+            "InquiryHistoryDetails": object_schema(
+                {
+                    "history": array_schema(ref_schema("PostOrderHistoryEntry")),
+                    "additionalInfo": string_schema(),
+                    "buyerrequested": string_schema(),
+                    "shipmentTrackingDetails": any_object_schema(),
+                }
+            ),
+            "InquiryDetail": object_schema(
+                {
+                    "inquiryId": string_schema(),
+                    "itemId": string_schema(),
+                    "transactionId": string_schema(),
+                    "claimAmount": ref_schema("PostOrderAmount"),
+                    "shippingCost": ref_schema("PostOrderAmount"),
+                    "inquiryQuantity": integer_schema(),
+                    "initiator": string_schema(),
+                    "sellerMakeItRightByDate": ref_schema("PostOrderDateTime"),
+                    "creationReason": string_schema(),
+                    "buyer": string_schema(),
+                    "seller": string_schema(),
+                    "inquiryContentOnHold": boolean_schema(),
+                    "inquiryDetails": any_object_schema(),
+                    "inquiryHistoryDetails": ref_schema("InquiryHistoryDetails"),
+                    "state": string_schema(),
+                    "itemDetails": any_object_schema(),
+                    "status": string_schema(),
+                }
+            ),
+        }
+    )
     add_post_order_search_params(spec, "/inquiry/search", "inquiry")
     set_json_response(spec, "/inquiry/search", "get", "InquirySearchResponse")
     set_json_response(spec, "/inquiry/{inquiryId}", "get", "InquiryDetail")
@@ -500,31 +511,41 @@ def patch_inquiry_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
 
 def patch_return_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
     add_common_post_order_schemas(schemas)
-    schemas.update({
-        "ReturnSummary": object_schema({
-            "returnId": string_schema(),
-            "orderId": string_schema(),
-            "buyerLoginName": string_schema(),
-            "sellerLoginName": string_schema(),
-            "currentType": string_schema(),
-            "state": string_schema(),
-            "status": string_schema(),
-            "creationInfo": any_object_schema(),
-        }),
-        "ReturnSearchResponse": object_schema({
-            "members": array_schema(ref_schema("ReturnSummary")),
-            "total": integer_schema(),
-            "paginationOutput": ref_schema("PaginationOutput"),
-            "countSummary": array_schema(ref_schema("CountSummary")),
-        }),
-        "ReturnDetail": object_schema({
-            "summary": ref_schema("ReturnSummary"),
-        }),
-        "ReturnPreferences": object_schema({
-            "rmaRequired": boolean_schema(),
-            "advanceRulesEnabled": boolean_schema(),
-        }),
-    })
+    schemas.update(
+        {
+            "ReturnSummary": object_schema(
+                {
+                    "returnId": string_schema(),
+                    "orderId": string_schema(),
+                    "buyerLoginName": string_schema(),
+                    "sellerLoginName": string_schema(),
+                    "currentType": string_schema(),
+                    "state": string_schema(),
+                    "status": string_schema(),
+                    "creationInfo": any_object_schema(),
+                }
+            ),
+            "ReturnSearchResponse": object_schema(
+                {
+                    "members": array_schema(ref_schema("ReturnSummary")),
+                    "total": integer_schema(),
+                    "paginationOutput": ref_schema("PaginationOutput"),
+                    "countSummary": array_schema(ref_schema("CountSummary")),
+                }
+            ),
+            "ReturnDetail": object_schema(
+                {
+                    "summary": ref_schema("ReturnSummary"),
+                }
+            ),
+            "ReturnPreferences": object_schema(
+                {
+                    "rmaRequired": boolean_schema(),
+                    "advanceRulesEnabled": boolean_schema(),
+                }
+            ),
+        }
+    )
     add_post_order_search_params(spec, "/return/search", "return")
     set_json_response(spec, "/return/search", "get", "ReturnSearchResponse")
     set_json_response(spec, "/return/{returnId}", "get", "ReturnDetail")
@@ -532,54 +553,65 @@ def patch_return_spec(spec: dict[str, Any], schemas: dict[str, Any]) -> None:
 
 
 def add_common_post_order_schemas(schemas: dict[str, Any]) -> None:
-    schemas.update({
-        "PostOrderAmount": object_schema({
-            "value": number_schema(),
-            "currency": string_schema(),
-            "convertedFromCurrency": string_schema(),
-            "convertedFromValue": number_schema(),
-            "exchangeRate": string_schema(),
-        }),
-        "PostOrderDateTime": object_schema({
-            "value": string_schema(),
-            "formattedValue": string_schema(),
-        }),
-        "PaginationOutput": object_schema({
-            "offset": integer_schema(),
-            "limit": integer_schema(),
-            "totalPages": integer_schema(),
-            "totalEntries": integer_schema(),
-        }),
-        "CountSummary": object_schema({
-            "count": integer_schema(),
-            "type": string_schema(),
-        }),
-        "PostOrderHistoryEntry": object_schema({
-            "date": ref_schema("PostOrderDateTime"),
-            "action": string_schema(),
-            "actor": string_schema(),
-            "description": string_schema(),
-        }),
-    })
+    schemas.update(
+        {
+            "PostOrderAmount": object_schema(
+                {
+                    "value": number_schema(),
+                    "currency": string_schema(),
+                    "convertedFromCurrency": string_schema(),
+                    "convertedFromValue": number_schema(),
+                    "exchangeRate": string_schema(),
+                }
+            ),
+            "PostOrderDateTime": object_schema(
+                {
+                    "value": string_schema(),
+                    "formattedValue": string_schema(),
+                }
+            ),
+            "PaginationOutput": object_schema(
+                {
+                    "offset": integer_schema(),
+                    "limit": integer_schema(),
+                    "totalPages": integer_schema(),
+                    "totalEntries": integer_schema(),
+                }
+            ),
+            "CountSummary": object_schema(
+                {
+                    "count": integer_schema(),
+                    "type": string_schema(),
+                }
+            ),
+            "PostOrderHistoryEntry": object_schema(
+                {
+                    "date": ref_schema("PostOrderDateTime"),
+                    "action": string_schema(),
+                    "actor": string_schema(),
+                    "description": string_schema(),
+                }
+            ),
+        }
+    )
 
 
 def add_post_order_search_params(spec: dict[str, Any], path: str, kind: str) -> None:
     operation = spec.get("paths", {}).get(path, {}).get("get", {})
     operation.setdefault("parameters", [])
-    existing = {
-        (param.get("in"), param.get("name"))
-        for param in operation["parameters"]
-    }
+    existing = {(param.get("in"), param.get("name")) for param in operation["parameters"]}
     for name, schema_type_name in POST_ORDER_QUERY_PARAMS[(kind, "search")]:
         key = ("query", name)
         if key in existing:
             continue
-        operation["parameters"].append({
-            "name": name,
-            "in": "query",
-            "required": False,
-            "schema": {"type": schema_type_name},
-        })
+        operation["parameters"].append(
+            {
+                "name": name,
+                "in": "query",
+                "required": False,
+                "schema": {"type": schema_type_name},
+            }
+        )
 
 
 def set_json_response(spec: dict[str, Any], path: str, method: str, schema_name: str) -> None:
@@ -723,7 +755,7 @@ def write_resources(path: Path, services: list[Service]) -> None:
     lines.append("else:")
     for service in services:
         lines.append(
-            f'    {service.model_alias} = '
+            f"    {service.model_alias} = "
             f'_LazyModule("bidkit.generated.models.{service.module_name}")'
         )
     lines.extend(["", ""])
@@ -752,10 +784,12 @@ def resource_class(service: Service, *, async_resource: bool) -> list[str]:
     ]
     if service.key in POST_ORDER_SERVICES:
         lines.append("        'auth_scheme': 'TOKEN',")
-    lines.extend([
-        "    }",
-        "",
-    ])
+    lines.extend(
+        [
+            "    }",
+            "",
+        ]
+    )
 
     operations = list(iter_operations(service.spec))
     if not operations:
@@ -811,7 +845,8 @@ def render_method(
     # The SDK derives Content-Type from the request body and Content-Language from config, so
     # neither needs to be a caller-supplied parameter.
     parameters = [
-        param for param in parameters
+        param
+        for param in parameters
         if not (
             param.get("in") == "header"
             and param.get("name", "").lower() in ("content-type", "content-language")
@@ -825,12 +860,10 @@ def render_method(
 
     positional = [param_def(param, service=service, required=True) for param in path_params]
     keyword_required = [
-        param_def(param, service=service, required=True)
-        for param in required_other
+        param_def(param, service=service, required=True) for param in required_other
     ]
     keyword_optional = [
-        param_def(param, service=service, required=False)
-        for param in optional_other
+        param_def(param, service=service, required=False) for param in optional_other
     ]
 
     body_arg: str | None = None
@@ -1027,12 +1060,14 @@ def with_optional_marketplace_header(parameters: list[dict[str, Any]]) -> list[d
             result.append(param)
 
     if not found:
-        result.append({
-            "name": MARKETPLACE_HEADER,
-            "in": "header",
-            "required": False,
-            "schema": {"type": "string"},
-        })
+        result.append(
+            {
+                "name": MARKETPLACE_HEADER,
+                "in": "header",
+                "required": False,
+                "schema": {"type": "string"},
+            }
+        )
     return result
 
 
@@ -1195,8 +1230,10 @@ def schema_type(schema: dict[str, Any], name_map: dict[str, str]) -> str:
     if ref:
         return name_map.get(ref, pascal_case(ref))
     enum = schema.get("enum")
-    if enum and len(enum) <= 80 and all(
-        isinstance(item, str | int | float | bool) for item in enum
+    if (
+        enum
+        and len(enum) <= 80
+        and all(isinstance(item, str | int | float | bool) for item in enum)
     ):
         return "Literal[" + ", ".join(repr(item) for item in enum) + "]"
     schema_type_name = schema.get("type")
@@ -1242,15 +1279,19 @@ def namespace_installers(services: list[Service]) -> list[str]:
         lines.extend(namespace_class(group, by_group[group], async_names=False))
         lines.extend(namespace_class(group, by_group[group], async_names=True))
 
-    lines.extend([
-        "def install_sync_namespaces(client: Any) -> None:",
-    ])
+    lines.extend(
+        [
+            "def install_sync_namespaces(client: Any) -> None:",
+        ]
+    )
     lines.extend(installer_body(by_group, async_names=False))
-    lines.extend([
-        "",
-        "",
-        "def install_async_namespaces(client: Any) -> None:",
-    ])
+    lines.extend(
+        [
+            "",
+            "",
+            "def install_async_namespaces(client: Any) -> None:",
+        ]
+    )
     lines.extend(installer_body(by_group, async_names=True))
     return lines
 

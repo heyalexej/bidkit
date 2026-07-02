@@ -278,9 +278,7 @@ run(
 section("sell.feed")
 run(
     "get_inventory_tasks(LMS_ACTIVE_INVENTORY_REPORT)",
-    lambda: s.feed.get_inventory_tasks(
-        feed_type="LMS_ACTIVE_INVENTORY_REPORT", look_back_days="7"
-    ),
+    lambda: s.feed.get_inventory_tasks(feed_type="LMS_ACTIVE_INVENTORY_REPORT", look_back_days="7"),
 )
 run(
     "get_order_tasks(LMS_ORDER_REPORT)",

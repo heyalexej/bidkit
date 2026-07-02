@@ -114,8 +114,7 @@ class SmokeRunner:
     @property
     def has_failures(self) -> bool:
         return any(
-            row["status"] == "EXC"
-            or (isinstance(row["status"], int) and row["status"] >= 400)
+            row["status"] == "EXC" or (isinstance(row["status"], int) and row["status"] >= 400)
             for row in self.rows
         )
 
@@ -164,9 +163,7 @@ class SmokeRunner:
             return None
 
     def print_summary(self) -> None:
-        ok = sum(
-            1 for row in self.rows if isinstance(row["status"], int) and row["status"] < 400
-        )
+        ok = sum(1 for row in self.rows if isinstance(row["status"], int) and row["status"] < 400)
         http_fail = sum(
             1 for row in self.rows if isinstance(row["status"], int) and row["status"] >= 400
         )
@@ -999,6 +996,7 @@ def run_inventory_probe(client: EbayClient, runner: SmokeRunner, args: argparse.
 
 def run_media_probe(client: EbayClient, runner: SmokeRunner, args: argparse.Namespace) -> None:
     if args.image.exists():
+
         def upload_image() -> httpx.Response:
             content_type = mimetypes.guess_type(args.image.name)[0] or "image/jpeg"
             with args.image.open("rb") as file:

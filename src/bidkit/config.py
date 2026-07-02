@@ -104,11 +104,13 @@ class EbayConfig(BaseModel):
         else:
             signing_private_key = value("SIGNING_PRIVATE_KEY")
             if signing_jwe and signing_private_key:
-                data["signing"] = EbaySigningConfig.model_validate({
-                    "jwe": signing_jwe,
-                    "private_key": signing_private_key,
-                    "digest": value("SIGNING_DIGEST") or "sha256",
-                })
+                data["signing"] = EbaySigningConfig.model_validate(
+                    {
+                        "jwe": signing_jwe,
+                        "private_key": signing_private_key,
+                        "digest": value("SIGNING_DIGEST") or "sha256",
+                    }
+                )
 
         return cls(**{key: val for key, val in data.items() if val is not None})
 

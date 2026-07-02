@@ -138,9 +138,7 @@ def main() -> None:
             "Drop --sandbox, or use a sandbox (-SBX-) keyset."
         )
     if env == "sandbox" and not args.sandbox:
-        raise SystemExit(
-            f"App ID '{config.app_id}' is a SANDBOX keyset (-SBX-); add --sandbox."
-        )
+        raise SystemExit(f"App ID '{config.app_id}' is a SANDBOX keyset (-SBX-); add --sandbox.")
 
     client = EbayClient(config)
 

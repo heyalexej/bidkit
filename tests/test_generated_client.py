@@ -53,10 +53,12 @@ def test_generated_enum_models_are_scalar_enums() -> None:
 def test_generated_enum_models_accept_live_string_values() -> None:
     assert issubclass(MarketplaceIdEnum, StrEnum)
 
-    user = UserResponse.model_validate({
-        "username": "seller",
-        "registrationMarketplaceId": "EBAY_DE",
-    })
+    user = UserResponse.model_validate(
+        {
+            "username": "seller",
+            "registrationMarketplaceId": "EBAY_DE",
+        }
+    )
 
     assert user.registration_marketplace_id is MarketplaceIdEnum.ebay_de
 
