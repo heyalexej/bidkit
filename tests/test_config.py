@@ -97,6 +97,60 @@ def test_signing_key_file_requires_jwe_and_key(
         EbaySigningConfig.from_key_file(key_file)
 
 
+def test_from_file_reads_ebay_cli_config(tmp_path_factory: pytest.TempPathFactory) -> None:
+    config_dir = tmp_path_factory.mktemp("ebay-cli")
+    (config_dir / "config.json").write_text(
+        """
+        {
+          "environment": "sandbox",
+          "marketplace_default": "EBAY_DE",
+          "credentials": {
+            "client_id": "app-SBX-1",
+            "client_secret": "secret",
+            "redirect_uri": "Ru-Name",
+            "refresh_token": "v^1.refresh",
+            "granted_scopes": "https://api.ebay.com/oauth/api_scope scope-b"
+          }
+        }
+        """
+    )
+    (config_dir / "signing-key.json").write_text('{"jwe": "jwe-x", "privateKeyPem": "pem-x"}')
+
+    config = EbayConfig.from_file(config_dir / "config.json")
+
+    assert config.app_id == "app-SBX-1"
+    assert config.client_secret == "secret"
+    assert config.ru_name == "Ru-Name"
+    assert config.refresh_token_value == "v^1.refresh"
+    assert config.sandbox is True
+    assert config.marketplace_id == "EBAY_DE"
+    assert config.scopes == ("https://api.ebay.com/oauth/api_scope", "scope-b")
+    assert config.signing is not None
+    assert config.signing.jwe == "jwe-x"
+
+
+def test_from_file_canonical_names_and_defaults(
+    tmp_path_factory: pytest.TempPathFactory,
+) -> None:
+    config_dir = tmp_path_factory.mktemp("ebay-cli")
+    (config_dir / "config.json").write_text(
+        '{"credentials": {"app_id": "app-PRD-1", "cert_id": "c", "scopes": ["s1", "s2"]}}'
+    )
+
+    config = EbayConfig.from_file(config_dir / "config.json")
+
+    assert config.app_id == "app-PRD-1"
+    assert config.sandbox is False
+    assert config.marketplace_id == "EBAY_US"
+    assert config.scopes == ("s1", "s2")
+    assert config.signing is None  # no sibling signing-key.json
+
+
+def test_from_file_missing_file_raises() -> None:
+    with pytest.raises(FileNotFoundError):
+        EbayConfig.from_file("/nonexistent/config.json")
+
+
 def test_api_root_and_oauth_url_respect_sandbox_and_override() -> None:
     prod = EbayConfig()
     sandbox = EbayConfig(sandbox=True)

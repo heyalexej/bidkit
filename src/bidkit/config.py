@@ -118,6 +118,53 @@ class EbayConfig(BaseModel):
 
         return cls(**{key: val for key, val in data.items() if val is not None})
 
+    @classmethod
+    def from_file(
+        cls,
+        path: str | Path = "~/.config/ebay-cli/config.json",
+        *,
+        signing_key_file: str | Path | None = None,
+    ) -> EbayConfig:
+        """Load an ebay-cli style ``config.json``.
+
+        Credentials live under a ``credentials`` object (or at the top level) with the
+        aliases ebay-cli uses: ``app_id``/``client_id``, ``cert_id``/``client_secret``,
+        ``ru_name``/``redirect_uri``, ``granted_scopes``/``scopes``. Top-level
+        ``environment`` ("sandbox"/"production") and ``marketplace_default`` map to
+        ``sandbox`` and ``marketplace_id``. A ``signing-key.json`` next to the config is
+        picked up automatically; pass ``signing_key_file`` to point elsewhere.
+        """
+        config_path = Path(path).expanduser()
+        raw = json.loads(config_path.read_text())
+        creds = raw.get("credentials", raw)
+        if not isinstance(creds, dict):
+            raise ValueError(f"Config file {config_path} has no usable 'credentials' object")
+
+        def alias(*names: str) -> Any:
+            return next((creds[name] for name in names if creds.get(name)), None)
+
+        scopes = alias("granted_scopes", "scopes")
+        data: dict[str, Any] = {
+            "app_id": alias("app_id", "client_id"),
+            "cert_id": alias("cert_id", "client_secret"),
+            "dev_id": alias("dev_id"),
+            "ru_name": alias("ru_name", "redirect_uri"),
+            "refresh_token": alias("refresh_token"),
+            "marketplace_id": raw.get("marketplace_default"),
+        }
+        if raw.get("environment"):
+            data["sandbox"] = raw["environment"] == "sandbox"
+        if scopes:
+            data["scopes"] = tuple(scopes.split()) if isinstance(scopes, str) else tuple(scopes)
+
+        if signing_key_file is None:
+            sibling = config_path.with_name("signing-key.json")
+            signing_key_file = sibling if sibling.exists() else None
+        if signing_key_file is not None:
+            data["signing"] = EbaySigningConfig.from_key_file(signing_key_file)
+
+        return cls(**{key: val for key, val in data.items() if val is not None})
+
     def api_root(self, subdomain: str = "api") -> str:
         if self.base_url_override:
             return self.base_url_override.rstrip("/")

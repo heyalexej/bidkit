@@ -76,20 +76,13 @@ def keyset_env(app_id: str) -> str | None:
 
 
 def load_config(args: argparse.Namespace) -> EbayConfig:
-    creds: dict = {}
     config_path = Path(args.config).expanduser()
-    if config_path.exists():
-        raw = json.loads(config_path.read_text())
-        creds = raw.get("credentials", raw)
+    base = EbayConfig.from_file(config_path) if config_path.exists() else EbayConfig()
 
-    app_id = args.app_id or creds.get("app_id") or creds.get("client_id")
-    cert_id = args.cert_id or creds.get("cert_id") or creds.get("client_secret")
-    ru_name = args.ru_name or creds.get("ru_name") or creds.get("redirect_uri")
-    if args.scopes:
-        scopes = tuple(args.scopes.split())
-    else:
-        granted = creds.get("granted_scopes") or creds.get("scopes") or []
-        scopes = tuple(granted.split()) if isinstance(granted, str) else tuple(granted)
+    app_id = args.app_id or base.app_id
+    cert_id = args.cert_id or base.client_secret
+    ru_name = args.ru_name or base.ru_name
+    scopes = tuple(args.scopes.split()) if args.scopes else base.scopes
 
     if not (app_id and cert_id and ru_name and scopes):
         raise SystemExit("Need app_id, cert_id, ru_name and scopes (via config or flags).")

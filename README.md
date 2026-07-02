@@ -325,8 +325,12 @@ Top-level `environment` and `marketplace_default` are convenience hints. `~/.con
 signing-key.json` (`jwe` + `privateKeyPem`, optional `cipher`) feeds the Finances signing layer
 and maps to `EbaySigningConfig.from_key_file(...)`.
 
-These fields map directly onto `EbayConfig` / `EbaySigningConfig` if you construct the client in
-code instead.
+`EbayConfig.from_file()` loads this format directly (aliases, `environment`,
+`marketplace_default`, and a sibling `signing-key.json` included):
+
+```python
+client = EbayClient(EbayConfig.from_file())   # ~/.config/ebay-cli/config.json
+```
 
 ## License
 
