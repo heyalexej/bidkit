@@ -44,6 +44,10 @@ dev = [
   "ruff>=0.8",
   "ty>=0.0.1",
 ]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
 
 # The eBay OpenAPI specs are committed for regeneration and review, but they are
 # (c) eBay Inc. under the eBay API License Agreement and are deliberately kept out

@@ -8,3 +8,4 @@ build/
 *.egg-info/
 specs/normalized/
 .coverage
+site/
