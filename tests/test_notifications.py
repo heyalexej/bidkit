@@ -115,6 +115,37 @@ def test_async_verifier_matches_sync_behavior() -> None:
     assert key_requests["n"] == 1
 
 
+def test_verifier_fetches_keys_with_app_credentials_even_on_a_seller_client() -> None:
+    """getPublicKey is an application-token endpoint; a user-token client wired into the
+    verifier must be scoped down to client-credentials + base scope for key fetches."""
+    private_key, single_line = _keypair()
+    token_grants: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/oauth2/token"):
+            token_grants.append(request.content.decode())
+            return httpx.Response(200, json={"access_token": "tok", "expires_in": 7200})
+        return httpx.Response(
+            200, json={"key": single_line, "algorithm": "ECDSA", "digest": "SHA1"}
+        )
+
+    seller_client = EbayClient(
+        EbayConfig(
+            app_id="app",
+            cert_id="cert",
+            refresh_token="v^1.seller",
+            scopes=("https://api.ebay.com/oauth/api_scope/sell.inventory",),
+        ),
+        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+    verifier = NotificationVerifier(seller_client)
+
+    assert verifier.verify(BODY, _signature_header(private_key, BODY)) is True
+    assert len(token_grants) == 1
+    assert "grant_type=client_credentials" in token_grants[0]
+    assert "sell.inventory" not in token_grants[0]
+
+
 def test_challenge_response_matches_ebays_documented_computation() -> None:
     # sha256(challengeCode + verificationToken + endpoint), hex, in that exact order.
     result = challenge_response(
