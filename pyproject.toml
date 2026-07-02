@@ -38,7 +38,7 @@ Issues = "https://github.com/heyalexej/bidkit/issues"
 
 [project.optional-dependencies]
 dev = [
-  "datamodel-code-generator[http]>=0.31",
+  "datamodel-code-generator[http]>=0.66.3",
   "pytest>=8.0",
   "pytest-cov>=7.1.0",
   "ruff>=0.8",
