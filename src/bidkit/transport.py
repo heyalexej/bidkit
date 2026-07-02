@@ -234,6 +234,10 @@ class EbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
+        # An explicitly-set config timeout (e.g. via with_options) wins over the
+        # shared httpx client's default; otherwise the client's own timeout applies.
+        if "timeout" in self.config.model_fields_set:
+            body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -295,6 +299,10 @@ class EbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
+        # An explicitly-set config timeout (e.g. via with_options) wins over the
+        # shared httpx client's default; otherwise the client's own timeout applies.
+        if "timeout" in self.config.model_fields_set:
+            body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -372,6 +380,10 @@ class AsyncEbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
+        # An explicitly-set config timeout (e.g. via with_options) wins over the
+        # shared httpx client's default; otherwise the client's own timeout applies.
+        if "timeout" in self.config.model_fields_set:
+            body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):
@@ -433,6 +445,10 @@ class AsyncEbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
+        # An explicitly-set config timeout (e.g. via with_options) wins over the
+        # shared httpx client's default; otherwise the client's own timeout applies.
+        if "timeout" in self.config.model_fields_set:
+            body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
         for attempt in range(self.config.max_retries + 1):

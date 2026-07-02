@@ -38,6 +38,12 @@ def _seed_user_tokens(config: EbayConfig, auth: EbayAuth, tokens: OAuthTokens) -
     auth.cache.set(auth._cache_key(), tokens.to_token_data())
 
 
+def _overridden_config(config: EbayConfig, overrides: Mapping[str, Any]) -> EbayConfig:
+    """Re-validate the explicitly-set fields plus ``overrides`` into a new config."""
+    data = {name: getattr(config, name) for name in config.model_fields_set}
+    return EbayConfig(**{**data, **overrides})
+
+
 if TYPE_CHECKING:
     from .generated.resources import (
         AsyncBuyNamespace,
@@ -82,6 +88,22 @@ class EbayClient:
     @classmethod
     def from_env(cls) -> EbayClient:
         return cls(EbayConfig.from_env())
+
+    def with_options(self, **overrides: Any) -> EbayClient:
+        """A scoped client with config fields overridden, e.g.::
+
+            client.with_options(timeout=5.0, max_retries=0).sell.inventory.get_offers(...)
+
+        The returned client shares this client's HTTP connection pool and token cache
+        (no new connections, no re-auth); closing it is a no-op, and any
+        :class:`EbayConfig` field (``timeout``, ``max_retries``, ``marketplace_id``,
+        ``retry_backoff``, ...) can be overridden.
+        """
+        return type(self)(
+            _overridden_config(self.config, overrides),
+            http_client=self.http,
+            token_cache=self.auth.cache,
+        )
 
     def authorization_url(
         self,
@@ -146,6 +168,14 @@ class AsyncEbayClient:
     @classmethod
     def from_env(cls) -> AsyncEbayClient:
         return cls(EbayConfig.from_env())
+
+    def with_options(self, **overrides: Any) -> AsyncEbayClient:
+        """A scoped client with config fields overridden — see :meth:`EbayClient.with_options`."""
+        return type(self)(
+            _overridden_config(self.config, overrides),
+            http_client=self.http,
+            token_cache=self.auth.cache,
+        )
 
     def authorization_url(
         self,
