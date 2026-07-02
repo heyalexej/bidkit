@@ -162,3 +162,8 @@ def test_paginate_async_follows_next_url() -> None:
         assert skus == ["a", "b"]
 
     asyncio.run(run())
+
+
+def test_paginate_stops_on_empty_body_response() -> None:
+    """Endpoints like findEligibleItems return 204/no body -> the method yields None."""
+    assert list(paginate(lambda **kwargs: None)) == []

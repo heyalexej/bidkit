@@ -105,6 +105,8 @@ def paginate(
     seen_offsets: set[str] = set()
     while True:
         model = method(*args, **kwargs)
+        if model is None:  # endpoints return an empty body when nothing matches
+            return
         items = getattr(model, _collection_field(model, items_field), None) or []
         for item in items:
             yield item
@@ -127,6 +129,8 @@ async def paginate_async(
     seen_offsets: set[str] = set()
     while True:
         model = await method(*args, **kwargs)
+        if model is None:  # endpoints return an empty body when nothing matches
+            return
         items = getattr(model, _collection_field(model, items_field), None) or []
         for item in items:
             yield item
