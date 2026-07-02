@@ -132,13 +132,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--spec-dir", type=Path, default=Path("specs/ebay"))
     parser.add_argument("--package-dir", type=Path, default=Path("src/ebay_sdk"))
+    # Generator intermediate only; kept outside the package tree so it can never
+    # end up in a built wheel or sdist.
+    parser.add_argument("--normalized-dir", type=Path, default=Path("specs/normalized"))
     args = parser.parse_args()
 
     spec_dir = args.spec_dir.resolve()
     package_dir = args.package_dir.resolve()
     generated_dir = package_dir / "generated"
     models_dir = generated_dir / "models"
-    normalized_specs_dir = generated_dir / "specs"
+    normalized_specs_dir = args.normalized_dir.resolve()
     models_dir.mkdir(parents=True, exist_ok=True)
     normalized_specs_dir.mkdir(parents=True, exist_ok=True)
 
