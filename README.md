@@ -151,10 +151,27 @@ EbayConfig(
 ```
 
 For a scoped override, `client.with_options(max_retries=0, timeout=5.0)` returns a client
-sharing the same connection pool and token cache with those fields changed. eBay does not
-send quota headers on responses; remaining call quota is queried via
-`client.developer.analytics.get_rate_limits()` (application quota) or
-`get_user_rate_limits()` (per-user quota).
+sharing the same connection pool and token cache with those fields changed.
+
+### Call quota
+
+eBay does not send quota headers on responses; remaining quota lives behind two Developer
+Analytics lookups, which need **different token types**:
+
+```python
+# Application quota: requires an application token (client-credentials, base scope)
+app = client.with_options(refresh_token=None, scopes=("https://api.ebay.com/oauth/api_scope",))
+for rl in app.developer.analytics.get_rate_limits().rate_limits or []:
+    ...
+
+# Per-user quota: requires the user token (a client configured with refresh_token)
+for rl in client.developer.analytics.get_user_rate_limits().rate_limits or []:
+    ...
+```
+
+Tip: fetch unfiltered and filter client-side — the `api_context`/`api_name` server-side
+filters are case-sensitive and unreliable, and eBay's payload mixes casings
+(`"Sell"`, `"commerce"`, `"TradingAPI"`).
 
 ## Logging
 
