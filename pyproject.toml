@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling>=1.25"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
@@ -9,6 +9,7 @@ description = "A modern, typed Python SDK for the eBay REST APIs (unofficial)."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
+license-files = ["LICENSE", "NOTICE"]
 authors = [{ name = "bidkit contributors" }]
 keywords = ["ebay", "sdk", "api", "rest", "sell", "buy", "commerce", "marketplace"]
 classifiers = [

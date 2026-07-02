@@ -1,0 +1,15 @@
+bidkit — a modern, typed Python SDK for the eBay REST APIs (unofficial)
+
+Copyright (c) 2026 bidkit contributors
+Licensed under the MIT License (see LICENSE).
+
+This project is not affiliated with, sponsored by, or endorsed by eBay Inc.
+"eBay" is a trademark of eBay Inc., used here only to refer to the services
+this SDK communicates with.
+
+The OpenAPI contract files under specs/ are (c) eBay Inc. and are provided
+under the eBay API License Agreement
+(https://developer.ebay.com/join/api-license-agreement). They are NOT covered
+by this project's MIT license and are excluded from all published artifacts.
+Documentation text embedded in generated code (docstrings and field
+descriptions) derives from those contracts and remains (c) eBay Inc.

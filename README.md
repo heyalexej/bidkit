@@ -1,6 +1,10 @@
 # bidkit
 
-This is a new generator-backed Python SDK prototype for eBay APIs.
+A modern, typed Python SDK for the eBay REST APIs — sync and async, generated from eBay's
+OpenAPI contracts.
+
+> **Unofficial.** This project is not affiliated with or endorsed by eBay Inc. "eBay" is a
+> trademark of eBay Inc. See [NOTICE](NOTICE).
 
 Design goals:
 
