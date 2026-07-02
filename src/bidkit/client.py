@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any
 import httpx
 
 from .auth import EbayAuth, OAuthTokens, TokenCache
-from .config import EbayConfig
+from .config import DEFAULT_TIMEOUT, EbayConfig
 from .errors import EbayConfigError
 from .transport import AsyncEbayTransport, EbayTransport
 
@@ -70,7 +70,7 @@ class EbayClient:
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
         self._owns_http = http_client is None
-        self.http = http_client or httpx.Client(timeout=self.config.timeout)
+        self.http = http_client or httpx.Client(timeout=self.config.timeout or DEFAULT_TIMEOUT)
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = EbayTransport(self.config, self.auth, self.http)
 
@@ -154,7 +154,7 @@ class AsyncEbayClient:
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
         self._owns_http = http_client is None
-        self.http = http_client or httpx.AsyncClient(timeout=self.config.timeout)
+        self.http = http_client or httpx.AsyncClient(timeout=self.config.timeout or DEFAULT_TIMEOUT)
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = AsyncEbayTransport(self.config, self.auth, self.http)
 

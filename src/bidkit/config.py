@@ -1,13 +1,19 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from pathlib import Path
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr, ValidationError
 
 SecretValue = SecretStr | str
+
+logger = logging.getLogger("bidkit.config")
+
+# Timeout for HTTP clients the SDK creates itself when EbayConfig.timeout is unset.
+DEFAULT_TIMEOUT = 30.0
 
 
 class EbaySigningConfig(BaseModel):
@@ -43,7 +49,11 @@ class EbaySigningConfig(BaseModel):
         private_key = data.get("privateKeyPem") or data.get("privateKey")
         if not data.get("jwe") or not private_key:
             raise ValueError(f"Signing key file {path} is missing 'jwe' and/or a private key")
-        digest = data.get("cipher") or "sha256"
+        # ebay-cli files sometimes put the KEY algorithm (e.g. "ED25519") in
+        # "cipher"; only sha256/sha512 are content-digest choices, anything else
+        # falls back to the default.
+        raw_digest = str(data.get("cipher") or "").lower()
+        digest: Literal["sha256", "sha512"] = "sha512" if raw_digest == "sha512" else "sha256"
         return cls(jwe=data["jwe"], private_key=private_key, digest=digest)
 
 
@@ -67,7 +77,9 @@ class EbayConfig(BaseModel):
 
     signing: EbaySigningConfig | None = None
 
-    timeout: float = Field(default=30.0, gt=0)
+    # None means "use the HTTP client's own timeout" (30 s for SDK-created clients);
+    # a set value is applied per request and wins over an injected client's default.
+    timeout: float | None = Field(default=None, gt=0)
     base_url_override: str | None = None
 
     # Retry policy for transient responses (429 + transient 5xx) and connection errors.
@@ -96,8 +108,9 @@ class EbayConfig(BaseModel):
             "refresh_token": value("REFRESH_TOKEN"),
             "base_url_override": value("BASE_URL"),
         }
-        if value("SANDBOX") is not None:
-            data["sandbox"] = value("SANDBOX") in {"1", "true", "TRUE", "yes", "YES"}
+        sandbox = value("SANDBOX")
+        if sandbox is not None:
+            data["sandbox"] = sandbox.strip().lower() in {"1", "true", "yes", "on"}
         if scopes:
             data["scopes"] = tuple(scope for scope in scopes.split() if scope)
 
@@ -157,11 +170,18 @@ class EbayConfig(BaseModel):
         if scopes:
             data["scopes"] = tuple(scopes.split()) if isinstance(scopes, str) else tuple(scopes)
 
-        if signing_key_file is None:
-            sibling = config_path.with_name("signing-key.json")
-            signing_key_file = sibling if sibling.exists() else None
         if signing_key_file is not None:
+            # Explicitly requested: let a broken file raise.
             data["signing"] = EbaySigningConfig.from_key_file(signing_key_file)
+        else:
+            sibling = config_path.with_name("signing-key.json")
+            if sibling.exists():
+                # Auto-detected: best effort, since most flows never need signing
+                # and a stub or foreign-format file must not break config loading.
+                try:
+                    data["signing"] = EbaySigningConfig.from_key_file(sibling)
+                except (ValueError, ValidationError) as exc:
+                    logger.warning("ignoring unusable signing key file %s: %s", sibling, exc)
 
         return cls(**{key: val for key, val in data.items() if val is not None})
 

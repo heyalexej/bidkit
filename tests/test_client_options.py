@@ -49,6 +49,34 @@ def test_with_options_timeout_applies_per_request() -> None:
     assert seen[1].extensions.get("timeout") != override
 
 
+def test_round_tripped_config_does_not_clobber_injected_client_timeout() -> None:
+    """Serializing a config (model_dump/validate) must not turn the timeout default
+    into a per-request override that beats an injected client's own timeout."""
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={})
+
+    original = EbayConfig(access_token="token")
+    round_tripped = EbayConfig(**original.model_dump())
+    client = EbayClient(
+        round_tripped,
+        http_client=httpx.Client(
+            transport=httpx.MockTransport(handler),
+            timeout=httpx.Timeout(connect=2.0, read=120.0, write=10.0, pool=5.0),
+        ),
+    )
+    client.buy.browse.get_item("v1|1|0", raw_response=True)
+
+    assert "timeout" not in seen[0].extensions or seen[0].extensions["timeout"] == {
+        "connect": 2.0,
+        "read": 120.0,
+        "write": 10.0,
+        "pool": 5.0,
+    }
+
+
 def test_with_options_overrides_marketplace_header() -> None:
     seen: list[httpx.Request] = []
 

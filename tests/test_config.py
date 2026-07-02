@@ -146,6 +146,46 @@ def test_from_file_canonical_names_and_defaults(
     assert config.signing is None  # no sibling signing-key.json
 
 
+def test_sandbox_env_accepts_common_truthy_spellings(monkeypatch: pytest.MonkeyPatch) -> None:
+    _clear_ebay_env(monkeypatch)
+    for raw, expected in [
+        ("True", True),
+        ("YES", True),
+        ("on", True),
+        ("1", True),
+        ("false", False),
+        ("0", False),
+    ]:
+        monkeypatch.setenv("EBAY_SANDBOX", raw)
+        assert EbayConfig.from_env().sandbox is expected, raw
+
+
+def test_from_file_ignores_unusable_sibling_signing_key(
+    tmp_path_factory: pytest.TempPathFactory,
+) -> None:
+    config_dir = tmp_path_factory.mktemp("ebay-cli")
+    (config_dir / "config.json").write_text('{"credentials": {"app_id": "a", "cert_id": "c"}}')
+    (config_dir / "signing-key.json").write_text('{"jwe": "only-jwe, no key"}')
+
+    config = EbayConfig.from_file(config_dir / "config.json")
+
+    assert config.signing is None  # best-effort skip, not a crash
+
+    with pytest.raises(ValueError):  # explicit request still raises
+        EbayConfig.from_file(
+            config_dir / "config.json", signing_key_file=config_dir / "signing-key.json"
+        )
+
+
+def test_key_file_cipher_naming_key_algorithm_falls_back_to_sha256(
+    tmp_path_factory: pytest.TempPathFactory,
+) -> None:
+    key_file = tmp_path_factory.mktemp("keys") / "signing-key.json"
+    key_file.write_text('{"jwe": "j", "privateKeyPem": "p", "cipher": "ED25519"}')
+
+    assert EbaySigningConfig.from_key_file(key_file).digest == "sha256"
+
+
 def test_from_file_missing_file_raises() -> None:
     with pytest.raises(FileNotFoundError):
         EbayConfig.from_file("/nonexistent/config.json")

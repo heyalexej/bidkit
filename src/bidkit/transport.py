@@ -234,9 +234,9 @@ class EbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # An explicitly-set config timeout (e.g. via with_options) wins over the
-        # shared httpx client's default; otherwise the client's own timeout applies.
-        if "timeout" in self.config.model_fields_set:
+        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # client's default; None (the default) inherits the client's own timeout.
+        if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
@@ -299,9 +299,9 @@ class EbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # An explicitly-set config timeout (e.g. via with_options) wins over the
-        # shared httpx client's default; otherwise the client's own timeout applies.
-        if "timeout" in self.config.model_fields_set:
+        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # client's default; None (the default) inherits the client's own timeout.
+        if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
@@ -380,9 +380,9 @@ class AsyncEbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # An explicitly-set config timeout (e.g. via with_options) wins over the
-        # shared httpx client's default; otherwise the client's own timeout applies.
-        if "timeout" in self.config.model_fields_set:
+        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # client's default; None (the default) inherits the client's own timeout.
+        if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
@@ -445,9 +445,9 @@ class AsyncEbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # An explicitly-set config timeout (e.g. via with_options) wins over the
-        # shared httpx client's default; otherwise the client's own timeout applies.
-        if "timeout" in self.config.model_fields_set:
+        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # client's default; None (the default) inherits the client's own timeout.
+        if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
         response: httpx.Response | None = None
