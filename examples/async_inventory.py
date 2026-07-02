@@ -15,7 +15,7 @@ from bidkit import AsyncEbayClient, EbayConfig, paginate_async
 async def main() -> None:
     async with AsyncEbayClient(EbayConfig.from_env()) as client:
         async for item in paginate_async(
-            client.sell.inventory.get_inventory_items, limit="100", max_items=300
+            client.sell.inventory.get_inventory_items, limit=100, max_items=300
         ):
             title = item.product.title if item.product else "?"
             print(f"{item.sku}  {title}")

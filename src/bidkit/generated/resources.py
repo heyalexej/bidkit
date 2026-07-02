@@ -105,10 +105,10 @@ class BuyBrowseResource(BaseResource):
     }
 
     @overload
-    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items by various query parameters and retrieves summaries of
         the items. You can search by keyword, category, eBay product ID (ePID), or GTIN, charity ID,
         or a combination of these. Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
@@ -126,10 +126,10 @@ class BuyBrowseResource(BaseResource):
         )
 
     @overload
-    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
         with other available filters. To get the Base64 image string, you can use sites such as
@@ -261,10 +261,10 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     }
 
     @overload
-    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items by various query parameters and retrieves summaries of
         the items. You can search by keyword, category, eBay product ID (ePID), or GTIN, charity ID,
         or a combination of these. Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
@@ -282,10 +282,10 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
         )
 
     @overload
-    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[False] = False) -> buy_browse_models.SearchPagedCollection: ...
     @overload
-    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
         with other available filters. To get the Base64 image string, you can use sites such as
@@ -417,10 +417,10 @@ class BuyDealResource(BaseResource):
     }
 
     @overload
-    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.DealItemSearchResponse: ...
+    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.DealItemSearchResponse: ...
     @overload
-    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
+    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
         """This method retrieves a paginated set of deal items. The result set contains all deal items
         associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
@@ -459,10 +459,10 @@ class BuyDealResource(BaseResource):
         )
 
     @overload
-    def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventSearchResponse: ...
+    def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventSearchResponse: ...
     @overload
-    def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
+    def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
         """This method returns paginated results containing all eBay events for the specified
         marketplace. This method can return a maximum of 10,000 items. For a list of supported sites
         and other restrictions, see Buy API Requirements .
@@ -479,10 +479,10 @@ class BuyDealResource(BaseResource):
         )
 
     @overload
-    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventItemSearchResponse: ...
+    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventItemSearchResponse: ...
     @overload
-    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
+    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
         """This method returns a paginated set of event items. The result set contains all event items
         associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
@@ -510,10 +510,10 @@ class AsyncBuyDealResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.DealItemSearchResponse: ...
+    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.DealItemSearchResponse: ...
     @overload
-    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
+    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
         """This method retrieves a paginated set of deal items. The result set contains all deal items
         associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
@@ -552,10 +552,10 @@ class AsyncBuyDealResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventSearchResponse: ...
+    async def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventSearchResponse: ...
     @overload
-    async def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
+    async def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_events(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
         """This method returns paginated results containing all eBay events for the specified
         marketplace. This method can return a maximum of 10,000 items. For a list of supported sites
         and other restrictions, see Buy API Requirements .
@@ -572,10 +572,10 @@ class AsyncBuyDealResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventItemSearchResponse: ...
+    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[False] = False) -> buy_deal_models.EventItemSearchResponse: ...
     @overload
-    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
+    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
         """This method returns a paginated set of event items. The result set contains all event items
         associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
@@ -869,10 +869,10 @@ class BuyMarketingResource(BaseResource):
     }
 
     @overload
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketing_models.BestSellingProductResponse: ...
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketing_models.BestSellingProductResponse: ...
     @overload
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.BestSellingProductResponse | httpx.Response:
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.BestSellingProductResponse | httpx.Response:
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
@@ -943,10 +943,10 @@ class AsyncBuyMarketingResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketing_models.BestSellingProductResponse: ...
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketing_models.BestSellingProductResponse: ...
     @overload
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.BestSellingProductResponse | httpx.Response:
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.BestSellingProductResponse | httpx.Response:
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
@@ -1017,10 +1017,10 @@ class BuyMarketplaceInsightsResource(BaseResource):
     }
 
     @overload
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketplace_insights_models.BestSellingProductResponse: ...
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketplace_insights_models.BestSellingProductResponse: ...
     @overload
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketplace_insights_models.BestSellingProductResponse | httpx.Response:
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketplace_insights_models.BestSellingProductResponse | httpx.Response:
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
@@ -1048,10 +1048,10 @@ class AsyncBuyMarketplaceInsightsResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketplace_insights_models.BestSellingProductResponse: ...
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> buy_marketplace_insights_models.BestSellingProductResponse: ...
     @overload
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketplace_insights_models.BestSellingProductResponse | httpx.Response:
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_merchandised_products(self, *, category_id: str, metric_name: str, aspect_filter: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketplace_insights_models.BestSellingProductResponse | httpx.Response:
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
@@ -2102,10 +2102,10 @@ class CommerceCatalogResource(BaseResource):
         )
 
     @overload
-    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: Literal[False] = False) -> commerce_catalog_models.ProductSearchResponse: ...
+    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: Literal[False] = False) -> commerce_catalog_models.ProductSearchResponse: ...
     @overload
-    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: bool = False) -> commerce_catalog_models.ProductSearchResponse | httpx.Response:
+    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: bool = False) -> commerce_catalog_models.ProductSearchResponse | httpx.Response:
         """This method searches for and retrieves summaries of one or more products in the eBay catalog
         that match the search criteria provided by a seller. The seller can use the summaries to
         select the product in the eBay catalog that corresponds to the item that the seller wants to
@@ -2154,10 +2154,10 @@ class AsyncCommerceCatalogResource(AsyncBaseResource):
         )
 
     @overload
-    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: Literal[False] = False) -> commerce_catalog_models.ProductSearchResponse: ...
+    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: Literal[False] = False) -> commerce_catalog_models.ProductSearchResponse: ...
     @overload
-    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: str | None = None, mpn: str | None = None, offset: str | None = None, q: str | None = None, raw_response: bool = False) -> commerce_catalog_models.ProductSearchResponse | httpx.Response:
+    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def search(self, *, x_ebay_c_marketplace_id: str | None = None, aspect_filter: str | None = None, category_ids: str | None = None, fieldgroups: str | None = None, gtin: str | None = None, limit: int | str | None = None, mpn: str | None = None, offset: int | str | None = None, q: str | None = None, raw_response: bool = False) -> commerce_catalog_models.ProductSearchResponse | httpx.Response:
         """This method searches for and retrieves summaries of one or more products in the eBay catalog
         that match the search criteria provided by a seller. The seller can use the summaries to
         select the product in the eBay catalog that corresponds to the item that the seller wants to
@@ -2205,10 +2205,10 @@ class CommerceCharityResource(BaseResource):
         )
 
     @overload
-    def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_charity_models.CharitySearchResponse: ...
+    def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_charity_models.CharitySearchResponse: ...
     @overload
-    def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
+    def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
         """This call is used to search for supported charitable organizations. It allows users to
         search for a specific charitable organization, or for multiple charitable organizations,
         from a particular charitable domain and/or geographical region, or by using search criteria.
@@ -2257,10 +2257,10 @@ class AsyncCommerceCharityResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_charity_models.CharitySearchResponse: ...
+    async def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_charity_models.CharitySearchResponse: ...
     @overload
-    async def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
+    async def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_charity_orgs(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
         """This call is used to search for supported charitable organizations. It allows users to
         search for a specific charitable organization, or for multiple charitable organizations,
         from a particular charitable domain and/or geographical region, or by using search criteria.
@@ -2289,10 +2289,10 @@ class CommerceFeedbackResource(BaseResource):
     }
 
     @overload
-    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.AwaitingFeedbackResponse: ...
+    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.AwaitingFeedbackResponse: ...
     @overload
-    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.AwaitingFeedbackResponse | httpx.Response:
+    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.AwaitingFeedbackResponse | httpx.Response:
         """This method retrieves line items awaiting feedback from the user's order partner. You can
         refine the results using optional filter query parameters, such as item ID, username, or
         user role in the transaction. Sorting and pagination features help organize and navigate
@@ -2311,10 +2311,10 @@ class CommerceFeedbackResource(BaseResource):
         )
 
     @overload
-    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.GetFeedbackResponse: ...
+    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.GetFeedbackResponse: ...
     @overload
-    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
+    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
         """This method enables users to retrieve feedback for any specified user ID and feedback type
         (sent or received). You can refine the results using optional query parameters such as its
         feedback ID, listing ID, or order line item ID or by applying one or more filters. Applying
@@ -2408,10 +2408,10 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.AwaitingFeedbackResponse: ...
+    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.AwaitingFeedbackResponse: ...
     @overload
-    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.AwaitingFeedbackResponse | httpx.Response:
+    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_items_awaiting_feedback(self, *, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.AwaitingFeedbackResponse | httpx.Response:
         """This method retrieves line items awaiting feedback from the user's order partner. You can
         refine the results using optional filter query parameters, such as item ID, username, or
         user role in the transaction. Sorting and pagination features help organize and navigate
@@ -2430,10 +2430,10 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.GetFeedbackResponse: ...
+    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_feedback_models.GetFeedbackResponse: ...
     @overload
-    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
+    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: int | str | None = None, listing_id: str | None = None, offset: int | str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
         """This method enables users to retrieve feedback for any specified user ID and feedback type
         (sent or received). You can refine the results using optional query parameters such as its
         feedback ID, listing ID, or order line item ID or by applying one or more filters. Applying
@@ -3210,10 +3210,10 @@ class CommerceMessageResource(BaseResource):
         )
 
     @overload
-    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetMessagesByConversationIdResponse: ...
+    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetMessagesByConversationIdResponse: ...
     @overload
-    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
+    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
         """This method can be used to retrieve messages within a specific conversation. The
         conversation_id of the conversation for which to retrieve messages is required as a path
         parameter and the conversation_type of the conversation is required as a query parameter.
@@ -3230,10 +3230,10 @@ class CommerceMessageResource(BaseResource):
         )
 
     @overload
-    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetAllMyConversationsResponse: ...
+    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetAllMyConversationsResponse: ...
     @overload
-    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
+    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
         """This method can be used to retrieve one or more conversations associated with a user. The
         conversation_type query parameter is required when using this method to specify if the
         retrieved conversations are from eBay or from members. The result set can also optionally be
@@ -3327,10 +3327,10 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetMessagesByConversationIdResponse: ...
+    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetMessagesByConversationIdResponse: ...
     @overload
-    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
+    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
         """This method can be used to retrieve messages within a specific conversation. The
         conversation_id of the conversation for which to retrieve messages is required as a path
         parameter and the conversation_type of the conversation is required as a query parameter.
@@ -3347,10 +3347,10 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetAllMyConversationsResponse: ...
+    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_message_models.GetAllMyConversationsResponse: ...
     @overload
-    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
+    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: int | str | None = None, offset: int | str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
         """This method can be used to retrieve one or more conversations associated with a user. The
         conversation_type query parameter is required when using this method to specify if the
         retrieved conversations are from eBay or from members. The result set can also optionally be
@@ -3458,10 +3458,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.DestinationSearchResponse: ...
+    def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.DestinationSearchResponse: ...
     @overload
-    def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.DestinationSearchResponse | httpx.Response:
+    def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.DestinationSearchResponse | httpx.Response:
         """This method allows applications to retrieve a paginated collection of destination resources
         and related details. The details include the destination names, statuses, and
         configurations, including the endpoints and verification tokens.
@@ -3584,10 +3584,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.SubscriptionSearchResponse: ...
+    def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.SubscriptionSearchResponse: ...
     @overload
-    def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
+    def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
         """This method allows applications to retrieve a list of all subscriptions. The list returned
         is a paginated collection of subscription resources. Subscriptions allow applications to
         express interest in notifications and keep receiving the information relevant to their
@@ -3836,10 +3836,10 @@ class CommerceNotificationResource(BaseResource):
         )
 
     @overload
-    def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.TopicSearchResponse: ...
+    def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.TopicSearchResponse: ...
     @overload
-    def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
+    def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
         """This method returns a paginated collection of all supported topics, along with the details
         for the topics. This information includes supported schema versions, formats, and other
         metadata for the topics. Applications can subscribe to any of the topics for a supported
@@ -3905,10 +3905,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.DestinationSearchResponse: ...
+    async def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.DestinationSearchResponse: ...
     @overload
-    async def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_destinations(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.DestinationSearchResponse | httpx.Response:
+    async def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_destinations(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.DestinationSearchResponse | httpx.Response:
         """This method allows applications to retrieve a paginated collection of destination resources
         and related details. The details include the destination names, statuses, and
         configurations, including the endpoints and verification tokens.
@@ -4031,10 +4031,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.SubscriptionSearchResponse: ...
+    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.SubscriptionSearchResponse: ...
     @overload
-    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
+    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_subscriptions(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
         """This method allows applications to retrieve a list of all subscriptions. The list returned
         is a paginated collection of subscription resources. Subscriptions allow applications to
         express interest in notifications and keep receiving the information relevant to their
@@ -4283,10 +4283,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.TopicSearchResponse: ...
+    async def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_notification_models.TopicSearchResponse: ...
     @overload
-    async def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
+    async def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_topics(self, *, continuation_token: str | None = None, limit: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
         """This method returns a paginated collection of all supported topics, along with the details
         for the topics. This information includes supported schema versions, formats, and other
         metadata for the topics. Applications can subscribe to any of the topics for a supported
@@ -4806,10 +4806,10 @@ class CommerceVeroResource(BaseResource):
         )
 
     @overload
-    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportStatusResponse: ...
+    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportStatusResponse: ...
     @overload
-    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportStatusResponse | httpx.Response:
+    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportStatusResponse | httpx.Response:
         """Retrieves status for VERO infringement reports by Brand."""
         return self._request(
             'getVeroReportItems',
@@ -4920,10 +4920,10 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportStatusResponse: ...
+    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> commerce_vero_models.VeroReportStatusResponse: ...
     @overload
-    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportStatusResponse | httpx.Response:
+    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_vero_report_items(self, *, filter: str | None = None, item_id: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportStatusResponse | httpx.Response:
         """Retrieves status for VERO infringement reports by Brand."""
         return await self._request(
             'getVeroReportItems',
@@ -7458,10 +7458,10 @@ class SellAccountV1Resource(BaseResource):
         )
 
     @overload
-    def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SubscriptionResponse: ...
+    def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SubscriptionResponse: ...
     @overload
-    def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SubscriptionResponse | httpx.Response:
+    def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SubscriptionResponse | httpx.Response:
         """This method retrieves a list of subscriptions associated with the seller account."""
         return self._request(
             'getSubscription',
@@ -8212,10 +8212,10 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         )
 
     @overload
-    async def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SubscriptionResponse: ...
+    async def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_account_v1_models.SubscriptionResponse: ...
     @overload
-    async def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_subscription(self, *, limit: str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SubscriptionResponse | httpx.Response:
+    async def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_subscription(self, *, limit: int | str | None = None, continuation_token: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SubscriptionResponse | httpx.Response:
         """This method retrieves a list of subscriptions associated with the seller account."""
         return await self._request(
             'getSubscription',
@@ -9020,10 +9020,10 @@ class SellComplianceResource(BaseResource):
         )
 
     @overload
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
+    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
     @overload
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx.Response:
+    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx.Response:
         """This call returns specific listing violations for the supported listing compliance types.
         Only one compliance type can be passed in per call, and the response will include all the
         listing violations for this compliance type, and listing violations are grouped together by
@@ -9095,10 +9095,10 @@ class AsyncSellComplianceResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
+    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
     @overload
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: str | None = None, listing_id: str | None = None, limit: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx.Response:
+    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx.Response:
         """This call returns specific listing violations for the supported listing compliance types.
         Only one compliance type can be passed in per call, and the response will include all the
         listing violations for this compliance type, and listing violations are grouped together by
@@ -9210,10 +9210,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
         )
 
     @overload
-    def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses: ...
+    def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses: ...
     @overload
-    def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
+    def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve information about the EU Authorized
         Representative (AR) agent(s) associated with a seller's eDIS account. An EU AR agent acts as
@@ -9232,10 +9232,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
         )
 
     @overload
-    def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses: ...
+    def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses: ...
     @overload
-    def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
+    def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method is used to retrieve all battery qualifications associated with your
         eDIS account. This includes the type, electronic qualification ID and name, and expiration
@@ -9402,10 +9402,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
         )
 
     @overload
-    def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses: ...
+    def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses: ...
     @overload
-    def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
+    def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve metadata for one or more drop-off sites
         associated with a seller's eDIS account. Pagination query parameters are provided that allow
@@ -9681,10 +9681,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
         )
 
     @overload
-    def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses: ...
+    def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses: ...
     @overload
-    def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
+    def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve metadata on available shipping services, such
         as the name, description, and directions.
@@ -9793,10 +9793,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses: ...
+    async def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses: ...
     @overload
-    async def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
+    async def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_agents(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve information about the EU Authorized
         Representative (AR) agent(s) associated with a seller's eDIS account. An EU AR agent acts as
@@ -9815,10 +9815,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses: ...
+    async def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses: ...
     @overload
-    async def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
+    async def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_battery_qualifications(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method is used to retrieve all battery qualifications associated with your
         eDIS account. This includes the type, electronic qualification ID and name, and expiration
@@ -9985,10 +9985,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses: ...
+    async def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses: ...
     @overload
-    async def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
+    async def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_dropoff_sites(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve metadata for one or more drop-off sites
         associated with a seller's eDIS account. Pagination query parameters are provided that allow
@@ -10264,10 +10264,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses: ...
+    async def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses: ...
     @overload
-    async def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
+    async def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_services(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
         account. This method can be used to retrieve metadata on available shipping services, such
         as the name, description, and directions.
@@ -10315,10 +10315,10 @@ class SellFeedResource(BaseResource):
     }
 
     @overload
-    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.OrderTaskCollection: ...
+    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.OrderTaskCollection: ...
     @overload
-    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
+    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
         """This method returns the details and status for an array of order tasks. Rather than using a
         request payload, it does this through specified input in query parameters, such as feed_type
         or schedule_id . Specifying both feed_type and schedule_id results in an error. Since
@@ -10379,10 +10379,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.InventoryTaskCollection: ...
+    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.InventoryTaskCollection: ...
     @overload
-    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTaskCollection | httpx.Response:
+    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTaskCollection | httpx.Response:
         """This method searches for multiple tasks of a specific feed type and includes date filters
         and pagination.
         """
@@ -10440,10 +10440,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.UserScheduleCollection: ...
+    def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.UserScheduleCollection: ...
     @overload
-    def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
+    def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedules based on
         the specified feed_type . Use this method to find a schedule if you do not know the
         schedule_id .
@@ -10595,10 +10595,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.ScheduleTemplateCollection: ...
+    def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.ScheduleTemplateCollection: ...
     @overload
-    def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
+    def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedule templates
         based on the specified feed_type . Use this method to find a schedule template if you do not
         know the schedule_template_id .
@@ -10615,10 +10615,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.TaskCollection: ...
+    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.TaskCollection: ...
     @overload
-    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
+    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
         """This method returns the details and status for an array of tasks based on a specified
         feed_type or schedule_id . Specifying both feed_type and schedule_id results in an error.
         Since schedules are based on feed types, you can specify a schedule ( schedule_id ) that
@@ -10763,10 +10763,10 @@ class SellFeedResource(BaseResource):
         )
 
     @overload
-    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.CustomerServiceMetricTaskCollection: ...
+    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.CustomerServiceMetricTaskCollection: ...
     @overload
-    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
+    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
         """Use this method to return an array of customer service metric tasks. You can limit the tasks
         returned by specifying a date range. Note: You can pass in either the look_back_days or
         date_range , but not both.
@@ -10834,10 +10834,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.OrderTaskCollection: ...
+    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.OrderTaskCollection: ...
     @overload
-    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
+    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
         """This method returns the details and status for an array of order tasks. Rather than using a
         request payload, it does this through specified input in query parameters, such as feed_type
         or schedule_id . Specifying both feed_type and schedule_id results in an error. Since
@@ -10898,10 +10898,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.InventoryTaskCollection: ...
+    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.InventoryTaskCollection: ...
     @overload
-    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTaskCollection | httpx.Response:
+    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_inventory_tasks(self, *, feed_type: str | None = None, schedule_id: str | None = None, look_back_days: str | None = None, date_range: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTaskCollection | httpx.Response:
         """This method searches for multiple tasks of a specific feed type and includes date filters
         and pagination.
         """
@@ -10959,10 +10959,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.UserScheduleCollection: ...
+    async def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.UserScheduleCollection: ...
     @overload
-    async def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
+    async def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_schedules(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedules based on
         the specified feed_type . Use this method to find a schedule if you do not know the
         schedule_id .
@@ -11114,10 +11114,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.ScheduleTemplateCollection: ...
+    async def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.ScheduleTemplateCollection: ...
     @overload
-    async def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
+    async def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_schedule_templates(self, *, feed_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedule templates
         based on the specified feed_type . Use this method to find a schedule template if you do not
         know the schedule_template_id .
@@ -11134,10 +11134,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.TaskCollection: ...
+    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.TaskCollection: ...
     @overload
-    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
+    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
         """This method returns the details and status for an array of tasks based on a specified
         feed_type or schedule_id . Specifying both feed_type and schedule_id results in an error.
         Since schedules are based on feed types, you can specify a schedule ( schedule_id ) that
@@ -11282,10 +11282,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.CustomerServiceMetricTaskCollection: ...
+    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_feed_models.CustomerServiceMetricTaskCollection: ...
     @overload
-    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
+    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: int | str | None = None, look_back_days: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
         """Use this method to return an array of customer service metric tasks. You can limit the tasks
         returned by specifying a date range. Note: You can pass in either the look_back_days or
         date_range , but not both.
@@ -11354,10 +11354,10 @@ class SellFinancesResource(BaseResource):
     }
 
     @overload
-    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.OrderEarnings: ...
+    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.OrderEarnings: ...
     @overload
-    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarnings | httpx.Response:
+    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarnings | httpx.Response:
         """This method returns detailed order-level financial data for each order associated with a
         seller account. The returned order-level financial data includes order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
@@ -11440,10 +11440,10 @@ class SellFinancesResource(BaseResource):
         )
 
     @overload
-    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Payouts: ...
+    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Payouts: ...
     @overload
-    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
+    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11506,10 +11506,10 @@ class SellFinancesResource(BaseResource):
         )
 
     @overload
-    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Transactions: ...
+    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Transactions: ...
     @overload
-    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
+    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11572,10 +11572,10 @@ class SellFinancesResource(BaseResource):
         )
 
     @overload
-    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.BillingActivityResponse: ...
+    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.BillingActivityResponse: ...
     @overload
-    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
+    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11605,10 +11605,10 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     }
 
     @overload
-    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.OrderEarnings: ...
+    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.OrderEarnings: ...
     @overload
-    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarnings | httpx.Response:
+    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_order_earnings(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarnings | httpx.Response:
         """This method returns detailed order-level financial data for each order associated with a
         seller account. The returned order-level financial data includes order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
@@ -11691,10 +11691,10 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Payouts: ...
+    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Payouts: ...
     @overload
-    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
+    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11757,10 +11757,10 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Transactions: ...
+    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.Transactions: ...
     @overload
-    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
+    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11823,10 +11823,10 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.BillingActivityResponse: ...
+    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_finances_models.BillingActivityResponse: ...
     @overload
-    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
+    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
         """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
@@ -11877,10 +11877,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.OrderSearchPagedCollection: ...
+    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.OrderSearchPagedCollection: ...
     @overload
-    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.OrderSearchPagedCollection | httpx.Response:
+    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.OrderSearchPagedCollection | httpx.Response:
         """Use this method to search for and retrieve one or more orders based on their creation date,
         last modification date, or fulfillment status using the filter parameter. You can
         alternatively specify a list of orders using the orderIds parameter. Include the optional
@@ -12043,10 +12043,10 @@ class SellFulfillmentResource(BaseResource):
         )
 
     @overload
-    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.DisputeSummaryResponse: ...
+    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.DisputeSummaryResponse: ...
     @overload
-    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.DisputeSummaryResponse | httpx.Response:
+    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.DisputeSummaryResponse | httpx.Response:
         """Search Payment Dispute by Filters"""
         return self._request(
             'getPaymentDisputeSummaries',
@@ -12182,10 +12182,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.OrderSearchPagedCollection: ...
+    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.OrderSearchPagedCollection: ...
     @overload
-    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.OrderSearchPagedCollection | httpx.Response:
+    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_orders(self, *, field_groups: str | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, order_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.OrderSearchPagedCollection | httpx.Response:
         """Use this method to search for and retrieve one or more orders based on their creation date,
         last modification date, or fulfillment status using the filter parameter. You can
         alternatively specify a list of orders using the orderIds parameter. Include the optional
@@ -12348,10 +12348,10 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.DisputeSummaryResponse: ...
+    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_fulfillment_models.DisputeSummaryResponse: ...
     @overload
-    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.DisputeSummaryResponse | httpx.Response:
+    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_payment_dispute_summaries(self, *, order_id: str | None = None, buyer_username: str | None = None, open_date_from: str | None = None, open_date_to: str | None = None, payment_dispute_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.DisputeSummaryResponse | httpx.Response:
         """Search Payment Dispute by Filters"""
         return await self._request(
             'getPaymentDisputeSummaries',
@@ -12591,10 +12591,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.InventoryItems: ...
+    def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.InventoryItems: ...
     @overload
-    def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItems | httpx.Response:
+    def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItems | httpx.Response:
         """This call retrieves all inventory item records defined for the seller's account. The limit
         query parameter allows the seller to control how many records are returned per page, and the
         offset query parameter is used to retrieve a specific page of records. The seller can make
@@ -12864,10 +12864,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.Offers: ...
+    def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.Offers: ...
     @overload
-    def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
+    def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
         """This call retrieves all existing offers for the specified SKU value. The seller has the
         option of limiting the offers that are retrieved to a specific eBay marketplace, or to a
         listing format. Note: At this time, the same SKU value can not be offered across multiple
@@ -13185,10 +13185,10 @@ class SellInventoryResource(BaseResource):
         )
 
     @overload
-    def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.LocationResponse: ...
+    def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.LocationResponse: ...
     @overload
-    def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
+    def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
         """This call retrieves all defined details for every inventory location associated with the
         seller's account. There are no required parameters for this call and no request payload.
         However, there are two optional query parameters, limit and offset .
@@ -13361,10 +13361,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.InventoryItems: ...
+    async def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.InventoryItems: ...
     @overload
-    async def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_inventory_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItems | httpx.Response:
+    async def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_inventory_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItems | httpx.Response:
         """This call retrieves all inventory item records defined for the seller's account. The limit
         query parameter allows the seller to control how many records are returned per page, and the
         offset query parameter is used to retrieve a specific page of records. The seller can make
@@ -13634,10 +13634,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.Offers: ...
+    async def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.Offers: ...
     @overload
-    async def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
+    async def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_offers(self, *, sku: str, format: str | None = None, limit: int | str | None = None, marketplace_id: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
         """This call retrieves all existing offers for the specified SKU value. The seller has the
         option of limiting the offers that are retrieved to a specific eBay marketplace, or to a
         listing format. Note: At this time, the same SKU value can not be offered across multiple
@@ -13955,10 +13955,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.LocationResponse: ...
+    async def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_inventory_models.LocationResponse: ...
     @overload
-    async def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
+    async def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_inventory_locations(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
         """This call retrieves all defined details for every inventory location associated with the
         seller's account. There are no required parameters for this call and no request payload.
         However, there are two optional query parameters, limit and offset .
@@ -14648,10 +14648,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdPagedCollectionResponse: ...
+    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdPagedCollectionResponse: ...
     @overload
-    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
+    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
         """This method retrieves Promoted Listings ads that are associated with listings created with
         either the Trading API or the Inventory API . The method retrieves ads related to the
         specified campaign. Specify the Promoted Listings campaign to target with the campaign_id
@@ -14823,10 +14823,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdGroupPagedCollectionResponse: ...
+    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdGroupPagedCollectionResponse: ...
     @overload
-    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
+    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
         """This method retrieves ad groups for the specified campaign. Each campaign can only have one
         ad group. In the request, supply the campaign_id as the path parameter. Call getCampaigns to
         retrieve a list of the current campaign IDs for a seller.
@@ -14970,10 +14970,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CampaignPagedCollectionResponse: ...
+    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CampaignPagedCollectionResponse: ...
     @overload
-    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CampaignPagedCollectionResponse | httpx.Response:
+    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CampaignPagedCollectionResponse | httpx.Response:
         """This method retrieves the details for all of the seller's defined campaigns. Request
         parameters can be used to retrieve a specific campaign, such as the campaign's name, the
         start and end date, the channel, the status, and the funding model (i.e., Cost Per Sale
@@ -15183,10 +15183,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedAdsPagedCollection: ...
+    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedAdsPagedCollection: ...
     @overload
-    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedAdsPagedCollection | httpx.Response:
+    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedAdsPagedCollection | httpx.Response:
         """This method allows sellers to obtain ideas for listings, which can be targeted for Promoted
         Listings campaigns.
         """
@@ -15356,10 +15356,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.KeywordPagedCollectionResponse: ...
+    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.KeywordPagedCollectionResponse: ...
     @overload
-    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
+    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the keywords for ad groups in priority strategy
         campaigns that use the Cost Per Click (CPC) funding model. In the request, specify the
         campaign_id as a path parameter. If one or more ad_group_ids are passed in the request body,
@@ -15486,10 +15486,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse: ...
+    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse: ...
     @overload
-    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
+    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the negative keywords for ad groups in priority
         strategy campaigns that use the Cost Per Click (CPC) funding model. The results can be
         filtered using the campaign_ids , ad_group_ids , and negative_keyword_status query
@@ -15645,10 +15645,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ReportTaskPagedCollection: ...
+    def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ReportTaskPagedCollection: ...
     @overload
-    def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
+    def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
         """This method returns information on all the existing report tasks related to a seller. Use
         the report_task_statuses query parameter to control which reports to return. You can
         paginate the result set by specifying a limit , which dictates how many report tasks to
@@ -15906,10 +15906,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ItemsPagedCollection: ...
+    def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ItemsPagedCollection: ...
     @overload
-    def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
+    def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -15928,10 +15928,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsPagedCollection: ...
+    def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsPagedCollection: ...
     @overload
-    def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
+    def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -15993,10 +15993,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsReportPagedCollection: ...
+    def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsReportPagedCollection: ...
     @overload
-    def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
+    def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -16037,10 +16037,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignsResponse: ...
+    def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignsResponse: ...
     @overload
-    def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
+    def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
         """This method retrieves a list of email campaigns from a seller's eBay store. Users can filter
         the results by email campaign type , email campaign status , and marketplace ID using the q
         query parameter.
@@ -16142,10 +16142,10 @@ class SellMarketingResource(BaseResource):
         )
 
     @overload
-    def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse: ...
+    def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse: ...
     @overload
-    def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
+    def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
         """This method retrieves all available email newsletter audiences for the email campaign type
         specified by the emailCampaignType path parameter. Use the optional limit and offset path
         parameters to paginate the results and to control which records are returned, respectively.
@@ -16390,10 +16390,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdPagedCollectionResponse: ...
+    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdPagedCollectionResponse: ...
     @overload
-    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
+    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: int | str | None = None, listing_ids: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
         """This method retrieves Promoted Listings ads that are associated with listings created with
         either the Trading API or the Inventory API . The method retrieves ads related to the
         specified campaign. Specify the Promoted Listings campaign to target with the campaign_id
@@ -16565,10 +16565,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdGroupPagedCollectionResponse: ...
+    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.AdGroupPagedCollectionResponse: ...
     @overload
-    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
+    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
         """This method retrieves ad groups for the specified campaign. Each campaign can only have one
         ad group. In the request, supply the campaign_id as the path parameter. Call getCampaigns to
         retrieve a list of the current campaign IDs for a seller.
@@ -16712,10 +16712,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CampaignPagedCollectionResponse: ...
+    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.CampaignPagedCollectionResponse: ...
     @overload
-    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: str | None = None, offset: str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CampaignPagedCollectionResponse | httpx.Response:
+    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_campaigns(self, *, campaign_name: str | None = None, campaign_status: str | None = None, campaign_targeting_types: str | None = None, channels: str | None = None, end_date_range: str | None = None, funding_strategy: str | None = None, limit: int | str | None = None, offset: int | str | None = None, start_date_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CampaignPagedCollectionResponse | httpx.Response:
         """This method retrieves the details for all of the seller's defined campaigns. Request
         parameters can be used to retrieve a specific campaign, such as the campaign's name, the
         start and end date, the channel, the status, and the funding model (i.e., Cost Per Sale
@@ -16925,10 +16925,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedAdsPagedCollection: ...
+    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.TargetedAdsPagedCollection: ...
     @overload
-    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedAdsPagedCollection | httpx.Response:
+    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def suggest_items(self, campaign_id: str, *, category_ids: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.TargetedAdsPagedCollection | httpx.Response:
         """This method allows sellers to obtain ideas for listings, which can be targeted for Promoted
         Listings campaigns.
         """
@@ -17098,10 +17098,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.KeywordPagedCollectionResponse: ...
+    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.KeywordPagedCollectionResponse: ...
     @overload
-    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
+    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the keywords for ad groups in priority strategy
         campaigns that use the Cost Per Click (CPC) funding model. In the request, specify the
         campaign_id as a path parameter. If one or more ad_group_ids are passed in the request body,
@@ -17228,10 +17228,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse: ...
+    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse: ...
     @overload
-    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
+    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: int | str | None = None, negative_keyword_status: str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the negative keywords for ad groups in priority
         strategy campaigns that use the Cost Per Click (CPC) funding model. The results can be
         filtered using the campaign_ids , ad_group_ids , and negative_keyword_status query
@@ -17387,10 +17387,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ReportTaskPagedCollection: ...
+    async def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ReportTaskPagedCollection: ...
     @overload
-    async def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
+    async def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_report_tasks(self, *, limit: int | str | None = None, offset: int | str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
         """This method returns information on all the existing report tasks related to a seller. Use
         the report_task_statuses query parameter to control which reports to return. You can
         paginate the result set by specifying a limit , which dictates how many report tasks to
@@ -17648,10 +17648,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ItemsPagedCollection: ...
+    async def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.ItemsPagedCollection: ...
     @overload
-    async def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
+    async def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_listing_set(self, promotion_id: str, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -17670,10 +17670,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsPagedCollection: ...
+    async def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsPagedCollection: ...
     @overload
-    async def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
+    async def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_promotions(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -17735,10 +17735,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsReportPagedCollection: ...
+    async def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.PromotionsReportPagedCollection: ...
     @overload
-    async def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
+    async def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_promotion_reports(self, *, marketplace_id: str, limit: int | str | None = None, offset: int | str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
         product name change, but note that no API interface changes have been made. This method
@@ -17779,10 +17779,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignsResponse: ...
+    async def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignsResponse: ...
     @overload
-    async def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
+    async def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_email_campaigns(self, *, limit: int | str | None = None, offset: int | str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
         """This method retrieves a list of email campaigns from a seller's eBay store. Users can filter
         the results by email campaign type , email campaign status , and marketplace ID using the q
         query parameter.
@@ -17884,10 +17884,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         )
 
     @overload
-    async def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse: ...
+    async def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse: ...
     @overload
-    async def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
+    async def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def get_audiences(self, *, email_campaign_type: str, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
         """This method retrieves all available email newsletter audiences for the email campaign type
         specified by the emailCampaignType path parameter. Use the optional limit and offset path
         parameters to paginate the results and to control which records are returned, respectively.
@@ -19171,10 +19171,10 @@ class SellNegotiationResource(BaseResource):
     }
 
     @overload
-    def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.PagedEligibleItemCollection: ...
+    def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.PagedEligibleItemCollection: ...
     @overload
-    def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
+    def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
         """This method evaluates a seller's current listings and returns the set of IDs that are
         eligible for a seller-initiated discount offer to a buyer. A listing ID is returned only
         when one or more buyers have shown an interest in the listing.
@@ -19223,10 +19223,10 @@ class AsyncSellNegotiationResource(AsyncBaseResource):
     }
 
     @overload
-    async def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.PagedEligibleItemCollection: ...
+    async def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_negotiation_models.PagedEligibleItemCollection: ...
     @overload
-    async def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
+    async def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def find_eligible_items(self, *, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
         """This method evaluates a seller's current listings and returns the set of IDs that are
         eligible for a seller-initiated discount offer to a buyer. A listing ID is returned only
         when one or more buyers have shown an interest in the listing.
@@ -19275,10 +19275,10 @@ class SellRecommendationResource(BaseResource):
     }
 
     @overload
-    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_recommendation_models.PagedListingRecommendationCollection: ...
+    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_recommendation_models.PagedListingRecommendationCollection: ...
     @overload
-    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
+    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
         """The find method currently returns information for a single recommendation type ( AD ) which
         contains information that sellers can use to configure Promoted Listings ad campaigns. The
         response from this method includes an array of the seller's listing IDs, where each element
@@ -19307,10 +19307,10 @@ class AsyncSellRecommendationResource(AsyncBaseResource):
     }
 
     @overload
-    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_recommendation_models.PagedListingRecommendationCollection: ...
+    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> sell_recommendation_models.PagedListingRecommendationCollection: ...
     @overload
-    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
-    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
+    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
+    async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: int | str | None = None, offset: int | str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
         """The find method currently returns information for a single recommendation type ( AD ) which
         contains information that sellers can use to configure Promoted Listings ad campaigns. The
         response from this method includes an array of the seller's listing IDs, where each element

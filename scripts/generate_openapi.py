@@ -1251,9 +1251,20 @@ def response_type(schema: dict[str, Any], service: Service) -> str:
     return "Any"
 
 
+# Query params eBay's specs type as strings but that are integers in practice; the
+# generated signatures accept ints so callers are not forced to write limit="50".
+_NUMERIC_STRING_PARAMS = frozenset({"limit", "offset"})
+
+
 def param_def(param: dict[str, Any], *, service: Service, required: bool) -> str:
     name = safe_identifier(snake_case(param["name"]))
     type_expr = schema_type(param.get("schema", {}), component_name_map(service))
+    if (
+        param.get("in") == "query"
+        and param.get("name") in _NUMERIC_STRING_PARAMS
+        and type_expr == "str"
+    ):
+        type_expr = "int | str"
     if required:
         return f"{name}: {type_expr}"
     return f"{name}: {type_expr} | None = None"

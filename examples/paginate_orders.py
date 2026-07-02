@@ -12,7 +12,7 @@ from bidkit import EbayClient, EbayConfig, paginate
 
 def main() -> None:
     with EbayClient(EbayConfig.from_env()) as client:
-        for order in paginate(client.sell.fulfillment.get_orders, limit="50", max_items=200):
+        for order in paginate(client.sell.fulfillment.get_orders, limit=50, max_items=200):
             total = order.pricing_summary.total if order.pricing_summary else None
             amount = f"{total.value} {total.currency}" if total else "?"
             print(f"{order.order_id}  {order.order_fulfillment_status}  {amount}")

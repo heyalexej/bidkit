@@ -37,7 +37,7 @@ uv add bidkit          # or: pip install bidkit
 from bidkit import EbayClient, EbayConfig
 
 client = EbayClient(EbayConfig(app_id="...", cert_id="..."))  # or EbayClient.from_env()
-results = client.buy.browse.search(q="vintage radio", limit="5")
+results = client.buy.browse.search(q="vintage radio", limit=5)
 for item in results.item_summaries or []:
     print(item.title, item.price.value if item.price else "?")
 ```
@@ -119,11 +119,11 @@ otherwise:
 ```python
 from bidkit import paginate
 
-for payout in paginate(client.sell.finances.get_payouts, limit="50"):
+for payout in paginate(client.sell.finances.get_payouts, limit=50):
     print(payout.payout_id)
 
 # async
-async for item in paginate_async(client.sell.inventory.get_inventory_items, limit="100"):
+async for item in paginate_async(client.sell.inventory.get_inventory_items, limit=100):
     ...
 ```
 
@@ -193,7 +193,7 @@ client = EbayClient(EbayConfig(
     refresh_token="...",
     signing=EbaySigningConfig(jwe="<jwe>", private_key="<pem>"),  # or .from_key_file(path)
 ))
-client.sell.finances.get_payouts(limit="3")  # signed; returns 200 instead of 403
+client.sell.finances.get_payouts(limit=3)  # signed; returns 200 instead of 403
 ```
 
 The `jwe` and key come from the Key Management API; Ed25519 (eBay's default) and RSA keys are
