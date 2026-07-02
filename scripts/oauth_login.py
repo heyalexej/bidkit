@@ -82,7 +82,14 @@ def load_config(args: argparse.Namespace) -> EbayConfig:
     app_id = args.app_id or base.app_id
     cert_id = args.cert_id or base.client_secret
     ru_name = args.ru_name or base.ru_name
-    scopes = tuple(args.scopes.split()) if args.scopes else base.scopes
+    # Only trust config-provided scopes; EbayConfig's default base scope would
+    # silently mint an under-scoped refresh token.
+    if args.scopes:
+        scopes = tuple(args.scopes.split())
+    elif "scopes" in base.model_fields_set:
+        scopes = base.scopes
+    else:
+        scopes = ()
 
     if not (app_id and cert_id and ru_name and scopes):
         raise SystemExit("Need app_id, cert_id, ru_name and scopes (via config or flags).")

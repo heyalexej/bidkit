@@ -8,7 +8,7 @@ transactions).
 Creds come from the ebay-cli skill config (~/.config/ebay-cli/config.json).
 Every op is GET / read-only. Run from the repo root:
 
-    uv run --extra dev scripts/smoke_de.py
+    uv run --extra dev scripts/maintainers/smoke_de.py
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 from pydantic import BaseModel, ValidationError  # noqa: E402
 
