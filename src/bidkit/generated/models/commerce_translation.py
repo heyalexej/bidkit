@@ -32,12 +32,12 @@ class Translation(EbayModel):
     original_text: str | None = Field(
         None,
         alias='originalText',
-        description='The original text, in the language specified in the <b>from</b> field, that was input into the <b>text</b> field in the request.',
+        description='The original text, in the language specified in the from field, that was input into the text field in the request.',
     )
     translated_text: str | None = Field(
         None,
         alias='translatedText',
-        description='The translation of the original text into the language specified in the <b>to</b> field.',
+        description='The translation of the original text into the language specified in the to field.',
     )
 
 
@@ -88,20 +88,20 @@ class TranslateRequest(EbayModel):
     from_: LanguageEnum | None = Field(
         None,
         alias='from',
-        description='The language of the input text to be translated. Not all <b>LanguageEnum</b> values are supported in this field. For a full list of supported language pairings, see the Supported languages <a href="/develop/guides-v2/other-apis-guide#supported-languages" target="_blank">table</a>.',
+        description='The language of the input text to be translated. Not all LanguageEnum values are supported in this field. For a full list of supported language pairings, see the Supported languages table .',
     )
     text: list[str] | None = Field(
         None,
-        description='The input text to translate. The maximum number of characters permitted is determined by the <b>translationContext</b> value:<ul><li><code>ITEM_TITLE</code>: 1000 characters maximum</li><li><code>ITEM_DESCRIPTION</code>: 20,000 characters maximum.<br><span class="tablenote"><b>Note:</b> When translating <code>ITEM_DESCRIPTION</code> text, HTML/CSS markup and links can be included and will not count toward this 20,000 character limit.</span></li></ul><span class="tablenote"><b>Note:</b> Currently, only one input string can be translated per API call. Support for multiple continuous text strings is expected in the future.</span>',
+        description='The input text to translate. The maximum number of characters permitted is determined by the translationContext value: ITEM_TITLE : 1000 characters maximum ITEM_DESCRIPTION : 20,000 characters maximum. Note: When translating ITEM_DESCRIPTION text, HTML/CSS markup and links can be included and will not count toward this 20,000 character limit.',
     )
     to: LanguageEnum | None = Field(
         None,
-        description='The target language for the translation of the input text. Not all <b>LanguageEnum</b> values are supported in this field. For a full list of supported language pairings, see the Supported languages <a href="/develop/guides-v2/other-apis-guide#supported-languages" target="_blank">table</a>.',
+        description='The target language for the translation of the input text. Not all LanguageEnum values are supported in this field. For a full list of supported language pairings, see the Supported languages table .',
     )
     translation_context: TranslationContextEnum | None = Field(
         None,
         alias='translationContext',
-        description='Input the listing entity to be translated.<br><br><b>Valid Values:</b> <code>ITEM_TITLE</code> and <code>ITEM_DESCRIPTION</code>.',
+        description='Input the listing entity to be translated. Valid Values: ITEM_TITLE and ITEM_DESCRIPTION .',
     )
 
 

@@ -14,20 +14,20 @@ class Amount(EbayModel):
     converted_from_currency: str | None = Field(
         None,
         alias='convertedFromCurrency',
-        description='A three-letter ISO 4217 code that indicates the currency of the amount in the <strong>convertedFromValue</strong> field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.',
+        description='A three-letter ISO 4217 code that indicates the currency of the amount in the convertedFromValue field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.',
     )
     converted_from_value: str | None = Field(
         None,
         alias='convertedFromValue',
-        description='The monetary amount before any conversion is performed in the currency specified by the <strong>convertedFromCurrency</strong> field. This value is required or returned only if currency conversion/localization is required. The value field contains the converted amount of this value in the currency specified by the <strong>currency</strong> field.',
+        description='The monetary amount before any conversion is performed in the currency specified by the convertedFromCurrency field. This value is required or returned only if currency conversion/localization is required. The value field contains the converted amount of this value in the currency specified by the currency field.',
     )
     currency: str | None = Field(
         None,
-        description='A three-letter ISO 4217 code that indicates the currency of the amount in the <strong>value</strong> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <strong>value</strong> field.',
+        description='A three-letter ISO 4217 code that indicates the currency of the amount in the value field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the value field.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount in the currency specified in the <strong>currency</strong> field. If currency conversion/localization is required, this value is the converted amount, and the <strong>convertedFromValue</strong> field contains the amount in the original currency.',
+        description='The monetary amount in the currency specified in the currency field. If currency conversion/localization is required, this value is the converted amount, and the convertedFromValue field contains the amount in the original currency.',
     )
 
 
@@ -141,7 +141,7 @@ class ClassifiedLeadResponses(EbayModel):
     additional_information: str | None = Field(
         None,
         alias='additionalInformation',
-        description='This field shows the first message that was sent from the prospective buyer to the seller. This will be the same content as in the <strong>memberMessageExchange.question.body</strong> field, if returned. <br><br><span class="tablenote"> <strong>Note:</strong> Retrieve the <strong>memberMessageExchange</strong> container to retrieve the entire exchange between the seller and the prospective buyer (all messages).</span>',
+        description='This field shows the first message that was sent from the prospective buyer to the seller. This will be the same content as in the memberMessageExchange.question.body field, if returned. Note: Retrieve the memberMessageExchange container to retrieve the entire exchange between the seller and the prospective buyer (all messages).',
     )
     contact_information: ContactInformation | None = Field(
         None,
@@ -155,12 +155,12 @@ class ClassifiedLeadResponses(EbayModel):
     external_email: str | None = Field(
         None,
         alias='externalEmail',
-        description='Email address for the prospective buyer as entered in the lead form on the <strong>View Item</strong> page. Provides a way for sellers to contact prospective buyers who choose not to log in to eBay. This applies only to eBay Motors and eBay Motors categories.',
+        description='Email address for the prospective buyer as entered in the lead form on the View Item page. Provides a way for sellers to contact prospective buyers who choose not to log in to eBay. This applies only to eBay Motors and eBay Motors categories.',
     )
     financing_answer: bool | None = Field(
         None,
         alias='financingAnswer',
-        description='Boolean that indicates if a prospective buyer answered whether or not they would like financing. Entered on the lead form on the <strong>View Item</strong> page. This applies only to eBay Motors and Motors categories.',
+        description='Boolean that indicates if a prospective buyer answered whether or not they would like financing. Entered on the lead form on the View Item page. This applies only to eBay Motors and Motors categories.',
     )
     lead_fee: LeadFee | None = Field(
         None,
@@ -175,7 +175,7 @@ class ClassifiedLeadResponses(EbayModel):
     member_message: MemberMessage | None = Field(
         None,
         alias='memberMessage',
-        description='Contains any mail message content shared between the seller and prospective buyer. <br><br>Only returned if the <strong>includeMessages</strong> boolean is <code>true</code>.',
+        description='Contains any mail message content shared between the seller and prospective buyer. Only returned if the includeMessages boolean is true .',
     )
     submitted_time: str | None = Field(
         None,
@@ -185,17 +185,17 @@ class ClassifiedLeadResponses(EbayModel):
     trade_in_make: str | None = Field(
         None,
         alias='tradeInMake',
-        description='The make of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the <strong>View Item</strong> page. This applies only to eBay Motors and eBay Motors categories.',
+        description='The make of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the View Item page. This applies only to eBay Motors and eBay Motors categories.',
     )
     trade_in_model: str | None = Field(
         None,
         alias='tradeInModel',
-        description='The model of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the <strong>View Item</strong> page. This applies only to eBay Motors and eBay Motors categories.',
+        description='The model of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the View Item page. This applies only to eBay Motors and eBay Motors categories.',
     )
     trade_in_year: str | None = Field(
         None,
         alias='tradeInYear',
-        description='The year of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the <strong>View Item</strong> page. This applies only to eBay Motors and eBay Motors categories.',
+        description='The year of the vehicle the prospective buyer would like to trade in. This is entered on the lead form on the View Item page. This applies only to eBay Motors and eBay Motors categories.',
     )
     user_id: str | None = Field(
         None,
@@ -211,7 +211,7 @@ class ClassifiedLead(EbayModel):
     item_title: str | None = Field(
         None,
         alias='itemTitle',
-        description='The title of the listing.<br><br><strong>Maximum length:</strong> 80',
+        description='The title of the listing. Maximum length: 80',
     )
     responses: list[ClassifiedLeadResponses] | None = Field(
         None, description='An array of the classified lead responses.'

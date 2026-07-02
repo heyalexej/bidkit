@@ -208,11 +208,11 @@ class Terms(EbayModel):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> value</b> field.<br /><br /><b> Default:</b> The currency of the authenticated user\'s country.',
+        description="The three-letter ISO 4217 code representing the currency of the amount in the value field. Default: The currency of the authenticated user's country.",
     )
     value: str | None = Field(
         None,
-        description='The monetary value, in the currency specified by the <b> currency</b> field.',
+        description='The monetary value, in the currency specified by the currency field.',
     )
 
 
@@ -303,14 +303,14 @@ class EventSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of items, from the current result set, returned on a single page.<br /><br /><b>Default:</b> <code>20</code>',
+        description='The maximum number of items, from the current result set, returned on a single page. Default: 20',
     )
     next: str | None = Field(
         None, description='The relative path to the next set of results.'
     )
     offset: int | None = Field(
         None,
-        description='The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Default:</b> <code>0</code>',
+        description='The number of items that will be skipped in the result set. This is used with the limit field to control the pagination of the output. For example, if the offset is set to 0 and the limit is set to 10 , the method will retrieve items 1 through 10 from the list of items returned.',
     )
     prev: str | None = Field(
         None, description='The relative path to the previous set of results.'
@@ -330,7 +330,7 @@ class MarketingPrice(EbayModel):
     discount_percentage: str | None = Field(
         None,
         alias='discountPercentage',
-        description='The percentage of the seller discount based on the value returned in the <b>originalPrice</b> field.',
+        description='The percentage of the seller discount based on the value returned in the originalPrice field.',
     )
     original_price: Amount | None = Field(
         None,
@@ -340,7 +340,7 @@ class MarketingPrice(EbayModel):
     price_treatment: PriceTreatmentEnum | None = Field(
         None,
         alias='priceTreatment',
-        description='The pricing treatment (discount) that was applied to the price of the item. <br /><br /><span class="tablenote"><b>Note: </b> The pricing treatment affects how and where the discounted price can be displayed.</span>',
+        description='The pricing treatment (discount) that was applied to the price of the item. Note: The pricing treatment affects how and where the discounted price can be displayed.',
     )
 
 
@@ -348,12 +348,12 @@ class ShippingOption(EbayModel):
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description='The final shipping cost for all items after all discounts are applied. <br /><br /><span class="tablenote"><b> Note: </b>The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see the VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT" target-"_blank">VAT Obligations in the EU</a>.</span>',
+        description='The final shipping cost for all items after all discounts are applied. Note: The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see the VAT-inclusive pricing.',
     )
     shipping_cost_type: str | None = Field(
         None,
         alias='shippingCostType',
-        description='The class of the shipping cost. <br /><br /><b> Valid Values: </b> <code>FIXED</code> or <code>CALCULATED</code> <br /><br />Code so that your app gracefully handles any future changes to this list. ',
+        description='The class of the shipping cost. Valid Values: FIXED or CALCULATED Code so that your app gracefully handles any future changes to this list.',
     )
 
 
@@ -409,7 +409,7 @@ class DealItem(EbayModel):
     item_group_id: str | None = Field(
         None,
         alias='itemGroupId',
-        description='The unique identifier for the deal item group. This is the parent item ID for the seller-defined variations.<br /><br /><span class="tablenote"><b>Note: </b>This field is returned for multiple-SKU items.</span>',
+        description='The unique identifier for the deal item group. This is the parent item ID for the seller-defined variations. Note: This field is returned for multiple-SKU items.',
     )
     item_group_type: ItemGroupTypeEnum | None = Field(
         None,
@@ -419,7 +419,7 @@ class DealItem(EbayModel):
     item_id: str | None = Field(
         None,
         alias='itemId',
-        description='The unique identifier for the deal item.<br /><br /><span class="tablenote"><b>Note: </b>This field is only returned for single-SKU items.</span>',
+        description='The unique identifier for the deal item. Note: This field is only returned for single-SKU items.',
     )
     item_web_url: str | None = Field(
         None, alias='itemWebUrl', description='The web URL for the deal item.'
@@ -436,7 +436,7 @@ class DealItem(EbayModel):
     )
     price: Amount | None = Field(
         None,
-        description='The price for the deal item. <br /><br /><span class="tablenote"><b> Note: </b>The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see the VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT" target="_blank">VAT Obligations in the EU</a>.</span>',
+        description='The price for the deal item. Note: The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see the VAT-inclusive pricing. For more information on VAT, refer to VAT Obligations in the EU .',
     )
     qualified_programs: list[ProgramEnum] | None = Field(
         None,
@@ -446,18 +446,18 @@ class DealItem(EbayModel):
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='The cost required to ship the deal item.<br><br><span class="tablenote"><b>Note:</b> For items with calculated shipping, this array is only returned if the <b>X-EBAY-C-ENDUSERCTX</b> header is supplied.</span>',
+        description='The cost required to ship the deal item. Note: For items with calculated shipping, this array is only returned if the X-EBAY-C-ENDUSERCTX header is supplied.',
     )
     title: str | None = Field(None, description='The title of the deal item.')
     unit_price: Amount | None = Field(
         None,
         alias='unitPrice',
-        description='The price per unit for the deal item. Some European countries require listings for certain types of products to include the price per unit so that buyers can accurately compare prices. <br /><br />For example: <br /><br /><code>"unitPricingMeasure": "100g",<br /> "unitPrice": {<br />&nbsp;&nbsp;"value": "7.99",<br />&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The price per unit for the deal item. Some European countries require listings for certain types of products to include the price per unit so that buyers can accurately compare prices. For example: "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     unit_pricing_measure: str | None = Field(
         None,
         alias='unitPricingMeasure',
-        description='The designation used to specify the quantity of the deal item, such as size, weight, volume, and count. This helps buyers compare prices. <br /><br />For example, the following tells the buyer that the item is 7.99 per 100 grams. <br /><br /><code>"unitPricingMeasure": "100g",<br /> "unitPrice": {<br />&nbsp;&nbsp;"value": "7.99",<br />&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The designation used to specify the quantity of the deal item, such as size, weight, volume, and count. This helps buyers compare prices. For example, the following tells the buyer that the item is 7.99 per 100 grams. "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
 
 
@@ -472,14 +472,14 @@ class DealItemSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of items, from the current result set, returned on a single page.<br /><br /><b>Default:</b> <code>20</code>',
+        description='The maximum number of items, from the current result set, returned on a single page. Default: 20',
     )
     next: str | None = Field(
         None, description='The relative path to the next set of results.'
     )
     offset: int | None = Field(
         None,
-        description='The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Default:</b> <code>0</code>',
+        description='The number of items that will be skipped in the result set. This is used with the limit field to control the pagination of the output. For example, if the offset is set to 0 and the limit is set to 10 , the method will retrieve items 1 through 10 from the list of items returned.',
     )
     prev: str | None = Field(
         None, description='The relative path to the previous set of results.'
@@ -524,7 +524,7 @@ class EventItem(EbayModel):
     item_group_id: str | None = Field(
         None,
         alias='itemGroupId',
-        description='The unique identifier for the event item group. This is the parent item ID for the seller-defined variations.<br /><br /><span class="tablenote"><b>Note: </b>This field is returned for multiple-SKU items.</span>',
+        description='The unique identifier for the event item group. This is the parent item ID for the seller-defined variations. Note: This field is returned for multiple-SKU items.',
     )
     item_group_type: ItemGroupTypeEnum | None = Field(
         None,
@@ -534,7 +534,7 @@ class EventItem(EbayModel):
     item_id: str | None = Field(
         None,
         alias='itemId',
-        description='The unique identifier for the event item.<br /><br /><span class="tablenote"><b>Note: </b>This field is only returned for single-SKU items.</span>',
+        description='The unique identifier for the event item. Note: This field is only returned for single-SKU items.',
     )
     item_web_url: str | None = Field(
         None, alias='itemWebUrl', description='The web URL for the event item.'
@@ -560,18 +560,18 @@ class EventItem(EbayModel):
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='The cost required to ship the event item.<br><br><span class="tablenote"><b>Note:</b> For items with calculated shipping, this array is only returned if the <b>X-EBAY-C-ENDUSERCTX</b> header is supplied.</span>',
+        description='The cost required to ship the event item. Note: For items with calculated shipping, this array is only returned if the X-EBAY-C-ENDUSERCTX header is supplied.',
     )
     title: str | None = Field(None, description='The title of the event item.')
     unit_price: Amount | None = Field(
         None,
         alias='unitPrice',
-        description='The price per unit for the event item. Some European countries require listings for certain types of products to include the price per unit so that buyers can accurately compare prices. <br /><br />For example: <br /><br /><code>"unitPricingMeasure": "100g",<br /> "unitPrice": {<br />&nbsp;&nbsp;"value": "7.99",<br />&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The price per unit for the event item. Some European countries require listings for certain types of products to include the price per unit so that buyers can accurately compare prices. For example: "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     unit_pricing_measure: str | None = Field(
         None,
         alias='unitPricingMeasure',
-        description='The designation used to specify the quantity of the event item, such as size, weight, volume, and count. This helps buyers compare prices. <br /><br />For example, the following tells the buyer that the item is 7.99 per 100 grams. <br /><br /><code>"unitPricingMeasure": "100g",<br /> "unitPrice": {<br />&nbsp;&nbsp;"value": "7.99",<br />&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The designation used to specify the quantity of the event item, such as size, weight, volume, and count. This helps buyers compare prices. For example, the following tells the buyer that the item is 7.99 per 100 grams. "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
 
 
@@ -586,14 +586,14 @@ class EventItemSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of items, from the current result set, returned on a single page.<br /><br /><b>Default:</b> <code>20</code>',
+        description='The maximum number of items, from the current result set, returned on a single page. Default: 20',
     )
     next: str | None = Field(
         None, description='The relative path to the next set of results.'
     )
     offset: int | None = Field(
         None,
-        description='The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Default:</b> <code>0</code>',
+        description='The number of items that will be skipped in the result set. This is used with the limit field to control the pagination of the output. For example, if the offset is set to 0 and the limit is set to 10 , the method will retrieve items 1 through 10 from the list of items returned.',
     )
     prev: str | None = Field(
         None, description='The relative path to the previous set of results.'

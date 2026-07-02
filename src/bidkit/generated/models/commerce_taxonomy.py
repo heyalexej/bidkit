@@ -14,22 +14,22 @@ class AncestorReference(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay ancestor category.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of a full default category tree includes the <b>categoryId</b> field, but its value should not be relied upon. It provides no useful information for application development.</span>',
+        description='The unique identifier of the eBay ancestor category. Note: The root node of a full default category tree includes the categoryId field, but its value should not be relied upon. It provides no useful information for application development.',
     )
     category_name: str | None = Field(
         None,
         alias='categoryName',
-        description='The name of the ancestor category identified by <b>categoryId</b>.',
+        description='The name of the ancestor category identified by categoryId .',
     )
     category_subtree_node_href: str | None = Field(
         None,
         alias='categorySubtreeNodeHref',
-        description='The href portion of the <b>getCategorySubtree</b> call that retrieves the subtree below the ancestor category node.',
+        description='The href portion of the getCategorySubtree call that retrieves the subtree below the ancestor category node.',
     )
     category_tree_node_level: int | None = Field(
         None,
         alias='categoryTreeNodeLevel',
-        description='The absolute level of the ancestor category node in the hierarchy of its category tree.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of any full category tree is always at level <code>0</code>. </span>',
+        description='The absolute level of the ancestor category node in the hierarchy of its category tree. Note: The root node of any full category tree is always at level 0 .',
     )
 
 
@@ -68,7 +68,7 @@ class BaseCategoryTree(EbayModel):
     category_tree_version: str | None = Field(
         None,
         alias='categoryTreeVersion',
-        description="The version of the category tree identified by <b>categoryTreeId</b>. It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
+        description="The version of the category tree identified by categoryTreeId . It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
     )
 
 
@@ -76,12 +76,12 @@ class Category(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay category within its category tree.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of a full default category tree includes the <b>categoryId</b> field, but its value should not be relied upon. It provides no useful information for application development. </span>',
+        description='The unique identifier of the eBay category within its category tree. Note: The root node of a full default category tree includes the categoryId field, but its value should not be relied upon. It provides no useful information for application development.',
     )
     category_name: str | None = Field(
         None,
         alias='categoryName',
-        description='The name of the category identified by <b>categoryId</b>.',
+        description='The name of the category identified by categoryId .',
     )
 
 
@@ -92,12 +92,12 @@ class CategorySuggestion(EbayModel):
     category_tree_node_ancestors: list[AncestorReference] | None = Field(
         None,
         alias='categoryTreeNodeAncestors',
-        description='An ordered list of category references that describes the location of the suggested category in the specified category tree. The list identifies the category\'s ancestry as a sequence of parent nodes, from the current node\'s immediate parent to the root node of the category tree.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of a full default category tree includes <b>categoryId</b> and <b>categoryName</b> fields, but their values should not be relied upon. They provide no useful information for application development.</span>',
+        description="An ordered list of category references that describes the location of the suggested category in the specified category tree. The list identifies the category's ancestry as a sequence of parent nodes, from the current node's immediate parent to the root node of the category tree.",
     )
     category_tree_node_level: int | None = Field(
         None,
         alias='categoryTreeNodeLevel',
-        description='The absolute level of the category tree node in the hierarchy of its category tree.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of any full category tree is always at level <code><b>0</b></code>.</span>',
+        description='The absolute level of the category tree node in the hierarchy of its category tree. Note: The root node of any full category tree is always at level 0 .',
     )
     relevancy: str | None = Field(
         None, description='This field is reserved for internal or future use.'
@@ -108,7 +108,7 @@ class CategorySuggestionResponse(EbayModel):
     category_suggestions: list[CategorySuggestion] | None = Field(
         None,
         alias='categorySuggestions',
-        description='Contains details about one or more suggested categories that correspond to the provided keywords. The array of suggested categories is sorted in order of eBay\'s confidence of the relevance of each category (the first category is the most relevant).<br><br><span class="tablenote"> <strong><span style="color:red">Important:</span></strong> This call is not supported in the Sandbox environment. It will return a response payload in which the <b>categoryName</b> fields contain random or boilerplate text regardless of the query submitted. </span>',
+        description="Contains details about one or more suggested categories that correspond to the provided keywords. The array of suggested categories is sorted in order of eBay's confidence of the relevance of each category (the first category is the most relevant). Important: This call is not supported in the Sandbox environment.",
     )
     category_tree_id: str | None = Field(
         None,
@@ -118,7 +118,7 @@ class CategorySuggestionResponse(EbayModel):
     category_tree_version: str | None = Field(
         None,
         alias='categoryTreeVersion',
-        description="The version of the category tree identified by <b>categoryTreeId</b>. It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
+        description="The version of the category tree identified by categoryTreeId . It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
     )
 
 
@@ -129,41 +129,41 @@ class CategoryTreeNode(EbayModel):
     category_tree_node_level: int | None = Field(
         None,
         alias='categoryTreeNodeLevel',
-        description='The absolute level of the current category tree node in the hierarchy of its category tree.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of any full category tree is always at level <code><b>0</b></code>. </span>',
+        description='The absolute level of the current category tree node in the hierarchy of its category tree. Note: The root node of any full category tree is always at level 0 .',
     )
     child_category_tree_nodes: list[CategoryTreeNode] | None = Field(
         None,
         alias='childCategoryTreeNodes',
-        description='An array of one or more category tree nodes that are the immediate children of the current category tree node, as well as their children, recursively down to the leaf nodes.<br><br><i>Returned only if</i> the current category tree node is not a leaf node (the value of <b>leafCategoryTreeNode</b> is <code>false</code>).',
+        description='An array of one or more category tree nodes that are the immediate children of the current category tree node, as well as their children, recursively down to the leaf nodes. Returned only if the current category tree node is not a leaf node (the value of leafCategoryTreeNode is false ).',
     )
     leaf_category_tree_node: bool | None = Field(
         None,
         alias='leafCategoryTreeNode',
-        description='A value of <code>true</code> indicates that the current category tree node is a leaf node (it has no child nodes). A value of <code>false</code> indicates that the current node has one or more child nodes, which are identified by the <b>childCategoryTreeNodes</b> array.<br><br><i>Returned only if</i> the value of this field is <code>true</code>.',
+        description='A value of true indicates that the current category tree node is a leaf node (it has no child nodes). A value of false indicates that the current node has one or more child nodes, which are identified by the childCategoryTreeNodes array. Returned only if the value of this field is true .',
     )
     parent_category_tree_node_href: str | None = Field(
         None,
         alias='parentCategoryTreeNodeHref',
-        description='The href portion of the <b>getCategorySubtree</b> call that retrieves the subtree below the parent of this category tree node.<br><br><i>Not returned if</i> the current category tree node is the root node of its tree.',
+        description='The href portion of the getCategorySubtree call that retrieves the subtree below the parent of this category tree node. Not returned if the current category tree node is the root node of its tree.',
     )
 
 
 class CompatibilityProperty(EbayModel):
     name: str | None = Field(
         None,
-        description="This is the actual name of the compatible vehicle property as it is known on the specified eBay marketplace and in the eBay category. This is the string value that should be used in the <strong>compatibility_property</strong> and <strong>filter</strong> query parameters of a <strong>getCompatibilityPropertyValues</strong> request URI. <br><br> Typical vehicle properties are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description='This is the actual name of the compatible vehicle property as it is known on the specified eBay marketplace and in the eBay category. This is the string value that should be used in the compatibility_property and filter query parameters of a getCompatibilityPropertyValues request URI.',
     )
     localized_name: str | None = Field(
         None,
         alias='localizedName',
-        description='This is the localized name of the compatible vehicle property. The language that is used will depend on the user making the call, or based on the language specified if the <strong>Content-Language</strong> HTTP header is used.<br><br>In some instances, the string value in this field may be the same as the string in the corresponding <strong>name</strong> field.',
+        description='This is the localized name of the compatible vehicle property. The language that is used will depend on the user making the call, or based on the language specified if the Content-Language HTTP header is used. In some instances, the string value in this field may be the same as the string in the corresponding name field.',
     )
 
 
 class CompatibilityPropertyValue(EbayModel):
     value: str | None = Field(
         None,
-        description='Each <strong>value</strong> field shows one applicable compatible vehicle property value. The values that are returned will depend on the specified eBay marketplace, specified eBay category, and filters in the request.',
+        description='Each value field shows one applicable compatible vehicle property value. The values that are returned will depend on the specified eBay marketplace, specified eBay category, and filters in the request.',
     )
 
 
@@ -181,7 +181,7 @@ class ExpiredCategory(EbayModel):
     to_category_id: str | None = Field(
         None,
         alias='toCategoryId',
-        description='The unique identifier of the currently active eBay leaf category that has replaced the expired leaf category.<br><br><span class="tablenote"><b>Note:</b> More than one <b>fromCategoryID</b> value may map into the same <b>toCategoryID</b> value, as multiple eBay categories may be consolidated into one new, expanded category.</span>',
+        description='The unique identifier of the currently active eBay leaf category that has replaced the expired leaf category. Note: More than one fromCategoryID value may map into the same toCategoryID value, as multiple eBay categories may be consolidated into one new, expanded category.',
     )
 
 
@@ -197,7 +197,7 @@ class GetCompatibilityPropertyValuesResponse(EbayModel):
     compatibility_property_values: list[CompatibilityPropertyValue] | None = Field(
         None,
         alias='compatibilityPropertyValues',
-        description="This array contains all compatible vehicle property values that match the specified eBay marketplace, specified eBay category, and filters in the request. If the <strong>compatibility_property</strong> parameter value in the request is 'Trim', each value returned in each <strong>value</strong> field will be a different vehicle trim, applicable to any filters that are set in the <string>filter</string> query parameter of the request, and also based on the eBay marketplace and category specified in the call request.",
+        description='This array contains all compatible vehicle property values that match the specified eBay marketplace, specified eBay category, and filters in the request.',
     )
 
 
@@ -232,23 +232,19 @@ class MarketplaceIdEnum(OpenStrEnum):
 
 class RangeValue(EbayModel):
     start: str | None = Field(
-        None, description='The <strong>RangeValue</strong> type is for future use.'
+        None, description='The RangeValue type is for future use.'
     )
-    end: str | None = Field(
-        None, description='The <strong>RangeValue</strong> type is for future use.'
-    )
+    end: str | None = Field(None, description='The RangeValue type is for future use.')
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description='The <strong>RangeValue</strong> type is for future use.',
+        description='The RangeValue type is for future use.',
     )
     exclusive_end: bool | None = Field(
-        None,
-        alias='exclusiveEnd',
-        description='The <strong>RangeValue</strong> type is for future use.',
+        None, alias='exclusiveEnd', description='The RangeValue type is for future use.'
     )
     range: bool | None = Field(
-        None, description='The <strong>RangeValue</strong> type is for future use.'
+        None, description='The RangeValue type is for future use.'
     )
 
 
@@ -277,7 +273,7 @@ class AspectConstraint(EbayModel):
     aspect_applicable_to: list[AspectApplicableToEnum] | None = Field(
         None,
         alias='aspectApplicableTo',
-        description='This value indicate if the aspect identified by the <b>aspects.localizedAspectName</b> field is a product aspect (relevant to catalog products in the category) or an item/instance aspect, which is an aspect whose value will vary based on a particular instance of the product.',
+        description='This value indicate if the aspect identified by the aspects.localizedAspectName field is a product aspect (relevant to catalog products in the category) or an item/instance aspect, which is an aspect whose value will vary based on a particular instance of the product.',
     )
     aspect_data_type: AspectDataTypeEnum | None = Field(
         None, alias='aspectDataType', description='The data type of this aspect.'
@@ -285,12 +281,12 @@ class AspectConstraint(EbayModel):
     aspect_enabled_for_variations: bool | None = Field(
         None,
         alias='aspectEnabledForVariations',
-        description='A value of <code>true</code> indicates that this aspect can be used to help identify item variations.',
+        description='A value of true indicates that this aspect can be used to help identify item variations.',
     )
     aspect_format: str | None = Field(
         None,
         alias='aspectFormat',
-        description='<i>Returned only if</i> the value of <b>aspectDataType</b> identifies a data type that requires specific formatting. Currently, this field provides formatting hints as follows: <ul> <li><b>DATE</b>: <code>YYYY</code>, <code>YYYYMM</code>, <code>YYYYMMDD</code></li> <li><b>NUMBER</b>: <code>int32</code>, <code>double</code></li> </ul>',
+        description='Returned only if the value of aspectDataType identifies a data type that requires specific formatting. Currently, this field provides formatting hints as follows: DATE : YYYY , YYYYMM , YYYYMMDD NUMBER : int32 , double',
     )
     aspect_max_length: int | None = Field(
         None,
@@ -300,32 +296,32 @@ class AspectConstraint(EbayModel):
     aspect_mode: AspectModeEnum | None = Field(
         None,
         alias='aspectMode',
-        description='The manner in which values of this aspect must be specified by the seller (as free text or by selecting from available options). ',
+        description='The manner in which values of this aspect must be specified by the seller (as free text or by selecting from available options).',
     )
     aspect_required: bool | None = Field(
         None,
         alias='aspectRequired',
-        description='A value of <code>true</code> indicates that this aspect is required when offering items in the specified category.',
+        description='A value of true indicates that this aspect is required when offering items in the specified category.',
     )
     aspect_usage: AspectUsageEnum | None = Field(
         None,
         alias='aspectUsage',
-        description='The enumeration value returned in this field will indicate if the corresponding aspect is recommended or optional.<br><br><span class="tablenote"> <strong>Note:</strong> This field is always returned, even for hard-mandated/required aspects (where <strong>aspectRequired</strong>: <code>true</code>). The value returned for required aspects will be <code>RECOMMENDED</code>, but they are actually required and a seller will be blocked from listing or revising an item without these aspects. </span>',
+        description='The enumeration value returned in this field will indicate if the corresponding aspect is recommended or optional. Note: This field is always returned, even for hard-mandated/required aspects (where aspectRequired : true ).',
     )
     expected_required_by_date: str | None = Field(
         None,
         alias='expectedRequiredByDate',
-        description='The expected date after which the aspect will be required.<br><br><span class="tablenote"> <strong>Note:</strong> The value returned in this field specifies only an approximate date, which may not reflect the actual date after which the aspect is required.</span>',
+        description='The expected date after which the aspect will be required. Note: The value returned in this field specifies only an approximate date, which may not reflect the actual date after which the aspect is required.',
     )
     item_to_aspect_cardinality: ItemToAspectCardinalityEnum | None = Field(
         None,
         alias='itemToAspectCardinality',
-        description='Indicates whether this aspect can accept single or multiple values for items in the specified category.<br><br><span class="tablenote"> <strong>Note:</strong> Up to 30 values can be supplied for aspects that accept multiple values.</span>',
+        description='Indicates whether this aspect can accept single or multiple values for items in the specified category. Note: Up to 30 values can be supplied for aspects that accept multiple values.',
     )
     aspect_advanced_data_type: AspectAdvancedDataTypeEnum | None = Field(
         None,
         alias='aspectAdvancedDataType',
-        description='Indicates additional data type requirements for the aspect. For example, <code>NUMERIC_RANGE</code> indicates that the aspect value must be in numeric range format.<br><br><span class="tablenote"> <strong>Note:</strong> Currently only <code>NUMERIC_RANGE</code> is supported.</span>',
+        description='Indicates additional data type requirements for the aspect. For example, NUMERIC_RANGE indicates that the aspect value must be in numeric range format. Note: Currently only NUMERIC_RANGE is supported.',
     )
 
 
@@ -333,12 +329,12 @@ class AspectValue(EbayModel):
     localized_value: str | None = Field(
         None,
         alias='localizedValue',
-        description='The localized value of this aspect.<br><br><span class="tablenote"> <strong>Note:</strong> This value is always localized for the specified marketplace. </span>',
+        description='The localized value of this aspect. Note: This value is always localized for the specified marketplace.',
     )
     value_constraints: list[ValueConstraint] | None = Field(
         None,
         alias='valueConstraints',
-        description='<i>Not returned if</i> the value of the <b>localizedValue</b> field can always be selected for this aspect of the specified category.<br><br>Contains a list of the dependencies that identify when the value of the <b>localizedValue</b> field is available for the current aspect. Each dependency specifies the values of another aspect of the same category (a <i>control</i> aspect), for which the current value of the current aspect can also be selected by the seller. <br><br>          <b>Example:</b> A shirt is available in three sizes and three colors, but only the Small and Medium sizes come in Green. Thus for the Color aspect, the value Green is constrained by its dependency on Size (the control aspect). Only when the Size aspect value is Small or Medium, can the Color aspect value of Green be selected by the seller.',
+        description='Not returned if the value of the localizedValue field can always be selected for this aspect of the specified category. Contains a list of the dependencies that identify when the value of the localizedValue field is available for the current aspect.',
     )
 
 
@@ -356,7 +352,7 @@ class CategorySubtree(EbayModel):
     category_tree_version: str | None = Field(
         None,
         alias='categoryTreeVersion',
-        description="The version of the category tree identified by <b>categoryTreeId</b>. It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
+        description="The version of the category tree identified by categoryTreeId . It's a good idea to cache this value for comparison so you can determine if this category tree has been modified in subsequent calls.",
     )
 
 
@@ -379,7 +375,7 @@ class CategoryTree(EbayModel):
     root_category_node: CategoryTreeNode | None = Field(
         None,
         alias='rootCategoryNode',
-        description='Contains details of all nodes of the category tree hierarchy, starting with the root node and down to the leaf nodes. This is a recursive structure.<br><br><span class="tablenote"> <strong>Note:</strong> The root node of a full default category tree includes the <b>categoryId</b> field, but its value should not be relied upon. It provides no useful information for application development.</span>',
+        description='Contains details of all nodes of the category tree hierarchy, starting with the root node and down to the leaf nodes. This is a recursive structure. Note: The root node of a full default category tree includes the categoryId field, but its value should not be relied upon. It provides no useful information for application development.',
     )
 
 
@@ -431,20 +427,19 @@ class ExpiredCategories(EbayModel):
 
 class FilterField(EbayModel):
     field: str | None = Field(
-        None, description='The <strong>FilterField</strong> type is for future use.'
+        None, description='The FilterField type is for future use.'
     )
     value: str | None = Field(
-        None, description='The <strong>FilterField</strong> type is for future use.'
+        None, description='The FilterField type is for future use.'
     )
     negated: bool | None = Field(
-        None, description='The <strong>FilterField</strong> type is for future use.'
+        None, description='The FilterField type is for future use.'
     )
     range: RangeValue | None = Field(
-        None,
-        description='The <strong>FilterField</strong> and <strong>RangeValue</strong> types are for future use.',
+        None, description='The FilterField and RangeValue types are for future use.'
     )
     set: list[str] | None = Field(
-        None, description='The <strong>FilterField</strong> type is for future use.'
+        None, description='The FilterField type is for future use.'
     )
 
 
@@ -457,17 +452,17 @@ class Aspect(EbayModel):
     aspect_values: list[AspectValue] | None = Field(
         None,
         alias='aspectValues',
-        description='A list of valid values for this aspect (for example: <code>Red</code>, <code>Green</code>, and <code>Blue</code>), along with any constraints on those values.',
+        description='A list of valid values for this aspect (for example: Red , Green , and Blue ), along with any constraints on those values.',
     )
     localized_aspect_name: str | None = Field(
         None,
         alias='localizedAspectName',
-        description='The localized name of this aspect (for example: <code>Colour</code> on the eBay UK site). <br><br><span class="tablenote"> <strong>Note:</strong> This name is always localized for the specified marketplace. </span>',
+        description='The localized name of this aspect (for example: Colour on the eBay UK site). Note: This name is always localized for the specified marketplace.',
     )
     relevance_indicator: RelevanceIndicator | None = Field(
         None,
         alias='relevanceIndicator',
-        description='The relevance of this aspect. This field is returned if eBay has data on how many searches have been performed for listings in the category using this item aspect.<br><br><span class="tablenote"> <strong>Note:</strong> This container is restricted to applications that have been granted permission to access this feature. You must submit an <a href="https://developer.ebay.com/my/support/tickets?tab=app-check " target="_blank">App Check ticket</a> to request this access. In the App Check form, add a note to the <b>Application Title/Summary</b> and/or <b>Application Details</b> fields that you want access to \'Buyer Demand Data\' in the Taxonomy API.</span>',
+        description='The relevance of this aspect. This field is returned if eBay has data on how many searches have been performed for listings in the category using this item aspect. Note: This container is restricted to applications that have been granted permission to access this feature. You must submit an App Check ticket to request this access.',
     )
 
 
@@ -491,8 +486,7 @@ class CategoryAspect(EbayModel):
 
 class ConstraintFilter(EbayModel):
     filters: list[FilterField] | None = Field(
-        None,
-        description='The <strong>ConstraintFilter</strong> type is for future use.',
+        None, description='The ConstraintFilter type is for future use.'
     )
 
 
@@ -505,7 +499,7 @@ class GetCategoriesAspectResponse(EbayModel):
     category_tree_version: str | None = Field(
         None,
         alias='categoryTreeVersion',
-        description='The version of the category tree that is returned in the <b>categoryTreeId</b> field.',
+        description='The version of the category tree that is returned in the categoryTreeId field.',
     )
     category_aspects: list[CategoryAspect] | None = Field(
         None,

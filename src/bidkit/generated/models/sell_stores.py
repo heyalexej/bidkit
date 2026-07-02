@@ -14,17 +14,17 @@ class AddStoreCategoryRequestType(EbayModel):
     category_name: str | None = Field(
         None,
         alias='categoryName',
-        description='The seller-specified name of the custom category.<br><br> <b>Max Length: </b>35',
+        description='The seller-specified name of the custom category. Max Length: 35',
     )
     destination_parent_category_id: str | None = Field(
         None,
         alias='destinationParentCategoryId',
-        description='This field is used to specify the parent category to which the new category belongs. To specify the new category as a top-level category, set the value of this field to -999, or just omit this field, as the default value is -999.<br><br>The <a href="/develop/api/sell/stores_api#sell-stores_api-store-getstorecategories">getStoreCategories</a> method can be used to retrieve store category IDs.<br><br><b>Default: ROOT</b> category ID<b>(-999)</b> if it\'s null.',
+        description="This field is used to specify the parent category to which the new category belongs. To specify the new category as a top-level category, set the value of this field to -999, or just omit this field, as the default value is -999. The getStoreCategories method can be used to retrieve store category IDs. Default: ROOT category ID (-999) if it's null.",
     )
     listing_destination_category_id: str | None = Field(
         None,
         alias='listingDestinationCategoryId',
-        description='If the store category specified as the <b>destinationParentCategoryId</b> is a leaf category with active listings, those listings are moved to the store category identified through this <b>listingDestinationCategoryId</b>. If this field is omitted, the new store category being added under the parent category inherits those listings.<br><br>The <a href="/develop/api/sell/stores_api#sell-stores_api-store-getstorecategories">getStoreCategories</a> method can be used to retrieve store category IDs.<br><br><b>Default:</b> Newly added category ID if it\'s null.',
+        description='If the store category specified as the destinationParentCategoryId is a leaf category with active listings, those listings are moved to the store category identified through this listingDestinationCategoryId . If this field is omitted, the new store category being added under the parent category inherits those listings. The getStoreCategories method can be used to retrieve store category IDs.',
     )
 
 
@@ -32,7 +32,7 @@ class DeleteStoreCategoryRequestType(EbayModel):
     listing_destination_category_id: str | None = Field(
         None,
         alias='listingDestinationCategoryId',
-        description='This field is only needed if the category to be deleted or any of its children categories have one or more active listings. The operation will fail otherwise. All active listings in or under the category to be deleted will be moved to the store category specified in this field.<br><br>The <a href="/develop/api/sell/stores_api#sell-stores_api-store-getstorecategories">getStoreCategories</a> method can be used to retrieve store category IDs.<br><br> <b>Default: OTHER</b> category ID <b>(1)</b> if it\'s null.',
+        description="This field is only needed if the category to be deleted or any of its children categories have one or more active listings. The operation will fail otherwise. All active listings in or under the category to be deleted will be moved to the store category specified in this field. The getStoreCategories method can be used to retrieve store category IDs. Default: OTHER category ID (1) if it's null.",
     )
 
 
@@ -50,7 +50,7 @@ class MoveStoreCategoryRequestType(EbayModel):
     destination_parent_category_id: str | None = Field(
         None,
         alias='destinationParentCategoryId',
-        description='The new parent category of the category to be moved is specified in this field. If the category is being moved to level 1 category, set this value to <b>-999</b>.',
+        description='The new parent category of the category to be moved is specified in this field. If the category is being moved to level 1 category, set this value to -999 .',
     )
     listing_destination_category_id: str | None = Field(
         None,
@@ -63,7 +63,7 @@ class RenameStoreCategoryRequestType(EbayModel):
     category_name: str | None = Field(
         None,
         alias='categoryName',
-        description='The seller-specified name of the custom category. This is the new name of the category specified through path parameter.<br><br> <b>Max Length: </b>35',
+        description='The seller-specified name of the custom category. This is the new name of the category specified through path parameter. Max Length: 35',
     )
 
 
@@ -85,7 +85,7 @@ class StoreCategoryType(EbayModel):
     )
     level: int | None = Field(
         None,
-        description='The level indicates the category level of the category tree.<br><span class="tablenote"><strong>Note:</strong> Three levels of store categories are supported. All categories belonging to the same parent should have the same level.</span>',
+        description='The level indicates the category level of the category tree. Note: Three levels of store categories are supported. All categories belonging to the same parent should have the same level.',
     )
     order: int | None = Field(
         None,
@@ -151,14 +151,14 @@ class GetStoreCategoriesResponseType(EbayModel):
     store_categories: list[StoreCategoryType] | None = Field(
         None,
         alias='storeCategories',
-        description='An array of top-level categories defined for the eBay store. A <strong>childrenCategories</strong> array is used for second and third-level categories, if defined for the store.',
+        description='An array of top-level categories defined for the eBay store. A childrenCategories array is used for second and third-level categories, if defined for the store.',
     )
 
 
 class GetStoreResponseType(EbayModel):
     description: str | None = Field(
         None,
-        description='The seller-provided description of the eBay Store.<br><br> <b>Max length: </b>300',
+        description='The seller-provided description of the eBay Store. Max length: 300',
     )
     last_opened_time: str | None = Field(
         None,
@@ -170,13 +170,13 @@ class GetStoreResponseType(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='The name of the eBay Store. The name is shown at the top of the Store page.<br><br> <b>Max length: </b>35',
+        description='The name of the eBay Store. The name is shown at the top of the Store page. Max length: 35',
     )
     url: str | None = Field(None, description="The complete URL of the user's store.")
     url_path: str | None = Field(
         None,
         alias='urlPath',
-        description='The relative URL path of the Store.<br><br> <b>Max length: </b>58',
+        description='The relative URL path of the Store. Max length: 58',
     )
 
 
@@ -190,7 +190,7 @@ class StoreTaskType(EbayModel):
     )
     status: StoreTaskStatusEnum | None = Field(
         None,
-        description='The enumeration value here indicates the processing status of the task. See the <b>StoreTaskStatusEnum</b> type for more information on supported status values.',
+        description='The enumeration value here indicates the processing status of the task. See the StoreTaskStatusEnum type for more information on supported status values.',
     )
     type: StoreTaskTypeEnum | None = Field(
         None, description='The enumeration value indicates the task type.'

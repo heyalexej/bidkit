@@ -180,16 +180,16 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This is the actual value that was passed in for the element specified in the <b> name</b>  field.',
+        description='This is the actual value that was passed in for the element specified in the name field.',
     )
 
 
 class Image(EbayModel):
-    height: int | None = Field(None, description='<b> Reserved for future use. </b> ')
+    height: int | None = Field(None, description='Reserved for future use.')
     image_url: str | None = Field(
         None, alias='imageUrl', description='The URL of the image.'
     )
-    width: int | None = Field(None, description='<b> Reserved for future use. </b> ')
+    width: int | None = Field(None, description='Reserved for future use.')
 
 
 class RangeValue(EbayModel):
@@ -200,12 +200,12 @@ class RangeValue(EbayModel):
     exclusive_end: bool | None = Field(
         None,
         alias='exclusiveEnd',
-        description='Specifies whether the <b> end</b> value is to be included in the range. For example, if <b> end</b> was 100, and <b> exclusiveEnd</b> was true, the end range would be &lt; 100. But if it was set to false, it would be &lt;= 100.',
+        description='Specifies whether the end value is to be included in the range. For example, if end was 100, and exclusiveEnd was true, the end range would be < 100. But if it was set to false, it would be <= 100.',
     )
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description='Specifies whether the <b> start</b> value is to be included in the range. For example, if <b> start</b> was 60, and <b> exclusiveStart</b> was true, the start range would be &gt; 60. But if it was set to false, it would be &gt;= 60.',
+        description='Specifies whether the start value is to be included in the range. For example, if start was 60, and exclusiveStart was true, the start range would be > 60. But if it was set to false, it would be >= 60.',
     )
     range: bool | None = Field(
         None, description='Specifies whether the filter is for a range of values.'
@@ -223,7 +223,7 @@ class RatingAspectDistribution(EbayModel):
     )
     percentage: str | None = Field(
         None,
-        description='The percentage of the aspect rating value. <br /><br /> <b> ratingAspectDistributions.percentage</b> =  <b> ratingAspectDistributions.count</b> /  <b>ratingAspects.count</b>',
+        description='The percentage of the aspect rating value. ratingAspectDistributions.percentage = ratingAspectDistributions.count / ratingAspects.count',
     )
     value: str | None = Field(
         None, description='The rating aspect. For example: TRUE or FALSE'
@@ -233,11 +233,11 @@ class RatingAspectDistribution(EbayModel):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> value</b> field.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the value field.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <b> currency</b> field. ',
+        description='The monetary amount, in the currency specified by the currency field.',
     )
 
 
@@ -282,7 +282,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors. ',
+        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors.',
     )
     domain: str | None = Field(
         None,
@@ -327,10 +327,10 @@ class FilterField(EbayModel):
         None, description='Provides a way to specify a field in a filter.'
     )
     negated: bool | None = Field(
-        None, description='<b> Note: </b> Currently this filter is not supported. '
+        None, description='Note: Currently this filter is not supported.'
     )
     range: RangeValue | None = Field(
-        None, description='Provides a way to specify a range of values in a filter. '
+        None, description='Provides a way to specify a range of values in a filter.'
     )
     set: list[str] | None = Field(
         None, description='Provides a way to specify a "list of values" in a filter.'
@@ -361,7 +361,7 @@ class MarketPriceDetail(EbayModel):
 class MarketingAspectFilter(EbayModel):
     filters: list[FilterField] | None = Field(
         None,
-        description='This field supports field filters that can be used to use to limit/customize the result set. ',
+        description='This field supports field filters that can be used to use to limit/customize the result set.',
     )
 
 
@@ -393,7 +393,7 @@ class MerchandisedProduct(EbayModel):
     )
     epid: str | None = Field(
         None,
-        description='The eBay product identifier of a product from the eBay product catalog. You can use this value in the Browse API <b>search</b> method to retrieve items for this product.',
+        description='The eBay product identifier of a product from the eBay product catalog. You can use this value in the Browse API search method to retrieve items for this product.',
     )
     image: Image | None = Field(
         None, description='The container for the product image.'
@@ -416,7 +416,7 @@ class MerchandisedProduct(EbayModel):
     review_count: int | None = Field(
         None,
         alias='reviewCount',
-        description='The total number of eBay users that wrote a review for the product. ',
+        description='The total number of eBay users that wrote a review for the product.',
     )
     title: str | None = Field(None, description='The title of the product.')
 

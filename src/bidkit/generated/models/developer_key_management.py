@@ -24,7 +24,7 @@ class CreateSigningKeyRequest(EbayModel):
     signing_key_cipher: SigningKeyCipher | None = Field(
         None,
         alias='signingKeyCipher',
-        description='The enumerated value for the cipher to be used to create the signing key. Refer to <b>SigningKeyCipher</b> for the list of supported enum values.',
+        description='The enumerated value for the cipher to be used to create the signing key. Refer to SigningKeyCipher for the list of supported enum values.',
     )
 
 
@@ -70,31 +70,31 @@ class SigningKey(EbayModel):
     creation_time: int | None = Field(
         None,
         alias='creationTime',
-        description='The UNIX timestamp when the <code>SigningKey</code> was created. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date and time the <code>SigningKey</code> was created.',
+        description='The UNIX timestamp when the SigningKey was created. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date and time the SigningKey was created.',
     )
     expiration_time: int | None = Field(
         None,
         alias='expirationTime',
-        description='The UNIX timestamp when the <code>SigningKey</code> expires. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date and time the <code>SigningKey</code> expires.<br/><span class="tablenote"><b>Note:</b> All keys have an expiration date of three (3) years after their <code>creationTime</code>.</span>',
+        description='The UNIX timestamp when the SigningKey expires. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date and time the SigningKey expires. Note: All keys have an expiration date of three (3) years after their creationTime .',
     )
     jwe: str | None = Field(
         None,
-        description='This is the JSON Web Encrypted (JWE) value for the <code>publicKey</code>.',
+        description='This is the JSON Web Encrypted (JWE) value for the publicKey .',
     )
     private_key: str | None = Field(
         None,
         alias='privateKey',
-        description='This is the Private Key that has been generated using the specified <code>signingKeyCipher</code>.<br/><span class="tablenote"><b>Note:</b> The <code>privateKey</code> value will <b>only</b> be returned in the response payload of the  <code>createSigningKey</code> method.<br/><br/>It will <i>never</i> be returned by the <code>getSigningKey</code> or <code>getSigningKeys</code> methods.</span><br><br>Developers are <b>strongly advised</b> to download their <code>privateKey</code> value as Privacy Enhance Mail (PEM) format and store it locally for future reference. In order to guarantee the security of confidential client information, eBay does not store <code>privateKey</code> values on any system.<br/><span class="tablenote"><b>Note:</b> If a developer loses their <code>privateKey</code> they must generate new keypair set using the <code>createSigningKey</code> method.</span>',
+        description='This is the Private Key that has been generated using the specified signingKeyCipher . Note: The privateKey value will only be returned in the response payload of the createSigningKey method. It will never be returned by the getSigningKey or getSigningKeys methods.',
     )
     public_key: str | None = Field(
         None,
         alias='publicKey',
-        description='This is the Public Key that has been generated using the specified <code>signingKeyCipher</code>.<br/><br/>As a matter of good practice, developers are <b>strongly advised</b> to download this value and store it locally for safe-keeping and future reference.',
+        description='This is the Public Key that has been generated using the specified signingKeyCipher . As a matter of good practice, developers are strongly advised to download this value and store it locally for safe-keeping and future reference.',
     )
     signing_key_cipher: SigningKeyCipher | None = Field(
         None,
         alias='signingKeyCipher',
-        description='Indicates the cipher used to create the keypairs. Refer to <b>SigningKeyCipher</b> for the list of supported enum values.',
+        description='Indicates the cipher used to create the keypairs. Refer to SigningKeyCipher for the list of supported enum values.',
     )
     signing_key_id: str | None = Field(
         None,

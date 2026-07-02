@@ -11,7 +11,7 @@ from pydantic import Field
 class Amount(EbayModel):
     currency: str | None = Field(
         None,
-        description="The three-letter ISO 4217 code representing the currency of the amount in the value field. Restriction: Only the currency of the marketplace is supported. For example, on the US marketplace the only currency supported is USD. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/listing/types/bas:CurrencyCodeEnum'>eBay API documentation</a>",
+        description='The three-letter ISO 4217 code representing the currency of the amount in the value field. Restriction: Only the currency of the marketplace is supported. For example, on the US marketplace the only currency supported is USD. For implementation help, refer to eBay API documentation',
     )
     value: str | None = Field(
         None,
@@ -30,12 +30,12 @@ class Charity(EbayModel):
     donation_percentage: str | None = Field(
         None,
         alias='donationPercentage',
-        description='This field sets the percentage of the purchase price that the charitable organization (identified in the charityId field) will receive for each sale that the listing generates. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization. This numeric value can range from 10 to 100, and in any 5 (percent) increments in between this range (e.g. 10, 15, 20...95,... 100). The seller would pass in 10 for 10 percent, 15 for 15 percent, 20 for 20 percent, and so on, all the way to 100 for 100 percent. Note: For this field, createItemDraft will only validate that a positive integer value is supplied, so the listing draft will still be successfully created (with no error or warning message) if a non-supported value is specified. However, if the seller attempted to publish this listing draft with an unsupported value, the charity information would just be dropped from the listing.',
+        description='This field sets the percentage of the purchase price that the charitable organization (identified in the charityId field) will receive for each sale that the listing generates. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization.',
     )
     charity_id: str | None = Field(
         None,
         alias='charityId',
-        description='The eBay-assigned unique identifier of the charitable organization that will receive a percentage of the sales proceeds. The charitable organization must be reqistered with the PayPal Giving Fund in order to receive sales proceeds through eBay listings. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization. The eBay-assigned unique identifier of a charitable organization can be found using the GetCharities call of the Trading API. In the GetCharities call response, this unique identifier is shown in the id attribute of the Charity container.',
+        description='The eBay-assigned unique identifier of the charitable organization that will receive a percentage of the sales proceeds. The charitable organization must be reqistered with the PayPal Giving Fund in order to receive sales proceeds through eBay listings. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization.',
     )
 
 
@@ -95,7 +95,7 @@ class Product(EbayModel):
     image_urls: list[str] | None = Field(
         None,
         alias='imageUrls',
-        description="The image URLs of the item. The first URL will be the primary image, which appears on the View Item page in the eBay listing. The URL can be from the following: The eBay Picture Services (images previously uploaded). A server outside of eBay (self-hosted). For more details, see PictureURL and Introduction to Pictures in Listings. Maximum: 12 URLs (for most categories and marketplaces) Restrictions: You cannot mix self-hosted and EPS-hosted URLs in the same listing. All image URLs must be 'https'.",
+        description='The image URLs of the item. The first URL will be the primary image, which appears on the View Item page in the eBay listing. The URL can be from the following: The eBay Picture Services (images previously uploaded). A server outside of eBay (self-hosted). For more details, see PictureURL and Introduction to Pictures in Listings.',
     )
     title: str | None = Field(
         None,
@@ -149,11 +149,11 @@ class ItemDraft(EbayModel):
     )
     condition: str | None = Field(
         None,
-        description="An enumeration value representing the condition of the item, such as NEW. Note: In all eBay marketplaces, Condition ID 2000 now maps to an item condition of 'Certified Refurbished, and not 'Manufacturer Refurbished'. To list an item as 'Certified Refurbished, a seller must be pre-qualified by eBay for this feature. Any seller who is not eligible for this feature will get an error when attempting to create an item draft with the Listing API using the 'Certified Refurbished' item condition. The other refurbished item condition that sellers can use is the 'Seller Refurbished' item condition (Condition ID 2500). Any seller that is interested in eligibility requirements to list with 'Certified Refurbished' should see the Certified refurbished program page in Seller Center. Certified refurbished program page in Seller Center. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/listing/types/api:ConditionEnum'>eBay API documentation</a>",
+        description="An enumeration value representing the condition of the item, such as NEW. Note: In all eBay marketplaces, Condition ID 2000 now maps to an item condition of 'Certified Refurbished, and not 'Manufacturer Refurbished'. To list an item as 'Certified Refurbished, a seller must be pre-qualified by eBay for this feature.",
     )
     format: str | None = Field(
         None,
-        description="The format of the listing. Valid Values: FIXED_PRICE and AUCTION For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/listing/types/api:ListingFormatEnum'>eBay API documentation</a>",
+        description='The format of the listing. Valid Values: FIXED_PRICE and AUCTION For implementation help, refer to eBay API documentation',
     )
     pricing_summary: PricingSummary | None = Field(
         None,

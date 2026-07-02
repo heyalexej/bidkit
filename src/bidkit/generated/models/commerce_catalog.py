@@ -25,17 +25,17 @@ class AspectValueDistribution(EbayModel):
     localized_aspect_value: str | None = Field(
         None,
         alias='localizedAspectValue',
-        description='The localized value of the category aspect identified by <strong>refinement.aspectDistributions.localizedAspectName</strong>.',
+        description='The localized value of the category aspect identified by refinement.aspectDistributions.localizedAspectName .',
     )
     match_count: int | None = Field(
         None,
         alias='matchCount',
-        description="The number of times the value of <strong>localizedAspectValue</strong> has been used for eBay product listings. By comparing this quantity to the <strong>matchCount</strong> for other values of the same aspect, you can present a histogram of the values to sellers, who can use that information to select which aspect value is most appropriate for their product. You can then include the user-selected value in the the <strong>search</strong> call's <strong>aspect_filter</strong> parameter to refine your search.",
+        description='The number of times the value of localizedAspectValue has been used for eBay product listings. By comparing this quantity to the matchCount for other values of the same aspect, you can present a histogram of the values to sellers, who can use that information to select which aspect value is most appropriate for their product.',
     )
     refinement_href: str | None = Field(
         None,
         alias='refinementHref',
-        description='A HATEOAS reference that further refines the search with this particular <strong>localizedAspectValue</strong>.',
+        description='A HATEOAS reference that further refines the search with this particular localizedAspectValue .',
     )
 
 
@@ -58,7 +58,7 @@ class Product(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='Contains information about  additional images associated with this product. For the primary image, see the <strong>image</strong> container.',
+        description='Contains information about additional images associated with this product. For the primary image, see the image container.',
     )
     aspects: list[Aspect] | None = Field(
         None,
@@ -70,7 +70,7 @@ class Product(EbayModel):
     compatibility_count: int | None = Field(
         None,
         alias='compatibilityCount',
-        description='The number of distinct motor vehicles that are compatible with the product.<br><br>This field is only applicable for and will only be returned for Parts & Accessory products on the eBay US Motors marketplace.',
+        description='The number of distinct motor vehicles that are compatible with the product. This field is only applicable for and will only be returned for Parts & Accessory products on the eBay US Motors marketplace.',
     )
     description: str | None = Field(
         None,
@@ -87,11 +87,11 @@ class Product(EbayModel):
     )
     image: Image | None = Field(
         None,
-        description='Contains information about the primary image of this product. For more images of this product, see the <strong>additionalImages</strong> container.',
+        description='Contains information about the primary image of this product. For more images of this product, see the additionalImages container.',
     )
     isbn: list[str] | None = Field(
         None,
-        description='A list of all International Standard Book Numbers (ISBNs) that identify this product. ',
+        description='A list of all International Standard Book Numbers (ISBNs) that identify this product.',
     )
     mpn: list[str] | None = Field(
         None,
@@ -100,12 +100,12 @@ class Product(EbayModel):
     other_applicable_category_ids: list[str] | None = Field(
         None,
         alias='otherApplicableCategoryIds',
-        description='A list of category IDs (other than the value of <strong>primaryCategoryId</strong>) for all the leaf categories to which this product might belong.',
+        description='A list of category IDs (other than the value of primaryCategoryId ) for all the leaf categories to which this product might belong.',
     )
     primary_category_id: str | None = Field(
         None,
         alias='primaryCategoryId',
-        description='The identifier of the leaf category that eBay recommends using to list this product, based on previous listings of similar products. Products in the eBay catalog are not automatically associated with any particular category, but using an inappropriate category can make it difficult for prospective buyers to find the product. For other possible categories that might be used, see <strong>otherApplicableCategoryIds</strong>.',
+        description='The identifier of the leaf category that eBay recommends using to list this product, based on previous listings of similar products. Products in the eBay catalog are not automatically associated with any particular category, but using an inappropriate category can make it difficult for prospective buyers to find the product.',
     )
     product_web_url: str | None = Field(
         None,
@@ -127,7 +127,7 @@ class ProductSummary(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='Contains information about additional images associated with this product. For the primary image, see the <strong>image</strong> container.',
+        description='Contains information about additional images associated with this product. For the primary image, see the image container.',
     )
     aspects: list[Aspect] | None = Field(
         None,
@@ -143,11 +143,11 @@ class ProductSummary(EbayModel):
     epid: str | None = Field(None, description='The eBay product ID of this product.')
     gtin: list[str] | None = Field(
         None,
-        description='A list of all GTINs that identify this product. This includes all of the values returned in the <strong>ean</strong>, <strong>isbn</strong>, and <strong>upc</strong> fields.',
+        description='A list of all GTINs that identify this product. This includes all of the values returned in the ean , isbn , and upc fields.',
     )
     image: Image | None = Field(
         None,
-        description='Contains information about the primary image of this product. For more images of this product, see the <strong>additionalImages</strong> container.',
+        description='Contains information about the primary image of this product. For more images of this product, see the additionalImages container.',
     )
     isbn: list[str] | None = Field(
         None,
@@ -160,7 +160,7 @@ class ProductSummary(EbayModel):
     product_href: str | None = Field(
         None,
         alias='productHref',
-        description="The URI of the <strong>getProduct</strong> call request that retrieves this product's details.",
+        description="The URI of the getProduct call request that retrieves this product's details.",
     )
     product_web_url: str | None = Field(
         None,
@@ -197,12 +197,12 @@ class AspectDistribution(EbayModel):
     aspect_value_distributions: list[AspectValueDistribution] | None = Field(
         None,
         alias='aspectValueDistributions',
-        description='Contains information about one or more values of the category aspect identified by <strong>localizedAspectName</strong>. ',
+        description='Contains information about one or more values of the category aspect identified by localizedAspectName .',
     )
     localized_aspect_name: str | None = Field(
         None,
         alias='localizedAspectName',
-        description='The localized name of an aspect that is associated with the category identified by <strong>dominantCategoryId</strong>.',
+        description='The localized name of an aspect that is associated with the category identified by dominantCategoryId .',
     )
 
 
@@ -266,7 +266,7 @@ class Refinement(EbayModel):
     aspect_distributions: list[AspectDistribution] | None = Field(
         None,
         alias='aspectDistributions',
-        description='Contains information about one or more aspects that are associated with the category identified by <strong>dominantCategoryId</strong>.',
+        description='Contains information about one or more aspects that are associated with the category identified by dominantCategoryId .',
     )
     dominant_category_id: str | None = Field(
         None,
@@ -279,45 +279,44 @@ class AspectFilter(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The category that the category aspects belong to. This value is a required part of the <strong>aspect_filter</strong> query parameter. This value can be found in the <strong>refinement.dominantCategoryId</strong> field when the <strong>fieldgroups</strong> query parameter is included in the <strong>search</strong> request with a value of <code>ASPECT_REFINEMENTS</code> or <code>FULL</code>.',
+        description='The category that the category aspects belong to. This value is a required part of the aspect_filter query parameter. This value can be found in the refinement.dominantCategoryId field when the fieldgroups query parameter is included in the search request with a value of ASPECT_REFINEMENTS or FULL .',
     )
     filters: list[FilterField] | None = Field(
         None,
-        description="An array of aspects of the category identified by <strong>categoryId</strong>, with one or more aspect values in the form <code><i>name</i>:{<i>value1</i>|<i>value2</i>}</code>. e.g. <code>Brand:{adidas|Nike}</code>. Possible values can be found in the category's <strong>refinement.aspectDistributions</strong> container.",
+        description="An array of aspects of the category identified by categoryId , with one or more aspect values in the form name :{ value1 | value2 } . e.g. Brand:{adidas|Nike} . Possible values can be found in the category's refinement.aspectDistributions container.",
     )
 
 
 class ProductSearchResponse(EbayModel):
     href: str | None = Field(
         None,
-        description='This field is reserved for internal or future use. <!-- The URI of the <strong>search</strong> method request that produced this result set. -->',
+        description='This field is reserved for internal or future use. search method request that produced this result set. -->',
     )
     limit: int | None = Field(
         None,
-        description='The number of product summaries returned in the response. This is the <i>result set</i>, a subset of the full collection of products that match the search or filter criteria of this call. If the <strong>limit</strong> query parameter was included in the request, this field will have the same value. <br /><br /> <strong>Default:</strong> <code>50</code>',
+        description='The number of product summaries returned in the response. This is the result set , a subset of the full collection of products that match the search or filter criteria of this call. If the limit query parameter was included in the request, this field will have the same value. Default: 50',
     )
     next: str | None = Field(
         None,
-        description='This field is reserved for internal or future use. <!-- <i>Returned only if</i> there are more product records to retrieve from the current collection of matching products, this field contains the <strong>search</strong> call URI for the next result set. For example, the following URI returns records 41 thru 50 from the collection of matched products: <br /><br /> <code><i>path</i>/product_summary/search?limit=10&offset=40</code> <br /><br />  <span class="tablenote"><strong>Note:</strong> This feature employs a zero-based list, where the first product in the list has an offset of <code>0</code>.</span> -->',
+        description='This field is reserved for internal or future use. Returned only if there are more product records to retrieve from the current collection of matching products, this field contains the search call URI for the next result set.',
     )
     offset: int | None = Field(
         None,
-        description='This field is reserved for internal or future use. <!-- The distance (number of records) from the first product in the collection to the first product in this result set. If the <strong>offset</strong> query parameter was included in the request, this field will have the same value. The <strong>offset</strong> value is used in conjunction with the <strong>limit</strong> value to control the pagination of the output. For example, if <strong>offset</strong> is set to <code>30</code> and <strong>limit</strong> is set to <code>10</code>, the call retrieves products 31 thru 40 from the resulting collection of products. <br /><br />  <span class="tablenote"><strong>Note:</strong> This feature employs a zero-based list, where the first item in the list has an offset of <code>0</code>.</span> <br /><br /> <strong>Default:</strong> <code>0</code> (zero) -->',
+        description='This field is reserved for internal or future use. offset query parameter was included in the request, this field will have the same value. The offset value is used in conjunction with the limit value to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10 , the call retrieves products 31 thru 40 from the resulting collection of products.',
     )
     prev: str | None = Field(
         None,
-        description='This field is reserved for internal or future use.  <!-- <i>Not returned if</i> the currently returned result set is the first set of product records from the current collection of matching products. This field contains the <strong>search</strong> call URI for the previous result set. For example, the following URI returns products 21 thru 30 from the collection of products: <br /><br /> <code><i>path</i>/product_summary/search?limit=10&offset=20</code> <br /><br />  <span class="tablenote"><strong>Note:</strong> This feature employs a zero-based list, where the first product in the list has an offset of <code>0</code>.</span> -->',
+        description='This field is reserved for internal or future use. Not returned if the currently returned result set is the first set of product records from the current collection of matching products. This field contains the search call URI for the previous result set.',
     )
     product_summaries: list[ProductSummary] | None = Field(
         None,
         alias='productSummaries',
-        description="<i>Returned if</i> the <strong>fieldGroups</strong> query parameter was omitted from the request, or if it was included with a value of <code>MATCHING_PRODUCTS</code> or <code>FULL</code>. This container provides an array of product summaries in the current result set for products that match the combination of the <strong>q</strong>, <strong>category_ids</strong>, and <strong>aspect_filter</strong> parameters that were provided in the request. Each product summary includes information about the product's identifiers, product images, aspects, the product page URL, and the <strong>getProduct</strong> URL for retrieving the product details.",
+        description='Returned if the fieldGroups query parameter was omitted from the request, or if it was included with a value of MATCHING_PRODUCTS or FULL . This container provides an array of product summaries in the current result set for products that match the combination of the q , category_ids , and aspect_filter parameters that were provided in the request.',
     )
     refinement: Refinement | None = Field(
         None,
-        description="<i>Returned only if</i> the <strong>fieldGroups</strong> query parameter was included in the request with a value of <code>ASPECT_REFINEMENTS</code> or <code>FULL</code>. <br /><br /> An aspect is a property of a category, used by sellers to provide details about the items they're listing. For example, the <i>Cell Phones &amp; Smartphones</i> category (#9355) includes a <i>Storage Capacity</i> aspect. <br /><br /> This container provides information about the distribution of values of a set of category aspects. The category aspects are those associated with the category that eBay determines is most likely to cover the products that match the search criteria.",
+        description="Returned only if the fieldGroups query parameter was included in the request with a value of ASPECT_REFINEMENTS or FULL . An aspect is a property of a category, used by sellers to provide details about the items they're listing. For example, the Cell Phones & Smartphones category (#9355) includes a Storage Capacity aspect.",
     )
     total: int | None = Field(
-        None,
-        description='This field is reserved for internal or future use. <!-- The total number of product records in the returned collection of matched products. -->',
+        None, description='This field is reserved for internal or future use.'
     )

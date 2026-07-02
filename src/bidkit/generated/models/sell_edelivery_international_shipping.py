@@ -55,7 +55,7 @@ class BundleLabelResponseData(EbayModel):
     base64_str: str | None = Field(
         None,
         alias='base64Str',
-        description='The base 64 string value for the bundle label.<br><br>This string value can be converted into a PDF file.',
+        description='The base 64 string value for the bundle label. This string value can be converted into a PDF file.',
     )
 
 
@@ -63,7 +63,7 @@ class CancelPackagesRequestData(EbayModel):
     package_ids: list[str] | None = Field(
         None,
         alias='packageIds',
-        description='This comma-delimited array lists the unique identifiers of the packages being canceled.<br><br>Up to 200 package IDs can be specified.',
+        description='This comma-delimited array lists the unique identifiers of the packages being canceled. Up to 200 package IDs can be specified.',
     )
 
 
@@ -80,7 +80,7 @@ class CancelPackagesResponsesData(EbayModel):
     result_code: str | None = Field(
         None,
         alias='resultCode',
-        description='The result code detailing the results cancelation process.<br><br>For example, a result code of <code>200</code> indicates that the call was a success and the package and tracking number were canceled.',
+        description='The result code detailing the results cancelation process. For example, a result code of 200 indicates that the call was a success and the package and tracking number were canceled.',
     )
 
 
@@ -93,7 +93,7 @@ class ConfirmPackagesRequestData(EbayModel):
     package_ids: list[str] | None = Field(
         None,
         alias='packageIds',
-        description='This comma-delimited array lists the unique identifiers of the packages being confirmed.<br><br>Up to 200 packages can be specified.',
+        description='This comma-delimited array lists the unique identifiers of the packages being confirmed. Up to 200 packages can be specified.',
     )
 
 
@@ -110,7 +110,7 @@ class ConfirmPackagesResponsesData(EbayModel):
     result_code: str | None = Field(
         None,
         alias='resultCode',
-        description='The result code relating to the confirmation of the package.<br><br>For example, a result code of <code>200</code> indicates that the call was a success and the package was confirmed.',
+        description='The result code relating to the confirmation of the package. For example, a result code of 200 indicates that the call was a success and the package was confirmed.',
     )
 
 
@@ -127,28 +127,27 @@ class ConsignTypeEnum(OpenStrEnum):
 class CreateAddressPreferenceRequestData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the address. See 商户API地址编码主数据 for valid city codes.',
     )
     company: str | None = Field(
         None,
-        description='The company name associated with the address.<br><br><b>Max length</b>: 50 characters',
+        description='The company name associated with the address. Max length : 50 characters',
     )
     contact: str | None = Field(
         None,
-        description='The name of the contact person associated with the address.<br><br><b>Max length</b>: 50 characters',
+        description='The name of the contact person associated with the address. Max length : 50 characters',
     )
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description='The two-letter country code of the address.<br><br><b>Valid values</b>:<ul><li>CN</li><li>HK</li></ul>',
+        description='The two-letter country code of the address. Valid values : CN HK',
     )
     district: str | None = Field(
         None,
-        description='The district code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the address. See 商户API地址编码主数据 for valid district codes.',
     )
     name: str | None = Field(
-        None,
-        description='The name of the address.<br><br><b>Max length</b>: 50 characters',
+        None, description='The name of the address. Max length : 50 characters'
     )
     phone: str | None = Field(
         None, description='The phone number associated with the address.'
@@ -156,23 +155,23 @@ class CreateAddressPreferenceRequestData(EbayModel):
     postcode: str | None = Field(None, description='The postal code of the address.')
     province: str | None = Field(
         None,
-        description='The province code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the address. See 商户API地址编码主数据 for valid province codes.',
     )
     street1: str | None = Field(
         None,
-        description='The first line of the street address of the address.<br><br><b>Max length</b>: 50 characters',
+        description='The first line of the street address of the address. Max length : 50 characters',
     )
     street2: str | None = Field(
         None,
-        description='The second line, if applicable, of the street address of the address.<br><br><b>Max length</b>: 50 characters',
+        description='The second line, if applicable, of the street address of the address. Max length : 50 characters',
     )
     street3: str | None = Field(
         None,
-        description='The third line, if applicable, of the street address of the address.<br><br><b>Max length</b>: 50 characters',
+        description='The third line, if applicable, of the street address of the address. Max length : 50 characters',
     )
     type: AddressTypeEnum | None = Field(
         None,
-        description='The address type of the address being created.<br><br><b>Valid values</b>:<ul><li><code>SHIP_FROM_ADDRESS</code></li><li><code>RETURN_ADRESS</code></li></ul>',
+        description='The address type of the address being created. Valid values : SHIP_FROM_ADDRESS RETURN_ADRESS',
     )
 
 
@@ -180,7 +179,7 @@ class CreateAddressPreferenceResponsesData(EbayModel):
     address_id: str | None = Field(
         None,
         alias='addressId',
-        description='The unique identifier of the newly-created address.<br><br>This ID value can be used when creating a package through the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage">createPackage</a> method to specify the ship-from or return address associated with the package.',
+        description='The unique identifier of the newly-created address. This ID value can be used when creating a package through the createPackage method to specify the ship-from or return address associated with the package.',
     )
 
 
@@ -188,12 +187,12 @@ class CreateBundleRequestData(EbayModel):
     consign_preference_id: str | None = Field(
         None,
         alias='consignPreferenceId',
-        description='The unique identifier of the consign address to be associated with the bundle.<br><br>This ID can be retrieved using the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-consign_preference-getconsignpreferences">getConsignPreferences</a> method.',
+        description='The unique identifier of the consign address to be associated with the bundle. This ID can be retrieved using the getConsignPreferences method.',
     )
     tracking_numbers: list[str] | None = Field(
         None,
         alias='trackingNumbers',
-        description='This array specifies the tracking numbers of the packages to be included in the bundle.<br><br>Tracking numbers are returned when creating a package through the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage">createPackage</a> method.',
+        description='This array specifies the tracking numbers of the packages to be included in the bundle. Tracking numbers are returned when creating a package through the createPackage method.',
     )
 
 
@@ -209,7 +208,7 @@ class CreateConsignPreferenceResponsesData(EbayModel):
     consign_preference_id: str | None = Field(
         None,
         alias='consignPreferenceId',
-        description='The unique identifier of the newly-created consign address.<br><br>This ID can be used when creating a package through the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage">createPackage</a> method to specify the pickup, drop-off, or forward deployment address associated with the package.',
+        description='The unique identifier of the newly-created consign address. This ID can be used when creating a package through the createPackage method to specify the pickup, drop-off, or forward deployment address associated with the package.',
     )
 
 
@@ -375,7 +374,7 @@ class DeletePackagesRequestData(EbayModel):
     package_ids: list[str] | None = Field(
         None,
         alias='packageIds',
-        description='This comma-delimited array lists the unique identifiers of the packages being deleted. These values must be for packages that have been cancelled and do not have tracking numbers associated with them.<br><br>Package ID values are returned when creating a package through the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage">createPackage</a> method.',
+        description='This comma-delimited array lists the unique identifiers of the packages being deleted. These values must be for packages that have been cancelled and do not have tracking numbers associated with them. Package ID values are returned when creating a package through the createPackage method.',
     )
 
 
@@ -392,7 +391,7 @@ class DeletePackagesResponsesData(EbayModel):
     result_code: str | None = Field(
         None,
         alias='resultCode',
-        description='The result code detailing the result of the deletion process.<br><br>For example, a result code of <code>200</code> indicates that the call was a success and the package was deleted.',
+        description='The result code detailing the result of the deletion process. For example, a result code of 200 indicates that the call was a success and the package was deleted.',
     )
 
 
@@ -430,7 +429,7 @@ class GetAddressPreferencesResponses(EbayModel):
     )
     city: str | None = Field(
         None,
-        description='The city code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the address. See 商户API地址编码主数据 for valid city codes.',
     )
     city_name: str | None = Field(
         None, alias='cityName', description='The city name of the address.'
@@ -451,7 +450,7 @@ class GetAddressPreferencesResponses(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the address. See 商户API地址编码主数据 for valid district codes.',
     )
     district_name: str | None = Field(
         None, alias='districtName', description='The district name of the address.'
@@ -463,7 +462,7 @@ class GetAddressPreferencesResponses(EbayModel):
     postcode: str | None = Field(None, description='The postal code of the address.')
     province: str | None = Field(
         None,
-        description='The province code of the address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the address. See 商户API地址编码主数据 for valid province codes.',
     )
     province_name: str | None = Field(
         None, alias='provinceName', description='The province name of the address.'
@@ -473,11 +472,11 @@ class GetAddressPreferencesResponses(EbayModel):
     )
     street2: str | None = Field(
         None,
-        description='The second line of the street address of the address.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The second line of the street address of the address. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     street3: str | None = Field(
         None,
-        description='The third line of the street address of address.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The third line of the street address of address. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     type: AddressTypeEnum | None = Field(
         None, description='The address type of the address.'
@@ -487,7 +486,7 @@ class GetAddressPreferencesResponses(EbayModel):
 class GetDropoffSitesResponses(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the drop-off site location.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the drop-off site location. See 商户API地址编码主数据 for valid city codes.',
     )
     contact: str | None = Field(
         None,
@@ -499,7 +498,7 @@ class GetDropoffSitesResponses(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code of the drop-off site location.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the drop-off site location. See 商户API地址编码主数据 for valid district codes.',
     )
     dropoff_site_id: str | None = Field(
         None,
@@ -514,7 +513,7 @@ class GetDropoffSitesResponses(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code of the drop-off site location.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the drop-off site location. See 商户API地址编码主数据 for valid province codes.',
     )
     street1: str | None = Field(
         None,
@@ -522,15 +521,15 @@ class GetDropoffSitesResponses(EbayModel):
     )
     street2: str | None = Field(
         None,
-        description='The second line, if applicable, of the street address of the drop-off site location.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The second line, if applicable, of the street address of the drop-off site location. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     street3: str | None = Field(
         None,
-        description='The third line, if applicable, of the street address of the drop-off site location.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The third line, if applicable, of the street address of the drop-off site location. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     type: str | None = Field(
         None,
-        description='The type of the drop-off site location.<br><br>Currently, the only valid response is <code>DROP_OFF</code>.',
+        description='The type of the drop-off site location. Currently, the only valid response is DROP_OFF .',
     )
 
 
@@ -544,16 +543,14 @@ class GetDropoffSitesResponsesData(EbayModel):
         None, description='The URL to the current page of the result set.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <b>limit</b> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
         description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <b>offset</b> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
@@ -576,7 +573,7 @@ class GetLabelListResponsesData(EbayModel):
     base64_str: str | None = Field(
         None,
         alias='base64Str',
-        description='The base 64 string value for a shipping label.<br><br>This string value can be converted to a PDF file.',
+        description='The base 64 string value for a shipping label. This string value can be converted to a PDF file.',
     )
     message: str | None = Field(
         None,
@@ -585,7 +582,7 @@ class GetLabelListResponsesData(EbayModel):
     result_code: str | None = Field(
         None,
         alias='resultCode',
-        description='The result code detailing the results of the shipping label retrieval process.<br><br>For example, a result code of <code>200</code> indicates that at least one shipping label was successfully retrieved.',
+        description='The result code detailing the results of the shipping label retrieval process. For example, a result code of 200 indicates that at least one shipping label was successfully retrieved.',
     )
     tracking_number: str | None = Field(
         None,
@@ -597,7 +594,7 @@ class GetLabelListResponsesData(EbayModel):
 class GetTrackingDetailResponsesData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code in which the tracking event occurred.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The city code in which the tracking event occurred. See 商户API地址编码主数据 for valid city codes. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     country: str | None = Field(
         None,
@@ -615,12 +612,12 @@ class GetTrackingDetailResponsesData(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code where the tracking event occurred.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The district code where the tracking event occurred. See 商户API地址编码主数据 for valid district codes. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     event_postal_code: str | None = Field(
         None,
         alias='eventPostalCode',
-        description='The postal code of where the tracking event occurred.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The postal code of where the tracking event occurred. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     event_time: str | None = Field(
         None,
@@ -629,7 +626,7 @@ class GetTrackingDetailResponsesData(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code where the tracking event occurred.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for province district codes.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='The province code where the tracking event occurred. See 商户API地址编码主数据 for province district codes. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     status: str | None = Field(None, description='The status of the shipment.')
     tracking_number: str | None = Field(
@@ -690,28 +687,27 @@ class PickUpTimeTypeEnum(OpenStrEnum):
 class PickupAddressRequestData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the pickup address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the pickup address. See 商户API地址编码主数据 for valid city codes.',
     )
     company: str | None = Field(
         None,
-        description='The company name associated with the pickup address.<br><br><b>Max length</b>: 50 characters',
+        description='The company name associated with the pickup address. Max length : 50 characters',
     )
     contact: str | None = Field(
         None,
-        description='The name of the contact person associated with the pickup address.<br><br><b>Max length</b>: 50 characters',
+        description='The name of the contact person associated with the pickup address. Max length : 50 characters',
     )
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description='The two-letter country code of the pickup address.<br><br><b>Valid values</b>:<ul><li>CN</li><li>HK</li></ul>',
+        description='The two-letter country code of the pickup address. Valid values : CN HK',
     )
     district: str | None = Field(
         None,
-        description='The district code of the pickup address. <br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the pickup address. See 商户API地址编码主数据 for valid district codes.',
     )
     name: str | None = Field(
-        None,
-        description='The name of the pickup address.<br><br><b>Max length</b>: 50 characters',
+        None, description='The name of the pickup address. Max length : 50 characters'
     )
     phone: str | None = Field(
         None, description='The phone number associated with the pickup address.'
@@ -721,26 +717,26 @@ class PickupAddressRequestData(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code of the the pickup address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the the pickup address. See 商户API地址编码主数据 for valid province codes.',
     )
     street1: str | None = Field(
         None,
-        description='The first line of the street address of the pickup address.<br><br><b>Max length</b>: 50 characters',
+        description='The first line of the street address of the pickup address. Max length : 50 characters',
     )
     street2: str | None = Field(
         None,
-        description='The second line, if applicable, of the street address of the pickup address.<br><br><b>Max length</b>: 50 characters',
+        description='The second line, if applicable, of the street address of the pickup address. Max length : 50 characters',
     )
     street3: str | None = Field(
         None,
-        description='The third line, if applicable, of the street address of the pickup address.<br><br><b>Max length</b>: 50 characters',
+        description='The third line, if applicable, of the street address of the pickup address. Max length : 50 characters',
     )
 
 
 class PickupAddressResponsesData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the pickup address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the pickup address. See 商户API地址编码主数据 for valid city codes.',
     )
     city_name: str | None = Field(
         None, alias='cityName', description='The city name of the pickup address.'
@@ -764,7 +760,7 @@ class PickupAddressResponsesData(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code of the pickup address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the pickup address. See 商户API地址编码主数据 for valid district codes.',
     )
     district_name: str | None = Field(
         None,
@@ -780,7 +776,7 @@ class PickupAddressResponsesData(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code of the pickup address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the pickup address. See 商户API地址编码主数据 for valid province codes.',
     )
     province_name: str | None = Field(
         None,
@@ -827,22 +823,22 @@ class ServiceInfoResponses(EbayModel):
     )
     incoterm: IncotermEnum | None = Field(
         None,
-        description='The incoterm information associated with the the shipping service.<br><br><b>Supported values</b>:<ul><li><code>DDP</code></li><li><code>DDU</code></li></ul>',
+        description='The incoterm information associated with the the shipping service. Supported values : DDP DDU',
     )
     max_length: float | None = Field(
         None,
         alias='maxLength',
-        description='This value indicates the maximum length (in centimeters) of the shipping package that the shipping service allows.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='This value indicates the maximum length (in centimeters) of the shipping package that the shipping service allows. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     max_total_length: float | None = Field(
         None,
         alias='maxTotalLength',
-        description='This value indicates the total maximum value of the length, width, and height of the package.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='This value indicates the total maximum value of the length, width, and height of the package. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     max_weight: float | None = Field(
         None,
         alias='maxWeight',
-        description='This value indicates the maximum weight (in grams) of the shipping package that the shipping service allows.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='This value indicates the maximum weight (in grams) of the shipping package that the shipping service allows. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     name_en: str | None = Field(
         None, alias='nameEn', description='The shipping service name in English'
@@ -863,14 +859,14 @@ class ServiceInfoResponses(EbayModel):
     shipping_service_id: str | None = Field(
         None,
         alias='shippingServiceId',
-        description='The unique identifier of the shipping service being retrieved.<br><br>This value can be input in the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage.packageinforequest.shippingserviceid">shippingServiceId</a> field when creating a package through the the <b>createPackage</b> method.',
+        description='The unique identifier of the shipping service being retrieved. This value can be input in the shippingServiceId field when creating a package through the the createPackage method.',
     )
 
 
 class ShipToAddressRequestData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the ship-to address. See 商户API地址编码主数据 for valid city codes.',
     )
     company: str | None = Field(
         None, description='The name of the company associated with the ship-to address.'
@@ -891,7 +887,7 @@ class ShipToAddressRequestData(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the ship-to address. See 商户API地址编码主数据 for valid district codes.',
     )
     phone: str | None = Field(
         None, description='The phone number associated with the ship-to address.'
@@ -901,26 +897,26 @@ class ShipToAddressRequestData(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the ship-to address. See 商户API地址编码主数据 for valid province codes.',
     )
     street1: str | None = Field(
         None,
-        description='The first line of the street address of the ship-to address.<br><br><b>Max length</b>: 50 characters',
+        description='The first line of the street address of the ship-to address. Max length : 50 characters',
     )
     street2: str | None = Field(
         None,
-        description='The second line, if applicable, of the street address of the ship-to address.<br><br><b>Max length</b>: 50 characters',
+        description='The second line, if applicable, of the street address of the ship-to address. Max length : 50 characters',
     )
     street3: str | None = Field(
         None,
-        description='The third line, if applicable, of the street address of the ship-to address.<br><br><b>Max length</b>: 50 characters',
+        description='The third line, if applicable, of the street address of the ship-to address. Max length : 50 characters',
     )
 
 
 class ShipToAddressResponsesData(EbayModel):
     city: str | None = Field(
         None,
-        description='The city code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid city codes.',
+        description='The city code of the ship-to address. See 商户API地址编码主数据 for valid city codes.',
     )
     company: str | None = Field(
         None, description='The name of the company associated with the ship-to address.'
@@ -941,7 +937,7 @@ class ShipToAddressResponsesData(EbayModel):
     )
     district: str | None = Field(
         None,
-        description='The district code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid district codes.',
+        description='The district code of the ship-to address. See 商户API地址编码主数据 for valid district codes.',
     )
     phone: str | None = Field(
         None, description='The phone number associated with the ship-to address.'
@@ -951,7 +947,7 @@ class ShipToAddressResponsesData(EbayModel):
     )
     province: str | None = Field(
         None,
-        description='The province code of the ship-to address.<br><br>See <a href="https://www.edisebay.com/open/development-guide-detail?id=36" target="_blank">商户API地址编码主数据</a> for valid province codes.',
+        description='The province code of the ship-to address. See 商户API地址编码主数据 for valid province codes.',
     )
     street1: str | None = Field(
         None, description='The first line of the street address of the ship-to address.'
@@ -969,22 +965,22 @@ class SpecialServiceDetail(EbayModel):
     insurance_fee: str | None = Field(
         None,
         alias='insuranceFee',
-        description='The insurance fee, if applicable, on the package.<br><br>The insurance amount and currency are consistent with the currency of the destination country',
+        description='The insurance fee, if applicable, on the package. The insurance amount and currency are consistent with the currency of the destination country',
     )
     packaging_type: str | None = Field(
         None,
         alias='packagingType',
-        description='The package type.<br><br><b>Valid values</b>:<ul><li><code>PAK</code> (limited weight ≤ 2.5KG)</li><li><code>PACKAGE</code> (limited weight 68KG)</li></ul>',
+        description='The package type. Valid values : PAK (limited weight ≤ 2.5KG) PACKAGE (limited weight 68KG)',
     )
     signature_type: str | None = Field(
         None,
         alias='signatureType',
-        description='The signature type, if applicable, for the package.<br><br><b>Valid values</b>:<ul><li><code>ISR</code> (Indirect Signature Required)</li><li><code>DSR</code> (Direct Signature Required)</li><li><code>ASR</code> (Adult Signature Required)</li></ul>',
+        description='The signature type, if applicable, for the package. Valid values : ISR (Indirect Signature Required) DSR (Direct Signature Required) ASR (Adult Signature Required)',
     )
     special_service_types: list[str] | None = Field(
         None,
         alias='specialServiceTypes',
-        description='Any special service types supported for the package.<br><br> For example, <code>SATURDAY_DELIVERY</code> indicates that the item is eligible for Saturday delivery.',
+        description='Any special service types supported for the package. For example, SATURDAY_DELIVERY indicates that the item is eligible for Saturday delivery.',
     )
 
 
@@ -992,27 +988,27 @@ class AddComplaintRequestData(EbayModel):
     affected_packages: list[str] | None = Field(
         None,
         alias='affectedPackages',
-        description='This array specifies a list of packages, specified by their <b>packageId</b>, affected by the issue causing the complaint.<br><br>Package ID values are returned when creating a package through the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-package-createpackage">createPackage</a> method<br><br>This array is required if the complaint being filed is for a missing package.',
+        description='This array specifies a list of packages, specified by their packageId , affected by the issue causing the complaint. Package ID values are returned when creating a package through the createPackage method This array is required if the complaint being filed is for a missing package.',
     )
     complaint_date: str | None = Field(
         None,
         alias='complaintDate',
-        description='The date in which the issue associated with the complaint occurred.<br><br><b>Format:</b> <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code> ',
+        description='The date in which the issue associated with the complaint occurred. Format: YYYY-MM-DDTHH:MM:SS.SSSZ',
     )
     complaint_reason: str | None = Field(
         None,
         alias='complaintReason',
-        description='This string specifies the reason the complaint was filed.<br><br><b>Max length</b>: 200 characters',
+        description='This string specifies the reason the complaint was filed. Max length : 200 characters',
     )
     complaint_type: ComplaintTypeEnum | None = Field(
         None,
         alias='complaintType',
-        description='The type of complaint being filed.<br><br><b>Valid values</b>:<ul><li><code>ABNORMAL_COLLECTION_COMPLAINT</code></li><li><code>LOST_PACKAGE_COMPLAINT</code></li></ul>',
+        description='The type of complaint being filed. Valid values : ABNORMAL_COLLECTION_COMPLAINT LOST_PACKAGE_COMPLAINT',
     )
     preference_id: int | None = Field(
         None,
         alias='preferenceId',
-        description='The unique identifier of the address associated with the complaint.<br><br>This field is required if the complain being filed is associated with a specific address.',
+        description='The unique identifier of the address associated with the complaint. This field is required if the complain being filed is associated with a specific address.',
     )
     remark: str | None = Field(None, description='A remark to the seller themselves.')
 
@@ -1042,11 +1038,11 @@ class AgentModelResponses(EbayModel):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='This enum value represents the type of currency being used. Both the <b>value</b> and <b>currency fields</b> are required/always returned when expressing cost.<br><br> See the <b>CurrencyCodeEnum</b> type for the full list of supported values.<br><br>Both the <b>value</b> and <b>currency</b> fields are required/always returned when expressing cost.',
+        description='This enum value represents the type of currency being used. Both the value and currency fields are required/always returned when expressing cost. See the CurrencyCodeEnum type for the full list of supported values. Both the value and currency fields are required/always returned when expressing cost.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <b>currency</b> field.<br><br>Both the <b>value</b> and <b>currency</b> fields are required/always returned when expressing cost.',
+        description='The monetary amount, in the currency specified by the currency field. Both the value and currency fields are required/always returned when expressing cost.',
     )
 
 
@@ -1071,7 +1067,7 @@ class BatteryQualResponses(EbayModel):
     )
     remark: str | None = Field(
         None,
-        description='A remark to the seller themselves.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='A remark to the seller themselves. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
 
 
@@ -1108,12 +1104,12 @@ class ClonePackageResponsesData(EbayModel):
     last_mile_tracking_number: str | None = Field(
         None,
         alias='lastMileTrackingNumber',
-        description='The last-mile tracking number of the package.<br><br>This field is only returned if the last-mile tracking number is provided by the carrier.',
+        description='The last-mile tracking number of the package. This field is only returned if the last-mile tracking number is provided by the carrier.',
     )
     package_id: str | None = Field(
         None,
         alias='packageId',
-        description='The unique identifier of the package. A new <b>packageId</b> value is generated when a package is cloned.',
+        description='The unique identifier of the package. A new packageId value is generated when a package is cloned.',
     )
     payment_cost: Amount | None = Field(
         None, alias='paymentCost', description='The payment cost for the package.'
@@ -1153,21 +1149,21 @@ class ConsignPreferenceInfoResponses(EbayModel):
     dropoff_site_id: str | None = Field(
         None,
         alias='dropoffSiteId',
-        description='The unique identifier of the drop-off site.<br><br>This field is only returned if the consign address is a drop-off location.',
+        description='The unique identifier of the drop-off site. This field is only returned if the consign address is a drop-off location.',
     )
     pickup_address: PickupAddressResponsesData | None = Field(
         None,
         alias='pickupAddress',
-        description='This container returns the address and contact information for a pickup address.<br><br><span class="tablenote"><b>Note:</b> This container is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='This container returns the address and contact information for a pickup address. Note: This container is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     pickup_time: PickUpTimeTypeEnum | None = Field(
         None,
         alias='pickupTime',
-        description='The supported pickup window that the pickup location supports.<br><br>This field is only returned if the consign address is a pickup-from location',
+        description='The supported pickup window that the pickup location supports. This field is only returned if the consign address is a pickup-from location',
     )
     type: ConsignTypeEnum | None = Field(
         None,
-        description='The address type of the consign address.<br><br><b>Valid values</b>:<ul><li><code>PICK_UP</code></li><li><code>DROP_OFF</code></li><li><code>FORWARD_DEPLOYMENT</code></ul>',
+        description='The address type of the consign address. Valid values : PICK_UP DROP_OFF FORWARD_DEPLOYMENT',
     )
 
 
@@ -1197,7 +1193,7 @@ class CreateBundleRequest(EbayModel):
 class CreateBundleResponse(EbayModel):
     bundle: CreateBundleResponseData | None = Field(
         None,
-        description='This container returns information about the newly created bundle, such as its <b>bundleId</b> value.',
+        description='This container returns information about the newly created bundle, such as its bundleId value.',
     )
 
 
@@ -1210,21 +1206,21 @@ class CreateConsignPreferenceRequestData(EbayModel):
     dropoff_site_id: str | None = Field(
         None,
         alias='dropoffSiteId',
-        description='The unique identifier of a drop-off site location. This value can be retrieved using the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-dropoff_sites-getdropoffsites">getDropoffSites</a> method.<br><br>This field is required if the <code>DROPOFF</code> address type is specified.',
+        description='The unique identifier of a drop-off site location. This value can be retrieved using the getDropoffSites method. This field is required if the DROPOFF address type is specified.',
     )
     pickup_address: PickupAddressRequestData | None = Field(
         None,
         alias='pickupAddress',
-        description='This container is used to specify the address details used to create a pickup-from address.<br><br>This container is required if the <code>PICK_UP</code> address type is specified.',
+        description='This container is used to specify the address details used to create a pickup-from address. This container is required if the PICK_UP address type is specified.',
     )
     pickup_time: PickUpTimeTypeEnum | None = Field(
         None,
         alias='pickupTime',
-        description='The pickup time that the pickup location supports.<br><br>This field is required if the <code>PICK_UP</code> address type is specified.',
+        description='The pickup time that the pickup location supports. This field is required if the PICK_UP address type is specified.',
     )
     type: ConsignTypeEnum | None = Field(
         None,
-        description='The address type of the consign address.<br><br><b>Valid values</b>:<ul><li><code>PICK_UP</code></li><li><code>DROP_OFF</code></li><li><code>FORWARD_DEPLOYMENT</code></li><li><code>RDC</code></li><li><code>CN_POST_DROP_OFF</code></li><li><code>CN_POST_PICK_UP</code></li><li><code>HK_POST_DROP_OFF</code></li></ul>',
+        description='The address type of the consign address. Valid values : PICK_UP DROP_OFF FORWARD_DEPLOYMENT RDC CN_POST_DROP_OFF CN_POST_PICK_UP HK_POST_DROP_OFF',
     )
 
 
@@ -1296,7 +1292,7 @@ class GetActualCostResponsesData(EbayModel):
     )
     amount: Amount | None = Field(
         None,
-        description='This container specifies the total monetary amount of the actual cost of the package. ',
+        description='This container specifies the total monetary amount of the actual cost of the package.',
     )
     billing_time: str | None = Field(
         None,
@@ -1306,7 +1302,7 @@ class GetActualCostResponsesData(EbayModel):
     charge_mode: str | None = Field(
         None,
         alias='chargeMode',
-        description='The two-digit charge mode for the package.<br><br><b>Valid values</b>:<ul><li><code>01</code>: Actual weight</li><li><code>02</code>: Additional dimension weight</li><li><code>03</code>: Charged by lite mode</li></ul>',
+        description='The two-digit charge mode for the package. Valid values : 01 : Actual weight 02 : Additional dimension weight 03 : Charged by lite mode',
     )
     charge_weight: float | None = Field(
         None,
@@ -1316,20 +1312,20 @@ class GetActualCostResponsesData(EbayModel):
     cost_type: str | None = Field(
         None,
         alias='costType',
-        description="The two-digit cost type of the package. This field indicates any fees associated with the package.<br><br>The following values are the typical cost types returned through this field. If an undocumented cost type is returned, check the logistic provider's website for the latest values:<br><ul><li><code>01</code>: Shipping fee</li><li><code>02</code>: Domestic</li><li><code>03</code>: Return fee</li><li><code>04</code>: Domestic burning fee</li><li><code>05</code>: Custom collected fee</li><li><code>06</code>: Weight gap fee</li><li><code>07</code>: Duplication compensation</li></ul>",
+        description='The two-digit cost type of the package. This field indicates any fees associated with the package. The following values are the typical cost types returned through this field.',
     )
     message: str | None = Field(
         None,
-        description='A seller-defined message to the buyer regarding the transaction.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='A seller-defined message to the buyer regarding the transaction. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     remark: str | None = Field(
         None,
-        description='A remark to the seller themselves.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='A remark to the seller themselves. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     result_code: str | None = Field(
         None,
         alias='resultCode',
-        description='The result code associated with the call.<br><br>For example, a result code of <code>200</code> indicates that the call was a success.',
+        description='The result code associated with the call. For example, a result code of 200 indicates that the call was a success.',
     )
     size: str | None = Field(
         None,
@@ -1358,16 +1354,14 @@ class GetAgentListResponsesData(EbayModel):
         None, description='The URL to the current page of the result set.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <b>limit</b> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
         description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <b>offset</b> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
@@ -1383,16 +1377,14 @@ class GetBatteryQualListResponsesData(EbayModel):
         None, description='The URL to the current page of the result set.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <b>limit</b> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
         description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <b>offset</b> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
@@ -1455,16 +1447,14 @@ class GetServiceListResponsesData(EbayModel):
         None, description='The URL to the current page of the result set.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <b>limit</b> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
         description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <b>offset</b> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
@@ -1492,12 +1482,12 @@ class SkuRequest(EbayModel):
     elec_qualification_id: str | None = Field(
         None,
         alias='elecQualificationId',
-        description='The unique identifier of the battery\'s electric qualification, which indicates that the battery has a certificate of approval for global shipping.<br><br>This value is returned in the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-battery_qualifications-getbatteryqualifications">getBatteryQualifications</a> method.',
+        description="The unique identifier of the battery's electric qualification, which indicates that the battery has a certificate of approval for global shipping. This value is returned in the getBatteryQualifications method.",
     )
     fdc_skus: list[FDCSkuRequest] | None = Field(
         None,
         alias='fdcSkus',
-        description='This array lists the FDC SKUs associated with the item. An FDC SKU is the SKU label in a forward deployment center.<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Please contact customer service before using these fields.</p></div>',
+        description='This array lists the FDC SKUs associated with the item. An FDC SKU is the SKU label in a forward deployment center. Important! Please contact customer service before using these fields.',
     )
     height: float | None = Field(
         None, description='The height of the item in centimeters.'
@@ -1557,12 +1547,12 @@ class AddPackageResponsesData(EbayModel):
     last_mile_tracking_number: str | None = Field(
         None,
         alias='lastMileTrackingNumber',
-        description='The last-mile tracking number of the package.<br><br>This field is only returned if the last-mile tracking number is provided by the carrier.',
+        description='The last-mile tracking number of the package. This field is only returned if the last-mile tracking number is provided by the carrier.',
     )
     package_id: str | None = Field(
         None,
         alias='packageId',
-        description='The unique identifier of the created package.<br><br><span class="tablenote"><b>Note:</b> Sellers should keep track of the returned <b>packageId</b>, as there is no programmatic way to retrieve this value at this time.</span>',
+        description='The unique identifier of the created package. Note: Sellers should keep track of the returned packageId , as there is no programmatic way to retrieve this value at this time.',
     )
     payment_cost: Amount | None = Field(
         None, alias='paymentCost', description='The actual payment cost of the package.'
@@ -1650,12 +1640,12 @@ class ItemRequest(EbayModel):
     buyer_id: str | None = Field(
         None,
         alias='buyerId',
-        description='The buyer\'s eBay user ID.<br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, both usernames and public user IDs will be accepted in this field. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description="The buyer's eBay user ID. Note: Effective September 26, 2025, both usernames and public user IDs will be accepted in this field. For more information, please refer to Data Handling Compliance .",
     )
     buyer_tax_id: str | None = Field(
         None,
         alias='buyerTaxId',
-        description='The tax ID for the buyer. The type of Tax ID is specified in the <b>buyerTaxIdType</b> field.',
+        description='The tax ID for the buyer. The type of Tax ID is specified in the buyerTaxIdType field.',
     )
     buyer_tax_type: str | None = Field(
         None,
@@ -1679,7 +1669,7 @@ class ItemRequest(EbayModel):
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='The unique identifier of the eBay listing.<br><br><span class="tablenote"><b>Note:</b> Either a <b>listingId</b> and <b>transactionId</b> pair, or an <b>orderLineItem</b> field is required to identify an order line item.</span>',
+        description='The unique identifier of the eBay listing. Note: Either a listingId and transactionId pair, or an orderLineItem field is required to identify an order line item.',
     )
     message: str | None = Field(
         None, description='A message from the seller to the buyer.'
@@ -1692,12 +1682,12 @@ class ItemRequest(EbayModel):
     order_line_item: str | None = Field(
         None,
         alias='orderLineItem',
-        description='The unique identifier of the line item.<br><br><span class="tablenote"><b>Note:</b> Either a <b>listingId</b> and <b>transactionId</b> pair, or an <b>orderLineItem</b> field is required to identify an order line item.<span>',
+        description='The unique identifier of the line item. Note: Either a listingId and transactionId pair, or an orderLineItem field is required to identify an order line item.',
     )
     payment_date: str | None = Field(
         None,
         alias='paymentDate',
-        description='The date and time the buyer pays for the order.<br><br><b>Format:</b> <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>',
+        description='The date and time the buyer pays for the order. Format: YYYY-MM-DDTHH:MM:SS.SSSZ',
     )
     pay_pal_email: str | None = Field(
         None, alias='payPalEmail', description="The buyer's PayPal email address."
@@ -1708,7 +1698,7 @@ class ItemRequest(EbayModel):
     posted_quantity: int | None = Field(
         None,
         alias='postedQuantity',
-        description='The quantity of the line item that will be shipped with the package. This value can differ from the order quantity in the case of a combined or split shipment.<br><br><b>Min</b>: 1<br><br><b>Max</b>: 999',
+        description='The quantity of the line item that will be shipped with the package. This value can differ from the order quantity in the case of a combined or split shipment. Min : 1 Max : 999',
     )
     site_id: int | None = Field(
         None,
@@ -1722,7 +1712,7 @@ class ItemRequest(EbayModel):
     sold_date: str | None = Field(
         None,
         alias='soldDate',
-        description='The date the item was sold.<br><br><b>Format</b>: <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>',
+        description='The date the item was sold. Format : YYYY-MM-DDTHH:MM:SS.SSSZ',
     )
     sold_price: Amount | None = Field(
         None, alias='soldPrice', description='The price for which the item was sold.'
@@ -1735,7 +1725,7 @@ class ItemRequest(EbayModel):
     transaction_id: str | None = Field(
         None,
         alias='transactionId',
-        description='The unique identifier of the monetary transaction.<br><br><span class="tablenote"><b>Note:</b> Either a <b>listingId</b> and <b>transactionId</b> pair, or an <b>orderLineItem</b> field is required to identify an order line item.</span>',
+        description='The unique identifier of the monetary transaction. Note: Either a listingId and transactionId pair, or an orderLineItem field is required to identify an order line item.',
     )
 
 
@@ -1743,7 +1733,7 @@ class ItemResponses(EbayModel):
     buyer_id: str | None = Field(
         None,
         alias='buyerId',
-        description='The buyer\'s eBay ID.<br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description="The buyer's eBay ID. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .",
     )
     buyer_tax_id: str | None = Field(
         None, alias='buyerTaxId', description="The buyer's tax ID."
@@ -1754,12 +1744,12 @@ class ItemResponses(EbayModel):
     ebay_collect_and_remit_tax: bool | None = Field(
         None,
         alias='ebayCollectAndRemitTax',
-        description="If returned as <code>true</code>, this boolean indicates that eBay will collect tax for the corresponding line item, and remit the tax to the taxing authority of the buyer's residence. ",
+        description="If returned as true , this boolean indicates that eBay will collect tax for the corresponding line item, and remit the tax to the taxing authority of the buyer's residence.",
     )
     ebay_collect_and_remit_taxes_value: str | None = Field(
         None,
         alias='ebayCollectAndRemitTaxesValue',
-        description='The value of the collect and remit tax for the corresponding line item. This field is only returned if collect and remit tax is applied to the line item. ',
+        description='The value of the collect and remit tax for the corresponding line item. This field is only returned if collect and remit tax is applied to the line item.',
     )
     email: str | None = Field(None, description="The buyer's eBay email address.")
     item_title: str | None = Field(
@@ -1828,16 +1818,16 @@ class PackageInfoRequest(EbayModel):
     agent_info_request: AgentInfoData | None = Field(
         None,
         alias='agentInfoRequest',
-        description='This container specifies the EU AR agent information associated with the package.<br><br>This information can be retrieved using the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-agents-getagents">getAgents</a>  method.',
+        description='This container specifies the EU AR agent information associated with the package. This information can be retrieved using the getAgents method.',
     )
     consign_preference_id: str | None = Field(
         None,
         alias='consignPreferenceId',
-        description='The unique identifier of the consign address to be associated with the package.<br><br>This ID can be retrieved using the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-consign_preference-getconsignpreferences">getConsignPreferences</a> method.',
+        description='The unique identifier of the consign address to be associated with the package. This ID can be retrieved using the getConsignPreferences method.',
     )
     incoterm: IncotermEnum | None = Field(
         None,
-        description='The incoterm information associated with the package.<br><br><b>Supported values</b>:<ul><li><code>DDP</code></li><li><code>DDU</code></li></ul>',
+        description='The incoterm information associated with the package. Supported values : DDP DDU',
     )
     items: list[ItemRequest] | None = Field(
         None,
@@ -1874,12 +1864,12 @@ class PackageInfoRequest(EbayModel):
     ship_from_address_id: str | None = Field(
         None,
         alias='shipFromAddressId',
-        description='The unique identifier of the ship-from address used for the package.<br><br>Use the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-address_preference-getaddresspreferences">getAddressPreferences</a> method to retrieve valid ship-from <b>addressId</b> values associated with your account.',
+        description='The unique identifier of the ship-from address used for the package. Use the getAddressPreferences method to retrieve valid ship-from addressId values associated with your account.',
     )
     shipping_service_id: str | None = Field(
         None,
         alias='shippingServiceId',
-        description='The unique identifier of the shipping service being used for the package.<br><br>This value can be retrieved using the <a href="/develop/api/sell/edelivery_international_shipping_api#sell-edelivery_international_shipping_api-services-getservices">getServices</a> method.',
+        description='The unique identifier of the shipping service being used for the package. This value can be retrieved using the getServices method.',
     )
     ship_to_address: ShipToAddressRequestData | None = Field(
         None,
@@ -1910,7 +1900,7 @@ class AddPackageResponses(EbayModel):
     create_package_result: AddPackageResponsesData | None = Field(
         None,
         alias='createPackageResult',
-        description='This container returns information about the newly created package, including its tracking number and <b>packageId</b> value.',
+        description='This container returns information about the newly created package, including its tracking number and packageId value.',
     )
 
 
@@ -1927,7 +1917,7 @@ class GetPackageDetailResponsesData(EbayModel):
     )
     incoterm: IncotermEnum | None = Field(
         None,
-        description='The incoterm information associated with the package.<br><br><b>Supported values</b>:<ul><li><code>DDP</code></li><li><code>DDU</code></li></ul>',
+        description='The incoterm information associated with the package. Supported values : DDP DDU',
     )
     items: list[ItemResponses] | None = Field(
         None,
@@ -1936,7 +1926,7 @@ class GetPackageDetailResponsesData(EbayModel):
     last_mile_tracking_number: str | None = Field(
         None,
         alias='lastMileTrackingNumber',
-        description='The last-mile tracking number of the package.<br><br>This field is only returned if the last-mile tracking number is provided by the carrier.',
+        description='The last-mile tracking number of the package. This field is only returned if the last-mile tracking number is provided by the carrier.',
     )
     package_comment: str | None = Field(
         None,
@@ -1988,7 +1978,7 @@ class GetPackageDetailResponsesData(EbayModel):
     special_service_detail: SpecialServiceDetail | None = Field(
         None,
         alias='specialServiceDetail',
-        description='This container returns any special services associated with this package.<br><br><span class="tablenote"><b>Note:</b> This field is always returned, but will show as null or have an empty value if not defined/applicable.</span>',
+        description='This container returns any special services associated with this package. Note: This field is always returned, but will show as null or have an empty value if not defined/applicable.',
     )
     value_for_carriage: str | None = Field(
         None, alias='valueForCarriage', description='The declared value of the package.'

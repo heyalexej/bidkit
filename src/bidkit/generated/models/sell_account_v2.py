@@ -14,7 +14,7 @@ class DispatchCutoffTimePreferencesType(EbayModel):
     cutoff_time: str | None = Field(
         None,
         alias='cutoffTime',
-        description='This field indicates the dispatch cut-off time in Zulu format (<code>HH:mm:ss.SSSZ</code>) - 24-hour format with milliseconds and Z timezone indicator.<br><br><span class="tablenote"><b>Note:</b> Despite the Z that is returned in the timestamp, the cut-off time is actually based on the default timezone of the eBay marketplace for the seller.</span><br><br><span class="tablenote"><b>Note:</b> If an eBay listing supports same-day shipping, and an order is paid for before the cut-off time, the seller is expected to ship the order out that same business day.</span>',
+        description='This field indicates the dispatch cut-off time in Zulu format ( HH:mm:ss. SSSZ ) - 24-hour format with milliseconds and Z timezone indicator. Note: Despite the Z that is returned in the timestamp, the cut-off time is actually based on the default timezone of the eBay marketplace for the seller.',
     )
 
 
@@ -32,7 +32,7 @@ class GetItemsAwaitingPaymentPreferencesType(EbayModel):
     delay_before_cancelling_commitment: int | None = Field(
         None,
         alias='delayBeforeCancellingCommitment',
-        description='This integer indicates the delay in days before cancelling the buyer&#x27;s commitment.',
+        description="This integer indicates the delay in days before cancelling the buyer's commitment.",
     )
     excluded_users: list[str] | None = Field(
         None,
@@ -66,12 +66,12 @@ class UpdatePayoutPercentage(EbayModel):
     instrument_id: str | None = Field(
         None,
         alias='instrumentId',
-        description='The unique reference identifier for a payout instrument. This value is returned in the <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-payout_settings-getpayoutsettings" target="_blank">getPayoutSettings</a> response and is needed to change split-payout percentages through an <b>updatePayoutPercentage</b> request.',
+        description='The unique reference identifier for a payout instrument. This value is returned in the getPayoutSettings response and is needed to change split-payout percentages through an updatePayoutPercentage request.',
     )
     payout_percentage: str | None = Field(
         None,
         alias='payoutPercentage',
-        description='The user-defined payout percentage allocated to this instrument. For example, <code>50</code> indicates that 50% of the payout goes to this instrument.<br/><br/>The split-payout percentage <b>must</b> be a positive integer value from 0-100. The values of two instruments <b>must</b> always add up to 100%. If the values do not equal 100, the call will fail.',
+        description='The user-defined payout percentage allocated to this instrument. For example, 50 indicates that 50% of the payout goes to this instrument. The split-payout percentage must be a positive integer value from 0-100. The values of two instruments must always add up to 100%. If the values do not equal 100, the call will fail.',
     )
 
 
@@ -374,37 +374,37 @@ class SetItemsAwaitingPaymentPreferencesType(EbayModel):
     auto_relist: bool | None = Field(
         None,
         alias='autoRelist',
-        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the line item should be automatically relisted when cancelled. For this field to be set to <code>true</code>, the <code>optInStatus</code> field should also be <code>true</code>. </br> <b>Note</b>: If the line item was part of an auction listing or a single-quantity fixed price listing, a new listing will actually be created. If the line item was part of a multiple-quantity fixed price listing, eBay will only adjust the quantity based on the cancelled line item’s quantity.',
+        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the line item should be automatically relisted when cancelled. For this field to be set to true , the optInStatus field should also be true . Note : If the line item was part of an auction listing or a single-quantity fixed price listing, a new listing will actually be created.',
     )
     delay_before_cancelling_commitment: int | None = Field(
         None,
         alias='delayBeforeCancellingCommitment',
-        description='This integer field is included if the seller wishes to set or change the number of business days without payment that must elapse before the line item is cancelled. This is a required field if the optInStatus field is <code>true</code>. </br><b>Note</b>: The supported integer values (representing business days) varies by eBay marketplace.',
+        description='This integer field is included if the seller wishes to set or change the number of business days without payment that must elapse before the line item is cancelled. This is a required field if the optInStatus field is true . Note : The supported integer values (representing business days) varies by eBay marketplace.',
     )
     excluded_users: list[str] | None = Field(
         None,
         alias='excludedUsers',
-        description='This array is used if the seller wishes to exclude one or more eBay users from the unpaid item assistance mechanism. The seller would need to manually cancel any unpaid line items for all users on this list. This array will not be returned if there are no users on the excluded users list. </br><b>Note</b>: The eBay public username is used for each excluded user, and a comma is used to delimit each user in the array.',
+        description='This array is used if the seller wishes to exclude one or more eBay users from the unpaid item assistance mechanism. The seller would need to manually cancel any unpaid line items for all users on this list. This array will not be returned if there are no users on the excluded users list.',
     )
     opt_in_status: bool | None = Field(
         None,
         alias='optInStatus',
-        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the seller is opted into the unpaid item assistance mechanism. If the seller is not opted in, no other fields under <code>itemsAwaitingPaymentPreferences</code> are applicable.',
+        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the seller is opted into the unpaid item assistance mechanism. If the seller is not opted in, no other fields under itemsAwaitingPaymentPreferences are applicable.',
     )
     remove_all_excluded_users: bool | None = Field(
         None,
         alias='removeAllExcludedUsers',
-        description='This boolean field is included and set to <code>true</code> if the seller wishes to remove all eBay users from the current excluded users list. If this field is included and set to <code>true</code>, the <code>excludedUsers</code> array should not be included.',
+        description='This boolean field is included and set to true if the seller wishes to remove all eBay users from the current excluded users list. If this field is included and set to true , the excludedUsers array should not be included.',
     )
 
 
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The base currency applied to the <b>value</b> field to establish a monetary amount.<br/><br/>The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is <code>CAD</code>.',
+        description='The base currency applied to the value field to establish a monetary amount. The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is CAD .',
     )
     value: str | None = Field(
-        None, description='The monetary amount in the specified <b>currency</b>.'
+        None, description='The monetary amount in the specified currency .'
     )
 
 
@@ -412,7 +412,7 @@ class CalculatedHandlingRuleType(EbayModel):
     combined_shipping_rule_type: CombinedShippingRuleTypeHandlingEnum | None = Field(
         None,
         alias='combinedShippingRuleType',
-        description='This enumeration value specifies the type of combined-shipping rule applied to handling fees (for example, weight-based, flat-rate, or percentage-based calculation method). ',
+        description='This enumeration value specifies the type of combined-shipping rule applied to handling fees (for example, weight-based, flat-rate, or percentage-based calculation method).',
     )
     each_additional_amount: Amount | None = Field(
         None,
@@ -440,7 +440,7 @@ class CombinedPaymentPreferencesType(EbayModel):
     combined_payment_option: CombinedPaymentOptionEnum | None = Field(
         None,
         alias='combinedPaymentOption',
-        description='This enum type defines the available options for handling combined payments when a seller allows multiple line items from the same buyer to be paid for with a single payment. See <code>CombinedPaymentOptionEnum</code> for a description of each value.',
+        description='This enum type defines the available options for handling combined payments when a seller allows multiple line items from the same buyer to be paid for with a single payment. See CombinedPaymentOptionEnum for a description of each value.',
     )
 
 
@@ -468,7 +468,7 @@ class EndOfAuctionEmailPreferencesType(EbayModel):
     template_text: str | None = Field(
         None,
         alias='templateText',
-        description='This field shows the body text that is being used if the seller is sending customized emails to winning bidders. The template text has a maximum limit  of 1000 characters.',
+        description='This field shows the body text that is being used if the seller is sending customized emails to winning bidders. The template text has a maximum limit of 1000 characters.',
     )
     text_customized: bool | None = Field(
         None,
@@ -535,26 +535,26 @@ class PayoutInstrument(EbayModel):
     instrument_id: str | None = Field(
         None,
         alias='instrumentId',
-        description='The unique reference identifier for a payout instrument. The <b>instrumentId</b> is needed to change the split-payout percentages through an <b>updatePayoutPercentage</b> request.',
+        description='The unique reference identifier for a payout instrument. The instrumentId is needed to change the split-payout percentages through an updatePayoutPercentage request.',
     )
     instrument_status: InstrumentStatusEnum | None = Field(
         None,
         alias='instrumentStatus',
-        description='The status of a payout instrument. Valid payout instrument statuses include:<br/><ul><li><code>PENDING:</code> This status indicates that the account must be verified before it can be used.</li><li><code>ACTIVE:</code>This status indicates that payouts are enabled on this account.</li><li><code>VERIFICATION_FAILED:</code> This status indicates that verification has failed for this account and payouts are disabled.</li><li><code>INACTIVE:</code> This status indicates that this account has become inactive and payouts are disabled.</li></ul><br/>See <b>InstrumentStatusEnum</b> for more details on each instrument status value.<br><br><span class="tablenote"><b>Note:</b> Payment accounts can only receive payouts if the status of a payout instrument is <code>ACTIVE</code>.</span>',
+        description='The status of a payout instrument. Valid payout instrument statuses include: PENDING: This status indicates that the account must be verified before it can be used. ACTIVE: This status indicates that payouts are enabled on this account. VERIFICATION_FAILED: This status indicates that verification has failed for this account and payouts are disabled.',
     )
     instrument_type: str | None = Field(
         None,
         alias='instrumentType',
-        description='The type of account that received payouts. The value returned in this field may be:<br/><ul><li><code>BANK</code>: Indicates that the payout was made to a seller\'s bank account.</li><li><code>CARD</code> (<b>Not Currently Available</b>): Indicates that the payout went to a seller\'s debit card.</li><li>The name of a digital wallet provider or payment processor (e.g., <code>PAYONEER</code>)</li></ul><br><span class="tablenote"><b>Note:</b> Only Payoneer is currently supported for sellers in mainland China. Card payouts are not currently available for sellers in mainland China.</span> ',
+        description="The type of account that received payouts. The value returned in this field may be: BANK : Indicates that the payout was made to a seller's bank account. CARD ( Not Currently Available ): Indicates that the payout went to a seller's debit card. The name of a digital wallet provider or payment processor (e.g., PAYONEER ) Note: Only Payoneer is currently supported for sellers in mainland China.",
     )
     nickname: str | None = Field(
         None,
-        description='When <b>instrumentType</b> returns <code>BANK</code>, this value is the seller-provided nickname that the seller uses to represent the bank account that receives the payout.<br/><br/>When <b>instrumentType</b> returns <code>CARD</code>, this value is the debit card network for the debit card that receives the payout.<br/><br/>When <b>instrumentType</b> returns a provider of digital wallet or payment processing services, the value returned is the name of the service provider (e.g., <code>PAYONEER</code>)<br><br><span class="tablenote"><b>Note:</b> Only Payoneer is currently supported for sellers in mainland China. Card payouts are not currently available for sellers in mainland China.</span>',
+        description='When instrumentType returns BANK , this value is the seller-provided nickname that the seller uses to represent the bank account that receives the payout. When instrumentType returns CARD , this value is the debit card network for the debit card that receives the payout.',
     )
     payout_percentage: str | None = Field(
         None,
         alias='payoutPercentage',
-        description='The current payout percentage allocated to an instrument. For example, <code>50</code> indicates that 50% of the payout goes to the instrument.',
+        description='The current payout percentage allocated to an instrument. For example, 50 indicates that 50% of the payout goes to the instrument.',
     )
 
 
@@ -562,7 +562,7 @@ class PayoutSettingsResponse(EbayModel):
     payout_instruments: list[PayoutInstrument] | None = Field(
         None,
         alias='payoutInstruments',
-        description="This array provides details about the seller's accounts defined for the seller's account.<br><br> Payment accounts can only receive payouts if the status of the payout instrument is <code>ACTIVE</code>.",
+        description="This array provides details about the seller's accounts defined for the seller's account. Payment accounts can only receive payouts if the status of the payout instrument is ACTIVE .",
     )
 
 
@@ -570,7 +570,7 @@ class PromotionalShippingRuleType(EbayModel):
     combined_shipping_rule_type: CombinedShippingRuleTypeEnum | None = Field(
         None,
         alias='combinedShippingRuleType',
-        description='This field specifies the type of combined-shipping rule applied, such as flat-rate or cost-based, as defined in the <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.flatshippingruletype.combinedshippingruletype" target="_blank">CombinedShippingRuleTypeEnum</a>.',
+        description='This field specifies the type of combined-shipping rule applied, such as flat-rate or cost-based, as defined in the CombinedShippingRuleTypeEnum .',
     )
     item_count: int | None = Field(
         None,
@@ -593,32 +593,32 @@ class Rate(EbayModel):
     additional_cost: Amount | None = Field(
         None,
         alias='additionalCost',
-        description='An additional shipping cost added to the base shipping rate (i.e., <b>shippingCost</b>).<br/><br/>This amount applies only to the following <b>rateTableBasis</b> options:<ul><li><b>WEIGHT</b>: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.</li><li><b>SURCHARGE</b>: This is a flat amount that is added to the base shipping rate.</li></ul>This field is returned only when it is applicable to the specified rate ID.',
+        description='An additional shipping cost added to the base shipping rate (i.e., shippingCost ). This amount applies only to the following rateTableBasis options: WEIGHT : This is a cost per unit weight and is calculated using the weight of the item(s) being shipped. SURCHARGE : This is a flat amount that is added to the base shipping rate.',
     )
     rate_id: str | None = Field(
         None,
         alias='rateId',
-        description='The unique identifier for rate information.<br/><br/><span class="tablenote"><strong>Note:</strong> This is a string that is automatically assigned by the system when a rate object is created.</span>',
+        description='The unique identifier for rate information. Note: This is a string that is automatically assigned by the system when a rate object is created.',
     )
     shipping_category: ShippingCategoryEnum | None = Field(
         None,
         alias='shippingCategory',
-        description='Indicates the level of shipping service to which the shipping rate information applies.<br/><br/>Available shipping categories are:<ul><li><b>ONE_DAY</b>: <i>This option is not supported when <b>shippingOptionType</b> is INTERNATIONAL.</i> </li><li><b>EXPEDITED</b></li><li><b>STANDARD</b></li><li><b>ECONOMY</b></li><li><b>EXPRESS</b>: <i>This option is supported only when <b>MarketplaceId</b> is <code>EBAY_DE</code> (Germany)</i></li></ul>',
+        description='Indicates the level of shipping service to which the shipping rate information applies. Available shipping categories are: ONE_DAY : This option is not supported when shippingOptionType is INTERNATIONAL. EXPEDITED STANDARD ECONOMY EXPRESS : This option is supported only when MarketplaceId is EBAY_DE (Germany)',
     )
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description='Specifies the base shipping rate for an item.<br/><br/>This amount applies only to the following <b>rateTableBasis</b> options:<ul><li><b>ITEM</b>: This is a flat rate shipping cost per item being shipped.</li><li><b>WEIGHT</b>: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.</li></ul>',
+        description='Specifies the base shipping rate for an item. This amount applies only to the following rateTableBasis options: ITEM : This is a flat rate shipping cost per item being shipped. WEIGHT : This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.',
     )
     shipping_region_names: list[str] | None = Field(
         None,
         alias='shippingRegionNames',
-        description='An array of Region names to which the shipping rate information applies.<br/><br/>Returned values may be:<ul><li>Geographical Regions (e.g., <code>Worldwide</code>, <code>Europe</code>, and <code>Middle East</code>)</li><li>Individual countries identified by a two-letter code such as <code>US</code> (United States), <code>CA</code> (Canada), and <code>GB</code> (United Kingdom)</li><li>US states and/or Canadian provinces identified by a two-letter code such as <code>NY</code> (New York) or <code>SK</code> (Saskatchewan)</li><li>Domestic Regions such as <code>AK/HI</code> (Alaska/Hawaii)</li></ul>',
+        description='An array of Region names to which the shipping rate information applies.',
     )
     shipping_service_code: str | None = Field(
         None,
         alias='shippingServiceCode',
-        description='An enum value that indicates the shipping service used for the specified shipping rate. These enum values align with <b>ShippingService</b> metadata returned by a <b>GeteBayDetails</b> call with <b>DetailName</b> set to <code>shippingServiceDetails</code>.',
+        description='An enum value that indicates the shipping service used for the specified shipping rate. These enum values align with ShippingService metadata returned by a GeteBayDetails call with DetailName set to shippingServiceDetails .',
     )
 
 
@@ -630,7 +630,7 @@ class RateTableDetails(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name for the shipping rate table. Names must be unique for each table assigned to the same seller, shippingOptionType, and eBay marketplace.<br/><br/><b>Max length:</b> 50',
+        description='The seller-defined name for the shipping rate table. Names must be unique for each table assigned to the same seller, shippingOptionType, and eBay marketplace. Max length: 50',
     )
     rates: list[Rate] | None = Field(
         None,
@@ -639,7 +639,7 @@ class RateTableDetails(EbayModel):
     rate_table_basis: ShippingRateCalculationEnum | None = Field(
         None,
         alias='rateTableBasis',
-        description="The rate calculation type provides three methods of calculating the shipping cost based on the seller's selection/input:<ul><li><b>ITEM</b>: Specifies the flat rate shipping cost that buyers in the specified shipping region will pay. When this option is selected, information specified in the rate table overrides all shipping options/costs that are specified at the listing level. Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that are not specified in the rate table will see the shipping services associated with the listing.</li><li><b>WEIGHT</b>: Seller can provide minimum shipping cost and an additional shipping cost per pound. The additional cost will be calculated based on the weight the seller provide at the time of listing. Buyers will see the total shipping cost and won’t see these calculations.  Buyers in the specified regions will only see the services provided in the rate table. Buyers in other regions that were not specified in the rate table, will see the shipping services associated with the listing.</li><li><b>SURCHARGE</b>: Lists surcharges for buyers within specified regions, or indicates a flat amount added to the shipping cost specified within an item's listing. Buyers will see only the total shipping cost as well as shipping services associated with the item's listing. If a SURCHARGE is specified in the rate table for certain regions, buyers in those regions will see the (shipping cost + SURCHARGE) total.</li></ul>",
+        description="The rate calculation type provides three methods of calculating the shipping cost based on the seller's selection/input: ITEM : Specifies the flat rate shipping cost that buyers in the specified shipping region will pay. When this option is selected, information specified in the rate table overrides all shipping options/costs that are specified at the listing level.",
     )
     rate_table_id: str | None = Field(
         None,
@@ -649,7 +649,7 @@ class RateTableDetails(EbayModel):
     shipping_option_type: ShippingOptionTypeEnum | None = Field(
         None,
         alias='shippingOptionType',
-        description='The region serviced by the shipping rate table. Valid values are:<ul><li><b>DOMESTIC</b>: Indicates that the shipping rate table applies to shipping destinations within the country in which an item has been listed (i.e., the <i>source</i> country).</li><li><b>INTERNATIONAL</b>: Indicates that the shipping rate table applies to shipping destinations outside of the country in which an item has been listed.</li></ul>',
+        description='The region serviced by the shipping rate table. Valid values are: DOMESTIC : Indicates that the shipping rate table applies to shipping destinations within the country in which an item has been listed (i.e., the source country). INTERNATIONAL : Indicates that the shipping rate table applies to shipping destinations outside of the country in which an item has been listed.',
     )
 
 
@@ -657,17 +657,17 @@ class RateUpdate(EbayModel):
     additional_cost: Amount | None = Field(
         None,
         alias='additionalCost',
-        description='An additional shipping cost added to the base shipping rate (i.e., <b>shippingCost</b>).<br/><br/>This amount applies only to the following <b>rateTableBasis</b> options:<ul><li><b>WEIGHT</b>: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.</li><li><b>SURCHARGE</b>: This is a flat amount that is added to the base shipping rate.</li></ul>This field is returned only when it is applicable to the specified rate ID.',
+        description='An additional shipping cost added to the base shipping rate (i.e., shippingCost ). This amount applies only to the following rateTableBasis options: WEIGHT : This is a cost per unit weight and is calculated using the weight of the item(s) being shipped. SURCHARGE : This is a flat amount that is added to the base shipping rate.',
     )
     rate_id: str | None = Field(
         None,
         alias='rateId',
-        description='The identifier for the rate object.<br/><br/><span class="tablenote"><strong>Note:</strong> This is a string automatically assigned by the system when the rate object is created. It cannot be changed or updated.</span>',
+        description='The identifier for the rate object. Note: This is a string automatically assigned by the system when the rate object is created. It cannot be changed or updated.',
     )
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description='This is the base shipping rate for an item.<br/><br/>This amount applies only to the following <b>rateTableBasis</b> options:<ul><li><b>ITEM</b>: This is a flat rate shipping cost per item being shipped.</li><li><b>WEIGHT</b>: This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.</li></ul>',
+        description='This is the base shipping rate for an item. This amount applies only to the following rateTableBasis options: ITEM : This is a flat rate shipping cost per item being shipped. WEIGHT : This is a cost per unit weight and is calculated using the weight of the item(s) being shipped.',
     )
 
 
@@ -675,12 +675,12 @@ class ShippingCarrierRatePreferencesType(EbayModel):
     fedex_rate_option: FedexRateOptionEnum | None = Field(
         None,
         alias='fedexRateOption',
-        description='This enum is included if the seller wishes to add or modify the FedEx shipping carrier rate. </br><b>Note</b>: This preference is only applicable to the eBay US marketplace.',
+        description='This enum is included if the seller wishes to add or modify the FedEx shipping carrier rate. Note : This preference is only applicable to the eBay US marketplace.',
     )
     ups_rate_option: UPSRateOptionEnum | None = Field(
         None,
         alias='upsRateOption',
-        description='This enum is included if the seller wishes to add or modify the UPS shipping carrier rate. </br><b>Note</b>: This preference is only applicable to the eBay US marketplace.',
+        description='This enum is included if the seller wishes to add or modify the UPS shipping carrier rate. Note : This preference is only applicable to the eBay US marketplace.',
     )
 
 
@@ -688,7 +688,7 @@ class UpdateCombinedPaymentsRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. <br><br>One of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a> must be used in this field.',
+        description='This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. One of the values in CombinedPaymentPeriodEnum must be used in this field.',
     )
 
 
@@ -696,7 +696,7 @@ class UpdatePromotionalShippingRuleRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This container specifies the duration within which multiple unpaid orders may be combined into a single invoice.<br><br>One of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a> must be used in this field.',
+        description='This container specifies the duration within which multiple unpaid orders may be combined into a single invoice. One of the values in CombinedPaymentPeriodEnum must be used in this field.',
     )
     promotional_shipping_rule: PromotionalShippingRuleType | None = Field(
         None,
@@ -729,7 +729,7 @@ class SetUserPreferencesRequest(EbayModel):
     global_shipping_program_listing_preference: bool | None = Field(
         None,
         alias='globalShippingProgramListingPreference',
-        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the seller’s new listings on the eBay UK marketplace will automatically use the Global Shipping Program for international shipping. </br><b>Note</b>: The Global Shipping Program is only available for the eBay UK marketplace, and the seller must be opted into the program, that is <code>offerGlobalShippingProgramPreference = true</code>',
+        description='This boolean field is included if the seller wishes to toggle the setting that controls whether or not the seller’s new listings on the eBay UK marketplace will automatically use the Global Shipping Program for international shipping.',
     )
     items_awaiting_payment_preferences: (
         SetItemsAwaitingPaymentPreferencesType | None
@@ -757,7 +757,7 @@ class SetUserPreferencesRequest(EbayModel):
         Field(
             None,
             alias='shippingCarrierRatePreferences',
-            description='This container is included if the seller wishes to add or modify a FedEx, UPS, and/or US Post Office shipping rate type that is available to the seller. </br><b>Note</b>: This container is only applicable to the eBay US marketplace.',
+            description='This container is included if the seller wishes to add or modify a FedEx, UPS, and/or US Post Office shipping rate type that is available to the seller. Note : This container is only applicable to the eBay US marketplace.',
         )
     )
 
@@ -766,7 +766,7 @@ class CombinedShippingRule(EbayModel):
     combined_shipping_rule_id: str | None = Field(
         None,
         alias='combinedShippingRuleId',
-        description='This field represents the unique identifier for the combined-shipping discount profile, <br><br>used to reference or update a specific rule configuration.',
+        description='This field represents the unique identifier for the combined-shipping discount profile, used to reference or update a specific rule configuration.',
     )
     combined_shipping_rule_name: str | None = Field(
         None,
@@ -804,7 +804,7 @@ class CreatePromotionalShippingRuleRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This container specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a>.',
+        description='This container specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in CombinedPaymentPeriodEnum .',
     )
     promotional_shipping_rule: PromotionalShippingRuleType | None = Field(
         None,
@@ -830,12 +830,12 @@ class GetUserPreferencesResponse(EbayModel):
     combined_payment_preferences: CombinedPaymentPreferencesType | None = Field(
         None,
         alias='combinedPaymentPreferences',
-        description='This container returns the combined payment preferences when the <code>COMBINED_PAYMENT</code> value is included through the <b>fieldgroups</b> query parameter or when <b>fieldgroups</b>=<code>ALL</code>. It indicates if the seller allows multiple line items from the same buyer to be combined.',
+        description='This container returns the combined payment preferences when the COMBINED_PAYMENT value is included through the fieldgroups query parameter or when fieldgroups = ALL . It indicates if the seller allows multiple line items from the same buyer to be combined.',
     )
     dispatch_cutoff_time_preference: DispatchCutoffTimePreferencesType | None = Field(
         None,
         alias='dispatchCutoffTimePreference',
-        description='This container is returned when the <code>DISPATCH_CUTOFF_TIME</code> value is included through the <b>fieldgroups</b> query parameter or when <b>fieldgroups</b>=<code>ALL</code>.',
+        description='This container is returned when the DISPATCH_CUTOFF_TIME value is included through the fieldgroups query parameter or when fieldgroups = ALL .',
     )
     email_shipment_tracking_number_preference: bool | None = Field(
         None,
@@ -850,7 +850,7 @@ class GetUserPreferencesResponse(EbayModel):
     global_shipping_program_listing_preference: bool | None = Field(
         None,
         alias='globalShippingProgramListingPreference',
-        description='This boolean field indicates whether or not the seller’s new listings on the eBay marketplace will automatically use the Global Shipping Program for international shipping. This field is returned when the <code>GLOBAL_SHIPPING_PROGRAM</code> value is included through the <b>fieldgroups</b> query parameter or when <b>fieldgroups</b>=<code>ALL</code>. </br> <b>Note</b>: The Global Shipping Program is only available for the eBay UK marketplace, and the seller must be opted into the program.',
+        description='This boolean field indicates whether or not the seller’s new listings on the eBay marketplace will automatically use the Global Shipping Program for international shipping. This field is returned when the GLOBAL_SHIPPING_PROGRAM value is included through the fieldgroups query parameter or when fieldgroups = ALL .',
     )
     items_awaiting_payment_preferences: (
         GetItemsAwaitingPaymentPreferencesType | None
@@ -862,7 +862,7 @@ class GetUserPreferencesResponse(EbayModel):
     offer_global_shipping_program_preference: bool | None = Field(
         None,
         alias='offerGlobalShippingProgramPreference',
-        description='This boolean field indicates whether or not the seller is opted into the Global Shipping Program on the eBay marketplace. </br><b>Note</b>: The Global Shipping Program is only available for the eBay UK marketplace.',
+        description='This boolean field indicates whether or not the seller is opted into the Global Shipping Program on the eBay marketplace. Note : The Global Shipping Program is only available for the eBay UK marketplace.',
     )
     out_of_stock_control_preference: bool | None = Field(
         None,
@@ -872,12 +872,12 @@ class GetUserPreferencesResponse(EbayModel):
     override_gsp_service_with_intl_service_preference: bool | None = Field(
         None,
         alias='overrideGspServiceWithIntlServicePreference',
-        description="This boolean field indicates whether or not the seller specifies an international shipping service to a particular country for a given listing, the specified service will take precedence and be the listing's default international shipping option for buyers in that country, rather than the Global Shipping Program. </br><b>Note</b>: The Global Shipping Program is only available for the eBay UK marketplace.",
+        description="This boolean field indicates whether or not the seller specifies an international shipping service to a particular country for a given listing, the specified service will take precedence and be the listing's default international shipping option for buyers in that country, rather than the Global Shipping Program. Note : The Global Shipping Program is only available for the eBay UK marketplace.",
     )
     pickup_dropoff_seller_preference: bool | None = Field(
         None,
         alias='pickupDropoffSellerPreference',
-        description='This boolean field indicates whether or not the seller is opted into the Click & Collect feature. </br><b>Note</b>: The Click & Collect feature is only available on the eBay UK, Australia, and Germany marketplaces.',
+        description='This boolean field indicates whether or not the seller is opted into the Click & Collect feature. Note : The Click & Collect feature is only available on the eBay UK, Australia, and Germany marketplaces.',
     )
     purchase_reminder_email_preferences: bool | None = Field(
         None,
@@ -894,18 +894,18 @@ class GetUserPreferencesResponse(EbayModel):
     ) = Field(
         None,
         alias='sellerExcludeShipToLocationPreferences',
-        description='This container shows the list of locations that the seller does not ship to. This list of shipping locations can only be updated in My eBay through Shipping Preferences and not with the <code>setUserPreferences</code> method.',
+        description='This container shows the list of locations that the seller does not ship to. This list of shipping locations can only be updated in My eBay through Shipping Preferences and not with the setUserPreferences method.',
     )
     seller_profile_preferences: SellerProfilePreferencesType | None = Field(
         None,
         alias='sellerProfilePreferences',
-        description='This container is returned when the <code>SELLER_PROFILE</code> value is included through the <b>fieldgroups</b> query parameter or when <b>fieldgroups</b>=<code>ALL</code>.',
+        description='This container is returned when the SELLER_PROFILE value is included through the fieldgroups query parameter or when fieldgroups = ALL .',
     )
     shipping_carrier_rate_preferences: ShippingCarrierRatePreferencesType | None = (
         Field(
             None,
             alias='shippingCarrierRatePreferences',
-            description='This container indicates the FedEx, UPS, and US Post Office shipping rate types that are available to the seller. This container is returned when the <code>SHIPPING_CARRIER_RATE</code> value is included through the <b>fieldgroups</b> query parameter or when <b>fieldgroups</b>=<code>ALL</code>. </br><b>Note</b>: This container is only applicable to the eBay US marketplace.',
+            description='This container indicates the FedEx, UPS, and US Post Office shipping rate types that are available to the seller. This container is returned when the SHIPPING_CARRIER_RATE value is included through the fieldgroups query parameter or when fieldgroups = ALL . Note : This container is only applicable to the eBay US marketplace.',
         )
     )
 
@@ -913,7 +913,7 @@ class GetUserPreferencesResponse(EbayModel):
 class RateTableUpdate(EbayModel):
     rates: list[RateUpdate] | None = Field(
         None,
-        description='An array of rate objects for which <b>shippingCost</b> and/or <b>additionalCost</b> are to be updated.',
+        description='An array of rate objects for which shippingCost and/or additionalCost are to be updated.',
     )
 
 
@@ -921,7 +921,7 @@ class UpdateFlatShippingRulesRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. <br><br> One of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a> must be used in this field.',
+        description='This field specifies the duration within which multiple unpaid orders may be combined into a single invoice. One of the values in CombinedPaymentPeriodEnum must be used in this field.',
     )
     flat_shipping_rule: FlatShippingRuleType | None = Field(
         None,
@@ -934,7 +934,7 @@ class CalculatedShippingRuleType(EbayModel):
     combined_shipping_rules: list[CombinedShippingRule] | None = Field(
         None,
         alias='combinedShippingRules',
-        description="This array lists the discount rules applied to combined shipments, detailing calculation methods and rule identifiers. <br><br>When used by a create call, there won't be any rule ID.",
+        description="This array lists the discount rules applied to combined shipments, detailing calculation methods and rule identifiers. When used by a create call, there won't be any rule ID.",
     )
     combined_shipping_rule_type: CombinedShippingRuleTypeEnum | None = Field(
         None,
@@ -947,17 +947,17 @@ class CreateCalculatedShippingRulesRequest(EbayModel):
     calculated_handling_rule: CalculatedHandlingRuleType | None = Field(
         None,
         alias='calculatedHandlingRule',
-        description='This container defines the calculated handling fee rules applied to combined orders, specifying how handling costs are determined or discounted <br><br>based on combined-shipping parameters.',
+        description='This container defines the calculated handling fee rules applied to combined orders, specifying how handling costs are determined or discounted based on combined-shipping parameters.',
     )
     calculated_shipping_rule: CalculatedShippingRuleType | None = Field(
         None,
         alias='calculatedShippingRule',
-        description='This container defines the calculated shipping rule applied to combined orders, detailing how shipping discounts or costs are computed <br><br>based on item count, total weight, or order value.',
+        description='This container defines the calculated shipping rule applied to combined orders, detailing how shipping discounts or costs are computed based on item count, total weight, or order value.',
     )
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This enumerated value specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a>.',
+        description='This enumerated value specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in CombinedPaymentPeriodEnum .',
     )
 
 
@@ -965,7 +965,7 @@ class CreateFlatShippingRulesRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This enumerated value specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a>.',
+        description='This enumerated value specifies the time window during which multiple unpaid orders can be combined into a single payment or invoice, represented by using one of the values in CombinedPaymentPeriodEnum .',
     )
     flat_shipping_rule: FlatShippingRuleType | None = Field(
         None,
@@ -978,7 +978,7 @@ class GetCombinedShippingRulesPublicApiResponse(EbayModel):
     calculated_handling_rule: CalculatedHandlingRuleType | None = Field(
         None,
         alias='calculatedHandlingRule',
-        description='This container will show one or more calculated shipping rules set up for that seller on that ebay marketplace.<br><br><span class="tablenote"><b>Note:</b> This will not be returned if a calculated handling rule is not set up for that seller on that eBay marketplace',
+        description='This container will show one or more calculated shipping rules set up for that seller on that ebay marketplace. Note: This will not be returned if a calculated handling rule is not set up for that seller on that eBay marketplace',
     )
     calculated_shipping_rule: CalculatedShippingRuleType | None = Field(
         None,
@@ -988,7 +988,7 @@ class GetCombinedShippingRulesPublicApiResponse(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This field is represented by one of the values in the <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a>.',
+        description='This field is represented by one of the values in the CombinedPaymentPeriodEnum .',
     )
     flat_shipping_rule: FlatShippingRuleType | None = Field(
         None,
@@ -998,7 +998,7 @@ class GetCombinedShippingRulesPublicApiResponse(EbayModel):
     promotional_shipping_rule: PromotionalShippingRuleType | None = Field(
         None,
         alias='promotionalShippingRule',
-        description="This container shows the promotional shipping rule that is currently set up on the seller's account for the eBay marketplace. <br><br>This container will not be returned if no promotional shipping rule is currently set up on the seller's account for the eBay marketplace.",
+        description="This container shows the promotional shipping rule that is currently set up on the seller's account for the eBay marketplace. This container will not be returned if no promotional shipping rule is currently set up on the seller's account for the eBay marketplace.",
     )
 
 
@@ -1016,5 +1016,5 @@ class UpdateCalculatedShippingRulesRequest(EbayModel):
     combined_duration: CombinedPaymentPeriodEnum | None = Field(
         None,
         alias='combinedDuration',
-        description='This enumerated value specifies the duration within which multiple unpaid orders may be combined into a single invoice, represented by one of the values in <a href="/develop/api/sell/account_api_v2#sell-account_api_v2-combined_shipping_rules-getcombinedshippingrules.getcombinedshippingrulesresponse.combinedduration" target="_blank">CombinedPaymentPeriodEnum</a>.',
+        description='This enumerated value specifies the duration within which multiple unpaid orders may be combined into a single invoice, represented by one of the values in CombinedPaymentPeriodEnum .',
     )

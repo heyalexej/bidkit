@@ -300,7 +300,7 @@ class Address(EbayModel):
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html ">ISO 3166</a> standard of the country of the address.',
+        description='The two-letter ISO 3166 standard of the country of the address.',
     )
 
 
@@ -377,7 +377,7 @@ class CharityOrg(EbayModel):
     registration_id: str | None = Field(
         None,
         alias='registrationId',
-        description='The registration ID for the charitable organization.<br /><br /><span class="tablenote"><span style="color:#004680"><strong>Note:</strong></span> For the US marketplace, this is the EIN.</span>',
+        description='The registration ID for the charitable organization. Note: For the US marketplace, this is the EIN.',
     )
     website: str | None = Field(
         None, description='The link to the website for the charitable organization.'
@@ -395,14 +395,14 @@ class CharitySearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The number of items, from the result set, returned in a single page.<br /><br /><b>Valid Values:</b> <code>1-100</code><br /><br /><b>Default:</b> <code>20</code>',
+        description='The number of items, from the result set, returned in a single page. Valid Values: 1-100 Default: 20',
     )
     next: str | None = Field(
         None, description='The relative path to the next set of results.'
     )
     offset: int | None = Field(
         None,
-        description='The number of items that will be skipped in the result set. This is used with the <b>limit</b> field to control the pagination of the output.<br /><br />For example, if the <b>offset</b> is set to <code>0</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 1 through 10 from the list of items returned. If the <b>offset</b> is set to <code>10</code> and the <b>limit</b> is set to <code>10</code>, the method will retrieve items 11 through 20 from the list of items returned.<br /><br /><b>Valid Values:</b> <code>0-10,000</code><br /><br /><b>Default:</b> <code>0</code>',
+        description='The number of items that will be skipped in the result set. This is used with the limit field to control the pagination of the output. For example, if the offset is set to 0 and the limit is set to 10 , the method will retrieve items 1 through 10 from the list of items returned.',
     )
     prev: str | None = Field(
         None, description='The relative path to the previous set of results.'

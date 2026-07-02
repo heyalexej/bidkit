@@ -14,7 +14,7 @@ from pydantic import Field
 class BenchmarkMetadata(EbayModel):
     average: str | None = Field(
         None,
-        description="This field returns the average value for the group, as defined by the specified <b>basis</b>.  <br><br>When the benchmark <b>basis</b> is set to <code>PEER_BENCHMARK</code>, the value returned in this field is the benchmark value to which the seller's metric <b>value</b> is compared to determine the seller's rating for the customer service metric.",
+        description="This field returns the average value for the group, as defined by the specified basis . When the benchmark basis is set to PEER_BENCHMARK , the value returned in this field is the benchmark value to which the seller's metric value is compared to determine the seller's rating for the customer service metric.",
     )
 
 
@@ -43,7 +43,7 @@ class Distribution(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This field contains the number of transactions the seller had in the distribution (identified by the associated <b>name</b> field) during the metric <b>evaluationCycle</b>.',
+        description='This field contains the number of transactions the seller had in the distribution (identified by the associated name field) during the metric evaluationCycle .',
     )
 
 
@@ -115,7 +115,7 @@ class MetricDistribution(EbayModel):
     )
     data: list[Distribution] | None = Field(
         None,
-        description='This field returns a list of name/value pairs, where the <b>name</b> indicates the distribution being rated and the <b>value</b> indicates the count of seller transactions that meet the distribution criteria.',
+        description='This field returns a list of name/value pairs, where the name indicates the distribution being rated and the value indicates the count of seller transactions that meet the distribution criteria.',
     )
 
 
@@ -134,16 +134,16 @@ class RangeValue(EbayModel):
     exclusive_end: bool | None = Field(
         None,
         alias='exclusiveEnd',
-        description="Specifies whether or not the <b>end</b> value is to be included in the range. For example, if <b>end</b> was 100, and <b>exclusiveEnd</b> is set to 'true', the end range is < 100. If it is set to 'false', the end range is <= 100.",
+        description="Specifies whether or not the end value is to be included in the range. For example, if end was 100, and exclusiveEnd is set to 'true', the end range is < 100. If it is set to 'false', the end range is <= 100.",
     )
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description="Specifies whether the <b>start</b> value is to be included in the range. For example, if <b>start</b> was 60, and <b>exclusiveStart</b>  is set to 'true', the start range would be > 60. But if it is set to 'false', the start rage is >= 60. ",
+        description="Specifies whether the start value is to be included in the range. For example, if start was 60, and exclusiveStart is set to 'true', the start range would be > 60. But if it is set to 'false', the start rage is >= 60.",
     )
     range: bool | None = Field(
         None,
-        description='If set to <code>true</code>, this flag indicates the filter covers a range of values.',
+        description='If set to true , this flag indicates the filter covers a range of values.',
     )
     start: str | None = Field(
         None,
@@ -166,11 +166,11 @@ class RatingTypeEnum(OpenStrEnum):
 class SortField(EbayModel):
     ascending: bool | None = Field(
         None,
-        description='If set to <code>true</code>, this flag indicates the results are sorted in ascending order.',
+        description='If set to true , this flag indicates the results are sorted in ascending order.',
     )
     field: str | None = Field(
         None,
-        description='Specifies the name of the metric on which the report is sorted. This indicated metric <b>must</b> be included in the <b>metric</b> parameter of the call. <br><br>For example, <code>sort=LISTING_IMPRESSION_TOTAL</code>',
+        description='Specifies the name of the metric on which the report is sorted. This indicated metric must be included in the metric parameter of the call. For example, sort=LISTING_IMPRESSION_TOTAL',
     )
 
 
@@ -198,7 +198,7 @@ class StandardsLevelEnum(OpenStrEnum):
 class Value(EbayModel):
     applicable: bool | None = Field(
         None,
-        description='If set to <code>true</code>, this flag indicates the value in the <b>value</b> field is valid as computed.  <br><br>A value of <code>false</code> indicates one or more of the values used to calculate the value was invalid. The occurrence of this is a rare, however consider this case: suppose a buyer navigates to a View Item page at 11:59 pm (the end of the day) and purchases the item at 12:05am the next day. In this case, the item would have been purchased with <code>0</code> views for the day.',
+        description='If set to true , this flag indicates the value in the value field is valid as computed. A value of false indicates one or more of the values used to calculate the value was invalid. The occurrence of this is a rare, however consider this case: suppose a buyer navigates to a View Item page at 11:59 pm (the end of the day) and purchases the item at 12:05am the next day.',
     )
     value: dict[str, Any] | None = Field(
         None, description='The value of the report data.'
@@ -209,17 +209,17 @@ class Cycle(EbayModel):
     cycle_type: CycleTypeEnum | None = Field(
         None,
         alias='cycleType',
-        description="The cycle type, either <code>CURRENT</code> or <code>PROJECTED</code>. <br><br><code>CURRENT</code> means the profile's metrics values are from the most recent official eBay  monthly standards evaluation. <code>PROJECTED</code> means the profile values were determined when the profile was requested.",
+        description="The cycle type, either CURRENT or PROJECTED . CURRENT means the profile's metrics values are from the most recent official eBay monthly standards evaluation. PROJECTED means the profile values were determined when the profile was requested.",
     )
     evaluation_date: str | None = Field(
         None,
         alias='evaluationDate',
-        description='The date and time at which the standard compliance values were determined for the profile.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" target="_blank">ISO 8601</a> string, which is based on the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-04T07:09:00.000Z</code>',
+        description='The date and time at which the standard compliance values were determined for the profile. The time stamp is formatted as an ISO 8601 string, which is based on the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-04T07:09:00.000Z',
     )
     evaluation_month: str | None = Field(
         None,
         alias='evaluationMonth',
-        description='The month in which the currently effective seller level was computed.  <br><br>The value is always formatted as <code>YYYY-MM</code>. If the cycle is <code>CURRENT</code>, this value is the month and year the of the last eBay compliance evaluation. If this is for a <code>PROJECTED</code> cycle, the value is the month and year of the next scheduled evaluation. Because eBay does official evaluations around the 20th of each month, a <code>PROJECTED</code> value may indicate either the current or the next month.',
+        description='The month in which the currently effective seller level was computed. The value is always formatted as YYYY-MM . If the cycle is CURRENT , this value is the month and year the of the last eBay compliance evaluation. If this is for a PROJECTED cycle, the value is the month and year of the next scheduled evaluation.',
     )
 
 
@@ -227,16 +227,16 @@ class Definition(EbayModel):
     data_type: SrlDataTypeEnum | None = Field(
         None,
         alias='dataType',
-        description='Indicates the data type of the returned dimension. For example, if the <b>dimension</b> is <code>day</code>, the data type is <code>DATE</code>.',
+        description='Indicates the data type of the returned dimension. For example, if the dimension is day , the data type is DATE .',
     )
     key: str | None = Field(
         None,
-        description='The value the <b>dimension</b> or <b>metric</b> parameter as submitted in the request.',
+        description='The value the dimension or metric parameter as submitted in the request.',
     )
     localized_name: str | None = Field(
         None,
         alias='localizedName',
-        description='The localized name of the metric or dimension (translated into the language specified in the <b>Accept-Language</b> HTTP request header). For example, if <b>Accept-Language</b> is set to <code>de-DE</code>, the value "day" in the <b>dimension</b> container is returned as "tag", and a metric of TRANSACTION is returned as "Transaktionsanzahl".',
+        description='The localized name of the metric or dimension (translated into the language specified in the Accept-Language HTTP request header). For example, if Accept-Language is set to de-DE , the value "day" in the dimension container is returned as "tag", and a metric of TRANSACTION is returned as "Transaktionsanzahl".',
     )
 
 
@@ -244,15 +244,15 @@ class Dimension(EbayModel):
     dimension_key: DimensionTypeEnum | None = Field(
         None,
         alias='dimensionKey',
-        description='This enum defines the basis against which the seller\'s customer service metric is measured.  <br><br>The value of this field gets set according to the value of the <b>customer_service_metric_type</b> input parameter. The following input configurations return the responses shown: <ul><li><code>ITEM_NOT_AS_DESCRIBED</code> &ndash; Returns benchmark ratings based on L1 listing categories, so the result shows metrics where the <b>dimensionKey</b> is set to <code>LISTING_CATEGORY</code>.</li>  <li><code>ITEM_NOT_RECEIVED</code> &ndash; Returns benchmark ratings based on world shipping regions, so the result shows metrics where the <b>dimensionKey</b> is set to <code>SHIPPING_REGION</code>.</li></ul><br>The shipping region is indicated by the associated <b>value</b> field. For specifics on world shipping regions, see the FAQ section on the following page: <a href="https://www.ebay.com/help/selling/selling/monitor-service-metrics?id=4785" title="eBay Help page" target="_blank">Monitor your service metrics</a>',
+        description="This enum defines the basis against which the seller's customer service metric is measured. The value of this field gets set according to the value of the customer_service_metric_type input parameter.",
     )
     name: str | None = Field(
         None,
-        description='The dimension name returned in this field depends on the <b>dimensionKey</b>: <ul><li>If  <b>dimensionKey</b> is set to <code>SHIPPING_REGION</code>, this field is set to one of following values, which represent established shipping corridors: <ul><li><code>Domestic</code></li> <li><code>International: Mature region</code></li> <li><code>International: Emerging region</code></li></ul></li>  <li>If <b>dimensionKey</b> is set to <code>LISTING_CATEGORY</code>, this field is set to the name of the primary (L1) category in which the items being rated were listed.</li></ul>',
+        description='The dimension name returned in this field depends on the dimensionKey : If dimensionKey is set to SHIPPING_REGION , this field is set to one of following values, which represent established shipping corridors: Domestic International: Mature region International: Emerging region If dimensionKey is set to LISTING_CATEGORY , this field is set to the name of the primary (L1) category in which the item…',
     )
     value: str | None = Field(
         None,
-        description='The value returned in this field depends on the <b>dimensionKey</b>.  <br><br>If <b>dimensionKey</b> equals <code>LISTING_CATEGORY</code>, the value returned in this field is the category ID of the primary (L1) category in which the items being rated were listed.  <br><br>If <b>dimensionKey</b> equals <code>SHIPPING_REGION</code>, one of the following values is returned:  <ul><li><code>DOMESTIC</code></li> <li><code>INTERNATIONAL_MATURED_REGION</code></li> <li><code>INTERNATIONAL_EMERGING_REGION</code></li></ul>',
+        description='The value returned in this field depends on the dimensionKey . If dimensionKey equals LISTING_CATEGORY , the value returned in this field is the category ID of the primary (L1) category in which the items being rated were listed. If dimensionKey equals SHIPPING_REGION , one of the following values is returned: DOMESTIC INTERNATIONAL_MATURED_REGION INTERNATIONAL_EMERGING_REGION',
     )
 
 
@@ -301,7 +301,7 @@ class ErrorDetailV3(EbayModel):
     )
     domain: str | None = Field(
         None,
-        description='The primary system where the error occurred. This is relevant for application errors. For Analytics errors, it always has the value <code>API_ANALYTICS</code>.',
+        description='The primary system where the error occurred. This is relevant for application errors. For Analytics errors, it always has the value API_ANALYTICS .',
     )
     error_id: int | None = Field(
         None,
@@ -311,12 +311,12 @@ class ErrorDetailV3(EbayModel):
     input_ref_ids: list[str] | None = Field(
         None,
         alias='inputRefIds',
-        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use <i>JSONPath</i> notation.",
+        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use JSONPath notation.",
     )
     long_message: str | None = Field(
         None,
         alias='longMessage',
-        description='A more detailed explanation of the error than given in the <code>message</code> error field.',
+        description='A more detailed explanation of the error than given in the message error field.',
     )
     message: str | None = Field(
         None,
@@ -325,11 +325,11 @@ class ErrorDetailV3(EbayModel):
     output_ref_ids: list[str] | None = Field(
         None,
         alias='outputRefIds',
-        description='Identifies specific response elements associated with the error, if any. Path format is the same as <code>inputRefId</code>.',
+        description='Identifies specific response elements associated with the error, if any. Path format is the same as inputRefId .',
     )
     parameters: list[ErrorParameterV3] | None = Field(
         None,
-        description='This optional list of name/value pairs that contain context-specific <code>ErrorParameter</code> objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each <code>ErrorParameter</code> object consists of two fields, a <code>name</code> and a <code>value</code>.',
+        description='This optional list of name/value pairs that contain context-specific ErrorParameter objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each ErrorParameter object consists of two fields, a name and a value .',
     )
     subdomain: str | None = Field(
         None,
@@ -341,7 +341,7 @@ class EvaluationCycle(EbayModel):
     end_date: str | None = Field(
         None,
         alias='endDate',
-        description='End date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  <br><br>The timestamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.',
+        description='End date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST). The timestamp is formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.',
     )
     evaluation_date: str | None = Field(
         None,
@@ -351,31 +351,31 @@ class EvaluationCycle(EbayModel):
     evaluation_type: EvaluationTypeEnum | None = Field(
         None,
         alias='evaluationType',
-        description='This field specifies the transaction <i>lookback period</i> used for the evaluation. <br><br>The <b>evaluation_type</b> value specified in the request is returned in this field. There are two possible values:  <ul><li><code>CURRENT</code> &ndash; A monthly evaluation that occurs on the 20th of every month.</li> <li><code>PROJECTED</code> &ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.</li></ul>',
+        description='This field specifies the transaction lookback period used for the evaluation. The evaluation_type value specified in the request is returned in this field. There are two possible values: CURRENT – A monthly evaluation that occurs on the 20th of every month.',
     )
     start_date: str | None = Field(
         None,
         alias='startDate',
-        description='The start date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  <br><br>The timestamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-04T07:09:00.000Z</code>',
+        description='The start date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST). The timestamp is formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-04T07:09:00.000Z',
     )
 
 
 class FilterField(EbayModel):
     field: str | None = Field(
-        None, description='<b>Note: </b> This filter is not currently supported.'
+        None, description='Note: This filter is not currently supported.'
     )
     negated: bool | None = Field(
-        None, description='<b>Note: </b> This filter is not currently supported.'
+        None, description='Note: This filter is not currently supported.'
     )
     range: RangeValue | None = Field(
-        None, description='<b>Note: </b> This filter is not currently supported.'
+        None, description='Note: This filter is not currently supported.'
     )
     set: list[str] | None = Field(
-        None, description='<b>Note: </b> This filter is not currently supported.'
+        None, description='Note: This filter is not currently supported.'
     )
     value: str | None = Field(
         None,
-        description='Provides a way to filter the results based on a value. <br><br><b>Valid values:</b>  <ul><li><code>date_range</code></li> <li><code>marketplace_ids</code></li> <li><code>listing_ids</code></li></ul>',
+        description='Provides a way to filter the results based on a value. Valid values: date_range marketplace_ids listing_ids',
     )
 
 
@@ -383,23 +383,23 @@ class Header(EbayModel):
     dimension_keys: list[Definition] | None = Field(
         None,
         alias='dimensionKeys',
-        description='A list of the dimension or metric keys returned in the report. The values for each are is returned in the associated <b>key</b> fields.',
+        description='A list of the dimension or metric keys returned in the report. The values for each are is returned in the associated key fields.',
     )
     metrics: list[Definition] | None = Field(
         None,
-        description='The list of metrics returned in the report. The values for each are is returned in the associated <b>key</b> fields.',
+        description='The list of metrics returned in the report. The values for each are is returned in the associated key fields.',
     )
 
 
 class MetadataHeader(EbayModel):
     key: str | None = Field(
         None,
-        description='The key value used for the report. <br><br>For example: <code>"key": "LISTING_ID"</code>',
+        description='The key value used for the report. For example: "key": "LISTING_ID"',
     )
     metadata_keys: list[Definition] | None = Field(
         None,
         alias='metadataKeys',
-        description='The list of dimension key values used for the report header. Each list element contains the key name, its data type, and its localized name.  <br><br>For example: <p><code>"metadataKeys": [<br>&nbsp;&nbsp;"key": "LISTING_TITLE",<br>&nbsp;&nbsp;"localizedName": "Listing title",<br>&nbsp;&nbsp;"dataType": "STRING"</code></p>',
+        description='The list of dimension key values used for the report header. Each list element contains the key name, its data type, and its localized name. For example: "metadataKeys": [ "key": "LISTING_TITLE", "localizedName": "Listing title", "dataType": "STRING"',
     )
 
 
@@ -411,25 +411,25 @@ class MetadataRecord(EbayModel):
     )
     value: Value | None = Field(
         None,
-        description='The value of the key on which the report is based. <br><br>For example, if the key is the listing ID, the value of this container could be: <br><br><code>"value": {<br>&nbsp;&nbsp;"value": "142133954229",<br>&nbsp;&nbsp;"applicable": true<br>}</code>',
+        description='The value of the key on which the report is based. For example, if the key is the listing ID, the value of this container could be: "value": { "value": "142133954229", "applicable": true }',
     )
 
 
 class MetricBenchmark(EbayModel):
     adjustment: RatingAdjustmentTypeEnum | None = Field(
         None,
-        description='If this field is present, it indicates that the rating given to the seller was "adjusted" for one reason or another.  <br><br>If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller.',
+        description='If this field is present, it indicates that the rating given to the seller was "adjusted" for one reason or another. If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller.',
     )
     basis: BenchmarkTypeEnum | None = Field(
         None,
-        description='This field returns the "basis" by which the benchmark is calculated for the customer service metric type. <br><br>Currently, the only supported basis is <code>PEER_BENCHMARK</code>.',
+        description='This field returns the "basis" by which the benchmark is calculated for the customer service metric type. Currently, the only supported basis is PEER_BENCHMARK .',
     )
     metadata: BenchmarkMetadata | None = Field(
         None, description='This field contains the benchmark data.'
     )
     rating: RatingTypeEnum | None = Field(
         None,
-        description="This field returns seller's rating for the customer service metric.  <br><br>The rating is set to a value that equals the relative deviation between the seller's metric value and the benchmark value for the customer service metric.  <br><br>Deviation values range from <code>LOW</code> to <code>VERY HIGH</code>, and the lower the deviation, the better the seller rating.",
+        description="This field returns seller's rating for the customer service metric. The rating is set to a value that equals the relative deviation between the seller's metric value and the benchmark value for the customer service metric. Deviation values range from LOW to VERY HIGH , and the lower the deviation, the better the seller rating.",
     )
 
 
@@ -437,19 +437,19 @@ class Record(EbayModel):
     dimension_values: list[Value] | None = Field(
         None,
         alias='dimensionValues',
-        description="A list where each element contains either the string <code>DAY</code> (if the <b>dimension</b> is <code>DAY</code>), or the listing ID for which the record's metric data is computed. A second array member, <b>applicable</b>, is always <code>true</code> for dimension values.",
+        description="A list where each element contains either the string DAY (if the dimension is DAY ), or the listing ID for which the record's metric data is computed. A second array member, applicable , is always true for dimension values.",
     )
     metric_values: list[Value] | None = Field(
         None,
         alias='metricValues',
-        description="A list where each element contains a <b>value</b> field that indicates the record's value for the metric. Each element also contains an <b>applicable</b> field that indicates the veracity of the computed <b>value</b>.   <br><br>Note that there are no metric names or IDs associated with the values returned in this array. The metadata to which these values relate can be found in the key values in <b>metadataKeys</b>. The order of the metric values in this array equals the order of the key values in <b>metadataHeader</b>.",
+        description="A list where each element contains a value field that indicates the record's value for the metric. Each element also contains an applicable field that indicates the veracity of the computed value . Note that there are no metric names or IDs associated with the values returned in this array. The metadata to which these values relate can be found in the key values in metadataKeys .",
     )
 
 
 class SspMetric(EbayModel):
     level: StandardsLevelEnum | None = Field(
         None,
-        description="The seller level for this metric, which indicates how well the seller is doing in meeting eBay's standards for this metric. Possible values are <code>TOP_RATED</code>, <code>ABOVE_STANDARD</code>, and <code>BELOW_STANDARD</code>.",
+        description="The seller level for this metric, which indicates how well the seller is doing in meeting eBay's standards for this metric. Possible values are TOP_RATED , ABOVE_STANDARD , and BELOW_STANDARD .",
     )
     lookback_end_date: str | None = Field(
         None,
@@ -464,95 +464,95 @@ class SspMetric(EbayModel):
     metric_key: str | None = Field(
         None,
         alias='metricKey',
-        description='An internal key string specifying a metric. These are short, abbreviated, strings such as <code>MIN_TXN_COUNT</code>.',
+        description='An internal key string specifying a metric. These are short, abbreviated, strings such as MIN_TXN_COUNT .',
     )
     name: str | None = Field(
         None,
-        description='A descriptive name for the metric. For example, "Transaction defect rate." This value is localized according to the value of the <b>X-EBAY-C-MARKETPLACE-ID</b> request header.',
+        description='A descriptive name for the metric. For example, "Transaction defect rate." This value is localized according to the value of the X-EBAY-C-MARKETPLACE-ID request header.',
     )
     threshold_lower_bound: dict[str, Any] | None = Field(
         None,
         alias='thresholdLowerBound',
-        description='Specifies the lowest number <b>value</b> can be and still qualify for the currently assigned seller level.  <br><br>For example, if a seller is assigned the level <code>ABOVE_STANDARD</code> for the <b>ROCKS_INVENTORY</b> metric, and <b>thresholdLowerBound</b> is set to <code>10</code>, having fewer than 10 rocks in inventory would result in the seller dropping a level to <code>BELOW_STANDARD</code>. See <code>thresholdMetaData</code> to determine if the lower bound value is inclusive or exclusive.  <br><br>The lower bound value is optional. For example, if the seller is below standard for this metric, there is no value they can go below for it to further lower their compliance level. Note that each program can have different metric-threshold levels.<br><br><span class="tablenote"><b>Note:</b> Depending on the metric being returned, this field can be returned as an Integer, Boolean, Amount, Fraction, or Double.</span>',
+        description='Specifies the lowest number value can be and still qualify for the currently assigned seller level. For example, if a seller is assigned the level ABOVE_STANDARD for the ROCKS_INVENTORY metric, and thresholdLowerBound is set to 10 , having fewer than 10 rocks in inventory would result in the seller dropping a level to BELOW_STANDARD .',
     )
     threshold_meta_data: str | None = Field(
         None,
         alias='thresholdMetaData',
-        description="An expression that indicates the inclusive and exclusive characteristics of the upper and lower threshold boundaries.  <br><br>A metric's <b>thresholdLowerBound</b> and <b>thresholdUpperBound</b> values specify the boundary values that define the current standard compliance level (<code>TOP_RATED</code>, <code>ABOVE_STANDARD</code>, or <code>BELOW_STANDARD</code>). The <b>thresholdMetaData</b> value consists of two values separated by a comma, which are bounded by either a parenthesis or a square bracket. A parenthesis indicates the adjacent value is exclusive while a square bracket indicates the adjacent value is inclusive (exclusive values are not included in the range while inclusive values are included). The metadata values are either <code>UPPER</code> or <code>LOWER</code> and these values can be in any order to indicate the characteristics of the metric. <br><br>For example, suppose a seller's level is <code>ABOVE_STANDARD</code>, the lower boundary is <code>200</code>, the upper boundary is <code>300</code>, and the value for this field is <code>(LOWER, UPPER]</code>. This indicates that as long as the value for this metric is an integer from 201 (excluding 200) to 300 (including 300), the metric level is above standard. With this, if the seller wants to get a <code>TOP_RATED</code> rating for this metric, they'll have to increase their value to at least 301.",
+        description="An expression that indicates the inclusive and exclusive characteristics of the upper and lower threshold boundaries. A metric's thresholdLowerBound and thresholdUpperBound values specify the boundary values that define the current standard compliance level ( TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD ).",
     )
     threshold_upper_bound: dict[str, Any] | None = Field(
         None,
         alias='thresholdUpperBound',
-        description='Specifies the highest number <b>value</b> can be and still qualify for the currently assigned seller level.  <br><br>For example, if a seller is assigned the level <code>ABOVE_STANDARD</code> for the <b>ROCKS_INVENTORY</b> metric, and the <b>thresholdUpperBound</b> is set to <code>20</code>, having more than 20 rocks in inventory would result in the seller rising a lever, to <code>TOP_RATED</code>. See <code>thresholdMetaData</code> to determine if the upper bound value is inclusive or exclusive.  <br><br>The upper bound value is optional. For example, if the seller is top rated for this metric, there is no value they can go above for it to further raise their compliance level. Note that each program can have different metric-threshold levels.<br><br><span class="tablenote"><b>Note:</b> Depending on the metric being returned, this field can be returned as an Integer, Boolean, Amount, Fraction, or Double.</span>',
+        description='Specifies the highest number value can be and still qualify for the currently assigned seller level. For example, if a seller is assigned the level ABOVE_STANDARD for the ROCKS_INVENTORY metric, and the thresholdUpperBound is set to 20 , having more than 20 rocks in inventory would result in the seller rising a lever, to TOP_RATED .',
     )
     type: SspDataTypeEnum | None = Field(
         None,
-        description='Indicates the data type of the returned metric. Possible values are: <code>AMOUNT</code>, <code>BOOLEAN</code>, <code>DATE</code>, <code>FRACTION</code>, <code>NUMBER</code>, and <code>STRING</code>.',
+        description='Indicates the data type of the returned metric. Possible values are: AMOUNT , BOOLEAN , DATE , FRACTION , NUMBER , and STRING .',
     )
     value: dict[str, Any] | None = Field(
         None,
-        description='The seller\'s calculated value, or score, for the metric.<br><br><span class="tablenote"><b>Note:</b> Depending on the metric being returned, this field can be returned as an Integer, Boolean, Fraction, or Amount.</span>',
+        description="The seller's calculated value, or score, for the metric. Note: Depending on the metric being returned, this field can be returned as an Integer, Boolean, Fraction, or Amount.",
     )
 
 
 class StandardsProfile(EbayModel):
     cycle: Cycle | None = Field(
         None,
-        description="A complex type that specifies the profile's evaluation cycle (<code>CURRENT</code> or <code>PROJECTED</code>), the date the evaluation was calculated, and  the month to which the evaluation pertains.  <br><br>Each program has at least one cycle, but a program can include both cycle types.",
+        description="A complex type that specifies the profile's evaluation cycle ( CURRENT or PROJECTED ), the date the evaluation was calculated, and the month to which the evaluation pertains. Each program has at least one cycle, but a program can include both cycle types.",
     )
     default_program: bool | None = Field(
         None,
         alias='defaultProgram',
-        description="If set to <code>true</code>, this flag indicates this is the default program for the seller.  <br><br>Except for sellers in China, a seller's default program is the marketplace where they registered with eBay. Seller's in China select their default program when they register.",
+        description="If set to true , this flag indicates this is the default program for the seller. Except for sellers in China, a seller's default program is the marketplace where they registered with eBay. Seller's in China select their default program when they register.",
     )
     evaluation_reason: str | None = Field(
         None,
         alias='evaluationReason',
-        description='Specifies how the overall seller level was calculated.  <br><br>In the event of special circumstances (as determined by eBay), eBay may override the calculated seller level. In general, such overrides protect a seller\'s level. The usual value for both cycle types is "Seller level generated by standards monthly evaluation cycle."',
+        description='Specifies how the overall seller level was calculated. In the event of special circumstances (as determined by eBay), eBay may override the calculated seller level. In general, such overrides protect a seller\'s level. The usual value for both cycle types is "Seller level generated by standards monthly evaluation cycle."',
     )
     metrics: list[SspMetric] | None = Field(
         None,
-        description='A list of the metrics upon which a seller\'s profile is evaluated.  <br><br>Each program\'s applicable metrics and requirements are listed at <a href="http://www.sps.ebay.com/sd/sdrequirements" target="_blank">eBay Top Rated seller program standards</a>.',
+        description="A list of the metrics upon which a seller's profile is evaluated. Each program's applicable metrics and requirements are listed at eBay Top Rated seller program standards .",
     )
     program: ProgramEnum | None = Field(
         None,
-        description='Indicates the program used to generate the profile data. Values can be <code>PROGRAM_DE</code>, <code>PROGRAM_UK</code>, <code>PROGRAM_US</code>, or <code>PROGRAM_GLOBAL</code>.',
+        description='Indicates the program used to generate the profile data. Values can be PROGRAM_DE , PROGRAM_UK , PROGRAM_US , or PROGRAM_GLOBAL .',
     )
     standards_level: StandardsLevelEnum | None = Field(
         None,
         alias='standardsLevel',
-        description='The overall standards level of the seller, one of <code>TOP_RATED</code>, <code>ABOVE_STANDARD</code>, or <code>BELOW_STANDARD</code>.',
+        description='The overall standards level of the seller, one of TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD .',
     )
 
 
 class ApiMetric(EbayModel):
     benchmark: MetricBenchmark | None = Field(
         None,
-        description="This complex type defines a set of benchmark data, which includes the <b>average</b> rating for the group included in the benchmark evaluation and the seller's calculated customer service metric rating for the benchmark.  <br><br>This container is returned only if the associated <b>metricKey</b> value is <code>RATE</code>.",
+        description="This complex type defines a set of benchmark data, which includes the average rating for the group included in the benchmark evaluation and the seller's calculated customer service metric rating for the benchmark. This container is returned only if the associated metricKey value is RATE .",
     )
     distributions: list[MetricDistribution] | None = Field(
         None,
-        description='Returned when <b>metricKey</b> equals <code>COUNT</code>, this field returns an array of  seller data where each set of data is grouped according by an overarching <b>basis</b>.  <br><br>When the seller distribution is returned, the numeric value of the associated <b>value</b> container equals the sum of the transactions where the seller meets the criteria of the customer service metric type for the given <b>dimension</b> during the <b>evaluationCycle</b>.',
+        description='Returned when metricKey equals COUNT , this field returns an array of seller data where each set of data is grouped according by an overarching basis .',
     )
     metric_key: str | None = Field(
         None,
         alias='metricKey',
-        description="This field indicates the customer service metric being returned in the associated <b>metrics</b> container. The field is set as follows: <ul><li><code>TRANSACTION_COUNT</code> &ndash; When set to this value, the associated <b>value</b> field returns the number of transactions completed in the peer group for the metric being evaluated in the associated <b>dimension</b> and <b>evaluationCycle</b>.</li> <li><code>COUNT</code> &ndash; When set to this value, the associated <b>value</b> field is set to the number of transactions completed by the seller for the metric being evaluated in the associated <b>dimension</b> and <b>evaluationCycle</b>.</li> <li><code>RATE</code> &ndash; When set to this value, the fields in the associated container return the seller's calculated <b>value</b> for the associated customer service metric along with the benchmark data against which the seller is evaluated.  <br><br>Specifically, when <b>metricKey</b> is set to <code>RATE</code>, the associated <b>value</b> field is set to the value of <b>metricKey</b> <code>TRANSACTION_COUNT</code> divided by the value of <b>metricKey</b> <code>COUNT</code>.  <br><br>The <b>benchmark.rating</b> value is the seller's rating for the metric in the associated <b>dimension</b> and <b>evaluationCycle</b>.</li></ul>",
+        description='This field indicates the customer service metric being returned in the associated metrics container. The field is set as follows: TRANSACTION_COUNT – When set to this value, the associated value field returns the number of transactions completed in the peer group for the metric being evaluated in the associated dimension and evaluationCycle .',
     )
     value: str | None = Field(
         None,
-        description="This field is set to the seller's numeric rating for the associated <b>metricKey</b> for the given <b>dimension</b> during the <b>evaluationCycle</b>.  <br><br>To determine the seller's rating for this metric, the value of this field is compared to the average metric value of the group.",
+        description="This field is set to the seller's numeric rating for the associated metricKey for the given dimension during the evaluationCycle . To determine the seller's rating for this metric, the value of this field is compared to the average metric value of the group.",
     )
 
 
 class DimensionMetric(EbayModel):
     dimension: Dimension | None = Field(
         None,
-        description='This type defines the "dimension," or attributes, against which the associated customer service metric values and benchmark ratings are based.  <br><br>The <b>dimensionKey</b> value is set according to the <b>customer_service_metric_type</b> request parameter and the values in the associated <b>name</b>/<b>value</b> pairs relate to the <b>dimensionKey</b> that\'s being used to calculate the benchmark rating.',
+        description='This type defines the "dimension," or attributes, against which the associated customer service metric values and benchmark ratings are based. The dimensionKey value is set according to the customer_service_metric_type request parameter and the values in the associated name / value pairs relate to the dimensionKey that\'s being used to calculate the benchmark rating.',
     )
     metrics: list[ApiMetric] | None = Field(
         None,
-        description='This is a list of <b>Metric</b> elements where each element contains data and information related to the transactions grouped by the associated <b>dimension</b>.',
+        description='This is a list of Metric elements where each element contains data and information related to the transactions grouped by the associated dimension .',
     )
 
 
@@ -560,7 +560,7 @@ class FindSellerStandardsProfilesResponse(EbayModel):
     standards_profiles: list[StandardsProfile] | None = Field(
         None,
         alias='standardsProfiles',
-        description='A list of the seller\'s standards profiles.  <br><br>A "standards profile" is a set of eBay seller standards categories and the values related to the associated seller.  <br><br>Profiles are distinguished by a combination of cycle and program values. The "program" value specifies the region to which the data is from. The "cycle" value specifies whether the values were determined just now, or if the values are from the last official eBay seller standards evaluation.',
+        description='A list of the seller\'s standards profiles. A "standards profile" is a set of eBay seller standards categories and the values related to the associated seller. Profiles are distinguished by a combination of cycle and program values. The "program" value specifies the region to which the data is from.',
     )
 
 
@@ -568,17 +568,17 @@ class GetCustomerServiceMetricResponse(EbayModel):
     dimension_metrics: list[DimensionMetric] | None = Field(
         None,
         alias='dimensionMetrics',
-        description="This container provides a seller's customer service <b>metric</b> performance for a given <b>dimension</b>.  <br><br>In the <b>getCustomerServiceMetric</b> request, specify values for the following request parameters to control the returned dimension and the associated metric values: <ul><li> <b>customer_service_metric_type</b></li> <li><b>evaluation_type</b></li> <li><b>evaluation_marketplace_id</b></li></ul>",
+        description="This container provides a seller's customer service metric performance for a given dimension . In the getCustomerServiceMetric request, specify values for the following request parameters to control the returned dimension and the associated metric values: customer_service_metric_type evaluation_type evaluation_marketplace_id",
     )
     evaluation_cycle: EvaluationCycle | None = Field(
         None,
         alias='evaluationCycle',
-        description="This complex type defines the evaluation type (<code>CURRENT</code> or <code>PROJECTED</code>) and the transaction lookback period used to calculate the seller's customer service metric.",
+        description="This complex type defines the evaluation type ( CURRENT or PROJECTED ) and the transaction lookback period used to calculate the seller's customer service metric.",
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  <br><br>The <b>customer_service_metric</b> resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the <a href="https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2" title="eBay Help pages" target="_blank">Service metrics policy</a> page.',
+        description='The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based. The customer_service_metric resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the Service metrics policy page.',
     )
 
 
@@ -586,7 +586,7 @@ class Metadata(EbayModel):
     metadata_header: MetadataHeader | None = Field(
         None,
         alias='metadataHeader',
-        description='The container that returns the <b>dimensionKeys</b> and <b>metrics</b> headers for the report.',
+        description='The container that returns the dimensionKeys and metrics headers for the report.',
     )
     metadata_records: list[MetadataRecord] | None = Field(
         None,
@@ -604,7 +604,7 @@ class Report(EbayModel):
     end_date: str | None = Field(
         None,
         alias='endDate',
-        description='The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" target="_blank">ISO 8601</a> string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  <br><br>If you specify an end date that is beyond the <b>lastUpdatedDate</b> value, eBay returns a report that contains data only up to the lastUpdateDate date. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>',
+        description='The time stamp is formatted as an ISO 8601 string, which is based on the 24-hour Universal Coordinated Time (UTC) clock. If you specify an end date that is beyond the lastUpdatedDate value, eBay returns a report that contains data only up to the lastUpdateDate date. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z',
     )
     header: Header | None = Field(
         None, description='A complex type containing the header for the report.'

@@ -17,19 +17,19 @@ class ClientDetails(EbayModel):
     )
     client_id_issued_at: int | None = Field(
         None,
-        description='The UNIX timestamp when the <code>client_id</code> was issued. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date/time of issuance. Refer to <a href="https://datatracker.ietf.org/doc/html/rfc7591#section-2.3" target="_blank">RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol</a> for complete information.',
+        description='The UNIX timestamp when the client_id was issued. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the date/time of issuance. Refer to RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol for complete information.',
     )
     client_name: str | None = Field(
         None,
-        description='User-friendly name for the third party financial application.<br/><br/><span class="tablenote"><b>Note:</b> Language tags are not supported. Therefore, <code>client_name</code> will be specified in English.</span>',
+        description='User-friendly name for the third party financial application. Note: Language tags are not supported. Therefore, client_name will be specified in English.',
     )
     client_secret: str | None = Field(
         None,
-        description='A unique OAuth 2.0 secret string assigned by eBay to the third party application at the time it is registered. This value should be unique for multiple instances of a client using the same <code>client_id</code>. This value is used by confidential clients to authenticate to the token endpoint, as described in OAuth 2.0 [RFC6749], Section 2.3.1.<br/><br/><span class="tablenote"><b>Note:</b> <code>client_secret</code> is unique to the organization identifier of subject name which contains jurisdiction, NCA Id, and Authorization Number.</span>',
+        description='A unique OAuth 2.0 secret string assigned by eBay to the third party application at the time it is registered. This value should be unique for multiple instances of a client using the same client_id . This value is used by confidential clients to authenticate to the token endpoint, as described in OAuth 2.0 [RFC6749], Section 2.3.1.',
     )
     client_secret_expires_at: int | None = Field(
         None,
-        description='The UNIX timestamp when the <code>client_secret</code> expires.<br/><br/><span class="tablenote"><b>Note:</b> When a <code>client_secret</code> has been provided, this field is <b>REQUIRED</b>.</span><br/>A returned value of <b>0</b> indicates that the <code>client_secret</code> never expires.<br/><br/>This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the expiration date and time. Refer to <a href="https://datatracker.ietf.org/doc/html/rfc7591#section-3.2.1" target="_blank">RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol section 3.2.1</a> for complete information.',
+        description='The UNIX timestamp when the client_secret expires. Note: When a client_secret has been provided, this field is REQUIRED . A returned value of 0 indicates that the client_secret never expires. This time is represented as the number of seconds from "1970-01-01T00:00:00Z", as measured in UTC, until the expiration date and time.',
     )
     contacts: list[str] | None = Field(
         None,
@@ -37,15 +37,15 @@ class ClientDetails(EbayModel):
     )
     grant_types: list[str] | None = Field(
         None,
-        description='An array of OAuth 2.0 grant type strings that the client software can use at the token endpoint. Supported grant type values are:<br/><ul><li><code>authorization_code</code>: The authorization code grant type defined in OAuth 2.0, Section 4.1.</li><li><code>client_credentials</code>: The client credentials grant type defined in OAuth 2.0, Section 4.4.</li></ul>If the token endpoint is used in the grant type, the value of this parameter <b>MUST</b> be the same as the value of the <code>grant_type</code> parameter passed to the token endpoint defined in the grant type definition. Authorization servers <b>may</b> allow for other values as defined in the grant type extension process described in OAuth 2.0, Section 4.5. If omitted, the default behavior is that the client will use only the <code>authorization_code</code> Grant Type.',
+        description='An array of OAuth 2.0 grant type strings that the client software can use at the token endpoint. Supported grant type values are: authorization_code : The authorization code grant type defined in OAuth 2.0, Section 4.1. client_credentials : The client credentials grant type defined in OAuth 2.0, Section 4.4.',
     )
     policy_uri: str | None = Field(
         None,
-        description='The URL string pointing to a human-readable privacy policy document that describes how the third party provider collects, uses, retains, and discloses personal data.<br/><br/><span class="tablenote"><b>Note:</b> Only HTTPS URLs are supported for <code>policy_uri</code> strings.</span><br/><span class="tablenote"><b>Note:</b> This URL <b>must not</b> point to the eBay Privacy Policy.</span><br/>The authorization server should display this secure URL to the end-user if it is provided. The value of this field <b>must</b> point to a valid and secure web page.<br/><br/><span class="tablenote"><b>Note:</b> Language tags are not supported. Therefore, <code>policy_uri</code> will be displayed in English.</span>',
+        description='The URL string pointing to a human-readable privacy policy document that describes how the third party provider collects, uses, retains, and discloses personal data. Note: Only HTTPS URLs are supported for policy_uri strings. Note: This URL must not point to the eBay Privacy Policy. The authorization server should display this secure URL to the end-user if it is provided.',
     )
     redirect_uris: list[str] | None = Field(
         None,
-        description='An eBay system-generated value assigned to the application. This value represents the redirect uri(s) submitted by the user either in the request payload (i.e., the <code>redirect_uris</code> field,) or the <code>software_statement</code>.',
+        description='An eBay system-generated value assigned to the application. This value represents the redirect uri(s) submitted by the user either in the request payload (i.e., the redirect_uris field,) or the software_statement .',
     )
     scope: str | None = Field(
         None,
@@ -53,38 +53,38 @@ class ClientDetails(EbayModel):
     )
     software_id: str | None = Field(
         None,
-        description='A unique identifier string provided by the client developer or software publisher at the time of registration that identifies the client software being registered.<br/><br/>Unlike <code>client_id</code> which should change between instances, the <code>software_id</code> should be the same value for all instances of the client software. That is, the <code>software_id</code> should remain unchanged across multiple updates or versions of the same piece of software.',
+        description='A unique identifier string provided by the client developer or software publisher at the time of registration that identifies the client software being registered. Unlike client_id which should change between instances, the software_id should be the same value for all instances of the client software.',
     )
     software_statement: str | None = Field(
         None,
-        description='The Software Statement Assertion (SSA), a JSON Web Token (JWT), that has been issued by the OpenBanking identifier. Refer to <a href="https://datatracker.ietf.org/doc/html/rfc7591#section-2.3" target="_blank">RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol</a> for complete information.',
+        description='The Software Statement Assertion (SSA), a JSON Web Token (JWT), that has been issued by the OpenBanking identifier. Refer to RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol for complete information.',
     )
 
 
 class ClientSettings(EbayModel):
     client_name: str | None = Field(
         None,
-        description='User-friendly name for the third party financial application.<br/><br/><span class="tablenote"><b>Note:</b> Language tags are not supported. Therefore, <code>client_name</code> must be specified in English.</span>',
+        description='User-friendly name for the third party financial application. Note: Language tags are not supported. Therefore, client_name must be specified in English.',
     )
     contacts: list[str] | None = Field(
         None,
-        description='This container stores an array of email addresses that can be used to contact the registrant.<br/><br/><span class="tablenote"><b>Note:</b> When more than one email address is provided, the first email in the array will be used as the developer account\'s email address. All other email addresses will be used as general contact information.</span>',
+        description="This container stores an array of email addresses that can be used to contact the registrant. Note: When more than one email address is provided, the first email in the array will be used as the developer account's email address. All other email addresses will be used as general contact information.",
     )
     policy_uri: str | None = Field(
         None,
-        description='The URL string pointing to a human-readable privacy policy document that describes how the third party provider collects, uses, retains, and discloses personal data.<br/><br/><span class="tablenote"><b>Note:</b> Only HTTPS URLs are supported for <code>policy_uri</code> strings.</span><br/><span class="tablenote"><b>Note:</b> This URL <b>must not</b> point to the eBay Privacy Policy.</span><br/>The value of this field <b>must</b> point to a valid and secure web page.<br/><br/><span class="tablenote"><b>Note:</b> Language tags are not supported. Therefore, <code>policy_uri</code> will be displayed in English.</span>',
+        description='The URL string pointing to a human-readable privacy policy document that describes how the third party provider collects, uses, retains, and discloses personal data. Note: Only HTTPS URLs are supported for policy_uri strings. Note: This URL must not point to the eBay Privacy Policy. The value of this field must point to a valid and secure web page. Note: Language tags are not supported.',
     )
     redirect_uris: list[str] | None = Field(
         None,
-        description='An array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows.<br><br><span class="tablenote"><b>Note:</b> Only the first URI string from the list will be used.</span><br><br><span class="tablenote"><b>Note:</b> Each redirection URI <b>must</b> be an absolute URI as defined by [RFC3986] Section 4.3.</span>',
+        description='An array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows. Note: Only the first URI string from the list will be used. Note: Each redirection URI must be an absolute URI as defined by [RFC3986] Section 4.3.',
     )
     software_id: str | None = Field(
         None,
-        description='A unique identifier string assigned by the client developer or software publisher to identify the client software being registered.<br/><br/>Unlike <code>client_id</code> which should change between instances, the <code>software_id</code> should be the same value for all instances of the client software. That is, the <code>software_id</code> should remain unchanged across multiple updates or versions of the same piece of software. The value of this field is not intended to be human readable and is usually opaque to the client and authorization server.',
+        description='A unique identifier string assigned by the client developer or software publisher to identify the client software being registered. Unlike client_id which should change between instances, the software_id should be the same value for all instances of the client software. That is, the software_id should remain unchanged across multiple updates or versions of the same piece of software.',
     )
     software_statement: str | None = Field(
         None,
-        description='The Software Statement Assertion (SSA) that has been issued by the OpenBanking identifier.<br><br><span class="tablenote"><b>Note:</b> This value <i>must be</i> <b>Base64</b> encoded and not plain JSON.</span><br><br>Refer to <a href="https://datatracker.ietf.org/doc/html/rfc7591#section-2.3" target="_blank">RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol</a> for complete information.',
+        description='The Software Statement Assertion (SSA) that has been issued by the OpenBanking identifier. Note: This value must be Base64 encoded and not plain JSON. Refer to RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol for complete information.',
     )
 
 

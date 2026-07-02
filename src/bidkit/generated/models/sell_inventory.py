@@ -13,11 +13,11 @@ from pydantic import Field
 class Amount(EbayModel):
     currency: str | None = Field(
         None,
-        description='A three-letter string value representing the type of currency being used. Both the <strong>value</strong> and <strong>currency</strong> fields are required/always returned when expressing prices. <br><br>See <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> for more information and links to the full list of currencies and their corresponding three-letter string values.',
+        description='A three-letter string value representing the type of currency being used. Both the value and currency fields are required/always returned when expressing prices. See ISO 4217 for more information and links to the full list of currencies and their corresponding three-letter string values.',
     )
     value: str | None = Field(
         None,
-        description='A string representation of a dollar value expressed in the currency specified in the <strong>currency</strong> field. Both the <strong>value</strong> and <strong>currency</strong> fields are required/always returned when expressing prices.',
+        description='A string representation of a dollar value expressed in the currency specified in the currency field. Both the value and currency fields are required/always returned when expressing prices.',
     )
 
 
@@ -31,17 +31,17 @@ class BestOffer(EbayModel):
     auto_accept_price: Amount | None = Field(
         None,
         alias='autoAcceptPrice',
-        description='This is the price at which Best Offers are automatically accepted. If a buyer submits a Best Offer that is equal to or above this value, the offer is automatically accepted on behalf of the seller. This field is only applicable if the <strong>bestOfferEnabled</strong> value is set to <code>true</code>.<br><br>The price set here must be lower than the current \'Buy it Now\' price. This field is only returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set.',
+        description="This is the price at which Best Offers are automatically accepted. If a buyer submits a Best Offer that is equal to or above this value, the offer is automatically accepted on behalf of the seller. This field is only applicable if the bestOfferEnabled value is set to true . The price set here must be lower than the current 'Buy it Now' price.",
     )
     auto_decline_price: Amount | None = Field(
         None,
         alias='autoDeclinePrice',
-        description='This is the price at which Best Offers are automatically declined. If a buyer submits a Best Offer that is equal to or below this value, the offer is automatically declined on behalf of the seller. This field is only applicable if the <strong>bestOfferEnabled</strong> value is set to <code>true</code>.<br><br>The price set here must be lower than the current \'Buy it Now\' price and the price set in the <strong>autoAcceptPrice</strong> field (if used). This field is only returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set.',
+        description='This is the price at which Best Offers are automatically declined. If a buyer submits a Best Offer that is equal to or below this value, the offer is automatically declined on behalf of the seller. This field is only applicable if the bestOfferEnabled value is set to true .',
     )
     best_offer_enabled: bool | None = Field(
         None,
         alias='bestOfferEnabled',
-        description='This field indicates whether or not the Best Offer feature is enabled for the listing. A seller can enable the Best Offer feature for a listing as long as the category supports the Best Offer feature.<br><br>The seller includes this field and sets its value to <code>true</code> to enable Best Offer feature.<br><br><span class="tablenote"><b>Note:</b> Best Offer is not available for multi-variation listings.</span>',
+        description='This field indicates whether or not the Best Offer feature is enabled for the listing. A seller can enable the Best Offer feature for a listing as long as the category supports the Best Offer feature. The seller includes this field and sets its value to true to enable Best Offer feature. Note: Best Offer is not available for multi-variation listings.',
     )
 
 
@@ -49,12 +49,12 @@ class Charity(EbayModel):
     charity_id: str | None = Field(
         None,
         alias='charityId',
-        description='The eBay-assigned unique identifier of the charitable organization that will receive a percentage of the sales proceeds. The charitable organization must be reqistered with the PayPal Giving Fund in order to receive sales proceeds through eBay listings.<br><br>This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization.<br><br>The eBay-assigned unique identifier of a charitable organization can be found using the <a href="/develop/api/sell/charity_api#sell-charity_api-charity_org-getcharityorgs" target="_blank">getCharityOrgs</a> method of the Charity API. In the <strong>getCharityOrgs</strong> response, this unique identifier is shown in the <a href="/develop/api/sell/charity_api#sell-charity_api-charity_org-getcharityorgs.charityorg.logoimage" target="_blank">charityOrgId</a> field.',
+        description='The eBay-assigned unique identifier of the charitable organization that will receive a percentage of the sales proceeds. The charitable organization must be reqistered with the PayPal Giving Fund in order to receive sales proceeds through eBay listings. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization.',
     )
     donation_percentage: str | None = Field(
         None,
         alias='donationPercentage',
-        description='This field is the percentage of the purchase price that the charitable organization (identified in the <strong>charityId</strong> field) will receive for each sale that the listing generates. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization. This numeric value can range from 10 to 100, and in any 5 (percent) increments in between this range (e.g. <code>10</code>, <code>15</code>, <code>20</code>...<code>95</code>,... <code>100</code>). The seller would pass in <code>10</code> for 10 percent, <code>15</code> for 15 percent, <code>20</code> for 20 percent, and so on, all the way to <code>100</code> for 100 percent.',
+        description='This field is the percentage of the purchase price that the charitable organization (identified in the charityId field) will receive for each sale that the listing generates. This field is conditionally required if a seller is planning on donating a percentage of the sale proceeds to a charitable organization.',
     )
 
 
@@ -62,15 +62,15 @@ class ConditionDescriptor(EbayModel):
     additional_info: str | None = Field(
         None,
         alias='additionalInfo',
-        description='This string provides additional information about a condition descriptor. Open text is passed in this field.<br><br>In the case of trading cards and coins, this field houses the optional <b>Certification Number</b> condition descriptor for graded items. For salvage, this field houses the optional <b>Damage Code</b> condition descriptor for graded items.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Condition grading for salvage items is only available for eligible sellers.</p></div><br><b>Max Length:</b> 30 characters',
+        description='This string provides additional information about a condition descriptor. Open text is passed in this field. In the case of trading cards and coins, this field houses the optional Certification Number condition descriptor for graded items. For salvage, this field houses the optional Damage Code condition descriptor for graded items.',
     )
     name: str | None = Field(
         None,
-        description='This string provides the name of a condition descriptor. A numeric ID is passed in this field. This numeric ID maps to the name of a condition descriptor. Condition descriptor name-value pairs provide more information about an item\'s condition in a structured way. <br><br>To retrieve all condition descriptor name numeric IDs for a category, refer to the <b>conditionDescriptorId</b> field returned in the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of Metadata API. <br><br>In the case of trading cards, this field is used to provide condition descriptors for a card. For graded cards, the condition descriptors for <b>Grader</b> and <b>Grade</b> are required, while the condition descriptor for <b>Certification Number</b> is optional. For ungraded cards, only the <b>Card Condition</b> condition descriptor is required.<br><br>In the case of coins, this field is used to provide condition descriptors for a coin. For graded coins, the condition descriptors for <b>Grader</b>, <b>Number Grade</b>, and <b>Letter Grade</b> are required, while the condition descriptor for <b>Certification Number</b> is optional. For ungraded coins, only the <b>Coin Condition</b> condition descriptor is required.<br><br>In the case of salvage, this field is used to provide condition descriptors for the item. If the salvage is graded, the condition descriptor for <b>Grade</b> is required, while the condition descriptor for <b>Damage Code</b> is optional.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Condition grading for salvage items is only available for eligible sellers.</p></div>',
+        description="This string provides the name of a condition descriptor. A numeric ID is passed in this field. This numeric ID maps to the name of a condition descriptor. Condition descriptor name-value pairs provide more information about an item's condition in a structured way.",
     )
     values: list[str] | None = Field(
         None,
-        description='This array provides the value(s) associated with a condition descriptor. One or more numeric IDs is passed in this field. Commas are used as delimiters between successive name/value pairs. These numeric IDs map to the values associated with a condition descriptor name. Condition descriptor name-value pairs provide more information about an item\'s condition in a structured way. <br><br>To retrieve all condition descriptor value numeric IDs for a category, refer to the <b>ConditionDescriptorValueId</b> array returned in the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies " target="_blank">getItemConditionPolicies</a> method of Metadata API. <br><br>In the case of trading cards, this field houses the information on the <b>Grader</b> and <b>Grade</b> descriptors of graded cards and the <b>Card Condition</b> descriptor for ungraded cards.<br><br>In the case of coins, this field houses the information on the <b>Grader</b> and <b>Number Grade</b>, and <b>Letter Grade</b> descriptors of graded coins and the <b>Coin Condition</b> descriptor for ungraded coins.<br><br>In the case of salvage, this field houses the information on the <b>Grade</b> descriptor of a graded item.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Condition grading for salvage items is only available for eligible sellers.</p></div>',
+        description="This array provides the value(s) associated with a condition descriptor. One or more numeric IDs is passed in this field. Commas are used as delimiters between successive name/value pairs. These numeric IDs map to the values associated with a condition descriptor name. Condition descriptor name-value pairs provide more information about an item's condition in a structured way.",
     )
 
 
@@ -349,12 +349,12 @@ class CountryCodeEnum(OpenStrEnum):
 class CountryPolicy(EbayModel):
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166-1</a> country code identifying the country to which the policy or policies specified in the corresponding policyIds array will apply.',
+        description='The two-letter ISO 3166-1 country code identifying the country to which the policy or policies specified in the corresponding policyIds array will apply.',
     )
     policy_ids: list[str] | None = Field(
         None,
         alias='policyIds',
-        description='An array of custom policy identifiers that apply to the country specified by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-bulkcreateoffer.countrypolicy.country">listingPolicies.regionalTakeBackPolicies.countryPolicies.country</a>.<br><br>Product compliance and take-back policy information may be returned using the following methods:<ul><li><a href="/develop/api/sell/account_api_v1#sell-account_api_v1-get-getcustompolicies" target="_blank">getCustomPolicies</a><br><br>Set <code>policy_types</code> to:<ul><li><code>PRODUCT_COMPLIANCE</code> for product compliance policies</li><li><code>TAKE_BACK</code> for takeback policies</li></ul><br>This returns the list of specified policies and corresponding <b>customPolicyId</b> values a seller has created.</li><li><a href="/develop/api/sell/account_api_v1#sell-account_api_v1-get-getcustompolicy" target="_blank">getCustomPolicy</a> with <code>custom_policy_id = customPolicyId</code><br><br>Returns the details of the policy specified by <b>customPolicyId</b></li></ul>For information about creating and managing custom policies, refer to the <a href="/api-docs/sell/account/resources/methods#h2-custom_policy" target="_blank">custom_policy</a> resource in the <b>Account API v1</b>.',
+        description='An array of custom policy identifiers that apply to the country specified by listingPolicies.regionalTakeBackPolicies.countryPolicies.country .',
     )
 
 
@@ -530,7 +530,7 @@ class Document(EbayModel):
     document_id: str | None = Field(
         None,
         alias='documentId',
-        description='The unique identifier of a regulatory document associated with the listing.<br><br>This value can be found in the response of the <a href="/develop/api/sell/media_api#sell-media_api-document-createdocument" target="_blank">createDocument</a> method of the Media API.',
+        description='The unique identifier of a regulatory document associated with the listing. This value can be found in the response of the createDocument method of the Media API.',
     )
 
 
@@ -538,7 +538,7 @@ class EnergyEfficiencyLabel(EbayModel):
     image_description: str | None = Field(
         None,
         alias='imageDescription',
-        description='A brief verbal summary of the information included on the Energy Efficiency Label for an item.<br><br>For example, <i>On a scale of A to G the rating is E.</i>',
+        description='A brief verbal summary of the information included on the Energy Efficiency Label for an item. For example, On a scale of A to G the rating is E.',
     )
     image_url: str | None = Field(
         None,
@@ -564,7 +564,7 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This is the actual value that was passed in for the element specified in the <strong>name</strong> field.',
+        description='This is the actual value that was passed in for the element specified in the name field.',
     )
 
 
@@ -572,44 +572,44 @@ class ExtendedProducerResponsibility(EbayModel):
     eco_participation_fee: Amount | None = Field(
         None,
         alias='ecoParticipationFee',
-        description='This is the fee paid for new items to the eco-organization (for example, "eco-organisme" in France). It is a contribution to the financing of the elimination of the item responsibly.<br><br><span class="tablenote"><b>Note:</b> <code>0</code> should not be used as a default value.</span></br><b>Minimum:</b> 0.0',
+        description='This is the fee paid for new items to the eco-organization (for example, "eco-organisme" in France). It is a contribution to the financing of the elimination of the item responsibly. Note: 0 should not be used as a default value. Minimum: 0.0',
     )
     producer_product_id: str | None = Field(
         None,
         alias='producerProductId',
-        description='<span class="tablenote"><b>Note:</b> <b>THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED.</b> For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts. The URL will be based on the seller\'s home/registration site, and will use this pattern: https://accountsettings./epr-fr. Sellers based in the US will use <a href="https://accountsettings.ebay.com/epr-fr" target="_blank">https://accountsettings.ebay.com/epr-fr</a>, sellers based in France will use <a href="https://accountsettings.ebay.fr/epr-fr" target="_blank">https://accountsettings.ebay.fr/epr-fr</a>, and so on.</span>',
+        description='Note: THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED. For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts.',
     )
     product_documentation_id: str | None = Field(
         None,
         alias='productDocumentationId',
-        description='<span class="tablenote"><b>Note:</b> <b>THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED.</b> For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts. The URL will be based on the seller\'s home/registration site, and will use this pattern: https://accountsettings./epr-fr. Sellers based in the US will use <a href="https://accountsettings.ebay.com/epr-fr" target="_blank">https://accountsettings.ebay.com/epr-fr</a>, sellers based in France will use <a href="https://accountsettings.ebay.fr/epr-fr" target="_blank">https://accountsettings.ebay.fr/epr-fr</a>, and so on.</span>',
+        description='Note: THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED. For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts.',
     )
     product_package_id: str | None = Field(
         None,
         alias='productPackageId',
-        description='<span class="tablenote"><b>Note:</b> <b>THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED.</b> For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts. The URL will be based on the seller\'s home/registration site, and will use this pattern: https://accountsettings./epr-fr. Sellers based in the US will use <a href="https://accountsettings.ebay.com/epr-fr" target="_blank">https://accountsettings.ebay.com/epr-fr</a>, sellers based in France will use <a href="https://accountsettings.ebay.fr/epr-fr" target="_blank">https://accountsettings.ebay.fr/epr-fr</a>, and so on.</span>',
+        description='Note: THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED. For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts.',
     )
     shipment_package_id: str | None = Field(
         None,
         alias='shipmentPackageId',
-        description='<span class="tablenote"><b>Note:</b> <b>THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED.</b> For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts. The URL will be based on the seller\'s home/registration site, and will use this pattern: https://accountsettings./epr-fr. Sellers based in the US will use <a href="https://accountsettings.ebay.com/epr-fr" target="_blank">https://accountsettings.ebay.com/epr-fr</a>, sellers based in France will use <a href="https://accountsettings.ebay.fr/epr-fr" target="_blank">https://accountsettings.ebay.fr/epr-fr</a>, and so on.</span>',
+        description='Note: THIS FIELD IS DEPRECATED AND NO LONGER SUPPORTED. For sellers selling on the eBay France Marketplace, Extended Producer Responsibility ID fields are no longer set at the listing level. Instead, sellers must provide these IDs for each applicable category in their My eBay accounts.',
     )
 
 
 class Fee(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='This dollar value in this container is the actual dollar value of the listing fee type specified in the <strong>feeType</strong> field.',
+        description='This dollar value in this container is the actual dollar value of the listing fee type specified in the feeType field.',
     )
     fee_type: str | None = Field(
         None,
         alias='feeType',
-        description='The value returned in this field indicates the type of listing fee that the seller may incur if one or more unpublished offers (offers are specified in the call request) are published on the marketplace specified in the <strong>marketplaceId</strong> field. Applicable listing fees will often include things such as <code>InsertionFee</code> or <code>SubtitleFee</code>, but many fee types will get returned even when they are <code>0.0</code>.<br><br>See the <a href="https://pages.ebay.com/help/sell/fees.html " target="_blank">Standard selling fees</a> help page for more information on listing fees.',
+        description='The value returned in this field indicates the type of listing fee that the seller may incur if one or more unpublished offers (offers are specified in the call request) are published on the marketplace specified in the marketplaceId field. Applicable listing fees will often include things such as InsertionFee or SubtitleFee , but many fee types will get returned even when they are 0.0 .',
     )
     promotional_discount: Amount | None = Field(
         None,
         alias='promotionalDiscount',
-        description='The dollar value in this container indicates any eBay promotional discount applied toward the listing fee type specified in the <strong>feeType</strong> field. If there was no discount applied toward the fee, this container is still returned but its value is <code>0.0</code>.',
+        description='The dollar value in this container indicates any eBay promotional discount applied toward the listing fee type specified in the feeType field. If there was no discount applied toward the fee, this container is still returned but its value is 0.0 .',
     )
 
 
@@ -633,49 +633,49 @@ class FormatTypeEnum(OpenStrEnum):
 class GeoCoordinates(EbayModel):
     latitude: float | None = Field(
         None,
-        description='The latitude (North-South) component of the geographic coordinate. This field is required if a <strong>geoCoordinates</strong> container is used.<br><br>This field is returned if geographical coordinates are set for the location.<br><br><b>Example:</b> <code>33.089805</code>',
+        description='The latitude (North-South) component of the geographic coordinate. This field is required if a geoCoordinates container is used. This field is returned if geographical coordinates are set for the location. Example: 33.089805',
     )
     longitude: float | None = Field(
         None,
-        description='The longitude (East-West) component of the geographic coordinate. This field is required if a <strong>geoCoordinates</strong> container is used.<br><br>This field is returned if geographical coordinates are set for the location.<br><br><b>Example:</b> <code>-88.709822</code>',
+        description='The longitude (East-West) component of the geographic coordinate. This field is required if a geoCoordinates container is used. This field is returned if geographical coordinates are set for the location. Example: -88.709822',
     )
 
 
 class GetInventoryItem(EbayModel):
     sku: str | None = Field(
         None,
-        description='An array of SKU values are passed in under the <strong>sku</strong> container to retrieve up to 25 inventory item records.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values.',
+        description='An array of SKU values are passed in under the sku container to retrieve up to 25 inventory item records. Use the getInventoryItems method to retrieve SKU values.',
     )
 
 
 class Hazmat(EbayModel):
     component: str | None = Field(
         None,
-        description='This field is used by the seller to provide component information for the listing. For example, component information can provide the specific material of Hazmat concern.<br><br><b>Maximum length:</b> 120',
+        description='This field is used by the seller to provide component information for the listing. For example, component information can provide the specific material of Hazmat concern. Maximum length: 120',
     )
     pictograms: list[str] | None = Field(
         None,
-        description='An array of comma-separated string values listing applicable pictogram code(s) for Hazard Pictogram(s).<br><br>If your product contains hazardous substances or mixtures, please select the values corresponding to the hazard pictograms that are stated on your product\'s Safety Data Sheet. The selected hazard information will be displayed on your listing.<br><br><span class="tablenote"><b>Note:</b> Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-gethazardousmaterialslabels" target="_blank">getHazardousMaterialsLabels</a> method in the Metadata API to find supported values for a specific marketplace/site. Refer to <a href="/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Pictogra" target="_blank">Pictogram sample values</a> for additional information.</span>',
+        description="An array of comma-separated string values listing applicable pictogram code(s) for Hazard Pictogram(s). If your product contains hazardous substances or mixtures, please select the values corresponding to the hazard pictograms that are stated on your product's Safety Data Sheet. The selected hazard information will be displayed on your listing.",
     )
     signal_word: str | None = Field(
         None,
         alias='signalWord',
-        description='This field sets the signal word for hazardous materials in the listing.<br><br>If your product contains hazardous substances or mixtures, please select a value corresponding to the signal word that is stated on your product\'s Safety Data Sheet. The selected hazard information will be displayed on your listing.<br><br><span class="tablenote"><b>Note:</b> Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-gethazardousmaterialslabels" target="_blank">getHazardousMaterialsLabels</a> method in the <a href="/develop/api/sell/metadata_api" target="_blank">Metadata API</a> to find supported values for a specific marketplace/site. Refer to <a href="/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Signal" target="_blank">Signal word information</a> for additional information.</span>',
+        description="This field sets the signal word for hazardous materials in the listing. If your product contains hazardous substances or mixtures, please select a value corresponding to the signal word that is stated on your product's Safety Data Sheet. The selected hazard information will be displayed on your listing.",
     )
     statements: list[str] | None = Field(
         None,
-        description='An array of comma-separated string values specifying applicable statement code(s) for hazard statement(s) for the listing.<br><br>If your product contains hazardous substances or mixtures, please select the values corresponding to the hazard statements that are stated on your product\'s Safety Data Sheet. The selected hazard information will be displayed on your listing.<br><br><span class="tablenote"><b>Note:</b> Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-gethazardousmaterialslabels" target="_blank">getHazardousMaterialsLabels</a> method in the Metadata API to find supported values for a specific marketplace/site. Refer to <a href="/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Hazard" target="_blank">Hazard statement sample values</a> for additional information.</span><br>This field is required if hazardous material information is provided for the listing.',
+        description="An array of comma-separated string values specifying applicable statement code(s) for hazard statement(s) for the listing. If your product contains hazardous substances or mixtures, please select the values corresponding to the hazard statements that are stated on your product's Safety Data Sheet. The selected hazard information will be displayed on your listing.",
     )
 
 
 class Interval(EbayModel):
     close: str | None = Field(
         None,
-        description='The <strong>close</strong> value is actually the time that the store location closes. Local time (in Military format) is used. So, if a store closed at 8 PM local time, the <strong>close</strong> time would look like the following: <code>20:00:00</code>. This field is conditionally required if the <strong>intervals</strong> container is used to specify working hours or special hours for a store. <br><br>This field is returned if set for the store location.',
+        description='The close value is actually the time that the store location closes. Local time (in Military format) is used. So, if a store closed at 8 PM local time, the close time would look like the following: 20:00:00 . This field is conditionally required if the intervals container is used to specify working hours or special hours for a store. This field is returned if set for the store location.',
     )
     open: str | None = Field(
         None,
-        description='The <strong>open</strong> value is actually the time that the store opens. Local time (in Military format) is used. So, if a store opens at 9 AM local time, the <strong>open</strong> time would look like the following: <code>09:00:00</code>. This field is conditionally required if the <strong>intervals</strong> container is used to specify working hours or special hours for a store. <br><br>This field is returned if set for the store location.',
+        description='The open value is actually the time that the store opens. Local time (in Military format) is used. So, if a store opens at 9 AM local time, the open time would look like the following: 09:00:00 . This field is conditionally required if the intervals container is used to specify working hours or special hours for a store. This field is returned if set for the store location.',
     )
 
 
@@ -750,14 +750,14 @@ class LocationAvailabilityDetails(EbayModel):
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of a seller’s fulfillment center location where inventory is available for the item or item variation.<br><br><span class="tablenote"><b>Note:</b> When creating a location mapping using the <b>createOrReplaceSkuLocationMapping</b> method, the value entered in this field <b>must</b> be associated with a location with the <code>FULFILLMENT_CENTER</code> location type, or an error will occur. Sellers can check the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations#response.locations.locationTypes" target="_blank">locationTypes</a> array in the response of the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations" target="_blank">getInventoryLocations</a> method to see if their location has a value of <code>FULFILLMENT_CENTER</code>.</span>',
+        description='The unique identifier of a seller’s fulfillment center location where inventory is available for the item or item variation. Note: When creating a location mapping using the createOrReplaceSkuLocationMapping method, the value entered in this field must be associated with a location with the FULFILLMENT_CENTER location type, or an error will occur.',
     )
 
 
 class LocationMapping(EbayModel):
     locations: list[LocationAvailabilityDetails] | None = Field(
         None,
-        description='This array represents a collection of fulfillment center locations mapped to a SKU.<br><br><span class="tablenote"><b>Note:</b> Only the first 50 locations mapped to a SKU will be considered when calculating estimated delivery dates. Sellers can set up more than 50 locations using this method, but only the first 50 locations will be considered for calculating the estimates.</span>',
+        description='This array represents a collection of fulfillment center locations mapped to a SKU. Note: Only the first 50 locations mapped to a SKU will be considered when calculating estimated delivery dates. Sellers can set up more than 50 locations using this method, but only the first 50 locations will be considered for calculating the estimates.',
     )
 
 
@@ -765,48 +765,48 @@ class Manufacturer(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description="The first line of the product manufacturer's street address.<br><br><b>Maximum length</b>: 180 characters",
+        description="The first line of the product manufacturer's street address. Maximum length : 180 characters",
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description="The second line of the product manufacturer's street address. This field is not always used, but can be used for secondary address information such as 'Suite Number' or 'Apt Number'.<br><br><b>Maximum length</b>: 180 characters",
+        description="The second line of the product manufacturer's street address. This field is not always used, but can be used for secondary address information such as 'Suite Number' or 'Apt Number'. Maximum length : 180 characters",
     )
     city: str | None = Field(
         None,
-        description="The city of the product manufacturer's street address.<br><br><b>Maximum length</b>: 64 characters",
+        description="The city of the product manufacturer's street address. Maximum length : 64 characters",
     )
     company_name: str | None = Field(
         None,
         alias='companyName',
-        description='The company name of the product manufacturer.<br><br><b>Maximum length</b>: 100 characters',
+        description='The company name of the product manufacturer. Maximum length : 100 characters',
     )
     contact_url: str | None = Field(
         None,
         alias='contactUrl',
-        description='The contact URL of the product manufacturer.<br><br><b>Maximum length</b>: 250 characters',
+        description='The contact URL of the product manufacturer. Maximum length : 250 characters',
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='This defines the list of valid country codes, adapted from <a href="http://www.iso.org/iso/country_codes" target="_blank">ISO 3166-1</a> country codes. List elements take the form of a two-letter code (Alpha-2), a three-letter code (Alpha-3), and  a three-digit code (Numeric). For example, the entry for Japan includes JP, JPN, 392. Short codes provide uniform recognition, avoiding language-dependent country names. The numeric code is helpful where Latin script may be problematic. Not all listed codes are universally recognized as countries. For example, Antarctica is AQ, ATA, 010.',
+        description='This defines the list of valid country codes, adapted from ISO 3166-1 country codes. List elements take the form of a two-letter code (Alpha-2), a three-letter code (Alpha-3), and a three-digit code (Numeric). For example, the entry for Japan includes JP, JPN, 392. Short codes provide uniform recognition, avoiding language-dependent country names.',
     )
     email: str | None = Field(
         None,
-        description="The product manufacturer's business email address.<br><br><b>Maximum length</b>: 180 characters",
+        description="The product manufacturer's business email address. Maximum length : 180 characters",
     )
     phone: str | None = Field(
         None,
-        description="The product manufacturer's business phone number.<br><br><b>Maximum length</b>: 64 characters",
+        description="The product manufacturer's business phone number. Maximum length : 64 characters",
     )
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description="The postal code of the product manufacturer's street address.<br><br><b>Maximum length</b>: 9 characters",
+        description="The postal code of the product manufacturer's street address. Maximum length : 9 characters",
     )
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description="The state or province of the product manufacturer's street address.<br><br><b>Maximum length</b>: 64 characters",
+        description="The state or province of the product manufacturer's street address. Maximum length : 64 characters",
     )
 
 
@@ -857,7 +857,7 @@ class MigrateListing(EbayModel):
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='The unique identifier of the eBay listing to migrate to the new Inventory model. In the Trading API, this field is known as the <strong>ItemID</strong>.<br><br>Up to five unique eBay listings may be specified here in separate <strong>listingId</strong> fields. The seller should make sure that each of these listings meet the requirements that are stated at the top of this Call Reference page.',
+        description='The unique identifier of the eBay listing to migrate to the new Inventory model. In the Trading API, this field is known as the ItemID . Up to five unique eBay listings may be specified here in separate listingId fields. The seller should make sure that each of these listings meet the requirements that are stated at the top of this Call Reference page.',
     )
 
 
@@ -870,11 +870,11 @@ class MinimumAdvertisedPriceHandlingEnum(OpenStrEnum):
 class NameValueList(EbayModel):
     name: str | None = Field(
         None,
-        description='This string value identifies the motor vehicle aspect, such as \'make\', \'model\', \'year\', \'trim\', and \'engine\'. Typically, the make, model, and year of the motor vehicle are always required, with the trim and engine being necessary sometimes, but it will be dependent on the part or accessory, and on the vehicle class.<br><br>The <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilityproperties" target="_blank">getCompatibilityProperties</a> method of the Taxonomy API can be used to retrieve applicable vehicle aspect names for a specified category.',
+        description="This string value identifies the motor vehicle aspect, such as 'make', 'model', 'year', 'trim', and 'engine'. Typically, the make, model, and year of the motor vehicle are always required, with the trim and engine being necessary sometimes, but it will be dependent on the part or accessory, and on the vehicle class.",
     )
     value: str | None = Field(
         None,
-        description='This string value identifies the motor vehicle aspect specified in the corresponding <strong>name</strong> field. For example, if the <strong>name</strong> field is \'make\', this field may be \'Toyota\', or if the <strong>name</strong> field is \'model\', this field may be \'Camry\'.<br><br>The <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilitypropertyvalues" target="_blank">getCompatibilityPropertyValues</a> method of the Taxonomy API can be used to retrieve possible values for vehicle aspect names.',
+        description="This string value identifies the motor vehicle aspect specified in the corresponding name field. For example, if the name field is 'make', this field may be 'Toyota', or if the name field is 'model', this field may be 'Camry'. The getCompatibilityPropertyValues method of the Taxonomy API can be used to retrieve possible values for vehicle aspect names.",
     )
 
 
@@ -882,14 +882,14 @@ class OfferKeyWithId(EbayModel):
     offer_id: str | None = Field(
         None,
         alias='offerId',
-        description='The unique identifier of an unpublished offer for which expected listing fees will be retrieved. One to 250 <strong>offerId</strong> values can be passed in to the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeyswithid.offers" target="_blank">offers</a> container for one <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getlistingfees.offerkeyswithid.offers" target="_blank">getListingFees</a> call. <br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> method to retrieve offer IDs.<br><br><span class="tablenote"><b>Note:</b> Errors will occur if <strong>offerId</strong> values representing published offers are passed in.</span>',
+        description='The unique identifier of an unpublished offer for which expected listing fees will be retrieved. One to 250 offerId values can be passed in to the offers container for one getListingFees call. Use the getOffers method to retrieve offer IDs. Note: Errors will occur if offerId values representing published offers are passed in.',
     )
 
 
 class OfferKeysWithId(EbayModel):
     offers: list[OfferKeyWithId] | None = Field(
         None,
-        description='This container is used to identify one or more (up to 250) unpublished offers for which expected listing fees will be retrieved. The user passes one or more <strong>offerId</strong> values (maximum of 250) in to this container to identify the unpublished offers in which to retrieve expected listing fees. This call is only applicable for offers in the unpublished state. <br><br>The call response gives aggregate fee amounts per eBay marketplace, and does not give fee information at the individual offer level.',
+        description='This container is used to identify one or more (up to 250) unpublished offers for which expected listing fees will be retrieved. The user passes one or more offerId values (maximum of 250) in to this container to identify the unpublished offers in which to retrieve expected listing fees. This call is only applicable for offers in the unpublished state.',
     )
 
 
@@ -897,16 +897,16 @@ class OfferPriceQuantity(EbayModel):
     available_quantity: int | None = Field(
         None,
         alias='availableQuantity',
-        description='This field is used if the seller wants to modify the current quantity of the inventory item that will be available for purchase in the offer (identified by the corresponding <strong>offerId</strong> value).<br><br>This value represents the quantity of the item that is available in the marketplace specified within the offer, not the total quantity available. Because of this, this value should not exceed the value specified in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkupdatepricequantity.shiptolocationavailability.quantity">quantity</a> field of the <b>shipToLocationAvailability</b> container (the total available quantity of the item across all marketplaces).<br><br><span class="tablenote"> <strong>Note:</strong> To ensure that the available quantity allocated to a specific marketplace doesn\'t exceed the total available stock, the quantity specified on a listing will be the minimum value between this field and the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkupdatepricequantity.shiptolocationavailability.quantity"><b>quantity</b></a> field.</span><br>Either the <strong>availableQuantity</strong> field or the <strong>price</strong> container is required, but not necessarily both.',
+        description='This field is used if the seller wants to modify the current quantity of the inventory item that will be available for purchase in the offer (identified by the corresponding offerId value). This value represents the quantity of the item that is available in the marketplace specified within the offer, not the total quantity available.',
     )
     offer_id: str | None = Field(
         None,
         alias='offerId',
-        description='This field is the unique identifier of the offer. If an <strong>offers</strong> container is used to update one or more offers associated to a specific inventory item, the <strong>offerId</strong> value is required in order to identify the offer to update with a modified price and/or quantity.<br><br>The seller can use the <a href="/develop/api/sell/inventory_api#method-offer-getOffers" target="_blank ">getOffers</a> method (passing in the correct SKU value as a query parameter) to retrieve <strong>offerId</strong> values for offers associated with the SKU.',
+        description='This field is the unique identifier of the offer. If an offers container is used to update one or more offers associated to a specific inventory item, the offerId value is required in order to identify the offer to update with a modified price and/or quantity.',
     )
     price: Amount | None = Field(
         None,
-        description='This container is used if the seller wants to modify the current price of the inventory item. The dollar value set here will be the new price of the inventory item in the offer (identified by the corresponding <strong>offerId</strong> value). Either the <strong>availableQuantity</strong> field or the <strong>price</strong> container is required, but not necessarily both.',
+        description='This container is used if the seller wants to modify the current price of the inventory item. The dollar value set here will be the new price of the inventory item in the offer (identified by the corresponding offerId value). Either the availableQuantity field or the price container is required, but not necessarily both.',
     )
 
 
@@ -919,11 +919,11 @@ class OperatingHours(EbayModel):
     day_of_week_enum: DayOfWeekEnum | None = Field(
         None,
         alias='dayOfWeekEnum',
-        description='A <strong>dayOfWeekEnum</strong> value is required for each day of the week that the store location has regular operating hours. <br><br>This field is returned if operating hours are defined for the store location.',
+        description='A dayOfWeekEnum value is required for each day of the week that the store location has regular operating hours. This field is returned if operating hours are defined for the store location.',
     )
     intervals: list[Interval] | None = Field(
         None,
-        description="This container is used to define the opening and closing times of a store location's working day (defined in the <strong>dayOfWeekEnum</strong> field). An <strong>intervals</strong> container is needed for each day of the week that the store location is open. If a store location closes for lunch (or any other period during the day) and then reopens, multiple <strong>open</strong> and <strong>close</strong> pairs are needed <br><br>This container is returned if operating hours are defined for the store location.",
+        description="This container is used to define the opening and closing times of a store location's working day (defined in the dayOfWeekEnum field). An intervals container is needed for each day of the week that the store location is open.",
     )
 
 
@@ -931,17 +931,17 @@ class Overrides(EbayModel):
     cut_off_time: str | None = Field(
         None,
         alias='cutOffTime',
-        description='This field is used to override the cut-off time(s) specified in the <b>weeklySchedule</b> container. If an order is placed after this time in the specified date or date range, it will be handled by the seller on the following day.<br><br><b>Format:</b> <code>00:00</code>',
+        description='This field is used to override the cut-off time(s) specified in the weeklySchedule container. If an order is placed after this time in the specified date or date range, it will be handled by the seller on the following day. Format: 00:00',
     )
     end_date: str | None = Field(
         None,
         alias='endDate',
-        description='The end date of the cut-off time override in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> format, which is based on the 24-hour Coordinated Universal Time (UTC) clock.<br><br><span class="tablenote"><b>Note:</b> If the cut-off time override is only for a single day, input the same date in the <b>startDate</b> and <b>endDate</b> fields.</span><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]</code><br><br><b>Example:</b> <code>2024-08-06</code><br><br><span class="tablenote"><b>Note:</b> The time zone for this date is specified from the <b>timeZoneId</b> field. If this field is not used, the time zone will be derived from the provided address.</span>',
+        description='The end date of the cut-off time override in ISO 8601 format, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Note: If the cut-off time override is only for a single day, input the same date in the startDate and endDate fields. Format: [YYYY]-[MM]-[DD] Example: 2024-08-06 Note: The time zone for this date is specified from the timeZoneId field.',
     )
     start_date: str | None = Field(
         None,
         alias='startDate',
-        description='The start date of the cut-off time override in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> format, which is based on the 24-hour Coordinated Universal Time (UTC) clock.<br><br><span class="tablenote"><b>Note:</b> If the cut-off time override is only for a single day, input the same date in the <b>startDate</b> and <b>endDate</b> fields.</span><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]</code><br><br><b>Example:</b> <code>2024-08-04</code><br><br><span class="tablenote"><b>Note:</b> The time zone for this date is specified from the <b>timeZoneId</b> field. If this field is not used, the time zone will be derived from the provided address.</span>',
+        description='The start date of the cut-off time override in ISO 8601 format, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Note: If the cut-off time override is only for a single day, input the same date in the startDate and endDate fields. Format: [YYYY]-[MM]-[DD] Example: 2024-08-04 Note: The time zone for this date is specified from the timeZoneId field.',
     )
 
 
@@ -980,76 +980,76 @@ class PackageTypeEnum(OpenStrEnum):
 class Product(EbayModel):
     aspects: dict[str, list[str]] | None = Field(
         None,
-        description='This is a collection of item specifics (aka product aspects) name-value pairs that provide more information about the product and might make it easier for buyers to find. To view required/recommended product aspects/item specifics names (and corresponding values) for a specific eBay category, sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getitemaspectsforcategory" target="_blank">getItemAspectsForCategory</a> method of the Taxonomy API. Alternatively, sellers can view similar items on eBay.com in the same category to get an idea of what other sellers are using for product aspects/item specifics.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Effective from December 28th, 2024, sellers offering certain rechargeable devices in EU and Northern Ireland markets must comply with the Common Charger Directive (CCD) and list appropriate charger-related aspects and values on their listings. See <a href="/api-docs/sell/static/inventory/common-charger-directive.html" target="_blank">Common Charger Directive</a> for more information.</p></div><br>Sellers also have the option of specifying an eBay Product ID (ePID) or optionally, a Global Trade Item Number (GTIN) through the corresponding fields in the <strong>product</strong> container in an attempt to find a product match in the eBay Catalog. If a match is found based on the ePID or GTIN value, the product aspects that are defined for the eBay Catalog product will automatically get picked up by the newly created/updated inventory item. <br><br>Below is an example of the proper JSON syntax to use when manually inputting item specifics. Note that one item specific name, such as \'Features\', can have more than one value. If an item specific name has more than one value, each value is delimited with a comma.<br><br><pre>"aspects": {<br> "Brand": ["GoPro"],<br> "Storage Type": ["Removable"]<br> }</pre><br>Note that inventory items that will become part of an inventory item group and multiple-variation listing should have the same attributes that are defined for the inventory item group.<br><br>This container will be returned if one or more item specific pairs are defined for the inventory item.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br><strong>Maximum length for Aspect Name</strong>: 40<br><br><strong>Maximum length for Aspect Value</strong>: 50',
+        description='This is a collection of item specifics (aka product aspects) name-value pairs that provide more information about the product and might make it easier for buyers to find. To view required/recommended product aspects/item specifics names (and corresponding values) for a specific eBay category, sellers can use the getItemAspectsForCategory method of the Taxonomy API.',
     )
     brand: str | None = Field(
         None,
-        description='The brand of the product. This field is often paired with the <strong>mpn</strong> field to identify a specific product by Manufacturer Part Number. This field is conditionally required if the eBay category requires a Manufacturer Part Number (MPN) value. If eBay is able to find a product match in the eBay Catalog when an eBay Product ID (ePID) or GTIN value (UPC, ISBN, or EAN) is supplied, all product details of that eBay Catalog product is picked up by the inventory item record (including brand) if the <strong>createOrReplaceInventoryItem</strong> call is successful. <br><br>This field is returned if defined for an inventory item. If a brand was passed in as an item specific name-value pair through the <strong>aspects</strong> array in a <strong>createOrReplaceInventoryItem</strong> call, this value is also picked up by the <strong>brand</strong> field.<br><br><strong>Maximum length</strong>: 65',
+        description='The brand of the product. This field is often paired with the mpn field to identify a specific product by Manufacturer Part Number. This field is conditionally required if the eBay category requires a Manufacturer Part Number (MPN) value.',
     )
     description: str | None = Field(
         None,
-        description='The description of the product. The description of an existing inventory item can be added or modified with a <strong>createOrReplaceInventoryItem</strong> call. The description of an inventory item is automatically populated if the seller specifies an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) and eBay is able to find a matching product in the eBay Catalog.<br><br>Note that this field is optional but recommended. If a <strong>listingDescription</strong> field is omitted when creating and publishing a single-variation offer, the text in this field will be used instead. If neither the <strong>product.description</strong> field for the inventory item nor the <strong>listingDescription</strong> field for the offer exist, the <strong>publishOffer</strong> call will fail. If the inventory item will be part of an inventory item group/multiple-variation listing, this field should definitely be used to specify how the corresponding product variation is different (e.g. <em>This is the green, extra-large version of the shirt</em>). However, in the case of an inventory item group, the text in the <strong>description</strong> field of the inventory item group will become the listing description of the actual eBay listing instead of the text in this field.<br><br>Basic HTML tags are supported, including the following tags:<ul><li>&lt;b&gt;</li><li>&lt;strong&gt;</li><li>&lt;br&gt;</li><li>&lt;ol&gt;</li><li>&lt;ul&gt;</li><li>&lt;li&gt;</li><li>Table tags including &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;tfoot&gt;, &lt;tbody&gt;, &lt;caption&gt;, &lt;colgroup&gt;, and &lt;col&gt;</li></ul>A seller can not use any active content in their listing description. Active content includes animation or video via JavaScript, Flash, plug-ins, or form actions.<br><br>This field is returned if defined for an inventory item. If one of the GTIN types (e.g. UPC) was passed in when the inventory item was created/modified and a product match was found in the eBay catalog, product description is one of the details that gets picked up from the catalog product.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br><strong>Maximum length</strong>: 4000',
+        description='The description of the product. The description of an existing inventory item can be added or modified with a createOrReplaceInventoryItem call. The description of an inventory item is automatically populated if the seller specifies an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) and eBay is able to find a matching product in the eBay Catalog.',
     )
     ean: list[str] | None = Field(
         None,
-        description='The European Article Number/International Article Number (EAN) for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog. If a product match is found in the eBay Catalog, the inventory item is automatically populated with available product details such as a title, a product description, product aspects (including the specified EAN value), and a link to any stock image that exists for the catalog product.<br><br>This field is returned if defined for an inventory item. If an EAN was passed in as an item specific name-value pair through the <strong>aspects</strong> array in a <strong>createOrReplaceInventoryItem</strong> call, this value is also picked up by the <strong>ean</strong> field.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>If the item is being listed in a category that requires an EAN value, but one doesn\'t exist for the product, the seller must provide a string indicating that the product identifier is unavailable. This text varies by marketplace. Refer to <a href="/api-docs/sell/static/inventory/product-identifier-text.html" target="_blank">Product Identifier Text</a> for the specific text based on the listing marketplace.</span></p>',
+        description='The European Article Number/International Article Number (EAN) for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog.',
     )
     epid: str | None = Field(
         None,
-        description='The eBay Product Identifier (ePID) for the product. This field can be used to directly identify an eBay Catalog product. Based on its specified ePID value, eBay will search for the product in the eBay Catalog, and if a match is found, the inventory item is automatically populated with available product details such as product title, product description, product aspects, and a link to any stock image that exists for the catalog product.<br><br>In an attempt to find a eBay Catalog product match, an ePID value is always preferred over the other product identifiers, since it is possible that one GTIN value can be associated with multiple eBay Catalog products, and if multiple products are found, product details will not be picked up by the Inventory Item object.<p><br><span class="tablenote"><strong>Note:</strong> When listing in categoryID 173651 (Auto Performance Tuning Devices & Software), the use of catalog products is required. For more information, see <a href="/api-docs/sell/static/inventory/tuning-devices-and-software-rest.html" target="_blank">Tuning devices and software</a>.</span></p><br>This field is returned if defined for an inventory item.',
+        description='The eBay Product Identifier (ePID) for the product. This field can be used to directly identify an eBay Catalog product.',
     )
     image_urls: list[str] | None = Field(
         None,
         alias='imageUrls',
-        description='An array of one or more links to images for the product. URLs must use the "HTTPS" protocol. Images can be self-hosted by the seller, or sellers can use the <a href="/Devzone/XML/docs/Reference/eBay/UploadSiteHostedPictures.html "  target="_blank">UploadSiteHostedPictures</a> call of the Trading API to upload images to an eBay Picture Server. If successful, the response of the <a href="/Devzone/XML/docs/Reference/eBay/UploadSiteHostedPictures.html " target="_blank">UploadSiteHostedPictures</a> call will contain a full URL to the image on an eBay Picture Server. This is the URL that will be passed in through the <strong>imageUrls</strong> array. Before an offer can be published, at least one image must exist for the inventory item. In almost any category at no cost, sellers can include up to 24 pictures in one listing. For inventory items that are a part of an inventory item group/multiple-variation listings, a maximum of 12 pictures may be used per inventory item in the group. Motor vehicle listings are an exception. The number of included pictures in motor vehicle listings depend on the selected vehicle package (see <a href="https://www.ebay.com/help/selling/fees-credits-invoices/motors-fees?id=4127 " target="_blank">Fees for selling vehicles on eBay Motors</a>).<br><br>A link to a stock image for a product may automatically be populated for an inventory item if the seller specifies an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) and eBay is able to find a matching product in the eBay Catalog.<br><br>This container will always be returned for an inventory item that is part of a published offer since a published offer will always have at least one picture, but this container will only be returned if defined for inventory items that are not a part of a published offer.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This array is required and at least one image URL must be specified before an offer can be published to create an active listing.</p></span></div>',
+        description='An array of one or more links to images for the product. URLs must use the "HTTPS" protocol. Images can be self-hosted by the seller, or sellers can use the UploadSiteHostedPictures call of the Trading API to upload images to an eBay Picture Server. If successful, the response of the UploadSiteHostedPictures call will contain a full URL to the image on an eBay Picture Server.',
     )
     isbn: list[str] | None = Field(
         None,
-        description='The International Standard Book Number (ISBN) value for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog. If a product match is found in the eBay Catalog, the inventory item is automatically populated with available product details such as a title, a product description, product aspects (including the specified ISBN value), and a link to any stock image that exists for the catalog product.<br><br>This field is returned if defined for an inventory item. If an ISBN was passed in as an item specific name-value pair through the <strong>aspects</strong> array in a <strong>createOrReplaceInventoryItem</strong> call, this value is also picked up by the <strong>isbn</strong> field.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>If the item is being listed in a category that requires an ISBN value, but one doesn\'t exist for the product, the seller must provide a string indicating that the product identifier is unavailable. This text varies by marketplace. Refer to <a href="/api-docs/sell/static/inventory/product-identifier-text.html" target="_blank">Product Identifier Text</a> for the specific text based on the listing marketplace.</span></p>',
+        description='The International Standard Book Number (ISBN) value for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog.',
     )
     mpn: str | None = Field(
         None,
-        description='The Manufacturer Part Number (MPN) of a product. This field is paired with the <strong>brand</strong> field to identify a product. Some eBay categories require MPN values. The <a href/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getitemaspectsforcategory" target="_blank">getItemAspectsForCategory</a> method in the Taxonomy API can be used to see if a category requires an MPN. The MPN value for a product may automatically be populated for an inventory item if the seller specifies an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) and eBay is able to find a matching product in the eBay Catalog. <br><br>This field is returned if defined for an inventory item. If an MPN was passed in as an item specific name-value pair through the <strong>aspects</strong> array in a <strong>createOrReplaceInventoryItem</strong> call, this value is also picked up by the <strong>mpn</strong> field.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>If the item is being listed in a category that requires an MPN value, but one doesn\'t exist for the product, the seller must provide a string indicating that the product identifier is unavailable. This text varies by marketplace. Refer to <a href="/api-docs/sell/static/inventory/product-identifier-text.html" target="_blank">Product Identifier Text</a> for the specific text based on the listing marketplace.</span></p><strong>Maximum length</strong>: 65',
+        description='The Manufacturer Part Number (MPN) of a product. This field is paired with the brand field to identify a product. Some eBay categories require MPN values. The getItemAspectsForCategory method in the Taxonomy API can be used to see if a category requires an MPN.',
     )
     subtitle: str | None = Field(
         None,
-        description='A subtitle is an optional listing feature that allows the seller to provide more information about the product, possibly including keywords that may assist with search results. An additional listing fee will be charged to the seller if a subtitle is used. For more information on using listing subtitles on the US site, see the <a href="https://pages.ebay.com/help/sell/itemsubtitle.html " target="_blank">Adding a subtitle to your listings</a> help page. The subtitle of an existing inventory item can added, modified, or removed with a <strong>createOrReplaceInventoryItem</strong> call.<br><br>Note that the same <strong>subtitle</strong> text should be used for each inventory item that will be part of an inventory item group, and ultimately become one product variation within a multiple-variation listing.<br><br>This field will only be returned if set for an inventory item.<br><br><strong>Maximum length</strong>: 55',
+        description='A subtitle is an optional listing feature that allows the seller to provide more information about the product, possibly including keywords that may assist with search results. An additional listing fee will be charged to the seller if a subtitle is used. For more information on using listing subtitles on the US site, see the Adding a subtitle to your listings help page.',
     )
     title: str | None = Field(
         None,
-        description='The title of an inventory item can be added or modified with a <strong>createOrReplaceInventoryItem</strong> call. Although not immediately required, a title will be needed before an offer with the inventory item is published. The title of an inventory item is automatically populated if the seller specifies an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) and eBay is able to find a matching product in the eBay Catalog. If the inventory item will become part of a single-variation offer, and the listing is not a product-based listing, the text in this field will become the actual listing title for the published offer. However, if the inventory item will become part of a multiple-variation offer, the text in <strong>title</strong> field of the inventory item group entity will actually become the listing title for the published offer instead, although a title can still be provided for the inventory item, and it will actually become the title of the variation.<br><br>This field will always be returned for an inventory item that is part of a published offer since a published offer will always have a listing title, but this field will only be returned if defined for inventory items that are not a part of a published offer.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br><strong>Maximum length</strong>: 80',
+        description='The title of an inventory item can be added or modified with a createOrReplaceInventoryItem call. Although not immediately required, a title will be needed before an offer with the inventory item is published.',
     )
     upc: list[str] | None = Field(
         None,
-        description='The Universal Product Code (UPC) value for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog. If a product match is found in the eBay Catalog, the inventory item is automatically populated with available product details such as a title, a product description, product aspects (including the specified UPC value), and a link to any stock image that exists for the catalog product.<br><br>This field is returned if defined for an inventory item. If a UPC was passed in as an item specific name-value pair through the <strong>aspects</strong> array in a <strong>createOrReplaceInventoryItem</strong> call, this value is also picked up by the <strong>upc</strong> field.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>If the item is being listed in a category that requires a UPC value, but one doesn\'t exist for the product, the seller must provide a string indicating that the product identifier is unavailable. This text varies by marketplace. Refer to <a href="/api-docs/sell/static/inventory/product-identifier-text.html" target="_blank">Product Identifier Text</a> for the specific text based on the listing marketplace.</span></p>',
+        description='The Universal Product Code (UPC) value for the product. Although an ePID value is preferred when trying to find a product match in the eBay Catalog, this field can also be used in an attempt to find a product match in the eBay Catalog.',
     )
     video_ids: list[str] | None = Field(
         None,
         alias='videoIds',
-        description='An array of one or more <b>videoId</b> values for the product. A video ID is a unique identifier that is automatically created by eBay when a seller successfully uploads a video to eBay using the  <a href="/develop/api/sell/media_api#sell-media_api-video-uploadvideo" target="_blank">uploadVideo</a> method of the <a href="/develop/api/sell/media_api" target="_blank">Media API</a>.<br><br>For information on supported marketplaces and platforms, as well as other requirements and limitations of video support, please refer to <a href="/api-docs/sell/static/inventory/managing-video-media.html " target="_blank">Managing videos</a>.<br><br><span class="tablenote"><b>Note:</b> Only one video per listing is supported.</span>',
+        description='An array of one or more videoId values for the product. A video ID is a unique identifier that is automatically created by eBay when a seller successfully uploads a video to eBay using the uploadVideo method of the Media API . For information on supported marketplaces and platforms, as well as other requirements and limitations of video support, please refer to Managing videos .',
     )
 
 
 class ProductFamilyProperties(EbayModel):
     engine: str | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is no longer supported.</p></div>',
+        description='Important! The productFamilyProperties container is no longer supported.',
     )
     make: str | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is no longer supported.</p></div>',
+        description='Important! The productFamilyProperties container is no longer supported.',
     )
     model: str | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is no longer supported.</p></div>',
+        description='Important! The productFamilyProperties container is no longer supported.',
     )
     trim: str | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is no longer supported.</p></div>',
+        description='Important! The productFamilyProperties container is no longer supported.',
     )
     year: str | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is no longer supported.</p></div>',
+        description='Important! The productFamilyProperties container is no longer supported.',
     )
 
 
@@ -1060,26 +1060,26 @@ class ProductIdentifier(EbayModel):
     )
     gtin: str | None = Field(
         None,
-        description='This field can be used if the seller knows the Global Trade Item Number for the motor vehicle that is to be added to the compatible product list. If this GTIN value is found in the eBay product catalog, the motor vehicle properties (e.g. make, model, year, engine, and trim will automatically get picked up for that motor vehicle.<br><br><span class="tablenote"> <strong>Note:</strong> This field is for future use.</span>',
+        description='This field can be used if the seller knows the Global Trade Item Number for the motor vehicle that is to be added to the compatible product list. If this GTIN value is found in the eBay product catalog, the motor vehicle properties (e.g. make, model, year, engine, and trim will automatically get picked up for that motor vehicle. Note: This field is for future use.',
     )
     ktype: str | None = Field(
         None,
-        description='This field can be used if the seller knows the K Type Number for the motor vehicle that is to be added to the compatible product list. If this K Type value is found in the eBay product catalog, the motor vehicle properties (e.g. make, model, year, engine, and trim) will automatically get picked up for that motor vehicle. <br><br>Only the AU, DE, ES, FR, IT, and UK marketplaces support the use of K Type Numbers.',
+        description='This field can be used if the seller knows the K Type Number for the motor vehicle that is to be added to the compatible product list. If this K Type value is found in the eBay product catalog, the motor vehicle properties (e.g. make, model, year, engine, and trim) will automatically get picked up for that motor vehicle.',
     )
 
 
 class ProductSafety(EbayModel):
     component: str | None = Field(
         None,
-        description='This field is used by the seller to provide product safety component information for the listing. For example, component information can include specific warnings related to product safety, such as \'Tipping hazard\'. <br><br><span class="tablenote"><b>Note:</b> Component information can only be specified if used with the <b>pictograms</b> and/or <b>statements</b> field; if the component is provided without one or both of these fields, an error will occur.</span><br><b>Maximum length:</b> 120 characters',
+        description="This field is used by the seller to provide product safety component information for the listing. For example, component information can include specific warnings related to product safety, such as 'Tipping hazard'.",
     )
     pictograms: list[str] | None = Field(
         None,
-        description='An array of comma-separated string values used to provide product safety pictogram(s) for the listing.<br><br>If your product shows universal product safety or compliance symbols, please select the values corresponding to the product safety pictograms for display in the product safety section of the listing. The seller specifies the identifier of each pictogram in this field.<br><br><span class="tablenote"><b>Note:</b> For product safety pictograms, use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getproductsafetylabels" target="_blank">getProductSafetyLabels</a> method of the <b>Metadata API</b> to find supported values for a specific marketplace/site.</span><br>A maximum of 2 pictograms are allowed for product safety.',
+        description='An array of comma-separated string values used to provide product safety pictogram(s) for the listing. If your product shows universal product safety or compliance symbols, please select the values corresponding to the product safety pictograms for display in the product safety section of the listing. The seller specifies the identifier of each pictogram in this field.',
     )
     statements: list[str] | None = Field(
         None,
-        description='An array of comma-separated string values used to provide product safety statement(s) for the listing.<br><br>If your product shows universal product safety or compliance warnings, please select the values corresponding to the product safety statements for display in the product safety section of the listing. The seller specifies the identifier of each statement in this field.<br><br><span class="tablenote"><b>Note:</b> For product safety statements, use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getproductsafetylabels" target="_blank">getProductSafetyLabels</a> method of the <b>Metadata API</b> to find supported values for a specific marketplace/site.</span><br>A maximum of 8 statements are allowed for product safety.',
+        description='An array of comma-separated string values used to provide product safety statement(s) for the listing. If your product shows universal product safety or compliance warnings, please select the values corresponding to the product safety statements for display in the product safety section of the listing. The seller specifies the identifier of each statement in this field.',
     )
 
 
@@ -1087,12 +1087,12 @@ class PublishByInventoryItemGroupRequest(EbayModel):
     inventory_item_group_key: str | None = Field(
         None,
         alias='inventoryItemGroupKey',
-        description='This is the unique identifier of the inventory item group. All unpublished offers associated with this inventory item group will be published as a multiple-variation listing if the <strong>publishByInventoryItemGroup</strong> call is successful. The <strong>inventoryItemGroupKey</strong> identifier is automatically generated by eBay once an inventory item group is created.<br><br>To retrieve an <strong>inventoryItemGroupKey</strong> value, you can use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem" target="_blank">getInventoryItem</a> method to retrieve an inventory item that is known to be in the inventory item group to publish, and then look for the inventory item group identifier under the <strong>groupIds</strong> container in the response of that call.',
+        description='This is the unique identifier of the inventory item group. All unpublished offers associated with this inventory item group will be published as a multiple-variation listing if the publishByInventoryItemGroup call is successful. The inventoryItemGroupKey identifier is automatically generated by eBay once an inventory item group is created.',
     )
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This is the unique identifier of the eBay site on which the multiple-variation listing will be published. The <strong>marketplaceId</strong> enumeration values are found in <strong>MarketplaceEnum</strong>.',
+        description='This is the unique identifier of the eBay site on which the multiple-variation listing will be published. The marketplaceId enumeration values are found in MarketplaceEnum .',
     )
 
 
@@ -1130,22 +1130,22 @@ class SoldOnEnum(OpenStrEnum):
 class SpecialHours(EbayModel):
     date: str | None = Field(
         None,
-        description='A <strong>date</strong> value is required for each specific date that the store location has special operating hours or is closed for that date.  <br><br>The timestamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2025-08-04T00:00:00.000Z</code> <br><br>This field is returned if set for the store location.',
+        description='A date value is required for each specific date that the store location has special operating hours or is closed for that date. The timestamp is formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2025-08-04T00:00:00.000Z This field is returned if set for the store location.',
     )
     intervals: list[Interval] | None = Field(
         None,
-        description='This array is used to set the operating hours for the date specified in the corresponding <strong>date</strong> field. These special operating hours on this specific date will override the normal operating hours for that day of the week that is specified through the <strong>operatingHours</strong> array. <br><br>To specify a location as closed on the corresponding <strong>date</strong>, include the <strong>intervals</strong> array as empty. <br><br>If a location closes for lunch (or any other period during the day) and then reopens, multiple <strong>open</strong> and <strong>close</strong> pairs are needed to specify each interval where the location is open. <br><br>This container is returned if set for the store location.',
+        description='This array is used to set the operating hours for the date specified in the corresponding date field. These special operating hours on this specific date will override the normal operating hours for that day of the week that is specified through the operatingHours array. To specify a location as closed on the corresponding date , include the intervals array as empty.',
     )
 
 
 class Specification(EbayModel):
     name: str | None = Field(
         None,
-        description='This is the name of product variation aspect. Typically, for clothing, typical aspect names are <code>"Size"</code> and <code>"Color"</code>. Product variation aspects are not required immediately upon creating an inventory item group, but these aspects will be required before a multiple-variation listing containing this inventory item group is published. For each product variation aspect that is specified through the <strong>specifications</strong> container, one <strong>name</strong> value is required and two or more variations of this aspect are required through the <strong>values</strong> array.<br><br><span class="tablenote"> <strong>Note:</strong> Each member of the inventory item group should have these same aspect names specified through the <strong>product.aspects</strong> container when the inventory item is created with the <strong>createOrReplaceInventoryItem</strong> or <strong>bulkCreateOrReplaceInventoryItem</strong> call. </span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br><strong>Maximum length</strong>: 40',
+        description='This is the name of product variation aspect. Typically, for clothing, typical aspect names are "Size" and "Color" . Product variation aspects are not required immediately upon creating an inventory item group, but these aspects will be required before a multiple-variation listing containing this inventory item group is published.',
     )
     values: list[str] | None = Field(
         None,
-        description='This is an array of values pertaining to the corresponding product variation aspect (specified in the <strong>name</strong> field). Below is a sample of how these values will appear under a <strong>specifications</strong> container: <br> <pre>"specifications": [{<br> "name": "Size",<br> "values": ["Small",<br> "Medium",<br> "Large"]<br> },<br> { <br> "name": "Color",<br> "values": ["Blue",<br> "White",<br> "Red"] <br> }] </pre><span class="tablenote"> <strong>Note:</strong> Each member of the inventory item group should have these same aspect names, and each individual inventory item should have each variation of the product aspect values specified through the <strong>product.aspects</strong> container when the inventory item is created with the <strong>createOrReplaceInventoryItem</strong> or <strong>bulkCreateOrReplaceInventoryItem</strong> call. </span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This array is required and at least one value that matches the corresponding aspect name must be specified.</p></span></div><br><strong>Maximum length</strong>: 50',
+        description='This is an array of values pertaining to the corresponding product variation aspect (specified in the name field).',
     )
 
 
@@ -1164,17 +1164,17 @@ class Tax(EbayModel):
     apply_tax: bool | None = Field(
         None,
         alias='applyTax',
-        description='When set to <code>true</code>, the seller\'s account-level sales-tax table will be used to calculate sales tax for an order.<br><br><span class="tablenote"><b>Note:</b> Sales-tax tables are available only for the US and Canada marketplaces.</span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using a tax table.<br><br>However, sellers may continue to use a sales-tax table to set rates for the following US territories:<ul><li>American Samoa (AS)</li><li>Guam (GU)</li><li>Northern Mariana Islands (MP)</li><li>Palau (PW)</li><li>US Virgin Islands (VI)</li></ul></p></div><br>For complete information about using sales-tax tables, refer to <a href="/api-docs/sell/static/seller-accounts/tax-tables.html" target="_blank">Establishing sales-tax tables</a>.<br><br>Note that a seller can enable the use of a sales-tax table, but if a sales-tax rate is not specified for the buyer\'s tax jurisdiction, sales tax will not be applied to the order.<br><br>When a <code>thirdPartyTaxCategory</code> value is used, <code>applyTax</code> must also be set to <code>true</code>.<br><br>This field will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.<br><br>For additional information, refer to <a href="https://www.ebay.com/help/selling/fees-credits-invoices/taxes-import-charges?id=4121 " target="_blank">Taxes and import charges</a>.',
+        description="When set to true , the seller's account-level sales-tax table will be used to calculate sales tax for an order. Note: Sales-tax tables are available only for the US and Canada marketplaces. Important! In the US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all 50 states and Washington, DC.",
     )
     third_party_tax_category: str | None = Field(
         None,
         alias='thirdPartyTaxCategory',
-        description='The tax exception category code. If this field is used, sales tax will also apply to a service/fee, and not just the item price. This is to be used only by sellers who have opted into sales tax being calculated by a sales tax calculation vendor. If you are interested in becoming a tax calculation vendor partner with eBay, contact <a href="mailto:developer-relations@ebay.com ">developer-relations@ebay.com</a>. One supported value for this field is <code>WASTE_RECYCLING_FEE</code>. If this field is used, the <strong>applyTax</strong> field must also be used and set to <code>true</code><br><br>This field will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description='The tax exception category code. If this field is used, sales tax will also apply to a service/fee, and not just the item price. This is to be used only by sellers who have opted into sales tax being calculated by a sales tax calculation vendor. If you are interested in becoming a tax calculation vendor partner with eBay, contact developer-relations@ebay.com .',
     )
     vat_percentage: float | None = Field(
         None,
         alias='vatPercentage',
-        description='This value is the Value Add Tax (VAT) rate for the item, if any. When a VAT percentage is specified, the item\'s VAT information appears on the listing\'s View Item page. In addition, the seller can choose to print an invoice that includes the item\'s net price, VAT percent, VAT amount, and total price. Since VAT rates vary depending on the item and on the user\'s country of residence, a seller is responsible for entering the correct VAT rate; it is not calculated by eBay. <br><br>To use VAT, a seller must be a business seller with a VAT-ID registered with eBay, and must be listing the item on a VAT-enabled site. Max applicable length is 6 characters, including the decimal (e.g., 12.345). The scale is 3 decimal places. (If you pass in 12.3456, eBay may round up the value to 12.346).<br><br>This field will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description="This value is the Value Add Tax (VAT) rate for the item, if any. When a VAT percentage is specified, the item's VAT information appears on the listing's View Item page. In addition, the seller can choose to print an invoice that includes the item's net price, VAT percent, VAT amount, and total price.",
     )
 
 
@@ -1194,11 +1194,11 @@ class VariesBy(EbayModel):
     aspects_image_varies_by: list[str] | None = Field(
         None,
         alias='aspectsImageVariesBy',
-        description='This container is used if the seller wants to include multiple images to demonstrate how variations within a multiple-variation listing differ. In this string field, the seller will specify the product aspect where the variations of the inventory item group vary, such as color. If <code>Color</code> is specified in this field, <code>Color</code> must also be one of the <strong>specifications.name</strong> values, and all available colors must appear in the corresponding <strong>specifications.values</strong> array.<br><br>If the <strong>aspectsImageVariesBy</strong> container is used, links to images of each variation should be specified through the <strong>imageUrls</strong> container of the inventory item group, or the seller can choose to include those links to images in each inventory item record for the inventory items in the group. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This array is required and at least one aspect (such as <code>Color</code>) must be specified before an offer can be published to create an active listing.</p></span></div>',
+        description='This container is used if the seller wants to include multiple images to demonstrate how variations within a multiple-variation listing differ. In this string field, the seller will specify the product aspect where the variations of the inventory item group vary, such as color.',
     )
     specifications: list[Specification] | None = Field(
         None,
-        description='This container consists of an array of one or more product aspects where each variation differs, and values for each of those product aspects. This container is not immediately required, but will be required before the first offer of the inventory item group is published. <br><br>If a product aspect is specified in the <strong>aspectsImageVariesBy</strong> container, this product aspect (along with all variations of that product aspect) must be included in the <strong>specifications</strong> container. Before offers related to the inventory item group are published, the product aspects and values specified through the <strong>specifications</strong> container should be in synch with the name-value pairs specified through the <strong>product.aspects</strong> containers of the inventory items contained in the group. For example, if <code>Color</code> and <code>Size</code> are in this <strong>specifications</strong> container, each inventory item of the group should also have <code>Color</code> and <code>Size</code> as aspect names in their inventory item records.<br><br>This container is always returned if one or more offers associated with the inventory item group have been published. For inventory item groups that have yet to have any published offers, this container is only returned if set.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This array is required and at least one aspect with the available variations must be specified.</p></span></div>',
+        description='This container consists of an array of one or more product aspects where each variation differs, and values for each of those product aspects. This container is not immediately required, but will be required before the first offer of the inventory item group is published.',
     )
 
 
@@ -1213,12 +1213,12 @@ class WeeklySchedule(EbayModel):
     cut_off_time: str | None = Field(
         None,
         alias='cutOffTime',
-        description='This field specifies the cut-off times (in 24-hour format) for the business day(s) specified in the <b>dayOfWeekEnum</b> array.<br><br>Cut-off times default to the time zone of the specified address if the <b>timeZoneId</b> is not provided.<br><br><span class="tablenote"><b>Note:</b> If cut-off hours are not specified for a particular day, the fulfillment center is considered to be on holiday for that day.</span><br><b>Format:</b> <code>00:00</code>',
+        description='This field specifies the cut-off times (in 24-hour format) for the business day(s) specified in the dayOfWeekEnum array. Cut-off times default to the time zone of the specified address if the timeZoneId is not provided. Note: If cut-off hours are not specified for a particular day, the fulfillment center is considered to be on holiday for that day. Format: 00:00',
     )
     day_of_week_enum: list[DayOfWeekEnum] | None = Field(
         None,
         alias='dayOfWeekEnum',
-        description='This comma-separated array defines the days of week for which the specified <b>cutOffTime</b> is used.',
+        description='This comma-separated array defines the days of week for which the specified cutOffTime is used.',
     )
 
 
@@ -1233,12 +1233,12 @@ class WithdrawByInventoryItemGroupRequest(EbayModel):
     inventory_item_group_key: str | None = Field(
         None,
         alias='inventoryItemGroupKey',
-        description='This is the unique identifier of the inventory item group. This identifier is automatically generated by eBay once an inventory item group is created.<br><br>To retrieve an <strong>inventoryItemGroupKey</strong> value, you can use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem" target="_blank">getInventoryItem</a> method to retrieve an inventory item that is known to be in the inventory item group to publish, and then look for the inventory item group identifier under the <strong>groupIds</strong> container in the response of that call.',
+        description='This is the unique identifier of the inventory item group. This identifier is automatically generated by eBay once an inventory item group is created.',
     )
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This is the unique identifier of the eBay site for which the offer will be made available. See <b>MarketplaceEnum</b> for supported values.',
+        description='This is the unique identifier of the eBay site for which the offer will be made available. See MarketplaceEnum for supported values.',
     )
 
 
@@ -1246,34 +1246,34 @@ class Address(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description='The first line of a street address. This field is required for store and fulfillment center locations. A street address is not required for warehouse locations.<br><br>This field will be returned if defined for an inventory location. <br><br><b>Maximum length</b>: 128',
+        description='The first line of a street address. This field is required for store and fulfillment center locations. A street address is not required for warehouse locations. This field will be returned if defined for an inventory location. Maximum length : 128',
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description='The second line of a street address. This field can be used for additional address information, such as a suite or apartment number. <br><br>This field will be returned if defined for an inventory location. <br><br><b>Maximum length</b>: 128',
+        description='The second line of a street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for an inventory location. Maximum length : 128',
     )
     city: str | None = Field(
         None,
-        description='The city in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a <strong>city</strong> and <strong>stateOrProvince</strong> pair if a <strong>postalCode</strong> is not provided. If a <strong>postalCode</strong> is provided, the city is derived from the provided postal code and this field is technically optional.<br><br>This field is returned if defined for an inventory location. <br><br><b>Maximum length</b>: 128',
+        description='The city in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a city and stateOrProvince pair if a postalCode is not provided. If a postalCode is provided, the city is derived from the provided postal code and this field is technically optional.',
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='The country in which the address resides, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany.',
+        description='The country in which the address resides, represented as two-letter ISO 3166 country code. For example, US represents the United States, and DE represents Germany.',
     )
     county: str | None = Field(
         None,
-        description='The county in which the address resides.<br><br>This field is returned if defined for an inventory location.',
+        description='The county in which the address resides. This field is returned if defined for an inventory location.',
     )
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description='The postal/zip code of the address. eBay uses postal codes to surface In-Store Pickup items within the vicinity of a buyer\'s location, and it also uses postal codes (origin and destination) to estimate shipping costs when the seller uses calculated shipping. This field is required for store and fulfillment center locations. <br><br>For warehouse locations, this field is conditionally required if a <strong>city</strong> and <strong>stateOrProvince</strong> pair is not provided.<br><br><span class="tablenote"> <strong>Note:</strong> For warehouse locations, <strong>city</strong> and <strong>stateOrProvince</strong> pair can be used instead of a <strong>postalCode</strong> value, and then the postal code is just derived from the city and state/province.</span><br>This field is returned if defined for an inventory location. <br><br><b>Maximum length</b>: 16',
+        description="The postal/zip code of the address. eBay uses postal codes to surface In-Store Pickup items within the vicinity of a buyer's location, and it also uses postal codes (origin and destination) to estimate shipping costs when the seller uses calculated shipping. This field is required for store and fulfillment center locations.",
     )
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description='The state/province in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a <strong>city</strong> and <strong>stateOrProvince</strong> pair if a <strong>postalCode</strong> is not provided. If a <strong>postalCode</strong> is provided, the state or province is derived from the provided zip code and this field is technically optional.<br><br><b>Maximum length</b>: 128',
+        description='The state/province in which the inventory location resides. This field is required for store and fulfillment center locations. For warehouse locations, this field is conditionally required as part of a city and stateOrProvince pair if a postalCode is not provided. If a postalCode is provided, the state or province is derived from the provided zip code and this field is technically optional.',
     )
 
 
@@ -1287,14 +1287,14 @@ class BulkGetInventoryItem(EbayModel):
 class BulkMigrateListing(EbayModel):
     requests: list[MigrateListing] | None = Field(
         None,
-        description='This is the base container of the <strong>bulkMigrateListings</strong> request payload. One to five eBay listings will be included under this container.',
+        description='This is the base container of the bulkMigrateListings request payload. One to five eBay listings will be included under this container.',
     )
 
 
 class BulkOffer(EbayModel):
     requests: list[OfferKeyWithId] | None = Field(
         None,
-        description='This container is used to pass in an array of offers to publish. Up to 25 offers can be published with one <strong>bulkPublishOffer</strong> method.',
+        description='This container is used to pass in an array of offers to publish. Up to 25 offers can be published with one bulkPublishOffer method.',
     )
 
 
@@ -1302,40 +1302,40 @@ class CompatibleProduct(EbayModel):
     compatibility_properties: list[NameValueList] | None = Field(
         None,
         alias='compatibilityProperties',
-        description='This container consists of an array of motor vehicles that are compatible with the motor vehicle part or accessory specified by the SKU value in the call URI. Each motor vehicle is defined through a separate set of name/value pairs. In the <strong>name</strong> field, the vehicle aspect (such as \'make\', \'model\', \'year\', \'trim\', or \'engine\') will be identified, and the <strong>value</strong> field will be used to identify the value of each aspect.<br><br>The <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilityproperties" target="_blank">getCompatibilityProperties</a> method of the Taxonomy API can be used to retrieve applicable vehicle aspect names for a specified category, and the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcompatibilitypropertyvalues" target="_blank">getCompatibilityPropertyValues</a> method of the Taxonomy API can be used to retrieve possible values for these same vehicle aspect names.<br><br>Below is an example of identifying one motor vehicle using the <strong>compatibilityProperties</strong> container:<br><br><pre>&quot;compatibilityProperties&quot; : &#91;<br>&nbsp;&nbsp;&#123;<br>&nbsp;&nbsp;&nbsp;&quot;name&quot; : &quot;make&quot;,<br>&nbsp;&nbsp;&nbsp;&quot;value&quot; : &quot;Subaru&quot;<br>&nbsp;&nbsp;&#125;,<br>&nbsp;&nbsp;&#123;<br>&nbsp;&nbsp;&nbsp;&quot;name&quot; : &quot;model&quot;,<br>&nbsp;&nbsp;&nbsp;&quot;value&quot; : &quot;GL&quot;<br>&nbsp;&nbsp;&#125;,<br>&nbsp;&nbsp;&#123;<br>&nbsp;&nbsp;&nbsp;&quot;name&quot; : &quot;year&quot;,<br>&nbsp;&nbsp;&nbsp;&quot;value&quot; : &quot;1983&quot;<br>&nbsp;&nbsp;&#125;,<br>&nbsp;&nbsp;&#123;<br>&nbsp;&nbsp;&nbsp;&quot;name&quot; : &quot;trim&quot;,<br>&nbsp;&nbsp;&nbsp;&quot;value&quot; : &quot;Base Wagon 4-Door&quot;<br>&nbsp;&nbsp;&#125;,<br>&nbsp;&nbsp;&#123;<br>&nbsp;&nbsp;&nbsp;&quot;name&quot; : &quot;engine&quot;,<br>&nbsp;&nbsp;&nbsp;&quot;value&quot; : &quot;1.8L Turbocharged&quot;<br>&nbsp;&nbsp;&#125;<br>&#93;</pre><br><br>Typically, the make, model, and year of the motor vehicle are always required, with the trim and engine being necessary sometimes, but it will be dependent on the part or accessory, and on the vehicle class.<br><br><span class="tablenote"> <strong>Note:</strong> The <strong>productFamilyProperties</strong> container is deprecated and should no longer be used. The <strong>compatibilityProperties</strong> container should be used instead.</span>',
+        description='This container consists of an array of motor vehicles that are compatible with the motor vehicle part or accessory specified by the SKU value in the call URI. Each motor vehicle is defined through a separate set of name/value pairs.',
     )
     notes: str | None = Field(
         None,
-        description='This field is used by the seller to input any notes pertaining to the compatible vehicle list being defined. The seller might use this field to specify the placement of the part on a vehicle or other applicable information.<br><br>This field will only be returned if specified by the seller.<br><br><strong>Maximum length</strong>: 500<br>',
+        description='This field is used by the seller to input any notes pertaining to the compatible vehicle list being defined. The seller might use this field to specify the placement of the part on a vehicle or other applicable information. This field will only be returned if specified by the seller. Maximum length : 500',
     )
     product_family_properties: ProductFamilyProperties | None = Field(
         None,
         alias='productFamilyProperties',
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> The <strong>productFamilyProperties</strong> container is deprecated and should no longer be used. The <strong>compatibilityProperties</strong> container should be used instead.</p></div>',
+        description='Important! The productFamilyProperties container is deprecated and should no longer be used. The compatibilityProperties container should be used instead.',
     )
     product_identifier: ProductIdentifier | None = Field(
         None,
         alias='productIdentifier',
-        description='This container is used in a <strong>createOrReplaceProductCompatibility</strong> call to identify a motor vehicle that is compatible with the inventory item. The user specifies either an eBay Product ID (ePID) or K-Type value to identify a vehicle, and if the motor vehicle is found in the eBay product catalog, the motor vehicle properties (make, model, year, trim, engine) will automatically be populated for the vehicle. If the vehicle cannot be found using these identifiers, the vehicle will not be added to the compatible vehicle list. <br><br>Note that this container will not be returned in the <strong>getProductCompatibility</strong> call.',
+        description='This container is used in a createOrReplaceProductCompatibility call to identify a motor vehicle that is compatible with the inventory item.',
     )
 
 
 class Dimension(EbayModel):
     height: float | None = Field(
         None,
-        description='The actual height (in the measurement unit specified in the <strong>unit</strong> field) of the shipping package. All fields of the <strong>dimensions</strong> container are required if package dimensions are specified. <br><br>If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height, the <strong>dimensions</strong> container would look as follows: <br> <pre>"dimensions": {<br> "length": 21.5,<br> "width": 15.0,<br> "height": 12.0,<br> "unit": "INCH"<br> } </pre>',
+        description='The actual height (in the measurement unit specified in the unit field) of the shipping package. All fields of the dimensions container are required if package dimensions are specified.',
     )
     length: float | None = Field(
         None,
-        description='The actual length (in the measurement unit specified in the <strong>unit</strong> field) of the shipping package. All fields of the <strong>dimensions</strong> container are required if package dimensions are specified. <br><br>If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the <strong>dimensions</strong> container would look as follows: <br> <pre>"dimensions": {<br> "length": 21.5,<br> "width": 15.0,<br> "height": 12.0,<br> "unit": "INCH"<br> } </pre>',
+        description='The actual length (in the measurement unit specified in the unit field) of the shipping package. All fields of the dimensions container are required if package dimensions are specified.',
     )
     unit: LengthUnitOfMeasureEnum | None = Field(
         None,
-        description='The unit of measurement used to specify the dimensions of a shipping package. All fields of the <strong>dimensions</strong> container are required if package dimensions are specified. If the English system of measurement is being used, the applicable values for dimension units are <code>FEET</code> and <code>INCH</code>. If the metric system of measurement is being used, the applicable values for weight units are <code>METER</code> and <code>CENTIMETER</code>. The metric system is used by most countries outside of the US.',
+        description='The unit of measurement used to specify the dimensions of a shipping package. All fields of the dimensions container are required if package dimensions are specified. If the English system of measurement is being used, the applicable values for dimension units are FEET and INCH . If the metric system of measurement is being used, the applicable values for weight units are METER and CENTIMETER .',
     )
     width: float | None = Field(
         None,
-        description='The actual width (in the measurement unit specified in the <strong>unit</strong> field) of the shipping package. All fields of the <strong>dimensions</strong> container are required if package dimensions are specified.<br><br>If a shipping package measured 21.5 inches in length, 15.0 inches in width, and 12.0 inches in height,  the <strong>dimensions</strong> container would look as follows: <br> <pre>"dimensions": {<br> "length": 21.5,<br> "width": 15.0,<br> "height": 12.0,<br> "unit": "INCH"<br> } </pre>',
+        description='The actual width (in the measurement unit specified in the unit field) of the shipping package. All fields of the dimensions container are required if package dimensions are specified.',
     )
 
 
@@ -1380,7 +1380,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors. ',
+        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors.',
     )
     domain: str | None = Field(
         None,
@@ -1423,12 +1423,12 @@ class ErrorDetailV3(EbayModel):
 class FeeSummary(EbayModel):
     fees: list[Fee] | None = Field(
         None,
-        description='This container is an array of listing fees that can be expected to be applied to an offer on the specified eBay marketplace (<strong>marketplaceId</strong> value). Many fee types will get returned even when they are <code>0.0</code>.<br><br>See the <a href="https://pages.ebay.com/help/sell/fees.html " target="_blank">Standard selling fees</a> help page for more information on listing fees.',
+        description='This container is an array of listing fees that can be expected to be applied to an offer on the specified eBay marketplace ( marketplaceId value). Many fee types will get returned even when they are 0.0 . See the Standard selling fees help page for more information on listing fees.',
     )
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This is the unique identifier of the eBay site for which  listing fees for the offer are applicable.',
+        description='This is the unique identifier of the eBay site for which listing fees for the offer are applicable.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1440,51 +1440,51 @@ class FeesSummaryResponse(EbayModel):
     fee_summaries: list[FeeSummary] | None = Field(
         None,
         alias='feeSummaries',
-        description='This container consists of an array of one or more listing fees that the seller can expect to pay for unpublished offers specified in the call request. Many fee types will get returned even when they are <code>0.0</code>.',
+        description='This container consists of an array of one or more listing fees that the seller can expect to pay for unpublished offers specified in the call request. Many fee types will get returned even when they are 0.0 .',
     )
 
 
 class InventoryItemGroup(EbayModel):
     aspects: dict[str, list[str]] | None = Field(
         None,
-        description='This is a collection of item specifics (aka product aspects) name-value pairs that are shared by all product variations within the inventory item group. Common aspects for the inventory item group are not immediately required upon creating an inventory item group, but these aspects will be required before the first offer of the group is published. Common aspects for a men\'s t-shirt might be pattern and sleeve length.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Effective from December 28th, 2024, sellers offering certain rechargeable devices in EU and Northern Ireland markets must comply with the Common Charger Directive (CCD) and list appropriate charger-related aspects and values on their listings. See <a href="/api-docs/sell/static/inventory/common-charger-directive.html" target="_blank">Common Charger Directive</a> for more information.</p></div><br>Below is an example of the proper JSON syntax to use when manually inputting item specifics. Note that one item specific name, such as \'Features\', can have more than one value. If an item specific name has more than one value, each value is delimited with a comma.<br> <pre>"aspects": {<br> "pattern": ["solid"],<br> "sleeves": ["short"]<br> }</pre>This container is always returned if one or more offers associated with the inventory item group have been published, and is only returned if set for an inventory item group if that group has yet to have any offers published.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing.</p></span></div>',
+        description='This is a collection of item specifics (aka product aspects) name-value pairs that are shared by all product variations within the inventory item group. Common aspects for the inventory item group are not immediately required upon creating an inventory item group, but these aspects will be required before the first offer of the group is published.',
     )
     description: str | None = Field(
         None,
-        description='The description of the inventory item group. This description should fully describe the product and the variations of the product that are available in the inventory item group, since this description will ultimately become the listing description once the first offer of the group is published. This field is not initially required when first creating an inventory item group, but will be required before the first offer of the group is published. <br><br><span class="tablenote"> <strong>Note:</strong> Since this description will ultimately  become the listing description in a multiple-variation listing, the seller should omit the <strong>listingDescription</strong> field when creating the offers for each variation. If they include the <strong>listingDescription</strong> field for the individual offer(s) in an item group, the text in that field for a published offer will overwrite the text provided in this <strong>description</strong> field for the inventory item group.</span><br><br>HTML tags and markup can be used in this field, but each character counts toward the maximum length limit.<br><br><span class="tablenote"> <strong>Note:</strong> To ensure that their short listing description is optimized when viewed on mobile devices, sellers should strongly consider using eBay\'s <a href="https://pages.ebay.com/sell/itemdescription/customizeyoursummary.html " target="_blank">View Item description summary feature</a> when listing their items. Keep in mind that the \'short\' listing description is what prospective buyers first see when they view the listing on a mobile device. The \'full\' listing description is also available to mobile users when they click on the short listing description, but the full description is not automatically optimized for viewing in mobile devices, and many users won\'t even drill down to the full description.<br><br>Using HTML div and span tag attributes, this feature allows sellers to customize and fully control the short listing description that is displayed to prospective buyers when viewing the listing on a mobile device. The short listing description on mobile devices is limited to 800 characters, and whenever the full listing description (provided in this field, in UI, or seller tool) exceeds this limit, eBay uses a special algorithm to derive the best possible short listing description within the 800-character limit. However, due to some short listing description content being removed, it is definitely not ideal for the seller, and could lead to a bad buyer experience and possibly to a Significantly not as described (SNAD) case, since the buyer may not get complete details on the item when viewing the short listing description. See the eBay help page for more details on using the HTML div and span tags.</span><br><br>This field is always returned if one or more offers associated with the inventory item group have been published, and is only returned if set for an inventory item group if that group has yet to have any offers published.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing.</p></span></div><br><strong>Maximum length</strong>: 500,000 (which includes HTML markup/tags)<br>',
+        description='The description of the inventory item group. This description should fully describe the product and the variations of the product that are available in the inventory item group, since this description will ultimately become the listing description once the first offer of the group is published.',
     )
     image_urls: list[str] | None = Field(
         None,
         alias='imageUrls',
-        description='An array of one or more links to images for the inventory item group. URLs must use the "HTTPS" protocol. Images can be self-hosted by the seller, or sellers can use the <a href="/Devzone/XML/docs/Reference/eBay/UploadSiteHostedPictures.html " target="_blank">UploadSiteHostedPictures</a> call of the Trading API to upload images to an eBay Picture Server. If successful, the response of the <a href="/Devzone/XML/docs/Reference/eBay/UploadSiteHostedPictures.html " target="_blank">UploadSiteHostedPictures</a> call will contain a full URL to the image on an eBay Picture Server. This is the URL that will be passed in through the <strong>imageUrls</strong> array. <br><br><span class="tablenote"> <strong>Note:</strong> Before any offer can be published, at least one image must exist for the offer. Links to images can either be passed in through this <strong>imageUrls</strong> container, or they can be passed in through the <strong>product.imageUrls</strong> container when creating each inventory item in the group. If the <strong>variesBy.aspectsImageVariesBy</strong> field is used to specify the main product aspect where the variations vary, the links to the images must be passed in through this <strong>imageUrls</strong> container, and there should be a picture for each variation. So, if the <strong>variesBy.aspectsImageVariesBy</strong> field is set to <code>Color</code>, a link should be included to an image demonstrating each available color in the group.</span><br><br>In almost any category at no cost, sellers can include up to 24 pictures in one listing. For inventory items that are a part of an inventory item group/multiple-variation listings, a maximum of 12 pictures may be used per inventory item in the group. Motor vehicle listings are an exception. The number of included pictures in motor vehicle listings depend on the selected vehicle package (see <a href="https://www.ebay.com/help/selling/fees-credits-invoices/motors-fees?id=4127 " target="_blank">Fees for selling vehicles on eBay Motors</a>).<br><br>This container will always be returned for an inventory item group that has at least one published offer since a published offer will always have at least one picture, but this container will only be returned if defined for inventory item groups that have yet to have any published offers. ',
+        description='An array of one or more links to images for the inventory item group. URLs must use the "HTTPS" protocol. Images can be self-hosted by the seller, or sellers can use the UploadSiteHostedPictures call of the Trading API to upload images to an eBay Picture Server. If successful, the response of the UploadSiteHostedPictures call will contain a full URL to the image on an eBay Picture Server.',
     )
     inventory_item_group_key: str | None = Field(
         None,
         alias='inventoryItemGroupKey',
-        description='This is the unique identifier of the inventory item group. This identifier is created by the seller when an inventory item group is created. <br><br><span class="tablenote"><b>Note:</b> This field is only applicable to the <strong>getInventoryItemGroup</strong> call and not to the <strong>createOrReplaceInventoryItemGroup</strong> call. In the <strong>createOrReplaceInventoryItemGroup</strong> call, the <strong>inventoryItemGroupKey</strong> value is passed into the end of the call URI instead. </span>',
+        description='This is the unique identifier of the inventory item group. This identifier is created by the seller when an inventory item group is created. Note: This field is only applicable to the getInventoryItemGroup call and not to the createOrReplaceInventoryItemGroup call. In the createOrReplaceInventoryItemGroup call, the inventoryItemGroupKey value is passed into the end of the call URI instead.',
     )
     subtitle: str | None = Field(
         None,
-        description='A subtitle is an optional listing feature that allows the seller to provide more information about the product, possibly including keywords that may assist with search results. An additional listing fee will be charged to the seller if a subtitle is used. For more information on using listing subtitles on the US site, see the <a href="https://pages.ebay.com/help/sell/itemsubtitle.html " target="_blank">Adding a subtitle to your listings</a> help page. <br><br><span class="tablenote"> <strong>Note:</strong> Since this subtitle will ultimately  become the subtitle in a multiple-variation listing, the seller should not include the <strong>subtitle</strong> field when creating the inventory items that are members of the group. If they do include the <strong>subtitle</strong> field in an inventory item record, the text in that field will overwrite the text provided in this <strong>subtitle</strong> field for each inventory item in the group that is published.</span><br><br>This field will only be returned if set for an inventory item.<br><br><strong>Maximum length</strong>: 55<br>',
+        description='A subtitle is an optional listing feature that allows the seller to provide more information about the product, possibly including keywords that may assist with search results. An additional listing fee will be charged to the seller if a subtitle is used. For more information on using listing subtitles on the US site, see the Adding a subtitle to your listings help page.',
     )
     title: str | None = Field(
         None,
-        description='The title of the inventory item group. This title will ultimately become the listing title once the first offer of the group is published. This field is not initially required when first creating an inventory item group, but will be required before the first offer of the group is published.<br><br><span class="tablenote"> <strong>Note:</strong> Since this title will ultimately  become the listing title in a multiple-variation listing, the seller should omit the <strong>title</strong> field when creating the inventory items that are members of the group. If they do include the <strong>title</strong> field in an inventory item record, the text in that field will overwrite the text provided in this <strong>title</strong> field for each inventory item in the group that is published.</span><br><br>This field is always returned if one or more offers associated with the inventory item group have been published, and is only returned if set for an inventory item group if that group has yet to have any offers published.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing.</p></span></div><br><strong>Maximum length</strong>: 80 <br>',
+        description='The title of the inventory item group. This title will ultimately become the listing title once the first offer of the group is published. This field is not initially required when first creating an inventory item group, but will be required before the first offer of the group is published.',
     )
     variant_sk_us: list[str] | None = Field(
         None,
         alias='variantSKUs',
-        description="This required container is used to assign individual inventory items to the inventory item group. Multiple SKU values are passed in to this container. If updating an existing inventory item group, the seller should make sure that all member SKU values are passed in, as long as the seller wants that SKU to remain in the group.<br><br>It is also possible to add or remove SKUs with a <strong>createOrReplaceInventoryItemGroup</strong> call. If the seller wants to remove a SKU from the group, that seller will just omit that SKU value from this container to remove that inventory item/SKU from the inventory item group and any published, multiple-variation listing. However, a variation cannot be removed from the group if that variation has one or more sales for that listing. A workaround for this is to set that variation's quantity to <code>0</code> and it will be 'grayed out' in the View Item page.<br><br>This container is always returned.",
+        description='This required container is used to assign individual inventory items to the inventory item group. Multiple SKU values are passed in to this container. If updating an existing inventory item group, the seller should make sure that all member SKU values are passed in, as long as the seller wants that SKU to remain in the group.',
     )
     varies_by: VariesBy | None = Field(
         None,
         alias='variesBy',
-        description='This container is used to specify product aspects for which variations within an inventory item group vary, and a complete list of all those variances. For example, t-shirts in an inventory item group may be available in multiple sizes and colors. If this is the case, <code>Color</code> and <code>Size</code> would both be values in the <strong>specifications.name</strong> fields, and the available colors and sizes would be values under the corresponding <strong>specifications.values</strong> array. If the seller will be including multiple images in the listing that will demonstrate how each variation differs, that seller will also include the <strong>aspectsImageVariesBy</strong> field, and call out the product aspect where the listing images differ. In the t-shirts example, this product aspect would be <code>Color</code>, and the seller could either include URLs to images of the t-shirt (in available colors) through the inventory item group entity, or the seller could also included URLs to images of the t-shirt through the individual inventory item entities of the group.<br><br>This container is not initially required when first creating an inventory item group, but the <strong>variesBy.specifications</strong> container will be required before the first offer of the group is published.<br><br>This container is always returned if one or more offers associated with the inventory item group have been published, and is only returned if set for an inventory item group if that group has yet to have any offers published.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and its child fields (as noted below) are required before an offer can be published to create an active listing.</p></span></div>',
+        description='This container is used to specify product aspects for which variations within an inventory item group vary, and a complete list of all those variances. For example, t-shirts in an inventory item group may be available in multiple sizes and colors.',
     )
     video_ids: list[str] | None = Field(
         None,
         alias='videoIds',
-        description='An array of one or more <b>videoId</b> values for the inventory item group. A video ID is a unique identifier that is automatically created by eBay when a seller successfully uploads a video to eBay using the  <a href="/develop/api/sell/media_api#sell-media_api-video-uploadvideo" target="_blank">uploadVideo</a> method of the <a href="/develop/api/sell/media_api" target="_blank">Media API</a>.<br><br>For information on supported marketplaces and platforms, as well as other requirements and limitations of video support, please refer to <a href="/api-docs/sell/static/inventory/managing-video-media.html " target="_blank">Managing videos</a>.<br><br><span class="tablenote"><b>Note:</b> Only one video per listing is supported.</span>',
+        description='An array of one or more videoId values for the inventory item group. A video ID is a unique identifier that is automatically created by eBay when a seller successfully uploads a video to eBay using the uploadVideo method of the Media API . For information on supported marketplaces and platforms, as well as other requirements and limitations of video support, please refer to Managing videos .',
     )
 
 
@@ -1504,7 +1504,7 @@ class InventoryItemResponse(EbayModel):
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='The HTTP status code returned in this field indicates the success or failure of creating or updating the inventory item record for the inventory item indicated in the <strong>sku</strong> field. See the <strong>HTTP status codes</strong> table to see which each status code indicates.',
+        description='The HTTP status code returned in this field indicates the success or failure of creating or updating the inventory item record for the inventory item indicated in the sku field. See the HTTP status codes table to see which each status code indicates.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1516,12 +1516,12 @@ class ListingDetails(EbayModel):
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='The unique identifier of the eBay listing that is associated with the published offer. ',
+        description='The unique identifier of the eBay listing that is associated with the published offer.',
     )
     listing_on_hold: bool | None = Field(
         None,
         alias='listingOnHold',
-        description='Indicates if a listing is on hold due to an eBay policy violation.<br><br>If a listing is put on hold, users are unable to view the listing details, the listing is hidden from search, and all attempted purchases, offers, and bids for the listing are blocked. eBay, however, gives sellers the opportunity to address violations and get listings fully reinstated. A listing will be ended if a seller does not address a violation, or if the violation can not be rectified.<br><br>If a listing is fixable, the seller should be able to view the listing details and this boolean will be returned as true.<br><br>Once a listing is fixed, this boolean will no longer be returned.',
+        description='Indicates if a listing is on hold due to an eBay policy violation. If a listing is put on hold, users are unable to view the listing details, the listing is hidden from search, and all attempted purchases, offers, and bids for the listing are blocked. eBay, however, gives sellers the opportunity to address violations and get listings fully reinstated.',
     )
     listing_status: ListingStatusEnum | None = Field(
         None,
@@ -1538,29 +1538,29 @@ class ListingDetails(EbayModel):
 class Location(EbayModel):
     address: Address | None = Field(
         None,
-        description='The <strong>address</strong> container is always returned in <strong>getInventoryLocation</strong>/<strong>getInventoryLocations</strong> calls. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location.',
+        description='The address container is always returned in getInventoryLocation / getInventoryLocations calls. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location.',
     )
     geo_coordinates: GeoCoordinates | None = Field(
         None,
         alias='geoCoordinates',
-        description='This container displays the Global Positioning System (GPS) latitude and longitude coordinates for the inventory location.<br><br>This container is only returned if the geo-coordinates are set for an inventory location.',
+        description='This container displays the Global Positioning System (GPS) latitude and longitude coordinates for the inventory location. This container is only returned if the geo-coordinates are set for an inventory location.',
     )
     location_id: str | None = Field(
         None,
         alias='locationId',
-        description='A unique eBay-assigned ID for the location. <br><br> <span class="tablenote"> <strong>Note:</strong> This field should not be confused with the seller-defined <b>merchantLocationKey</b> value. It is the <b>merchantLocationKey</b> value which is used to identify an inventory location when working with inventory location API calls. The <strong>locationId</strong> value is only used internally by eBay.</span>',
+        description='A unique eBay-assigned ID for the location. Note: This field should not be confused with the seller-defined merchantLocationKey value. It is the merchantLocationKey value which is used to identify an inventory location when working with inventory location API calls. The locationId value is only used internally by eBay.',
     )
 
 
 class LocationDetails(EbayModel):
     address: Address | None = Field(
         None,
-        description='This required container sets the physical address of an inventory location. Except in the case store or fulfillment center location, a full address is not a requirement when setting up a location. For warehouse locations, the fields required in this container are either of the following sets:<ul><li><b>city</b>, <b>stateOrProvince</b>, and <b>country</b></li><li><b>postalCode</b> and <b>country</b></li></ul>',
+        description='This required container sets the physical address of an inventory location. Except in the case store or fulfillment center location, a full address is not a requirement when setting up a location. For warehouse locations, the fields required in this container are either of the following sets: city , stateOrProvince , and country postalCode and country',
     )
     geo_coordinates: GeoCoordinates | None = Field(
         None,
         alias='geoCoordinates',
-        description='This container is used to set the Global Positioning System (GPS) latitude and longitude coordinates for the inventory location.<br><br>Geographical coordinates are required for the location of In-Store Pickup inventory. ',
+        description='This container is used to set the Global Positioning System (GPS) latitude and longitude coordinates for the inventory location. Geographical coordinates are required for the location of In-Store Pickup inventory.',
     )
 
 
@@ -1572,7 +1572,7 @@ class MigrateListingResponse(EbayModel):
     inventory_item_group_key: str | None = Field(
         None,
         alias='inventoryItemGroupKey',
-        description='This field will only be returned for a multiple-variation listing that the seller attempted to migrate. Its value is auto-generated by eBay. For a multiple-variation listing that is successfully migrated to the new Inventory model, eBay automatically creates an inventory item group object for the listing, and the seller will be able to retrieve and manage that new inventory item group object by using the value in this field.',
+        description='This field will only be returned for a multiple-variation listing that the seller attempted to migrate. Its value is auto-generated by eBay.',
     )
     inventory_items: list[InventoryItemListing] | None = Field(
         None,
@@ -1587,12 +1587,12 @@ class MigrateListingResponse(EbayModel):
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This is the unique identifier of the eBay Marketplace where the listing resides. The value fo the eBay US site will be <code>EBAY_US</code>.',
+        description='This is the unique identifier of the eBay Marketplace where the listing resides. The value fo the eBay US site will be EBAY_US .',
     )
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='This field is returned for each listing that the seller attempted to migrate. See the <strong>HTTP status codes</strong> table to see which each status code indicates.',
+        description='This field is returned for each listing that the seller attempted to migrate. See the HTTP status codes table to see which each status code indicates.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1604,7 +1604,7 @@ class OfferResponse(EbayModel):
     offer_id: str | None = Field(
         None,
         alias='offerId',
-        description='The unique identifier of the offer that was just created with a <strong>createOffer</strong> call. It is not returned if the <strong>createOffer</strong> call fails to create an offer. This identifier will be needed for many offer-related calls. <p> <span class="tablenote"><strong>Note:</strong> The <strong>offerId</strong> value is only returned with a successful <strong>createOffer</strong> call. This field will not be returned in the <strong>updateOffer </strong> response.</span></p>',
+        description='The unique identifier of the offer that was just created with a createOffer call. It is not returned if the createOffer call fails to create an offer. This identifier will be needed for many offer-related calls. Note: The offerId value is only returned with a successful createOffer call. This field will not be returned in the updateOffer response.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1630,7 +1630,7 @@ class OfferResponseWithListingId(EbayModel):
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='The HTTP status code returned in this field indicates the success or failure of publishing the offer specified in the <strong>offerId</strong> field. See the <strong>HTTP status codes</strong> table to see which each status code indicates.',
+        description='The HTTP status code returned in this field indicates the success or failure of publishing the offer specified in the offerId field. See the HTTP status codes table to see which each status code indicates.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1650,21 +1650,21 @@ class OfferSkuResponse(EbayModel):
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This enumeration value is the unique identifier of the eBay marketplace for which the offer will be made available. This enumeration value should be the same for all offers since the <strong>bulkCreateOffer</strong> method can only be used to create offers for one eBay marketplace at a time.',
+        description='This enumeration value is the unique identifier of the eBay marketplace for which the offer will be made available. This enumeration value should be the same for all offers since the bulkCreateOffer method can only be used to create offers for one eBay marketplace at a time.',
     )
     offer_id: str | None = Field(
         None,
         alias='offerId',
-        description='The unique identifier of the newly-created offer. This identifier should be automatically created by eBay if the creation of the offer was successful. It is not returned if the creation of the offer was not successful. In which case, the user may want to scan the corresponding <strong>errors</strong> and/or <strong>warnings</strong> container to see what the issue may be.',
+        description='The unique identifier of the newly-created offer. This identifier should be automatically created by eBay if the creation of the offer was successful. It is not returned if the creation of the offer was not successful. In which case, the user may want to scan the corresponding errors and/or warnings container to see what the issue may be.',
     )
     sku: str | None = Field(
         None,
-        description='The seller-defined Stock-Keeping Unit (SKU) of the inventory item. The <strong>sku</strong> value is required for each product offer that the seller is trying to create, and it is always returned to identified the product that is associated with the offer.',
+        description='The seller-defined Stock-Keeping Unit (SKU) of the inventory item. The sku value is required for each product offer that the seller is trying to create, and it is always returned to identified the product that is associated with the offer.',
     )
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='The integer value returned in this field is the http status code. If an offer is created successfully, the value returned in this field should be <code>200</code>. A user can view the <strong>HTTP status codes</strong> section for information on other status codes that may be returned with the <strong>bulkCreateOffer</strong> method.',
+        description='The integer value returned in this field is the http status code. If an offer is created successfully, the value returned in this field should be 200 . A user can view the HTTP status codes section for information on other status codes that may be returned with the bulkCreateOffer method.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1684,12 +1684,12 @@ class PriceQuantityResponse(EbayModel):
     )
     sku: str | None = Field(
         None,
-        description="This is the seller-defined SKU value of the product. This field is returned whether the seller attempted to update an offer with the SKU value or just attempted to update the total 'ship-to-home' quantity of an inventory item record.<br><br><strong>Maximum length</strong>: 50<br>",
+        description="This is the seller-defined SKU value of the product. This field is returned whether the seller attempted to update an offer with the SKU value or just attempted to update the total 'ship-to-home' quantity of an inventory item record. Maximum length : 50",
     )
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description="The value returned in this container will indicate the status of the attempt to update the price and/or quantity of the offer (specified in the corresponding <strong>offerId</strong> field) or the attempt to update the total 'ship-to-home' quantity of an inventory item (specified in the corresponding <strong>sku</strong> field). For a completely successful update of an offer or inventory item record, a value of <code>200</code> will appear in this field.  A user can view the <strong>HTTP status codes</strong> section for information on other status codes that may be returned with the <strong>bulkUpdatePriceQuantity</strong> method.",
+        description="The value returned in this container will indicate the status of the attempt to update the price and/or quantity of the offer (specified in the corresponding offerId field) or the attempt to update the total 'ship-to-home' quantity of an inventory item (specified in the corresponding sku field).",
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1701,36 +1701,36 @@ class PricingSummary(EbayModel):
     auction_reserve_price: Amount | None = Field(
         None,
         alias='auctionReservePrice',
-        description='This field indicates the lowest price at which the seller is willing to sell an item through an auction listing. Note that setting a Reserve Price will incur a listing fee of $5 or 7.5% of the Reserve Price, whichever is greater. The minimum fee is $5.<br><br><span class="tablenote"><b>Important:</b> This fee is charged regardless of whether or not the item is sold.</span>',
+        description='This field indicates the lowest price at which the seller is willing to sell an item through an auction listing. Note that setting a Reserve Price will incur a listing fee of $5 or 7.5% of the Reserve Price, whichever is greater. The minimum fee is $5. Important: This fee is charged regardless of whether or not the item is sold.',
     )
     auction_start_price: Amount | None = Field(
         None,
         alias='auctionStartPrice',
-        description='This field indicates the minimum bidding price for the auction. The bidding starts at this price.<br><br><span class="tablenote"><b>Note:</b> If the <b>auctionReservePrice</b> is also specified, the value of <b>auctionStartPrice</b> must be lower than the value of <b>auctionReservePrice</b>.</span>',
+        description='This field indicates the minimum bidding price for the auction. The bidding starts at this price. Note: If the auctionReservePrice is also specified, the value of auctionStartPrice must be lower than the value of auctionReservePrice .',
     )
     minimum_advertised_price: Amount | None = Field(
         None,
         alias='minimumAdvertisedPrice',
-        description='This container is needed if the Minimum Advertised Price (MAP) feature will be used in the offer. Minimum Advertised Price (MAP) is an agreement between suppliers (or manufacturers (OEM)) and the retailers (sellers) stipulating the lowest price an item is allowed to be advertised at. Sellers can only offer prices below this price through the use of other discounts. The MAP feature is only available to eligible US sellers. This field will be ignored if the seller and or the listing is not eligible for the MAP feature.<br><br>This container will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description='This container is needed if the Minimum Advertised Price (MAP) feature will be used in the offer. Minimum Advertised Price (MAP) is an agreement between suppliers (or manufacturers (OEM)) and the retailers (sellers) stipulating the lowest price an item is allowed to be advertised at. Sellers can only offer prices below this price through the use of other discounts.',
     )
     originally_sold_for_retail_price_on: SoldOnEnum | None = Field(
         None,
         alias='originallySoldForRetailPriceOn',
-        description='This field is needed if the Strikethrough Pricing (STP) feature will be used in the offer. This field indicates that the product was sold for the price in the <strong>originalRetailPrice</strong> field on an eBay site, or sold for that price by a third-party retailer. When using the <strong>createOffer</strong> or <strong>updateOffer</strong> calls, the seller will pass in a value of <code>ON_EBAY</code> to indicate that the product was sold for the <strong>originalRetailPrice</strong> on an eBay site, or the seller will pass in a value of <code>OFF_EBAY</code> to indicate that the product was sold for the <strong>originalRetailPrice</strong> through a third-party retailer. This field and the <strong>originalRetailPrice</strong> field are only applicable if the seller and listing are eligible to use the Strikethrough Pricing feature, a feature which is limited to the US (core site and Motors), UK, Germany, Canada (English and French versions), France, Italy, and Spain sites.<br><br>This field will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description='This field is needed if the Strikethrough Pricing (STP) feature will be used in the offer. This field indicates that the product was sold for the price in the originalRetailPrice field on an eBay site, or sold for that price by a third-party retailer.',
     )
     original_retail_price: Amount | None = Field(
         None,
         alias='originalRetailPrice',
-        description='This container is needed if the Strikethrough Pricing (STP) feature will be used in the offer. The dollar value passed into this field indicates the original retail price set by the manufacturer (OEM). eBay does not maintain or validate the value supplied here by the seller. The dollar value in this field should always be more than the dollar value in the <strong>price</strong> container. This field and the <strong>originallySoldForRetailPriceOn</strong> field are only applicable if the seller and listing are eligible to use the Strikethrough Pricing feature, a feature which is limited to the US (core site and Motors), UK, Germany, Canada (English and French versions), France, Italy, and Spain sites. Compare the <strong>originalRetailPrice</strong> and the dollar value in the <strong>price</strong> field to determine the amount of savings to the buyer. This Original Retail Price will have a strikethrough line through for a marketing affect.<br><br>This container will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description='This container is needed if the Strikethrough Pricing (STP) feature will be used in the offer. The dollar value passed into this field indicates the original retail price set by the manufacturer (OEM). eBay does not maintain or validate the value supplied here by the seller. The dollar value in this field should always be more than the dollar value in the price container.',
     )
     price: Amount | None = Field(
         None,
-        description='This is the listing price of the product. A listing price must be specified before publishing an offer, but it is possible to create an offer without a price.<br><br>For published offers, this container will always be returned, but for unpublished offers, this container will only be returned if set for the offer. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and its two child fields (<b>currency</b> and <b>value</b>) are required before an offer can be published to create an active listing.</p></span></div>',
+        description='This is the listing price of the product. A listing price must be specified before publishing an offer, but it is possible to create an offer without a price. For published offers, this container will always be returned, but for unpublished offers, this container will only be returned if set for the offer.',
     )
     pricing_visibility: MinimumAdvertisedPriceHandlingEnum | None = Field(
         None,
         alias='pricingVisibility',
-        description='This field is needed if the Minimum Advertised Price (MAP) feature will be used in the offer. This field is only applicable if an eligible US seller is using the Minimum Advertised Price (MAP) feature and a <strong>minimumAdvertisedPrice</strong> has been specified. The value set in this field will determine whether the MAP price is shown to a prospective buyer prior to checkout through a pop-up window accessed from the View Item page, or if the MAP price is not shown until the checkout flow after the buyer has already committed to buying the item. To show the MAP price prior to checkout, the seller will set this value to <code>PRE_CHECKOUT</code>. To show the MAP price after the buyer already commits to buy the item, the seller will set this value to <code>DURING_CHECKOUT</code>. This field will be ignored if the seller and/or the listing is not eligible for the MAP feature.<br><br>This field will be returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers">getOffers</a> if set for the offer.',
+        description='This field is needed if the Minimum Advertised Price (MAP) feature will be used in the offer. This field is only applicable if an eligible US seller is using the Minimum Advertised Price (MAP) feature and a minimumAdvertisedPrice has been specified.',
     )
 
 
@@ -1738,11 +1738,11 @@ class PublishResponse(EbayModel):
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='The unique identifier of the newly created eBay listing. This field is returned if the single offer (if <strong>publishOffer</strong> call was used) or group of offers in an inventory item group (if <strong>publishOfferByInventoryItemGroup</strong> call was used) was successfully converted into an eBay listing.',
+        description='The unique identifier of the newly created eBay listing. This field is returned if the single offer (if publishOffer call was used) or group of offers in an inventory item group (if publishOfferByInventoryItemGroup call was used) was successfully converted into an eBay listing.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
-        description='This container will contain an array of errors and/or warnings if any occur when a <strong>publishOffer</strong> or <strong>publishOfferByInventoryItemGroup</strong> call is made.',
+        description='This container will contain an array of errors and/or warnings if any occur when a publishOffer or publishOfferByInventoryItemGroup call is made.',
     )
 
 
@@ -1750,64 +1750,64 @@ class ResponsiblePerson(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description="The first line of the Responsible Person's street address.<br><br><b>Maximum length</b>: 180 characters",
+        description="The first line of the Responsible Person's street address. Maximum length : 180 characters",
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description="The second line of the Responsible Person's address. This field is not always used, but can be used for secondary address information such as 'Suite Number' or 'Apt Number'.<br><br><b>Maximum length</b>: 180 characters",
+        description="The second line of the Responsible Person's address. This field is not always used, but can be used for secondary address information such as 'Suite Number' or 'Apt Number'. Maximum length : 180 characters",
     )
     city: str | None = Field(
         None,
-        description="The city of the Responsible Person's street address.<br><br><b>Maximum length</b>: 64 characters",
+        description="The city of the Responsible Person's street address. Maximum length : 64 characters",
     )
     company_name: str | None = Field(
         None,
         alias='companyName',
-        description='The name of the Responsible Person or entity.<br><br><b>Maximum length</b>: 100 characters',
+        description='The name of the Responsible Person or entity. Maximum length : 100 characters',
     )
     contact_url: str | None = Field(
         None,
         alias='contactUrl',
-        description='The contact URL of the Responsible Person or entity.<br><br><b>Maximum length</b>: 250 characters',
+        description='The contact URL of the Responsible Person or entity. Maximum length : 250 characters',
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='This defines the list of valid country codes, adapted from <a href="http://www.iso.org/iso/country_codes" target="_blank">ISO 3166-1</a> country codes. List elements take the form of a two-letter code (Alpha-2), a three-letter code (Alpha-3), and  a three-digit code (Numeric). For example, the entry for Japan includes JP, JPN, 392. Short codes provide uniform recognition, avoiding language-dependent country names. The numeric code is helpful where Latin script may be problematic. Not all listed codes are universally recognized as countries. For example, Antarctica is AQ, ATA, 010.',
+        description='This defines the list of valid country codes, adapted from ISO 3166-1 country codes. List elements take the form of a two-letter code (Alpha-2), a three-letter code (Alpha-3), and a three-digit code (Numeric). For example, the entry for Japan includes JP, JPN, 392. Short codes provide uniform recognition, avoiding language-dependent country names.',
     )
     email: str | None = Field(
         None,
-        description="The Responsible Person's email address.<br><br><b>Maximum length</b>: 180 characters",
+        description="The Responsible Person's email address. Maximum length : 180 characters",
     )
     phone: str | None = Field(
         None,
-        description="The Responsible Person's business phone number.<br><br><b>Maximum length</b>: 64 characters",
+        description="The Responsible Person's business phone number. Maximum length : 64 characters",
     )
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description="The postal code of the Responsible Person's street address.<br><br><b>Maximum length</b>: 9 characters",
+        description="The postal code of the Responsible Person's street address. Maximum length : 9 characters",
     )
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description="The state of province of the Responsible Person's street address.<br><br><b>Maximum length</b>: 64 characters",
+        description="The state of province of the Responsible Person's street address. Maximum length : 64 characters",
     )
     types: list[ResponsiblePersonTypeEnum] | None = Field(
         None,
-        description='The type(s) associated with the Responsible Person or entity.<br><br><span class="tablenote"><b>Note:</b> Currently, the only supported value is <code>EUResponsiblePerson</code>.</span> ',
+        description='The type(s) associated with the Responsible Person or entity. Note: Currently, the only supported value is EUResponsiblePerson .',
     )
 
 
 class SameDayShippingCutOffTimes(EbayModel):
     overrides: list[Overrides] | None = Field(
         None,
-        description='This container can be used to override the existing cut-off time(s), specified in the <b>weeklySchedule</b> container, for a specific date or date range.',
+        description='This container can be used to override the existing cut-off time(s), specified in the weeklySchedule container, for a specific date or date range.',
     )
     weekly_schedule: list[WeeklySchedule] | None = Field(
         None,
         alias='weeklySchedule',
-        description='This container is used to specify the weekly schedule for shipping and handling cut-off times. A cut-off time is required for each business day that the fulfillment center operates. Any orders made after the specified <b>cutOffTime</b> on the specified day(s) of the week will be handled on the next day.',
+        description='This container is used to specify the weekly schedule for shipping and handling cut-off times. A cut-off time is required for each business day that the fulfillment center operates. Any orders made after the specified cutOffTime on the specified day(s) of the week will be handled on the next day.',
     )
 
 
@@ -1815,47 +1815,47 @@ class ShippingCostOverride(EbayModel):
     additional_shipping_cost: Amount | None = Field(
         None,
         alias='additionalShippingCost',
-        description='The dollar value passed into this field will override the additional shipping cost that is currently set for the applicable shipping service option. The "Additional shipping cost" is the cost to ship each additional identical product to the buyer using the corresponding shipping service. The shipping service option in the fulfillment policy to override is controlled by the <strong>shippingServiceType</strong> and <strong>priority</strong> values.<br><br>If using an <strong>updateOffer</strong> call, and this field is defined for the offer being updated, this field must be supplied again, even if its value is not changing.<br><br>This field is returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> calls if defined.',
+        description='The dollar value passed into this field will override the additional shipping cost that is currently set for the applicable shipping service option. The "Additional shipping cost" is the cost to ship each additional identical product to the buyer using the corresponding shipping service.',
     )
     priority: int | None = Field(
         None,
-        description='The integer value input into this field, along with the <strong>shippingServiceType</strong> value, sets which domestic or international shipping service option in the fulfillment policy will be modified with updated shipping costs. Specifically, the <strong>shippingCostOverrides.shippingServiceType</strong> value in a <strong>createOffer</strong> or <strong>updateOffer</strong> call must match the <strong>shippingOptions.optionType</strong> value in a fulfillment listing policy, and the <strong>shippingCostOverrides.priority</strong> value in a <strong>createOffer</strong> or <strong>updateOffer</strong> call must match the <strong>shippingOptions.shippingServices.sortOrderId</strong> value in a fulfillment listing policy.<br><br>This field is always required when overriding the shipping costs of a shipping service option, and will be always be returned for each shipping service option whose costs are being overridden.',
+        description='The integer value input into this field, along with the shippingServiceType value, sets which domestic or international shipping service option in the fulfillment policy will be modified with updated shipping costs.',
     )
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description='The dollar value passed into this field will override the shipping cost that is currently set for the applicable shipping service option. This value will be the cost to ship one item to the buyer using the corresponding shipping service.  The shipping service option in the fulfillment policy to override is controlled by the <strong>shippingServiceType</strong> and <strong>priority</strong> values.<br><br>If using an <strong>updateOffer</strong> call, and this field is defined for the offer being updated, this field must be supplied again, even if its value is not changing.<br><br>This field is returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> calls if defined.',
+        description='The dollar value passed into this field will override the shipping cost that is currently set for the applicable shipping service option. This value will be the cost to ship one item to the buyer using the corresponding shipping service. The shipping service option in the fulfillment policy to override is controlled by the shippingServiceType and priority values.',
     )
     shipping_service_type: ShippingServiceTypeEnum | None = Field(
         None,
         alias='shippingServiceType',
-        description='This enumerated value indicates whether the shipping service specified in the <strong>priority</strong> field is a domestic or an international shipping service option. To override the shipping costs for a specific domestic shipping service in the fulfillment listing policy, this field should be set to <code>DOMESTIC</code>, and to override the shipping costs for each international shipping service, this field should be set to <code>INTERNATIONAL</code>. This value, along with <strong>priority</strong> value, sets which domestic or international shipping service option in the fulfillment policy that will be modified with updated shipping costs. Specifically, the <strong>shippingCostOverrides.shippingServiceType</strong> value in a <strong>createOffer</strong> or <strong>updateOffer</strong> call must match the <strong>shippingOptions.optionType</strong> value in a fulfillment listing policy, and the <strong>shippingCostOverrides.priority</strong> value in a <strong>createOffer</strong> or <strong>updateOffer</strong> call must match the <strong>shippingOptions.shippingServices.sortOrderId</strong> value in a fulfillment listing policy.<br><br>This field is always required when overriding the shipping costs of a shipping service option, and will be always be returned for each shipping service option whose costs are being overridden.',
+        description='This enumerated value indicates whether the shipping service specified in the priority field is a domestic or an international shipping service option.',
     )
     surcharge: Amount | None = Field(
         None,
-        description='<span class="tablenote"> <strong>Note:</strong> DO NOT USE THIS FIELD. Shipping surcharges for shipping service options can no longer be set with fulfillment business policies. To set a shipping surcharge for a shipping service option, only the <b>Shipping rate tables</b> tool in My eBay can be used. </span><br>The dollar value passed into this field will override the shipping surcharge that is currently set for the applicable shipping service option. The shipping service option in the fulfillment policy to override is controlled by the <strong>shippingServiceType</strong> and <strong>priority</strong> values.<br><br>If using an <strong>updateOffer</strong> call, and this field is defined for the offer being updated, this field must be supplied again, even if its value is not changing.<br><br>This field is returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> calls if defined.',
+        description='Note: DO NOT USE THIS FIELD. Shipping surcharges for shipping service options can no longer be set with fulfillment business policies. To set a shipping surcharge for a shipping service option, only the Shipping rate tables tool in My eBay can be used. The dollar value passed into this field will override the shipping surcharge that is currently set for the applicable shipping service option.',
     )
 
 
 class TimeDuration(EbayModel):
     unit: TimeDurationUnitEnum | None = Field(
         None,
-        description='This enumeration value indicates the time unit used to specify the fulfillment time, such as <code>BUSINESS_DAY</code>.',
+        description='This enumeration value indicates the time unit used to specify the fulfillment time, such as BUSINESS_DAY .',
     )
     value: int | None = Field(
         None,
-        description='The integer value in this field, along with the time unit in the <strong>unit</strong> field, will indicate the fulfillment time.<br><br>For standard orders that will be shipped, this value will indicate the expected fulfillment time if the inventory item is shipped from the inventory location. If the value of this field is <code>4</code>, and the value of the <strong>unit</strong> field is <code>BUSINESS_DAY</code>, then the estimated delivery date after purchase is 4 business days.',
+        description='The integer value in this field, along with the time unit in the unit field, will indicate the fulfillment time. For standard orders that will be shipped, this value will indicate the expected fulfillment time if the inventory item is shipped from the inventory location.',
     )
 
 
 class Weight(EbayModel):
     unit: WeightUnitOfMeasureEnum | None = Field(
         None,
-        description='The unit of measurement used to specify the weight of a shipping package. Both the <strong>unit</strong> and <strong>value</strong> fields are required if the <strong>weight</strong> container is used. If the English system of measurement is being used, the applicable values for weight units are <code>POUND</code> and <code>OUNCE</CODE>. If the metric system of measurement is being used, the applicable values for weight units are <code>KILOGRAM</code> and <code>GRAM</code>. The metric system is used by most countries outside of the US.',
+        description='The unit of measurement used to specify the weight of a shipping package. Both the unit and value fields are required if the weight container is used. If the English system of measurement is being used, the applicable values for weight units are POUND and OUNCE . If the metric system of measurement is being used, the applicable values for weight units are KILOGRAM and GRAM .',
     )
     value: float | None = Field(
         None,
-        description='The actual weight (in the measurement unit specified in the <strong>unit</strong> field) of the shipping package. Both the <strong>unit</strong> and <strong>value</strong> fields are required if the <strong>weight</strong> container is used. If a shipping package weighed 20.5 ounces, the container would look as follows: <br><pre>"weight": {<br> "value": 20.5,<br> "unit": "OUNCE"<br> }</pre>',
+        description='The actual weight (in the measurement unit specified in the unit field) of the shipping package. Both the unit and value fields are required if the weight container is used. If a shipping package weighed 20.5 ounces, the container would look as follows: "weight": { "value": 20.5, "unit": "OUNCE" }',
     )
 
 
@@ -1875,12 +1875,12 @@ class AvailabilityDistribution(EbayModel):
     fulfillment_time: TimeDuration | None = Field(
         None,
         alias='fulfillmentTime',
-        description='This container is used to indicate the expected fulfillment time if the inventory item is shipped from the warehouse location identified in the corresponding <strong>merchantLocationKey</strong> field. The fulfillment time is the estimated number of business days after purchase that the buyer can expect the item to be delivered.<br><br>This field is optional, and is used by eBay to provide the estimated delivery date to buyers. This field is returned by <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem">getInventoryItem</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems">getInventoryItems</a> if set for the inventory item.',
+        description='This container is used to indicate the expected fulfillment time if the inventory item is shipped from the warehouse location identified in the corresponding merchantLocationKey field. The fulfillment time is the estimated number of business days after purchase that the buyer can expect the item to be delivered.',
     )
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of an inventory location where quantity is available for the inventory item. This field is conditionally required to identify the inventory location that has quantity of the inventory item.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations" target="_blank">getInventoryLocations</a> method to retrieve merchant location keys.',
+        description='The unique identifier of an inventory location where quantity is available for the inventory item. This field is conditionally required to identify the inventory location that has quantity of the inventory item. Use the getInventoryLocations method to retrieve merchant location keys.',
     )
     quantity: int | None = Field(
         None,
@@ -1898,14 +1898,14 @@ class BaseResponse(EbayModel):
 class BulkInventoryItemResponse(EbayModel):
     responses: list[InventoryItemResponse] | None = Field(
         None,
-        description='This is the base container of the <strong>bulkCreateOrReplaceInventoryItem</strong> response. The results of each attempted inventory item creation/update is captured under this container.',
+        description='This is the base container of the bulkCreateOrReplaceInventoryItem response. The results of each attempted inventory item creation/update is captured under this container.',
     )
 
 
 class BulkMigrateListingResponse(EbayModel):
     responses: list[MigrateListingResponse] | None = Field(
         None,
-        description='This is the base container of the response payload of the <strong>bulkMigrateListings</strong> call. The results of each attempted listing migration is captured under this container.',
+        description='This is the base container of the response payload of the bulkMigrateListings call. The results of each attempted listing migration is captured under this container.',
     )
 
 
@@ -1919,14 +1919,14 @@ class BulkOfferResponse(EbayModel):
 class BulkPriceQuantityResponse(EbayModel):
     responses: list[PriceQuantityResponse] | None = Field(
         None,
-        description='This container will return an HTTP status code, offer ID, and SKU value for each offer/inventory item being updated, as well as an <strong>errors</strong> and/or <strong>warnings</strong> container if any errors or warnings are triggered while trying to update those offers/inventory items.',
+        description='This container will return an HTTP status code, offer ID, and SKU value for each offer/inventory item being updated, as well as an errors and/or warnings container if any errors or warnings are triggered while trying to update those offers/inventory items.',
     )
 
 
 class BulkPublishResponse(EbayModel):
     responses: list[OfferResponseWithListingId] | None = Field(
         None,
-        description='A node is returned under the <strong>responses</strong> container to indicate the success or failure of each offer that the seller was attempting to publish.',
+        description='A node is returned under the responses container to indicate the success or failure of each offer that the seller was attempting to publish.',
     )
 
 
@@ -1938,7 +1938,7 @@ class Compatibility(EbayModel):
     )
     sku: str | None = Field(
         None,
-        description='The seller-defined SKU value of the inventory item that will be associated with the compatible vehicles.<br><br><span class="tablenote"><b>Note:</b> This field is not applicable to the <strong>createOrReplaceProductCompatibility</strong> method, as the SKU value for the inventory item is passed in as part of the call URI and not in the request payload. It is always returned with the <a href="/develop/api/sell/inventory_api#sell-inventory_api-product_compatibility-getproductcompatibility" target="_blank ">getProductCompatibility</a> method.</span>',
+        description='The seller-defined SKU value of the inventory item that will be associated with the compatible vehicles. Note: This field is not applicable to the createOrReplaceProductCompatibility method, as the SKU value for the inventory item is passed in as part of the call URI and not in the request payload. It is always returned with the getProductCompatibility method.',
     )
 
 
@@ -1946,24 +1946,24 @@ class FulfillmentCenterSpecifications(EbayModel):
     same_day_shipping_cut_off_times: SameDayShippingCutOffTimes | None = Field(
         None,
         alias='sameDayShippingCutOffTimes',
-        description='<span class="tablenote"><b>Note:</b> This container only applies to listings with same-day handling.</span><br>This container specifies cut-off time(s) for order handling (and optionally cut-off overrides) at a fulfillment center location.<br><br>For example, if the cut-off time for order handling is <code>14:00</code>, any orders made after this time will be handled on the next available business day.<br><br><span class="tablenote"><b>Note:</b> Shipping cut-off times must be specified if one of the <b>locationTypes</b> of the inventory location is <code>FULFILLMENT_CENTER</code>.</span>',
+        description='Note: This container only applies to listings with same-day handling. This container specifies cut-off time(s) for order handling (and optionally cut-off overrides) at a fulfillment center location. For example, if the cut-off time for order handling is 14:00 , any orders made after this time will be handled on the next available business day.',
     )
 
 
 class InventoryLocation(EbayModel):
     location: LocationDetails | None = Field(
         None,
-        description='This container is used to add any addition physical address and geographical coordinate information for a warehouse, store, or fulfillment center inventory location.<br><br><span class="tablenote"><b>Note:</b> For warehouse and store inventory locations, address fields can be updated any number of times. For fulfilment center locations, address fields cannot be updated. However, if any address fields were omitted during the <b>createInventoryLocation</b> call, they can be added through this method.</span><br><span class="tablenote"><b>Note:</b> When updating a warehouse location to a fulfillment center, sellers can update any of the address fields a single time during the same call used to make this update. After this, they can no longer be updated.</span> ',
+        description='This container is used to add any addition physical address and geographical coordinate information for a warehouse, store, or fulfillment center inventory location. Note: For warehouse and store inventory locations, address fields can be updated any number of times. For fulfilment center locations, address fields cannot be updated.',
     )
     location_additional_information: str | None = Field(
         None,
         alias='locationAdditionalInformation',
-        description='This text field is used by the merchant to provide/update additional information about an inventory location. Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. <br><br><b>Maximum length</b>: 256',
+        description='This text field is used by the merchant to provide/update additional information about an inventory location. Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. Maximum length : 256',
     )
     location_instructions: str | None = Field(
         None,
         alias='locationInstructions',
-        description="This text field is generally used by the merchant to provide/update special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field is not included in the call request payload, eBay will use the default pickup instructions contained in the merchant's profile (if available). Whatever text is passed in this field will replace the current text string defined for this field. If the text will not change, the same text should be passed in once again. <br><br><b>Maximum length</b>: 1000",
+        description='This text field is generally used by the merchant to provide/update special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders.',
     )
     location_types: list[StoreTypeEnum] | None = Field(
         None,
@@ -1973,30 +1973,30 @@ class InventoryLocation(EbayModel):
     location_web_url: str | None = Field(
         None,
         alias='locationWebUrl',
-        description='This text field is used by the merchant to provide/update the Website address (URL) associated with the inventory location. The URL that is passed in this field will replace any other URL that may be defined for this field. <br><br><b>Maximum length</b>: 512',
+        description='This text field is used by the merchant to provide/update the Website address (URL) associated with the inventory location. The URL that is passed in this field will replace any other URL that may be defined for this field. Maximum length : 512',
     )
     name: str | None = Field(
         None,
-        description='This text field is used by the merchant to update the name of the inventory location. This name should be a human-friendly name as it will be in In-Store Pickup and Click and Collect listings. A name is not required for warehouse locations. For store locations, this field is not immediately required, but will be required before an offer enabled with the In-Store Pickup or Click and Collect capability can be published. So, if the seller omitted this field in the <strong>createInventoryLocation</strong> call, it is required for an <strong>updateInventoryLocation</strong> call. The name that is passed in this field will replace any other name that may be defined for this field.',
+        description='This text field is used by the merchant to update the name of the inventory location. This name should be a human-friendly name as it will be in In-Store Pickup and Click and Collect listings. A name is not required for warehouse locations.',
     )
     operating_hours: list[OperatingHours] | None = Field(
         None,
         alias='operatingHours',
-        description='This container is used to provide/update the regular operating hours for a store location during the days of the week. A <strong>dayOfWeekEnum</strong> field and an <strong>intervals</strong> container will be needed for each day of the week that the location is open. Note that if operating hours are already set for a location for a specific day of the week, whatever is set through an <strong>updateInventoryLocation</strong> call will override those existing hours.',
+        description='This container is used to provide/update the regular operating hours for a store location during the days of the week. A dayOfWeekEnum field and an intervals container will be needed for each day of the week that the location is open.',
     )
     phone: str | None = Field(
         None,
-        description='This text field is used by the merchant to provide/update the phone number for the inventory location. The phone number that is passed in this field will replace any other phone number that may be defined for this field. <br><br><b>Maximum length</b>: 36',
+        description='This text field is used by the merchant to provide/update the phone number for the inventory location. The phone number that is passed in this field will replace any other phone number that may be defined for this field. Maximum length : 36',
     )
     special_hours: list[SpecialHours] | None = Field(
         None,
         alias='specialHours',
-        description='This container is used to provide/update the special operating hours for a store location on a specific date, such as a holiday. The special hours specified for the specific date will override the normal operating hours for that particular day of the week. If special hours have already been set up for an inventory location, specifying special hours through an <strong>updateInventoryLocation</strong> call will only add to the list, unless the date(s) used are the same special date(s) already set up, in which case, the special hours set up through the <strong>updateInventoryLocation</strong> call will override the existing special hours.',
+        description='This container is used to provide/update the special operating hours for a store location on a specific date, such as a holiday. The special hours specified for the specific date will override the normal operating hours for that particular day of the week.',
     )
     time_zone_id: str | None = Field(
         None,
         alias='timeZoneId',
-        description='This field is used to provide/update the time zone of the inventory location being created. This value should be in Olson format (for example <code>America/Vancouver</code>). For supported values, see <a href="https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/#3-java-supported-zone-ids-and-offsets" target="_blank">Java Supported Zone Ids and Offsets</a>.<br><br><span class="tablenote"><b>Note:</b> If specified, this time zone will be used for all hour related fields. If this field is not specified, the time zone will be calculated from the provided address fields.</span>',
+        description='This field is used to provide/update the time zone of the inventory location being created. This value should be in Olson format (for example America/Vancouver ). For supported values, see Java Supported Zone Ids and Offsets . Note: If specified, this time zone will be used for all hour related fields.',
     )
     fulfillment_center_specifications: FulfillmentCenterSpecifications | None = Field(
         None,
@@ -2008,45 +2008,45 @@ class InventoryLocation(EbayModel):
 class InventoryLocationFull(EbayModel):
     location: LocationDetails | None = Field(
         None,
-        description='This required container is used to set the physical address and geographical coordinates of a warehouse, store, or fulfillment center inventory location. A warehouse location only requires the postal code and country OR city, province/state, and country, and does not require a full street address. However, the seller may still supply a full street address for a warehouse location. A complete address (<b>addressLine1</b>, <b>city</b>, <b>stateOrProvince</b>, <b>postalCode</b>, and <b>country</b>) is required for store and fulfillment center locations.<br><br><span class="tablenote"><b>Note:</b> For fulfillment center locations, the <b>addressLine1</b>, <b>stateOrProvince</b>, <b>country</b> and <b>postalCode</b> fields cannot be changed once they have been set, though they can be added through the <strong>updateInventoryLocation</strong> method if they were omitted during location creation.</span>',
+        description='This required container is used to set the physical address and geographical coordinates of a warehouse, store, or fulfillment center inventory location. A warehouse location only requires the postal code and country OR city, province/state, and country, and does not require a full street address. However, the seller may still supply a full street address for a warehouse location.',
     )
     location_additional_information: str | None = Field(
         None,
         alias='locationAdditionalInformation',
-        description='This text field is used by the merchant to provide additional information about an inventory location. <br><br><b>Maximum length</b>: 256',
+        description='This text field is used by the merchant to provide additional information about an inventory location. Maximum length : 256',
     )
     location_instructions: str | None = Field(
         None,
         alias='locationInstructions',
-        description="This text field is generally used by the merchant to provide special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field is not included in the call request payload, eBay will use the default pickup instructions contained in the merchant's profile (if available).",
+        description='This text field is generally used by the merchant to provide special pickup instructions for a store inventory location. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders.',
     )
     location_types: list[StoreTypeEnum] | None = Field(
         None,
         alias='locationTypes',
-        description='This container is used to define the function of the inventory location. Typically, an inventory location will serve as a store, warehouse, or fulfillment center, but in some cases, an inventory location may be more than one type.<br><br>For In-Store Pickup inventory, set <b>StoreTypeEnum</b> to <code>STORE</code>.<br><br>To utilize the Multi-warehouse program, set <b>StoreTypeEnum</b> to <code>FULFILLMENT_CENTER</code>.<br><br>If this container is omitted, the location type of the inventory location will default to <code>WAREHOUSE</code>. See <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocation.storetypeenum">StoreTypeEnum</a> for the supported values.<br><br><b>Default</b>: <code>WAREHOUSE</code>',
+        description='This container is used to define the function of the inventory location. Typically, an inventory location will serve as a store, warehouse, or fulfillment center, but in some cases, an inventory location may be more than one type. For In-Store Pickup inventory, set StoreTypeEnum to STORE . To utilize the Multi-warehouse program, set StoreTypeEnum to FULFILLMENT_CENTER .',
     )
     location_web_url: str | None = Field(
         None,
         alias='locationWebUrl',
-        description='This text field is used by the merchant to provide the Website address (URL) associated with the inventory location. <br><br><b>Maximum length</b>: 512',
+        description='This text field is used by the merchant to provide the Website address (URL) associated with the inventory location. Maximum length : 512',
     )
     merchant_location_status: StatusEnum | None = Field(
         None,
         alias='merchantLocationStatus',
-        description='This field is used to indicate whether the inventory location will be enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). If this field is omitted, a successful <strong>createInventoryLocation</strong> call will automatically enable the location. A merchant may want to create a new location but leave it as disabled if the location is not yet ready for active inventory. Once the location is ready, the merchant can use the <strong>enableInventoryLocation</strong> call to enable a location that is in a disabled state.<br><br>See <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocation.statusenum">StatusEnum</a> for the supported values.  <br><br><b>Default</b>: ENABLED',
+        description='This field is used to indicate whether the inventory location will be enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). If this field is omitted, a successful createInventoryLocation call will automatically enable the location.',
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. A name is not required for warehouse locations. For store locations, this field is not immediately required, but will be required before an offer enabled with the In-Store Pickup or Click and Collect capability can be published. So, if the seller omits this field in a <strong>createInventoryLocation</strong> call, it becomes required for an <strong>updateInventoryLocation</strong> call.<br><br><b>Maximum length</b>: 1000',
+        description='The seller-defined name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. A name is not required for warehouse locations. For store locations, this field is not immediately required, but will be required before an offer enabled with the In-Store Pickup or Click and Collect capability can be published.',
     )
     operating_hours: list[OperatingHours] | None = Field(
         None,
         alias='operatingHours',
-        description='This container is used to express the regular operating hours for a store location during each day of the week. A <strong>dayOfWeekEnum</strong> field and an <strong>intervals</strong> container will be needed for each day of the week that the store location is open.<br><br>Although not technically required, this container is highly recommended to be used to specify operating hours for a store location.',
+        description='This container is used to express the regular operating hours for a store location during each day of the week. A dayOfWeekEnum field and an intervals container will be needed for each day of the week that the store location is open. Although not technically required, this container is highly recommended to be used to specify operating hours for a store location.',
     )
     phone: str | None = Field(
         None,
-        description='This field is used to specify the phone number for an inventory location.<br><br><b>Maximum length</b>: 36',
+        description='This field is used to specify the phone number for an inventory location. Maximum length : 36',
     )
     special_hours: list[SpecialHours] | None = Field(
         None,
@@ -2056,19 +2056,19 @@ class InventoryLocationFull(EbayModel):
     time_zone_id: str | None = Field(
         None,
         alias='timeZoneId',
-        description='This field specifies the time zone of the inventory location being created. This value should be in Olson format (for example <code>America/Vancouver</code>). For supported values, see <a href="https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/#3-java-supported-zone-ids-and-offsets" target="_blank">Java Supported Zone Ids and Offsets</a>.<br><br><span class="tablenote"><b>Note:</b> If specified, this time zone will be used for all hour related fields. If this field is not specified for a fulfillment center location, the time zone will be calculated from the provided address fields.</span>',
+        description='This field specifies the time zone of the inventory location being created. This value should be in Olson format (for example America/Vancouver ). For supported values, see Java Supported Zone Ids and Offsets . Note: If specified, this time zone will be used for all hour related fields.',
     )
     fulfillment_center_specifications: FulfillmentCenterSpecifications | None = Field(
         None,
         alias='fulfillmentCenterSpecifications',
-        description='This container is used to specify information about a fulfillment center\'s shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off time overrides.<br><br><span class="tablenote"><b>Note:</b> This container is required if one of the <b>locationTypes</b> of the inventory location is <code>FULFILLMENT_CENTER</code>, and is not applicable to other location types.</span>',
+        description="This container is used to specify information about a fulfillment center's shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off time overrides. Note: This container is required if one of the locationTypes of the inventory location is FULFILLMENT_CENTER , and is not applicable to other location types.",
     )
 
 
 class InventoryLocationResponse(EbayModel):
     location: Location | None = Field(
         None,
-        description='This container provides location details of an inventory location. The <strong>address</strong> container will always be returned, but it will not always have a complete street address. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location. The <strong>geoCoordinates</strong> container will only be returned if the merchant provided geographical coordinates. The <strong>locationId</strong> field is always returned, but this value is only used internally by eBay.',
+        description='This container provides location details of an inventory location. The address container will always be returned, but it will not always have a complete street address. Except in the case of a store or fulfillment center location, a full address is not a requirement when setting up an inventory location.',
     )
     location_additional_information: str | None = Field(
         None,
@@ -2078,7 +2078,7 @@ class InventoryLocationResponse(EbayModel):
     location_instructions: str | None = Field(
         None,
         alias='locationInstructions',
-        description="This text field is used by the merchant to provide special pickup instructions for the store location. This field can help create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field was not set up through a <strong>createInventoryLocation</strong> or a <strong>updateInventoryLocation</strong> call, eBay will use the default pickup instructions contained in the merchant's profile.",
+        description="This text field is used by the merchant to provide special pickup instructions for the store location. This field can help create a pleasant and easy pickup experience for In-Store Pickup and Click and Collect orders. If this field was not set up through a createInventoryLocation or a updateInventoryLocation call, eBay will use the default pickup instructions contained in the merchant's profile.",
     )
     location_types: list[StoreTypeEnum] | None = Field(
         None,
@@ -2088,26 +2088,26 @@ class InventoryLocationResponse(EbayModel):
     location_web_url: str | None = Field(
         None,
         alias='locationWebUrl',
-        description='This text field shows the  Website address (URL) associated with the inventory location. This field is returned if defined for the location.',
+        description='This text field shows the Website address (URL) associated with the inventory location. This field is returned if defined for the location.',
     )
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of the inventory location. This identifier is set up by the merchant when the location is first created with the <strong>createInventoryLocation</strong> call.',
+        description='The unique identifier of the inventory location. This identifier is set up by the merchant when the location is first created with the createInventoryLocation call.',
     )
     merchant_location_status: StatusEnum | None = Field(
         None,
         alias='merchantLocationStatus',
-        description='This field indicates whether the inventory location is enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). The merchant can use the <strong>enableInventoryLocation</strong> call to enable a location in disabled status, or the <strong>disableInventoryLocation</strong> call to disable a location in enabled status.',
+        description='This field indicates whether the inventory location is enabled (inventory can be loaded to location) or disabled (inventory cannot be loaded to location). The merchant can use the enableInventoryLocation call to enable a location in disabled status, or the disableInventoryLocation call to disable a location in enabled status.',
     )
     name: str | None = Field(
         None,
-        description='The name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. For store inventory locations, this field is not required for the <strong>createInventoryLocation</strong> call, but a store inventory location must have a defined <strong>name</strong> value before an In-Store Pickup and Click and Collect enabled offer is published. So, if the seller omits this field in the <strong>createInventoryLocation</strong> call, it will have to be added later through a <strong>updateInventoryLocation</strong> call.',
+        description='The name of the inventory location. This name should be a human-friendly name as it will be displayed in In-Store Pickup and Click and Collect listings. For store inventory locations, this field is not required for the createInventoryLocation call, but a store inventory location must have a defined name value before an In-Store Pickup and Click and Collect enabled offer is published.',
     )
     operating_hours: list[OperatingHours] | None = Field(
         None,
         alias='operatingHours',
-        description='This container shows the regular operating hours for a store location during the days of the week. A <strong>dayOfWeekEnum</strong> field and an <strong>intervals</strong> container is shown for each day of the week that the location is open.',
+        description='This container shows the regular operating hours for a store location during the days of the week. A dayOfWeekEnum field and an intervals container is shown for each day of the week that the location is open.',
     )
     phone: str | None = Field(
         None,
@@ -2121,12 +2121,12 @@ class InventoryLocationResponse(EbayModel):
     time_zone_id: str | None = Field(
         None,
         alias='timeZoneId',
-        description='This field specifies the time zone of the inventory location being created. This value should be in Olson format (for example <code>America/Vancouver</code>). For supported values, see <a href="https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/#3-java-supported-zone-ids-and-offsets" target="_blank">Java Supported Zone Ids and Offsets</a>.',
+        description='This field specifies the time zone of the inventory location being created. This value should be in Olson format (for example America/Vancouver ). For supported values, see Java Supported Zone Ids and Offsets .',
     )
     fulfillment_center_specifications: FulfillmentCenterSpecifications | None = Field(
         None,
         alias='fulfillmentCenterSpecifications',
-        description='This container provides information about a fulfillment center\'s shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off time overrides.<br><br><span class="tablenote"><b>Note:</b> This field is only returned for fulfillment center locations.</span>',
+        description="This container provides information about a fulfillment center's shipping specifications, such as the weekly cut-off time schedule for order handling and any cut-off time overrides. Note: This field is only returned for fulfillment center locations.",
     )
 
 
@@ -2134,54 +2134,54 @@ class ListingPolicies(EbayModel):
     best_offer_terms: BestOffer | None = Field(
         None,
         alias='bestOfferTerms',
-        description='This container is used if the seller would like to support the Best Offer feature on their listing. To enable the Best Offer feature, the seller will have to set the <strong>bestOfferEnabled</strong> field to <code>true</code>, and the seller also has the option of setting \'auto-accept\' and \'auto-decline\' price thresholds.<br><br><span class="tablenote"><b>Note:</b> Best Offer is unavailable for multi-variation listings.</span><br>This container is only returned if Best Offer is enabled on listing.',
+        description="This container is used if the seller would like to support the Best Offer feature on their listing. To enable the Best Offer feature, the seller will have to set the bestOfferEnabled field to true , and the seller also has the option of setting 'auto-accept' and 'auto-decline' price thresholds. Note: Best Offer is unavailable for multi-variation listings.",
     )
     e_bay_plus_if_eligible: bool | None = Field(
         None,
         alias='eBayPlusIfEligible',
-        description='This field is included in an offer and set to <code>true</code> if a Top-Rated seller is opted in to the eBay Plus program. With the eBay Plus program, qualified sellers must commit to next-day delivery of the item, and the buyers must have an eBay Plus subscription to be eligible to receive the benefits of this program, which are free, next-day delivery, as well as free returns.<br><br><span class="tablenote"><b>Note:</b> Currently, this program is only available on the Germany and Australian sites.</span><br>This field will be returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> methods if set for the offer.',
+        description='This field is included in an offer and set to true if a Top-Rated seller is opted in to the eBay Plus program. With the eBay Plus program, qualified sellers must commit to next-day delivery of the item, and the buyers must have an eBay Plus subscription to be eligible to receive the benefits of this program, which are free, next-day delivery, as well as free returns.',
     )
     fulfillment_policy_id: str | None = Field(
         None,
         alias='fulfillmentPolicyId',
-        description='This unique identifier indicates the fulfillment business policy that will be used once an offer is published and converted to an eBay listing. This fulfillment business policy will set all fulfillment-related settings for the eBay listing.<br><br>Business policies are not immediately required for offers, but are required before an offer can be published. The seller should review the fulfillment business policy before assigning it to the offer to make sure it is compatible with the inventory item and the offer settings. The seller may also want to review the shipping service costs in the fulfillment policy, and that seller might decide to override the shipping costs for one or more shipping service options by using the <strong>shippingCostOverrides</strong> container.<br><br>Business policies can be created and managed in My eBay or with the <a href="/develop/api/sell/account_api_v1" target="_blank">Account API v1</a>. To get a list of all return policies associated with a seller\'s account on a specific eBay Marketplace, use the Account API v1\'s <a href="/develop/api/sell/account_api_v1#sell-account_api_v1-get-getfulfillmentpolicies" target="_blank">getFulfillmentPolicies</a> method. There are also calls in the <strong>Account API v1</strong> to retrieve a fulfillment policy by policy ID or policy name.<br><br>This field will be returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> methods if set for the offer.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='This unique identifier indicates the fulfillment business policy that will be used once an offer is published and converted to an eBay listing. This fulfillment business policy will set all fulfillment-related settings for the eBay listing. Business policies are not immediately required for offers, but are required before an offer can be published.',
     )
     payment_policy_id: str | None = Field(
         None,
         alias='paymentPolicyId',
-        description='This unique identifier indicates the payment business policy that will be used once an offer is published and converted to an eBay listing. This payment business policy will set all payment-related settings for the eBay listing.<br><br>Business policies are not immediately required for offers, but are required before an offer can be published. The seller should review the payment business policy to make sure that it is compatible with the marketplace and listing category before assigning it to the offer.<br><br>Business policies can be created and managed in My eBay or with the <a href="/develop/api/sell/account_api_v1" target="_blank">Account API v1</a>. To get a list of all payment policies associated with a seller\'s account on a specific eBay Marketplace, use the Account API v1\'s <a href="/develop/api/sell/account_api_v1#sell-account_api_v1-get-getpaymentpolicies" target="_blank">getPaymentPolicies</a> method. There are also calls in the <strong>Account API v1</strong> to retrieve a payment policy by policy ID or policy name.<br><br>This field will be returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> methods if set for the offer. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='This unique identifier indicates the payment business policy that will be used once an offer is published and converted to an eBay listing. This payment business policy will set all payment-related settings for the eBay listing. Business policies are not immediately required for offers, but are required before an offer can be published.',
     )
     product_compliance_policy_ids: list[str] | None = Field(
         None,
         alias='productCompliancePolicyIds',
-        description='This field contains the array of unique identifiers indicating the seller-created <i>global</i> product compliance policies that will be used once an offer is published and converted to a listing.<br><br>Product compliance policies provide buyers with important information and disclosures about products. For example, if you sell batteries and specific disclosures are required to be shared with all potential buyers, your global product compliance policy could contain the required disclosures.<br><br>A maximum of six (6) global product compliance policies may apply to <i>each offer</i>.<span class="tablenote"><b>Note:</b> For countries that support country-specific policies, use <a href="#request.listingPolicies.regionalProductCompliancePolicies">regionalProductCompliancePolicies</a> to apply them to an offer.</span>',
+        description='This field contains the array of unique identifiers indicating the seller-created global product compliance policies that will be used once an offer is published and converted to a listing. Product compliance policies provide buyers with important information and disclosures about products.',
     )
     regional_product_compliance_policies: RegionalProductCompliancePolicies | None = (
         Field(
             None,
             alias='regionalProductCompliancePolicies',
-            description='A comma-delimited list of unique identifiers indicating the seller-created <i>country-specific</i> product compliance policies that that will be used once an offer is published and converted to a listing.<br><br>Product compliance policies provide buyers with important information and disclosures about products. For example, if you sell batteries in a country requiring disclosures that apply <i>only</i> to that country, a country-specific product compliance policy could contain this information.<br><br>Each offer may include up to six (6) product compliance policies for <i>each</i> of the following countries:<ul><li>United Kingdom [GB]</li><li>Germany [DE]</li><li>France [FR]</li><li>Italy [IT]</li><li>Spain [ES]</li></ul><br>For example, if a seller offers products in the UK, Germany, and Italy, each of which requires custom product compliance information, up to 18 policies (i.e., 6 policies x 3 countries,) may be included with each offer.<span class="tablenote"><b>Note:</b> Product compliance policies that apply to <i>all</i> countries to which a seller ships are specified using <a href="#request.listingPolicies.productCompliancePolicyIds">productCompliancePolicyIds</a>.</span>',
+            description='A comma-delimited list of unique identifiers indicating the seller-created country-specific product compliance policies that that will be used once an offer is published and converted to a listing. Product compliance policies provide buyers with important information and disclosures about products.',
         )
     )
     regional_take_back_policies: RegionalTakeBackPolicies | None = Field(
         None,
         alias='regionalTakeBackPolicies',
-        description='The list of unique identifiers indicating the seller-created <i>country-specific</i> take-back policies that will be used once an offer is published and converted to a listing. The law in some countries may require sellers to take back a used product when the buyer buys a new product.<br><br>Each offer may include one (1) country-specific take-back policy for <i>each</i> of the following countries:<ul><li>United Kingdom [GB]</li><li>Germany [DE]</li><li>France [FR]</li><li>Italy [IT]</li><li>Spain [ES]</li></ul><br><span class="tablenote"><b>Note:</b> Take-back policies that apply to <i>all</i> countries to which a seller ships are specified using <a href="#request.listingPolicies.takeBackPolicyId">takeBackPolicyId</a>.</span>',
+        description='The list of unique identifiers indicating the seller-created country-specific take-back policies that will be used once an offer is published and converted to a listing. The law in some countries may require sellers to take back a used product when the buyer buys a new product.',
     )
     return_policy_id: str | None = Field(
         None,
         alias='returnPolicyId',
-        description='This unique identifier indicates the return business policy that will be used once an offer is published and converted to an eBay listing. This return business policy will set all return policy settings for the eBay listing.<br><br><span class="tablenote"><b>Note:</b> As a part of Digital Services Act (DSA) requirements, as of April 3, 2023, buyers in the EU must be allowed to return an item within 14 days or more, unless the item is exempt. Where applicable, sellers should update their return policies to reflect this requirement of accepting returns from EU buyers.</span><br>Business policies are not immediately required for offers, but are required before an offer can be published. The seller should review the return business policy before assigning it to the offer to make sure it is compatible with the inventory item and the offer settings.<br><br>Business policies can be created and managed in My eBay or with the <a href="/develop/api/sell/account_api_v1" target="_blank">Account API v1</a>. To get a list of all return policies associated with a seller\'s account on a specific eBay Marketplace, use the Account API v1\'s <a href="/develop/api/sell/account_api_v1#sell-account_api_v1-get-getreturnpolicies" target="_blank">getReturnPolicies</a> call. There are also calls in the <strong>Account API v1</strong> to retrieve a return policy by policy ID or policy name.<br><br>This field will be returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> methods if set for the offer. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='This unique identifier indicates the return business policy that will be used once an offer is published and converted to an eBay listing. This return business policy will set all return policy settings for the eBay listing.',
     )
     shipping_cost_overrides: list[ShippingCostOverride] | None = Field(
         None,
         alias='shippingCostOverrides',
-        description='This container is used if the seller wishes to override the shipping costs or surcharge for one or more domestic or international shipping service options defined in the fulfillment listing policy. To override the costs of a specific domestic or international shipping service option, the seller must know the priority/order of that shipping service in the fulfillment listing policy. The name of a shipping service option can be found in the <strong>shippingOptions.shippingServices.shippingServiceCode</strong> field of the fulfillment policy, and the priority/order of that shipping service option is found in the <strong>shippingOptions.shippingServices.sortOrderId</strong> field. Both of these values can be retrieved by searching for that fulfillment policy with the <strong>getFulfillmentPolicies</strong> or <strong>getFulfillmentPolicyByName</strong> calls of the <strong>Account API v1</strong>. The <strong>shippingCostOverrides.priority</strong> value should match the <strong>shippingOptions.shippingServices.sortOrderId</strong> in order to override the shipping costs for that shipping service option. The seller must also ensure that the <strong>shippingServiceType</strong> value is set to <code>DOMESTIC</code> to override a domestic shipping service option, or to <code>INTERNATIONAL</code> to override an international shipping service option.<br><br>A separate <strong>ShippingCostOverrides</strong> node is needed for each shipping service option whose costs are being overridden. All defined fields of the <strong>shippingCostOverrides</strong> container should be included, even if the shipping costs and surcharge values are not changing.<br><br>The <strong>shippingCostOverrides</strong> container is returned in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffer" target="_blank">getOffer</a> and <a href="/develop/api/sell/inventory_api#sell-inventory_api-offer-getoffers" target="_blank">getOffers</a> calls if one or more shipping cost overrides are being applied to the fulfillment policy.',
+        description='This container is used if the seller wishes to override the shipping costs or surcharge for one or more domestic or international shipping service options defined in the fulfillment listing policy. To override the costs of a specific domestic or international shipping service option, the seller must know the priority/order of that shipping service in the fulfillment listing policy.',
     )
     take_back_policy_id: str | None = Field(
         None,
         alias='takeBackPolicyId',
-        description='This unique identifier indicates the seller-created <i>global</i> take-back policy that will be used once an offer is published and converted to a listing.<br><br>One (1) global take-back policy may be specified <i>per offer</i>.<br><span class="tablenote"><b>Note:</b> For countries that support country-specific policies, use <a href="#request.listingPolicies.regionalTakeBackPolicies">regionalTakeBackPolicies</a> to apply them to an offer.</span>',
+        description='This unique identifier indicates the seller-created global take-back policy that will be used once an offer is published and converted to a listing. One (1) global take-back policy may be specified per offer . Note: For countries that support country-specific policies, use regionalTakeBackPolicies to apply them to an offer.',
     )
 
 
@@ -2195,19 +2195,19 @@ class LocationResponse(EbayModel):
     )
     next: str | None = Field(
         None,
-        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. <br><br><b>Maximum length</b>: 2048',
+        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. Maximum length : 2048',
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value is set in the request with the <b>offset</b> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value is set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
-        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. <br><br><b>Maximum length</b>: 2048',
+        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. Maximum length : 2048',
     )
     total: int | None = Field(
         None,
-        description='The total number of items retrieved in the result set.<br><br>If no items are found, this field is returned with a value of <code>0</code>.',
+        description='The total number of items retrieved in the result set. If no items are found, this field is returned with a value of 0 .',
     )
     locations: list[InventoryLocationResponse] | None = Field(
         None,
@@ -2218,21 +2218,21 @@ class LocationResponse(EbayModel):
 class PackageWeightAndSize(EbayModel):
     dimensions: Dimension | None = Field(
         None,
-        description='This container is used to indicate the length, width, and height of the shipping package that will be used to ship the inventory item. The dimensions of a shipping package are needed when calculated shipping is used.<br><br>This container will be returned if package dimensions are set for the inventory item.',
+        description='This container is used to indicate the length, width, and height of the shipping package that will be used to ship the inventory item. The dimensions of a shipping package are needed when calculated shipping is used. This container will be returned if package dimensions are set for the inventory item.',
     )
     package_type: PackageTypeEnum | None = Field(
         None,
         alias='packageType',
-        description='This enumeration value indicates the type of shipping package used to ship the inventory item. The supported values for this field can be found in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkcreateorreplaceinventoryitem.packagetypeenum" target="_blank">PackageTypeEnum</a> type.<br><br>This field will be returned if the package type is set for the inventory item.<br><br><span class="tablenote"> <strong>Note:</strong> You can use the <a href="/Devzone/XML/docs/Reference/eBay/GeteBayDetails.html#Response.ShippingPackageDetails" target="_blank">GeteBayDetails</a> Trading API call to retrieve a list of supported package types for a specific marketplace.</span>',
+        description='This enumeration value indicates the type of shipping package used to ship the inventory item. The supported values for this field can be found in the PackageTypeEnum type. This field will be returned if the package type is set for the inventory item. Note: You can use the GeteBayDetails Trading API call to retrieve a list of supported package types for a specific marketplace.',
     )
     shipping_irregular: bool | None = Field(
         None,
         alias='shippingIrregular',
-        description='A value of <code>true</code> indicates that the package is irregular and cannot go through the stamping machine at the shipping service office. This field applies to calculated shipping only. Irregular packages require special or fragile handling.',
+        description='A value of true indicates that the package is irregular and cannot go through the stamping machine at the shipping service office. This field applies to calculated shipping only. Irregular packages require special or fragile handling.',
     )
     weight: Weight | None = Field(
         None,
-        description='This container is used to specify the weight of the shipping package that will be used to ship the inventory item. The weight of a shipping package are needed when calculated shipping is used, or if flat-rate shipping rates are used, but with a weight surcharge.<br><br>This field will be returned if package weight is set for the inventory item.',
+        description='This container is used to specify the weight of the shipping package that will be used to ship the inventory item. The weight of a shipping package are needed when calculated shipping is used, or if flat-rate shipping rates are used, but with a weight surcharge. This field will be returned if package weight is set for the inventory item.',
     )
 
 
@@ -2240,56 +2240,56 @@ class PickupAtLocationAvailability(EbayModel):
     availability_type: AvailabilityTypeEnum | None = Field(
         None,
         alias='availabilityType',
-        description='The enumeration value in this field indicates the availability status of the inventory item at the merchant\'s physical store specified by the <strong>pickupAtLocationAvailability.merchantLocationKey</strong> field. This field is required if the <strong>pickupAtLocationAvailability</strong> container is used, and is always returned with the <strong>pickupAtLocationAvailability</strong> container.  <br><br>See <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkcreateorreplaceinventoryitem.availabilitytypeenum" target="_blank">AvailabilityTypeEnum</a> for more information about how/when you use each enumeration value.',
+        description="The enumeration value in this field indicates the availability status of the inventory item at the merchant's physical store specified by the pickupAtLocationAvailability.merchantLocationKey field. This field is required if the pickupAtLocationAvailability container is used, and is always returned with the pickupAtLocationAvailability container.",
     )
     fulfillment_time: TimeDuration | None = Field(
         None,
         alias='fulfillmentTime',
-        description='This container is used to indicate how soon an In-Store Pickup order will be available for pickup by the buyer after the order takes place. This container is required if the <strong>pickupAtLocationAvailability</strong> container is used, and is always returned with the <strong>pickupAtLocationAvailability</strong> container.',
+        description='This container is used to indicate how soon an In-Store Pickup order will be available for pickup by the buyer after the order takes place. This container is required if the pickupAtLocationAvailability container is used, and is always returned with the pickupAtLocationAvailability container.',
     )
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of a merchant\'s store where the In-Store Pickup inventory item is currently located, or where inventory will be sent to. If the merchant\'s store is currently awaiting for inventory, the <strong>availabilityType</strong> value should be <code>SHIP_TO_STORE</code>. This field is required if the <strong>pickupAtLocationAvailability</strong> container is used, and is always returned with the <strong>pickupAtLocationAvailability</strong> container.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations" target="_blank">getInventoryLocations</a> method to retrieve merchant location keys.<br><br><b>Maximum length</b>: 36',
+        description="The unique identifier of a merchant's store where the In-Store Pickup inventory item is currently located, or where inventory will be sent to. If the merchant's store is currently awaiting for inventory, the availabilityType value should be SHIP_TO_STORE .",
     )
     quantity: int | None = Field(
         None,
-        description='This integer value indicates the quantity of the inventory item that is available for In-Store Pickup at the store identified by the  <strong>merchantLocationKey</strong> value.  The value of <strong>quantity</strong> should be an integer value greater than <code>0</code>, unless the inventory item is out of stock. This field is required if the <strong>pickupAtLocationAvailability</strong> container is used, and is always returned with the <strong>pickupAtLocationAvailability</strong> container.',
+        description='This integer value indicates the quantity of the inventory item that is available for In-Store Pickup at the store identified by the merchantLocationKey value. The value of quantity should be an integer value greater than 0 , unless the inventory item is out of stock.',
     )
 
 
 class Regulatory(EbayModel):
     documents: list[Document] | None = Field(
         None,
-        description='This container provides a collection of regulatory documents associated with the listing.<br><br>For information on removing one or more files from a listing using the <a href= "/develop/api/sell/inventory_api#sell-inventory_api-offer-updateoffer" target="_blank">updateOffer</a> method, see <a href= "/api-docs/sell/static/inventory/managing-document-media.html#revise" target="_blank">Remove documents from listings.</a> .<br><br><span class="tablenote"><b>Note:</b> As a part of General Product Safety Regulation (GPSR) requirements effective on December 13th, 2024, sellers operating in, or shipping to, EU-based countries or Northern Ireland  are conditionally required to provide regulatory document information in their eBay listings. For more information on GPSR, see <a href = "https://www.ebay.com/sellercenter/resources/general-product-safety-regulation " target="_blank">General Product Safety Regulation (GPSR)</a>.</span>',
+        description='This container provides a collection of regulatory documents associated with the listing. For information on removing one or more files from a listing using the updateOffer method, see Remove documents from listings. .',
     )
     energy_efficiency_label: EnergyEfficiencyLabel | None = Field(
         None,
         alias='energyEfficiencyLabel',
-        description='This container provides information about the energy efficiency for certain durable goods.<br><br><span class="tablenote"><b>Note:</b> This container can be used to provide European energy efficiency (EEK) information for listings in the <b>Tyres</b> and <b>Appliance</b> categories for sellers in the EU and UK, and <b>Smartphones and Tablets</b> categories for sellers in the US, AU, CA, EU, and UK. If no EEK information is specified through this container, it may be retrieved through a third party vendor. For more information, see <a href="/api-docs/sell/static/inventory/energy-efficiency.html" target="_blank">Energy efficiency information</a>.</span><br><span class="tablenote"><b>Note:</b> Energy efficiency information is not required for all categories. Use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getregulatorypolicies" target="_blank">getRegulatoryPolicies</a> method of the <b>Metadata API</b> to return metadata on the eBay categories that recommend or require energy efficiency-related fields.</span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> When providing energy efficiency information on an appliance or smartphones and tablets listing, the energy efficiency <b>rating</b> and <b>range</b> of the item must be specified through the <a href= "develop/api/sell/inventory_api#sell-inventory_api-inventory_item-createorreplaceinventoryitem.product.aspects" target="_blank">aspects</a> field when creating the inventory item record. Use the <a href= "/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getitemaspectsforcategory" target="_blank">getItemAspectsForCategory</a> method of the Taxonomy API to retrieve applicable rating and range values for a specified category.</p></div>',
+        description='This container provides information about the energy efficiency for certain durable goods. Note: This container can be used to provide European energy efficiency (EEK) information for listings in the Tyres and Appliance categories for sellers in the EU and UK, and Smartphones and Tablets categories for sellers in the US, AU, CA, EU, and UK.',
     )
     hazmat: Hazmat | None = Field(
         None,
-        description='This container is used by the seller to provide hazardous material information for the listing.<br><br>The <b>statements</b> element is required to complete the Hazmat section of a listing.<br><br>The following elements are optional:<ul><li><b>pictograms</b></li><li><b>signalWord</b></li><li><b>component</b></li></ul><span class="tablenote"><b>Note:</b> Hazmat information is not required for all categories. Use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getregulatorypolicies" target="_blank">getRegulatoryPolicies</a> method of the <b>Metadata API</b> to return metadata on the eBay categories that recommend or require Hazmat-related fields.</span>',
+        description='This container is used by the seller to provide hazardous material information for the listing. The statements element is required to complete the Hazmat section of a listing. The following elements are optional: pictograms signalWord component Note: Hazmat information is not required for all categories.',
     )
     manufacturer: Manufacturer | None = Field(
         None,
-        description='This container provides information about the manufacturer of the item.<br><br><span class="tablenote"><b>Note:</b> As a part of General Product Safety Regulation (GPSR) requirements effective on December 13th, 2024, sellers operating in, or shipping to, EU-based countries or Northern Ireland are conditionally required to provide regulatory manufacturer information in their eBay listings. Manufacturer information is not required for all categories. Use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getregulatorypolicies" target="_blank">getRegulatoryPolicies</a> method of the <b>Metadata API</b> to return metadata on the eBay categories that recommend or require manufacturer-related fields. For more information on GPSR, see <a href= "https://www.ebay.com/sellercenter/resources/general-product-safety-regulation" target="_blank">General Product Safety Regulation (GPSR)</a>.</span>',
+        description='This container provides information about the manufacturer of the item. Note: As a part of General Product Safety Regulation (GPSR) requirements effective on December 13th, 2024, sellers operating in, or shipping to, EU-based countries or Northern Ireland are conditionally required to provide regulatory manufacturer information in their eBay listings.',
     )
     product_safety: ProductSafety | None = Field(
         None,
         alias='productSafety',
-        description='This container is used to provide product safety information for the listing. One of the following elements is required to complete the Product Safety section for a listing: <b>pictograms</b> or <b>statements</b>. The <b>component</b> element is optional.<br><br><span class="tablenote"><b>Note:</b> As a part of General Product Safety Regulation (GPSR) requirements effective on December 13th, 2024, sellers operating in, or shipping to, EU-based countries or Northern Ireland are conditionally required to provide regulatory product safety information in their eBay listings. Product safety information is not required for all categories. Use the <a href= "/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getregulatorypolicies" target="_blank">getRegulatoryPolicies</a> method of the <b>Metadata API</b> to return metadata on the eBay categories that recommend or require product safety-related fields. For more information on GPSR, see <a href = "https://www.ebay.com/sellercenter/resources/general-product-safety-regulation " target="_blank">General Product Safety Regulation (GPSR)</a>. </span>',
+        description='This container is used to provide product safety information for the listing. One of the following elements is required to complete the Product Safety section for a listing: pictograms or statements . The component element is optional.',
     )
     repair_score: float | None = Field(
         None,
         alias='repairScore',
-        description='This field represents the repair index for the listing.<br><br>The repair index identifies the manufacturer\'s repair score for a product (i.e., how easy is it to repair the product). This field is a floating point value between 0.0 (i.e., difficult to repair) and 10.0 (i.e., easily repaired).<br><br><span class="tablenote"><b>Note:</b> <code>0</code> should not be used as a default value, as it implies the product is not repairable.</span><br>The format for <b>repairScore</b> is limited to one decimal place. For example:<ul><li><code>7.9</code> and <code>0.0</code> are both valid scores</li><li><code>5.645</code> and <code>2.10</code> are both invalid scores</li></ul><br><span class="tablenote"><b>Note:</b> Repair score is not applicable to all categories. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies" target="_blank">getExtendedProducerResponsibilityPolicies</a> method of the <b>Metadata API</b> to see where repair score is applicable.</span>',
+        description="This field represents the repair index for the listing. The repair index identifies the manufacturer's repair score for a product (i.e., how easy is it to repair the product). This field is a floating point value between 0.0 (i.e., difficult to repair) and 10.0 (i.e., easily repaired). Note: 0 should not be used as a default value, as it implies the product is not repairable.",
     )
     responsible_persons: list[ResponsiblePerson] | None = Field(
         None,
         alias='responsiblePersons',
-        description='This container provides information about the EU-based Responsible Persons or entities associated with the listing.<br><br>A maximum of 5 EU Responsible Persons are supported.<br><br><span class="tablenote"><b>Note:</b> As a part of General Product Safety Regulation (GPSR) requirements effective on December 13th, 2024, sellers operating in, or shipping to, EU-based countries or Northern Ireland  are conditionally required to provide regulatory Responsible Persons information in their eBay listings. For more information on GPSR, see <a href = "https://www.ebay.com/sellercenter/resources/general-product-safety-regulation " target="_blank">General Product Safety Regulation (GPSR)</a>.</span>',
+        description='This container provides information about the EU-based Responsible Persons or entities associated with the listing. A maximum of 5 EU Responsible Persons are supported.',
     )
 
 
@@ -2297,11 +2297,11 @@ class ShipToLocationAvailability(EbayModel):
     availability_distributions: list[AvailabilityDistribution] | None = Field(
         None,
         alias='availabilityDistributions',
-        description='This container is used to set the available quantity of the inventory item at one or more warehouse locations.<br><br>This container will be returned if available quantity is set for one or more inventory locations.',
+        description='This container is used to set the available quantity of the inventory item at one or more warehouse locations. This container will be returned if available quantity is set for one or more inventory locations.',
     )
     quantity: int | None = Field(
         None,
-        description='This container is used to set the total \'ship-to-home\' quantity of the inventory item that will be available for purchase through one or more published offers.<br><br>This field represents the total quantity of the item that is available for sale across all marketplaces. To update the available quantity allocated to a specific marketplace, use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkupdatepricequantity.offerpricequantity.availablequantity"><b>availableQuantity</b></a> field in the <b>offer</b> container associated with that marketplace.<br><br><span class="tablenote"> <strong>Note:</strong> To ensure that the available quantity allocated to a specific marketplace doesn\'t exceed the total available stock, the quantity specified on a listing will be the minimum value between this field and the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-bulkupdatepricequantity.offerpricequantity.availablequantity"><b>availableQuantity</b></a> field.</span><br>If an existing inventory item is being updated, and the \'ship-to-home\' quantity already exists for the inventory item record, this field should be included again, even if the value is not changing, or the available quantity data will be lost.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> This field is not immediately required, but \'ship-to-home\' quantity must be set before an offer of the inventory item can be published.</p></div>',
+        description="This container is used to set the total 'ship-to-home' quantity of the inventory item that will be available for purchase through one or more published offers. This field represents the total quantity of the item that is available for sale across all marketplaces.",
     )
 
 
@@ -2314,11 +2314,11 @@ class ShipToLocationAvailabilityWithAll(EbayModel):
     availability_distributions: list[AvailabilityDistribution] | None = Field(
         None,
         alias='availabilityDistributions',
-        description='This container is used to set the available quantity of the inventory item at one or more warehouse locations.<br><br>This container will be returned if the available quantity is set for one or more inventory locations.',
+        description='This container is used to set the available quantity of the inventory item at one or more warehouse locations. This container will be returned if the available quantity is set for one or more inventory locations.',
     )
     quantity: int | None = Field(
         None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Publish offer note: Although this field is not required before an offer can be published to create an active listing, out of stock listings will result if this field is omitted or set to <code>0</code>.</p></div><br>This field is used to set the total \'ship-to-home\' quantity of the inventory item that will be available for purchase through one or more published offers. This field is not immediately required, but \'ship-to-home\' quantity must be set before an offer of the inventory item can be published.<br><br>If an existing inventory item is being updated, and the \'ship-to-home\' quantity already exists for the inventory item record, this field should be included again, even if the value is not changing, or the available quantity data will be lost.',
+        description="Important! Publish offer note: Although this field is not required before an offer can be published to create an active listing, out of stock listings will result if this field is omitted or set to 0 . This field is used to set the total 'ship-to-home' quantity of the inventory item that will be available for purchase through one or more published offers.",
     )
 
 
@@ -2326,7 +2326,7 @@ class Availability(EbayModel):
     pickup_at_location_availability: list[PickupAtLocationAvailability] | None = Field(
         None,
         alias='pickupAtLocationAvailability',
-        description="This container consists of an array of one or more of the merchant's physical store locations where the inventory item is available for In-Store Pickup orders. The merchant's location, the quantity available, and the fulfillment time (how soon the item will be ready for pickup after the order takes place) are all in this container. In-Store Pickup is only available to large merchants selling on the US, UK, Germany, and Australia sites.",
+        description="This container consists of an array of one or more of the merchant's physical store locations where the inventory item is available for In-Store Pickup orders. The merchant's location, the quantity available, and the fulfillment time (how soon the item will be ready for pickup after the order takes place) are all in this container.",
     )
     ship_to_location_availability: ShipToLocationAvailability | None = Field(
         None,
@@ -2339,7 +2339,7 @@ class AvailabilityWithAll(EbayModel):
     pickup_at_location_availability: list[PickupAtLocationAvailability] | None = Field(
         None,
         alias='pickupAtLocationAvailability',
-        description="This container consists of an array of one or more of the merchant's physical stores where the inventory item is available for in-store pickup.<br><br>The store ID, the quantity available, and the fulfillment time (how soon the item will be ready for pickup after the order occurs) are all returned in this container.",
+        description="This container consists of an array of one or more of the merchant's physical stores where the inventory item is available for in-store pickup. The store ID, the quantity available, and the fulfillment time (how soon the item will be ready for pickup after the order occurs) are all returned in this container.",
     )
     ship_to_location_availability: ShipToLocationAvailabilityWithAll | None = Field(
         None,
@@ -2352,7 +2352,7 @@ class EbayOfferDetailsWithAll(EbayModel):
     available_quantity: int | None = Field(
         None,
         alias='availableQuantity',
-        description='This integer value indicates the quantity of the inventory item (specified by the <strong>sku</strong> value) that will be available for purchase by buyers shopping on the eBay site specified in the <strong>marketplaceId</strong> field.',
+        description='This integer value indicates the quantity of the inventory item (specified by the sku value) that will be available for purchase by buyers shopping on the eBay site specified in the marketplaceId field.',
     )
     category_id: str | None = Field(
         None,
@@ -2361,12 +2361,12 @@ class EbayOfferDetailsWithAll(EbayModel):
     )
     charity: Charity | None = Field(
         None,
-        description='This container is returned if a charitable organization will receive a percentage of sale proceeds for each sale generated by the listing. This container consists of the <strong>charityId</strong> field to identify the charitable organization, and the <strong>donationPercentage</strong> field that indicates the percentage of the sales proceeds that will be donated to the charitable organization.',
+        description='This container is returned if a charitable organization will receive a percentage of sale proceeds for each sale generated by the listing. This container consists of the charityId field to identify the charitable organization, and the donationPercentage field that indicates the percentage of the sales proceeds that will be donated to the charitable organization.',
     )
     extended_producer_responsibility: ExtendedProducerResponsibility | None = Field(
         None,
         alias='extendedProducerResponsibility',
-        description='This container is used to provide the eco-participation fee for a product. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies" target="_blank">getExtendedProducerResponsibilityPolicies</a>\xa0method of the\xa0<strong>Sell Metadata API</strong> to retrieve categories that support eco-participation fee for a specified marketplace.',
+        description='This container is used to provide the eco-participation fee for a product. Use the getExtendedProducerResponsibilityPolicies method of the Sell Metadata API to retrieve categories that support eco-participation fee for a specified marketplace.',
     )
     format: FormatTypeEnum | None = Field(
         None,
@@ -2375,36 +2375,36 @@ class EbayOfferDetailsWithAll(EbayModel):
     hide_buyer_details: bool | None = Field(
         None,
         alias='hideBuyerDetails',
-        description="This field is returned as <code>true</code> if the private listing feature has been enabled for the offer. Sellers may want to use this feature when they believe that a listing's potential bidders/buyers would not want their obfuscated user IDs (and feedback scores) exposed to other users. <br><br>This field is always returned even if not explicitly set in the offer. It defaults to <code>false</code>, so will get returned as <code>false</code> if seller does not set this feature with a 'Create' or 'Update' offer method.",
+        description="This field is returned as true if the private listing feature has been enabled for the offer. Sellers may want to use this feature when they believe that a listing's potential bidders/buyers would not want their obfuscated user IDs (and feedback scores) exposed to other users. This field is always returned even if not explicitly set in the offer.",
     )
     include_catalog_product_details: bool | None = Field(
         None,
         alias='includeCatalogProductDetails',
-        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of <code>true</code> indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in <strong>createOrReplaceInventoryItem</strong>.<p><span class="tablenote"><strong>Note:</strong> Though the <strong>includeCatalogProductDetails</strong> parameter is not required to be submitted in the request, the parameter defaults to \'true\' if omitted.</span></p>',
+        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of true indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in createOrReplaceInventoryItem .',
     )
     listing: ListingDetails | None = Field(
         None,
-        description='For published offers, this container is always returned in the <strong>getOffer</strong> and <strong>getOffers</strong> calls, and includes the eBay listing ID associated with the offer, the status of the listing, and the quantity sold through the listing. The <strong>listing</strong> container is not returned at all for unpublished offers.',
+        description='For published offers, this container is always returned in the getOffer and getOffers calls, and includes the eBay listing ID associated with the offer, the status of the listing, and the quantity sold through the listing. The listing container is not returned at all for unpublished offers.',
     )
     listing_description: str | None = Field(
         None,
         alias='listingDescription',
-        description='The description of the eBay listing that is part of the unpublished or published offer. This field is always returned for published offers, but is only returned if set for unpublished offers.<br><br><strong>Maximum length</strong>: 500,000 (which includes HTML markup/tags)',
+        description='The description of the eBay listing that is part of the unpublished or published offer. This field is always returned for published offers, but is only returned if set for unpublished offers. Maximum length : 500,000 (which includes HTML markup/tags)',
     )
     listing_duration: ListingDurationEnum | None = Field(
         None,
         alias='listingDuration',
-        description='This field indicates the number of days that the listing will be active.<br><br>This field is returned for both auction and fixed-price listings; however, the value returned for fixed-price listings will always be <code>GTC</code>. The GTC (Good \'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.<br><br><span class="tablenote"> <strong>Note:</strong> If the listing duration expires for an auction offer, the listing then becomes available as a fixed-price offer and will be GTC.</span>',
+        description="This field indicates the number of days that the listing will be active. This field is returned for both auction and fixed-price listings; however, the value returned for fixed-price listings will always be GTC . The GTC (Good 'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.",
     )
     listing_policies: ListingPolicies | None = Field(
         None,
         alias='listingPolicies',
-        description='This container indicates the listing policies that are applied to the offer. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature.<br><br>It is required that the seller be opted into Business Policies before being able to create live eBay listings through the Inventory API. Sellers can opt-in to Business Policies through My eBay or by using the Account API v1\'s <strong>optInToProgram</strong> call. Payment, return, and fulfillment listing policies may be created/managed in My eBay or by using the listing policy calls of the sell <strong>Account API v1</strong>. The sell <strong>Account API v1</strong> can also be used to create and manage custom policies. For more information, see the sell <a href="/develop/api/sell/account_api_v1" target="_blank">Account API v1</a>.<br><br>For unpublished offers where business policies have yet to be specified, this container will be returned as empty.',
+        description='This container indicates the listing policies that are applied to the offer. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature. It is required that the seller be opted into Business Policies before being able to create live eBay listings through the Inventory API.',
     )
     listing_start_date: str | None = Field(
         None,
         alias='listingStartDate',
-        description="This timestamp is the date/time (in UTC format) that the seller set for the scheduled listing. With the scheduled listing feature, the seller can set a time in the future that the listing will become active, instead of the listing becoming active immediately after a <strong>publishOffer</strong> call.<br><br>For example: 2023-05-30T19:08:00Z.<br><br>Scheduled listings do not always start at the exact date/time specified by the seller, but the date/time of the timestamp returned in <strong>getOffer</strong>/<strong>getOffers</strong> will be the same as the timestamp passed into a 'Create' or 'Update' offer call. <br><br>This field is returned if set for an offer.",
+        description='This timestamp is the date/time (in UTC format) that the seller set for the scheduled listing. With the scheduled listing feature, the seller can set a time in the future that the listing will become active, instead of the listing becoming active immediately after a publishOffer call. For example: 2023-05-30T19:08:00Z.',
     )
     lot_size: int | None = Field(
         None,
@@ -2419,22 +2419,22 @@ class EbayOfferDetailsWithAll(EbayModel):
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of the inventory location. This identifier is set up by the merchant when the inventory location is first created with the <strong>createInventoryLocation</strong> call. Once this value is set for an inventory location, it can not be modified. To get more information about this inventory location, the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocation" target="_blank ">getInventoryLocation</a> method can be used, passing in this value at the end of the call URI.<br><br>This field is always returned for published offers, but is only returned if set for unpublished offers.<br><br><b>Maximum length</b>: 36',
+        description='The unique identifier of the inventory location. This identifier is set up by the merchant when the inventory location is first created with the createInventoryLocation call. Once this value is set for an inventory location, it can not be modified. To get more information about this inventory location, the getInventoryLocation method can be used, passing in this value at the end of the call URI.',
     )
     offer_id: str | None = Field(
         None,
         alias='offerId',
-        description='The unique identifier of the offer. This identifier is used in many offer-related calls, and it is also used in the <strong>bulkUpdatePriceQuantity</strong> call.',
+        description='The unique identifier of the offer. This identifier is used in many offer-related calls, and it is also used in the bulkUpdatePriceQuantity call.',
     )
     pricing_summary: PricingSummary | None = Field(
         None,
         alias='pricingSummary',
-        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites.<br><br>For unpublished offers where pricing information has yet to be specified, this container will be returned as empty.',
+        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites.',
     )
     quantity_limit_per_buyer: int | None = Field(
         None,
         alias='quantityLimitPerBuyer',
-        description="This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity of an inventory item per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceed the quantity in this field. So, if this field's value is <code>5</code>, each buyer may purchase a quantity of the inventory item between one and five, and the purchases can occur in one multiple-quantity purchase, or over multiple transactions. If a buyer attempts to purchase one or more of these products, and the cumulative quantity will take the buyer beyond the quantity limit, that buyer will be blocked from that purchase.<br>",
+        description='This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity of an inventory item per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceed the quantity in this field.',
     )
     regulatory: Regulatory | None = Field(
         None,
@@ -2443,24 +2443,24 @@ class EbayOfferDetailsWithAll(EbayModel):
     secondary_category_id: str | None = Field(
         None,
         alias='secondaryCategoryId',
-        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcategorysuggestions" target="_blank">getCategorySuggestions</a> method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. <br><br><span class="tablenote"><strong>Note:</strong> You cannot list <strong>US eBay Motors</strong> vehicles in two categories. However, you can list <strong>Parts & Accessories</strong> in two categories.</span>',
+        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the getCategorySuggestions method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. Note: You cannot list US eBay Motors vehicles in two categories.',
     )
     sku: str | None = Field(
         None,
-        description='This is the seller-defined SKU value of the product in the offer.<br><br><strong>Maximum length</strong>: 50 <br>',
+        description='This is the seller-defined SKU value of the product in the offer. Maximum length : 50',
     )
     status: OfferStatusEnum | None = Field(
         None,
-        description='The enumeration value in this field specifies the status of the offer - either <code>PUBLISHED</code> or <code>UNPUBLISHED</code>.',
+        description='The enumeration value in this field specifies the status of the offer - either PUBLISHED or UNPUBLISHED .',
     )
     store_category_names: list[str] | None = Field(
         None,
         alias='storeCategoryNames',
-        description='This container is returned if the seller chose to place the inventory item into one or two eBay store categories that the seller has set up for their eBay store. The string value(s) in this container will be the full path(s) to the eBay store categories, as shown below:<br> <pre>"storeCategoryNames": [<br> "/Fashion/Men/Shirts", <br> "/Fashion/Men/Accessories" ], </pre>',
+        description='This container is returned if the seller chose to place the inventory item into one or two eBay store categories that the seller has set up for their eBay store. The string value(s) in this container will be the full path(s) to the eBay store categories, as shown below: "storeCategoryNames": [ "/Fashion/Men/Shirts", "/Fashion/Men/Accessories" ],',
     )
     tax: Tax | None = Field(
         None,
-        description='This container is only returned if a sales tax table, a Value-Added Tax (VAT) rate, and/or a tax exception category code was applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the <strong>applyTax</strong> field will be included with a value of <code>true</code>, but a buyer\'s purchase will not involve sales tax. A sales tax rate must be set up in the seller\'s sales tax table for the buyer\'s state/tax jurisdiction in order for that buyer to be subject to sales tax.<br><br>See the <a href="https://pages.ebay.com/help/pay/checkout-tax-table.html " target="_blank">Using a tax table</a> help page for more information on setting up and using a sales tax table.',
+        description="This container is only returned if a sales tax table, a Value-Added Tax (VAT) rate, and/or a tax exception category code was applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the applyTax field will be included with a value of true , but a buyer's purchase will not involve sales tax.",
     )
 
 
@@ -2468,71 +2468,71 @@ class EbayOfferDetailsWithId(EbayModel):
     available_quantity: int | None = Field(
         None,
         alias='availableQuantity',
-        description='This integer value sets the quantity of the inventory item that will be available through the offer. Quantity must be set to <code>1</code> or more in order for the inventory item to be purchasable. This value should not be more than the quantity that is specified for the inventory item record. For auction listings, this field should not be provided. <br><br>If this field exists for the current unpublished or published offer, it should be provided again in the <strong>updateOffer</strong> call, even if the value is not changing. If this particular field is omitted in an <strong>updateOffer</strong> call, the general available quantity set for the inventory item record may be used instead, and this may not be accurate if the inventory item is being sold across multiple marketplaces.',
+        description='This integer value sets the quantity of the inventory item that will be available through the offer. Quantity must be set to 1 or more in order for the inventory item to be purchasable. This value should not be more than the quantity that is specified for the inventory item record. For auction listings, this field should not be provided.',
     )
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay category that the inventory item is/will be listed under. This field is not immediately required for an unpublished offer, but will be required before publishing the offer. Sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcategorysuggestions" target="_blank">getCategorySuggestions</a> method of the Taxonomy API to retrieve suggested category ID values. The seller passes in a query string like "<em>iPhone 6</em>", and category ID values for suggested categories are returned in the response.<br>If this field exists for the current unpublished offer, it should be provided again in the <strong>updateOffer</strong> call, even if the eBay category is not changing. For a published offer (aka active eBay listing), this field must be provided or an error may occur. The eBay category of an active eBay listing cannot be changed once the listing has one or more sales, or if the listing is scheduled to end in less than 12 hours.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='The unique identifier of the eBay category that the inventory item is/will be listed under. This field is not immediately required for an unpublished offer, but will be required before publishing the offer. Sellers can use the getCategorySuggestions method of the Taxonomy API to retrieve suggested category ID values.',
     )
     charity: Charity | None = Field(
         None,
-        description='This container is used if the seller wishes to update a published or unpublished offer with a charitable organization that will receive a percentage of sale proceeds for each sale generated by the eBay listing. This container consists of the <strong>charityId</strong> field to identify the charitable organization, and the <strong>donationPercentage</strong> field that indicates the percentage of the sales proceeds that will be donated to the charitable organization for each sale. Both fields in this container are conditionally required for charitable listings.',
+        description='This container is used if the seller wishes to update a published or unpublished offer with a charitable organization that will receive a percentage of sale proceeds for each sale generated by the eBay listing.',
     )
     extended_producer_responsibility: ExtendedProducerResponsibility | None = Field(
         None,
         alias='extendedProducerResponsibility',
-        description='This container is used to provide the eco-participation fee for a product. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies" target="_blank">getExtendedProducerResponsibilityPolicies</a>\xa0method of the\xa0<strong>Sell Metadata API</strong> to retrieve categories that support eco-participation fee for a specified marketplace.',
+        description='This container is used to provide the eco-participation fee for a product. Use the getExtendedProducerResponsibilityPolicies method of the Sell Metadata API to retrieve categories that support eco-participation fee for a specified marketplace.',
     )
     hide_buyer_details: bool | None = Field(
         None,
         alias='hideBuyerDetails',
-        description="This field is included and set to <code>true</code> if the seller wishes to update a published or unpublished offer with the private listing feature. Alternatively, the seller could also remove the private listing feature (if already set for a published or unpublished offer) by including this field and setting it to <code>false</code>. <br><br>Sellers may want to use this option when they believe that a listing's potential bidders/buyers would not want their obfuscated user IDs (and feedback scores) exposed to other users.",
+        description='This field is included and set to true if the seller wishes to update a published or unpublished offer with the private listing feature. Alternatively, the seller could also remove the private listing feature (if already set for a published or unpublished offer) by including this field and setting it to false .',
     )
     include_catalog_product_details: bool | None = Field(
         None,
         alias='includeCatalogProductDetails',
-        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of <code>true</code> indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in <strong>createOrReplaceInventoryItem</strong>.<p><span class="tablenote"><strong>Note:</strong> Though the <strong>includeCatalogProductDetails</strong> parameter is not required to be submitted in the request, the parameter defaults to \'true\' if omitted.</span></p>',
+        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of true indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in createOrReplaceInventoryItem .',
     )
     listing_description: str | None = Field(
         None,
         alias='listingDescription',
-        description='The text in this field is (published offers), or will become (unpublished offers) the description of the eBay listing. This field is not immediately required for an unpublished offer, but will be required before publishing the offer. Note that if the <strong>listingDescription</strong> field was omitted in the <strong>createOffer</strong> call for the offer, the offer entity should have picked up the text provided in the <strong>product.description</strong> field of the inventory item record, or if the inventory item is part of a group, the offer entity should have picked up the text provided in the <strong>description</strong> field of the inventory item group record.<br><br>HTML tags and markup can be used in listing descriptions, but each character counts toward the Maximum length limit.<br><br><span class="tablenote"> <strong>Note:</strong> To ensure that their short listing description is optimized when viewed on mobile devices, sellers should strongly consider using eBay\'s <a href="https://pages.ebay.com/sell/itemdescription/customizeyoursummary.html " target="_blank">View Item description summary feature</a> when listing their items. Keep in mind that the \'short\' listing description is what prospective buyers first see when they view the listing on a mobile device. The \'full\' listing description is also available to mobile users when they click on the short listing description, but the full description is not automatically optimized for viewing in mobile devices, and many users won\'t even drill down to the full description.<br><br>Using HTML div and span tag attributes, this feature allows sellers to customize and fully control the short listing description that is displayed to prospective buyers when viewing the listing on a mobile device. The short listing description on mobile devices is limited to 800 characters, and whenever the full listing description (provided in this field, in UI, or seller tool) exceeds this limit, eBay uses a special algorithm to derive the best possible short listing description within the 800-character limit. However, due to some short listing description content being removed, it is definitely not ideal for the seller, and could lead to a bad buyer experience and possibly to a Significantly not as described (SNAD) case, since the buyer may not get complete details on the item when viewing the short listing description. See the eBay help page for more details on using the HTML div and span tags.</span><br><br>If this field exists for the current unpublished offer, it should be provided again in the <strong>updateOffer</strong> call, even if the text is not changing. For a published offer (aka active eBay listing), this field must be provided or an error may occur.<br><br><strong>Maximum length</strong>: 500,000 (which includes HTML markup/tags)',
+        description='The text in this field is (published offers), or will become (unpublished offers) the description of the eBay listing. This field is not immediately required for an unpublished offer, but will be required before publishing the offer.',
     )
     listing_duration: ListingDurationEnum | None = Field(
         None,
         alias='listingDuration',
-        description='This field indicates the number of days that the listing will be active. For fixed-price listings, this value must be set to <code>GTC</code>, but auction listings support different listing durations.<br><br>The GTC (Good \'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.<br><br><span class="tablenote"> <strong>Note:</strong> If the listing duration expires for an auction offer without a winning bidder, the listing then becomes available as a fixed-price offer and listing duration will be <code>GTC</code>.</span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br>',
+        description="This field indicates the number of days that the listing will be active. For fixed-price listings, this value must be set to GTC , but auction listings support different listing durations. The GTC (Good 'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.",
     )
     listing_policies: ListingPolicies | None = Field(
         None,
         alias='listingPolicies',
-        description='This container sets listing policies that will be used to construct the listing. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature. This container is not initially required when creating an offer but will become required before the offer can be published. Busines policies (payment, return, fulfillment policies) will always be required before publishing an offer. Other policies, including the seller created compliance policies and seller created take-back policy, will be required as needed by the marketplace, category, or product.<br><br>This container is required for updating published offers, regardless of whether or not the business policies are being changed. For an unpublished offer, this field is not necessarily required, but will be required before an offer can be published.<br><br>It is required that the seller be opted in to Business Policies before being able to create live eBay listings through the Inventory API. Sellers can opt-in to Business Policies through My eBay or by using the Account API v1\'s <strong>optInToProgram</strong> call. Similarly, payment, return, and fulfillment business policies may be created/managed in My eBay or by using the business policy calls of the <strong>Account API v1</strong>.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and a few of its child fields (as noted below) are required before an offer can be published to create an active listing.</p></span></div><br>',
+        description='This container sets listing policies that will be used to construct the listing. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature. This container is not initially required when creating an offer but will become required before the offer can be published.',
     )
     listing_start_date: str | None = Field(
         None,
         alias='listingStartDate',
-        description="This field can be used with an unpublished offer if the seller wants to specify a time in the future that the listing will become active on eBay. The timestamp supplied in this field should be in UTC format, and it should be far enough in the future so that the seller will have enough time to publish the listing with the <strong>publishOffer</strong> method.<br><br>For example: 2023-05-30T19:08:00Z.<br><br>This field is optional, and it doesn't apply to offers where the corresponding listing is already active. If this field is not provided, the listing starts immediately after a successful <strong>publishOffer</strong> method.",
+        description='This field can be used with an unpublished offer if the seller wants to specify a time in the future that the listing will become active on eBay. The timestamp supplied in this field should be in UTC format, and it should be far enough in the future so that the seller will have enough time to publish the listing with the publishOffer method. For example: 2023-05-30T19:08:00Z.',
     )
     lot_size: int | None = Field(
         None,
         alias='lotSize',
-        description='This field is only applicable if the listing is a lot listing. A lot listing is a listing that has multiple quantity of the same item, such as four identical tires being sold as a single offer, or it can be a mixed lot of similar items, such as used clothing items or an assortment of baseball cards. Whether the lot listing involved identical items or a mixed lot, the integer value passed into this field is the total number of items in the lot. Lots can be used for auction and fixed-price listings.',
+        description='This field is only applicable if the listing is a lot listing. A lot listing is a listing that has multiple quantity of the same item, such as four identical tires being sold as a single offer, or it can be a mixed lot of similar items, such as used clothing items or an assortment of baseball cards.',
     )
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of a merchant\'s inventory location (where the inventory item in the offer is located).<br><br>To get more information about inventory locations, the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations" target="_blank">getInventoryLocations</a> method can be used.br><br><span class="tablenote"><b>Note:</b> This field is not initially required upon first creating an offer, but will become required before an offer can be published.</span><br><b>Maximum length</b>: 36',
+        description="The unique identifier of a merchant's inventory location (where the inventory item in the offer is located). To get more information about inventory locations, the getInventoryLocations method can be used.br> Note: This field is not initially required upon first creating an offer, but will become required before an offer can be published. Maximum length : 36",
     )
     pricing_summary: PricingSummary | None = Field(
         None,
         alias='pricingSummary',
-        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites. <br><br>This container is required for updating published offers, regardless of whether or not the pricing information is being changed or not. For an unpublished offer, this container is not necessarily required, but an offer price will be required before an offer can be published, and if a <strong>pricingSummary</strong> container already exists for an unpublished offer, it must be provided again, even if the values are not changing. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and its child container, <b>price</b>, are required before an offer can be published to create an active listing. </p></span></div>',
+        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites.',
     )
     quantity_limit_per_buyer: int | None = Field(
         None,
         alias='quantityLimitPerBuyer',
-        description="This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceeding the quantity specified for this field. So, if this field's value is <code>5</code>, each buyer may purchase between one to five of these products, and the purchases can occur in one multiple-quantity purchase, or over multiple transactions. If a buyer attempts to purchase one or more of these products, and the cumulative quantity will take the buyer beyond the quantity limit, that buyer will be blocked from that purchase.<br><br>If this field currently exists for an unpublished or published offer, it should be provided again in an <strong>updateOffer</strong> call, even if the value is not changing.<br>",
+        description='This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceeding the quantity specified for this field.',
     )
     regulatory: Regulatory | None = Field(
         None,
@@ -2541,16 +2541,16 @@ class EbayOfferDetailsWithId(EbayModel):
     secondary_category_id: str | None = Field(
         None,
         alias='secondaryCategoryId',
-        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcategorysuggestions" target="_blank">getCategorySuggestions</a> method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. <br><br><span class="tablenote"><strong>Note:</strong> You cannot list <strong>US eBay Motors</strong> vehicles in two categories. However, you can list <strong>Parts & Accessories</strong> in two categories.</span>',
+        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the getCategorySuggestions method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. Note: You cannot list US eBay Motors vehicles in two categories.',
     )
     store_category_names: list[str] | None = Field(
         None,
         alias='storeCategoryNames',
-        description='This container is used if the seller would like to place the inventory item into one or two store categories that the seller has set up for their eBay store. The string value(s) passed in to this container will be the full path(s) to the store categories, as shown below:<br> <pre>"storeCategoryNames": [<br> "/Fashion/Men/Shirts", <br> "/Fashion/Men/Accessories" ], </pre>If this field currently exists for an unpublished or published offer, it should be provided again in an <strong>updateOffer</strong> call, even if the eBay categories are not changing.',
+        description='This container is used if the seller would like to place the inventory item into one or two store categories that the seller has set up for their eBay store.',
     )
     tax: Tax | None = Field(
         None,
-        description='This container is only applicable and used if a sales tax table, a Value-Added Tax (VAT) rate, or a tax exception category code will be applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the <strong>applyTax</strong> field will be included with a value of <code>true</code>, but a buyer\'s purchase will not involve sales tax. A sales tax rate must be set up in the seller\'s sales tax table for the buyer\'s state/tax jurisdiction in order for that buyer to be subject to sales tax. Sales tax rates for different jurisdictions can be added/modified in the Payment Preferences section of My eBay, or the seller can use the sales tax calls of the <strong>Account API v1</strong>.<br><br>If tax information currently exists for an unpublished or published offer, it should be provided again in an <strong>updateOffer</strong> call, even if none of the tax settings are changing.<br><br>See the <a href="https://pages.ebay.com/help/pay/checkout-tax-table.html " target="_blank">Using a tax table</a> help page for more information on setting up and using a sales tax table.',
+        description="This container is only applicable and used if a sales tax table, a Value-Added Tax (VAT) rate, or a tax exception category code will be applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the applyTax field will be included with a value of true , but a buyer's purchase will not involve sales tax.",
     )
 
 
@@ -2558,80 +2558,80 @@ class EbayOfferDetailsWithKeys(EbayModel):
     available_quantity: int | None = Field(
         None,
         alias='availableQuantity',
-        description='This integer value sets the quantity of the inventory item (specified by the <strong>sku</strong> value) that will be available for purchase by buyers shopping on the eBay site specified in the <strong>marketplaceId</strong> field. Quantity must be set to <code>1</code> or more in order for the inventory item to be purchasable, but this field is not necessarily required, even for published offers, if the general quantity of the inventory item has already been set in the inventory item record.<br><br>For auction listings, this field should not be provided.<br><br><span class="tablenote"> <strong>Note:</strong> The <b>availableQuantity</b> field if set here overrides the <b>quantity</b> field set in the inventory item. See the note in <a href ="/api-docs/sell/static/inventory/publishing-offers.html#offer" target="blank">Offer fields</a> for details.</span>',
+        description='This integer value sets the quantity of the inventory item (specified by the sku value) that will be available for purchase by buyers shopping on the eBay site specified in the marketplaceId field.',
     )
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay category that the product will be listed under. This field is not immediately required upon creating an offer, but will be required before publishing the offer. <br><br>Sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcategorysuggestions" target="_blank">getCategorySuggestions</a> method of the Taxonomy API to retrieve suggested category ID values. The seller passes in a query string like "<em>iPhone 6</em>", and category ID values for suggested categories are returned in the response.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><p><span class="tablenote"><strong>Note:</strong> When listing in categoryID 173651 (Auto Performance Tuning Devices & Software), use of catalog products is required. For more information, see <a href="/api-docs/sell/static/inventory/tuning-devices-and-software-rest.html" target="_blank">Tuning devices and software</a>.</span></p>',
+        description='The unique identifier of the eBay category that the product will be listed under. This field is not immediately required upon creating an offer, but will be required before publishing the offer. Sellers can use the getCategorySuggestions method of the Taxonomy API to retrieve suggested category ID values.',
     )
     charity: Charity | None = Field(
         None,
-        description='This container is used if the seller wishes to select a charitable organization that will receive a percentage of sale proceeds for each sale generated by the eBay listing. This container consists of the <strong>charityId</strong> field to identify the charitable organization, and the <strong>donationPercentage</strong> field that indicates the percentage of the sales proceeds that will be donated to the charitable organization for each sale. Both fields in this container are conditionally required for charitable listings.',
+        description='This container is used if the seller wishes to select a charitable organization that will receive a percentage of sale proceeds for each sale generated by the eBay listing.',
     )
     extended_producer_responsibility: ExtendedProducerResponsibility | None = Field(
         None,
         alias='extendedProducerResponsibility',
-        description='This container is used to provide the eco-participation fee for a product.<br><br>Use the <a href="develop/api/sell/metadata_api#sell-metadata_api-marketplace-getextendedproducerresponsibilitypolicies" >getExtendedProducerResponsibilityPolicies</a>\xa0method of the\xa0<strong>Sell Metadata API</strong> to retrieve categories that support eco-participation fee for a specified marketplace.',
+        description='This container is used to provide the eco-participation fee for a product. Use the getExtendedProducerResponsibilityPolicies method of the Sell Metadata API to retrieve categories that support eco-participation fee for a specified marketplace.',
     )
     format: FormatTypeEnum | None = Field(
         None,
-        description='This enumerated value indicates the listing format of the offer. <br><br>Supported values are <code>FIXED_PRICE</code> and <code>AUCTION</code>.',
+        description='This enumerated value indicates the listing format of the offer. Supported values are FIXED_PRICE and AUCTION .',
     )
     hide_buyer_details: bool | None = Field(
         None,
         alias='hideBuyerDetails',
-        description="This field is included and set to <code>true</code> if the seller wishes to create a private listing. <br><br>Sellers may want to use this option when they believe that a listing's potential bidders/buyers would not want their obfuscated user IDs (and feedback scores) exposed to other users.",
+        description="This field is included and set to true if the seller wishes to create a private listing. Sellers may want to use this option when they believe that a listing's potential bidders/buyers would not want their obfuscated user IDs (and feedback scores) exposed to other users.",
     )
     include_catalog_product_details: bool | None = Field(
         None,
         alias='includeCatalogProductDetails',
-        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of <code>true</code> indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-createorreplaceinventoryitem" target="_blank">createOrReplaceInventoryItem</a>.<br><br><strong>Default:</strong> true<p><span class="tablenote"><strong>Note:</strong> Though the <strong>includeCatalogProductDetails</strong> parameter is not required to be submitted in the request, the parameter defaults to <code>true</code> if omitted.</span></p>',
+        description='This field indicates whether or not eBay product catalog details are applied to a listing. A value of true indicates the listing corresponds to the eBay product associated with the provided product identifier. The product identifier is provided in createOrReplaceInventoryItem .',
     )
     listing_description: str | None = Field(
         None,
         alias='listingDescription',
-        description='The text in this field is (published offers), or will become (unpublished offers) the description of the eBay listing. This field is not immediately required for an unpublished offer, but will be required before publishing the offer. Note that if the <strong>listingDescription</strong> field was omitted in the <strong>createOffer</strong> call for the offer, the offer entity should have picked up the text provided in the <strong>product.description</strong> field of the inventory item record, or if the inventory item is part of a group, the offer entity should have picked up the text provided in the <strong>description</strong> field of the inventory item group record.<br><br>HTML tags and markup can be used in listing descriptions, but each character counts toward the maximum length limit.<br><br><span class="tablenote"> <strong>Note:</strong> To ensure that their short listing description is optimized when viewed on mobile devices, sellers should strongly consider using eBay\'s <a href="https://pages.ebay.com/sell/itemdescription/customizeyoursummary.html " target="_blank">View Item description summary feature</a> when listing their items. Keep in mind that the \'short\' listing description is what prospective buyers first see when they view the listing on a mobile device. The \'full\' listing description is also available to mobile users when they click on the short listing description, but the full description is not automatically optimized for viewing in mobile devices, and many users won\'t even drill down to the full description.<br><br>Using HTML div and span tag attributes, this feature allows sellers to customize and fully control the short listing description that is displayed to prospective buyers when viewing the listing on a mobile device. The short listing description on mobile devices is limited to 800 characters, and whenever the full listing description (provided in this field, in UI, or seller tool) exceeds this limit, eBay uses a special algorithm to derive the best possible short listing description within the 800-character limit. However, due to some short listing description content being removed, it is definitely not ideal for the seller, and could lead to a bad buyer experience and possibly to a Significantly not as described (SNAD) case, since the buyer may not get complete details on the item when viewing the short listing description. See the eBay help page for more details on using the HTML div and span tags.</span><br><br><strong>Maximum length</strong>: 500,000 (which includes HTML markup/tags)',
+        description='The text in this field is (published offers), or will become (unpublished offers) the description of the eBay listing. This field is not immediately required for an unpublished offer, but will be required before publishing the offer.',
     )
     listing_duration: ListingDurationEnum | None = Field(
         None,
         alias='listingDuration',
-        description='This field indicates the number of days that the listing will be active. For fixed-price listings, this value must be set to <code>GTC</code>, but auction listings support different listing durations.<br><br>The GTC (Good \'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.<br><br><span class="tablenote"> <strong>Note:</strong> If the listing duration expires for an auction offer without a winning bidder, the listing then becomes available as a fixed-price offer and listing duration will be <code>GTC</code>.</span><br> <div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br>',
+        description="This field indicates the number of days that the listing will be active. For fixed-price listings, this value must be set to GTC , but auction listings support different listing durations. The GTC (Good 'Til Cancelled) listings are automatically renewed each calendar month until the seller decides to end the listing.",
     )
     listing_policies: ListingPolicies | None = Field(
         None,
         alias='listingPolicies',
-        description='This container sets listing policies that will be used to construct the listing. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature. This container is not initially required when creating an offer but will become required before the offer can be published. Busines policies (payment, return, fulfillment policies) will always be required before publishing an offer. Other policies, including the seller created compliance policies and seller created take-back policy, will be required as needed by the marketplace, category, or product.<br><br>It is required that the seller be opted into Business Policies before being able to create live eBay listings through the Inventory API. Sellers can opt-in to Business Policies through My eBay or by using the Account API v1\'s <strong>optInToProgram</strong> call. Payment, return, and fulfillment listing policies may be created/managed in My eBay or by using the listing policy calls of the sell <strong>Account API v1</strong>. The sell <strong>Account API v1</strong> can also be used to create and manage custom policies. For more information, see the sell <a href="/develop/api/sell/account_api_v1" target="_blank">Account API v1</a>.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and a few of its child fields (as noted below) are required before an offer can be published to create an active listing.</p></span></div>',
+        description='This container sets listing policies that will be used to construct the listing. Listing policies include business policies, custom listing policies, and fields that override shipping costs, enable eBay Plus eligibility, or enable the Best Offer feature. This container is not initially required when creating an offer but will become required before the offer can be published.',
     )
     listing_start_date: str | None = Field(
         None,
         alias='listingStartDate',
-        description='This field can be used if the seller wants to specify a time in the future that the listing will become active on eBay. The timestamp supplied in this field should be in UTC format, and it should be far enough in the future so that the seller will have enough time to publish the listing with the <strong>publishOffer</strong> method.<br><br>For example: 2023-05-30T19:08:00Z.<br><br>This field is optional. If this field is not provided, the listing starts immediately after a successful <strong>publishOffer</strong> method.',
+        description='This field can be used if the seller wants to specify a time in the future that the listing will become active on eBay. The timestamp supplied in this field should be in UTC format, and it should be far enough in the future so that the seller will have enough time to publish the listing with the publishOffer method. For example: 2023-05-30T19:08:00Z. This field is optional.',
     )
     lot_size: int | None = Field(
         None,
         alias='lotSize',
-        description='This field is only applicable if the listing is a lot listing. A lot listing is a listing that has multiple quantity of the same item, such as four identical tires being sold as a single offer, or it can be a mixed lot of similar items, such as used clothing items or an assortment of baseball cards. Whether the lot listing involved identical items or a mixed lot, the integer value passed into this field is the total number of items in the lot. Lots can be used for auction and fixed-price listings.',
+        description='This field is only applicable if the listing is a lot listing. A lot listing is a listing that has multiple quantity of the same item, such as four identical tires being sold as a single offer, or it can be a mixed lot of similar items, such as used clothing items or an assortment of baseball cards.',
     )
     marketplace_id: MarketplaceEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='This enumeration value is the unique identifier of the eBay site for which the offer will be made available. See <strong>MarketplaceEnum</strong> for the list of supported enumeration values. This field is required.',
+        description='This enumeration value is the unique identifier of the eBay site for which the offer will be made available. See MarketplaceEnum for the list of supported enumeration values. This field is required.',
     )
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description='The unique identifier of a merchant\'s inventory location (where the inventory item in the offer is located).<br><br>To get more information about inventory locations, the <a href="/develop/api/sell/inventory_api#sell-inventory_api-location-getinventorylocations" target="_blank">getInventoryLocations</a> method can be used.<br><br><span class="tablenote"><b>Note:</b> This field is not initially required upon first creating an offer, but will become required before an offer can be published.</span><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div><br><b>Maximum length</b>: 36',
+        description="The unique identifier of a merchant's inventory location (where the inventory item in the offer is located). To get more information about inventory locations, the getInventoryLocations method can be used. Note: This field is not initially required upon first creating an offer, but will become required before an offer can be published.",
     )
     pricing_summary: PricingSummary | None = Field(
         None,
         alias='pricingSummary',
-        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites. <br><br>This container is not initially required upon first creating an offer, but the price of the offer will become required before an offer can be published.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and its child container, <b>price</b>, are required before an offer can be published to create an active listing. </p></span></div>',
+        description='This container shows the listing price for the product offer, and if applicable, the settings for the Minimum Advertised Price and Strikethrough Pricing features. The Minimum Advertised Price feature is only available on the US site. Strikethrough Pricing is available on the US, eBay Motors, UK, Germany, Canada (English and French), France, Italy, and Spain sites.',
     )
     quantity_limit_per_buyer: int | None = Field(
         None,
         alias='quantityLimitPerBuyer',
-        description="This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceed the quantity specified for this field. So, if this field's value is <code>5</code>, each buyer may purchase between one to five of these products, and the purchases can occur in one multiple-quantity purchase, or over multiple transactions. If a buyer attempts to purchase one or more of these products, and the cumulative quantity will take the buyer beyond the quantity limit, that buyer will be blocked from that purchase. <br>",
+        description='This field is only applicable and set if the seller wishes to set a restriction on the purchase quantity per seller. If this field is set by the seller for the offer, then each distinct buyer may purchase up to, but not exceed the quantity specified for this field.',
     )
     regulatory: Regulatory | None = Field(
         None,
@@ -2640,71 +2640,71 @@ class EbayOfferDetailsWithKeys(EbayModel):
     secondary_category_id: str | None = Field(
         None,
         alias='secondaryCategoryId',
-        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getcategorysuggestions" target="_blank">getCategorySuggestions</a> method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. <br><br><span class="tablenote"><strong>Note:</strong> You cannot list <strong>US eBay Motors</strong> vehicles in two categories. However, you can list <strong>Parts & Accessories</strong> in two categories.</span><p><span class="tablenote"><strong>Note:</strong> When listing in categoryID 173651 (Auto Performance Tuning Devices & Software), use of catalog products is required. For more information, see <a href="/api-docs/sell/static/inventory/tuning-devices-and-software-rest.html" target="_blank">Tuning devices and software</a>.</span></p>',
+        description='The unique identifier for a secondary category. This field is applicable if the seller decides to list the item under two categories. Sellers can use the getCategorySuggestions method of the Taxonomy API to retrieve suggested category ID values. A fee may be charged when adding a secondary category to a listing. Note: You cannot list US eBay Motors vehicles in two categories.',
     )
     sku: str | None = Field(
         None,
-        description='The seller-defined SKU value of the product that will be listed on the eBay site (specified in the <strong>marketplaceId</strong> field). Only one offer (in unpublished or published state) may exist for each <strong>sku</strong>/<strong>marketplaceId</strong>/<strong>format</strong> combination. This field is required.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank">getInventoryItems</a> method to retrieve SKU values.<br><br><strong>Maximum length</strong>: 50<br>',
+        description='The seller-defined SKU value of the product that will be listed on the eBay site (specified in the marketplaceId field). Only one offer (in unpublished or published state) may exist for each sku / marketplaceId / format combination. This field is required. Use the getInventoryItems method to retrieve SKU values. Maximum length : 50',
     )
     store_category_names: list[str] | None = Field(
         None,
         alias='storeCategoryNames',
-        description='This container is used if the seller would like to place the inventory item into one or two eBay store categories that the seller has set up for their eBay store. The string value(s) passed in to this container will be the full path(s) to the eBay store categories, as shown below:<br> <pre>"storeCategoryNames": [<br> "/Fashion/Men/Shirts", <br> "/Fashion/Men/Accessories" ], </pre>',
+        description='This container is used if the seller would like to place the inventory item into one or two eBay store categories that the seller has set up for their eBay store. The string value(s) passed in to this container will be the full path(s) to the eBay store categories, as shown below: "storeCategoryNames": [ "/Fashion/Men/Shirts", "/Fashion/Men/Accessories" ],',
     )
     tax: Tax | None = Field(
         None,
-        description='This container is applicable and used only if a sales-tax table, a Value-Added Tax (VAT) rate, or a tax exception category code will be applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the <strong>applyTax</strong> field will be included with a value of <code>true</code>, but a buyer\'s purchase will not involve sales tax.<br><br>A sales-tax rate must be set up in the seller\'s sales-tax table for the buyer\'s state/tax jurisdiction in order for that buyer to be subject to sales tax. Sales-tax rates for different jurisdictions can be added/modified in the Payment Preferences section of My eBay, or the seller can use the sales tax calls of the <strong>Account API v1</strong>.<br><br><span class="tablenote"><b>Note:</b> Sales-tax tables are available only for the US and Canada marketplaces.</span></br>Refer to <a href="https://www.ebay.com/help/selling/fees-credits-invoices/taxes-import-charges?id=4121 " target="_blank">Taxes and import charges</a> for more information on setting up and using a sales tax table.',
+        description="This container is applicable and used only if a sales-tax table, a Value-Added Tax (VAT) rate, or a tax exception category code will be applied to the offer. Only Business Sellers can apply VAT to their listings. It is possible that the applyTax field will be included with a value of true , but a buyer's purchase will not involve sales tax.",
     )
 
 
 class InventoryItem(EbayModel):
     availability: Availability | None = Field(
         None,
-        description="This container is used to specify the quantity of the inventory item that are available for purchase. <br><br> This container is optional up until the seller is ready to publish an offer with the SKU, at which time it becomes required. Availability data must also be passed if an inventory item is being updated and availability data already exists for that inventory item.<br><br> Since an inventory item must have specified quantity before being published in an offer, this container is always returned in the 'Get' calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this container will only be returned if set for the inventory item.",
+        description='This container is used to specify the quantity of the inventory item that are available for purchase. This container is optional up until the seller is ready to publish an offer with the SKU, at which time it becomes required. Availability data must also be passed if an inventory item is being updated and availability data already exists for that inventory item.',
     )
     condition: ConditionEnum | None = Field(
         None,
-        description='This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. To see which item condition values that a particular eBay category supports, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the <strong>Metadata API</strong>. This method returns condition ID values that map to the enumeration values defined in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems.conditionenum" target="_blank">ConditionEnum</a> type. The <a href="/api-docs/sell/static/metadata/condition-id-values.html" target="_blank">Item condition ID and name values</a> topic in the <strong>Selling Integration Guide</strong> has a table that maps condition ID values to <strong>ConditionEnum</strong> values. The <strong>getItemConditionPolicies</strong> call reference page has more information.<br><br>A <strong>condition</strong> value is optional up until the seller is ready to publish an offer with the SKU, at which time it becomes required for most eBay categories.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. To see which item condition values that a particular eBay category supports, use the getItemConditionPolicies method of the Metadata API . This method returns condition ID values that map to the enumeration values defined in the ConditionEnum type.',
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description="This string field is used by the seller to more clearly describe the condition of a used inventory item, or an inventory item whose <strong>condition</strong> value is not <code>NEW</code>, <code>LIKE_NEW</code>, <code>NEW_OTHER</code>, or <code>NEW_WITH_DEFECTS</code>.<br><br>The <strong>conditionDescription</strong> field is available for all eBay categories. If the <strong>conditionDescription</strong> field is used with an item in one of the new conditions (mentioned in previous paragraph), eBay will simply ignore this field if included, and eBay will return a warning message to the user. <br><br>This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the used item. Make sure that the <strong>condition</strong> value, condition description, listing description, and the item's pictures do not contradict one another. <br><br>This field is not always required, but is required if an inventory item is being updated and a condition description already exists for that inventory item. <br><br>This field is returned in the <strong>getInventoryItem</strong> and <strong>getInventoryItems</strong> calls if a condition description was provided for a used inventory item.<br><br><strong>Maximum length</strong>: 1000.",
+        description='This string field is used by the seller to more clearly describe the condition of a used inventory item, or an inventory item whose condition value is not NEW , LIKE_NEW , NEW_OTHER , or NEW_WITH_DEFECTS . The conditionDescription field is available for all eBay categories.',
     )
     condition_descriptors: list[ConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text inputs.<br><br>For trading card and coin listings in applicable categories, categories, sellers must use either <code>LIKE_NEW</code> (2750) or <code>USED_VERY_GOOD</code> (4000) item condition to specify the item as <b>Graded</b> or <b>Ungraded</b>, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.<br><br>To retrieve all condition descriptor numeric IDs for a category, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the Metadata API.',
+        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text inputs.',
     )
     package_weight_and_size: PackageWeightAndSize | None = Field(
         None,
         alias='packageWeightAndSize',
-        description='This container is used if the seller is offering one or more calculated shipping options for the inventory item, or if the seller is offering flat-rate shipping but is including a shipping surcharge based on the item\'s weight. This container is used to specify the dimensions and weight of a shipping package.<br><br><span class="tablenote"><b>Note:</b> Package weight and dimensions are only supported for the following marketplaces: AU, CA, DE, IT, UK, US, and Motors. If this information is provided on other marketplaces, it will be ignored.</span><br>This container is not always required, but is required if an inventory item is being updated and shipping package data already exists for that inventory item.<br><br>This container is returned in the <strong>getInventoryItem</strong> and <strong>getInventoryItems</strong> calls if package type, package weight, and/or package dimensions are specified for an inventory item.<br><br>See the <a href="https://pages.ebay.com/help/pay/calculated-shipping.html " target="_blank">Calculated shipping</a> help page for more information on calculated shipping.',
+        description="This container is used if the seller is offering one or more calculated shipping options for the inventory item, or if the seller is offering flat-rate shipping but is including a shipping surcharge based on the item's weight. This container is used to specify the dimensions and weight of a shipping package.",
     )
     product: Product | None = Field(
         None,
-        description='This container is used to define the product details, such as product title, product description, product identifiers (eBay Product ID, GTIN, or Brand/MPN pair), product aspects/item specifics, and product images. Note that an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) value can be used in an attempt to find a matching product in the eBay Catalog. If a product match is found, the inventory item record will automatically pick up all product details associated with the eBay Catalog product.<br><br>Many eBay categories will require at least one product identifier (a GTIN or a Brand/MPN pair). To discover which product identifier(s) that an eBay category might require or support, use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getitemaspectsforcategory" target="_blank">getItemAspectsForCategory</a> method in the Taxonomy API. In the <strong>getItemAspectsForCategory</strong> response, look for product identifier names (<code>brand</code>, <code>mpn</code>, <code>upc</code>, <code>ean</code>, <code>isbn</code>) in the <strong>localizedAspectName</strong> fields, and then look for the corresponding <strong>aspectRequired</strong> boolean fields as well as the corresponding <strong>aspectUsage</strong> field, which will indicate if the aspect is required, recommended, or optional. In some cases, a product identifier type may be required, but not known/applicable for a product. If this is the case, the seller must still include the corresponding field in the inventory item record, but pass in a default text string. This text string can vary by site, so the seller should use the <strong>GeteBayDetails</strong> call of the Trading API to get this string value. In the <strong>GeteBayDetails</strong> call, the seller should include a <strong>DetailName</strong> field with its value set to <code>ProductDetails</code>. In the response of the call, the seller can see the default string value in the <strong>ProductDetails.ProductIdentifierUnavailableText</strong> field. The seller will use this value in one or more of the product identifier fields (<strong>ean</strong>, <strong>isbn</strong>, <strong>upc</strong>, or <strong>mpn</strong>) if a product ID isn\'t known or applicable. <br><br>This container is not initially required, but it is required before an inventory item can be published as an offer, and/or if an inventory item is being updated and product data already exists for that inventory item. <br><br>This container is always returned for published offers in the <strong>getInventoryItem</strong>, <strong>bulkGetInventoryItem</strong>, and <strong>getInventoryItems</strong> calls since product data must be defined for published offers, but for unpublished inventory items, this container will only be returned if product details have been defined for the inventory item. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and a few of its child fields (as noted below) are required before an offer can be published to create an active listing. </p></span></div>',
+        description='This container is used to define the product details, such as product title, product description, product identifiers (eBay Product ID, GTIN, or Brand/MPN pair), product aspects/item specifics, and product images. Note that an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) value can be used in an attempt to find a matching product in the eBay Catalog.',
     )
 
 
 class InventoryItemWithSkuLocale(EbayModel):
     availability: Availability | None = Field(
         None,
-        description="This container is used to specify the quantity of the inventory item that are available for purchase. <br><br>Availability data must also be passed if an inventory item is being updated and availability data already exists for that inventory item.<br><br>Since an inventory item must have specified quantity before being published in an offer, this container is always returned in the 'Get' calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this container will only be returned if set for the inventory item. ",
+        description='This container is used to specify the quantity of the inventory item that are available for purchase. Availability data must also be passed if an inventory item is being updated and availability data already exists for that inventory item.',
     )
     condition: ConditionEnum | None = Field(
         None,
-        description='This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. To see which item condition values that a particular eBay category supports, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the <strong>Metadata API</strong>. This method returns condition ID values that map to the enumeration values defined in the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitem.conditionenum" target="_blank">ConditionEnum</a> type. The <a href="/api-docs/sell/static/metadata/condition-id-values.html" target="_blank">Item condition ID and name values</a> topic in the <strong>Selling Integration Guide</strong> has a table that maps condition ID values to <strong>ConditionEnum</strong> values. The <strong>getItemConditionPolicies</strong> call reference page has more information.<br><br>A <strong>condition</strong> value is optional up until the seller is ready to publish an offer with the SKU, at which time it becomes required for most eBay categories.<br></div><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This field is required before an offer can be published to create an active listing. </p></span></div>',
+        description='This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. To see which item condition values that a particular eBay category supports, use the getItemConditionPolicies method of the Metadata API . This method returns condition ID values that map to the enumeration values defined in the ConditionEnum type.',
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description="This string field is used by the seller to more clearly describe the condition of a used inventory item, or an inventory item whose <strong>condition</strong> value is not <code>NEW</code>, <code>LIKE_NEW</code>, <code>NEW_OTHER</code>, or <code>NEW_WITH_DEFECTS</code>.<br><br>The <strong>conditionDescription</strong> field is available for all eBay categories. If the <strong>conditionDescription</strong> field is used with an item in one of the new conditions (mentioned in previous paragraph), eBay will simply ignore this field if included, and eBay will return a warning message to the user. <br><br>This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the used item. Make sure that the <strong>condition</strong> value, condition description, listing description, and the item's pictures do not contradict one another. <br><br>This field is not always required, but is required if an inventory item is being updated and a condition description already exists for that inventory item. <br><br>This field is returned in the <strong>getInventoryItem</strong>, <strong>bulkGetInventoryItem</strong>, and <strong>getInventoryItems</strong> calls if a condition description was provided for a used inventory item.<br><br><b>Maximum length</b>: 1000",
+        description='This string field is used by the seller to more clearly describe the condition of a used inventory item, or an inventory item whose condition value is not NEW , LIKE_NEW , NEW_OTHER , or NEW_WITH_DEFECTS . The conditionDescription field is available for all eBay categories.',
     )
     condition_descriptors: list[ConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text inputs.<br><br>For trading card coin listings in applicable categories, sellers must use either <code>LIKE_NEW</code> (2750) or <code>USED_VERY_GOOD</code> (4000) item condition to specify the item as <b>Graded</b> or <b>Ungraded</b>, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.<br><br>To retrieve all condition descriptor numeric IDs for a category, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the Metadata API.',
+        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text inputs.',
     )
     locale: LocaleEnum | None = Field(
         None,
@@ -2713,15 +2713,15 @@ class InventoryItemWithSkuLocale(EbayModel):
     package_weight_and_size: PackageWeightAndSize | None = Field(
         None,
         alias='packageWeightAndSize',
-        description='This container is used if the seller is offering one or more calculated shipping options for the inventory item, or if the seller is offering flat-rate shipping but is including a shipping surcharge based on the item\'s weight. This container is used to specify the dimensions and weight of a shipping package.<br><br><span class="tablenote"><b>Note:</b> Package weight and dimensions are only supported for the following marketplaces: AU, CA, DE, IT, UK, US, and Motors. If this information is provided on other marketplaces, it will be ignored.</span><br>This container is not always required, but is required if an inventory item is being updated and shipping package data already exists for that inventory item.<br><br>This container is returned in the <strong>getInventoryItem</strong>, <strong>bulkGetInventoryItem</strong>, and <strong>getInventoryItems</strong> calls if package type, package weight, and/or package dimensions are specified for an inventory item.<br><br>See the <a href="https://pages.ebay.com/help/pay/calculated-shipping.html " target="_blank">Calculated shipping</a> help page for more information on calculated shipping.',
+        description="This container is used if the seller is offering one or more calculated shipping options for the inventory item, or if the seller is offering flat-rate shipping but is including a shipping surcharge based on the item's weight. This container is used to specify the dimensions and weight of a shipping package.",
     )
     product: Product | None = Field(
         None,
-        description='This container is used to define the product details, such as product title, product description, product identifiers (eBay Product ID, GTIN, or Brand/MPN pair), product aspects/item specifics, and product images. Note that an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) value can be used in an attempt to find a matching product in the eBay Catalog. If a product match is found, the inventory item record will automatically pick up all product details associated with the eBay Catalog product.<br><br>Many eBay categories will require at least one product identifier (a GTIN or a Brand/MPN pair). To discover which product identifier(s) that an eBay category might require or support, use the <a href="/develop/api/sell/taxonomy_api#sell-taxonomy_api-category_tree-getitemaspectsforcategory" target="_blank">getItemAspectsForCategory</a> method in the Taxonomy API. In the <strong>getItemAspectsForCategory</strong> response, look for product identifier names (<code>brand</code>, <code>mpn</code>, <code>upc</code>, <code>ean</code>, <code>isbn</code>) in the <strong>localizedAspectName</strong> fields, and then look for the correspondinng <strong>aspectRequired</strong> boolean fields as well as the corresponding <strong>aspectUsage</strong> field, which will indicate if the aspect is required, recommended, or optional. In some cases, a product identifier type may be required, but not known/applicable for a product. If this is the case, the seller must still include the corresponding field in the inventory item record, but pass in a default text string. This text string can vary by site, so the seller should use the <strong>GeteBayDetails</strong> call of the Trading API to get this string value. In the <strong>GeteBayDetails</strong> call, the seller should include a <strong>DetailName</strong> field with its value set to <code>ProductDetails</code>. In the response of the call, the seller can see the default string value in the <strong>ProductDetails.ProductIdentifierUnavailableText</strong> field. The seller will use this value in one or more of the product identifier fields (<strong>ean</strong>, <strong>isbn</strong>, <strong>upc</strong>, or <strong>mpn</strong>) if a product ID isn\'t known or applicable. <br><br>This container is not initially required, but it is required before an inventory item can be published as an offer, and/or if an inventory item is being updated and product data already exists for that inventory item. <br><br>This container is always returned for published offers in the <strong>getInventoryItem</strong>, <strong>bulkGetInventoryItem</strong>, and <strong>getInventoryItems</strong> calls since product data must be defined for published offers, but for unpublished inventory items, this container will only be returned if product details have been defined for the inventory item. <br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span>Publish offer note: This container and a few of its child fields (as noted below) are required before an offer can be published to create an active listing.</p></span></div>',
+        description='This container is used to define the product details, such as product title, product description, product identifiers (eBay Product ID, GTIN, or Brand/MPN pair), product aspects/item specifics, and product images. Note that an eBay Product ID (ePID) or a Global Trade Item Number (GTIN) value can be used in an attempt to find a matching product in the eBay Catalog.',
     )
     sku: str | None = Field(
         None,
-        description='This is the seller-defined SKU value of the product that will be listed on the eBay site (specified in the <strong>marketplaceId</strong> field). Only one offer (in unpublished or published state) may exist for each <strong>sku</strong>/<strong>marketplaceId</strong>/<strong>format</strong> combination. This field is required.<br><br><strong>Maximum length</strong>: 50<br>',
+        description='This is the seller-defined SKU value of the product that will be listed on the eBay site (specified in the marketplaceId field). Only one offer (in unpublished or published state) may exist for each sku / marketplaceId / format combination. This field is required. Maximum length : 50',
     )
 
 
@@ -2732,17 +2732,17 @@ class InventoryItemWithSkuLocaleGroupKeys(EbayModel):
     )
     condition: ConditionEnum | None = Field(
         None,
-        description="This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. <br><br>Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the 'Get' calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this field will only be returned if set for the inventory item.",
+        description="This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the 'Get' calls for SKUs that are part of a published offer.",
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description="This string field is used by the seller to more clearly describe the condition of used items, or items that are not 'Brand New', 'New with tags', or 'New in box'. The ConditionDescription field is available for all categories. If the ConditionDescription field is used with an item in a new condition (Condition IDs 1000-1499), eBay will simply ignore this field if included, and eBay will return a warning message to the user. This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the item. Make sure that the condition value, condition description, listing description, and the item's pictures do not contradict one another.<br /><br />Maximum length: 1000",
+        description="This string field is used by the seller to more clearly describe the condition of used items, or items that are not 'Brand New', 'New with tags', or 'New in box'. The ConditionDescription field is available for all categories.",
     )
     condition_descriptors: list[ConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text.<br><br>For trading card coin listings in applicable categories, sellers must use either <code>LIKE_NEW</code> (2750) or <code>USED_VERY_GOOD</code> (4000) item condition to specify the item as <b>Graded</b> or <b>Ungraded</b>, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.<br><br>>To retrieve all condition descriptor numeric IDs for a category, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the Metadata API.',
+        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text.',
     )
     inventory_item_group_keys: list[str] | None = Field(
         None,
@@ -2760,7 +2760,7 @@ class InventoryItemWithSkuLocaleGroupKeys(EbayModel):
     )
     product: Product | None = Field(
         None,
-        description='This container is used in a <strong>createOrReplaceInventoryItem</strong> call to pass in a Global Trade Item Number (GTIN) or a Brand and Manufacturer Part Number (MPN) pair to identify a product to be matched with a product in the eBay catalog. If a match is found in the eBay product catalog, the inventory item is automatically populated with available product details such as a title, a subtitle, a product description, item specifics, and links to stock images for the product.',
+        description='This container is used in a createOrReplaceInventoryItem call to pass in a Global Trade Item Number (GTIN) or a Brand and Manufacturer Part Number (MPN) pair to identify a product to be matched with a product in the eBay catalog.',
     )
     sku: str | None = Field(
         None,
@@ -2775,17 +2775,17 @@ class InventoryItemWithSkuLocaleGroupid(EbayModel):
     )
     condition: ConditionEnum | None = Field(
         None,
-        description="This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category.<br><br>Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the 'Get' calls for SKUs that are part of a published offer. If a SKU is not part of a published offer, this field will only be returned if set for the inventory item.",
+        description="This enumeration value indicates the condition of the item. Supported item condition values will vary by eBay site and category. Since the condition of an inventory item must be specified before being published in an offer, this field is always returned in the 'Get' calls for SKUs that are part of a published offer.",
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description="This string field is used by the seller to more clearly describe the condition of used items, or items that are not 'Brand New', 'New with tags', or 'New in box'. The ConditionDescription field is available for all categories. If the ConditionDescription field is used with an item in a new condition (Condition IDs 1000-1499), eBay will simply ignore this field if included, and eBay will return a warning message to the user. This field should only be used to further clarify the condition of the used item. It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the item. Make sure that the condition value, condition description, listing description, and the item's pictures do not contradict one another.<br><br><strong>Maximum length</strong>: 1000",
+        description="This string field is used by the seller to more clearly describe the condition of used items, or items that are not 'Brand New', 'New with tags', or 'New in box'. The ConditionDescription field is available for all categories.",
     )
     condition_descriptors: list[ConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text.<br><br>For trading card coin listings in applicable categories, sellers must use either <code>LIKE_NEW</code> (2750) or <code>USED_VERY_GOOD</code> (4000) item condition to specify the item as <b>Graded</b> or <b>Ungraded</b>, respectively. Use of either of these conditions requires the seller to use this array to provide one or more applicable Condition Descriptor name-value pairs.<br><br>retrieve all condition descriptor numeric IDs for a category, use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getitemconditionpolicies" target="_blank">getItemConditionPolicies</a> method of the Metadata API.',
+        description='This container is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that can be either closed set or open text.',
     )
     group_ids: list[str] | None = Field(
         None,
@@ -2808,7 +2808,7 @@ class InventoryItemWithSkuLocaleGroupid(EbayModel):
     )
     product: Product | None = Field(
         None,
-        description='This container is used in a <strong>createOrReplaceInventoryItem</strong> call to pass in a Global Trade Item Number (GTIN) or a Brand and Manufacturer Part Number (MPN) pair to identify a product to be matched with a product in the eBay catalog. If a match is found in the eBay product catalog, the inventory item is automatically populated with available product details such as a title, a subtitle, a product description, item specifics, and links to stock images for the product.',
+        description='This container is used in a createOrReplaceInventoryItem call to pass in a Global Trade Item Number (GTIN) or a Brand and Manufacturer Part Number (MPN) pair to identify a product to be matched with a product in the eBay catalog.',
     )
     sku: str | None = Field(
         None,
@@ -2839,11 +2839,11 @@ class InventoryItems(EbayModel):
     )
     size: int | None = Field(
         None,
-        description='This integer value indicates the total number of pages of results that are available. This number will depend on the total number of inventory items available for viewing, and on the <strong>limit</strong> value.',
+        description='This integer value indicates the total number of pages of results that are available. This number will depend on the total number of inventory items available for viewing, and on the limit value.',
     )
     total: int | None = Field(
         None,
-        description="This integer value is the total number of inventory items that exist for the seller's account. Based on this number and on the <strong>limit</strong> value, the seller may have to toggle through multiple pages to view all inventory items.",
+        description="This integer value is the total number of inventory items that exist for the seller's account. Based on this number and on the limit value, the seller may have to toggle through multiple pages to view all inventory items.",
     )
 
 
@@ -2861,7 +2861,7 @@ class Offers(EbayModel):
     )
     offers: list[EbayOfferDetailsWithAll] | None = Field(
         None,
-        description='This container is an array of one or more of the seller\'s offers for the SKU value that is passed in through the required <strong>sku</strong> query parameter.<br><br><span class="tablenote"> <strong>Note:</strong> Currently, the Inventory API does not support the same SKU across multiple eBay marketplaces.</span><br><strong>Max Occurs:</strong> 25',
+        description="This container is an array of one or more of the seller's offers for the SKU value that is passed in through the required sku query parameter. Note: Currently, the Inventory API does not support the same SKU across multiple eBay marketplaces. Max Occurs: 25",
     )
     prev: str | None = Field(
         None,
@@ -2869,41 +2869,41 @@ class Offers(EbayModel):
     )
     size: int | None = Field(
         None,
-        description='This integer value indicates the number of offers being displayed on the current page of results. This number will generally be the same as the <strong>limit</strong> value if there are additional pages of results to view.  <br><br><span class="tablenote"><strong>Note:</strong> The same SKU can be offered through an auction and a fixed-price listing concurrently. If this is the case, <b>getOffers</b> will return two offers and this value will be <code>2</code>. Otherwise, only one offer will be returned and this value will be <code>1</code>.</span>',
+        description='This integer value indicates the number of offers being displayed on the current page of results. This number will generally be the same as the limit value if there are additional pages of results to view. Note: The same SKU can be offered through an auction and a fixed-price listing concurrently. If this is the case, getOffers will return two offers and this value will be 2 .',
     )
     total: int | None = Field(
         None,
-        description='This integer value is the total number of offers that exist for the specified SKU value. Based on this number and on the <strong>limit</strong> value, the seller may have to toggle through multiple pages to view all offers. <br><br><span class="tablenote"><strong>Note:</strong> The same SKU can be offered through an auction and a fixed-price listing concurrently. If this is the case, <b>getOffers</b> will return two offers, so this value would be <code>2</code>. Otherwise, only one offer will be returned and this value will be <code>1</code>.</span>',
+        description='This integer value is the total number of offers that exist for the specified SKU value. Based on this number and on the limit value, the seller may have to toggle through multiple pages to view all offers. Note: The same SKU can be offered through an auction and a fixed-price listing concurrently. If this is the case, getOffers will return two offers, so this value would be 2 .',
     )
 
 
 class PriceQuantity(EbayModel):
     offers: list[OfferPriceQuantity] | None = Field(
         None,
-        description='This container is needed if the seller is updating the price and/or quantity of one or more published offers, and a successful call will actually update the active eBay listing with the revised price and/or available quantity.<br><br>This call is not designed to work with unpublished offers. For unpublished offers, the seller should use the <strong>updateOffer</strong> call to update the available quantity and/or price.<br><br>If the seller is also using the <strong>shipToLocationAvailability</strong> container and <strong>sku</strong> field to update the total \'ship-to-home\' quantity of the inventory item, the SKU value associated with the corresponding <strong>offerId</strong> value(s) must be the same as the corresponding <strong>sku</strong> value that is passed in, or an error will occur.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> A separate (<strong>OfferPriceQuantity</strong>) node is required for each offer being updated.</p></div>',
+        description='This container is needed if the seller is updating the price and/or quantity of one or more published offers, and a successful call will actually update the active eBay listing with the revised price and/or available quantity. This call is not designed to work with unpublished offers. For unpublished offers, the seller should use the updateOffer call to update the available quantity and/or price.',
     )
     ship_to_location_availability: ShipToLocationAvailability | None = Field(
         None,
         alias='shipToLocationAvailability',
-        description="This container is needed if the seller is updating the total 'ship-to-home' quantity for the corresponding inventory item (specified in the <strong>sku</strong> field). A successful call will update the inventory item record associated with the <strong>sku</strong> value.",
+        description="This container is needed if the seller is updating the total 'ship-to-home' quantity for the corresponding inventory item (specified in the sku field). A successful call will update the inventory item record associated with the sku value.",
     )
     sku: str | None = Field(
         None,
-        description='This is the seller-defined SKU value of the inventory item whose total \'ship-to-home\' quantity will be updated. This field is only required when the seller is updating the total quantity of an inventory item using the <strong>shipToLocationAvailability</strong> container. If the seller is updating the price and/or quantity of one or more specific offers, one or more <strong>offerId</strong> values are used instead, and the <strong>sku</strong> value is not needed.<br><br>If the seller wants to update the price and/or quantity of one or more offers, and also wants to update the total \'ship-to-home\' quantity of the corresponding inventory item, the SKU value associated with the <strong>offerId</strong> value(s) must be the same as the corresponding <strong>sku</strong> value that is passed in, or an error will occur.<br><br>Use the <a href="/develop/api/sell/inventory_api#sell-inventory_api-inventory_item-getinventoryitems" target="_blank ">getInventoryItems</a> method to retrieve SKU values.<br><br><strong>Maximum length</strong>: 50<br>',
+        description="This is the seller-defined SKU value of the inventory item whose total 'ship-to-home' quantity will be updated. This field is only required when the seller is updating the total quantity of an inventory item using the shipToLocationAvailability container.",
     )
 
 
 class BulkEbayOfferDetailsWithKeys(EbayModel):
     requests: list[EbayOfferDetailsWithKeys] | None = Field(
         None,
-        description='The details of each offer that is being created is passed in under this container. Up to 25 offers can be created with one <strong>bulkCreateOffer</strong> call.',
+        description='The details of each offer that is being created is passed in under this container. Up to 25 offers can be created with one bulkCreateOffer call.',
     )
 
 
 class BulkInventoryItem(EbayModel):
     requests: list[InventoryItemWithSkuLocale] | None = Field(
         None,
-        description='The details of each inventory item that is being created or updated is passed in under this container. Up to 25 inventory item records can be created and/or updated with one <strong>bulkCreateOrReplaceInventoryItem</strong> call.',
+        description='The details of each inventory item that is being created or updated is passed in under this container. Up to 25 inventory item records can be created and/or updated with one bulkCreateOrReplaceInventoryItem call.',
     )
 
 
@@ -2922,7 +2922,7 @@ class GetInventoryItemResponse(EbayModel):
     inventory_item: InventoryItemWithSkuLocaleGroupKeys | None = Field(
         None,
         alias='inventoryItem',
-        description='This container consists of detailed information on the inventory item specified in the <strong>sku</strong> field.',
+        description='This container consists of detailed information on the inventory item specified in the sku field.',
     )
     sku: str | None = Field(
         None,
@@ -2931,7 +2931,7 @@ class GetInventoryItemResponse(EbayModel):
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='The HTTP status code returned in this field indicates the success or failure of retrieving the inventory item record for the inventory item specified in the <strong>sku</strong> field. See the <strong>HTTP status codes</strong> table to see which each status code indicates.',
+        description='The HTTP status code returned in this field indicates the success or failure of retrieving the inventory item record for the inventory item specified in the sku field. See the HTTP status codes table to see which each status code indicates.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2942,7 +2942,7 @@ class GetInventoryItemResponse(EbayModel):
 class BulkGetInventoryItemResponse(EbayModel):
     responses: list[GetInventoryItemResponse] | None = Field(
         None,
-        description='This is the base container of the <strong>bulkGetInventoryItem</strong> response. The results of each attempted inventory item retrieval is captured under this container.',
+        description='This is the base container of the bulkGetInventoryItem response. The results of each attempted inventory item retrieval is captured under this container.',
     )
 
 

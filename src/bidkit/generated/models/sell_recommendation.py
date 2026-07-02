@@ -18,11 +18,11 @@ class Basis(OpenStrEnum):
 class BidPercentages(EbayModel):
     basis: Basis | None = Field(
         None,
-        description='The basis by which the ad rate is calculated.<br /><br /><b>Valid Values:</b> <code>ITEM</code> and <code>TRENDING</code>',
+        description='The basis by which the ad rate is calculated. Valid Values: ITEM and TRENDING',
     )
     value: str | None = Field(
         None,
-        description='The bid percentage data is a single precision value, as calculated by the associated basis. <p>In Promoted listings ad campaigns, the <b>bid percentage</b> (also known as the <i>ad rate</i>) is a user-defined value that sets the level that eBay raises the visibility of the listing in the marketplace. It is also the rate that is used to calculate the Promoted Listings fee.</p> <p><b>Minimum value:</b> 1.0 &nbsp; <b>Maximum value:</b> 100.0</p>',
+        description='The bid percentage data is a single precision value, as calculated by the associated basis. In Promoted listings ad campaigns, the bid percentage (also known as the ad rate ) is a user-defined value that sets the level that eBay raises the visibility of the listing in the marketplace. It is also the rate that is used to calculate the Promoted Listings fee. Minimum value: 1.0 Maximum value: 100.0',
     )
 
 
@@ -35,7 +35,7 @@ class FindListingRecommendationRequest(EbayModel):
     listing_ids: list[str] | None = Field(
         None,
         alias='listingIds',
-        description='A comma-separated list of listing IDs for which you want Promoted Listings ad configuration information.  <p>Currently, this method accepts only <b>listingId</b> values from the Trading API.</p>  <p><b>Max:</b> 500 listing IDs</p>',
+        description='A comma-separated list of listing IDs for which you want Promoted Listings ad configuration information. Currently, this method accepts only listingId values from the Trading API. Max: 500 listing IDs',
     )
 
 
@@ -48,12 +48,12 @@ class Ad(EbayModel):
     bid_percentages: list[BidPercentages] | None = Field(
         None,
         alias='bidPercentages',
-        description='This field returns information that you can use to configure the <b>bidPercentage</b> field in a Promoted Listings campaign.<br /><br /><span class="tablenote"><b>Note:</b> Currently, <code>ITEM</code> and <code>TRENDING</code> are the only supported bid percentage types.</span><br /><br />The <code>ITEM</code> suggested bid percentages are tailored to each of your items and are designed to help you stay competitive while finding an optimal balance between performance and cost. The recommendations are calculated based on a variety of factors that may include item attributes, seasonality, past performance, and current competition for each of your listings.<br /><br />The <code>TRENDING</code> suggested bid percentages are calculated by reviewing the category level average ad rates in the marketplace.<br /><br />Setting the <b>bidPercentage</b> of your ad campaign based on these rate recommendations will help the items in the campaign be competitive with other items in the marketplace by improving their chances of being displayed more often in the marketplace.',
+        description='This field returns information that you can use to configure the bidPercentage field in a Promoted Listings campaign. Note: Currently, ITEM and TRENDING are the only supported bid percentage types. The ITEM suggested bid percentages are tailored to each of your items and are designed to help you stay competitive while finding an optimal balance between performance and cost.',
     )
     promote_with_ad: PromoteWithAd | None = Field(
         None,
         alias='promoteWithAd',
-        description='An enum whose values describe whether or not eBay recommends you place the associated listing in a Promoted Listings ad campaign.  <br><br>IDs deemed <code>RECOMMENDED</code> by eBay are the listings with the highest potential of benefiting from being promoted. The recommendation calculation is based on marketplace trends, like buyer demand and the competition in the item’s category.  <p class="tablenote"><b>Note:</b> A <b>promoteWithAd</b> value cannot be calculated for listings that are part of Promoted Listings campaigns.  <br><br>Because of this, if you call <b>findListingRecommendations</b> with a specific set of listing IDs, the <b>promoteWithAd</b> field is not returned for any of the listings that are involved in a promotion. However, as long as they are eligible, the trending <b>bidPercentage</b> <i>is</i> returned for all specified listings, even if they are part of an ad campaign.</p>',
+        description='An enum whose values describe whether or not eBay recommends you place the associated listing in a Promoted Listings ad campaign. IDs deemed RECOMMENDED by eBay are the listings with the highest potential of benefiting from being promoted. The recommendation calculation is based on marketplace trends, like buyer demand and the competition in the item’s category.',
     )
 
 
@@ -114,7 +114,7 @@ class ListingRecommendation(EbayModel):
     )
     marketing: MarketingRecommendation | None = Field(
         None,
-        description='This return object provides the eBay recommendations and information related to the associated listing ID.  <br><br>The container currently returns the <code>AD</code> recommendation type, which contains information that sellers can use to configure Promoted Listings ad campaigns.  <br><br>This container is returned with each <b>ListingRecommendation</b> object, <i>except</i> when: <ul><li>The listing ID is not eligible for Promoted Listings</li> <li>The listing ID is currently in a Promoted Listings campaign</li> <li>The listing ID is invalid</li></ul>',
+        description='This return object provides the eBay recommendations and information related to the associated listing ID. The container currently returns the AD recommendation type, which contains information that sellers can use to configure Promoted Listings ad campaigns.',
     )
 
 
@@ -124,26 +124,26 @@ class PagedListingRecommendationCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The number of items returned on a single page from the result set. This value can be set in the request with the <b>limit</b> query parameter.',
+        description='The number of items returned on a single page from the result set. This value can be set in the request with the limit query parameter.',
     )
     listing_recommendations: list[ListingRecommendation] | None = Field(
         None,
         alias='listingRecommendations',
-        description='Returns a list of <b>listingRecommendations</b>, where each element in the list offers recommendations for the associated <b>listingId</b>.  <br><br>Which elements are returned depend on how you structure the request. For example, if you request recommendations for all of a sellers listings (by leaving the request payload empty), <b>ad</b> recommendations are returned only for those listings where <b>promoteWithAd</b> is set to <code>RECOMMENDED</code>.',
+        description='Returns a list of listingRecommendations , where each element in the list offers recommendations for the associated listingId . Which elements are returned depend on how you structure the request.',
     )
     next: str | None = Field(
         None,
-        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. <br><br><b>Max length</b>: 2048',
+        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. Max length : 2048',
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <b>offset</b> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
-        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. <br><br><b>Max length</b>: 2048',
+        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. Max length : 2048',
     )
     total: int | None = Field(
         None,
-        description='The total number of items retrieved in the result set.  <br><br>If no items are found, this field is returned with a value of <code>0</code>.',
+        description='The total number of items retrieved in the result set. If no items are found, this field is returned with a value of 0 .',
     )

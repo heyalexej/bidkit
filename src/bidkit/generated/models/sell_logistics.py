@@ -442,12 +442,12 @@ class LengthUnitOfMeasureEnum(OpenStrEnum):
 class Order(EbayModel):
     channel: str | None = Field(
         None,
-        description='The marketplace where the order was created.<br><br>Currently, only <code>EBAY</code> is supported. This value can be used to retrieve rates available for eBay orders.',
+        description='The marketplace where the order was created. Currently, only EBAY is supported. This value can be used to retrieve rates available for eBay orders.',
     )
     order_id: str | None = Field(
         None,
         alias='orderId',
-        description='The unique identifier of the order. The <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <strong>Fulfillment API</strong> can be used to retrieve order IDs.',
+        description='The unique identifier of the order. The getOrders method of the Fulfillment API can be used to retrieve order IDs.',
     )
 
 
@@ -461,7 +461,7 @@ class PickupSlot(EbayModel):
     pickup_slot_end_time: str | None = Field(
         None,
         alias='pickupSlotEndTime',
-        description='The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>',
+        description='The date and time the pickup slot ends, formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z',
     )
     pickup_slot_id: str | None = Field(
         None,
@@ -471,12 +471,12 @@ class PickupSlot(EbayModel):
     pickup_slot_start_time: str | None = Field(
         None,
         alias='pickupSlotStartTime',
-        description='The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.',
+        description='The date and time the pickup slot begins, formatted as an ISO 8601 UTC string.',
     )
     pickup_slot_time_zone: str | None = Field(
         None,
         alias='pickupSlotTimeZone',
-        description='The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also known as an Olson time zone ID).',
+        description='The time zone of the pickup location, returned as Time Zone Database ID (also known as an Olson time zone ID).',
     )
 
 
@@ -510,11 +510,11 @@ class WeightUnitOfMeasureEnum(OpenStrEnum):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The base currency applied to the <strong>value</strong> field to establish a monetary amount.  <br><br>The currency is represented as a 3-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org" target="_blank">ISO 4217</a> currency code. For example, the code for the Canadian Dollar is <code>CAD</code>.  <br><br><strong>Default:</strong> The default currency of the eBay marketplace that hosts the listing.',
+        description='The base currency applied to the value field to establish a monetary amount. The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is CAD . Default: The default currency of the eBay marketplace that hosts the listing.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount in the specified <strong>currency</strong>.  <br><br><i>Required in</i> the <strong>amount</strong> type.',
+        description='The monetary amount in the specified currency . Required in the amount type.',
     )
 
 
@@ -533,7 +533,7 @@ class ContactAddress(EbayModel):
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany.',
+        description='The country of the address, represented as two-letter ISO 3166 country code. For example, US represents the United States and DE represents Germany.',
     )
     county: str | None = Field(
         None,
@@ -606,7 +606,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='The category type for this error or warning. It takes a string that can have one of three values:<ul><li><code>Application</code>: Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service\'s business logic, system failures, or request errors from a dependency.</li><li><code>Business</code>: Used when your service or a dependent service refused to continue processing on the resource because of a business rule violation such as "Seller does not ship item to Antarctica" or "Buyer ineligible to purchase an alcoholic item". Business errors are not syntactical input errors.</li><li><code>Request</code>: Used when there is anything wrong with the request, such as authentication, syntactical errors, rate limiting or missing headers, bad HTTP header values, and so on.</li></ul>',
+        description="The category type for this error or warning. It takes a string that can have one of three values: Application : Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service's business logic, system failures, or request errors from a dependency.",
     )
     domain: str | None = Field(
         None, description='Name of the domain containing the service or application.'
@@ -619,7 +619,7 @@ class ErrorDetailV3(EbayModel):
     input_ref_ids: list[str] | None = Field(
         None,
         alias='inputRefIds',
-        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use <i>JSONPath</i> notation.",
+        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use JSONPath notation.",
     )
     long_message: str | None = Field(
         None,
@@ -633,11 +633,11 @@ class ErrorDetailV3(EbayModel):
     output_ref_ids: list[str] | None = Field(
         None,
         alias='outputRefIds',
-        description='Identifies specific response elements associated with the error, if any. Path format is the same as <code>inputRefId</code>.',
+        description='Identifies specific response elements associated with the error, if any. Path format is the same as inputRefId .',
     )
     parameters: list[ErrorParameterV3] | None = Field(
         None,
-        description='This optional complex field type contains a list of one or more context-specific <code>ErrorParameter</code> objects, with each item in the list entry being a parameter (or input field name) that caused an error condition. Each <code>ErrorParameter</code> object consists of two fields, a <code>name</code> and a <code>value</code>.',
+        description='This optional complex field type contains a list of one or more context-specific ErrorParameter objects, with each item in the list entry being a parameter (or input field name) that caused an error condition. Each ErrorParameter object consists of two fields, a name and a value .',
     )
     subdomain: str | None = Field(
         None,
@@ -649,7 +649,7 @@ class ShipmentCancellation(EbayModel):
     cancellation_requested_date: str | None = Field(
         None,
         alias='cancellationRequestedDate',
-        description='The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.',
+        description='The time and date the request was made to cancel the shipment, formatted as an ISO 8601 UTC string.',
     )
     cancellation_status: ShipmentCancellationStatusEnum | None = Field(
         None,
@@ -661,11 +661,11 @@ class ShipmentCancellation(EbayModel):
 class Weight(EbayModel):
     unit: WeightUnitOfMeasureEnum | None = Field(
         None,
-        description='The unit of measurement used to specify the weight of a shipping package. Both the <strong>unit</strong> and <strong>value</strong> fields are required if the <strong>weight</strong> container is used. If the English system of measurement is being used, the applicable values for weight units are <code>POUND</code> and <code>OUNCE</code>. If the metric system of measurement is being used, the applicable values for weight units are <code>KILOGRAM</code> and <code>GRAM</code>. The metric system is used by most countries outside of the US.',
+        description='The unit of measurement used to specify the weight of a shipping package. Both the unit and value fields are required if the weight container is used. If the English system of measurement is being used, the applicable values for weight units are POUND and OUNCE . If the metric system of measurement is being used, the applicable values for weight units are KILOGRAM and GRAM .',
     )
     value: str | None = Field(
         None,
-        description='The numeric value of the weight of the package, as measured by the value of <strong>unit</strong>.',
+        description='The numeric value of the weight of the package, as measured by the value of unit .',
     )
 
 
@@ -673,7 +673,7 @@ class AdditionalOption(EbayModel):
     additional_cost: Amount | None = Field(
         None,
         alias='additionalCost',
-        description='The monetary cost of the additional shipping option identified by the <strong>optionType</strong> field.',
+        description='The monetary cost of the additional shipping option identified by the optionType field.',
     )
     option_type: str | None = Field(
         None,
@@ -707,7 +707,7 @@ class CreateShipmentFromQuoteRequest(EbayModel):
     additional_options: list[AdditionalOption] | None = Field(
         None,
         alias='additionalOptions',
-        description="Supply a list of one or more shipping options that the seller wants to purchase for this shipment.  <br><br>The <strong>baseShippingCost</strong> field that's associated with the selected shipping rate is the cost of the base service offered in the rate. In addition to the base service, sellers can add additional shipping services to the base service. Shipping options include things such as shipping insurance or a recipient's signature upon delivery. The cost of any added services is summed with the base shipping cost to determine the final cost for the shipment. All options added to the shipment must be chosen from the set of shipping options offered with the selected rate.",
+        description="Supply a list of one or more shipping options that the seller wants to purchase for this shipment. The baseShippingCost field that's associated with the selected shipping rate is the cost of the base service offered in the rate. In addition to the base service, sellers can add additional shipping services to the base service.",
     )
     label_custom_message: str | None = Field(
         None,
@@ -717,22 +717,22 @@ class CreateShipmentFromQuoteRequest(EbayModel):
     label_size: str | None = Field(
         None,
         alias='labelSize',
-        description='The seller\'s desired label size. Any supplied value is applied only if the shipping carrier supports multiple label sizes, otherwise the carrier\'s default label size is used.  <br><br>Currently, the only valid value is: <code>4"x6"</code>',
+        description='The seller\'s desired label size. Any supplied value is applied only if the shipping carrier supports multiple label sizes, otherwise the carrier\'s default label size is used. Currently, the only valid value is: 4"x6"',
     )
     rate_id: str | None = Field(
         None,
         alias='rateId',
-        description='The unique eBay-assigned identifier of the shipping rate that the seller selected for the shipment. This value is generated by using the <a href="/api-docs/sell/logistics/resources/shipping_quote/methods/createShippingQuote" target="_blank">createShippingQuote</a> method and is returned in the <strong>rates.rateId</strong> field.',
+        description='The unique eBay-assigned identifier of the shipping rate that the seller selected for the shipment. This value is generated by using the createShippingQuote method and is returned in the rates.rateId field.',
     )
     return_to: Contact | None = Field(
         None,
         alias='returnTo',
-        description='The optional return address and contact details for the shipment. The return address is printed on the shipping label. If not specified, the return address defaults to the <strong>shipFrom</strong> address returned in shipping quote. ',
+        description='The optional return address and contact details for the shipment. The return address is printed on the shipping label. If not specified, the return address defaults to the shipFrom address returned in shipping quote.',
     )
     shipping_quote_id: str | None = Field(
         None,
         alias='shippingQuoteId',
-        description='The unique eBay-assigned identifier of the shipping quote that was generated by the <a href="/api-docs/sell/logistics/resources/shipping_quote/methods/createShippingQuote" target="_blank">createShippingQuote</a> method.',
+        description='The unique eBay-assigned identifier of the shipping quote that was generated by the createShippingQuote method.',
     )
 
 
@@ -760,17 +760,17 @@ class PurchasedRate(EbayModel):
     destination_time_zone: str | None = Field(
         None,
         alias='destinationTimeZone',
-        description='The time zone of the destination according to <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a>. For example, "America/Los_Angeles".',
+        description='The time zone of the destination according to Time Zone Database . For example, "America/Los_Angeles".',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>',
+        description='A string value representing maximum (latest) estimated delivery time, formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z',
     )
     min_estimated_delivery_date: str | None = Field(
         None,
         alias='minEstimatedDeliveryDate',
-        description='A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.',
+        description='A string value representing minimum (earliest) estimated delivery time, formatted as an ISO 8601 UTC string.',
     )
     pickup_networks: list[str] | None = Field(
         None,
@@ -805,7 +805,7 @@ class PurchasedRate(EbayModel):
     shipping_quote_id: str | None = Field(
         None,
         alias='shippingQuoteId',
-        description='The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<strong>rateId</strong>).',
+        description='The unique eBay-generated ID of the shipping quote from which the seller selected a shipping rate ( rateId ).',
     )
     shipping_service_code: str | None = Field(
         None,
@@ -828,22 +828,22 @@ class Rate(EbayModel):
     additional_options: list[AdditionalOption] | None = Field(
         None,
         alias='additionalOptions',
-        description='Contains service and pricing information for one or more shipping options that are offered by the carrier and can be purchased in addition to the base shipping service provided by this rate. Shipping options can include items such as <code>INSURANCE</code> and <code>SIGNATURE</code>.',
+        description='Contains service and pricing information for one or more shipping options that are offered by the carrier and can be purchased in addition to the base shipping service provided by this rate. Shipping options can include items such as INSURANCE and SIGNATURE .',
     )
     base_shipping_cost: Amount | None = Field(
         None,
         alias='baseShippingCost',
-        description='A live quote for the cost that the carrier (identified by <strong>shippingCarrierCode</strong>) is charging for the shipping service being offered (identified by <strong>shippingServiceCode</strong>), excluding any additional shipping options.',
+        description='A live quote for the cost that the carrier (identified by shippingCarrierCode ) is charging for the shipping service being offered (identified by shippingServiceCode ), excluding any additional shipping options.',
     )
     destination_time_zone: str | None = Field(
         None,
         alias='destinationTimeZone',
-        description='The name of the time zone region, as defined in the <a href="http://www.iana.org/time-zones "  target="_blank">IANA Time Zone Database</a>, to which the package is being shipped.  <br><br>Delivery dates are calculated relative to this time zone.  <br><br><span class="tablenote"><strong>Note:</strong> This is different from a Coordinated Universal Time (UTC) offset. For example, the <i>America/Los_Angeles</i> time zone identifies a region with the UTC standard time offset of <code>-08:00</code>, but so do several other time zones, including <i>America/Tijuana</i>,<i>America/Dawson</i>, and <i>Pacific/Pitcairn</i>.</span>',
+        description='The name of the time zone region, as defined in the IANA Time Zone Database , to which the package is being shipped. Delivery dates are calculated relative to this time zone. Note: This is different from a Coordinated Universal Time (UTC) offset.',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>',
+        description='The latest stated date and time the shipment will be delivered at this rate. The time stamp is formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z',
     )
     min_estimated_delivery_date: str | None = Field(
         None,
@@ -863,7 +863,7 @@ class Rate(EbayModel):
     pickup_type: PickupTypeEnum | None = Field(
         None,
         alias='pickupType',
-        description='The type of pickup or drop-off service associated with the <strong>pickupSlots</strong> time frames.',
+        description='The type of pickup or drop-off service associated with the pickupSlots time frames.',
     )
     rate_id: str | None = Field(
         None,
@@ -873,12 +873,12 @@ class Rate(EbayModel):
     rate_recommendation: list[RateRecommendationEnum] | None = Field(
         None,
         alias='rateRecommendation',
-        description="A list of reasons this rate is recommended. Available values are: <ul> <li><code>BUYER_CHOSEN</code> &mdash; The rate meets or exceeds the requirements of the buyer's preferred shipping option.</li> <li><code>CHEAPEST_ON_TIME</code> &mdash; The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment.</li>  <li><code>EBAY_PLUS_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Plus program.</li> <li><code>FASTEST_ON_TIME</code> &mdash; The rate has the fastest shipping time, and will provide delivery within the seller's time frame commitment.</li> <li><code>GUARANTEED_DELIVERY_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.</li></ul>",
+        description="A list of reasons this rate is recommended. Available values are: BUYER_CHOSEN — The rate meets or exceeds the requirements of the buyer's preferred shipping option. CHEAPEST_ON_TIME — The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment. EBAY_PLUS_OK — The rate complies with the shipping requirements of the eBay Plus program.",
     )
     shipping_carrier_code: str | None = Field(
         None,
         alias='shippingCarrierCode',
-        description='The code name of the shipping carrier who will provide the service identified by <strong>shippingServiceCode</strong>.',
+        description='The code name of the shipping carrier who will provide the service identified by shippingServiceCode .',
     )
     shipping_carrier_name: str | None = Field(
         None,
@@ -888,7 +888,7 @@ class Rate(EbayModel):
     shipping_service_code: str | None = Field(
         None,
         alias='shippingServiceCode',
-        description='The code name of the shipping service to be provided by the carrier identified by <strong>shippingCarrierCode</strong>.',
+        description='The code name of the shipping service to be provided by the carrier identified by shippingCarrierCode .',
     )
     shipping_service_name: str | None = Field(
         None,
@@ -904,7 +904,7 @@ class Shipment(EbayModel):
     creation_date: str | None = Field(
         None,
         alias='creationDate',
-        description='The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>',
+        description='The date and time the shipment was created, formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z',
     )
     label_custom_message: str | None = Field(
         None,
@@ -914,12 +914,12 @@ class Shipment(EbayModel):
     label_download_url: str | None = Field(
         None,
         alias='labelDownloadUrl',
-        description='The direct URL the seller can use to download an image of the shipping label. By default, the file format is PDF. See <a href="/api-docs/sell/logistics/resources/shipment/methods/downloadLabelFile">downloadLabelFile</a> for requesting different response file formats.',
+        description='The direct URL the seller can use to download an image of the shipping label. By default, the file format is PDF. See downloadLabelFile for requesting different response file formats.',
     )
     label_size: str | None = Field(
         None,
         alias='labelSize',
-        description='The seller\'s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <strong>createFromShippingQuote</strong> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>',
+        description='The seller\'s desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the createFromShippingQuote call matches a size the carrier supports, the value will be represented here in the shipment. Currently, the only valid value is: 4"x6"',
     )
     orders: list[Order] | None = Field(
         None,
@@ -932,12 +932,12 @@ class Shipment(EbayModel):
     )
     rate: PurchasedRate | None = Field(
         None,
-        description='The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a <strong>rateId</strong>, contains the offered base service, options, and shipping parameters that were selected for the package shipment.',
+        description='The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a rateId , contains the offered base service, options, and shipping parameters that were selected for the package shipment.',
     )
     return_to: Contact | None = Field(
         None,
         alias='returnTo',
-        description='The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their <strong>shipFrom</strong> address. If not specified, the return address defaults to the <strong>shipFrom</strong> address in the shipping quote.',
+        description='The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their shipFrom address. If not specified, the return address defaults to the shipFrom address in the shipping quote.',
     )
     ship_from: Contact | None = Field(
         None,
@@ -947,7 +947,7 @@ class Shipment(EbayModel):
     shipment_id: str | None = Field(
         None,
         alias='shipmentId',
-        description='The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <strong>createFromShippingQuote</strong>.',
+        description='The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to createFromShippingQuote .',
     )
     shipment_tracking_number: str | None = Field(
         None,
@@ -983,7 +983,7 @@ class ShippingQuote(EbayModel):
     )
     rates: list[Rate] | None = Field(
         None,
-        description='A list of <i>rates</i> where each rate, as identified by a <strong>rateId</strong>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller\'s shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><strong>Note:</strong> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <strong>createFromShippingQuote</strong>.',
+        description="A list of rates where each rate, as identified by a rateId , contains information about a specific shipping service offered by a carrier. Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.",
     )
     ship_from: Contact | None = Field(
         None,
@@ -1008,7 +1008,7 @@ class ShippingQuote(EbayModel):
 class ShippingQuoteRequest(EbayModel):
     orders: list[Order] | None = Field(
         None,
-        description='In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><strong>Maximum list size:</strong> 10',
+        description='In this array, the seller specifies one or more orders that will be shipped in the shipping package. A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package. Maximum list size: 10',
     )
     package_specification: PackageSpecification | None = Field(
         None,

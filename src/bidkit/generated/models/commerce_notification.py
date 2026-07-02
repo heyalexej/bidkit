@@ -15,7 +15,7 @@ class Config(EbayModel):
     alert_email: str | None = Field(
         None,
         alias='alertEmail',
-        description='This field is used to add or modify an email address that will be used for Notification API alerts associated with the application. <a href="/develop/api/sell/notification_api#sell-notification_api-config-getconfig">getConfig</a> can be used to get the email address currently being used for alerts.',
+        description='This field is used to add or modify an email address that will be used for Notification API alerts associated with the application. getConfig can be used to get the email address currently being used for alerts.',
     )
 
 
@@ -30,19 +30,19 @@ class CreateSubscriptionFilterRequest(EbayModel):
     filter_schema: dict[str, dict[str, Any]] | None = Field(
         None,
         alias='filterSchema',
-        description='The content of a subscription filter as a valid <a href="https://json-schema.org " target="_blank">JSON Schema Core document</a> (version 2020-12 or later). The <strong>filterSchema</strong> provided must describe the subscription\'s notification payload such that it supplies valid criteria to filter the subscription\'s notifications.<br><br><span class="tablenote"><b>Note:</b> Not all topics can have filters applied to them. Use <a href="/api-docs/commerce/notification/resources/topic/methods/getTopic">getTopic</a> and <a href="/api-docs/commerce/notification/resources/topic/methods/getTopics">getTopics</a> requests to determine if a specific topic is filterable. Filterable topics have the boolean <b>filterable</b> returned as <code>true</code> in the response.</span><br><span class="tablenote"><b>Note:</b> If the JSON supplied as a subscription filter specifies a field that does not exist in the notifications for a topic, or if the topic is not filterable, the filter will be rejected and become <code>DISABLED</code>. If it is valid, however, the filter will move from <code>PENDING</code> status to <code>ENABLED</code> status.</span><br>Initially, when the <b>createSubscriptionFilter</b> request has been made, if the request has a valid JSON body a <b>201&nbsp;Created</b> is returned. After that, the validation of the <b>filterSchema</b> happens.',
+        description="The content of a subscription filter as a valid JSON Schema Core document (version 2020-12 or later). The filterSchema provided must describe the subscription's notification payload such that it supplies valid criteria to filter the subscription's notifications. Note: Not all topics can have filters applied to them.",
     )
 
 
 class DeliveryConfig(EbayModel):
     endpoint: str | None = Field(
         None,
-        description='The endpoint for this destination.<br><br><span class="tablenote"><b>Note:</b> The provided endpoint URL should use the HTTPS protocol, and it should not contain an internal IP address or <code>localhost</code> in its path.</span>',
+        description='The endpoint for this destination. Note: The provided endpoint URL should use the HTTPS protocol, and it should not contain an internal IP address or localhost in its path.',
     )
     verification_token: str | None = Field(
         None,
         alias='verificationToken',
-        description='The verification token associated with this endpoint.<br><br><span class="tablenote"><b>Note:</b> The provided verification token must be between 32 and 80 characters. Allowed characters include alphanumeric characters, underscores (<code>_</code>), and hyphens (<code>-</code>); no other characters are allowed.</span>',
+        description='The verification token associated with this endpoint. Note: The provided verification token must be between 32 and 80 characters. Allowed characters include alphanumeric characters, underscores ( _ ), and hyphens ( - ); no other characters are allowed.',
     )
 
 
@@ -76,7 +76,7 @@ class PublicKey(EbayModel):
     )
     key: str | None = Field(
         None,
-        description='The public key that is returned for the specified key ID.<br><br>This value is used to validate the eBay push notification message payload.',
+        description='The public key that is returned for the specified key ID. This value is used to validate the eBay push notification message payload.',
     )
 
 
@@ -101,16 +101,16 @@ class SubscriptionPayloadDetail(EbayModel):
     delivery_protocol: ProtocolEnum | None = Field(
         None,
         alias='deliveryProtocol',
-        description='The supported delivery protocol of the notification topic.<br><br><span class="tablenote"><b>Note:</b> <code>HTTPS</code> is currently the only supported delivery protocol of all notification topics. </span>',
+        description='The supported delivery protocol of the notification topic. Note: HTTPS is currently the only supported delivery protocol of all notification topics.',
     )
     format: FormatTypeEnum | None = Field(
         None,
-        description='The supported data format of the payload.<br><br><span class="tablenote"><b>Note:</b> JSON is currently the only supported format for all notification topics.</span>',
+        description='The supported data format of the payload. Note: JSON is currently the only supported format for all notification topics.',
     )
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The supported schema version for the notification topic. See the <b>supportedPayloads.schemaVersion</b> field for the topic in <a href="/develop/api/sell/notification_api#sell-notification_api-topic-gettopics">getTopics</a> or <a href="/api-docs/commerce/notification/resources/topic/methods/getTopic">getTopic</a> response.',
+        description='The supported schema version for the notification topic. See the supportedPayloads.schemaVersion field for the topic in getTopics or getTopic response.',
     )
 
 
@@ -131,14 +131,14 @@ class UpdateSubscriptionRequest(EbayModel):
     destination_id: str | None = Field(
         None,
         alias='destinationId',
-        description='The unique identifier of the destination endpoint that will receive notifications associated with this subscription. Use <a href="/develop/api/sell/notification_api#sell-notification_api-destination-getdestinations">getDestinations</a> to retrieve destination IDs.',
+        description='The unique identifier of the destination endpoint that will receive notifications associated with this subscription. Use getDestinations to retrieve destination IDs.',
     )
     payload: SubscriptionPayloadDetail | None = Field(
         None, description='The payload associated with this subscription.'
     )
     status: SubscriptionStatusEnum | None = Field(
         None,
-        description='Set the status of the subscription being updated to <code>ENABLED</code> or <code>DISABLED</code>.',
+        description='Set the status of the subscription being updated to ENABLED or DISABLED .',
     )
 
 
@@ -146,20 +146,19 @@ class CreateSubscriptionRequest(EbayModel):
     destination_id: str | None = Field(
         None,
         alias='destinationId',
-        description='The unique identifier of the destination endpoint that will receive notifications associated with this subscription. Use the <a href="/develop/api/sell/notification_api#sell-notification_api-destination-getdestinations">getDestinations</a>  method to retrieve destination IDs.',
+        description='The unique identifier of the destination endpoint that will receive notifications associated with this subscription. Use the getDestinations method to retrieve destination IDs.',
     )
     payload: SubscriptionPayloadDetail | None = Field(
         None,
-        description='The payload associated with the notification topic. Use <a href="/develop/api/sell/notification_api#sell-notification_api-topic-gettopics">getTopics</a> or <a href="/api-docs/commerce/notification/resources/topic/methods/getTopic">getTopic</a> to get the supported payload for the topic.',
+        description='The payload associated with the notification topic. Use getTopics or getTopic to get the supported payload for the topic.',
     )
     status: SubscriptionStatusEnum | None = Field(
-        None,
-        description='Set the status of the subscription to <code>ENABLED</code> or <code>DISABLED</code>.',
+        None, description='Set the status of the subscription to ENABLED or DISABLED .'
     )
     topic_id: str | None = Field(
         None,
         alias='topicId',
-        description='The unique identifier of the notification topic to subscribe to. Use <a href="/develop/api/sell/notification_api#sell-notification_api-topic-gettopics">getTopics</a> to get topic IDs.',
+        description='The unique identifier of the notification topic to subscribe to. Use getTopics to get topic IDs.',
     )
 
 
@@ -179,7 +178,7 @@ class Destination(EbayModel):
     )
     status: DestinationStatusEnum | None = Field(
         None,
-        description='The status for this destination.<br><br><span class="tablenote"><b>Note:</b> The <code>MARKED_DOWN</code> value is set by eBay systems and cannot be used in a create or update call by applications.</span><br><br><b>Valid values:</b><ul><li><code>ENABLED</code></li><li><code>DISABLED</code></li><li><code>MARKED_DOWN</code></li></ul>',
+        description='The status for this destination. Note: The MARKED_DOWN value is set by eBay systems and cannot be used in a create or update call by applications. Valid values: ENABLED DISABLED MARKED_DOWN',
     )
 
 
@@ -194,7 +193,7 @@ class DestinationRequest(EbayModel):
     )
     status: DestinationStatusEnum | None = Field(
         None,
-        description='This field sets the status for the destination endpoint as <code>ENABLED</code> or <code>DISABLED</code>.<br><br><span class="tablenote"><b>Note:</b> The <b>MARKED_DOWN</b> value is set by eBay systems and cannot be used in a create or update call by applications.</span>',
+        description='This field sets the status for the destination endpoint as ENABLED or DISABLED . Note: The MARKED_DOWN value is set by eBay systems and cannot be used in a create or update call by applications.',
     )
 
 
@@ -208,11 +207,11 @@ class DestinationSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The number of records to show in the current response.<br><br><b>Default:</b> 20',
+        description='The number of records to show in the current response. Default: 20',
     )
     next: str | None = Field(
         None,
-        description='The URL to access the next set of results. This field includes a <strong>continuation_token</strong>. No <b>prev</b> field is returned, but this value is persistent during the session so that you can use it to return to the next page.<br><br>This field is not returned if fewer records than specified by the <strong>limit</strong> field are returned.',
+        description='The URL to access the next set of results. This field includes a continuation_token . No prev field is returned, but this value is persistent during the session so that you can use it to return to the next page. This field is not returned if fewer records than specified by the limit field are returned.',
     )
     total: int | None = Field(
         None, description='The total number of matches for the search criteria.'
@@ -264,7 +263,7 @@ class PayloadDetail(EbayModel):
     deprecated: bool | None = Field(None, description='A deprecation indicator.')
     format: list[FormatTypeEnum] | None = Field(
         None,
-        description='The supported format. Presently, <code>JSON</code> is the only supported format.',
+        description='The supported format. Presently, JSON is the only supported format.',
     )
     schema_version: str | None = Field(
         None, alias='schemaVersion', description='The supported schema version.'
@@ -319,7 +318,7 @@ class SubscriptionFilter(EbayModel):
     filter_schema: dict[str, dict[str, Any]] | None = Field(
         None,
         alias='filterSchema',
-        description='The content of this subscription filter as a valid <a href="https://json-schema.org " target="_blank">JSON Schema Core document</a> (version 2020-12 or later). The <strong>filterSchema</strong> provided must describe the subscription\'s notification payload such that it supplies valid criteria to filter the subscription\'s notifications.',
+        description="The content of this subscription filter as a valid JSON Schema Core document (version 2020-12 or later). The filterSchema provided must describe the subscription's notification payload such that it supplies valid criteria to filter the subscription's notifications.",
     )
     filter_status: SubscriptionFilterStatus | None = Field(
         None,
@@ -340,11 +339,11 @@ class SubscriptionSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the limit parameter submitted in the request, which is the maximum number of items to return per page, from the result set. A result set is the complete set of results returned by the method.<br><br><span class="tablenote"><b>Note:</b> Though this parameter is not required to be submitted in the request, the parameter defaults to <code>20</code> if omitted.</span><br><br><b>Default:</b> 20',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of items to return per page, from the result set. A result set is the complete set of results returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 20 if omitted. Default: 20',
     )
     next: str | None = Field(
         None,
-        description='The URL to access the next set of results. This field includes a <strong>continuation_token</strong>. No <b>prev</b> field is returned, but this value is persistent during the session so that you can use it to return to the next page.<br><br>This field is not returned if fewer records than specified by the <strong>limit</strong> field are returned.',
+        description='The URL to access the next set of results. This field includes a continuation_token . No prev field is returned, but this value is persistent during the session so that you can use it to return to the next page. This field is not returned if fewer records than specified by the limit field are returned.',
     )
     subscriptions: list[Subscription] | None = Field(
         None, description='The subscriptions that match the search criteria.'
@@ -386,11 +385,11 @@ class TopicSearchResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the limit parameter submitted in the request, which is the maximum number of items to return per page, from the result set. A result set is the complete set of results returned by the method.<br><br><span class="tablenote"><b>Note:</b> Though this parameter is not required to be submitted in the request, the parameter defaults to <code>20</code> if omitted.</span>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of items to return per page, from the result set. A result set is the complete set of results returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 20 if omitted.',
     )
     next: str | None = Field(
         None,
-        description='The URL to access the next set of results. This field includes a <strong>continuation_token</strong>. No <b>prev</b> field is returned, but this value is persistent during the session so that you can use it to return to the next page.<br><br>This field is not returned if fewer records than specified by the <strong>limit</strong> field are returned.',
+        description='The URL to access the next set of results. This field includes a continuation_token . No prev field is returned, but this value is persistent during the session so that you can use it to return to the next page. This field is not returned if fewer records than specified by the limit field are returned.',
     )
     topics: list[Topic] | None = Field(
         None, description='An array of topics that match the specified criteria.'

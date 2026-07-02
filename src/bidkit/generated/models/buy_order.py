@@ -283,7 +283,7 @@ class CouponRequest(EbayModel):
     redemption_code: str | None = Field(
         None,
         alias='redemptionCode',
-        description='The redemption code of the coupon.<br><br><b>Maximum:</b> One redemption code per order',
+        description='The redemption code of the coupon. Maximum: One redemption code per order',
     )
 
 
@@ -457,7 +457,7 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='The actual value that was passed in for the element specified in the <b>name</b> field.',
+        description='The actual value that was passed in for the element specified in the name field.',
     )
 
 
@@ -484,17 +484,17 @@ class LegacyReference(EbayModel):
     legacy_item_id: str | None = Field(
         None,
         alias='legacyItemId',
-        description='The legacy ID used to identify an item.<br><br>This is used by the Post Order API <a href="https://developer.ebay.com/Devzone/post-order/post-order_v2_return__post.html " target="_blank">Create Return Request</a> method. This call initiates the item return process. For more information on how to use this field in the Post Order API, see <a href="/api-docs/buy/static/api-order.html#return-request">Create a return request</a> in the Buy Integration Guide.<br><br><b> Restriction:</b> The Post Order API can be used only with eBay member checkouts.',
+        description='The legacy ID used to identify an item. This is used by the Post Order API Create Return Request method. This call initiates the item return process. For more information on how to use this field in the Post Order API, see Create a return request in the Buy Integration Guide. Restriction: The Post Order API can be used only with eBay member checkouts.',
     )
     legacy_order_id: str | None = Field(
         None,
         alias='legacyOrderId',
-        description='The legacy ID of the order.<br><br>This is used by the Post Order API <a href="https://developer.ebay.com/Devzone/post-order/post-order_v2_cancellation__post.html " target="_blank">Submit Cancellation Request</a> method. This method initiates the item cancellation process. For more information on how to use this field in the Post Order API, see <a href="/api-docs/buy/static/api-order.html#using">Using the Post Order API</a>.<br><br><b>Restriction:</b> The Post Order API can be used only with eBay member checkouts.',
+        description='The legacy ID of the order. This is used by the Post Order API Submit Cancellation Request method. This method initiates the item cancellation process. For more information on how to use this field in the Post Order API, see Using the Post Order API . Restriction: The Post Order API can be used only with eBay member checkouts.',
     )
     legacy_transaction_id: str | None = Field(
         None,
         alias='legacyTransactionId',
-        description='The legacy ID of the transaction.<br><br>This is used by the Post Order API <a href="https://developer.ebay.com/devzone/post-order/post-order_v2_return__post.html " target="_blank">Create Return Request</a> call. This call initiates the item return process. For more information on how to use this field in the Post Order API, see <a href="/api-docs/buy/static/api-order.html#using">Using the Post Order API</a> in the Buy Integration Guide.<br><br><b>Restriction:</b> The Post Order API can be used only with eBay member checkouts.',
+        description='The legacy ID of the transaction. This is used by the Post Order API Create Return Request call. This call initiates the item return process. For more information on how to use this field in the Post Order API, see Using the Post Order API in the Buy Integration Guide. Restriction: The Post Order API can be used only with eBay member checkouts.',
     )
 
 
@@ -502,7 +502,7 @@ class LineItemInput(EbayModel):
     item_id: str | None = Field(
         None,
         alias='itemId',
-        description='The unique eBay-assigned identifier of an item. This ID is returned by the <b>Browse</b> and <b>Feed</b> API methods. The ID must be in RESTful item ID format.<br><br><b>For example:</b> <code>v1|2**********6|5**********4</code> or <code>v1|1**********9|0</code>.<br><br>For more information about item IDs for RESTful APIs, see <a href="/api-docs/buy/static/api-browse.html#Legacy">Legacy API compatibility</a>.<br><br>Each <b>itemId</b> will become a single line item.<br><br><b>Maximum:</b> 10 per session',
+        description='The unique eBay-assigned identifier of an item. This ID is returned by the Browse and Feed API methods. The ID must be in RESTful item ID format. For example: v1|2**********6|5**********4 or v1|1**********9|0 . For more information about item IDs for RESTful APIs, see Legacy API compatibility . Each itemId will become a single line item. Maximum: 10 per session',
     )
     quantity: int | None = Field(
         None, description='The quantity ordered in this line item.'
@@ -573,12 +573,12 @@ class ShippingAddress(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description='The first line of the street address where the item is being shipped.<br><br><b>Maximum:</b><ul><li>40 characters for AU, CA, and US marketplaces</li><li>35 characters for DE and GB marketplaces</li><li>50 characters for all other marketplaces</li></ul>',
+        description='The first line of the street address where the item is being shipped. Maximum: 40 characters for AU, CA, and US marketplaces 35 characters for DE and GB marketplaces 50 characters for all other marketplaces',
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description="The second line of the street address where the item is being shipped. This optional field can be used for information such as 'Suite Number' or 'Apt Number'.<br><br><b>Maximum:</b><ul><li>40 characters for AU, CA, and US marketplaces</li><li>35 characters for DE and GB marketplaces</li><li>50 characters for all other marketplaces</li></ul>",
+        description="The second line of the street address where the item is being shipped. This optional field can be used for information such as 'Suite Number' or 'Apt Number'. Maximum: 40 characters for AU, CA, and US marketplaces 35 characters for DE and GB marketplaces 50 characters for all other marketplaces",
     )
     city: str | None = Field(
         None, description='The city of the address where the item is being shipped.'
@@ -592,12 +592,12 @@ class ShippingAddress(EbayModel):
     phone_number: str | None = Field(
         None,
         alias='phoneNumber',
-        description='The phone number of the person receiving the package.<br><br><span class="tablenote"><b>Note:</b> It is highly recommended that when entering the phone number you include the country code.<br><br>For example, if a US phone number is <code>4********4</code>, you would enter <code>+14********4</code>. If you do not include this code, the service will use the country specified in the <b>country</b> field.<br><br>You can find the country code at <a href="https://countrycode.org/">https://countrycode.org</a>.</span>',
+        description='The phone number of the person receiving the package. Note: It is highly recommended that when entering the phone number you include the country code. For example, if a US phone number is 4********4 , you would enter +14********4 . If you do not include this code, the service will use the country specified in the country field. You can find the country code at https://countrycode.org .',
     )
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description='The postal code of the address where the item is being shipped.<br><br><span class="tablenote"><b>Note:</b> This is optional when shipping to EBAY_HK (Hong Kong).</span>',
+        description='The postal code of the address where the item is being shipped. Note: This is optional when shipping to EBAY_HK (Hong Kong).',
     )
     recipient: Recipient | None = Field(
         None, description='The name of the person receiving the package.'
@@ -605,7 +605,7 @@ class ShippingAddress(EbayModel):
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description='The state or province of the address.<br><br><span class="tablenote"><b>Note:</b> For the US marketplace, this is a two-character value. For a list of valid values, see <a href="https://www.ups.com/worldshiphelp/WS15/ENU/AppHelp/Codes/State_Province_Codes.htm">US State and Canada Province Codes</a>. </span>',
+        description='The state or province of the address. Note: For the US marketplace, this is a two-character value. For a list of valid values, see US State and Canada Province Codes .',
     )
 
 
@@ -613,12 +613,12 @@ class ShippingAddressImpl(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description='The first line of the street address where the item is being shipped.<br><br><b>Maximum:</b><ul><li>40 characters for AU, CA, and US marketplaces</li><li>35 characters for DE and GB marketplaces</li><li>50 characters for all other marketplaces</li></ul>',
+        description='The first line of the street address where the item is being shipped. Maximum: 40 characters for AU, CA, and US marketplaces 35 characters for DE and GB marketplaces 50 characters for all other marketplaces',
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description="The second line of the street address where the item is being shipped. This optional field can be used for information such as 'Suite Number' or 'Apt Number'.<br><br><b>Maximum:</b><ul><li>40 characters for AU, CA, and US marketplaces</li><li>35 characters for DE and GB marketplaces</li><li>50 characters for all other marketplaces</li></ul>",
+        description="The second line of the street address where the item is being shipped. This optional field can be used for information such as 'Suite Number' or 'Apt Number'. Maximum: 40 characters for AU, CA, and US marketplaces 35 characters for DE and GB marketplaces 50 characters for all other marketplaces",
     )
     city: str | None = Field(
         None, description='The city of the address where the item is being shipped.'
@@ -632,12 +632,12 @@ class ShippingAddressImpl(EbayModel):
     phone_number: str | None = Field(
         None,
         alias='phoneNumber',
-        description='The phone number of the person receiving the package.<br><br><span class="tablenote"><b>Note:</b> It is highly recommended that when entering the phone number you include the country code.<br><br>For example, if a US phone number is <code>4********4</code>, you would enter <code>+14********4</code>. If you do not include this code, the service will use the country specified in the <b>country</b> field.<br><br>You can find the country code at <a href="https://countrycode.org/">https://countrycode.org</a>.</span>',
+        description='The phone number of the person receiving the package. Note: It is highly recommended that when entering the phone number you include the country code. For example, if a US phone number is 4********4 , you would enter +14********4 . If you do not include this code, the service will use the country specified in the country field. You can find the country code at https://countrycode.org .',
     )
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description='The postal code of the address where the item is being shipped.<br><br><span class="tablenote"><b>Note:</b> This is optional when shipping to EBAY_HK (Hong Kong).</span>',
+        description='The postal code of the address where the item is being shipped. Note: This is optional when shipping to EBAY_HK (Hong Kong).',
     )
     recipient: Recipient | None = Field(
         None, description='The name of the person receiving the package.'
@@ -645,7 +645,7 @@ class ShippingAddressImpl(EbayModel):
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description='The state or province of the address.<br><br><span class="tablenote"><b>Note:</b> For the US marketplace, this is a two-character value. For a list of valid values, see <a href="https://www.ups.com/worldshiphelp/WS15/ENU/AppHelp/Codes/State_Province_Codes.htm">US State and Canada Province Codes</a>. </span>',
+        description='The state or province of the address. Note: For the US marketplace, this is a two-character value. For a list of valid values, see US State and Canada Province Codes .',
     )
 
 
@@ -653,7 +653,7 @@ class ShippingDetail(EbayModel):
     ebay_shipping: bool | None = Field(
         None,
         alias='ebayShipping',
-        description='This value indicates whether shipping for this order is managed by eBay (<code>true</code>) or by the seller (omitted if <code>false</code> or not applicable to the transaction).<br><br>When <code>true</code>, the value in the <b>pricingSummary.deliveryCost</b> container indicates the shipping cost paid directly by the buyer to eBay.',
+        description='This value indicates whether shipping for this order is managed by eBay ( true ) or by the seller (omitted if false or not applicable to the transaction). When true , the value in the pricingSummary.deliveryCost container indicates the shipping cost paid directly by the buyer to eBay.',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
@@ -703,7 +703,7 @@ class UpdateQuantity(EbayModel):
     line_item_id: str | None = Field(
         None,
         alias='lineItemId',
-        description='A unique eBay-assigned ID value that identifies a line item in a purchase order.<br><br><b>For example:</b> <code>v1|2**********6|5**********4</code> or <code>v1|1**********9|0</code>.<br><br>For more information about item IDs for RESTful APIs, see <a href="/api-docs/buy/static/api-browse.html#Legacy">Legacy API compatibility</a>.',
+        description='A unique eBay-assigned ID value that identifies a line item in a purchase order. For example: v1|2**********6|5**********4 or v1|1**********9|0 . For more information about item IDs for RESTful APIs, see Legacy API compatibility .',
     )
     quantity: int | None = Field(
         None, description='The quantity of the line item that you wish to update.'
@@ -714,7 +714,7 @@ class UpdateShippingOption(EbayModel):
     line_item_id: str | None = Field(
         None,
         alias='lineItemId',
-        description='A unique eBay-assigned ID value that identifies the line item in a checkout session.<br><br><b>For example:</b> <code>v1|2**********6|5**********4</code> or <code>v1|1**********9|0</code>.<br><br>For more information about item IDs for RESTful APIs, see <a href="/api-docs/buy/static/api-browse.html#Legacy">Legacy API compatibility</a>',
+        description='A unique eBay-assigned ID value that identifies the line item in a checkout session. For example: v1|2**********6|5**********4 or v1|1**********9|0 . For more information about item IDs for RESTful APIs, see Legacy API compatibility',
     )
     shipping_option_id: str | None = Field(
         None,
@@ -730,7 +730,7 @@ class Amount(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='The amount of the currency specified in the <b>currency</b> field. The value of the <b>currency</b> defaults to the standard currency used by the country of the eBay site offering the item.',
+        description='The amount of the currency specified in the currency field. The value of the currency defaults to the standard currency used by the country of the eBay site offering the item.',
     )
 
 
@@ -742,11 +742,11 @@ class AuthenticityVerificationProgram(EbayModel):
     outcome_reason: str | None = Field(
         None,
         alias='outcomeReason',
-        description='An informational message regarding the authentication outcome of an Authenticity Guarantee verification inspection.<br><br><span class="tablenote"><b>Note:</b> This field is conditionally returned when there is information that applies to the Authenticity Guarantee program.</span>',
+        description='An informational message regarding the authentication outcome of an Authenticity Guarantee verification inspection. Note: This field is conditionally returned when there is information that applies to the Authenticity Guarantee program.',
     )
     status: AuthenticityVerificationStatusEnum | None = Field(
         None,
-        description='An enumerated value that indicates whether the order line item has passed or failed the Authenticity Guarantee verification inspection, or whether the inspection and/or results are still pending.<br><br><span class="tablenote"><b>Note:</b> This field is conditionally returned when the purchase is complete.</span><br><br><b>Valid Values:</b><ul><li><code>PENDING</code></li><li><code>PASSED</code></li><li><code>FAILED</code></li><li><code>INELIGIBLE</code></li></ul>',
+        description='An enumerated value that indicates whether the order line item has passed or failed the Authenticity Guarantee verification inspection, or whether the inspection and/or results are still pending. Note: This field is conditionally returned when the purchase is complete. Valid Values: PENDING PASSED FAILED INELIGIBLE',
     )
     terms_web_url: str | None = Field(
         None,
@@ -778,7 +778,7 @@ class CheckoutAddonService(EbayModel):
     service_type: ServiceTypeEnum | None = Field(
         None,
         alias='serviceType',
-        description='The type of add-on service, such as <code>AUTHENTICITY_GUARANTEE</code>.',
+        description='The type of add-on service, such as AUTHENTICITY_GUARANTEE .',
     )
 
 
@@ -789,12 +789,12 @@ class CreateGuestCheckoutSessionRequestV2(EbayModel):
     line_item_inputs: list[LineItemInput] | None = Field(
         None,
         alias='lineItemInputs',
-        description='An array used to define the line item(s) and desired quantity for an eBay guest checkout session.<br><br><b>Maximum:</b> 10 line items',
+        description='An array used to define the line item(s) and desired quantity for an eBay guest checkout session. Maximum: 10 line items',
     )
     shipping_address: ShippingAddress | None = Field(
         None,
         alias='shippingAddress',
-        description='A container that defines the shipping address for an eBay guest checkout session.<br><br><span class="tablenote"><b>Note:</b> If the address cannot be validated, a warning message is  returned along with the response.</span>',
+        description='A container that defines the shipping address for an eBay guest checkout session. Note: If the address cannot be validated, a warning message is returned along with the response.',
     )
 
 
@@ -908,14 +908,14 @@ class ImportTax(EbayModel):
     import_tax_type: ImportTaxTypeEnum | None = Field(
         None,
         alias='importTaxType',
-        description='An enumeration value that indicates the type of import tax applicable to the order. Currently, the only applicable import tax is the <i>Goods and Services</i> tax (indicated with <code>GST</code>). The Goods and Services tax is only applicable to orders for the eBay Australia marketplace.',
+        description='An enumeration value that indicates the type of import tax applicable to the order. Currently, the only applicable import tax is the Goods and Services tax (indicated with GST ). The Goods and Services tax is only applicable to orders for the eBay Australia marketplace.',
     )
 
 
 class Promotion(EbayModel):
     discount: Amount | None = Field(
         None,
-        description='The details regarding the monetary value of the promotional discount.<br><br><span class="tablenote"><b>Note:</b> eBay Bucks are not supported.</span>',
+        description='The details regarding the monetary value of the promotional discount. Note: eBay Bucks are not supported.',
     )
     message: str | None = Field(
         None,
@@ -924,7 +924,7 @@ class Promotion(EbayModel):
     promotion_type: str | None = Field(
         None,
         alias='promotionType',
-        description='The kind of promotion. Some examples are: <code>SellerDiscountedPromotionalOffer</code> and <code>COUPON</code>.',
+        description='The kind of promotion. Some examples are: SellerDiscountedPromotionalOffer and COUPON .',
     )
 
 
@@ -937,7 +937,7 @@ class Region(EbayModel):
     region_type: RegionTypeEnum | None = Field(
         None,
         alias='regionType',
-        description='An enumeration value that indicates the type of region for the tax jurisdiction.<br><br><b>Valid Values:</b> <ul><li><code>STATE_OR_PROVINCE</code></li><li><code>COUNTRY</code></li></ul>',
+        description='An enumeration value that indicates the type of region for the tax jurisdiction. Valid Values: STATE_OR_PROVINCE COUNTRY',
     )
 
 
@@ -945,7 +945,7 @@ class ShippingOption(EbayModel):
     base_delivery_cost: Amount | None = Field(
         None,
         alias='baseDeliveryCost',
-        description='The delivery cost using this shipping option, for this line item, before any delivery discounts are applied.<br><br><span class="tablenote"><b>Note:</b> The cost includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT">VAT Obligations in the EU</a>.</span>',
+        description='The delivery cost using this shipping option, for this line item, before any delivery discounts are applied. Note: The cost includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see VAT-inclusive pricing.',
     )
     delivery_discount: Amount | None = Field(
         None,
@@ -955,12 +955,12 @@ class ShippingOption(EbayModel):
     ebay_shipping: bool | None = Field(
         None,
         alias='ebayShipping',
-        description='This value indicates whether shipping for this order is managed by eBay (<code>true</code>) or by the seller (<code>false</code>).',
+        description='This value indicates whether shipping for this order is managed by eBay ( true ) or by the seller ( false ).',
     )
     import_charges: Amount | None = Field(
         None,
         alias='importCharges',
-        description='The <a href="https://pages.ebay.com/seller-center/shipping/global-shipping-program.html">Global Shipping Program</a> import charges for this line item.',
+        description='The Global Shipping Program import charges for this line item.',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
@@ -1013,12 +1013,12 @@ class TaxDetails(EbayModel):
     tax_classification: TaxClassificationEnum | None = Field(
         None,
         alias='taxClassification',
-        description='Specifies what the tax item pertains to, such as a tangible object (<code>ITEM_TAX</code>), a service (<code>SERVICE_TAX</code>), or shipping fees (<code>SHIPPING_TAX</code>).',
+        description='Specifies what the tax item pertains to, such as a tangible object ( ITEM_TAX ), a service ( SERVICE_TAX ), or shipping fees ( SHIPPING_TAX ).',
     )
     tax_classification_details: list[TaxClassificationDetail] | None = Field(
         None,
         alias='taxClassificationDetails',
-        description='Provides a detailed accounting, by <code>TaxType</code>, of taxes collected for each item within an order.',
+        description='Provides a detailed accounting, by TaxType , of taxes collected for each item within an order.',
     )
 
 
@@ -1070,7 +1070,7 @@ class PricingSummaryV2(EbayModel):
     addon_services_fee: Amount | None = Field(
         None,
         alias='addonServicesFee',
-        description='The total fee for add-on services among all line items.<br><br><span class="tablenote"><b>Note:</b> This field is only used by the <b>getGuestPurchaseOrder</b> method, and is not used by any of the <b>guest_checkout_session</b> methods.</span>',
+        description='The total fee for add-on services among all line items. Note: This field is only used by the getGuestPurchaseOrder method, and is not used by any of the guest_checkout_session methods.',
     )
     adjustment: Adjustment | None = Field(
         None,
@@ -1079,12 +1079,12 @@ class PricingSummaryV2(EbayModel):
     delivery_cost: Amount | None = Field(
         None,
         alias='deliveryCost',
-        description='The delivery cost for all of the line items, after any delivery discounts are applied.<br><br>For example, there are four line items, and the delivery cost for each line item is $5. One of the line items qualifies for free delivery. The <b>deliveryCost</b> would be $15, which is the total cost for delivering all of the line items after the discount is applied.<br><br><span class="tablenote"><b>Note:</b> The cost includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT">VAT Obligations in the EU</a>.</span>',
+        description='The delivery cost for all of the line items, after any delivery discounts are applied. For example, there are four line items, and the delivery cost for each line item is $5. One of the line items qualifies for free delivery. The deliveryCost would be $15, which is the total cost for delivering all of the line items after the discount is applied.',
     )
     delivery_discount: Amount | None = Field(
         None,
         alias='deliveryDiscount',
-        description='The total amount of the order delivery discounts for all of the line items, such as free shipping.<br><br><span class="tablenote"><b>Note:</b> This field is only used by the <b>getGuestPurchaseOrder</b> method, and is not used by any of the <b>guest_checkout_session</b> methods.</span>',
+        description='The total amount of the order delivery discounts for all of the line items, such as free shipping. Note: This field is only used by the getGuestPurchaseOrder method, and is not used by any of the guest_checkout_session methods.',
     )
     fee: Amount | None = Field(
         None,
@@ -1093,12 +1093,12 @@ class PricingSummaryV2(EbayModel):
     import_charges: Amount | None = Field(
         None,
         alias='importCharges',
-        description='The sum of all <a href="https://pages.ebay.com/seller-center/shipping/global-shipping-program.html ">Global Shipping Program</a> import charges, for all the line items in the order.',
+        description='The sum of all Global Shipping Program import charges, for all the line items in the order.',
     )
     import_duties: Amount | None = Field(
         None,
         alias='importDuties',
-        description='The total sum of cross-border import duties calculated for all line items in the order, which is paid by the buyer at checkout.<br><br><span class="tablenote"><b>Note:</b> This field is only used by the <b>getGuestPurchaseOrder</b> method, and is not used by any of the <b>guest_checkout_session</b> methods.</span>',
+        description='The total sum of cross-border import duties calculated for all line items in the order, which is paid by the buyer at checkout. Note: This field is only used by the getGuestPurchaseOrder method, and is not used by any of the guest_checkout_session methods.',
     )
     import_tax: ImportTax | None = Field(
         None,
@@ -1108,19 +1108,19 @@ class PricingSummaryV2(EbayModel):
     price_discount: Amount | None = Field(
         None,
         alias='priceDiscount',
-        description='The total discount amount for all line items in the order.<br><br>For example, there are four line items in the order. Two of the line items qualify for a <i>Buy 1, Get 1</i> offer, which is a $6 and a $15 discount. The <b>priceDiscount</b> value returned would be 21, which is the total of the two discounts.<br><br><span class="tablenote"><b>Note:</b> Delivery discount amounts, if applicable, are not reflected in the value returned in this field.</span>',
+        description='The total discount amount for all line items in the order. For example, there are four line items in the order. Two of the line items qualify for a Buy 1, Get 1 offer, which is a $6 and a $15 discount. The priceDiscount value returned would be 21, which is the total of the two discounts. Note: Delivery discount amounts, if applicable, are not reflected in the value returned in this field.',
     )
     price_subtotal: Amount | None = Field(
         None,
         alias='priceSubtotal',
-        description='The total cost for all line items in the order, taking into account the item quantity, but before adding taxes and delivery costs, or applying discounts, fees, and adjustments.<br><br><span class="tablenote"><b>Note:</b> The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT">VAT Obligations in the EU</a>.</span>',
+        description='The total cost for all line items in the order, taking into account the item quantity, but before adding taxes and delivery costs, or applying discounts, fees, and adjustments. Note: The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces.',
     )
     tax: Amount | None = Field(
         None, description='The total amount of taxes for all line items in the order.'
     )
     total: Amount | None = Field(
         None,
-        description='The total cost of the order, which includes: (<b>priceSubtotal</b> - <b>priceDiscount</b>) + <b>deliveryCost</b> + <b>tax</b> +/- <b>adjustment</b> + <b>fee</b> + <b>importCharges</b> - <b>additionalSavings</b>.',
+        description='The total cost of the order, which includes: ( priceSubtotal - priceDiscount ) + deliveryCost + tax +/- adjustment + fee + importCharges - additionalSavings .',
     )
 
 
@@ -1156,7 +1156,7 @@ class LineItem(EbayModel):
     base_unit_price: Amount | None = Field(
         None,
         alias='baseUnitPrice',
-        description='The cost of a single quantity of the line item. This is the starting point for computing the price during the checkout session.<br><br><span class="tablenote"><b>Note:</b> The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT">VAT Obligations in the EU</a>.</span>',
+        description='The cost of a single quantity of the line item. This is the starting point for computing the price during the checkout session. Note: The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces.',
     )
     fees: list[Fee] | None = Field(
         None, description='A breakdown of the fees applicable to the line item.'
@@ -1167,7 +1167,7 @@ class LineItem(EbayModel):
     item_id: str | None = Field(
         None,
         alias='itemId',
-        description='The eBay identifier of an item. This ID is returned by the <b>Browse</b> and <b>Feed</b> API methods. The ID is in RESTful item ID format.<br><br><b>For example:</b> <code>v1|2**********6|5**********4</code> or <code>v1|1**********9|0</code>.<br><br>For more information about item IDs for RESTful APIs, see <a href="/api-docs/buy/static/api-browse.html#Legacy">Legacy API compatibility</a>.',
+        description='The eBay identifier of an item. This ID is returned by the Browse and Feed API methods. The ID is in RESTful item ID format. For example: v1|2**********6|5**********4 or v1|1**********9|0 . For more information about item IDs for RESTful APIs, see Legacy API compatibility .',
     )
     line_item_id: str | None = Field(
         None,
@@ -1177,7 +1177,7 @@ class LineItem(EbayModel):
     net_price: Amount | None = Field(
         None,
         alias='netPrice',
-        description='The total cost for the line item, taking into account the quantity, any seller item discounts, and any coupon that applies.<br><br><span class="tablenote"><b>Note:</b> This does not include any shipping discounts, shipping costs, fees, or seller adjustments.</span>',
+        description='The total cost for the line item, taking into account the quantity, any seller item discounts, and any coupon that applies. Note: This does not include any shipping discounts, shipping costs, fees, or seller adjustments.',
     )
     promotions: list[Promotion] | None = Field(
         None, description='An array of promotions applied to the line item.'
@@ -1192,7 +1192,7 @@ class LineItem(EbayModel):
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='An array of shipping options that are available for the line item. By default, the first one will be selected.<br><br><span class="tablenote"><b>Note:</b> The <b>updateGuestShippingOption</b> method can be used to change the shipping option.</span>',
+        description='An array of shipping options that are available for the line item. By default, the first one will be selected. Note: The updateGuestShippingOption method can be used to change the shipping option.',
     )
     tax_details: list[TaxDetail] | None = Field(
         None,
@@ -1216,7 +1216,7 @@ class OrderLineItemV2(EbayModel):
     base_unit_price: Amount | None = Field(
         None,
         alias='baseUnitPrice',
-        description='The cost of a single quantity of the line item.<br><br><span class="tablenote"><b>Note:</b> The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT">VAT Obligations in the EU</a>.</span>',
+        description='The cost of a single quantity of the line item. Note: The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see VAT-inclusive pricing. For more information on VAT, refer to VAT Obligations in the EU .',
     )
     fees: list[Fee] | None = Field(
         None, description='A breakdown of the fees applicable to the line item.'
@@ -1227,22 +1227,22 @@ class OrderLineItemV2(EbayModel):
     item_id: str | None = Field(
         None,
         alias='itemId',
-        description='The eBay identifier of an item. This ID is returned by the <b>Browse</b> and <b>Feed</b> API methods.',
+        description='The eBay identifier of an item. This ID is returned by the Browse and Feed API methods.',
     )
     item_on_hold: bool | None = Field(
         None,
         alias='itemOnHold',
-        description='When this value is <code>true</code> it indicates that the item has been put on hold due to a violation of eBay Policy.',
+        description='When this value is true it indicates that the item has been put on hold due to a violation of eBay Policy.',
     )
     legacy_reference: LegacyReference | None = Field(
         None,
         alias='legacyReference',
-        description='A container that returns fields to support using the <a href="https://developer.ebay.com/devzone/post-order/index.html#callindex ">Post Order API</a> for returns and cancellations. For information about what is returned in these fields and how to use the Post Order API, see <a href="/api-docs/buy/static/api-order.html#using">Using the Post Order API</a>.<br><br><b>Note:</b> The Post Order API can be used only with eBay member checkouts.',
+        description='A container that returns fields to support using the Post Order API for returns and cancellations. For information about what is returned in these fields and how to use the Post Order API, see Using the Post Order API . Note: The Post Order API can be used only with eBay member checkouts.',
     )
     line_item_id: str | None = Field(
         None,
         alias='lineItemId',
-        description='A unique eBay-assigned ID value that identifies a line item in a checkout session. This is created by the <a href="/api-docs/buy/order/resources/guest_checkout_session/methods/initiateGuestCheckoutSession">initiateGuestCheckoutSession</a>.',
+        description='A unique eBay-assigned ID value that identifies a line item in a checkout session. This is created by the initiateGuestCheckoutSession .',
     )
     line_item_payment_status: LineItemPaymentStatusEnum | None = Field(
         None,
@@ -1252,17 +1252,17 @@ class OrderLineItemV2(EbayModel):
     line_item_status: LineItemStatusEnum | None = Field(
         None,
         alias='lineItemStatus',
-        description='An enumeration value that indicates the fulfillment state of this line item.<br><br><span class="tablenote"><b>Note:</b> When there is no tracking information, the status will never change from <code>FULFILLMENT_IN_PROGRESS</code>; without tracking information, eBay has no way of knowing whether the order was delivered.</span>',
+        description='An enumeration value that indicates the fulfillment state of this line item. Note: When there is no tracking information, the status will never change from FULFILLMENT_IN_PROGRESS ; without tracking information, eBay has no way of knowing whether the order was delivered.',
     )
     net_price: Amount | None = Field(
         None,
         alias='netPrice',
-        description='The total cost for the line item, taking into account the quantity, any seller item discounts, and any coupon that applies.<br><br><span class="tablenote"><b>Note:</b> This does not include any shipping discounts, shipping costs, fees, or seller adjustments.</span>',
+        description='The total cost for the line item, taking into account the quantity, any seller item discounts, and any coupon that applies. Note: This does not include any shipping discounts, shipping costs, fees, or seller adjustments.',
     )
     order_id: str | None = Field(
         None,
         alias='orderId',
-        description='The unique order ID for the line item.<br><br><b>Maximum Length:</b> 40 characters',
+        description='The unique order ID for the line item. Maximum Length: 40 characters',
     )
     promotions: list[Promotion] | None = Field(
         None, description='An array of promotions applied to the line item.'
@@ -1282,7 +1282,7 @@ class OrderLineItemV2(EbayModel):
     tax_details: list[TaxDetail] | None = Field(
         None,
         alias='taxDetails',
-        description='A container for the tax information for the line item. <br><br><span class="tablenote"><b>Note:</b> The information in this container is only returned when requested from the GB marketplace, when applicable.</span>',
+        description='A container for the tax information for the line item. Note: The information in this container is only returned when requested from the GB marketplace, when applicable.',
     )
     title: str | None = Field(None, description='The seller-created title of the item.')
 
@@ -1296,7 +1296,7 @@ class GuestCheckoutSessionResponseV2(EbayModel):
     checkout_session_id: str | None = Field(
         None,
         alias='checkoutSessionId',
-        description='The eBay-assigned guest checkout session ID. This ID is created after a successful <b>initiateGuestCheckoutSession</b> call.',
+        description='The eBay-assigned guest checkout session ID. This ID is created after a successful initiateGuestCheckoutSession call.',
     )
     line_items: list[LineItem] | None = Field(
         None,

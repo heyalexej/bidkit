@@ -111,29 +111,8 @@ class BuyBrowseResource(BaseResource):
     def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items by various query parameters and retrieves summaries of
         the items. You can search by keyword, category, eBay product ID (ePID), or GTIN, charity ID,
-        or a combination of these.Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
-        option are returned by default. To retrieve listings that do not have FIXED_PRICE as a
-        buying option, the buyingOptions filter can be used to retrieve those listings.Note that an
-        auction listing enabled with the Buy it Now feature will initially show AUCTION and
-        FIXED_PRICE as buying options, but if/when that auction listing receives a qualifying bid,
-        only AUCTION remains as a buying option. If this happens, the buyingOptions filter would
-        need to be used to retrieve that auction listing.This method also supports the
-        following:Filtering by the value of one or multiple fields, such as listing format, item
-        condition, price range, location, and more. For the fields supported by this method, refer
-        to the filter parameter.Retrieving the refinements (metadata) of an item, such as item
-        aspects (color, brand) condition, category, etc. using the fieldgroups parameter.Filtering
-        by item aspects and other refinements using the aspect_filter parameter.Filtering for items
-        that are compatible with a specific product, using the compatibility_filter
-        parameter.Creating aspects histograms, which enables shoppers to drill down in each
-        refinement narrowing the search results.For additional information and examples of these
-        capabilities, refer to Browse API in the Buying Integration Guide.Pagination and sort
-        controlsThere are pagination controls (limit and offset fields) and sort query parameters
-        that control/sort the data that are returned. By default, results are sorted by Best Match.
-        For more information about Best Match, refer to Best Match.RestrictionsThis method can
-        return a maximum of 10,000 items. For a list of supported sites and other restrictions,
-        refer to Buy APIs Requirements.eBay Partner Network: In order to receive a commission for
-        your sales, you must use the URL returned in the itemAffiliateWebUrl field to forward your
-        buyer to the ebay.com site.
+        or a combination of these. Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
+        option are returned by default.
         """
         return self._request(
             'search',
@@ -153,18 +132,8 @@ class BuyBrowseResource(BaseResource):
     def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
-        with other available filters.To get the Base64 image string, you can use sites such as
-        https://codebeautify.org/image-to-base64-converter.This method also supports the following:
-        Filtering by the value of one or multiple fields, such as listing format, item condition,
-        price range, location, and more. For the fields supported by this method, refer to the
-        filter parameter.Filtering by item aspects using the aspect_filter parameter.For details and
-        examples of these capabilities, refer to Browse API in the Buying Integration Guide.URL
-        Encoding for ParametersQuery parameter values need to be URL encoded. For details, refer to
-        URL encoding query parameter values. For readability, code examples in this document have
-        not been URL encoded.RestrictionsThis method can return a maximum of 10,000 items. For a
-        list of supported sites and other restrictions, refer to Buy APIs Requirements.eBay Partner
-        Network: In order to receive a commission for your sales, you must use the URL returned in
-        the itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        with other available filters. To get the Base64 image string, you can use sites such as
+        https://codebeautify.org/image-to-base64-converter .
         """
         return self._request(
             'searchByImage',
@@ -186,21 +155,8 @@ class BuyBrowseResource(BaseResource):
         """This method retrieves the details of a specific item, such as description, price, category,
         all item aspects, condition, return policies, seller feedback and score, shipping options,
         shipping costs, estimated delivery, and other information the buyer needs to make a
-        purchasing decision.The Buy APIs are designed to let you create an eBay shopping experience
-        in your app or website. This means you will need to know when something, such as the
-        availability, quantity, etc., has changed in any eBay item you are offering. This is easily
-        achieved by setting the fieldgroups URI parameter to one of the following
-        values:COMPACTReduces the response to only those fields necessary in order to determine if
-        any item detail has changed. This field group must be used alone.PRODUCTAdds fields to the
-        default response that return information about the product/item. This field group may also
-        be used in conjunction with ADDITIONAL_SELLER_DETAILS.ADDITIONAL_SELLER_DETAILSAdds an
-        additional field to the response that returns the seller's user ID. This field group may
-        also be used in conjunction with PRODUCT.CHARITY_DETAILSAdds additional fields to the
-        response that return charity information associated with the item, if applicable.For
-        additional information, refer to fieldgroups.RestrictionsFor a list of supported sites and
-        other restrictions, refer to Buy APIs Restrictions.eBay Partner Network: In order to be
-        commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl field
-        to forward your buyer to the ebay.com site.
+        purchasing decision. The Buy APIs are designed to let you create an eBay shopping experience
+        in your app or website.
         """
         return self._request(
             'getItem',
@@ -218,29 +174,9 @@ class BuyBrowseResource(BaseResource):
     @overload
     def get_item_by_legacy_id(self, *, legacy_item_id: str, fieldgroups: str | None = None, legacy_variation_id: str | None = None, legacy_variation_sku: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_item_by_legacy_id(self, *, legacy_item_id: str, fieldgroups: str | None = None, legacy_variation_id: str | None = None, legacy_variation_sku: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.Item | httpx.Response:
-        """This method is a bridge between the eBay legacy APIs, such as Shopping and Finding, and the
+        """This method is a bridge between the eBay legacy APIs, such as Shopping and Finding , and the
         eBay Buy APIs. There are differences between how legacy APIs and RESTful APIs return the
-        identifier of an "item" and what the item ID represents. This method lets you use the legacy
-        item ids retrieve the details of a specific item, such as description, price, and other
-        information the buyer needs to make a purchasing decision. It also returns the RESTful
-        item_id, which you can use with all the Buy API methods.For additional information about how
-        to use legacy ids with the Buy APIs, refer to Item ID legacy API compatibility overview in
-        the Buying Integration guide.This method returns the item details and requires you to pass
-        in either the item_id of a non-variation item or the item_id values for both the parent and
-        child of an item group.Note: An item group is an item that has various aspect differences,
-        such as color, size, storage capacity, etc.When an item group is created, one of the item
-        variations, such as the red shirt size L, is chosen as the "parent". All other items in the
-        group are the children, such as the blue shirt size L, red shirt size M, etc.The fieldgroups
-        URI parameter lets you control what is returned in the response:Setting fieldgroups to
-        PRODUCT adds additional fields to the default response that return information about the
-        product of the item.Setting the fieldgroups to ADDITIONAL_SELLER_DETAILS adds an additional
-        field to the response that returns the seller's user ID.Setting the fieldgroups to
-        CHARITY_DETAILS adds additional fields to the response that return charity information
-        associated with the item, if applicable.These fieldgroups can be used independently or at
-        the same time. For additional information, refer to fieldgroups.RestrictionsFor a list of
-        supported sites and other restrictions, refer to Buy APIs Requirements.eBay Partner Network:
-        In order to be commissioned for your sales, you must use the URL returned in the
-        itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        identifier of an "item" and what the item ID represents.
         """
         return self._request(
             'getItemByLegacyId',
@@ -259,17 +195,7 @@ class BuyBrowseResource(BaseResource):
     def get_items(self, *, item_ids: str | None = None, item_group_ids: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_items(self, *, item_ids: str | None = None, item_group_ids: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.Items | httpx.Response:
         """This method retrieves the details about specific items that buyers need to make a purchasing
-        decision.Note: This is a (Limited Release) available only to select Partners.For this
-        method, only the following fields are returned: bidCount, currentBidPrice,
-        eligibleForInlineCheckout, enabledForGuestCheckout, estimatedAvailabilities, gtin,
-        immediatePay, itemAffiliateWebUrl, itemCreationDate, itemEndDate, itemId, itemWebUrl,
-        legacyItemId, minimumPriceToBid, price, priorityListing, reservePriceMet,
-        sellerItemRevision, taxes, topRatedBuyingExperience, and uniqueBidderCount.The array
-        shippingOptions, which comprises multiple fields, is also returned if the X-EBAY-C-
-        ENDUSERCTX header is supplied.RestrictionsFor a list of supported sites and other
-        restrictions, refer to Buy APIs Requirements.eBay Partner Network: In order to be
-        commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl field
-        to forward your buyer to the ebay.com site.
+        decision. Note: This is a (Limited Release) available only to select Partners.
         """
         return self._request(
             'getItems',
@@ -288,19 +214,9 @@ class BuyBrowseResource(BaseResource):
     def get_items_by_item_group(self, *, item_group_id: str, fieldgroups: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_items_by_item_group(self, *, item_group_id: str, fieldgroups: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.ItemGroup | httpx.Response:
         """This method retrieves details about individual items in an item group. An item group is an
-        item that has various aspect differences, such as color, size, storage capacity, etc.You
-        pass in the item_group_id as a URI parameter.This method returns two main
-        containers:itemsThis container has an array of containers with the details about each item
-        in the group.commonDescriptionsThis container has an array of containers for a description
-        and the item_ids for all items that have this exact description. Because items within an
-        item group often have the same description, this decreases the size of the response.Setting
-        the fieldgroup to ADDITIONAL_SELLER_DETAILS adds an additional field to the response that
-        returns the seller's user ID. Setting the fieldgroup to CHARITY_DETAILS adds additional
-        fields to the response that returns charity information associated with the item, if
-        applicable. For more information, refer to fieldgroups.RestrictionsFor a list of supported
-        sites and other restrictions, refer to Buy APIs Restrictions.eBay Partner Network: In order
-        to be commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl
-        field to forward your buyer to the ebay.com site.
+        item that has various aspect differences, such as color, size, storage capacity, etc. You
+        pass in the item_group_id as a URI parameter. This method returns two main containers: items
+        This container has an array of containers with the details about each item in the group.
         """
         return self._request(
             'getItemsByItemGroup',
@@ -320,19 +236,7 @@ class BuyBrowseResource(BaseResource):
     def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
         """This method checks if a product is compatible with the specified item. You can use this
         method to check the compatibility of cars, trucks, and motorcycles with a specific part
-        listed on eBay.For example, to check the compatibility of a part, you pass in the item_id of
-        the part as a URI parameter and specify all the attributes used to define a specific car
-        within the compatibilityProperties container. If the call is successful, the response will
-        be COMPATIBLE, NOT_COMPATIBLE, or UNDETERMINED. Refer to compatibilityStatus for
-        details.Note: The only products supported are cars, trucks, and motorcycles.To find the
-        attributes and values for a specific marketplace, you can use the compatibility methods in
-        the Taxonomy API. You can use this data to create menus to help buyers specify the product,
-        such as their car.For more information and a list of required attributes for the US
-        marketplace that describe motor vehicles, refer to Check compatibility in the Buying
-        Integration Guide.For an example, refer to the Samples section.Note: This method is
-        supported in Sandbox but only when passing in the specified item_id and compatibility name-
-        value pairs listed in Sample: Sandbox Sample.RestrictionsFor a list of supported sites and
-        other restrictions, refer to Buy APIs Restrictions.
+        listed on eBay.
         """
         return self._request(
             'checkCompatibility',
@@ -363,29 +267,8 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     async def search(self, *, aspect_filter: str | None = None, auto_correct: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, compatibility_filter: str | None = None, epid: str | None = None, fieldgroups: str | None = None, filter: str | None = None, gtin: str | None = None, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items by various query parameters and retrieves summaries of
         the items. You can search by keyword, category, eBay product ID (ePID), or GTIN, charity ID,
-        or a combination of these.Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
-        option are returned by default. To retrieve listings that do not have FIXED_PRICE as a
-        buying option, the buyingOptions filter can be used to retrieve those listings.Note that an
-        auction listing enabled with the Buy it Now feature will initially show AUCTION and
-        FIXED_PRICE as buying options, but if/when that auction listing receives a qualifying bid,
-        only AUCTION remains as a buying option. If this happens, the buyingOptions filter would
-        need to be used to retrieve that auction listing.This method also supports the
-        following:Filtering by the value of one or multiple fields, such as listing format, item
-        condition, price range, location, and more. For the fields supported by this method, refer
-        to the filter parameter.Retrieving the refinements (metadata) of an item, such as item
-        aspects (color, brand) condition, category, etc. using the fieldgroups parameter.Filtering
-        by item aspects and other refinements using the aspect_filter parameter.Filtering for items
-        that are compatible with a specific product, using the compatibility_filter
-        parameter.Creating aspects histograms, which enables shoppers to drill down in each
-        refinement narrowing the search results.For additional information and examples of these
-        capabilities, refer to Browse API in the Buying Integration Guide.Pagination and sort
-        controlsThere are pagination controls (limit and offset fields) and sort query parameters
-        that control/sort the data that are returned. By default, results are sorted by Best Match.
-        For more information about Best Match, refer to Best Match.RestrictionsThis method can
-        return a maximum of 10,000 items. For a list of supported sites and other restrictions,
-        refer to Buy APIs Requirements.eBay Partner Network: In order to receive a commission for
-        your sales, you must use the URL returned in the itemAffiliateWebUrl field to forward your
-        buyer to the ebay.com site.
+        or a combination of these. Note: Only listings where FIXED_PRICE (Buy It Now) is a buying
+        option are returned by default.
         """
         return await self._request(
             'search',
@@ -405,18 +288,8 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     async def search_by_image(self, *, body: buy_browse_models.SearchByImageRequest | None = None, aspect_filter: str | None = None, category_ids: str | None = None, charity_ids: str | None = None, fieldgroups: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.SearchPagedCollection | httpx.Response:
         """This method searches for eBay items based on an image and retrieves summaries of the items.
         You pass in a Base64 image in the request payload and can refine the search by category, or
-        with other available filters.To get the Base64 image string, you can use sites such as
-        https://codebeautify.org/image-to-base64-converter.This method also supports the following:
-        Filtering by the value of one or multiple fields, such as listing format, item condition,
-        price range, location, and more. For the fields supported by this method, refer to the
-        filter parameter.Filtering by item aspects using the aspect_filter parameter.For details and
-        examples of these capabilities, refer to Browse API in the Buying Integration Guide.URL
-        Encoding for ParametersQuery parameter values need to be URL encoded. For details, refer to
-        URL encoding query parameter values. For readability, code examples in this document have
-        not been URL encoded.RestrictionsThis method can return a maximum of 10,000 items. For a
-        list of supported sites and other restrictions, refer to Buy APIs Requirements.eBay Partner
-        Network: In order to receive a commission for your sales, you must use the URL returned in
-        the itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        with other available filters. To get the Base64 image string, you can use sites such as
+        https://codebeautify.org/image-to-base64-converter .
         """
         return await self._request(
             'searchByImage',
@@ -438,21 +311,8 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
         """This method retrieves the details of a specific item, such as description, price, category,
         all item aspects, condition, return policies, seller feedback and score, shipping options,
         shipping costs, estimated delivery, and other information the buyer needs to make a
-        purchasing decision.The Buy APIs are designed to let you create an eBay shopping experience
-        in your app or website. This means you will need to know when something, such as the
-        availability, quantity, etc., has changed in any eBay item you are offering. This is easily
-        achieved by setting the fieldgroups URI parameter to one of the following
-        values:COMPACTReduces the response to only those fields necessary in order to determine if
-        any item detail has changed. This field group must be used alone.PRODUCTAdds fields to the
-        default response that return information about the product/item. This field group may also
-        be used in conjunction with ADDITIONAL_SELLER_DETAILS.ADDITIONAL_SELLER_DETAILSAdds an
-        additional field to the response that returns the seller's user ID. This field group may
-        also be used in conjunction with PRODUCT.CHARITY_DETAILSAdds additional fields to the
-        response that return charity information associated with the item, if applicable.For
-        additional information, refer to fieldgroups.RestrictionsFor a list of supported sites and
-        other restrictions, refer to Buy APIs Restrictions.eBay Partner Network: In order to be
-        commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl field
-        to forward your buyer to the ebay.com site.
+        purchasing decision. The Buy APIs are designed to let you create an eBay shopping experience
+        in your app or website.
         """
         return await self._request(
             'getItem',
@@ -470,29 +330,9 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     @overload
     async def get_item_by_legacy_id(self, *, legacy_item_id: str, fieldgroups: str | None = None, legacy_variation_id: str | None = None, legacy_variation_sku: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_item_by_legacy_id(self, *, legacy_item_id: str, fieldgroups: str | None = None, legacy_variation_id: str | None = None, legacy_variation_sku: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.Item | httpx.Response:
-        """This method is a bridge between the eBay legacy APIs, such as Shopping and Finding, and the
+        """This method is a bridge between the eBay legacy APIs, such as Shopping and Finding , and the
         eBay Buy APIs. There are differences between how legacy APIs and RESTful APIs return the
-        identifier of an "item" and what the item ID represents. This method lets you use the legacy
-        item ids retrieve the details of a specific item, such as description, price, and other
-        information the buyer needs to make a purchasing decision. It also returns the RESTful
-        item_id, which you can use with all the Buy API methods.For additional information about how
-        to use legacy ids with the Buy APIs, refer to Item ID legacy API compatibility overview in
-        the Buying Integration guide.This method returns the item details and requires you to pass
-        in either the item_id of a non-variation item or the item_id values for both the parent and
-        child of an item group.Note: An item group is an item that has various aspect differences,
-        such as color, size, storage capacity, etc.When an item group is created, one of the item
-        variations, such as the red shirt size L, is chosen as the "parent". All other items in the
-        group are the children, such as the blue shirt size L, red shirt size M, etc.The fieldgroups
-        URI parameter lets you control what is returned in the response:Setting fieldgroups to
-        PRODUCT adds additional fields to the default response that return information about the
-        product of the item.Setting the fieldgroups to ADDITIONAL_SELLER_DETAILS adds an additional
-        field to the response that returns the seller's user ID.Setting the fieldgroups to
-        CHARITY_DETAILS adds additional fields to the response that return charity information
-        associated with the item, if applicable.These fieldgroups can be used independently or at
-        the same time. For additional information, refer to fieldgroups.RestrictionsFor a list of
-        supported sites and other restrictions, refer to Buy APIs Requirements.eBay Partner Network:
-        In order to be commissioned for your sales, you must use the URL returned in the
-        itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        identifier of an "item" and what the item ID represents.
         """
         return await self._request(
             'getItemByLegacyId',
@@ -511,17 +351,7 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     async def get_items(self, *, item_ids: str | None = None, item_group_ids: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_items(self, *, item_ids: str | None = None, item_group_ids: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.Items | httpx.Response:
         """This method retrieves the details about specific items that buyers need to make a purchasing
-        decision.Note: This is a (Limited Release) available only to select Partners.For this
-        method, only the following fields are returned: bidCount, currentBidPrice,
-        eligibleForInlineCheckout, enabledForGuestCheckout, estimatedAvailabilities, gtin,
-        immediatePay, itemAffiliateWebUrl, itemCreationDate, itemEndDate, itemId, itemWebUrl,
-        legacyItemId, minimumPriceToBid, price, priorityListing, reservePriceMet,
-        sellerItemRevision, taxes, topRatedBuyingExperience, and uniqueBidderCount.The array
-        shippingOptions, which comprises multiple fields, is also returned if the X-EBAY-C-
-        ENDUSERCTX header is supplied.RestrictionsFor a list of supported sites and other
-        restrictions, refer to Buy APIs Requirements.eBay Partner Network: In order to be
-        commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl field
-        to forward your buyer to the ebay.com site.
+        decision. Note: This is a (Limited Release) available only to select Partners.
         """
         return await self._request(
             'getItems',
@@ -540,19 +370,9 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     async def get_items_by_item_group(self, *, item_group_id: str, fieldgroups: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_items_by_item_group(self, *, item_group_id: str, fieldgroups: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, quantity_for_shipping_estimate: str | None = None, raw_response: bool = False) -> buy_browse_models.ItemGroup | httpx.Response:
         """This method retrieves details about individual items in an item group. An item group is an
-        item that has various aspect differences, such as color, size, storage capacity, etc.You
-        pass in the item_group_id as a URI parameter.This method returns two main
-        containers:itemsThis container has an array of containers with the details about each item
-        in the group.commonDescriptionsThis container has an array of containers for a description
-        and the item_ids for all items that have this exact description. Because items within an
-        item group often have the same description, this decreases the size of the response.Setting
-        the fieldgroup to ADDITIONAL_SELLER_DETAILS adds an additional field to the response that
-        returns the seller's user ID. Setting the fieldgroup to CHARITY_DETAILS adds additional
-        fields to the response that returns charity information associated with the item, if
-        applicable. For more information, refer to fieldgroups.RestrictionsFor a list of supported
-        sites and other restrictions, refer to Buy APIs Restrictions.eBay Partner Network: In order
-        to be commissioned for your sales, you must use the URL returned in the itemAffiliateWebUrl
-        field to forward your buyer to the ebay.com site.
+        item that has various aspect differences, such as color, size, storage capacity, etc. You
+        pass in the item_group_id as a URI parameter. This method returns two main containers: items
+        This container has an array of containers with the details about each item in the group.
         """
         return await self._request(
             'getItemsByItemGroup',
@@ -572,19 +392,7 @@ class AsyncBuyBrowseResource(AsyncBaseResource):
     async def check_compatibility(self, item_id: str, *, body: buy_browse_models.CompatibilityPayload | None = None, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> buy_browse_models.CompatibilityResponse | httpx.Response:
         """This method checks if a product is compatible with the specified item. You can use this
         method to check the compatibility of cars, trucks, and motorcycles with a specific part
-        listed on eBay.For example, to check the compatibility of a part, you pass in the item_id of
-        the part as a URI parameter and specify all the attributes used to define a specific car
-        within the compatibilityProperties container. If the call is successful, the response will
-        be COMPATIBLE, NOT_COMPATIBLE, or UNDETERMINED. Refer to compatibilityStatus for
-        details.Note: The only products supported are cars, trucks, and motorcycles.To find the
-        attributes and values for a specific marketplace, you can use the compatibility methods in
-        the Taxonomy API. You can use this data to create menus to help buyers specify the product,
-        such as their car.For more information and a list of required attributes for the US
-        marketplace that describe motor vehicles, refer to Check compatibility in the Buying
-        Integration Guide.For an example, refer to the Samples section.Note: This method is
-        supported in Sandbox but only when passing in the specified item_id and compatibility name-
-        value pairs listed in Sample: Sandbox Sample.RestrictionsFor a list of supported sites and
-        other restrictions, refer to Buy APIs Restrictions.
+        listed on eBay.
         """
         return await self._request(
             'checkCompatibility',
@@ -614,11 +422,9 @@ class BuyDealResource(BaseResource):
     def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
         """This method retrieves a paginated set of deal items. The result set contains all deal items
-        associated with the specified search criteria and marketplace ID.This method can return a
+        associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
-        Requirements.eBay Partner Network: In order to receive a commission for your sales, you must
-        use the URL returned in the itemAffiliateWebUrl field to forward your buyer to the ebay.com
-        site.
+        Requirements .
         """
         return self._request(
             'getDealItems',
@@ -638,10 +444,8 @@ class BuyDealResource(BaseResource):
     def get_event(self, event_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.Event | httpx.Response:
         """This method retrieves the details for an eBay event. The result set contains detailed
         information associated with the specified event ID, such as applicable coupons, start and
-        end dates, and event terms.This method can return a maximum of 10,000 items. For a list of
-        supported sites and other restrictions, see Buy API Requirements.eBay Partner Network: In
-        order to receive a commission for your sales, you must use the URL returned in the
-        itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        end dates, and event terms. This method can return a maximum of 10,000 items. For a list of
+        supported sites and other restrictions, see Buy API Requirements .
         """
         return self._request(
             'getEvent',
@@ -660,10 +464,8 @@ class BuyDealResource(BaseResource):
     def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
         """This method returns paginated results containing all eBay events for the specified
-        marketplace.This method can return a maximum of 10,000 items. For a list of supported sites
-        and other restrictions, see Buy API Requirements.eBay Partner Network: In order to receive a
-        commission for your sales, you must use the URL returned in the itemAffiliateWebUrl field to
-        forward your buyer to the ebay.com site.
+        marketplace. This method can return a maximum of 10,000 items. For a list of supported sites
+        and other restrictions, see Buy API Requirements .
         """
         return self._request(
             'getEvents',
@@ -682,11 +484,9 @@ class BuyDealResource(BaseResource):
     def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
         """This method returns a paginated set of event items. The result set contains all event items
-        associated with the specified search criteria and marketplace ID.This method can return a
+        associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
-        Requirements.eBay Partner Network: In order to receive a commission for your sales, you must
-        use the URL returned in the itemAffiliateWebUrl field to forward your buyer to the ebay.com
-        site.
+        Requirements .
         """
         return self._request(
             'getEventItems',
@@ -715,11 +515,9 @@ class AsyncBuyDealResource(AsyncBaseResource):
     async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_deal_items(self, *, category_ids: str | None = None, commissionable: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.DealItemSearchResponse | httpx.Response:
         """This method retrieves a paginated set of deal items. The result set contains all deal items
-        associated with the specified search criteria and marketplace ID.This method can return a
+        associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
-        Requirements.eBay Partner Network: In order to receive a commission for your sales, you must
-        use the URL returned in the itemAffiliateWebUrl field to forward your buyer to the ebay.com
-        site.
+        Requirements .
         """
         return await self._request(
             'getDealItems',
@@ -739,10 +537,8 @@ class AsyncBuyDealResource(AsyncBaseResource):
     async def get_event(self, event_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.Event | httpx.Response:
         """This method retrieves the details for an eBay event. The result set contains detailed
         information associated with the specified event ID, such as applicable coupons, start and
-        end dates, and event terms.This method can return a maximum of 10,000 items. For a list of
-        supported sites and other restrictions, see Buy API Requirements.eBay Partner Network: In
-        order to receive a commission for your sales, you must use the URL returned in the
-        itemAffiliateWebUrl field to forward your buyer to the ebay.com site.
+        end dates, and event terms. This method can return a maximum of 10,000 items. For a list of
+        supported sites and other restrictions, see Buy API Requirements .
         """
         return await self._request(
             'getEvent',
@@ -761,10 +557,8 @@ class AsyncBuyDealResource(AsyncBaseResource):
     async def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_events(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventSearchResponse | httpx.Response:
         """This method returns paginated results containing all eBay events for the specified
-        marketplace.This method can return a maximum of 10,000 items. For a list of supported sites
-        and other restrictions, see Buy API Requirements.eBay Partner Network: In order to receive a
-        commission for your sales, you must use the URL returned in the itemAffiliateWebUrl field to
-        forward your buyer to the ebay.com site.
+        marketplace. This method can return a maximum of 10,000 items. For a list of supported sites
+        and other restrictions, see Buy API Requirements .
         """
         return await self._request(
             'getEvents',
@@ -783,11 +577,9 @@ class AsyncBuyDealResource(AsyncBaseResource):
     async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_event_items(self, *, event_ids: str, category_ids: str | None = None, delivery_country: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_deal_models.EventItemSearchResponse | httpx.Response:
         """This method returns a paginated set of event items. The result set contains all event items
-        associated with the specified search criteria and marketplace ID.This method can return a
+        associated with the specified search criteria and marketplace ID. This method can return a
         maximum of 10,000 items. For a list of supported sites and other restrictions, see Buy API
-        Requirements.eBay Partner Network: In order to receive a commission for your sales, you must
-        use the URL returned in the itemAffiliateWebUrl field to forward your buyer to the ebay.com
-        site.
+        Requirements .
         """
         return await self._request(
             'getEventItems',
@@ -818,29 +610,7 @@ class BuyFeedResource(BaseResource):
         """This method lets you download a TSV_GZIP (tab-separated value gzip) Item feed file. The feed
         file contains all the items from all the child categories of the specified category. The
         first line of the file is the header, which labels the columns and indicates the order of
-        the values on each line. Each header is described in the Response fields section.There are
-        two types of item feed files generated: A daily Item feed file containing all the newly
-        listed items for a specific category, date, and marketplace (feed_scope = NEWLY_LISTED) A
-        weekly Item Bootstrap feed file containing all the items in a specific category and
-        marketplace (feed_scope = ALL_ACTIVE)Note: Filters are applied to the feed files. For
-        details, see Feed File Filters. When curating the items returned, be sure to code as if
-        these filters are not applied as they can be changed or removed in the future.Note: The
-        downloaded file will be gzipped automatically, so there is no reason to supply Accept-
-        Encoding:gzip as a header. If this header is supplied, the downloaded file will be
-        compressed twice, and this has no extra benefit.Downloading feed files Item feed files are
-        binary gzip files. If the file is larger than 100 MB, the download must be streamed in
-        chunks. You specify the size of the chunks in bytes using the Range request header. The
-        Content-range response header indicates where in the full resource this partial chunk of
-        data belongs and the total number of bytes in the file.For more information about using
-        these headers, see Retrieve a gzip feed file.In addition to the API, there is an open source
-        Feed SDK written in Java that downloads, combines files into a single file when needed, and
-        unzips the entire feed file. It also lets you specify field filters to curate the items in
-        the file. Note: A successful call will always return a TSV.GZIP file; however, unsuccessful
-        calls generate errors that are returned in JSON format. For documentation purposes, the
-        successful call response is shown below as JSON fields so that the value returned in each
-        column can be explained. The order of the response fields shows the order of the columns in
-        the feed file.Restrictions For a list of supported sites and other restrictions, see API
-        Restrictions.
+        the values on each line. Each header is described in the Response fields section.
         """
         return self._request(
             'getItemFeed',
@@ -870,41 +640,7 @@ class BuyFeedResource(BaseResource):
     def get_item_group_feed(self, *, accept: str, feed_scope: str, category_id: str, x_ebay_c_marketplace_id: str | None = None, range: str | None = None, date: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This method lets you download a TSV_GZIP (tab separated value gzip) Item Group feed file. An
         item group is an item that has various aspect differences, such as color, size, storage
-        capacity, etc.There are two types of item group feed files generated: A daily Item Group
-        feed file containing the item group variation information associated with items returned in
-        the Item feed file for a specific day, category, and marketplace. (feed_scope =
-        NEWLY_LISTED) A weekly Item Group Bootstrap feed file containing all the item group
-        variation information associated with items returned in the Item Bootstrap feed file for all
-        the items in a specific category. (feed_scope = ALL_ACTIVE)Note: Filters are applied to the
-        feed files. For details, see Feed File Filters. When curating the items returned, be sure to
-        code as if these filters are not applied as they can be changed or removed in the
-        future.Note:The downloaded file will be gzipped automatically, so there is no reason to
-        supply Accept-Encoding:gzip as a header. If this header is supplied, the downloaded file
-        will be compressed twice, and this has no extra benefit.The contents of these feed files are
-        based on the contents of the corresponding daily Item or Item Bootstrap feed file. When a
-        new Item or Item Bootstrap feed file is generated, the service reads the file and if an item
-        in the file has a primaryItemGroupId value, which indicates the item is part of an item
-        group, it uses that value to return the item group (parent item) information for that item
-        in the corresponding Item Group or Item Group Bootstrap feed file. This information includes
-        the name/value pair of the aspects of the items in this group returned in the
-        variesByLocalizedAspects column. For example, if the item was a shirt some of the variation
-        names could be Size, Color, etc. Also the images for the various aspects are returned in the
-        additionalImageUrls column.The first line in any feed file is the header, which labels the
-        columns and indicates the order of the values on each line.Combining the Item Group and Item
-        feed filesThe Item Group or Item Group Bootstrap feed file contains details about the item
-        group (parent item), including the item group ID itemGroupId. You match the value of
-        itemGroupId from the Item Group feed file with the value of primaryItemGroupId from the
-        corresponding daily Item or Item Bootstrap feed file.Downloading feed files Item Group feed
-        files are binary gzip files. If the file is larger than 100 MB, the download must be
-        streamed in chunks. You specify the size of the chunks in bytes using the Range request
-        header. The Content-range response header indicates where in the full resource this partial
-        chunk of data belongs and the total number of bytes in the file. For more information about
-        using these headers, see Retrieve a gzip feed file. Note: A successful call will always
-        return a TSV.GZIP file; however, unsuccessful calls generate errors that are returned in
-        JSON format. For documentation purposes, the successful call response is shown below as JSON
-        fields so that the value returned in each column can be explained. The order of the response
-        fields shows the order of the columns in the feed file.Restrictions For a list of supported
-        sites and other restrictions, see API Restrictions.
+        capacity, etc.
         """
         return self._request(
             'getItemGroupFeed',
@@ -935,29 +671,7 @@ class BuyFeedResource(BaseResource):
         """The Hourly Snapshot feed file is generated each hour every day for most categories. This
         method lets you download an Hourly Snapshot TSV_GZIP (tab-separated value gzip) feed file
         containing the details of all the items that have changed within the specified day and hour
-        for a specific category. This means to generate the 8AM file of items that have changed from
-        8AM and 8:59AM, the service starts at 9AM. You can retrieve the 8AM snapshot file at
-        10AM.Snapshot feeds now include new listings. You can check itemCreationDate to identify
-        listings that were newly created within the specified hour.Note: Filters are applied to the
-        feed files. For details, see Feed File Filters. When curating the items returned, be sure to
-        code as if these filters are not applied as they can be changed or removed in the future.You
-        can use the response from this method to update the item details of items stored in your
-        database. By looking at the value of itemSnapshotDate for a given item, you will be able to
-        tell which information is the latest.Important! When the value of the availability column is
-        UNAVAILABLE, only the itemId and availability columns are populated. Note:The downloaded
-        file will be gzipped automatically, so there is no reason to supply Accept-Encoding:gzip as
-        a header. If this header is supplied, the downloaded file will be compressed twice, and this
-        has no extra benefit.Downloading feed files Hourly snapshot feed files are binary gzip
-        files. If the file is larger than 100 MB, the download must be streamed in chunks. You
-        specify the size of the chunks in bytes using the Range request header. The Content-range
-        response header indicates where in the full resource this partial chunk of data belongs and
-        the total number of bytes in the file. For more information about using these headers, see
-        Retrieving a gzip feed file. Note: A successful call will always return a TSV.GZIP file;
-        however, unsuccessful calls generate errors that are returned in JSON format. For
-        documentation purposes, the successful call response is shown below as JSON fields so that
-        the value returned in each column can be explained. The order of the response fields shows
-        the order of the columns in the feed file.Restrictions For a list of supported sites and
-        other restrictions, see API Restrictions.
+        for a specific category.
         """
         return self._request(
             'getItemSnapshotFeed',
@@ -988,27 +702,7 @@ class BuyFeedResource(BaseResource):
         """Using this method, you can download a TSV_GZIP (tab separated value gzip) Item Priority feed
         file, which allows you to track changes (deltas) in the status of your priority items, such
         as when an item is added or removed from a campaign. The delta feed tracks the changes to
-        the status of items within a category you specify in the input URI. You can also specify a
-        specific date for the feed you want returned. Important! You must consume the daily feeds
-        (Item, Item Group) before consuming the Item Priority feed. This ensures that your inventory
-        is up to date.Note: The downloaded file will be gzipped automatically, so there is no reason
-        to supply Accept-Encoding:gzip as a header. If this header is supplied, the downloaded file
-        will be compressed twice, and this has no extra benefit.Downloading feed files Note: Filters
-        are applied to the feed files. For details, see Feed File Filters. When curating the items
-        returned, be sure to code as if these filters are not applied as they can be changed or
-        removed in the future.Priority Item feed files are binary gzip files. If the file is larger
-        than 100 MB, the download must be streamed in chunks. You specify the size of the chunks in
-        bytes using the Range request header. The Content-range response header indicates where in
-        the full resource this partial chunk of data belongs and the total number of bytes in the
-        file. For more information about using these headers, see Retrieve a gzip feed file.In
-        addition to the API, there is an open source Feed SDK written in Java that downloads,
-        combines files into a single file when needed, and unzips the entire feed file. It also lets
-        you specify field filters to curate the items in the file. Note: A successful call will
-        always return a TSV.GZIP file; however, unsuccessful calls generate errors that are returned
-        in JSON format. For documentation purposes, the successful call response is shown below as
-        JSON fields so that the value returned in each column can be explained. The order of the
-        response fields shows the order of the columns in the feed file.Restrictions For a list of
-        supported sites and other restrictions, see API Restrictions.
+        the status of items within a category you specify in the input URI.
         """
         return self._request(
             'getItemPriorityFeed',
@@ -1049,29 +743,7 @@ class AsyncBuyFeedResource(AsyncBaseResource):
         """This method lets you download a TSV_GZIP (tab-separated value gzip) Item feed file. The feed
         file contains all the items from all the child categories of the specified category. The
         first line of the file is the header, which labels the columns and indicates the order of
-        the values on each line. Each header is described in the Response fields section.There are
-        two types of item feed files generated: A daily Item feed file containing all the newly
-        listed items for a specific category, date, and marketplace (feed_scope = NEWLY_LISTED) A
-        weekly Item Bootstrap feed file containing all the items in a specific category and
-        marketplace (feed_scope = ALL_ACTIVE)Note: Filters are applied to the feed files. For
-        details, see Feed File Filters. When curating the items returned, be sure to code as if
-        these filters are not applied as they can be changed or removed in the future.Note: The
-        downloaded file will be gzipped automatically, so there is no reason to supply Accept-
-        Encoding:gzip as a header. If this header is supplied, the downloaded file will be
-        compressed twice, and this has no extra benefit.Downloading feed files Item feed files are
-        binary gzip files. If the file is larger than 100 MB, the download must be streamed in
-        chunks. You specify the size of the chunks in bytes using the Range request header. The
-        Content-range response header indicates where in the full resource this partial chunk of
-        data belongs and the total number of bytes in the file.For more information about using
-        these headers, see Retrieve a gzip feed file.In addition to the API, there is an open source
-        Feed SDK written in Java that downloads, combines files into a single file when needed, and
-        unzips the entire feed file. It also lets you specify field filters to curate the items in
-        the file. Note: A successful call will always return a TSV.GZIP file; however, unsuccessful
-        calls generate errors that are returned in JSON format. For documentation purposes, the
-        successful call response is shown below as JSON fields so that the value returned in each
-        column can be explained. The order of the response fields shows the order of the columns in
-        the feed file.Restrictions For a list of supported sites and other restrictions, see API
-        Restrictions.
+        the values on each line. Each header is described in the Response fields section.
         """
         return await self._request(
             'getItemFeed',
@@ -1101,41 +773,7 @@ class AsyncBuyFeedResource(AsyncBaseResource):
     async def get_item_group_feed(self, *, accept: str, feed_scope: str, category_id: str, x_ebay_c_marketplace_id: str | None = None, range: str | None = None, date: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This method lets you download a TSV_GZIP (tab separated value gzip) Item Group feed file. An
         item group is an item that has various aspect differences, such as color, size, storage
-        capacity, etc.There are two types of item group feed files generated: A daily Item Group
-        feed file containing the item group variation information associated with items returned in
-        the Item feed file for a specific day, category, and marketplace. (feed_scope =
-        NEWLY_LISTED) A weekly Item Group Bootstrap feed file containing all the item group
-        variation information associated with items returned in the Item Bootstrap feed file for all
-        the items in a specific category. (feed_scope = ALL_ACTIVE)Note: Filters are applied to the
-        feed files. For details, see Feed File Filters. When curating the items returned, be sure to
-        code as if these filters are not applied as they can be changed or removed in the
-        future.Note:The downloaded file will be gzipped automatically, so there is no reason to
-        supply Accept-Encoding:gzip as a header. If this header is supplied, the downloaded file
-        will be compressed twice, and this has no extra benefit.The contents of these feed files are
-        based on the contents of the corresponding daily Item or Item Bootstrap feed file. When a
-        new Item or Item Bootstrap feed file is generated, the service reads the file and if an item
-        in the file has a primaryItemGroupId value, which indicates the item is part of an item
-        group, it uses that value to return the item group (parent item) information for that item
-        in the corresponding Item Group or Item Group Bootstrap feed file. This information includes
-        the name/value pair of the aspects of the items in this group returned in the
-        variesByLocalizedAspects column. For example, if the item was a shirt some of the variation
-        names could be Size, Color, etc. Also the images for the various aspects are returned in the
-        additionalImageUrls column.The first line in any feed file is the header, which labels the
-        columns and indicates the order of the values on each line.Combining the Item Group and Item
-        feed filesThe Item Group or Item Group Bootstrap feed file contains details about the item
-        group (parent item), including the item group ID itemGroupId. You match the value of
-        itemGroupId from the Item Group feed file with the value of primaryItemGroupId from the
-        corresponding daily Item or Item Bootstrap feed file.Downloading feed files Item Group feed
-        files are binary gzip files. If the file is larger than 100 MB, the download must be
-        streamed in chunks. You specify the size of the chunks in bytes using the Range request
-        header. The Content-range response header indicates where in the full resource this partial
-        chunk of data belongs and the total number of bytes in the file. For more information about
-        using these headers, see Retrieve a gzip feed file. Note: A successful call will always
-        return a TSV.GZIP file; however, unsuccessful calls generate errors that are returned in
-        JSON format. For documentation purposes, the successful call response is shown below as JSON
-        fields so that the value returned in each column can be explained. The order of the response
-        fields shows the order of the columns in the feed file.Restrictions For a list of supported
-        sites and other restrictions, see API Restrictions.
+        capacity, etc.
         """
         return await self._request(
             'getItemGroupFeed',
@@ -1166,29 +804,7 @@ class AsyncBuyFeedResource(AsyncBaseResource):
         """The Hourly Snapshot feed file is generated each hour every day for most categories. This
         method lets you download an Hourly Snapshot TSV_GZIP (tab-separated value gzip) feed file
         containing the details of all the items that have changed within the specified day and hour
-        for a specific category. This means to generate the 8AM file of items that have changed from
-        8AM and 8:59AM, the service starts at 9AM. You can retrieve the 8AM snapshot file at
-        10AM.Snapshot feeds now include new listings. You can check itemCreationDate to identify
-        listings that were newly created within the specified hour.Note: Filters are applied to the
-        feed files. For details, see Feed File Filters. When curating the items returned, be sure to
-        code as if these filters are not applied as they can be changed or removed in the future.You
-        can use the response from this method to update the item details of items stored in your
-        database. By looking at the value of itemSnapshotDate for a given item, you will be able to
-        tell which information is the latest.Important! When the value of the availability column is
-        UNAVAILABLE, only the itemId and availability columns are populated. Note:The downloaded
-        file will be gzipped automatically, so there is no reason to supply Accept-Encoding:gzip as
-        a header. If this header is supplied, the downloaded file will be compressed twice, and this
-        has no extra benefit.Downloading feed files Hourly snapshot feed files are binary gzip
-        files. If the file is larger than 100 MB, the download must be streamed in chunks. You
-        specify the size of the chunks in bytes using the Range request header. The Content-range
-        response header indicates where in the full resource this partial chunk of data belongs and
-        the total number of bytes in the file. For more information about using these headers, see
-        Retrieving a gzip feed file. Note: A successful call will always return a TSV.GZIP file;
-        however, unsuccessful calls generate errors that are returned in JSON format. For
-        documentation purposes, the successful call response is shown below as JSON fields so that
-        the value returned in each column can be explained. The order of the response fields shows
-        the order of the columns in the feed file.Restrictions For a list of supported sites and
-        other restrictions, see API Restrictions.
+        for a specific category.
         """
         return await self._request(
             'getItemSnapshotFeed',
@@ -1219,27 +835,7 @@ class AsyncBuyFeedResource(AsyncBaseResource):
         """Using this method, you can download a TSV_GZIP (tab separated value gzip) Item Priority feed
         file, which allows you to track changes (deltas) in the status of your priority items, such
         as when an item is added or removed from a campaign. The delta feed tracks the changes to
-        the status of items within a category you specify in the input URI. You can also specify a
-        specific date for the feed you want returned. Important! You must consume the daily feeds
-        (Item, Item Group) before consuming the Item Priority feed. This ensures that your inventory
-        is up to date.Note: The downloaded file will be gzipped automatically, so there is no reason
-        to supply Accept-Encoding:gzip as a header. If this header is supplied, the downloaded file
-        will be compressed twice, and this has no extra benefit.Downloading feed files Note: Filters
-        are applied to the feed files. For details, see Feed File Filters. When curating the items
-        returned, be sure to code as if these filters are not applied as they can be changed or
-        removed in the future.Priority Item feed files are binary gzip files. If the file is larger
-        than 100 MB, the download must be streamed in chunks. You specify the size of the chunks in
-        bytes using the Range request header. The Content-range response header indicates where in
-        the full resource this partial chunk of data belongs and the total number of bytes in the
-        file. For more information about using these headers, see Retrieve a gzip feed file.In
-        addition to the API, there is an open source Feed SDK written in Java that downloads,
-        combines files into a single file when needed, and unzips the entire feed file. It also lets
-        you specify field filters to curate the items in the file. Note: A successful call will
-        always return a TSV.GZIP file; however, unsuccessful calls generate errors that are returned
-        in JSON format. For documentation purposes, the successful call response is shown below as
-        JSON fields so that the value returned in each column can be explained. The order of the
-        response fields shows the order of the columns in the feed file.Restrictions For a list of
-        supported sites and other restrictions, see API Restrictions.
+        the status of items within a category you specify in the input URI.
         """
         return await self._request(
             'getItemPriorityFeed',
@@ -1280,10 +876,7 @@ class BuyMarketingResource(BaseResource):
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
-        search method to retrieve items for this product. Restrictions To test
-        getMerchandisedProducts in Sandbox, you must use category ID 9355 and the response will be
-        mock data. For a list of supported sites and other restrictions, see Buy API Support by
-        Marketplace.
+        search method to retrieve items for this product.
         """
         return self._request(
             'getMerchandisedProducts',
@@ -1305,11 +898,7 @@ class BuyMarketingResource(BaseResource):
         category for which to retrieve items with the highest watch counts is specified by its
         category_id value. Up to 50 items can be returned for a specific category using this method.
         The number of items to return using this method can be specified through the max_result
-        query parameter. If this parameter is not used, the top 20 most watched items will be
-        returned for the specified category. A successful call returns details about the most
-        watched items in a specific category, such as the watch count, current price, shipping cost,
-        and basic information about the listing. Returned items are ranked in descending order with
-        the highest watch count appearing first.
+        query parameter.
         """
         return self._request(
             'getMostWatchedItems',
@@ -1327,15 +916,10 @@ class BuyMarketingResource(BaseResource):
     @overload
     def get_similar_items(self, *, item_id: str, accept_language: str | None = None, buying_option: str | None = None, excluded_category_ids: str | None = None, filter: str | None = None, max_results: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_similar_items(self, *, item_id: str, accept_language: str | None = None, buying_option: str | None = None, excluded_category_ids: str | None = None, filter: str | None = None, max_results: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.SimilarItemsResponse | httpx.Response:
-        """This method retrieves items that are similar to the specified item.Items are considered
+        """This method retrieves items that are similar to the specified item. Items are considered
         similar if they can serve as a replacement or alternative for the specified item. Similar
         items from a catalog are associated with the same product. For items not associated with a
-        product, similarity is determined by keywords in the title and attribute value matches.The
-        item for which to retrieve similar items is specified by its item_id value, input as a
-        required query parameter. A successful call returns a list of items similar to the specified
-        item, as well as details about each item. This includes the current price and shipping costs
-        are returned for each item, as well as basic information about the listing, such as its item
-        ID, price, shipping cost, and time left on the listing.
+        product, similarity is determined by keywords in the title and attribute value matches.
         """
         return self._request(
             'getSimilarItems',
@@ -1366,10 +950,7 @@ class AsyncBuyMarketingResource(AsyncBaseResource):
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
-        search method to retrieve items for this product. Restrictions To test
-        getMerchandisedProducts in Sandbox, you must use category ID 9355 and the response will be
-        mock data. For a list of supported sites and other restrictions, see Buy API Support by
-        Marketplace.
+        search method to retrieve items for this product.
         """
         return await self._request(
             'getMerchandisedProducts',
@@ -1391,11 +972,7 @@ class AsyncBuyMarketingResource(AsyncBaseResource):
         category for which to retrieve items with the highest watch counts is specified by its
         category_id value. Up to 50 items can be returned for a specific category using this method.
         The number of items to return using this method can be specified through the max_result
-        query parameter. If this parameter is not used, the top 20 most watched items will be
-        returned for the specified category. A successful call returns details about the most
-        watched items in a specific category, such as the watch count, current price, shipping cost,
-        and basic information about the listing. Returned items are ranked in descending order with
-        the highest watch count appearing first.
+        query parameter.
         """
         return await self._request(
             'getMostWatchedItems',
@@ -1413,15 +990,10 @@ class AsyncBuyMarketingResource(AsyncBaseResource):
     @overload
     async def get_similar_items(self, *, item_id: str, accept_language: str | None = None, buying_option: str | None = None, excluded_category_ids: str | None = None, filter: str | None = None, max_results: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_similar_items(self, *, item_id: str, accept_language: str | None = None, buying_option: str | None = None, excluded_category_ids: str | None = None, filter: str | None = None, max_results: str | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_marketing_models.SimilarItemsResponse | httpx.Response:
-        """This method retrieves items that are similar to the specified item.Items are considered
+        """This method retrieves items that are similar to the specified item. Items are considered
         similar if they can serve as a replacement or alternative for the specified item. Similar
         items from a catalog are associated with the same product. For items not associated with a
-        product, similarity is determined by keywords in the title and attribute value matches.The
-        item for which to retrieve similar items is specified by its item_id value, input as a
-        required query parameter. A successful call returns a list of items similar to the specified
-        item, as well as details about each item. This includes the current price and shipping costs
-        are returned for each item, as well as basic information about the listing, such as its item
-        ID, price, shipping cost, and time left on the listing.
+        product, similarity is determined by keywords in the title and attribute value matches.
         """
         return await self._request(
             'getSimilarItems',
@@ -1452,10 +1024,7 @@ class BuyMarketplaceInsightsResource(BaseResource):
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
-        search method to retrieve items for this product. Restrictions To test
-        getMerchandisedProducts in Sandbox, you must use category ID 9355 and the response will be
-        mock data. For a list of supported sites and other restrictions, see Buy API Support by
-        Marketplace.
+        search method to retrieve items for this product.
         """
         return self._request(
             'getMerchandisedProducts',
@@ -1486,10 +1055,7 @@ class AsyncBuyMarketplaceInsightsResource(AsyncBaseResource):
         """This method returns an array of products based on the category and metric specified. This
         includes details of the product, such as the eBay product ID (EPID), title, and user reviews
         and ratings for the product. You can use the epid returned by this method in the Browse API
-        search method to retrieve items for this product. Restrictions To test
-        getMerchandisedProducts in Sandbox, you must use category ID 9355 and the response will be
-        mock data. For a list of supported sites and other restrictions, see Buy API Support by
-        Marketplace.
+        search method to retrieve items for this product.
         """
         return await self._request(
             'getMerchandisedProducts',
@@ -1519,10 +1085,7 @@ class BuyOfferResource(BaseResource):
     def get_bidding(self, item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.Bidding | httpx.Response:
         """This method retrieves the bidding details that are specific to the buyer of the specified
         auction. This must be an auction where the buyer has already placed a bid. To retrieve the
-        bidding information you use a user access token and pass in the item ID of the auction. You
-        can also retrieve general bidding details about the auction, such as minimum bid price and
-        the count of unique bidders, using the Browse API getItems method.Restrictions For a list of
-        supported sites and other restrictions, see Buy API Requirements.
+        bidding information you use a user access token and pass in the item ID of the auction.
         """
         return self._request(
             'getBidding',
@@ -1541,16 +1104,10 @@ class BuyOfferResource(BaseResource):
     def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
         """This method uses a user access token to place a proxy bid for the buyer on a specific
-        auction item. The item must offer AUCTION as one of the buyingOptions. To place a bid, you
-        pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount
-        (maxAmount ) in the payload. By placing a proxy bid, the buyer is agreeing to purchase the
-        item if they win the auction. After this bid is placed, if someone else outbids the buyer a
-        bid, eBay automatically bids again for the buyer up to the amount of their maximum bid. When
-        the bid exceeds the buyer's maximum bid, eBay will notify them that they have been outbid.To
-        find auctions, you can use the Browse API to search for items and use a filter to return
-        only auction items. For example:
-        /buy/browse/v1/item_summary/search?q=iphone&filter=buyingOptions:{AUCTION} Restrictions For
-        a list of supported sites and other restrictions, see Buy API Requirements.
+        auction item. The item must offer AUCTION as one of the buyingOptions . To place a bid, you
+        pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount (
+        maxAmount ) in the payload. By placing a proxy bid, the buyer is agreeing to purchase the
+        item if they win the auction.
         """
         return self._request(
             'placeProxyBid',
@@ -1581,10 +1138,7 @@ class AsyncBuyOfferResource(AsyncBaseResource):
     async def get_bidding(self, item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.Bidding | httpx.Response:
         """This method retrieves the bidding details that are specific to the buyer of the specified
         auction. This must be an auction where the buyer has already placed a bid. To retrieve the
-        bidding information you use a user access token and pass in the item ID of the auction. You
-        can also retrieve general bidding details about the auction, such as minimum bid price and
-        the count of unique bidders, using the Browse API getItems method.Restrictions For a list of
-        supported sites and other restrictions, see Buy API Requirements.
+        bidding information you use a user access token and pass in the item ID of the auction.
         """
         return await self._request(
             'getBidding',
@@ -1603,16 +1157,10 @@ class AsyncBuyOfferResource(AsyncBaseResource):
     async def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def place_proxy_bid(self, item_id: str, *, body: buy_offer_models.PlaceProxyBidRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_offer_models.PlaceProxyBidResponse | httpx.Response:
         """This method uses a user access token to place a proxy bid for the buyer on a specific
-        auction item. The item must offer AUCTION as one of the buyingOptions. To place a bid, you
-        pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount
-        (maxAmount ) in the payload. By placing a proxy bid, the buyer is agreeing to purchase the
-        item if they win the auction. After this bid is placed, if someone else outbids the buyer a
-        bid, eBay automatically bids again for the buyer up to the amount of their maximum bid. When
-        the bid exceeds the buyer's maximum bid, eBay will notify them that they have been outbid.To
-        find auctions, you can use the Browse API to search for items and use a filter to return
-        only auction items. For example:
-        /buy/browse/v1/item_summary/search?q=iphone&filter=buyingOptions:{AUCTION} Restrictions For
-        a list of supported sites and other restrictions, see Buy API Requirements.
+        auction item. The item must offer AUCTION as one of the buyingOptions . To place a bid, you
+        pass in the item ID of the auction as a URI parameter and the buyer's maximum bid amount (
+        maxAmount ) in the payload. By placing a proxy bid, the buyer is agreeing to purchase the
+        item if they win the auction.
         """
         return await self._request(
             'placeProxyBid',
@@ -1642,12 +1190,10 @@ class BuyOrderResource(BaseResource):
     def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method adds a coupon to an eBay guest checkout session and applies it to all the eligible
-        items in the order.The checkoutSessionId is passed in as a URI parameter and is required.
-        The redemption code of the coupon is in the payload and is also required.For a list of
-        supported sites and other restrictions, see API Restrictions in the Buy Integration Guide.
+        items in the order.
         """
         return self._request(
             'applyGuestCoupon',
@@ -1667,12 +1213,9 @@ class BuyOrderResource(BaseResource):
     def get_guest_checkout_session(self, checkout_session_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_guest_checkout_session(self, checkout_session_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method returns the details of the specified guest checkout session. The checkoutSessionId is
-        passed in as a URI parameter and is required. This method has no request payload.For a list
-        of supported sites and other restrictions, see API Restrictions in the Buy Integration
-        Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method returns the details of the specified guest checkout session.
         """
         return self._request(
             'getGuestCheckoutSession',
@@ -1691,19 +1234,10 @@ class BuyOrderResource(BaseResource):
     def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method creates an eBay guest checkout session, which is the first step in performing a
-        checkout. The method returns a checkoutSessionId that you use as a URI parameter in
-        subsequent guest checkout methods. Note: This method also returns the X-EBAY-SECURITY-
-        SIGNATURE response header, which is a token that is used to launch the Checkout with eBay
-        widget. The Checkout with eBay widget allows eBay guests to pay for items without leaving
-        your site. For details about the Checkout with eBay widget, see Integrating the Checkout
-        with eBay button. Also see Negative Testing Using Stubs for information on how to emulate
-        error conditions for this method using stubs.TIP: To test the entire checkout flow, you
-        might need a "test" credit card. You can generate a credit card number from
-        http://www.getcreditcardnumbers.com.For a list of supported sites and other restrictions,
-        see API Restrictions in the Buy Integration Guide.
+        checkout.
         """
         return self._request(
             'initiateGuestCheckoutSession',
@@ -1723,12 +1257,9 @@ class BuyOrderResource(BaseResource):
     def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method removes a coupon from an eBay guest checkout session. The checkoutSessionId is passed
-        in as a URI parameter and is required. The redemption code of the coupon is specified in the
-        payload and is also required.For a list of supported sites and other restrictions, see API
-        Restrictions in the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method removes a coupon from an eBay guest checkout session.
         """
         return self._request(
             'removeGuestCoupon',
@@ -1748,11 +1279,9 @@ class BuyOrderResource(BaseResource):
     def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method changes the quantity of the specified line item in an eBay guest checkout session.For
-        a list of supported sites and other restrictions, see API Restrictions in the Buy
-        Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method changes the quantity of the specified line item in an eBay guest checkout session.
         """
         return self._request(
             'updateGuestQuantity',
@@ -1772,14 +1301,9 @@ class BuyOrderResource(BaseResource):
     def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method changes the shipping address for the order in an eBay guest checkout session. All the
-        line items in an order must be shipped to the same address, but the shipping method can be
-        specific to the line item.Note: If the address submitted cannot be validated, a warning
-        message will be returned. This does not prevent the method from executing, but you may want
-        to verify the address.For a list of supported sites and other restrictions, see API
-        Restrictions in the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method changes the shipping address for the order in an eBay guest checkout session.
         """
         return self._request(
             'updateGuestShippingAddress',
@@ -1799,12 +1323,10 @@ class BuyOrderResource(BaseResource):
     def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method changes the shipping method for the specified line item in an eBay guest checkout
-        session. The shipping option can be set for each line item. This gives the shopper the
-        ability choose the cost of shipping for each line item.For a list of supported sites and
-        other restrictions, see API Restrictions in the Buy Integration Guide.
+        session.
         """
         return self._request(
             'updateGuestShippingOption',
@@ -1824,19 +1346,9 @@ class BuyOrderResource(BaseResource):
     def get_guest_purchase_order(self, purchase_order_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_guest_purchase_order(self, purchase_order_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestPurchaseOrderV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method retrieves the details about a specific guest purchase order. It returns the line
-        items, including purchase order status, dates created and modified, item quantity and
-        listing data, payment and shipping information, and prices, taxes, discounts and credits.The
-        purchaseOrderId is passed in as a URI parameter and is required.Note: The purchaseOrderId
-        value is returned in the call-back URL that is sent through the new eBay pay widget. For
-        more information about eBay managed payments and the new Order V2 API payment flow, see
-        Order V2 API in the Buying Integration Guide.You can use this method to not only get the
-        details of a purchase order, but to check the value of the purchaseOrderPaymentStatus field
-        to determine if the order has been paid for. If the order has been paid for, this field will
-        return PAID.For a list of supported sites and other restrictions, see API Restrictions in
-        the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method retrieves the details about a specific guest purchase order.
         """
         return self._request(
             'getGuestPurchaseOrder',
@@ -1865,12 +1377,10 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def apply_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method adds a coupon to an eBay guest checkout session and applies it to all the eligible
-        items in the order.The checkoutSessionId is passed in as a URI parameter and is required.
-        The redemption code of the coupon is in the payload and is also required.For a list of
-        supported sites and other restrictions, see API Restrictions in the Buy Integration Guide.
+        items in the order.
         """
         return await self._request(
             'applyGuestCoupon',
@@ -1890,12 +1400,9 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def get_guest_checkout_session(self, checkout_session_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_guest_checkout_session(self, checkout_session_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method returns the details of the specified guest checkout session. The checkoutSessionId is
-        passed in as a URI parameter and is required. This method has no request payload.For a list
-        of supported sites and other restrictions, see API Restrictions in the Buy Integration
-        Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method returns the details of the specified guest checkout session.
         """
         return await self._request(
             'getGuestCheckoutSession',
@@ -1914,19 +1421,10 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def initiate_guest_checkout_session(self, *, body: buy_order_models.CreateGuestCheckoutSessionRequestV2 | None = None, x_ebay_c_enduserctx: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method creates an eBay guest checkout session, which is the first step in performing a
-        checkout. The method returns a checkoutSessionId that you use as a URI parameter in
-        subsequent guest checkout methods. Note: This method also returns the X-EBAY-SECURITY-
-        SIGNATURE response header, which is a token that is used to launch the Checkout with eBay
-        widget. The Checkout with eBay widget allows eBay guests to pay for items without leaving
-        your site. For details about the Checkout with eBay widget, see Integrating the Checkout
-        with eBay button. Also see Negative Testing Using Stubs for information on how to emulate
-        error conditions for this method using stubs.TIP: To test the entire checkout flow, you
-        might need a "test" credit card. You can generate a credit card number from
-        http://www.getcreditcardnumbers.com.For a list of supported sites and other restrictions,
-        see API Restrictions in the Buy Integration Guide.
+        checkout.
         """
         return await self._request(
             'initiateGuestCheckoutSession',
@@ -1946,12 +1444,9 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def remove_guest_coupon(self, checkout_session_id: str, *, body: buy_order_models.CouponRequest | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method removes a coupon from an eBay guest checkout session. The checkoutSessionId is passed
-        in as a URI parameter and is required. The redemption code of the coupon is specified in the
-        payload and is also required.For a list of supported sites and other restrictions, see API
-        Restrictions in the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method removes a coupon from an eBay guest checkout session.
         """
         return await self._request(
             'removeGuestCoupon',
@@ -1971,11 +1466,9 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_guest_quantity(self, checkout_session_id: str, *, body: buy_order_models.UpdateQuantity | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method changes the quantity of the specified line item in an eBay guest checkout session.For
-        a list of supported sites and other restrictions, see API Restrictions in the Buy
-        Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method changes the quantity of the specified line item in an eBay guest checkout session.
         """
         return await self._request(
             'updateGuestQuantity',
@@ -1995,14 +1488,9 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_guest_shipping_address(self, checkout_session_id: str, *, body: buy_order_models.ShippingAddressImpl | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method changes the shipping address for the order in an eBay guest checkout session. All the
-        line items in an order must be shipped to the same address, but the shipping method can be
-        specific to the line item.Note: If the address submitted cannot be validated, a warning
-        message will be returned. This does not prevent the method from executing, but you may want
-        to verify the address.For a list of supported sites and other restrictions, see API
-        Restrictions in the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method changes the shipping address for the order in an eBay guest checkout session.
         """
         return await self._request(
             'updateGuestShippingAddress',
@@ -2022,12 +1510,10 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_guest_shipping_option(self, checkout_session_id: str, *, body: buy_order_models.UpdateShippingOption | None = None, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestCheckoutSessionResponseV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
         method changes the shipping method for the specified line item in an eBay guest checkout
-        session. The shipping option can be set for each line item. This gives the shopper the
-        ability choose the cost of shipping for each line item.For a list of supported sites and
-        other restrictions, see API Restrictions in the Buy Integration Guide.
+        session.
         """
         return await self._request(
             'updateGuestShippingOption',
@@ -2047,19 +1533,9 @@ class AsyncBuyOrderResource(AsyncBaseResource):
     async def get_guest_purchase_order(self, purchase_order_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_guest_purchase_order(self, purchase_order_id: str, *, x_ebay_c_marketplace_id: str | None = None, x_ebay_c_enduserctx: str | None = None, raw_response: bool = False) -> buy_order_models.GuestPurchaseOrderV2 | httpx.Response:
         """Note: The Order V2 API supports guest checkout payment flows. If you need to support member
-        checkout payment flows, please use the v1 version of the Order V2 API.Important! (Limited
-        Release) This method is only available to select developers approved by business units.This
-        method retrieves the details about a specific guest purchase order. It returns the line
-        items, including purchase order status, dates created and modified, item quantity and
-        listing data, payment and shipping information, and prices, taxes, discounts and credits.The
-        purchaseOrderId is passed in as a URI parameter and is required.Note: The purchaseOrderId
-        value is returned in the call-back URL that is sent through the new eBay pay widget. For
-        more information about eBay managed payments and the new Order V2 API payment flow, see
-        Order V2 API in the Buying Integration Guide.You can use this method to not only get the
-        details of a purchase order, but to check the value of the purchaseOrderPaymentStatus field
-        to determine if the order has been paid for. If the order has been paid for, this field will
-        return PAID.For a list of supported sites and other restrictions, see API Restrictions in
-        the Buy Integration Guide.
+        checkout payment flows, please use the v1 version of the Order V2 API. Important! (Limited
+        Release) This method is only available to select developers approved by business units. This
+        method retrieves the details about a specific guest purchase order.
         """
         return await self._request(
             'getGuestPurchaseOrder',
@@ -2612,10 +2088,7 @@ class CommerceCatalogResource(BaseResource):
         """This method retrieves details of the catalog product identified by the eBay product
         identifier (ePID) specified in the request. These details include the product's title and
         description, aspects and their values, associated images, applicable category IDs, and any
-        recognized identifiers that apply to the product. For a new listing, you can use the search
-        method to identify candidate products on which to base the listing, then use the getProduct
-        method to present the full details of those candidate products to the seller to make a a
-        final selection.
+        recognized identifiers that apply to the product.
         """
         return self._request(
             'getProduct',
@@ -2636,38 +2109,7 @@ class CommerceCatalogResource(BaseResource):
         """This method searches for and retrieves summaries of one or more products in the eBay catalog
         that match the search criteria provided by a seller. The seller can use the summaries to
         select the product in the eBay catalog that corresponds to the item that the seller wants to
-        offer for sale. When a corresponding product is found and adopted by the seller, eBay will
-        use the product information to populate the item listing. The criteria supported by search
-        include keywords, product categories, and category aspects. To see the full details of a
-        selected product, use the getProduct call. In addition to product summaries, this method can
-        also be used to identify refinements, which help you to better pinpoint the product you're
-        looking for. A refinement consists of one or more aspect values and a count of the number of
-        times that each value has been used in previous eBay listings. An aspect is a property (e.g.
-        color or size) of an eBay category, used by sellers to provide details about the items
-        they're listing. The refinement container is returned when you include the fieldGroups query
-        parameter in the request with a value of ASPECT_REFINEMENTS or FULL. Example A seller wants
-        to find a product that is "gray" in color, but doesn't know what term the manufacturer uses
-        for that color. It might be Silver, Brushed Nickel, Pewter, or even Grey. The returned
-        refinement container identifies all aspects that have been used in past listings for
-        products that match your search criteria, along with all of the values those aspects have
-        taken, and the number of times each value was used. You can use this data to present the
-        seller with a histogram of the values of each aspect. The seller can see which color values
-        have been used in the past, and how frequently they have been used, and selects the most
-        likely value or values for their product. You issue the search method again with those
-        values in the aspect_filter parameter to narrow down the collection of products returned by
-        the call. Although all query parameters are optional, this method must include at least the
-        q parameter, or the category_ids, gtin, or mpn parameter with a valid value. If you provide
-        more than one of these parameters, they will be combined with a logical AND to further
-        refine the returned collection of matching products. Note: This method requires that certain
-        special characters in the query parameters be percent-encoded:
-        &nbsp;&nbsp;&nbsp;&nbsp;(space) = %20 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, = %2C
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: = %3A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ = %5B
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;] = %5D &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ = %7B
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| = %7C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} = %7D This
-        requirement applies to all query parameter values. However, for readability, method examples
-        and samples in this documentation will not use the encoding. This method returns product
-        summaries rather than the full details of the products. To retrieve the full details of a
-        product, use the getProduct method with an ePID.
+        offer for sale.
         """
         return self._request(
             'search',
@@ -2698,10 +2140,7 @@ class AsyncCommerceCatalogResource(AsyncBaseResource):
         """This method retrieves details of the catalog product identified by the eBay product
         identifier (ePID) specified in the request. These details include the product's title and
         description, aspects and their values, associated images, applicable category IDs, and any
-        recognized identifiers that apply to the product. For a new listing, you can use the search
-        method to identify candidate products on which to base the listing, then use the getProduct
-        method to present the full details of those candidate products to the seller to make a a
-        final selection.
+        recognized identifiers that apply to the product.
         """
         return await self._request(
             'getProduct',
@@ -2722,38 +2161,7 @@ class AsyncCommerceCatalogResource(AsyncBaseResource):
         """This method searches for and retrieves summaries of one or more products in the eBay catalog
         that match the search criteria provided by a seller. The seller can use the summaries to
         select the product in the eBay catalog that corresponds to the item that the seller wants to
-        offer for sale. When a corresponding product is found and adopted by the seller, eBay will
-        use the product information to populate the item listing. The criteria supported by search
-        include keywords, product categories, and category aspects. To see the full details of a
-        selected product, use the getProduct call. In addition to product summaries, this method can
-        also be used to identify refinements, which help you to better pinpoint the product you're
-        looking for. A refinement consists of one or more aspect values and a count of the number of
-        times that each value has been used in previous eBay listings. An aspect is a property (e.g.
-        color or size) of an eBay category, used by sellers to provide details about the items
-        they're listing. The refinement container is returned when you include the fieldGroups query
-        parameter in the request with a value of ASPECT_REFINEMENTS or FULL. Example A seller wants
-        to find a product that is "gray" in color, but doesn't know what term the manufacturer uses
-        for that color. It might be Silver, Brushed Nickel, Pewter, or even Grey. The returned
-        refinement container identifies all aspects that have been used in past listings for
-        products that match your search criteria, along with all of the values those aspects have
-        taken, and the number of times each value was used. You can use this data to present the
-        seller with a histogram of the values of each aspect. The seller can see which color values
-        have been used in the past, and how frequently they have been used, and selects the most
-        likely value or values for their product. You issue the search method again with those
-        values in the aspect_filter parameter to narrow down the collection of products returned by
-        the call. Although all query parameters are optional, this method must include at least the
-        q parameter, or the category_ids, gtin, or mpn parameter with a valid value. If you provide
-        more than one of these parameters, they will be combined with a logical AND to further
-        refine the returned collection of matching products. Note: This method requires that certain
-        special characters in the query parameters be percent-encoded:
-        &nbsp;&nbsp;&nbsp;&nbsp;(space) = %20 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, = %2C
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: = %3A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ = %5B
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;] = %5D &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ = %7B
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| = %7C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} = %7D This
-        requirement applies to all query parameter values. However, for readability, method examples
-        and samples in this documentation will not use the encoding. This method returns product
-        summaries rather than the full details of the products. To retrieve the full details of a
-        product, use the getProduct method with an ePID.
+        offer for sale.
         """
         return await self._request(
             'search',
@@ -2803,9 +2211,9 @@ class CommerceCharityResource(BaseResource):
     def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
         """This call is used to search for supported charitable organizations. It allows users to
         search for a specific charitable organization, or for multiple charitable organizations,
-        from a particular charitable domain and/or geographical region, or by using search
-        criteria.The call returns paginated search results containing the charitable organizations
-        that match the specified criteria.
+        from a particular charitable domain and/or geographical region, or by using search criteria.
+        The call returns paginated search results containing the charitable organizations that match
+        the specified criteria.
         """
         return self._request(
             'getCharityOrgs',
@@ -2855,9 +2263,9 @@ class AsyncCommerceCharityResource(AsyncBaseResource):
     async def get_charity_orgs(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, registration_ids: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_charity_models.CharitySearchResponse | httpx.Response:
         """This call is used to search for supported charitable organizations. It allows users to
         search for a specific charitable organization, or for multiple charitable organizations,
-        from a particular charitable domain and/or geographical region, or by using search
-        criteria.The call returns paginated search results containing the charitable organizations
-        that match the specified criteria.
+        from a particular charitable domain and/or geographical region, or by using search criteria.
+        The call returns paginated search results containing the charitable organizations that match
+        the specified criteria.
         """
         return await self._request(
             'getCharityOrgs',
@@ -2888,16 +2296,8 @@ class CommerceFeedbackResource(BaseResource):
         """This method retrieves line items awaiting feedback from the user's order partner. You can
         refine the results using optional filter query parameters, such as item ID, username, or
         user role in the transaction. Sorting and pagination features help organize and navigate
-        returned items efficiently.For sellers, only sold items that have not yet received feedback
-        are included. For buyers, only purchased items for which feedback is still pending are
-        included. If the user is both a buyer and a seller, this API returns items awaiting feedback
-        for transactions where the user acted as either. Applying filters can limit results to
-        either buyer-only or seller-only transactions. The response provides an overview of feedback
-        yet to be left for completed transactions (as filtered) with counts for both the buyer and
-        seller roles. It includes an array of line items, each containing the listing ID, title, and
-        price (with currency and value). For each line item, the response offers feedback templates
-        specifying which ratings are available.Note: Detailed seller ratings are for sellers only
-        and are created from buyer feedback.
+        returned items efficiently. For sellers, only sold items that have not yet received feedback
+        are included.
         """
         return self._request(
             'getItemsAwaitingFeedback',
@@ -2917,21 +2317,9 @@ class CommerceFeedbackResource(BaseResource):
     def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
         """This method enables users to retrieve feedback for any specified user ID and feedback type
         (sent or received). You can refine the results using optional query parameters such as its
-        feedback ID, listing ID, or order line item ID or by applying one or more filters.Applying
+        feedback ID, listing ID, or order line item ID or by applying one or more filters. Applying
         filters can narrow results using criteria such as comment type, photos, or topics identified
-        through AI-based analysis. When filtering for feedback with photos (filterImage:true), only
-        entries with images (entries that include image URLs) are returned. Additionally, feedback
-        can be refined for the number of days to look back, the role of the user providing the
-        feedback, and whether to include automated feedback entries left by eBay.Sorting and
-        pagination features help organize and navigate returned items efficiently.Returned data
-        includes feedback details (such as comment text and type), feedback ratings (covering
-        criteria like overall experience and, for sellers, item description, shipping time, and
-        communication), role and attributes of the feedback giver, line item and transaction
-        summaries, images, and any available topics. See the filter query parameter for additional
-        information. Privacy is safeguarded by restricting the amount of detail visible to users,
-        depending on their context. When accessing another user's feedback without logging in, buyer
-        names are masked and seller names are shown. Logged-in users viewing their own feedback see
-        all names, while those viewing other users' feedback will encounter some masking.
+        through AI-based analysis.
         """
         return self._request(
             'getFeedback',
@@ -2951,17 +2339,7 @@ class CommerceFeedbackResource(BaseResource):
     def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
         """This method creates and submits feedback to the user's order partner for a line item in the
         order. For each order, the order partner is the other participant in the transaction, either
-        the buyer or seller, depending on the eBay user associated with the user token. This method
-        allows users to provide detailed information about the transaction, including the feedback
-        rating, comments, and seller delivery. You can also add images to your feedback.Note: A
-        seller can only provide a comment for a buyer, but a buyer can provide a comment plus
-        provide ratings on a number of metrics for a seller. Note: The feedback must adhere to
-        community guidelines and be relevant to the transaction. When leaving feedback, keep the
-        following in mind:Your feedback score is not affected when you leave feedbackFeedback can
-        only be revised once after it is submittedFor additional information on leaving feedback,
-        see the following:Leaving feedback for sellersLeaving feedback for buyersA successful call
-        to this method returns a feedback ID, which is a unique identifier for the newly created
-        feedback and allows for reference and tracking.
+        the buyer or seller, depending on the eBay user associated with the user token.
         """
         return self._request(
             'leaveFeedback',
@@ -2983,14 +2361,7 @@ class CommerceFeedbackResource(BaseResource):
         """This method provides a detailed overview of feedback ratings associated with a user in the
         eBay marketplace. Specify a user ID and apply filters to retrieve summarized feedback data
         categorized by rating types and user roles. These returned metrics are aggregated, which
-        offers insight into user experiences and performance. Tip: You can use this method to help
-        sellers and buyers understand their marketplace reputation and identify areas for
-        improvement.Returned data provides a summary of feedback ratings for a user by rating type
-        (such as overall experience, communication, or delivery timeliness) for both buyer and
-        seller roles. Each type of rating includes aggregated metrics like averages, counts, unique
-        feedback givers, and the percentage of positive ratings (excluding neutrals). The response
-        also details the distribution of specific rating values, their frequency, and time period
-        (with period units like days or months) over which these metrics were calculated.
+        offers insight into user experiences and performance.
         """
         return self._request(
             'getFeedbackRatingSummary',
@@ -3012,12 +2383,7 @@ class CommerceFeedbackResource(BaseResource):
         line item in an order. For each order, the order partner is the other participant in the
         transaction, either the buyer or seller, depending on the eBay user associated with the user
         token. This method allows the user to provide additional context or address the order
-        partner's feedback.Note: The feedback response must adhere to community guidelines and be
-        relevant to the transaction.You can only use this method if feedback has been provided by
-        the order partner and you have not yet responded to it. When responding to feedback, your
-        feedback score is not affected when you respond.For additional information on leaving
-        feedback, see the following:Leaving feedback for sellersLeaving feedback for buyersA
-        successful call returns an HTTP status of 200 Success.
+        partner's feedback.
         """
         return self._request(
             'respondToFeedback',
@@ -3049,16 +2415,8 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         """This method retrieves line items awaiting feedback from the user's order partner. You can
         refine the results using optional filter query parameters, such as item ID, username, or
         user role in the transaction. Sorting and pagination features help organize and navigate
-        returned items efficiently.For sellers, only sold items that have not yet received feedback
-        are included. For buyers, only purchased items for which feedback is still pending are
-        included. If the user is both a buyer and a seller, this API returns items awaiting feedback
-        for transactions where the user acted as either. Applying filters can limit results to
-        either buyer-only or seller-only transactions. The response provides an overview of feedback
-        yet to be left for completed transactions (as filtered) with counts for both the buyer and
-        seller roles. It includes an array of line items, each containing the listing ID, title, and
-        price (with currency and value). For each line item, the response offers feedback templates
-        specifying which ratings are available.Note: Detailed seller ratings are for sellers only
-        and are created from buyer feedback.
+        returned items efficiently. For sellers, only sold items that have not yet received feedback
+        are included.
         """
         return await self._request(
             'getItemsAwaitingFeedback',
@@ -3078,21 +2436,9 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
     async def get_feedback(self, *, feedback_type: str, user_id: str, feedback_id: str | None = None, filter: str | None = None, limit: str | None = None, listing_id: str | None = None, offset: str | None = None, order_line_item_id: str | None = None, sort: str | None = None, transaction_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.GetFeedbackResponse | httpx.Response:
         """This method enables users to retrieve feedback for any specified user ID and feedback type
         (sent or received). You can refine the results using optional query parameters such as its
-        feedback ID, listing ID, or order line item ID or by applying one or more filters.Applying
+        feedback ID, listing ID, or order line item ID or by applying one or more filters. Applying
         filters can narrow results using criteria such as comment type, photos, or topics identified
-        through AI-based analysis. When filtering for feedback with photos (filterImage:true), only
-        entries with images (entries that include image URLs) are returned. Additionally, feedback
-        can be refined for the number of days to look back, the role of the user providing the
-        feedback, and whether to include automated feedback entries left by eBay.Sorting and
-        pagination features help organize and navigate returned items efficiently.Returned data
-        includes feedback details (such as comment text and type), feedback ratings (covering
-        criteria like overall experience and, for sellers, item description, shipping time, and
-        communication), role and attributes of the feedback giver, line item and transaction
-        summaries, images, and any available topics. See the filter query parameter for additional
-        information. Privacy is safeguarded by restricting the amount of detail visible to users,
-        depending on their context. When accessing another user's feedback without logging in, buyer
-        names are masked and seller names are shown. Logged-in users viewing their own feedback see
-        all names, while those viewing other users' feedback will encounter some masking.
+        through AI-based analysis.
         """
         return await self._request(
             'getFeedback',
@@ -3112,17 +2458,7 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
     async def leave_feedback(self, *, body: commerce_feedback_models.LeaveFeedbackRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_feedback_models.LeaveFeedbackResponse | httpx.Response:
         """This method creates and submits feedback to the user's order partner for a line item in the
         order. For each order, the order partner is the other participant in the transaction, either
-        the buyer or seller, depending on the eBay user associated with the user token. This method
-        allows users to provide detailed information about the transaction, including the feedback
-        rating, comments, and seller delivery. You can also add images to your feedback.Note: A
-        seller can only provide a comment for a buyer, but a buyer can provide a comment plus
-        provide ratings on a number of metrics for a seller. Note: The feedback must adhere to
-        community guidelines and be relevant to the transaction. When leaving feedback, keep the
-        following in mind:Your feedback score is not affected when you leave feedbackFeedback can
-        only be revised once after it is submittedFor additional information on leaving feedback,
-        see the following:Leaving feedback for sellersLeaving feedback for buyersA successful call
-        to this method returns a feedback ID, which is a unique identifier for the newly created
-        feedback and allows for reference and tracking.
+        the buyer or seller, depending on the eBay user associated with the user token.
         """
         return await self._request(
             'leaveFeedback',
@@ -3144,14 +2480,7 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         """This method provides a detailed overview of feedback ratings associated with a user in the
         eBay marketplace. Specify a user ID and apply filters to retrieve summarized feedback data
         categorized by rating types and user roles. These returned metrics are aggregated, which
-        offers insight into user experiences and performance. Tip: You can use this method to help
-        sellers and buyers understand their marketplace reputation and identify areas for
-        improvement.Returned data provides a summary of feedback ratings for a user by rating type
-        (such as overall experience, communication, or delivery timeliness) for both buyer and
-        seller roles. Each type of rating includes aggregated metrics like averages, counts, unique
-        feedback givers, and the percentage of positive ratings (excluding neutrals). The response
-        also details the distribution of specific rating values, their frequency, and time period
-        (with period units like days or months) over which these metrics were calculated.
+        offers insight into user experiences and performance.
         """
         return await self._request(
             'getFeedbackRatingSummary',
@@ -3173,12 +2502,7 @@ class AsyncCommerceFeedbackResource(AsyncBaseResource):
         line item in an order. For each order, the order partner is the other participant in the
         transaction, either the buyer or seller, depending on the eBay user associated with the user
         token. This method allows the user to provide additional context or address the order
-        partner's feedback.Note: The feedback response must adhere to community guidelines and be
-        relevant to the transaction.You can only use this method if feedback has been provided by
-        the order partner and you have not yet responded to it. When responding to feedback, your
-        feedback score is not affected when you respond.For additional information on leaving
-        feedback, see the following:Leaving feedback for sellersLeaving feedback for buyersA
-        successful call returns an HTTP status of 200 Success.
+        partner's feedback.
         """
         return await self._request(
             'respondToFeedback',
@@ -3208,12 +2532,9 @@ class CommerceIdentityResource(BaseResource):
     def get_user(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_user(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_identity_models.UserResponse | httpx.Response:
         """This method retrieves the account profile information for an authenticated user, which
-        requires a User access token. What is returned is controlled by the scopes. For a business
-        account you use the default scope commerce.identity.readonly, which returns all the fields
+        requires a User access token . What is returned is controlled by the scopes . For a business
+        account you use the default scope commerce.identity.readonly , which returns all the fields
         in the businessAccount container. These are returned because this is all public information.
-        For an individual account, the fields returned in the individualAccount container are based
-        on the scope you use. Using the default scope, only public information, such as eBay user
-        ID, are returned. For details about what each scope returns, see the Identity API scopes.
         """
         return self._request(
             'getUser',
@@ -3242,12 +2563,9 @@ class AsyncCommerceIdentityResource(AsyncBaseResource):
     async def get_user(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_user(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_identity_models.UserResponse | httpx.Response:
         """This method retrieves the account profile information for an authenticated user, which
-        requires a User access token. What is returned is controlled by the scopes. For a business
-        account you use the default scope commerce.identity.readonly, which returns all the fields
+        requires a User access token . What is returned is controlled by the scopes . For a business
+        account you use the default scope commerce.identity.readonly , which returns all the fields
         in the businessAccount container. These are returned because this is all public information.
-        For an individual account, the fields returned in the individualAccount container are based
-        on the scope you use. Using the default scope, only public information, such as eBay user
-        ID, are returned. For details about what each scope returns, see the Identity API scopes.
         """
         return await self._request(
             'getUser',
@@ -3277,22 +2595,9 @@ class CommerceMediaResource(BaseResource):
     def create_image_from_file(self, *, files: Mapping[str, Any], x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method uploads a picture file to eBay Picture Services (EPS) using multipart/form-data.
         All images must comply with eBay's picture requirements, such as dimension and file size
-        restrictions. For more information, see Picture policy. The image formats supported are JPG,
-        GIF, PNG, BMP, TIFF, AVIF, HEIC, and WEBP. For more information, see Image
-        requirements.Note: Animated GIF, and multi-page PNG/TIFF files, are not supported. Any
-        animation effect of supported formats will be lost upon upload.This call does not have a
-        JSON Request payload but uploads the file as form-data. For example: image:
-        &quot;sample_picture.jpg&quot; See Samples for information.Note: You must use a Content-Type
-        header with its value set to 'multipart/form-data'.When an EPS image is successfully
-        created, the method returns the HTTP Status Code 201 Created. The method also returns the
-        getImage URI in the Location response header.Important! Make sure to capture the image ID
-        URI returned in the response Location header provided in the following
-        format:https://apim.ebay.com/commerce/media/v1_beta/image/{image_id} You can capture the
-        entire URI, or just save the {image_id} only. Pass the {image_id} as a path parameter in the
-        getImage method to return the value needed to associate an image to a listing using the
-        Trading and Inventory APIs.See Managing images for additional details.Important!All POST
-        methods in the Media API, including this method, are subject to short-duration rate limits
-        at the user level: 50 requests per 5 seconds.
+        restrictions. For more information, see Picture policy . The image formats supported are JPG
+        , GIF , PNG , BMP , TIFF , AVIF , HEIC , and WEBP . For more information, see Image
+        requirements .
         """
         return self._request(
             'createImageFromFile',
@@ -3314,20 +2619,7 @@ class CommerceMediaResource(BaseResource):
         """This method uploads a picture to eBay Picture Services (EPS) from the specified URL. Specify
         the location of the picture on an external web server through the imageUrl field. All images
         must comply with eBay’s picture requirements, such as dimension and file size restrictions.
-        For more information, see Picture policy. The image formats supported are JPG, GIF, PNG,
-        BMP, TIFF, AVIF, HEIC, and WEBP. In addition, the provided URL must be secured using HTTPS
-        (HTTP is not permitted). For more information, see Image requirements.Note: Animated GIF,
-        and multi-page PNG/TIFF files, are not supported. Any animation effect of supported formats
-        will be lost upon upload.When an EPS image is successfully created, the method returns the
-        HTTP Status Code 201 Created. The method also returns the getImage URI in the Location
-        response header.Important! Make sure to capture the image ID URI returned in the response
-        Location header provided in the following
-        format:https://apim.ebay.com/commerce/media/v1_beta/image/{image_id} You can capture the
-        entire URI, or just save the {image_id} only. Pass the {image_id} as a path parameter in the
-        getImage method to return the value needed to associate an image to a listing using the
-        Trading and Inventory APIs.See Managing images for additional details.Important!All POST
-        methods in the Media API, including this method, are subject to short-duration rate limits
-        at the user level: 50 requests per 5 seconds.
+        For more information, see Picture policy .
         """
         return self._request(
             'createImageFromUrl',
@@ -3347,11 +2639,9 @@ class CommerceMediaResource(BaseResource):
     def get_image(self, image_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_image(self, image_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method retrieves an EPS image URL and its expiration details for the unique identifier
-        specified in the path parameter image_id. Use the retrieved EPS image URL to add the image
-        to a listing through the Inventory API or the Trading API. See Managing images for
-        additional details.Note: If a user inputs a valid image_id as a path parameter but the EPS
-        image associated with that ID has expired, the call will fail and a 404 Not Found status
-        code will be returned.
+        specified in the path parameter image_id . Use the retrieved EPS image URL to add the image
+        to a listing through the Inventory API or the Trading API . See Managing images for
+        additional details.
         """
         return self._request(
             'getImage',
@@ -3369,17 +2659,9 @@ class CommerceMediaResource(BaseResource):
     @overload
     def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
-        """This method creates a video resource. When using this method, specify the title, size, and
+        """This method creates a video resource. When using this method, specify the title , size , and
         classification of the video resource to be created. Description is an optional field for
-        this method.Tip: See Adding a video to your listing in the eBay Seller Center for details
-        about video formatting requirements and restrictions, or visit the relevant eBay site help
-        pages for the region in which the listings will be posted.When a video resource is
-        successfully created, the method returns the HTTP Status Code 201 Created.The method also
-        returns the location response header containing the video ID, which you can use to retrieve
-        the video.Note: There is no ability to edit metadata on videos at this time. There is also
-        no method to delete videos.To upload a created video to a created video resource, use the
-        uploadVideo method.Important!All POST methods in the Media API, including this method, are
-        subject to short-duration rate limits at the user level: 50 requests per 5 seconds.
+        this method.
         """
         return self._request(
             'createVideo',
@@ -3398,20 +2680,11 @@ class CommerceMediaResource(BaseResource):
     @overload
     def get_video(self, video_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_video(self, video_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.Video | httpx.Response:
-        """This method retrieves a video's metadata and content given a specified video ID. The method
-        returns the title, size, classification, description, video ID, playList, status, status
-        message (if any), expiration date, and thumbnail image of the retrieved video. The video's
-        title, size, classification, and description are set using the createVideo method. The
-        video's playList contains two URLs that link to instances of the streaming video based on
-        the supported protocol.The status field contains the current status of the video. After a
-        video upload is successfully completed, the video's status will show as PROCESSING until the
-        video reaches one of the terminal states of LIVE, BLOCKED or PROCESSING_FAILED. If a video's
-        processing fails, it could be because the file is corrupted, is too large, or its size
-        doesn't match what was provided in the metadata. Refer to the error messages to determine
-        the cause of the video's failure to upload. The status message will indicate why a video was
-        blocked from uploading.If a video is not being used on an active listing, its expiration
-        date is automatically set to 30 days after the video's initial upload.The video's thumbnail
-        image is automatically generated when the video is created.
+        """This method retrieves a video's metadata and content given a specified video ID . The method
+        returns the title , size , classification , description , video ID , playList , status ,
+        status message (if any), expiration date , and thumbnail image of the retrieved video. The
+        video's title , size , classification , and description are set using the createVideo
+        method.
         """
         return self._request(
             'getVideo',
@@ -3430,19 +2703,10 @@ class CommerceMediaResource(BaseResource):
     def upload_video(self, video_id: str, *, body: bytes | bytearray | memoryview, content_length: str | None = None, content_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def upload_video(self, video_id: str, *, body: bytes | bytearray | memoryview, content_length: str | None = None, content_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method associates the specified file with the specified video ID and uploads the input
-        file. After the file has been uploaded the processing of the file begins.Note: The size of
+        file. After the file has been uploaded the processing of the file begins. Note: The size of
         the video to be uploaded must exactly match the size of the video's input stream that was
         set in the createVideo method. If the sizes do not match, the video will not upload
-        successfully.When a video is successfully uploaded, it returns the HTTP Status Code 200
-        OK.The status flow is PENDING_UPLOAD > PROCESSING > LIVE, PROCESSING_FAILED, or BLOCKED.
-        After a video upload is successfully completed, the status will show as PROCESSING until the
-        video reaches one of the terminal states of LIVE, BLOCKED, or PROCESSING_FAILED. If the size
-        information (in bytes) provided is incorrect, the API will throw an error.Tip: See Adding a
-        video to your listing in the eBay Seller Center for details about video formatting
-        requirements and restrictions, or visit the relevant eBay site help pages for the region in
-        which the listings will be posted.To retrieve an uploaded video, use the getVideo
-        method.Important!All POST methods in the Media API, including this method, are subject to
-        short-duration rate limits at the user level: 50 requests per 5 seconds.
+        successfully.
         """
         return self._request(
             'uploadVideo',
@@ -3463,18 +2727,8 @@ class CommerceMediaResource(BaseResource):
     def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method stages a document to be uploaded, and requires the type of document to be
         uploaded, and the language(s) that the document contains. A successful call returns a
-        documentId value that is then used as a path parameter in an uploadDocument call.When a
-        document is successfully created, the method returns the HTTP Status Code 201 Created. The
-        method returns documentId in the response payload, which you can use to retrieve the
-        document resource. This ID is also returned in the location header, for
-        convenience.Important! Make sure to capture the document ID value returned in the response
-        payload. This value is required to use the other methods in the document resource, and also
-        needed to associate a document to a listing using the Trading and Inventory APIs.To upload a
-        created document, use the document ID returned from this method's response with the
-        uploadDocument method. See Managing documents for information on creating, uploading, and
-        adding documents to listings.Important!All POST methods in the Media API, including this
-        method, are subject to short-duration rate limits at the user level: 50 requests per 5
-        seconds.
+        documentId value that is then used as a path parameter in an uploadDocument call. When a
+        document is successfully created, the method returns the HTTP Status Code 201 Created.
         """
         return self._request(
             'createDocument',
@@ -3496,17 +2750,7 @@ class CommerceMediaResource(BaseResource):
         """This method downloads a document from the provided URL and adds that document to the user's
         account. This method requires the URL of the document, the type of document to be uploaded,
         and the language(s) that the document contains. When a document is successfully created, the
-        method returns the HTTP Status Code 201 Created. The method returns documentId in the
-        response payload, which you can use to retrieve the document resource. This ID is also
-        returned in the location header, for convenience.Important! Make sure to capture the
-        document ID value returned in the response payload. This value is required to use the other
-        methods in the document resource, and also needed to associate a document to a listing using
-        the Trading and Inventory APIs.After creating a document using this method, a getDocument
-        call should be made to check for a documentStatus of ACCEPTED. Only documents with this
-        status can be added to a listing. See Managing documents for more information on creating,
-        uploading, and adding documents to listings.Important!All POST methods in the Media API,
-        including this method, are subject to short-duration rate limits at the user level: 50
-        requests per 5 seconds.
+        method returns the HTTP Status Code 201 Created.
         """
         return self._request(
             'createDocumentFromUrl',
@@ -3525,10 +2769,10 @@ class CommerceMediaResource(BaseResource):
     @overload
     def get_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.DocumentResponse | httpx.Response:
-        """This method retrieves the current status and metadata of the specified document.Important!
+        """This method retrieves the current status and metadata of the specified document. Important!
         The document ID value returned in the response payload of the createDocument or the
-        createDocumentFromUrl method is a required input path parameter for this method.See Managing
-        documents for additional information.
+        createDocumentFromUrl method is a required input path parameter for this method. See
+        Managing documents for additional information.
         """
         return self._request(
             'getDocument',
@@ -3549,16 +2793,7 @@ class CommerceMediaResource(BaseResource):
         """This method associates the specified file with the specified document ID and uploads the
         input file. After the file has been uploaded, the processing of the file begins. Supported
         file types include .PDF, .JPEG/.JPG, and .PNG, with a maximum file size of 10 MB (10485760
-        bytes).Note: Animated and multi-page PNG files are not currently supported.Note: The
-        document ID value returned in the response of the createDocument method is a required input
-        path parameter for this method. This value is also returned in the location header of the
-        createDocument response payload.A successful upload returns the HTTP Status Code 200 OK.See
-        Managing documents for additional information. Note: You must use a Content-Type header with
-        its value set to multipart/form-data.This call does not have a JSON Request payload but
-        uploads the file as form-data. For example: file:
-        @&quot;/C:/Users/.../drone_user_warranty.pdf&quot;See Samples for information.Important!All
-        POST methods in the Media API, including this method, are subject to short-duration rate
-        limits at the user level: 50 requests per 5 seconds.
+        bytes). Note: Animated and multi-page PNG files are not currently supported.
         """
         return self._request(
             'uploadDocument',
@@ -3577,18 +2812,7 @@ class CommerceMediaResource(BaseResource):
     @overload
     def download_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def download_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
-        """This method downloads the file associated with the specified document ID. Access depends on
-        the document’s state:SUBMITTED: Only the document owner can download it PUBLISHED: The
-        document is no longer restricted to the owner and can be downloaded by authorized parties
-        involved in the specific post‑order flow based on the documentUsageTypeNote: This method is
-        currently restricted and requires a special OAuth scope not available to all users.Note:
-        After a document is uploaded (but not yet published), its status is SUBMITTED. Once its
-        identifier is linked to a post‑order entity through an eBay GraphQL mutation, the status
-        changes to PUBLISHED. A post-order entity is part of eBay's order management for activities
-        after purchase (such as returns).Important! The document must be in the SUBMITTED or
-        PUBLISHED state to be downloadable. All documents (published or submitted) expire and become
-        inaccessible after their expiration date.
-        """
+        """This method downloads the file associated with the specified document ID."""
         return self._request(
             'downloadPostOrderDocument',
             'GET',
@@ -3616,13 +2840,9 @@ class CommerceMediaResource(BaseResource):
     def remove_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def remove_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method deletes a previously uploaded document by its document ID. Only documents in
-        SUBMITTED state can be removed; documents in the PUBLISHED state cannot be deleted.Note:
+        SUBMITTED state can be removed; documents in the PUBLISHED state cannot be deleted. Note:
         This method is currently restricted and requires a special OAuth scope not available to all
-        users.Note: After a document is uploaded (but not yet published), its status is SUBMITTED.
-        When its identifier is associated with a post‑order entity through an eBay GraphQL mutation,
-        the status changes to PUBLISHED. A post-order entity is part of eBay's order management for
-        activities after purchase (such as returns).Important! All documents, whether submitted or
-        published, expire and become inaccessible after their expiration date.
+        users. Note: After a document is uploaded (but not yet published), its status is SUBMITTED .
         """
         return self._request(
             'removePostOrderDocument',
@@ -3642,25 +2862,8 @@ class CommerceMediaResource(BaseResource):
     def upload_post_order_document(self, *, files: Mapping[str, Any], x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method uploads a document for post‑order processes (for example, a seller providing a
         return shipping label). Supported file types include .PDF, .JPEG/.JPG, .BMP, .GIF and .PNG,
-        with a maximum file size of 5&nbsp;MB&nbsp;(5,242,880&nbsp;bytes).Note: This method is
-        currently restricted and requires a special OAuth scope not available to all users.Note:
-        Animated and multi-page PNG files are not currently supported. For multi-page content, use
-        PDF. The maximum number of pages allowed varies by the documentUsageType.Send a
-        multipart/form‑data request with:file: the document file, set key: filedocumentUsageType:
-        for example, RETURN_SHIPPING_LABELentityType: for example, RETURNSentityId: the unique
-        identifier for the post-order entityA successful call returns the HTTP Status Code 201
-        Created with the document ID in the Location header (no response body is returned). The
-        document’s initial state is SUBMITTED. When its identifier is associated with a post-order
-        entity through an eBay GraphQL mutation, the state changes to PUBLISHED. Note: A post-order
-        entity is part of eBay's order management for activities after purchase (such as
-        returns).Important! Capture and retain the documentId in the response's Location header. It
-        is required to use the other post_order methods and to associate the document with a post-
-        order entity. The location response header contains the URI of the newly created document ID
-        in the format:
-        https://apiz.ebay.com/commerce/media/v1_beta/post_order/document/{documentId}All documents
-        (published or submitted) expire and become inaccessible after their expiration date.All POST
-        methods in the Media API, including this method, are subject to short-duration, user-level
-        rate limits: 50 requests per 5 seconds.
+        with a maximum file size of 5 MB (5,242,880 bytes). Note: This method is currently
+        restricted and requires a special OAuth scope not available to all users.
         """
         return self._request(
             'uploadPostOrderDocument',
@@ -3691,22 +2894,9 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def create_image_from_file(self, *, files: Mapping[str, Any], x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method uploads a picture file to eBay Picture Services (EPS) using multipart/form-data.
         All images must comply with eBay's picture requirements, such as dimension and file size
-        restrictions. For more information, see Picture policy. The image formats supported are JPG,
-        GIF, PNG, BMP, TIFF, AVIF, HEIC, and WEBP. For more information, see Image
-        requirements.Note: Animated GIF, and multi-page PNG/TIFF files, are not supported. Any
-        animation effect of supported formats will be lost upon upload.This call does not have a
-        JSON Request payload but uploads the file as form-data. For example: image:
-        &quot;sample_picture.jpg&quot; See Samples for information.Note: You must use a Content-Type
-        header with its value set to 'multipart/form-data'.When an EPS image is successfully
-        created, the method returns the HTTP Status Code 201 Created. The method also returns the
-        getImage URI in the Location response header.Important! Make sure to capture the image ID
-        URI returned in the response Location header provided in the following
-        format:https://apim.ebay.com/commerce/media/v1_beta/image/{image_id} You can capture the
-        entire URI, or just save the {image_id} only. Pass the {image_id} as a path parameter in the
-        getImage method to return the value needed to associate an image to a listing using the
-        Trading and Inventory APIs.See Managing images for additional details.Important!All POST
-        methods in the Media API, including this method, are subject to short-duration rate limits
-        at the user level: 50 requests per 5 seconds.
+        restrictions. For more information, see Picture policy . The image formats supported are JPG
+        , GIF , PNG , BMP , TIFF , AVIF , HEIC , and WEBP . For more information, see Image
+        requirements .
         """
         return await self._request(
             'createImageFromFile',
@@ -3728,20 +2918,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         """This method uploads a picture to eBay Picture Services (EPS) from the specified URL. Specify
         the location of the picture on an external web server through the imageUrl field. All images
         must comply with eBay’s picture requirements, such as dimension and file size restrictions.
-        For more information, see Picture policy. The image formats supported are JPG, GIF, PNG,
-        BMP, TIFF, AVIF, HEIC, and WEBP. In addition, the provided URL must be secured using HTTPS
-        (HTTP is not permitted). For more information, see Image requirements.Note: Animated GIF,
-        and multi-page PNG/TIFF files, are not supported. Any animation effect of supported formats
-        will be lost upon upload.When an EPS image is successfully created, the method returns the
-        HTTP Status Code 201 Created. The method also returns the getImage URI in the Location
-        response header.Important! Make sure to capture the image ID URI returned in the response
-        Location header provided in the following
-        format:https://apim.ebay.com/commerce/media/v1_beta/image/{image_id} You can capture the
-        entire URI, or just save the {image_id} only. Pass the {image_id} as a path parameter in the
-        getImage method to return the value needed to associate an image to a listing using the
-        Trading and Inventory APIs.See Managing images for additional details.Important!All POST
-        methods in the Media API, including this method, are subject to short-duration rate limits
-        at the user level: 50 requests per 5 seconds.
+        For more information, see Picture policy .
         """
         return await self._request(
             'createImageFromUrl',
@@ -3761,11 +2938,9 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def get_image(self, image_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_image(self, image_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.ImageResponse | httpx.Response:
         """This method retrieves an EPS image URL and its expiration details for the unique identifier
-        specified in the path parameter image_id. Use the retrieved EPS image URL to add the image
-        to a listing through the Inventory API or the Trading API. See Managing images for
-        additional details.Note: If a user inputs a valid image_id as a path parameter but the EPS
-        image associated with that ID has expired, the call will fail and a 404 Not Found status
-        code will be returned.
+        specified in the path parameter image_id . Use the retrieved EPS image URL to add the image
+        to a listing through the Inventory API or the Trading API . See Managing images for
+        additional details.
         """
         return await self._request(
             'getImage',
@@ -3783,17 +2958,9 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     @overload
     async def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_video(self, *, body: commerce_media_models.CreateVideoRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
-        """This method creates a video resource. When using this method, specify the title, size, and
+        """This method creates a video resource. When using this method, specify the title , size , and
         classification of the video resource to be created. Description is an optional field for
-        this method.Tip: See Adding a video to your listing in the eBay Seller Center for details
-        about video formatting requirements and restrictions, or visit the relevant eBay site help
-        pages for the region in which the listings will be posted.When a video resource is
-        successfully created, the method returns the HTTP Status Code 201 Created.The method also
-        returns the location response header containing the video ID, which you can use to retrieve
-        the video.Note: There is no ability to edit metadata on videos at this time. There is also
-        no method to delete videos.To upload a created video to a created video resource, use the
-        uploadVideo method.Important!All POST methods in the Media API, including this method, are
-        subject to short-duration rate limits at the user level: 50 requests per 5 seconds.
+        this method.
         """
         return await self._request(
             'createVideo',
@@ -3812,20 +2979,11 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     @overload
     async def get_video(self, video_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_video(self, video_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.Video | httpx.Response:
-        """This method retrieves a video's metadata and content given a specified video ID. The method
-        returns the title, size, classification, description, video ID, playList, status, status
-        message (if any), expiration date, and thumbnail image of the retrieved video. The video's
-        title, size, classification, and description are set using the createVideo method. The
-        video's playList contains two URLs that link to instances of the streaming video based on
-        the supported protocol.The status field contains the current status of the video. After a
-        video upload is successfully completed, the video's status will show as PROCESSING until the
-        video reaches one of the terminal states of LIVE, BLOCKED or PROCESSING_FAILED. If a video's
-        processing fails, it could be because the file is corrupted, is too large, or its size
-        doesn't match what was provided in the metadata. Refer to the error messages to determine
-        the cause of the video's failure to upload. The status message will indicate why a video was
-        blocked from uploading.If a video is not being used on an active listing, its expiration
-        date is automatically set to 30 days after the video's initial upload.The video's thumbnail
-        image is automatically generated when the video is created.
+        """This method retrieves a video's metadata and content given a specified video ID . The method
+        returns the title , size , classification , description , video ID , playList , status ,
+        status message (if any), expiration date , and thumbnail image of the retrieved video. The
+        video's title , size , classification , and description are set using the createVideo
+        method.
         """
         return await self._request(
             'getVideo',
@@ -3844,19 +3002,10 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def upload_video(self, video_id: str, *, body: bytes | bytearray | memoryview, content_length: str | None = None, content_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def upload_video(self, video_id: str, *, body: bytes | bytearray | memoryview, content_length: str | None = None, content_range: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method associates the specified file with the specified video ID and uploads the input
-        file. After the file has been uploaded the processing of the file begins.Note: The size of
+        file. After the file has been uploaded the processing of the file begins. Note: The size of
         the video to be uploaded must exactly match the size of the video's input stream that was
         set in the createVideo method. If the sizes do not match, the video will not upload
-        successfully.When a video is successfully uploaded, it returns the HTTP Status Code 200
-        OK.The status flow is PENDING_UPLOAD > PROCESSING > LIVE, PROCESSING_FAILED, or BLOCKED.
-        After a video upload is successfully completed, the status will show as PROCESSING until the
-        video reaches one of the terminal states of LIVE, BLOCKED, or PROCESSING_FAILED. If the size
-        information (in bytes) provided is incorrect, the API will throw an error.Tip: See Adding a
-        video to your listing in the eBay Seller Center for details about video formatting
-        requirements and restrictions, or visit the relevant eBay site help pages for the region in
-        which the listings will be posted.To retrieve an uploaded video, use the getVideo
-        method.Important!All POST methods in the Media API, including this method, are subject to
-        short-duration rate limits at the user level: 50 requests per 5 seconds.
+        successfully.
         """
         return await self._request(
             'uploadVideo',
@@ -3877,18 +3026,8 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def create_document(self, *, body: commerce_media_models.CreateDocumentRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.CreateDocumentResponse | httpx.Response:
         """This method stages a document to be uploaded, and requires the type of document to be
         uploaded, and the language(s) that the document contains. A successful call returns a
-        documentId value that is then used as a path parameter in an uploadDocument call.When a
-        document is successfully created, the method returns the HTTP Status Code 201 Created. The
-        method returns documentId in the response payload, which you can use to retrieve the
-        document resource. This ID is also returned in the location header, for
-        convenience.Important! Make sure to capture the document ID value returned in the response
-        payload. This value is required to use the other methods in the document resource, and also
-        needed to associate a document to a listing using the Trading and Inventory APIs.To upload a
-        created document, use the document ID returned from this method's response with the
-        uploadDocument method. See Managing documents for information on creating, uploading, and
-        adding documents to listings.Important!All POST methods in the Media API, including this
-        method, are subject to short-duration rate limits at the user level: 50 requests per 5
-        seconds.
+        documentId value that is then used as a path parameter in an uploadDocument call. When a
+        document is successfully created, the method returns the HTTP Status Code 201 Created.
         """
         return await self._request(
             'createDocument',
@@ -3910,17 +3049,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         """This method downloads a document from the provided URL and adds that document to the user's
         account. This method requires the URL of the document, the type of document to be uploaded,
         and the language(s) that the document contains. When a document is successfully created, the
-        method returns the HTTP Status Code 201 Created. The method returns documentId in the
-        response payload, which you can use to retrieve the document resource. This ID is also
-        returned in the location header, for convenience.Important! Make sure to capture the
-        document ID value returned in the response payload. This value is required to use the other
-        methods in the document resource, and also needed to associate a document to a listing using
-        the Trading and Inventory APIs.After creating a document using this method, a getDocument
-        call should be made to check for a documentStatus of ACCEPTED. Only documents with this
-        status can be added to a listing. See Managing documents for more information on creating,
-        uploading, and adding documents to listings.Important!All POST methods in the Media API,
-        including this method, are subject to short-duration rate limits at the user level: 50
-        requests per 5 seconds.
+        method returns the HTTP Status Code 201 Created.
         """
         return await self._request(
             'createDocumentFromUrl',
@@ -3939,10 +3068,10 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     @overload
     async def get_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_media_models.DocumentResponse | httpx.Response:
-        """This method retrieves the current status and metadata of the specified document.Important!
+        """This method retrieves the current status and metadata of the specified document. Important!
         The document ID value returned in the response payload of the createDocument or the
-        createDocumentFromUrl method is a required input path parameter for this method.See Managing
-        documents for additional information.
+        createDocumentFromUrl method is a required input path parameter for this method. See
+        Managing documents for additional information.
         """
         return await self._request(
             'getDocument',
@@ -3963,16 +3092,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
         """This method associates the specified file with the specified document ID and uploads the
         input file. After the file has been uploaded, the processing of the file begins. Supported
         file types include .PDF, .JPEG/.JPG, and .PNG, with a maximum file size of 10 MB (10485760
-        bytes).Note: Animated and multi-page PNG files are not currently supported.Note: The
-        document ID value returned in the response of the createDocument method is a required input
-        path parameter for this method. This value is also returned in the location header of the
-        createDocument response payload.A successful upload returns the HTTP Status Code 200 OK.See
-        Managing documents for additional information. Note: You must use a Content-Type header with
-        its value set to multipart/form-data.This call does not have a JSON Request payload but
-        uploads the file as form-data. For example: file:
-        @&quot;/C:/Users/.../drone_user_warranty.pdf&quot;See Samples for information.Important!All
-        POST methods in the Media API, including this method, are subject to short-duration rate
-        limits at the user level: 50 requests per 5 seconds.
+        bytes). Note: Animated and multi-page PNG files are not currently supported.
         """
         return await self._request(
             'uploadDocument',
@@ -3991,18 +3111,7 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     @overload
     async def download_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def download_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
-        """This method downloads the file associated with the specified document ID. Access depends on
-        the document’s state:SUBMITTED: Only the document owner can download it PUBLISHED: The
-        document is no longer restricted to the owner and can be downloaded by authorized parties
-        involved in the specific post‑order flow based on the documentUsageTypeNote: This method is
-        currently restricted and requires a special OAuth scope not available to all users.Note:
-        After a document is uploaded (but not yet published), its status is SUBMITTED. Once its
-        identifier is linked to a post‑order entity through an eBay GraphQL mutation, the status
-        changes to PUBLISHED. A post-order entity is part of eBay's order management for activities
-        after purchase (such as returns).Important! The document must be in the SUBMITTED or
-        PUBLISHED state to be downloadable. All documents (published or submitted) expire and become
-        inaccessible after their expiration date.
-        """
+        """This method downloads the file associated with the specified document ID."""
         return await self._request(
             'downloadPostOrderDocument',
             'GET',
@@ -4030,13 +3139,9 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def remove_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def remove_post_order_document(self, document_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method deletes a previously uploaded document by its document ID. Only documents in
-        SUBMITTED state can be removed; documents in the PUBLISHED state cannot be deleted.Note:
+        SUBMITTED state can be removed; documents in the PUBLISHED state cannot be deleted. Note:
         This method is currently restricted and requires a special OAuth scope not available to all
-        users.Note: After a document is uploaded (but not yet published), its status is SUBMITTED.
-        When its identifier is associated with a post‑order entity through an eBay GraphQL mutation,
-        the status changes to PUBLISHED. A post-order entity is part of eBay's order management for
-        activities after purchase (such as returns).Important! All documents, whether submitted or
-        published, expire and become inaccessible after their expiration date.
+        users. Note: After a document is uploaded (but not yet published), its status is SUBMITTED .
         """
         return await self._request(
             'removePostOrderDocument',
@@ -4056,25 +3161,8 @@ class AsyncCommerceMediaResource(AsyncBaseResource):
     async def upload_post_order_document(self, *, files: Mapping[str, Any], x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method uploads a document for post‑order processes (for example, a seller providing a
         return shipping label). Supported file types include .PDF, .JPEG/.JPG, .BMP, .GIF and .PNG,
-        with a maximum file size of 5&nbsp;MB&nbsp;(5,242,880&nbsp;bytes).Note: This method is
-        currently restricted and requires a special OAuth scope not available to all users.Note:
-        Animated and multi-page PNG files are not currently supported. For multi-page content, use
-        PDF. The maximum number of pages allowed varies by the documentUsageType.Send a
-        multipart/form‑data request with:file: the document file, set key: filedocumentUsageType:
-        for example, RETURN_SHIPPING_LABELentityType: for example, RETURNSentityId: the unique
-        identifier for the post-order entityA successful call returns the HTTP Status Code 201
-        Created with the document ID in the Location header (no response body is returned). The
-        document’s initial state is SUBMITTED. When its identifier is associated with a post-order
-        entity through an eBay GraphQL mutation, the state changes to PUBLISHED. Note: A post-order
-        entity is part of eBay's order management for activities after purchase (such as
-        returns).Important! Capture and retain the documentId in the response's Location header. It
-        is required to use the other post_order methods and to associate the document with a post-
-        order entity. The location response header contains the URI of the newly created document ID
-        in the format:
-        https://apiz.ebay.com/commerce/media/v1_beta/post_order/document/{documentId}All documents
-        (published or submitted) expire and become inaccessible after their expiration date.All POST
-        methods in the Media API, including this method, are subject to short-duration, user-level
-        rate limits: 50 requests per 5 seconds.
+        with a maximum file size of 5 MB (5,242,880 bytes). Note: This method is currently
+        restricted and requires a special OAuth scope not available to all users.
         """
         return await self._request(
             'uploadPostOrderDocument',
@@ -4103,12 +3191,11 @@ class CommerceMessageResource(BaseResource):
     @overload
     def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
-        """This method can be used to update the conversationStatus of up to 10 conversations.The
-        conversationId, existing conversationType, and updated conversationStatus for each
-        conversation to modify are required in the conversations array.Important! Although it cannot
-        be updated, the conversationType field is required for each conversation being updated.If
-        the updates were successful, the conversationId of each conversation will be returned with
-        an associated updateStatus value of SUCCESSFUL.
+        """This method can be used to update the conversationStatus of up to 10 conversations. The
+        conversationId , existing conversationType , and updated conversationStatus for each
+        conversation to modify are required in the conversations array. Important! Although it
+        cannot be updated, the conversationType field is required for each conversation being
+        updated.
         """
         return self._request(
             'bulkUpdateConversation',
@@ -4127,7 +3214,7 @@ class CommerceMessageResource(BaseResource):
     @overload
     def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
-        """This method can be used to retrieve messages within a specific conversation.The
+        """This method can be used to retrieve messages within a specific conversation. The
         conversation_id of the conversation for which to retrieve messages is required as a path
         parameter and the conversation_type of the conversation is required as a query parameter.
         """
@@ -4147,12 +3234,10 @@ class CommerceMessageResource(BaseResource):
     @overload
     def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
-        """This method can be used to retrieve one or more conversations associated with a user.The
+        """This method can be used to retrieve one or more conversations associated with a user. The
         conversation_type query parameter is required when using this method to specify if the
-        retrieved conversations are from eBay or from members.The result set can also optionally be
-        filtered by conversation status, reference, username, and/or time range. The limit and
-        offset path parameters can be used to paginate the result set and control how many
-        conversations are returned in the response.
+        retrieved conversations are from eBay or from members. The result set can also optionally be
+        filtered by conversation status, reference, username, and/or time range.
         """
         return self._request(
             'getConversations',
@@ -4171,14 +3256,8 @@ class CommerceMessageResource(BaseResource):
     def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
         """This method can be used to start a conversation with another user or send a message in an
-        existing conversation with another user based on the information provided in the request.To
+        existing conversation with another user based on the information provided in the request. To
         send a message, one of the conversationId or otherPartyUsername request fields is required.
-        The conversationId must be used when sending a message in an existing conversation and
-        specifies the conversation for which to send the message. For a new conversation, the
-        otherPartyUsername field must be used to send the message to a specific user. In addition,
-        the messageText field is required as it contains the body text of the message.Optionally,
-        media (such as images or documents) can be attached to the message using the messageMedia
-        container. The reference container can also be used to associate a message with a listing.
         """
         return self._request(
             'sendMessage',
@@ -4198,17 +3277,9 @@ class CommerceMessageResource(BaseResource):
     def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method can be used to update the conversationStatus or the read status of a specified
-        conversation.Note: Only one of these statuses can be updated at a time using this method. If
-        both fields are included, only the read status of the specified conversation will be updated
-        and the conversationStatus field will be ignored.Both the conversationId of the conversation
-        to modify and the existing conversationType of the specified conversation are required as
-        part of the request payload.Important! Although it cannot be updated, the existing
-        conversationType of the specified conversation to be updated is required in the request
-        payload. If this value is not provided, an error will occur.To update a conversation's
-        status (e.g., updating an ACTIVE conversation to ARCHIVE), include the conversationStatus
-        field in the request with the updated value. To update a conversation's read status (e.g.,
-        updating an UNREAD conversation to READ), include the read boolean in the request with the
-        updated value.
+        conversation. Note: Only one of these statuses can be updated at a time using this method.
+        If both fields are included, only the read status of the specified conversation will be
+        updated and the conversationStatus field will be ignored.
         """
         return self._request(
             'updateConversation',
@@ -4237,12 +3308,11 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     @overload
     async def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_conversation(self, *, body: commerce_message_models.BulkUpdateConversationsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.BulkUpdateConversationsResponse | httpx.Response:
-        """This method can be used to update the conversationStatus of up to 10 conversations.The
-        conversationId, existing conversationType, and updated conversationStatus for each
-        conversation to modify are required in the conversations array.Important! Although it cannot
-        be updated, the conversationType field is required for each conversation being updated.If
-        the updates were successful, the conversationId of each conversation will be returned with
-        an associated updateStatus value of SUCCESSFUL.
+        """This method can be used to update the conversationStatus of up to 10 conversations. The
+        conversationId , existing conversationType , and updated conversationStatus for each
+        conversation to modify are required in the conversations array. Important! Although it
+        cannot be updated, the conversationType field is required for each conversation being
+        updated.
         """
         return await self._request(
             'bulkUpdateConversation',
@@ -4261,7 +3331,7 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     @overload
     async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_conversation(self, conversation_id: str, *, conversation_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetMessagesByConversationIdResponse | httpx.Response:
-        """This method can be used to retrieve messages within a specific conversation.The
+        """This method can be used to retrieve messages within a specific conversation. The
         conversation_id of the conversation for which to retrieve messages is required as a path
         parameter and the conversation_type of the conversation is required as a query parameter.
         """
@@ -4281,12 +3351,10 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     @overload
     async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_conversations(self, *, conversation_type: str, conversation_status: str | None = None, end_time: str | None = None, limit: str | None = None, offset: str | None = None, other_party_username: str | None = None, reference_id: str | None = None, reference_type: str | None = None, start_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.GetAllMyConversationsResponse | httpx.Response:
-        """This method can be used to retrieve one or more conversations associated with a user.The
+        """This method can be used to retrieve one or more conversations associated with a user. The
         conversation_type query parameter is required when using this method to specify if the
-        retrieved conversations are from eBay or from members.The result set can also optionally be
-        filtered by conversation status, reference, username, and/or time range. The limit and
-        offset path parameters can be used to paginate the result set and control how many
-        conversations are returned in the response.
+        retrieved conversations are from eBay or from members. The result set can also optionally be
+        filtered by conversation status, reference, username, and/or time range.
         """
         return await self._request(
             'getConversations',
@@ -4305,14 +3373,8 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     async def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def send_message(self, *, body: commerce_message_models.SendMessageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_message_models.SendMessageResponse | httpx.Response:
         """This method can be used to start a conversation with another user or send a message in an
-        existing conversation with another user based on the information provided in the request.To
+        existing conversation with another user based on the information provided in the request. To
         send a message, one of the conversationId or otherPartyUsername request fields is required.
-        The conversationId must be used when sending a message in an existing conversation and
-        specifies the conversation for which to send the message. For a new conversation, the
-        otherPartyUsername field must be used to send the message to a specific user. In addition,
-        the messageText field is required as it contains the body text of the message.Optionally,
-        media (such as images or documents) can be attached to the message using the messageMedia
-        container. The reference container can also be used to associate a message with a listing.
         """
         return await self._request(
             'sendMessage',
@@ -4332,17 +3394,9 @@ class AsyncCommerceMessageResource(AsyncBaseResource):
     async def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_conversation(self, *, body: commerce_message_models.UpdateConversationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method can be used to update the conversationStatus or the read status of a specified
-        conversation.Note: Only one of these statuses can be updated at a time using this method. If
-        both fields are included, only the read status of the specified conversation will be updated
-        and the conversationStatus field will be ignored.Both the conversationId of the conversation
-        to modify and the existing conversationType of the specified conversation are required as
-        part of the request payload.Important! Although it cannot be updated, the existing
-        conversationType of the specified conversation to be updated is required in the request
-        payload. If this value is not provided, an error will occur.To update a conversation's
-        status (e.g., updating an ACTIVE conversation to ARCHIVE), include the conversationStatus
-        field in the request with the updated value. To update a conversation's read status (e.g.,
-        updating an UNREAD conversation to READ), include the read boolean in the request with the
-        updated value.
+        conversation. Note: Only one of these statuses can be updated at a time using this method.
+        If both fields are included, only the read status of the specified conversation will be
+        updated and the conversationStatus field will be ignored.
         """
         return await self._request(
             'updateConversation',
@@ -4429,11 +3483,10 @@ class CommerceNotificationResource(BaseResource):
     def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a destination. A destination is an endpoint that
-        receives HTTP push notifications.A single destination for all topics is valid, as is
-        individual destinations for each topic.To update a destination, use the updateDestination
-        call.The destination created will need to be referenced while creating or updating a
-        subscription to a topic.Note: The destination should be created and ready to respond with
-        the expected challengeResponse for the endpoint to be registered successfully.
+        receives HTTP push notifications. A single destination for all topics is valid, as is
+        individual destinations for each topic. To update a destination, use the updateDestination
+        call. The destination created will need to be referenced while creating or updating a
+        subscription to a topic.
         """
         return self._request(
             'createDestination',
@@ -4472,7 +3525,7 @@ class CommerceNotificationResource(BaseResource):
     @overload
     def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
-        """This method allows applications to update a destination.Note: The destination should be
+        """This method allows applications to update a destination. Note: The destination should be
         created and ready to respond with the expected challengeResponse for the endpoint to be
         registered successfully.
         """
@@ -4493,9 +3546,10 @@ class CommerceNotificationResource(BaseResource):
     @overload
     def delete_destination(self, destination_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_destination(self, destination_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
-        """This method provides applications a way to delete a destination.The same destination ID can
-        be used by many destinations.Trying to delete an active destination results in an error. You
-        can disable a subscription, and when the destination is no longer in use, you can delete it.
+        """This method provides applications a way to delete a destination. The same destination ID can
+        be used by many destinations. Trying to delete an active destination results in an error.
+        You can disable a subscription, and when the destination is no longer in use, you can delete
+        it.
         """
         return self._request(
             'deleteDestination',
@@ -4514,15 +3568,9 @@ class CommerceNotificationResource(BaseResource):
     def get_public_key(self, public_key_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_public_key(self, public_key_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.PublicKey | httpx.Response:
         """This method allows users to retrieve a public key using a specified key ID. The public key
-        that is returned in the response payload is used to process and validate eBay
-        notifications.The public key ID, which is a required request parameter for this method, is
-        retrieved from the Base64-encoded X-EBAY-SIGNATURE header that is included in the eBay
-        notification.Important! The retrieved public key value should be cached for a temporary —
-        but reasonable — amount of time (e.g., one-hour is recommended.) This key should not be
-        requested for every notification since doing so can result in exceeding API call limits if a
-        large number of notification requests is received.Note: For more details about how to
-        process eBay push notifications and validate notification message payloads, see the
-        Communications Guide.
+        that is returned in the response payload is used to process and validate eBay notifications.
+        The public key ID, which is a required request parameter for this method, is retrieved from
+        the Base64-encoded X-EBAY-SIGNATURE header that is included in the eBay notification.
         """
         return self._request(
             'getPublicKey',
@@ -4541,7 +3589,7 @@ class CommerceNotificationResource(BaseResource):
     def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
         """This method allows applications to retrieve a list of all subscriptions. The list returned
-        is a paginated collection of subscription resources.Subscriptions allow applications to
+        is a paginated collection of subscription resources. Subscriptions allow applications to
         express interest in notifications and keep receiving the information relevant to their
         business.
         """
@@ -4563,12 +3611,8 @@ class CommerceNotificationResource(BaseResource):
     def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a subscription for a topic and supported schema
         version. Subscriptions allow applications to express interest in notifications and keep
-        receiving the information relevant to their business.Each application and topic-schema
-        pairing to a subscription should have a 1:1 cardinality.You can create the subscription in
-        disabled mode, test it (see the test method), and when everything is ready, you can enable
-        the subscription (see the enableSubscription method).Note: If an application is not
-        authorized to subscribe to a topic, for example, if your authorization does not include the
-        list of scopes required for the topic, an error code of 195011 is returned.
+        receiving the information relevant to their business. Each application and topic-schema
+        pairing to a subscription should have a 1:1 cardinality.
         """
         return self._request(
             'createSubscription',
@@ -4589,19 +3633,8 @@ class CommerceNotificationResource(BaseResource):
     def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a filter for a subscription. Filters allow
         applications to only be sent notifications that match a provided criteria. Notifications
-        that do not match this criteria will not be sent to the destination.The filterSchema value
-        must be a valid JSON Schema Core document (version 2020-12 or later). The filterSchema
-        provided must describe the subscription's notification payload such that it supplies valid
-        criteria to filter the subscription's notifications. The user does not need to provide
-        $schema and $id definitions.When a filter is first created, it is not immediately active on
-        the subscription. If the request has a valid JSON body, the successful call returns the HTTP
-        status code 201&nbsp;Created. Newly created filters are in PENDING status until they are
-        reviewed. If a filter is valid, it will move from PENDING status to ENABLED status. You can
-        find the status of a filter using the getSubscriptionFilter method.Note: Only one filter can
-        be in ENABLED (which means active) status on a subscription at a time. If an ENABLED filter
-        is overwritten by a new call to CREATE a filter for the subscription, it stays in ENABLED
-        status until the new PENDING filter becomes the ENABLED filter, and the existing filter then
-        becomes DISABLED.
+        that do not match this criteria will not be sent to the destination. The filterSchema value
+        must be a valid JSON Schema Core document (version 2020-12 or later).
         """
         return self._request(
             'createSubscriptionFilter',
@@ -4621,10 +3654,10 @@ class CommerceNotificationResource(BaseResource):
     def get_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Subscription | httpx.Response:
         """This method allows applications to retrieve subscription details for the specified
-        subscription.Specify the subscription to retrieve using the subscription_id. Use the
-        getSubscriptions method to browse all subscriptions if you do not know the
-        subscription_id.Subscriptions allow applications to express interest in notifications and
-        keep receiving the information relevant to their business.
+        subscription. Specify the subscription to retrieve using the subscription_id . Use the
+        getSubscriptions method to browse all subscriptions if you do not know the subscription_id .
+        Subscriptions allow applications to express interest in notifications and keep receiving the
+        information relevant to their business.
         """
         return self._request(
             'getSubscription',
@@ -4644,9 +3677,9 @@ class CommerceNotificationResource(BaseResource):
     def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a subscription. Subscriptions allow applications
         to express interest in notifications and keep receiving the information relevant to their
-        business.Note: This call returns an error if an application is not authorized to subscribe
-        to a topic.You can pause and restart a subscription. See the disableSubscription and
-        enableSubscriptionmethods.
+        business. Note: This call returns an error if an application is not authorized to subscribe
+        to a topic. You can pause and restart a subscription. See the disableSubscription and
+        enableSubscription methods.
         """
         return self._request(
             'updateSubscription',
@@ -4685,11 +3718,10 @@ class CommerceNotificationResource(BaseResource):
     def get_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionFilter | httpx.Response:
         """This method allows applications to retrieve the filter details for the specified
-        subscription filter.Specify the subscription filter to retrieve by using the subscription_id
-        and the filter_id associated with the subscription filter. The filter_id can be found in the
-        response body for the getSubscription method, if there is a filter applied on the
-        subscription.Filters allow applications to only be sent notifications that match a provided
-        criteria. Notifications that do not match this criteria will not be sent to the destination.
+        subscription filter. Specify the subscription filter to retrieve by using the
+        subscription_id and the filter_id associated with the subscription filter. The filter_id can
+        be found in the response body for the getSubscription method, if there is a filter applied
+        on the subscription.
         """
         return self._request(
             'getSubscriptionFilter',
@@ -4708,8 +3740,8 @@ class CommerceNotificationResource(BaseResource):
     def delete_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to disable the active filter on a subscription, so that a
-        new subscription filter may be added.Note: Subscription filters in PENDING status can not be
-        disabled. However, a new filter can be created instead with the createSubscriptionFilter
+        new subscription filter may be added. Note: Subscription filters in PENDING status can not
+        be disabled. However, a new filter can be created instead with the createSubscriptionFilter
         method and this new filter will override the PENDING filter.
         """
         return self._request(
@@ -4729,7 +3761,7 @@ class CommerceNotificationResource(BaseResource):
     def disable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def disable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method disables a subscription, which prevents the subscription from providing
-        notifications. To restart a subscription, call enableSubscription.
+        notifications. To restart a subscription, call enableSubscription .
         """
         return self._request(
             'disableSubscription',
@@ -4748,7 +3780,7 @@ class CommerceNotificationResource(BaseResource):
     def enable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def enable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to enable a disabled subscription. To pause (or disable) an
-        enabled subscription, call disableSubscription.
+        enabled subscription, call disableSubscription .
         """
         return self._request(
             'enableSubscription',
@@ -4767,10 +3799,9 @@ class CommerceNotificationResource(BaseResource):
     def test_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def test_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method triggers a mocked test payload that includes a notification ID, publish date,
-        and so on. Use this method to test your subscription end-to-end.You can create the
+        and so on. Use this method to test your subscription end-to-end. You can create the
         subscription in disabled mode, test it using this method, and when everything is ready, you
-        can enable the subscription (see the enableSubscription method).Note: Use the notificationId
-        to tell the difference between a test payload and a real payload.
+        can enable the subscription (see the enableSubscription method).
         """
         return self._request(
             'testSubscription',
@@ -4789,14 +3820,9 @@ class CommerceNotificationResource(BaseResource):
     def get_topic(self, topic_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_topic(self, topic_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Topic | httpx.Response:
         """This method allows applications to retrieve details for the specified topic. This
-        information includes supported schema versions, formats, and other metadata for the
-        topic.Applications can subscribe to any of the topics for a supported schema version and
-        format, limited by the authorization scopes required to subscribe to the topic.A topic
-        specifies the type of information to be received and the data types associated with an
-        event. An event occurs in the eBay system, such as when a user requests deletion or revokes
-        access for an application. An event is an instance of an event type (topic).Specify the
-        topic to retrieve using the topic_id URI parameter.Note: Use the getTopics method to find a
-        topic if you do not know the topic ID.
+        information includes supported schema versions, formats, and other metadata for the topic.
+        Applications can subscribe to any of the topics for a supported schema version and format,
+        limited by the authorization scopes required to subscribe to the topic.
         """
         return self._request(
             'getTopic',
@@ -4816,11 +3842,9 @@ class CommerceNotificationResource(BaseResource):
     def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
         """This method returns a paginated collection of all supported topics, along with the details
         for the topics. This information includes supported schema versions, formats, and other
-        metadata for the topics.Applications can subscribe to any of the topics for a supported
+        metadata for the topics. Applications can subscribe to any of the topics for a supported
         schema version and format, limited by the authorization scopes required to subscribe to the
-        topic.A topic specifies the type of information to be received and the data types associated
-        with an event. An event occurs in the eBay system, such as when a user requests deletion or
-        revokes access for an application. An event is an instance of an event type (topic).
+        topic.
         """
         return self._request(
             'getTopics',
@@ -4906,11 +3930,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_destination(self, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a destination. A destination is an endpoint that
-        receives HTTP push notifications.A single destination for all topics is valid, as is
-        individual destinations for each topic.To update a destination, use the updateDestination
-        call.The destination created will need to be referenced while creating or updating a
-        subscription to a topic.Note: The destination should be created and ready to respond with
-        the expected challengeResponse for the endpoint to be registered successfully.
+        receives HTTP push notifications. A single destination for all topics is valid, as is
+        individual destinations for each topic. To update a destination, use the updateDestination
+        call. The destination created will need to be referenced while creating or updating a
+        subscription to a topic.
         """
         return await self._request(
             'createDestination',
@@ -4949,7 +3972,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     @overload
     async def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_destination(self, destination_id: str, *, body: commerce_notification_models.DestinationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
-        """This method allows applications to update a destination.Note: The destination should be
+        """This method allows applications to update a destination. Note: The destination should be
         created and ready to respond with the expected challengeResponse for the endpoint to be
         registered successfully.
         """
@@ -4970,9 +3993,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     @overload
     async def delete_destination(self, destination_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_destination(self, destination_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
-        """This method provides applications a way to delete a destination.The same destination ID can
-        be used by many destinations.Trying to delete an active destination results in an error. You
-        can disable a subscription, and when the destination is no longer in use, you can delete it.
+        """This method provides applications a way to delete a destination. The same destination ID can
+        be used by many destinations. Trying to delete an active destination results in an error.
+        You can disable a subscription, and when the destination is no longer in use, you can delete
+        it.
         """
         return await self._request(
             'deleteDestination',
@@ -4991,15 +4015,9 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_public_key(self, public_key_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_public_key(self, public_key_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.PublicKey | httpx.Response:
         """This method allows users to retrieve a public key using a specified key ID. The public key
-        that is returned in the response payload is used to process and validate eBay
-        notifications.The public key ID, which is a required request parameter for this method, is
-        retrieved from the Base64-encoded X-EBAY-SIGNATURE header that is included in the eBay
-        notification.Important! The retrieved public key value should be cached for a temporary —
-        but reasonable — amount of time (e.g., one-hour is recommended.) This key should not be
-        requested for every notification since doing so can result in exceeding API call limits if a
-        large number of notification requests is received.Note: For more details about how to
-        process eBay push notifications and validate notification message payloads, see the
-        Communications Guide.
+        that is returned in the response payload is used to process and validate eBay notifications.
+        The public key ID, which is a required request parameter for this method, is retrieved from
+        the Base64-encoded X-EBAY-SIGNATURE header that is included in the eBay notification.
         """
         return await self._request(
             'getPublicKey',
@@ -5018,7 +4036,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_subscriptions(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionSearchResponse | httpx.Response:
         """This method allows applications to retrieve a list of all subscriptions. The list returned
-        is a paginated collection of subscription resources.Subscriptions allow applications to
+        is a paginated collection of subscription resources. Subscriptions allow applications to
         express interest in notifications and keep receiving the information relevant to their
         business.
         """
@@ -5040,12 +4058,8 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def create_subscription(self, *, body: commerce_notification_models.CreateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a subscription for a topic and supported schema
         version. Subscriptions allow applications to express interest in notifications and keep
-        receiving the information relevant to their business.Each application and topic-schema
-        pairing to a subscription should have a 1:1 cardinality.You can create the subscription in
-        disabled mode, test it (see the test method), and when everything is ready, you can enable
-        the subscription (see the enableSubscription method).Note: If an application is not
-        authorized to subscribe to a topic, for example, if your authorization does not include the
-        list of scopes required for the topic, an error code of 195011 is returned.
+        receiving the information relevant to their business. Each application and topic-schema
+        pairing to a subscription should have a 1:1 cardinality.
         """
         return await self._request(
             'createSubscription',
@@ -5066,19 +4080,8 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def create_subscription_filter(self, subscription_id: str, *, body: commerce_notification_models.CreateSubscriptionFilterRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method allows applications to create a filter for a subscription. Filters allow
         applications to only be sent notifications that match a provided criteria. Notifications
-        that do not match this criteria will not be sent to the destination.The filterSchema value
-        must be a valid JSON Schema Core document (version 2020-12 or later). The filterSchema
-        provided must describe the subscription's notification payload such that it supplies valid
-        criteria to filter the subscription's notifications. The user does not need to provide
-        $schema and $id definitions.When a filter is first created, it is not immediately active on
-        the subscription. If the request has a valid JSON body, the successful call returns the HTTP
-        status code 201&nbsp;Created. Newly created filters are in PENDING status until they are
-        reviewed. If a filter is valid, it will move from PENDING status to ENABLED status. You can
-        find the status of a filter using the getSubscriptionFilter method.Note: Only one filter can
-        be in ENABLED (which means active) status on a subscription at a time. If an ENABLED filter
-        is overwritten by a new call to CREATE a filter for the subscription, it stays in ENABLED
-        status until the new PENDING filter becomes the ENABLED filter, and the existing filter then
-        becomes DISABLED.
+        that do not match this criteria will not be sent to the destination. The filterSchema value
+        must be a valid JSON Schema Core document (version 2020-12 or later).
         """
         return await self._request(
             'createSubscriptionFilter',
@@ -5098,10 +4101,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Subscription | httpx.Response:
         """This method allows applications to retrieve subscription details for the specified
-        subscription.Specify the subscription to retrieve using the subscription_id. Use the
-        getSubscriptions method to browse all subscriptions if you do not know the
-        subscription_id.Subscriptions allow applications to express interest in notifications and
-        keep receiving the information relevant to their business.
+        subscription. Specify the subscription to retrieve using the subscription_id . Use the
+        getSubscriptions method to browse all subscriptions if you do not know the subscription_id .
+        Subscriptions allow applications to express interest in notifications and keep receiving the
+        information relevant to their business.
         """
         return await self._request(
             'getSubscription',
@@ -5121,9 +4124,9 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def update_subscription(self, subscription_id: str, *, body: commerce_notification_models.UpdateSubscriptionRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to update a subscription. Subscriptions allow applications
         to express interest in notifications and keep receiving the information relevant to their
-        business.Note: This call returns an error if an application is not authorized to subscribe
-        to a topic.You can pause and restart a subscription. See the disableSubscription and
-        enableSubscriptionmethods.
+        business. Note: This call returns an error if an application is not authorized to subscribe
+        to a topic. You can pause and restart a subscription. See the disableSubscription and
+        enableSubscription methods.
         """
         return await self._request(
             'updateSubscription',
@@ -5162,11 +4165,10 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.SubscriptionFilter | httpx.Response:
         """This method allows applications to retrieve the filter details for the specified
-        subscription filter.Specify the subscription filter to retrieve by using the subscription_id
-        and the filter_id associated with the subscription filter. The filter_id can be found in the
-        response body for the getSubscription method, if there is a filter applied on the
-        subscription.Filters allow applications to only be sent notifications that match a provided
-        criteria. Notifications that do not match this criteria will not be sent to the destination.
+        subscription filter. Specify the subscription filter to retrieve by using the
+        subscription_id and the filter_id associated with the subscription filter. The filter_id can
+        be found in the response body for the getSubscription method, if there is a filter applied
+        on the subscription.
         """
         return await self._request(
             'getSubscriptionFilter',
@@ -5185,8 +4187,8 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def delete_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_subscription_filter(self, filter_id: str, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to disable the active filter on a subscription, so that a
-        new subscription filter may be added.Note: Subscription filters in PENDING status can not be
-        disabled. However, a new filter can be created instead with the createSubscriptionFilter
+        new subscription filter may be added. Note: Subscription filters in PENDING status can not
+        be disabled. However, a new filter can be created instead with the createSubscriptionFilter
         method and this new filter will override the PENDING filter.
         """
         return await self._request(
@@ -5206,7 +4208,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def disable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def disable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method disables a subscription, which prevents the subscription from providing
-        notifications. To restart a subscription, call enableSubscription.
+        notifications. To restart a subscription, call enableSubscription .
         """
         return await self._request(
             'disableSubscription',
@@ -5225,7 +4227,7 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def enable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def enable_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method allows applications to enable a disabled subscription. To pause (or disable) an
-        enabled subscription, call disableSubscription.
+        enabled subscription, call disableSubscription .
         """
         return await self._request(
             'enableSubscription',
@@ -5244,10 +4246,9 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def test_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def test_subscription(self, subscription_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Error | httpx.Response:
         """This method triggers a mocked test payload that includes a notification ID, publish date,
-        and so on. Use this method to test your subscription end-to-end.You can create the
+        and so on. Use this method to test your subscription end-to-end. You can create the
         subscription in disabled mode, test it using this method, and when everything is ready, you
-        can enable the subscription (see the enableSubscription method).Note: Use the notificationId
-        to tell the difference between a test payload and a real payload.
+        can enable the subscription (see the enableSubscription method).
         """
         return await self._request(
             'testSubscription',
@@ -5266,14 +4267,9 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_topic(self, topic_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_topic(self, topic_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.Topic | httpx.Response:
         """This method allows applications to retrieve details for the specified topic. This
-        information includes supported schema versions, formats, and other metadata for the
-        topic.Applications can subscribe to any of the topics for a supported schema version and
-        format, limited by the authorization scopes required to subscribe to the topic.A topic
-        specifies the type of information to be received and the data types associated with an
-        event. An event occurs in the eBay system, such as when a user requests deletion or revokes
-        access for an application. An event is an instance of an event type (topic).Specify the
-        topic to retrieve using the topic_id URI parameter.Note: Use the getTopics method to find a
-        topic if you do not know the topic ID.
+        information includes supported schema versions, formats, and other metadata for the topic.
+        Applications can subscribe to any of the topics for a supported schema version and format,
+        limited by the authorization scopes required to subscribe to the topic.
         """
         return await self._request(
             'getTopic',
@@ -5293,11 +4289,9 @@ class AsyncCommerceNotificationResource(AsyncBaseResource):
     async def get_topics(self, *, continuation_token: str | None = None, limit: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_notification_models.TopicSearchResponse | httpx.Response:
         """This method returns a paginated collection of all supported topics, along with the details
         for the topics. This information includes supported schema versions, formats, and other
-        metadata for the topics.Applications can subscribe to any of the topics for a supported
+        metadata for the topics. Applications can subscribe to any of the topics for a supported
         schema version and format, limited by the authorization scopes required to subscribe to the
-        topic.A topic specifies the type of information to be received and the data types associated
-        with an event. An event occurs in the eBay system, such as when a user requests deletion or
-        revokes access for an application. An event is an instance of an event type (topic).
+        topic.
         """
         return await self._request(
             'getTopics',
@@ -5413,14 +4407,7 @@ class CommerceTaxonomyResource(BaseResource):
         """This call returns a list of aspects that are appropriate or necessary for accurately
         describing items in the specified leaf category. Each aspect identifies an item attribute
         (for example, color,) for which the seller will be required or encouraged to provide a value
-        (or variation values) when offering an item in that category on eBay.For each aspect, this
-        method provides complete metadata, including: The aspect's data type, format, and entry
-        modeWhether the aspect is required in listingsWhether the aspect can be used for item
-        variationsWhether the aspect accepts multiple values for an itemAllowed values for the
-        aspect Use this information to construct an interface through which sellers can enter or
-        select the appropriate values for their items or item variations. Once you collect those
-        values, include them as product aspects when creating inventory items using the Inventory
-        API.
+        (or variation values) when offering an item in that category on eBay.
         """
         return self._request(
             'getItemAspectsForCategory',
@@ -5474,11 +4461,9 @@ class CommerceTaxonomyResource(BaseResource):
     def get_expired_categories(self, category_tree_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_taxonomy_models.ExpiredCategories | httpx.Response:
         """This method retrieves the mappings of expired leaf categories in the specified category tree
         to their corresponding active leaf categories. Note that in some cases, several expired
-        categories are mapped to a single active category.Note: This method only returns information
-        about categories that have been mapped (i.e., combined categories and split categories). It
-        does not return information about expired categories that have no corresponding active
-        categories. When a category expires in this manner, any completed items that were listed in
-        the expired category can still be found, but new listings cannot be created in the category.
+        categories are mapped to a single active category. Note: This method only returns
+        information about categories that have been mapped (i.e., combined categories and split
+        categories).
         """
         return self._request(
             'getExpiredCategories',
@@ -5594,14 +4579,7 @@ class AsyncCommerceTaxonomyResource(AsyncBaseResource):
         """This call returns a list of aspects that are appropriate or necessary for accurately
         describing items in the specified leaf category. Each aspect identifies an item attribute
         (for example, color,) for which the seller will be required or encouraged to provide a value
-        (or variation values) when offering an item in that category on eBay.For each aspect, this
-        method provides complete metadata, including: The aspect's data type, format, and entry
-        modeWhether the aspect is required in listingsWhether the aspect can be used for item
-        variationsWhether the aspect accepts multiple values for an itemAllowed values for the
-        aspect Use this information to construct an interface through which sellers can enter or
-        select the appropriate values for their items or item variations. Once you collect those
-        values, include them as product aspects when creating inventory items using the Inventory
-        API.
+        (or variation values) when offering an item in that category on eBay.
         """
         return await self._request(
             'getItemAspectsForCategory',
@@ -5655,11 +4633,9 @@ class AsyncCommerceTaxonomyResource(AsyncBaseResource):
     async def get_expired_categories(self, category_tree_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_taxonomy_models.ExpiredCategories | httpx.Response:
         """This method retrieves the mappings of expired leaf categories in the specified category tree
         to their corresponding active leaf categories. Note that in some cases, several expired
-        categories are mapped to a single active category.Note: This method only returns information
-        about categories that have been mapped (i.e., combined categories and split categories). It
-        does not return information about expired categories that have no corresponding active
-        categories. When a category expires in this manner, any completed items that were listed in
-        the expired category can still be found, but new listings cannot be created in the category.
+        categories are mapped to a single active category. Note: This method only returns
+        information about categories that have been mapped (i.e., combined categories and split
+        categories).
         """
         return await self._request(
             'getExpiredCategories',
@@ -5688,7 +4664,7 @@ class CommerceTranslationResource(BaseResource):
     def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
         """This method translates listing title and listing description text from one language into
-        another. For a full list of supported language translations, see the table.
+        another. For a full list of supported language translations, see the table .
         """
         return self._request(
             'translate',
@@ -5718,7 +4694,7 @@ class AsyncCommerceTranslationResource(AsyncBaseResource):
     async def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def translate(self, *, body: commerce_translation_models.TranslateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_translation_models.TranslateResponse | httpx.Response:
         """This method translates listing title and listing description text from one language into
-        another. For a full list of supported language translations, see the table.
+        another. For a full list of supported language translations, see the table .
         """
         return await self._request(
             'translate',
@@ -5748,9 +4724,10 @@ class CommerceVeroResource(BaseResource):
     def get_vero_reason_code(self, vero_reason_code_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_vero_reason_code(self, vero_reason_code_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReasonCodeResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method is used to retrieve the details of a specific VeRO reason code, including a
-        description of the code and the marketplace associated with the code.The vero_reason_code_id
-        of the VeRO reason code for which to retrieve details is required as a path parameter.
+        call. This method is used to retrieve the details of a specific VeRO reason code, including
+        a description of the code and the marketplace associated with the code. The
+        vero_reason_code_id of the VeRO reason code for which to retrieve details is required as a
+        path parameter.
         """
         return self._request(
             'getVeroReasonCode',
@@ -5769,11 +4746,10 @@ class CommerceVeroResource(BaseResource):
     def get_vero_reason_codes(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_vero_reason_codes(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReasonCodeDetailResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method is used to retrieve the details of an array of VeRO reason codes. This
+        call. This method is used to retrieve the details of an array of VeRO reason codes. This
         information includes the descriptions of each code, as well as the marketplace associated
         with each code. If the X-EBAY-C-MARKETPLACE-ID header is present, only VeRO reason codes for
-        that specific site will be returned. If this header is not included, all reason codes for
-        all sites are returned.
+        that specific site will be returned.
         """
         return self._request(
             'getVeroReasonCodes',
@@ -5792,11 +4768,8 @@ class CommerceVeroResource(BaseResource):
     def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method can be used to create a VeRO report for a listing. VeRO reports can be used
-        to report items that your copyright, trademark, or other intellectual property rights.The
-        itemId of the item being reported must be provided in the request, as well as the
-        veroReasonCodeId of the claimed infringement.You can report one or more items at a time
-        using this method. A maximum of 150 items can be reported using this method.
+        call. This method can be used to create a VeRO report for a listing. VeRO reports can be
+        used to report items that your copyright, trademark, or other intellectual property rights.
         """
         return self._request(
             'createVeroReport',
@@ -5816,9 +4789,9 @@ class CommerceVeroResource(BaseResource):
     def get_vero_report(self, vero_report_id: str, *, include_item_details: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_vero_report(self, vero_report_id: str, *, include_item_details: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.ReportStatusResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method can be used to retrieve status information about a VeRO report you have
+        call. This method can be used to retrieve status information about a VeRO report you have
         submitted to eBay for copyright, trademark, or other intellectual property rights
-        infringement.The vero_report_id path parameter is used to specify the eBay report for which
+        infringement. The vero_report_id path parameter is used to specify the eBay report for which
         to retrieve status information.
         """
         return self._request(
@@ -5865,9 +4838,10 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
     async def get_vero_reason_code(self, vero_reason_code_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_vero_reason_code(self, vero_reason_code_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReasonCodeResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method is used to retrieve the details of a specific VeRO reason code, including a
-        description of the code and the marketplace associated with the code.The vero_reason_code_id
-        of the VeRO reason code for which to retrieve details is required as a path parameter.
+        call. This method is used to retrieve the details of a specific VeRO reason code, including
+        a description of the code and the marketplace associated with the code. The
+        vero_reason_code_id of the VeRO reason code for which to retrieve details is required as a
+        path parameter.
         """
         return await self._request(
             'getVeroReasonCode',
@@ -5886,11 +4860,10 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
     async def get_vero_reason_codes(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_vero_reason_codes(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReasonCodeDetailResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method is used to retrieve the details of an array of VeRO reason codes. This
+        call. This method is used to retrieve the details of an array of VeRO reason codes. This
         information includes the descriptions of each code, as well as the marketplace associated
         with each code. If the X-EBAY-C-MARKETPLACE-ID header is present, only VeRO reason codes for
-        that specific site will be returned. If this header is not included, all reason codes for
-        all sites are returned.
+        that specific site will be returned.
         """
         return await self._request(
             'getVeroReasonCodes',
@@ -5909,11 +4882,8 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
     async def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_vero_report(self, *, body: commerce_vero_models.VeroReportItemsRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.VeroReportItemsResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method can be used to create a VeRO report for a listing. VeRO reports can be used
-        to report items that your copyright, trademark, or other intellectual property rights.The
-        itemId of the item being reported must be provided in the request, as well as the
-        veroReasonCodeId of the claimed infringement.You can report one or more items at a time
-        using this method. A maximum of 150 items can be reported using this method.
+        call. This method can be used to create a VeRO report for a listing. VeRO reports can be
+        used to report items that your copyright, trademark, or other intellectual property rights.
         """
         return await self._request(
             'createVeroReport',
@@ -5933,9 +4903,9 @@ class AsyncCommerceVeroResource(AsyncBaseResource):
     async def get_vero_report(self, vero_report_id: str, *, include_item_details: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_vero_report(self, vero_report_id: str, *, include_item_details: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> commerce_vero_models.ReportStatusResponse | httpx.Response:
         """Important! You must be a member of the Verified Rights Owner (VeRO) Program to use this
-        call.This method can be used to retrieve status information about a VeRO report you have
+        call. This method can be used to retrieve status information about a VeRO report you have
         submitted to eBay for copyright, trademark, or other intellectual property rights
-        infringement.The vero_report_id path parameter is used to specify the eBay report for which
+        infringement. The vero_report_id path parameter is used to specify the eBay report for which
         to retrieve status information.
         """
         return await self._request(
@@ -7825,14 +6795,9 @@ class SellAccountV1Resource(BaseResource):
     def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a new custom policy that specifies the seller's terms for complying with
-        local governmental regulations. Each Custom Policy targets a policyType. Multiple policies
-        may be created as using the following custom policy types:PRODUCT_COMPLIANCE: Product
+        local governmental regulations. Each Custom Policy targets a policyType . Multiple policies
+        may be created as using the following custom policy types: PRODUCT_COMPLIANCE: Product
         Compliance policies disclose product information as required for regulatory compliance.
-        Note: A maximum of 60 Product Compliance policies per seller may be created.TAKE_BACK:
-        Takeback policies describe the seller's legal obligation to take back a previously purchased
-        item when the buyer purchases a new one. Note: A maximum of 18 Takeback policies per seller
-        may be created.A successful create policy call returns an HTTP status code of 201 Created
-        with the system-generated policy ID included in the Location response header.
         """
         return self._request(
             'createCustomPolicy',
@@ -7869,12 +6834,9 @@ class SellAccountV1Resource(BaseResource):
     def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method updates an existing custom policy specified by the custom_policy_id path
-        parameter. Since this method overwrites the policy's name, label, and description fields,
+        parameter. Since this method overwrites the policy's name , label , and description fields,
         always include the complete and current text of all three policy fields in the request
-        payload, even if they are not being updated. For example, the value for the label field is
-        to be updated, but the name and description values will remain unchanged. The existing name
-        and description values, as they are defined in the current policy, must also be passed in. A
-        successful policy update call returns an HTTP status code of 204 No Content.
+        payload, even if they are not being updated.
         """
         return self._request(
             'updateCustomPolicy',
@@ -7895,10 +6857,7 @@ class SellAccountV1Resource(BaseResource):
     def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method creates a new fulfillment policy for an eBay marketplace where the policy
         encapsulates seller's terms for fulfilling item purchases. Fulfillment policies include the
-        shipment options that the seller offers to buyers. A successful request returns the
-        getFulfillmentPolicy URI to the new policy in the Location response header and the ID for
-        the new policy is returned in the response payload. Tip: For details on creating and using
-        the business policies supported by the Account API, see eBay business policies.
+        shipment options that the seller offers to buyers.
         """
         return self._request(
             'createFulfillmentPolicy',
@@ -8038,7 +6997,7 @@ class SellAccountV1Resource(BaseResource):
         order payments. A successful request returns the getPaymentPolicy URI to the new policy in
         the Location response header and the ID for the new policy is returned in the response
         payload. Tip: For details on creating and using the business policies supported by the
-        Account API, see eBay business policies.
+        Account API, see eBay business policies .
         """
         return self._request(
             'createPaymentPolicy',
@@ -8137,7 +7096,7 @@ class SellAccountV1Resource(BaseResource):
     def get_payments_program(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_payments_program(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentsProgramResponse | httpx.Response:
         """Note: This method is no longer applicable, as all seller accounts globally have been enabled
-        for the new eBay payment and checkout flow.This method returns whether or not the user is
+        for the new eBay payment and checkout flow. This method returns whether or not the user is
         opted-in to the specified payments program. Sellers opt-in to payments programs by
         marketplace and you use the marketplace_id path parameter to specify the marketplace of the
         status flag you want returned.
@@ -8159,7 +7118,7 @@ class SellAccountV1Resource(BaseResource):
     def get_payments_program_onboarding(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_payments_program_onboarding(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentsProgramOnboardingResponse | httpx.Response:
         """Note: This method is no longer applicable, as all seller accounts globally have been enabled
-        for the new eBay payment and checkout flow.This method retrieves a seller's onboarding
+        for the new eBay payment and checkout flow. This method retrieves a seller's onboarding
         status for a payments program for a specified marketplace. The overall onboarding status of
         the seller and the status of each onboarding step is returned.
         """
@@ -8217,7 +7176,7 @@ class SellAccountV1Resource(BaseResource):
     def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller in to an eBay seller program. Refer to the ProgramTypeEnum for
-        information about available eBay seller programs.Note: It can take up to 24-hours for eBay
+        information about available eBay seller programs. Note: It can take up to 24-hours for eBay
         to process your request to opt-in to a Seller Program. Use the getOptedInPrograms call to
         check the status of your request after the processing period has passed.
         """
@@ -8262,17 +7221,7 @@ class SellAccountV1Resource(BaseResource):
         """This method retrieves a seller's shipping rate tables for the country specified in the
         country_code query parameter. If you call this method without specifying a country code, the
         call returns all of the seller's shipping rate tables. The method's response includes a
-        rateTableId for each table defined by the seller. This rateTableId value is used in
-        add/revise item call or in create/update fulfillment business policy call to specify the
-        shipping rate table to use for that policy's domestic or international shipping options.
-        This call currently supports getting rate tables related to the following marketplaces:
-        United States, Canada, United Kingdom, Germany, Australia, France, Italy, and Spain. Note:
-        Rate tables created with the Trading API might not have been assigned a rateTableId at the
-        time of their creation. This method can assign and return rateTableId values for rate tables
-        with missing IDs if you make a request using the country_code where the seller has defined
-        rate tables. Sellers can define up to 40 shipping rate tables for their account, which lets
-        them set up different rate tables for each of the marketplaces they sell into. Go to
-        Shipping rate tables in My eBay to create and update rate tables.
+        rateTableId for each table defined by the seller.
         """
         return self._request(
             'getRateTables',
@@ -8311,11 +7260,7 @@ class SellAccountV1Resource(BaseResource):
     def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method creates a new return policy where the policy encapsulates seller's terms for
         returning items. Each policy targets a specific marketplace, and you can create multiple
-        policies for each marketplace. Return policies are not applicable to motor-vehicle
-        listings.A successful request returns the getReturnPolicy URI to the new policy in the
-        Location response header and the ID for the new policy is returned in the response payload.
-        Tip: For details on creating and using the business policies supported by the Account API,
-        see eBay business policies.
+        policies for each marketplace. Return policies are not applicable to motor-vehicle listings.
         """
         return self._request(
             'createReturnPolicy',
@@ -8413,19 +7358,9 @@ class SellAccountV1Resource(BaseResource):
     @overload
     def bulk_create_or_replace_sales_tax(self, *, body: sell_account_v1_models.BulkSalesTaxInput, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_or_replace_sales_tax(self, *, body: sell_account_v1_models.BulkSalesTaxInput, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.UpdatedSalesTaxResponse | httpx.Response:
-        """This method creates or updates multiple sales-tax table entries.Sales-tax tables can be set
-        up for countries that support different tax jurisdictions.Note: Sales-tax tables are only
-        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Each sales-tax table entry
-        comprises the following
-        parameters:countryCodejurisdictionIdsalesTaxPercentageshippingAndHandlingTaxedValid
-        jurisdiction IDs are retrieved using getSalesTaxJurisdictions in the Metadata API.For
-        details about using this call, refer to Establishing sales-tax tables.Important! In the US,
-        eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all
-        50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        """This method creates or updates multiple sales-tax table entries. Sales-tax tables can be set
+        up for countries that support different tax jurisdictions . Note: Sales-tax tables are only
+        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
         """
         return self._request(
             'bulkCreateOrReplaceSalesTax',
@@ -8447,14 +7382,7 @@ class SellAccountV1Resource(BaseResource):
         """This call retrieves the current sales-tax table entry for a specific tax jurisdiction.
         Specify the jurisdiction to retrieve using the countryCode and jurisdictionId path
         parameters. All four response fields will be returned if a sales-tax entry exists for the
-        tax jurisdiction. Otherwise, the response will be returned as empty.Note: Sales-tax tables
-        are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the
-        US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in
-        all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        tax jurisdiction. Otherwise, the response will be returned as empty.
         """
         return self._request(
             'getSalesTax',
@@ -8474,18 +7402,7 @@ class SellAccountV1Resource(BaseResource):
     def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method creates or updates a sales-tax table entry for a jurisdiction. Specify the tax
         table entry you want to configure using the two path parameters: countryCode and
-        jurisdictionId. A tax table entry for a jurisdiction is comprised of two fields: one for the
-        jurisdiction's sales-tax rate and another that's a boolean value indicating whether or not
-        shipping and handling are taxed in the jurisdiction.You can set up sales-tax tables for
-        countries that support different tax jurisdictions.Note: Sales-tax tables are only available
-        for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Retrieve valid jurisdiction IDs using
-        getSalesTaxJurisdictions in the Metadata API.For details about using this call, refer to
-        Establishing sales-tax tables.Important! In the US, eBay now calculates, collects, and
-        remits sales tax to the proper taxing authorities in all 50 states and Washington, DC.
-        Sellers can no longer specify sales-tax rates for these jurisdictions using a tax
-        table.However, sellers may continue to use a sales-tax table to set rates for the following
-        US territories:American Samoa (AS)Guam (GU)Northern Mariana Islands (MP)Palau (PW)US Virgin
-        Islands (VI)For additional information, refer to Taxes and import charges.
+        jurisdictionId .
         """
         return self._request(
             'createOrReplaceSalesTax',
@@ -8505,7 +7422,7 @@ class SellAccountV1Resource(BaseResource):
     def delete_sales_tax(self, country_code: str, jurisdiction_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_sales_tax(self, country_code: str, jurisdiction_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This call deletes a sales-tax table entry for a jurisdiction. Specify the jurisdiction to
-        delete using the countryCode and jurisdictionId path parameters.Note: Sales-tax tables are
+        delete using the countryCode and jurisdictionId path parameters. Note: Sales-tax tables are
         only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
         """
         return self._request(
@@ -8527,14 +7444,7 @@ class SellAccountV1Resource(BaseResource):
         """Use this call to retrieve all sales tax table entries that the seller has defined for a
         specific country. All four response fields will be returned for each tax jurisdiction that
         matches the search criteria. If no sales tax rates are defined for the specified, a 204 No
-        Content status code is returned with no response payload.Note: Sales-tax tables are only
-        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the US, eBay
-        now calculates, collects, and remits sales tax to the proper taxing authorities in all 50
-        states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        Content status code is returned with no response payload.
         """
         return self._request(
             'getSalesTaxes',
@@ -8639,14 +7549,9 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_custom_policy(self, *, body: sell_account_v1_models.CustomPolicyCreateRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates a new custom policy that specifies the seller's terms for complying with
-        local governmental regulations. Each Custom Policy targets a policyType. Multiple policies
-        may be created as using the following custom policy types:PRODUCT_COMPLIANCE: Product
+        local governmental regulations. Each Custom Policy targets a policyType . Multiple policies
+        may be created as using the following custom policy types: PRODUCT_COMPLIANCE: Product
         Compliance policies disclose product information as required for regulatory compliance.
-        Note: A maximum of 60 Product Compliance policies per seller may be created.TAKE_BACK:
-        Takeback policies describe the seller's legal obligation to take back a previously purchased
-        item when the buyer purchases a new one. Note: A maximum of 18 Takeback policies per seller
-        may be created.A successful create policy call returns an HTTP status code of 201 Created
-        with the system-generated policy ID included in the Location response header.
         """
         return await self._request(
             'createCustomPolicy',
@@ -8683,12 +7588,9 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_custom_policy(self, custom_policy_id: str, *, body: sell_account_v1_models.CustomPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method updates an existing custom policy specified by the custom_policy_id path
-        parameter. Since this method overwrites the policy's name, label, and description fields,
+        parameter. Since this method overwrites the policy's name , label , and description fields,
         always include the complete and current text of all three policy fields in the request
-        payload, even if they are not being updated. For example, the value for the label field is
-        to be updated, but the name and description values will remain unchanged. The existing name
-        and description values, as they are defined in the current policy, must also be passed in. A
-        successful policy update call returns an HTTP status code of 204 No Content.
+        payload, even if they are not being updated.
         """
         return await self._request(
             'updateCustomPolicy',
@@ -8709,10 +7611,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def create_fulfillment_policy(self, *, body: sell_account_v1_models.FulfillmentPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetFulfillmentPolicyResponse | httpx.Response:
         """This method creates a new fulfillment policy for an eBay marketplace where the policy
         encapsulates seller's terms for fulfilling item purchases. Fulfillment policies include the
-        shipment options that the seller offers to buyers. A successful request returns the
-        getFulfillmentPolicy URI to the new policy in the Location response header and the ID for
-        the new policy is returned in the response payload. Tip: For details on creating and using
-        the business policies supported by the Account API, see eBay business policies.
+        shipment options that the seller offers to buyers.
         """
         return await self._request(
             'createFulfillmentPolicy',
@@ -8852,7 +7751,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         order payments. A successful request returns the getPaymentPolicy URI to the new policy in
         the Location response header and the ID for the new policy is returned in the response
         payload. Tip: For details on creating and using the business policies supported by the
-        Account API, see eBay business policies.
+        Account API, see eBay business policies .
         """
         return await self._request(
             'createPaymentPolicy',
@@ -8951,7 +7850,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def get_payments_program(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_payments_program(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentsProgramResponse | httpx.Response:
         """Note: This method is no longer applicable, as all seller accounts globally have been enabled
-        for the new eBay payment and checkout flow.This method returns whether or not the user is
+        for the new eBay payment and checkout flow. This method returns whether or not the user is
         opted-in to the specified payments program. Sellers opt-in to payments programs by
         marketplace and you use the marketplace_id path parameter to specify the marketplace of the
         status flag you want returned.
@@ -8973,7 +7872,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def get_payments_program_onboarding(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_payments_program_onboarding(self, marketplace_id: str, payments_program_type: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.PaymentsProgramOnboardingResponse | httpx.Response:
         """Note: This method is no longer applicable, as all seller accounts globally have been enabled
-        for the new eBay payment and checkout flow.This method retrieves a seller's onboarding
+        for the new eBay payment and checkout flow. This method retrieves a seller's onboarding
         status for a payments program for a specified marketplace. The overall onboarding status of
         the seller and the status of each onboarding step is returned.
         """
@@ -9031,7 +7930,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def opt_in_to_program(self, *, body: sell_account_v1_models.Program, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method opts the seller in to an eBay seller program. Refer to the ProgramTypeEnum for
-        information about available eBay seller programs.Note: It can take up to 24-hours for eBay
+        information about available eBay seller programs. Note: It can take up to 24-hours for eBay
         to process your request to opt-in to a Seller Program. Use the getOptedInPrograms call to
         check the status of your request after the processing period has passed.
         """
@@ -9076,17 +7975,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         """This method retrieves a seller's shipping rate tables for the country specified in the
         country_code query parameter. If you call this method without specifying a country code, the
         call returns all of the seller's shipping rate tables. The method's response includes a
-        rateTableId for each table defined by the seller. This rateTableId value is used in
-        add/revise item call or in create/update fulfillment business policy call to specify the
-        shipping rate table to use for that policy's domestic or international shipping options.
-        This call currently supports getting rate tables related to the following marketplaces:
-        United States, Canada, United Kingdom, Germany, Australia, France, Italy, and Spain. Note:
-        Rate tables created with the Trading API might not have been assigned a rateTableId at the
-        time of their creation. This method can assign and return rateTableId values for rate tables
-        with missing IDs if you make a request using the country_code where the seller has defined
-        rate tables. Sellers can define up to 40 shipping rate tables for their account, which lets
-        them set up different rate tables for each of the marketplaces they sell into. Go to
-        Shipping rate tables in My eBay to create and update rate tables.
+        rateTableId for each table defined by the seller.
         """
         return await self._request(
             'getRateTables',
@@ -9125,11 +8014,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def create_return_policy(self, *, body: sell_account_v1_models.ReturnPolicyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.SetReturnPolicyResponse | httpx.Response:
         """This method creates a new return policy where the policy encapsulates seller's terms for
         returning items. Each policy targets a specific marketplace, and you can create multiple
-        policies for each marketplace. Return policies are not applicable to motor-vehicle
-        listings.A successful request returns the getReturnPolicy URI to the new policy in the
-        Location response header and the ID for the new policy is returned in the response payload.
-        Tip: For details on creating and using the business policies supported by the Account API,
-        see eBay business policies.
+        policies for each marketplace. Return policies are not applicable to motor-vehicle listings.
         """
         return await self._request(
             'createReturnPolicy',
@@ -9227,19 +8112,9 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     @overload
     async def bulk_create_or_replace_sales_tax(self, *, body: sell_account_v1_models.BulkSalesTaxInput, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_or_replace_sales_tax(self, *, body: sell_account_v1_models.BulkSalesTaxInput, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.UpdatedSalesTaxResponse | httpx.Response:
-        """This method creates or updates multiple sales-tax table entries.Sales-tax tables can be set
-        up for countries that support different tax jurisdictions.Note: Sales-tax tables are only
-        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Each sales-tax table entry
-        comprises the following
-        parameters:countryCodejurisdictionIdsalesTaxPercentageshippingAndHandlingTaxedValid
-        jurisdiction IDs are retrieved using getSalesTaxJurisdictions in the Metadata API.For
-        details about using this call, refer to Establishing sales-tax tables.Important! In the US,
-        eBay now calculates, collects, and remits sales tax to the proper taxing authorities in all
-        50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        """This method creates or updates multiple sales-tax table entries. Sales-tax tables can be set
+        up for countries that support different tax jurisdictions . Note: Sales-tax tables are only
+        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
         """
         return await self._request(
             'bulkCreateOrReplaceSalesTax',
@@ -9261,14 +8136,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         """This call retrieves the current sales-tax table entry for a specific tax jurisdiction.
         Specify the jurisdiction to retrieve using the countryCode and jurisdictionId path
         parameters. All four response fields will be returned if a sales-tax entry exists for the
-        tax jurisdiction. Otherwise, the response will be returned as empty.Note: Sales-tax tables
-        are only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the
-        US, eBay now calculates, collects, and remits sales tax to the proper taxing authorities in
-        all 50 states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        tax jurisdiction. Otherwise, the response will be returned as empty.
         """
         return await self._request(
             'getSalesTax',
@@ -9288,18 +8156,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def create_or_replace_sales_tax(self, country_code: str, jurisdiction_id: str, *, body: sell_account_v1_models.SalesTaxBase, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This method creates or updates a sales-tax table entry for a jurisdiction. Specify the tax
         table entry you want to configure using the two path parameters: countryCode and
-        jurisdictionId. A tax table entry for a jurisdiction is comprised of two fields: one for the
-        jurisdiction's sales-tax rate and another that's a boolean value indicating whether or not
-        shipping and handling are taxed in the jurisdiction.You can set up sales-tax tables for
-        countries that support different tax jurisdictions.Note: Sales-tax tables are only available
-        for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Retrieve valid jurisdiction IDs using
-        getSalesTaxJurisdictions in the Metadata API.For details about using this call, refer to
-        Establishing sales-tax tables.Important! In the US, eBay now calculates, collects, and
-        remits sales tax to the proper taxing authorities in all 50 states and Washington, DC.
-        Sellers can no longer specify sales-tax rates for these jurisdictions using a tax
-        table.However, sellers may continue to use a sales-tax table to set rates for the following
-        US territories:American Samoa (AS)Guam (GU)Northern Mariana Islands (MP)Palau (PW)US Virgin
-        Islands (VI)For additional information, refer to Taxes and import charges.
+        jurisdictionId .
         """
         return await self._request(
             'createOrReplaceSalesTax',
@@ -9319,7 +8176,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
     async def delete_sales_tax(self, country_code: str, jurisdiction_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_sales_tax(self, country_code: str, jurisdiction_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_account_v1_models.Error | httpx.Response:
         """This call deletes a sales-tax table entry for a jurisdiction. Specify the jurisdiction to
-        delete using the countryCode and jurisdictionId path parameters.Note: Sales-tax tables are
+        delete using the countryCode and jurisdictionId path parameters. Note: Sales-tax tables are
         only available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.
         """
         return await self._request(
@@ -9341,14 +8198,7 @@ class AsyncSellAccountV1Resource(AsyncBaseResource):
         """Use this call to retrieve all sales tax table entries that the seller has defined for a
         specific country. All four response fields will be returned for each tax jurisdiction that
         matches the search criteria. If no sales tax rates are defined for the specified, a 204 No
-        Content status code is returned with no response payload.Note: Sales-tax tables are only
-        available for the US (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the US, eBay
-        now calculates, collects, and remits sales tax to the proper taxing authorities in all 50
-        states and Washington, DC. Sellers can no longer specify sales-tax rates for these
-        jurisdictions using a tax table.However, sellers may continue to use a sales-tax table to
-        set rates for the following US territories:American Samoa (AS)Guam (GU)Northern Mariana
-        Islands (MP)Palau (PW)US Virgin Islands (VI)For additional information, refer to Taxes and
-        import charges.
+        Content status code is returned with no response payload.
         """
         return await self._request(
             'getSalesTaxes',
@@ -9969,11 +8819,7 @@ class SellAnalyticsResource(BaseResource):
         metric. Control the response from the getCustomerServiceMetric method using the following
         path and query parameters: customer_service_metric_type controls the type of customer
         service transactions evaluated for the metric rating. evaluation_type controls the period
-        you want to review. evaluation_marketplace_id specifies the target marketplace for the
-        evaluation. Currently, metric data is returned for only peer benchmarking. For details on
-        the workings of peer benchmarking, see Service metrics policy. For details on using and
-        understanding the response from this method, see Interpreting customer service metric
-        ratings.
+        you want to review.
         """
         return self._request(
             'getCustomerServiceMetric',
@@ -9993,13 +8839,7 @@ class SellAnalyticsResource(BaseResource):
     def find_seller_standards_profiles(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_analytics_models.FindSellerStandardsProfilesResponse | httpx.Response:
         """This call retrieves all the standards profiles for the associated seller. A standards
         profile is a set of eBay seller metrics and the seller's associated compliance values
-        (either TOP_RATED, ABOVE_STANDARD, or BELOW_STANDARD). A seller's multiple profiles are
-        distinguished by two criteria, a "program" and a "cycle." A profile's program is one of
-        three regions where the seller may have done business, or PROGRAM_GLOBAL to indicate all
-        marketplaces where the seller has done business. The cycle value specifies whether the
-        standards compliance values were determined at the last official eBay evaluation or at the
-        time of the request.For more information on the interpreting the response payload of this
-        method, see Seller standards profile.
+        (either TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD ).
         """
         return self._request(
             'findSellerStandardsProfiles',
@@ -10019,14 +8859,7 @@ class SellAnalyticsResource(BaseResource):
     def get_seller_standards_profile(self, cycle: str, program: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_analytics_models.StandardsProfile | httpx.Response:
         """This call retrieves a single standards profile for the associated seller. A standards
         profile is a set of eBay seller metrics and the seller's associated compliance values
-        (either TOP_RATED, ABOVE_STANDARD, or BELOW_STANDARD). A seller can have multiple profiles
-        distinguished by two criteria, a "program" and a "cycle." A profile's program is one of
-        three regions where the seller may have done business, or PROGRAM_GLOBAL to indicate all
-        marketplaces where the seller has done business. The cycle value specifies whether the
-        standards compliance values were determined at the last official eBay evaluation (CURRENT)
-        or at the time of the request (PROJECTED). Both cycle and a program values are required URI
-        parameters for this method.For more information on the interpreting the response payload of
-        this method, see Seller standards profile.
+        (either TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD ).
         """
         return self._request(
             'getSellerStandardsProfile',
@@ -10048,7 +8881,7 @@ class SellAnalyticsResource(BaseResource):
         A traffic report gives sellers the ability to review how often their listings appeared on
         eBay, how many times their listings are viewed, and how many purchases were made. The report
         also returns the report's start and end dates, and the date the information was last
-        updated. For more information, see Traffic report details
+        updated.
         """
         return self._request(
             'getTrafficReport',
@@ -10080,11 +8913,7 @@ class AsyncSellAnalyticsResource(AsyncBaseResource):
         metric. Control the response from the getCustomerServiceMetric method using the following
         path and query parameters: customer_service_metric_type controls the type of customer
         service transactions evaluated for the metric rating. evaluation_type controls the period
-        you want to review. evaluation_marketplace_id specifies the target marketplace for the
-        evaluation. Currently, metric data is returned for only peer benchmarking. For details on
-        the workings of peer benchmarking, see Service metrics policy. For details on using and
-        understanding the response from this method, see Interpreting customer service metric
-        ratings.
+        you want to review.
         """
         return await self._request(
             'getCustomerServiceMetric',
@@ -10104,13 +8933,7 @@ class AsyncSellAnalyticsResource(AsyncBaseResource):
     async def find_seller_standards_profiles(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_analytics_models.FindSellerStandardsProfilesResponse | httpx.Response:
         """This call retrieves all the standards profiles for the associated seller. A standards
         profile is a set of eBay seller metrics and the seller's associated compliance values
-        (either TOP_RATED, ABOVE_STANDARD, or BELOW_STANDARD). A seller's multiple profiles are
-        distinguished by two criteria, a "program" and a "cycle." A profile's program is one of
-        three regions where the seller may have done business, or PROGRAM_GLOBAL to indicate all
-        marketplaces where the seller has done business. The cycle value specifies whether the
-        standards compliance values were determined at the last official eBay evaluation or at the
-        time of the request.For more information on the interpreting the response payload of this
-        method, see Seller standards profile.
+        (either TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD ).
         """
         return await self._request(
             'findSellerStandardsProfiles',
@@ -10130,14 +8953,7 @@ class AsyncSellAnalyticsResource(AsyncBaseResource):
     async def get_seller_standards_profile(self, cycle: str, program: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_analytics_models.StandardsProfile | httpx.Response:
         """This call retrieves a single standards profile for the associated seller. A standards
         profile is a set of eBay seller metrics and the seller's associated compliance values
-        (either TOP_RATED, ABOVE_STANDARD, or BELOW_STANDARD). A seller can have multiple profiles
-        distinguished by two criteria, a "program" and a "cycle." A profile's program is one of
-        three regions where the seller may have done business, or PROGRAM_GLOBAL to indicate all
-        marketplaces where the seller has done business. The cycle value specifies whether the
-        standards compliance values were determined at the last official eBay evaluation (CURRENT)
-        or at the time of the request (PROJECTED). Both cycle and a program values are required URI
-        parameters for this method.For more information on the interpreting the response payload of
-        this method, see Seller standards profile.
+        (either TOP_RATED , ABOVE_STANDARD , or BELOW_STANDARD ).
         """
         return await self._request(
             'getSellerStandardsProfile',
@@ -10159,7 +8975,7 @@ class AsyncSellAnalyticsResource(AsyncBaseResource):
         A traffic report gives sellers the ability to review how often their listings appeared on
         eBay, how many times their listings are viewed, and how many purchases were made. The report
         also returns the report's start and end dates, and the date the information was last
-        updated. For more information, see Traffic report details
+        updated.
         """
         return await self._request(
             'getTrafficReport',
@@ -10190,10 +9006,7 @@ class SellComplianceResource(BaseResource):
         """This call returns listing violation counts for a seller. A user can pass in one or more
         compliance types through the compliance_type query parameter. See ComplianceTypeEnum for
         more information on the supported listing compliance types. Listing violations are returned
-        for multiple marketplaces if the seller sells on multiple eBay marketplaces. Note: Only a
-        canned response, with counts for all listing compliance types, is returned in the Sandbox
-        environment. Due to this limitation, the compliance_type query parameter (if used) will not
-        have an effect on the response.
+        for multiple marketplaces if the seller sells on multiple eBay marketplaces.
         """
         return self._request(
             'getListingViolationsSummary',
@@ -10215,17 +9028,7 @@ class SellComplianceResource(BaseResource):
         Only one compliance type can be passed in per call, and the response will include all the
         listing violations for this compliance type, and listing violations are grouped together by
         eBay listing ID. See ComplianceTypeEnum for more information on the supported listing
-        compliance types. This method also has pagination control. Note: A maximum of 2000 listing
-        violations will be returned in a result set. If the seller has more than 2000 listing
-        violations, some/all of those listing violations must be corrected before additional listing
-        violations will be retrieved. The user should pay attention to the total value in the
-        response. If this value is '2000', it is possible that the seller has more than 2000 listing
-        violations, but this field maxes out at 2000. Note: In a future release of this API, the
-        seller will be able to pass in a specific eBay listing ID as a query parameter to see if
-        this specific listing has any violations. Note: Only mocked non-compliant listing data will
-        be returned for this call in the Sandbox environment, and not specific to the seller.
-        However, the user can still use this mock data to experiment with the compliance type
-        filters and pagination control.
+        compliance types.
         """
         return self._request(
             'getListingViolations',
@@ -10247,10 +9050,6 @@ class SellComplianceResource(BaseResource):
         the AT_RISK state (returned in the violations.complianceState field of the
         getListingViolations call) can be suppressed. Note: At this time, the suppressViolation call
         only supports the suppressing of ASPECTS_ADOPTION listing violations in the AT_RISK state.
-        In the future, it is possible that this method can be used to suppress other listing
-        violation types. A successful call returns a http status code of 204 Success. There is no
-        response payload. If the call is not successful, an error code will be returned stating the
-        issue.
         """
         return self._request(
             'suppressViolation',
@@ -10282,10 +9081,7 @@ class AsyncSellComplianceResource(AsyncBaseResource):
         """This call returns listing violation counts for a seller. A user can pass in one or more
         compliance types through the compliance_type query parameter. See ComplianceTypeEnum for
         more information on the supported listing compliance types. Listing violations are returned
-        for multiple marketplaces if the seller sells on multiple eBay marketplaces. Note: Only a
-        canned response, with counts for all listing compliance types, is returned in the Sandbox
-        environment. Due to this limitation, the compliance_type query parameter (if used) will not
-        have an effect on the response.
+        for multiple marketplaces if the seller sells on multiple eBay marketplaces.
         """
         return await self._request(
             'getListingViolationsSummary',
@@ -10307,17 +9103,7 @@ class AsyncSellComplianceResource(AsyncBaseResource):
         Only one compliance type can be passed in per call, and the response will include all the
         listing violations for this compliance type, and listing violations are grouped together by
         eBay listing ID. See ComplianceTypeEnum for more information on the supported listing
-        compliance types. This method also has pagination control. Note: A maximum of 2000 listing
-        violations will be returned in a result set. If the seller has more than 2000 listing
-        violations, some/all of those listing violations must be corrected before additional listing
-        violations will be retrieved. The user should pay attention to the total value in the
-        response. If this value is '2000', it is possible that the seller has more than 2000 listing
-        violations, but this field maxes out at 2000. Note: In a future release of this API, the
-        seller will be able to pass in a specific eBay listing ID as a query parameter to see if
-        this specific listing has any violations. Note: Only mocked non-compliant listing data will
-        be returned for this call in the Sandbox environment, and not specific to the seller.
-        However, the user can still use this mock data to experiment with the compliance type
-        filters and pagination control.
+        compliance types.
         """
         return await self._request(
             'getListingViolations',
@@ -10339,10 +9125,6 @@ class AsyncSellComplianceResource(AsyncBaseResource):
         the AT_RISK state (returned in the violations.complianceState field of the
         getListingViolations call) can be suppressed. Note: At this time, the suppressViolation call
         only supports the suppressing of ASPECTS_ADOPTION listing violations in the AT_RISK state.
-        In the future, it is possible that this method can be used to suppress other listing
-        violation types. A successful call returns a http status code of 204 Success. There is no
-        response payload. If the call is not successful, an error code will be returned stating the
-        issue.
         """
         return await self._request(
             'suppressViolation',
@@ -10372,13 +9154,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_actual_costs(self, *, tracking_numbers: str | None = None, trans_begin_time: str | None = None, trans_end_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_actual_costs(self, *, tracking_numbers: str | None = None, trans_begin_time: str | None = None, trans_end_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetActualCostResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieve the actual weight and cost for one or more packages
-        based on the provided input criteria.Responses can be filtered by the tracking_numbers query
-        parameter. If this parameter is used, actual costs for each package associated with the
-        provided tracking numbers are returned.Alternatively, responses can be filtered by the
-        trans_begin_time and trans_end_time query parameters. If these parameters are used, the
-        actual costs of all packages created within this date range are returned.Only one filtering
-        method can be used per call.
+        account. This method is used to retrieve the actual weight and cost for one or more packages
+        based on the provided input criteria. Responses can be filtered by the tracking_numbers
+        query parameter.
         """
         return self._request(
             'getActualCosts',
@@ -10397,7 +9175,7 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_address_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_address_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAddressPreferenceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about all the ship-from and/or
+        account. This method can be used to retrieve information about all the ship-from and/or
         return addresses associated with a seller's eDIS account.
         """
         return self._request(
@@ -10417,12 +9195,7 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def create_address_preference(self, *, body: sell_edelivery_international_shipping_models.CreateAddressPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_address_preference(self, *, body: sell_edelivery_international_shipping_models.CreateAddressPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateAddressPreferenceResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create an address on your eDIS account.The following
-        types of addresses can be created through this method:SHIP_FROM_ADDRESSRETURN_ADDRESSThe
-        address information for the address, including location details, contact information, and
-        address type, must be provided in the shipFromAddress container. If the call is successful,
-        the addressId for the newly created address will be returned. This identifier can then be
-        used when creating a package to specify the address to use for the shipment.
+        account. This method can be used to create an address on your eDIS account.
         """
         return self._request(
             'createAddressPreference',
@@ -10442,11 +9215,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about the EU Authorized
-        Representative (AR) agent(s) associated with a seller's eDIS account.An EU AR agent acts as
+        account. This method can be used to retrieve information about the EU Authorized
+        Representative (AR) agent(s) associated with a seller's eDIS account. An EU AR agent acts as
         a liaison between non-EU manufacturers and European regulatory authorities to ensure
-        compliance with EU regulations. This method returns contact information about each agent, as
-        well as their eBay ID and the countries that they support.
+        compliance with EU regulations.
         """
         return self._request(
             'getAgents',
@@ -10465,9 +9237,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieve all battery qualifications associated with your eDIS
-        account. This includes the type, electronic qualification ID and name, and expiration date
-        for each battery.
+        account. This method is used to retrieve all battery qualifications associated with your
+        eDIS account. This includes the type, electronic qualification ID and name, and expiration
+        date for each battery.
         """
         return self._request(
             'getBatteryQualifications',
@@ -10486,7 +9258,7 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def cancel_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def cancel_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to cancel a bundle.The bundleId value of the bundle to be
+        account. This method is used to cancel a bundle. The bundleId value of the bundle to be
         canceled must be input as a path parameter in the request. Note: Bundles cannot be canceled
         if they are currently being processed.
         """
@@ -10507,12 +9279,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def create_bundle(self, *, body: sell_edelivery_international_shipping_models.CreateBundleRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_bundle(self, *, body: sell_edelivery_international_shipping_models.CreateBundleRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateBundleResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to create a bundle for multiple packages in an order.To create a
-        bundle, the consign address to be associated with the bundle and the tracking numbers of the
-        packages to be used in the bundle must be specified in the request. If the call is
-        successful, the bundleId for the newly created bundle will be returned.Note: Sellers should
-        keep track of the returned bundleId, as there is no programmatic way to retrieve this value
-        at this time.
+        account. This method is used to create a bundle for multiple packages in an order. To create
+        a bundle, the consign address to be associated with the bundle and the tracking numbers of
+        the packages to be used in the bundle must be specified in the request.
         """
         return self._request(
             'createBundle',
@@ -10532,11 +9301,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.BundleDetailResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieved information about a specific bundle based on the
-        provided bundle ID value.The bundle_id value of the bundle to be retrieved must be input as
-        a path parameter in the request. If the call is successful, information about the bundle is
-        returned, such as its associated consign preference ID and the tracking numbers of each
-        package in the bundle.
+        account. This method is used to retrieved information about a specific bundle based on the
+        provided bundle ID value. The bundle_id value of the bundle to be retrieved must be input as
+        a path parameter in the request.
         """
         return self._request(
             'getBundle',
@@ -10555,9 +9322,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_bundle_label(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_bundle_label(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.BundleLabelResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve the bundle label for a bundle of packages.The
+        account. This method can be used to retrieve the bundle label for a bundle of packages. The
         bundle for which to retrieve a bundle label is specified through the bundleId path
-        parameter.Bundle labels will be returned as base64 string values which can be converted to
+        parameter. Bundle labels will be returned as base64 string values which can be converted to
         PDF files.
         """
         return self._request(
@@ -10577,12 +9344,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def create_complaint(self, *, body: sell_edelivery_international_shipping_models.AddComplaintRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_complaint(self, *, body: sell_edelivery_international_shipping_models.AddComplaintRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a complaint about a shipment order. Complaints can
-        be filed if there is a pickup delay on an order or if an item has been lost in transit.The
-        complaint reason, complaint type, and the date the issue occurred must be specified in the
-        request. If the complaint is being filed for a missing package, the affected packageId
-        values must also be specified in the affectedPackages array.If the call was successful, HTTP
-        status code 201 Created will be returned, and the complaint will be created.
+        account. This method can be used to create a complaint about a shipment order. Complaints
+        can be filed if there is a pickup delay on an order or if an item has been lost in transit.
+        The complaint reason, complaint type, and the date the issue occurred must be specified in
+        the request.
         """
         return self._request(
             'createComplaint',
@@ -10602,7 +9367,7 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_consign_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_consign_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetConsignPreferenceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about all the pickup, drop-off,
+        account. This method can be used to retrieve information about all the pickup, drop-off,
         and/or forward deployment consign addresses associated with a seller's eDIS account.
         """
         return self._request(
@@ -10622,12 +9387,7 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def create_consign_preference(self, *, body: sell_edelivery_international_shipping_models.CreateConsignPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_consign_preference(self, *, body: sell_edelivery_international_shipping_models.CreateConsignPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateConsignPreferenceResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a consign address.The following types of address
-        preferences can be created via this method:PICK_UPDROP_OFFFORWARD_DEPLOYMENTRDCCN_POST_DROP_
-        OFFCN_POST_PICK_UPHK_POST_DROP_OFFThe address information for the consign address must be
-        provided in the consignAddress container. If the call is successful, the addressId for the
-        newly created address will be returned. This ID can then be used when creating a package to
-        specify the consign address to use for the shipment.
+        account. This method can be used to create a consign address.
         """
         return self._request(
             'createConsignPreference',
@@ -10647,8 +9407,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve metadata for one or more drop-off sites
-        associated with a seller's eDIS account.Pagination query parameters are provided that allow
+        account. This method can be used to retrieve metadata for one or more drop-off sites
+        associated with a seller's eDIS account. Pagination query parameters are provided that allow
         users to control how many drop-off site locations are returned in the response.
         """
         return self._request(
@@ -10668,11 +9428,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_handover_sheet(self, *, tracking_numbers: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_handover_sheet(self, *, tracking_numbers: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetHandoverSheetResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve the handover sheet for one or more packages in a
-        pickup request.The tracking numbers for the packages for which to retrieve handover sheets
-        are specified through the tracking_numbers query parameter.The retrieved handover sheet will
-        be returned as a base64 string value, and can be used for confirmation with a pickup
-        contact. Only one handover sheet will be returned for the specified packages.
+        account. This method can be used to retrieve the handover sheet for one or more packages in
+        a pickup request. The tracking numbers for the packages for which to retrieve handover
+        sheets are specified through the tracking_numbers query parameter.
         """
         return self._request(
             'getHandoverSheet',
@@ -10691,12 +9449,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_labels(self, *, tracking_numbers: str, page_size: str | None = None, print_preference: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_labels(self, *, tracking_numbers: str, page_size: str | None = None, print_preference: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetLabelListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve shipping labels for the one or more specified
-        packages.The packages for which to retrieve shipping labels can be specified through the
-        tracking_numbers query parameter. The page size and print preference settings for the
-        shipping label(s) can also be specified through the query parameters.Shipping labels are
-        returned as base64 string values which can be converted to PDF files. A separate file will
-        be returned for each tracking number specified in the request.
+        account. This method can be used to retrieve shipping labels for the one or more specified
+        packages. The packages for which to retrieve shipping labels can be specified through the
+        tracking_numbers query parameter.
         """
         return self._request(
             'getLabels',
@@ -10715,9 +9470,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def bulk_cancel_packages(self, *, body: sell_edelivery_international_shipping_models.CancelPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_cancel_packages(self, *, body: sell_edelivery_international_shipping_models.CancelPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CancelPackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to cancel multiple packages and their associated tracking
-        numbers.The package ID values for the packages to be canceled must be input in the
-        packageIds array of the request.Note: Packages cannot be cancelled if they are currently
+        account. This method can be used to cancel multiple packages and their associated tracking
+        numbers. The package ID values for the packages to be canceled must be input in the
+        packageIds array of the request. Note: Packages cannot be cancelled if they are currently
         being processed.
         """
         return self._request(
@@ -10738,10 +9493,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def bulk_confirm_packages(self, *, body: sell_edelivery_international_shipping_models.ConfirmPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_confirm_packages(self, *, body: sell_edelivery_international_shipping_models.ConfirmPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.ConfirmPackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to confirm the shipping order for multiple packages.The
+        account. This method can be used to confirm the shipping order for multiple packages. The
         package ID values for the packages to be confirmed must be input in the packageIds array of
-        the request.After a package is confirmed, the estimated cost will be frozen in your wallet
-        and the pickup request will be submitted.
+        the request.
         """
         return self._request(
             'bulkConfirmPackages',
@@ -10761,10 +9515,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def bulk_delete_packages(self, *, body: sell_edelivery_international_shipping_models.DeletePackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_delete_packages(self, *, body: sell_edelivery_international_shipping_models.DeletePackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.DeletePackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to delete multiple packages.The package ID values for the
-        packages to be deleted must be input in the packageIds array of the request.Note: Packages
-        can only be deleted once they have been cancelled through the cancelPackage or
-        bulkCancelPackages methods and no longer have a tracking number associated with them.
+        account. This method can be used to delete multiple packages. The package ID values for the
+        packages to be deleted must be input in the packageIds array of the request.
         """
         return self._request(
             'bulkDeletePackages',
@@ -10784,9 +9536,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def cancel_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def cancel_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to cancel a package and its associated tracking number.The
+        account. This method can be used to cancel a package and its associated tracking number. The
         packageId value of the package to be canceled must be input as a path parameter in the
-        request.Note: Packages cannot be canceled if they are currently being processed.
+        request. Note: Packages cannot be canceled if they are currently being processed.
         """
         return self._request(
             'cancelPackage',
@@ -10805,8 +9557,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def clone_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def clone_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.ClonePackageResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to clone a package for redelivery, resending the package
-        with the same information input during the createPackage call.The packageId value of the
+        account. This method can be used to clone a package for redelivery, resending the package
+        with the same information input during the createPackage call. The packageId value of the
         package to be cloned must be input as a path parameter in the request.
         """
         return self._request(
@@ -10826,8 +9578,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def confirm_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def confirm_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to confirm the shipping order for a package.The packageId
-        value of the package to be confirmed must be input as a path parameter in the request.After
+        account. This method can be used to confirm the shipping order for a package. The packageId
+        value of the package to be confirmed must be input as a path parameter in the request. After
         confirmation the estimated cost will be frozen in your wallet and the pickup request will be
         submitted.
         """
@@ -10848,12 +9600,10 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def create_package(self, *, body: sell_edelivery_international_shipping_models.AddPackageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_package(self, *, body: sell_edelivery_international_shipping_models.AddPackageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.AddPackageResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a package for an order.To create a package, the
+        account. This method can be used to create a package for an order. To create a package, the
         package's shipping information, such as the dimensions, weight, ship from, and ship to
         address, as well as information about the item(s) it contains must be specified in the
-        request.If the call is successful, the packageId and tracking number for the newly created
-        package will be returned.Note: Sellers should keep track of the returned packageId, as there
-        is no programmatic way to retrieve this value at this time.
+        request.
         """
         return self._request(
             'createPackage',
@@ -10873,11 +9623,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetPackageDetailResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve a package based on the provided package ID
-        value.The packageId value of the package to be retrieved must be input as a path parameter
-        in the request. If the call is successful, information about the package is returned, such
-        as the package's shipping information (its dimensions, weight, ship from, and ship to
-        address) and information about the item(s) it contains.
+        account. This method can be used to retrieve a package based on the provided package ID
+        value. The packageId value of the package to be retrieved must be input as a path parameter
+        in the request.
         """
         return self._request(
             'getPackage',
@@ -10896,11 +9644,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def delete_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to delete a package.The packageId value of the package to be
-        deleted must be input as a path parameter in the request. If the call is successful, HTTP
-        status code 204 No Content will be returned, and the package will be deleted.Note: Packages
-        can only be deleted once they have been cancelled through the cancelPackage or
-        bulkCancelPackages methods and no longer have a tracking number associated with them.
+        account. This method can be used to delete a package. The packageId value of the package to
+        be deleted must be input as a path parameter in the request. If the call is successful, HTTP
+        status code 204 No Content will be returned, and the package will be deleted.
         """
         return self._request(
             'deletePackage',
@@ -10919,9 +9665,9 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_packages_by_line_item_id(self, order_line_item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_packages_by_line_item_id(self, order_line_item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetItemPackageIdResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve one or more packages based on the provided order
-        line item ID.This method can be followed up with getPackage call to retrieve more detailed
-        information about a specific package.
+        account. This method can be used to retrieve one or more packages based on the provided
+        order line item ID. This method can be followed up with getPackage call to retrieve more
+        detailed information about a specific package.
         """
         return self._request(
             'getPackagesByLineItemID',
@@ -10940,8 +9686,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve metadata on available shipping services, such as
-        the name, description, and directions.
+        account. This method can be used to retrieve metadata on available shipping services, such
+        as the name, description, and directions.
         """
         return self._request(
             'getServices',
@@ -10960,8 +9706,8 @@ class SellEdeliveryInternationalShippingResource(BaseResource):
     def get_tracking(self, *, tracking_number: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_tracking(self, *, tracking_number: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetTrackingDetailResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve tracking event details for a package associated
-        with the provided tracking number.Each tracking event is returned in the trackingDetails
+        account. This method can be used to retrieve tracking event details for a package associated
+        with the provided tracking number. Each tracking event is returned in the trackingDetails
         array and includes the description, location, time, and status of the event.
         """
         return self._request(
@@ -10991,13 +9737,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_actual_costs(self, *, tracking_numbers: str | None = None, trans_begin_time: str | None = None, trans_end_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_actual_costs(self, *, tracking_numbers: str | None = None, trans_begin_time: str | None = None, trans_end_time: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetActualCostResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieve the actual weight and cost for one or more packages
-        based on the provided input criteria.Responses can be filtered by the tracking_numbers query
-        parameter. If this parameter is used, actual costs for each package associated with the
-        provided tracking numbers are returned.Alternatively, responses can be filtered by the
-        trans_begin_time and trans_end_time query parameters. If these parameters are used, the
-        actual costs of all packages created within this date range are returned.Only one filtering
-        method can be used per call.
+        account. This method is used to retrieve the actual weight and cost for one or more packages
+        based on the provided input criteria. Responses can be filtered by the tracking_numbers
+        query parameter.
         """
         return await self._request(
             'getActualCosts',
@@ -11016,7 +9758,7 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_address_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_address_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAddressPreferenceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about all the ship-from and/or
+        account. This method can be used to retrieve information about all the ship-from and/or
         return addresses associated with a seller's eDIS account.
         """
         return await self._request(
@@ -11036,12 +9778,7 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def create_address_preference(self, *, body: sell_edelivery_international_shipping_models.CreateAddressPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_address_preference(self, *, body: sell_edelivery_international_shipping_models.CreateAddressPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateAddressPreferenceResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create an address on your eDIS account.The following
-        types of addresses can be created through this method:SHIP_FROM_ADDRESSRETURN_ADDRESSThe
-        address information for the address, including location details, contact information, and
-        address type, must be provided in the shipFromAddress container. If the call is successful,
-        the addressId for the newly created address will be returned. This identifier can then be
-        used when creating a package to specify the address to use for the shipment.
+        account. This method can be used to create an address on your eDIS account.
         """
         return await self._request(
             'createAddressPreference',
@@ -11061,11 +9798,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_agents(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetAgentListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about the EU Authorized
-        Representative (AR) agent(s) associated with a seller's eDIS account.An EU AR agent acts as
+        account. This method can be used to retrieve information about the EU Authorized
+        Representative (AR) agent(s) associated with a seller's eDIS account. An EU AR agent acts as
         a liaison between non-EU manufacturers and European regulatory authorities to ensure
-        compliance with EU regulations. This method returns contact information about each agent, as
-        well as their eBay ID and the countries that they support.
+        compliance with EU regulations.
         """
         return await self._request(
             'getAgents',
@@ -11084,9 +9820,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_battery_qualifications(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetBatteryQualListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieve all battery qualifications associated with your eDIS
-        account. This includes the type, electronic qualification ID and name, and expiration date
-        for each battery.
+        account. This method is used to retrieve all battery qualifications associated with your
+        eDIS account. This includes the type, electronic qualification ID and name, and expiration
+        date for each battery.
         """
         return await self._request(
             'getBatteryQualifications',
@@ -11105,7 +9841,7 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def cancel_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def cancel_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to cancel a bundle.The bundleId value of the bundle to be
+        account. This method is used to cancel a bundle. The bundleId value of the bundle to be
         canceled must be input as a path parameter in the request. Note: Bundles cannot be canceled
         if they are currently being processed.
         """
@@ -11126,12 +9862,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def create_bundle(self, *, body: sell_edelivery_international_shipping_models.CreateBundleRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_bundle(self, *, body: sell_edelivery_international_shipping_models.CreateBundleRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateBundleResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to create a bundle for multiple packages in an order.To create a
-        bundle, the consign address to be associated with the bundle and the tracking numbers of the
-        packages to be used in the bundle must be specified in the request. If the call is
-        successful, the bundleId for the newly created bundle will be returned.Note: Sellers should
-        keep track of the returned bundleId, as there is no programmatic way to retrieve this value
-        at this time.
+        account. This method is used to create a bundle for multiple packages in an order. To create
+        a bundle, the consign address to be associated with the bundle and the tracking numbers of
+        the packages to be used in the bundle must be specified in the request.
         """
         return await self._request(
             'createBundle',
@@ -11151,11 +9884,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_bundle(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.BundleDetailResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method is used to retrieved information about a specific bundle based on the
-        provided bundle ID value.The bundle_id value of the bundle to be retrieved must be input as
-        a path parameter in the request. If the call is successful, information about the bundle is
-        returned, such as its associated consign preference ID and the tracking numbers of each
-        package in the bundle.
+        account. This method is used to retrieved information about a specific bundle based on the
+        provided bundle ID value. The bundle_id value of the bundle to be retrieved must be input as
+        a path parameter in the request.
         """
         return await self._request(
             'getBundle',
@@ -11174,9 +9905,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_bundle_label(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_bundle_label(self, bundle_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.BundleLabelResponse | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve the bundle label for a bundle of packages.The
+        account. This method can be used to retrieve the bundle label for a bundle of packages. The
         bundle for which to retrieve a bundle label is specified through the bundleId path
-        parameter.Bundle labels will be returned as base64 string values which can be converted to
+        parameter. Bundle labels will be returned as base64 string values which can be converted to
         PDF files.
         """
         return await self._request(
@@ -11196,12 +9927,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def create_complaint(self, *, body: sell_edelivery_international_shipping_models.AddComplaintRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_complaint(self, *, body: sell_edelivery_international_shipping_models.AddComplaintRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a complaint about a shipment order. Complaints can
-        be filed if there is a pickup delay on an order or if an item has been lost in transit.The
-        complaint reason, complaint type, and the date the issue occurred must be specified in the
-        request. If the complaint is being filed for a missing package, the affected packageId
-        values must also be specified in the affectedPackages array.If the call was successful, HTTP
-        status code 201 Created will be returned, and the complaint will be created.
+        account. This method can be used to create a complaint about a shipment order. Complaints
+        can be filed if there is a pickup delay on an order or if an item has been lost in transit.
+        The complaint reason, complaint type, and the date the issue occurred must be specified in
+        the request.
         """
         return await self._request(
             'createComplaint',
@@ -11221,7 +9950,7 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_consign_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_consign_preferences(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetConsignPreferenceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve information about all the pickup, drop-off,
+        account. This method can be used to retrieve information about all the pickup, drop-off,
         and/or forward deployment consign addresses associated with a seller's eDIS account.
         """
         return await self._request(
@@ -11241,12 +9970,7 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def create_consign_preference(self, *, body: sell_edelivery_international_shipping_models.CreateConsignPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_consign_preference(self, *, body: sell_edelivery_international_shipping_models.CreateConsignPreferenceRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CreateConsignPreferenceResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a consign address.The following types of address
-        preferences can be created via this method:PICK_UPDROP_OFFFORWARD_DEPLOYMENTRDCCN_POST_DROP_
-        OFFCN_POST_PICK_UPHK_POST_DROP_OFFThe address information for the consign address must be
-        provided in the consignAddress container. If the call is successful, the addressId for the
-        newly created address will be returned. This ID can then be used when creating a package to
-        specify the consign address to use for the shipment.
+        account. This method can be used to create a consign address.
         """
         return await self._request(
             'createConsignPreference',
@@ -11266,8 +9990,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_dropoff_sites(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetDropoffSiteListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve metadata for one or more drop-off sites
-        associated with a seller's eDIS account.Pagination query parameters are provided that allow
+        account. This method can be used to retrieve metadata for one or more drop-off sites
+        associated with a seller's eDIS account. Pagination query parameters are provided that allow
         users to control how many drop-off site locations are returned in the response.
         """
         return await self._request(
@@ -11287,11 +10011,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_handover_sheet(self, *, tracking_numbers: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_handover_sheet(self, *, tracking_numbers: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetHandoverSheetResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve the handover sheet for one or more packages in a
-        pickup request.The tracking numbers for the packages for which to retrieve handover sheets
-        are specified through the tracking_numbers query parameter.The retrieved handover sheet will
-        be returned as a base64 string value, and can be used for confirmation with a pickup
-        contact. Only one handover sheet will be returned for the specified packages.
+        account. This method can be used to retrieve the handover sheet for one or more packages in
+        a pickup request. The tracking numbers for the packages for which to retrieve handover
+        sheets are specified through the tracking_numbers query parameter.
         """
         return await self._request(
             'getHandoverSheet',
@@ -11310,12 +10032,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_labels(self, *, tracking_numbers: str, page_size: str | None = None, print_preference: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_labels(self, *, tracking_numbers: str, page_size: str | None = None, print_preference: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetLabelListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve shipping labels for the one or more specified
-        packages.The packages for which to retrieve shipping labels can be specified through the
-        tracking_numbers query parameter. The page size and print preference settings for the
-        shipping label(s) can also be specified through the query parameters.Shipping labels are
-        returned as base64 string values which can be converted to PDF files. A separate file will
-        be returned for each tracking number specified in the request.
+        account. This method can be used to retrieve shipping labels for the one or more specified
+        packages. The packages for which to retrieve shipping labels can be specified through the
+        tracking_numbers query parameter.
         """
         return await self._request(
             'getLabels',
@@ -11334,9 +10053,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def bulk_cancel_packages(self, *, body: sell_edelivery_international_shipping_models.CancelPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_cancel_packages(self, *, body: sell_edelivery_international_shipping_models.CancelPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.CancelPackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to cancel multiple packages and their associated tracking
-        numbers.The package ID values for the packages to be canceled must be input in the
-        packageIds array of the request.Note: Packages cannot be cancelled if they are currently
+        account. This method can be used to cancel multiple packages and their associated tracking
+        numbers. The package ID values for the packages to be canceled must be input in the
+        packageIds array of the request. Note: Packages cannot be cancelled if they are currently
         being processed.
         """
         return await self._request(
@@ -11357,10 +10076,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def bulk_confirm_packages(self, *, body: sell_edelivery_international_shipping_models.ConfirmPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_confirm_packages(self, *, body: sell_edelivery_international_shipping_models.ConfirmPackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.ConfirmPackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to confirm the shipping order for multiple packages.The
+        account. This method can be used to confirm the shipping order for multiple packages. The
         package ID values for the packages to be confirmed must be input in the packageIds array of
-        the request.After a package is confirmed, the estimated cost will be frozen in your wallet
-        and the pickup request will be submitted.
+        the request.
         """
         return await self._request(
             'bulkConfirmPackages',
@@ -11380,10 +10098,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def bulk_delete_packages(self, *, body: sell_edelivery_international_shipping_models.DeletePackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_delete_packages(self, *, body: sell_edelivery_international_shipping_models.DeletePackagesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.DeletePackagesResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to delete multiple packages.The package ID values for the
-        packages to be deleted must be input in the packageIds array of the request.Note: Packages
-        can only be deleted once they have been cancelled through the cancelPackage or
-        bulkCancelPackages methods and no longer have a tracking number associated with them.
+        account. This method can be used to delete multiple packages. The package ID values for the
+        packages to be deleted must be input in the packageIds array of the request.
         """
         return await self._request(
             'bulkDeletePackages',
@@ -11403,9 +10119,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def cancel_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def cancel_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to cancel a package and its associated tracking number.The
+        account. This method can be used to cancel a package and its associated tracking number. The
         packageId value of the package to be canceled must be input as a path parameter in the
-        request.Note: Packages cannot be canceled if they are currently being processed.
+        request. Note: Packages cannot be canceled if they are currently being processed.
         """
         return await self._request(
             'cancelPackage',
@@ -11424,8 +10140,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def clone_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def clone_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.ClonePackageResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to clone a package for redelivery, resending the package
-        with the same information input during the createPackage call.The packageId value of the
+        account. This method can be used to clone a package for redelivery, resending the package
+        with the same information input during the createPackage call. The packageId value of the
         package to be cloned must be input as a path parameter in the request.
         """
         return await self._request(
@@ -11445,8 +10161,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def confirm_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def confirm_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to confirm the shipping order for a package.The packageId
-        value of the package to be confirmed must be input as a path parameter in the request.After
+        account. This method can be used to confirm the shipping order for a package. The packageId
+        value of the package to be confirmed must be input as a path parameter in the request. After
         confirmation the estimated cost will be frozen in your wallet and the pickup request will be
         submitted.
         """
@@ -11467,12 +10183,10 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def create_package(self, *, body: sell_edelivery_international_shipping_models.AddPackageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_package(self, *, body: sell_edelivery_international_shipping_models.AddPackageRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.AddPackageResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to create a package for an order.To create a package, the
+        account. This method can be used to create a package for an order. To create a package, the
         package's shipping information, such as the dimensions, weight, ship from, and ship to
         address, as well as information about the item(s) it contains must be specified in the
-        request.If the call is successful, the packageId and tracking number for the newly created
-        package will be returned.Note: Sellers should keep track of the returned packageId, as there
-        is no programmatic way to retrieve this value at this time.
+        request.
         """
         return await self._request(
             'createPackage',
@@ -11492,11 +10206,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetPackageDetailResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve a package based on the provided package ID
-        value.The packageId value of the package to be retrieved must be input as a path parameter
-        in the request. If the call is successful, information about the package is returned, such
-        as the package's shipping information (its dimensions, weight, ship from, and ship to
-        address) and information about the item(s) it contains.
+        account. This method can be used to retrieve a package based on the provided package ID
+        value. The packageId value of the package to be retrieved must be input as a path parameter
+        in the request.
         """
         return await self._request(
             'getPackage',
@@ -11515,11 +10227,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def delete_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_package(self, package_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to delete a package.The packageId value of the package to be
-        deleted must be input as a path parameter in the request. If the call is successful, HTTP
-        status code 204 No Content will be returned, and the package will be deleted.Note: Packages
-        can only be deleted once they have been cancelled through the cancelPackage or
-        bulkCancelPackages methods and no longer have a tracking number associated with them.
+        account. This method can be used to delete a package. The packageId value of the package to
+        be deleted must be input as a path parameter in the request. If the call is successful, HTTP
+        status code 204 No Content will be returned, and the package will be deleted.
         """
         return await self._request(
             'deletePackage',
@@ -11538,9 +10248,9 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_packages_by_line_item_id(self, order_line_item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_packages_by_line_item_id(self, order_line_item_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetItemPackageIdResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve one or more packages based on the provided order
-        line item ID.This method can be followed up with getPackage call to retrieve more detailed
-        information about a specific package.
+        account. This method can be used to retrieve one or more packages based on the provided
+        order line item ID. This method can be followed up with getPackage call to retrieve more
+        detailed information about a specific package.
         """
         return await self._request(
             'getPackagesByLineItemID',
@@ -11559,8 +10269,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_services(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetServiceListResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve metadata on available shipping services, such as
-        the name, description, and directions.
+        account. This method can be used to retrieve metadata on available shipping services, such
+        as the name, description, and directions.
         """
         return await self._request(
             'getServices',
@@ -11579,8 +10289,8 @@ class AsyncSellEdeliveryInternationalShippingResource(AsyncBaseResource):
     async def get_tracking(self, *, tracking_number: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_tracking(self, *, tracking_number: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_edelivery_international_shipping_models.GetTrackingDetailResponses | httpx.Response:
         """Important! This method is only available for Greater-China based sellers with an active eDIS
-        account.This method can be used to retrieve tracking event details for a package associated
-        with the provided tracking number.Each tracking event is returned in the trackingDetails
+        account. This method can be used to retrieve tracking event details for a package associated
+        with the provided tracking number. Each tracking event is returned in the trackingDetails
         array and includes the description, location, time, and status of the event.
         """
         return await self._request(
@@ -11611,13 +10321,9 @@ class SellFeedResource(BaseResource):
     def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
         """This method returns the details and status for an array of order tasks. Rather than using a
         request payload, it does this through specified input in query parameters, such as feed_type
-        or schedule_id. Specifying both feed_type and schedule_id results in an error. Since
-        schedules are based on feed types, you can specify a schedule (schedule_id) that returns the
-        needed feed_type.If specifying the feed_type, limit which order tasks are returned by
-        specifying filters such as the creation date range or period of time using look_back_days.
-        If specifying a schedule_id, the schedule template (that the schedule_id is based on)
-        determines which order tasks are returned (see schedule_id for additional information). Each
-        schedule_id applies to one feed_type.
+        or schedule_id . Specifying both feed_type and schedule_id results in an error. Since
+        schedules are based on feed types, you can specify a schedule ( schedule_id ) that returns
+        the needed feed_type .
         """
         return self._request(
             'getOrderTasks',
@@ -11636,19 +10342,9 @@ class SellFeedResource(BaseResource):
     def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an order download task with filter criteria for the order report. When
-        using this method, specify the feedType, schemaVersion, and filterCriteria for the report.
+        using this method, specify the feedType , schemaVersion , and filterCriteria for the report.
         The method returns the location response header containing the getOrderTask call URI to
-        retrieve the order task you just created. The URL includes the eBay-assigned task ID, which
-        you can use to reference the order task. To retrieve the status of the task, use the
-        getOrderTask method to retrieve a single task ID or the getOrderTasks method to retrieve
-        multiple order task IDs. Note: The scope depends on the feed type. An error message results
-        when an unsupported scope or feed type is specified.The following contains this method's
-        authorization scope and its corresponding feed
-        type:https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_REPORT For details
-        about how this method is used, see General feed types in the Selling Integration Guide.
-        Note: At this time, the createOrderTask method only supports order creation date filters and
-        not modified order date filters. Do not include the modifiedDateRange filter in your request
-        payload.
+        retrieve the order task you just created.
         """
         return self._request(
             'createOrderTask',
@@ -11668,7 +10364,7 @@ class SellFeedResource(BaseResource):
     def get_order_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_order_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTask | httpx.Response:
         """This method retrieves the task details and status of the specified task. The input is
-        task_id. For details about how this method is used, see Working with Order Feeds in the
+        task_id . For details about how this method is used, see Working with Order Feeds in the
         Selling Integration Guide.
         """
         return self._request(
@@ -11707,16 +10403,10 @@ class SellFeedResource(BaseResource):
     def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an inventory-related download task for a specified feed type with
-        optional filter criteria. When using this method, specify the feedType. This method returns
+        optional filter criteria. When using this method, specify the feedType . This method returns
         the location response header containing the getInventoryTask call URI to retrieve the
         inventory task you just created. The URL includes the eBay-assigned task ID, which you can
-        use to reference the inventory task.To retrieve the status of the task, use the
-        getInventoryTask method to retrieve a single task ID or the getInventoryTasks method to
-        retrieve multiple task IDs. Note: The scope depends on the feed type. An error message
-        results when an unsupported scope or feed type is specified.Presently, this method supports
-        Active Inventory Report. The ActiveInventoryReport returns a report that contains price and
-        quantity information for all of the active listings for a specific seller. A seller can use
-        this information to maintain their inventory on eBay.
+        use to reference the inventory task.
         """
         return self._request(
             'createInventoryTask',
@@ -11736,7 +10426,7 @@ class SellFeedResource(BaseResource):
     def get_inventory_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_inventory_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTask | httpx.Response:
         """This method retrieves the task details and status of the specified inventory-related task.
-        The input is task_id.
+        The input is task_id .
         """
         return self._request(
             'getInventoryTask',
@@ -11755,8 +10445,8 @@ class SellFeedResource(BaseResource):
     def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedules based on
-        the specified feed_type. Use this method to find a schedule if you do not know the
-        schedule_id.
+        the specified feed_type . Use this method to find a schedule if you do not know the
+        schedule_id .
         """
         return self._request(
             'getSchedules',
@@ -11778,20 +10468,7 @@ class SellFeedResource(BaseResource):
         A schedule periodically generates a report for the feedType specified by the template.
         Specify the same feedType as the feedType of the associated schedule template. When creating
         the schedule, if available from the template, you can specify a preferred trigger hour, day
-        of the week, or day of the month. These and other fields are conditionally available as
-        specified by the template. Note: Make sure to include all fields required by the schedule
-        template (scheduleTemplateId). Call the getScheduleTemplate method (or the
-        getScheduleTemplates method), to find out which fields are required or optional. If a field
-        is optional and a default value is provided by the template, the default value will be used
-        if omitted from the payload.A successful call returns the location response header
-        containing the getSchedule call URI to retrieve the schedule you just created. The URL
-        includes the eBay-assigned schedule ID, which you can use to reference the schedule task. To
-        retrieve the details of the create schedule task, use the getSchedule method for a single
-        schedule ID or the getSchedules method to retrieve all schedule details for the specified
-        feed_type. The number of schedules for each feedType is limited. Error code 160031 is
-        returned when you have reached this maximum. Note: Except for schedules with a HALF-HOUR
-        frequency, all schedules will ideally run at the start of each hour ('00' minutes). Actual
-        start time may vary due to load and other factors.
+        of the week, or day of the month.
         """
         return self._request(
             'createSchedule',
@@ -11811,8 +10488,8 @@ class SellFeedResource(BaseResource):
     def get_schedule(self, schedule_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_schedule(self, schedule_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleResponse | httpx.Response:
         """This method retrieves schedule details and status of the specified schedule. Specify the
-        schedule to retrieve using the schedule_id. Use the getSchedules method to find a schedule
-        if you do not know the schedule_id.
+        schedule to retrieve using the schedule_id . Use the getSchedules method to find a schedule
+        if you do not know the schedule_id .
         """
         return self._request(
             'getSchedule',
@@ -11833,10 +10510,7 @@ class SellFeedResource(BaseResource):
         """This method updates an existing schedule. Specify the schedule to update using the
         schedule_id path parameter. If the schedule template has changed after the schedule was
         created or updated, the input will be validated using the changed template. Note: Make sure
-        to include all fields required by the schedule template (scheduleTemplateId). Call the
-        getScheduleTemplate method (or the getScheduleTemplates method), to find out which fields
-        are required or optional. If you do not know the scheduleTemplateId, call the getSchedule
-        method to find out.
+        to include all fields required by the schedule template ( scheduleTemplateId ).
         """
         return self._request(
             'updateSchedule',
@@ -11907,7 +10581,7 @@ class SellFeedResource(BaseResource):
     def get_schedule_template(self, schedule_template_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateResponse | httpx.Response:
         """This method retrieves the details of the specified template. Specify the template to
         retrieve using the schedule_template_id path parameter. Use the getScheduleTemplates method
-        to find a schedule template if you do not know the schedule_template_id.
+        to find a schedule template if you do not know the schedule_template_id .
         """
         return self._request(
             'getScheduleTemplate',
@@ -11926,8 +10600,8 @@ class SellFeedResource(BaseResource):
     def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedule templates
-        based on the specified feed_type. Use this method to find a schedule template if you do not
-        know the schedule_template_id.
+        based on the specified feed_type . Use this method to find a schedule template if you do not
+        know the schedule_template_id .
         """
         return self._request(
             'getScheduleTemplates',
@@ -11946,14 +10620,9 @@ class SellFeedResource(BaseResource):
     def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
         """This method returns the details and status for an array of tasks based on a specified
-        feed_type or schedule_id. Specifying both feed_type and schedule_id results in an error.
-        Since schedules are based on feed types, you can specify a schedule (schedule_id) that
-        returns the needed feed_type.If specifying the feed_type, limit which tasks are returned by
-        specifying filters, such as the creation date range or period of time using look_back_days.
-        Also, by specifying the feed_type, both on-demand and scheduled reports are returned.If
-        specifying a schedule_id, the schedule template (that the schedule ID is based on)
-        determines which tasks are returned (see schedule_id for additional information). Each
-        scheduledId applies to one feed_type.
+        feed_type or schedule_id . Specifying both feed_type and schedule_id results in an error.
+        Since schedules are based on feed types, you can specify a schedule ( schedule_id ) that
+        returns the needed feed_type .
         """
         return self._request(
             'getTasks',
@@ -11972,16 +10641,10 @@ class SellFeedResource(BaseResource):
     def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an upload task or a download task without filter criteria. When using
-        this method, specify the feedType and the feed file schemaVersion. The feed type specified
+        this method, specify the feedType and the feed file schemaVersion . The feed type specified
         sets the task as a download or an upload task. For details about the upload and download
         flows, see Working with Order Feeds in the Selling Integration Guide. Note: The scope
-        depends on the feed type. An error message results when an unsupported scope or feed type is
-        specified.The following list contains this method's authorization scopes and their
-        corresponding feed types:https://api.ebay.com/oauth/api_scope/sell.inventory: See LMS
-        FeedTypeshttps://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for
-        upload tasks). Also see LMS FeedTypeshttps://api.ebay.com/oauth/api_scope/sell.marketing:
-        None*https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None** Reserved for
-        future release
+        depends on the feed type.
         """
         return self._request(
             'createTask',
@@ -12000,9 +10663,9 @@ class SellFeedResource(BaseResource):
     @overload
     def get_input_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_input_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
-        """This method downloads a file previously uploaded using uploadFile. Specify the task_id from
+        """This method downloads a file previously uploaded using uploadFile . Specify the task_id from
         the uploadFile call. Note: With respect to LMS, this method applies to all feed types except
-        LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT. See LMS API Feeds in the Selling
+        LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT . See LMS API Feeds in the Selling
         Integration Guide.
         """
         return self._request(
@@ -12034,10 +10697,7 @@ class SellFeedResource(BaseResource):
         """This method retrieves the generated file that is associated with the specified task ID. The
         response of this call is a compressed or uncompressed CSV, XML, or JSON file, with the
         applicable file extension (for example: csv.gz). For details about how this method is used,
-        see Working with Order Feeds in the Selling Integration Guide. Note: The status of the task
-        to retrieve must be in the COMPLETED or COMPLETED_WITH_ERROR state before this method can
-        retrieve the file. You can use the getTask or getTasks method to retrieve the status of the
-        task.
+        see Working with Order Feeds in the Selling Integration Guide.
         """
         return self._request(
             'getResultFile',
@@ -12065,7 +10725,7 @@ class SellFeedResource(BaseResource):
     @overload
     def get_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.Task | httpx.Response:
-        """This method retrieves the details and status of the specified task. The input is task_id.
+        """This method retrieves the details and status of the specified task. The input is task_id .
         For details of how this method is used, see Working with Order Feeds in the Selling
         Integration Guide.
         """
@@ -12089,19 +10749,7 @@ class SellFeedResource(BaseResource):
         file. After the file has been uploaded, the processing of the file begins. Reports often
         take time to generate and it's common for this method to return an HTTP status of 202, which
         indicates the report is being generated. Use the getTask with the task ID or getTasks to
-        determine the status of a report. The status flow is QUEUED &gt; IN_PROCESS &gt; COMPLETED
-        or COMPLETED_WITH_ERROR. When the status is COMPLETED or COMPLETED_WITH_ERROR, this
-        indicates the file has been processed and the order report can be downloaded. If there are
-        errors, they will be indicated in the report file. For details of how this method is used in
-        the upload flow, see Working with Order Feeds in the Selling Integration Guide. This call
-        does not have a JSON Request payload but uploads the file as form-data. For example:
-        fileName: &quot;AddFixedPriceItem_Macbook.xml&quot; name: &quot;file&quot; type: &quot;form-
-        data&quot; file: @&quot;/C:/Users/.../AddFixedPriceItem_Macbook.7z&quot;See Samples for
-        information.Note: This method applies to all Seller Hub feed types, and to all LMS feed
-        types except LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT. Note: You must use a Content-
-        Type header with its value set to "multipart/form-data". See Samples for information.Note:
-        For LMS feed types, upload a regular XML file or an XML file in zipped format (both formats
-        are allowed).
+        determine the status of a report.
         """
         return self._request(
             'uploadFile',
@@ -12121,7 +10769,7 @@ class SellFeedResource(BaseResource):
     def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
         """Use this method to return an array of customer service metric tasks. You can limit the tasks
         returned by specifying a date range. Note: You can pass in either the look_back_days or
-        date_range, but not both.
+        date_range , but not both.
         """
         return self._request(
             'getCustomerServiceMetricTasks',
@@ -12142,16 +10790,7 @@ class SellFeedResource(BaseResource):
         """Use this method to create a customer service metrics download task with filter criteria for
         the customer service metrics report. When using this method, specify the feedType and
         filterCriteria including both evaluationMarketplaceId and customerServiceMetricType for the
-        report. The method returns the location response header containing the call URI to use with
-        getCustomerServiceMetricTask to retrieve status and details on the task.Only CURRENT
-        Customer Service Metrics reports can be generated with the Sell Feed API. PROJECTED reports
-        are not supported at this time. See the getCustomerServiceMetric method document in the
-        Analytics API for more information about these two types of reports.Note: Before calling
-        this API, retrieve the summary of the seller's performance and rating for the customer
-        service metric by calling getCustomerServiceMetric (part of the Analytics API). You can then
-        populate the create task request fields with the values from the response. This technique
-        eliminates failed tasks that request a report for a customerServiceMetricType and
-        evaluationMarketplaceId that are without evaluation.
+        report.
         """
         return self._request(
             'createCustomerServiceMetricTask',
@@ -12171,7 +10810,7 @@ class SellFeedResource(BaseResource):
     def get_customer_service_metric_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_customer_service_metric_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ServiceMetricsTask | httpx.Response:
         """Use this method to retrieve customer service metric task details for the specified task. The
-        input is task_id.
+        input is task_id .
         """
         return self._request(
             'getCustomerServiceMetricTask',
@@ -12201,13 +10840,9 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_order_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTaskCollection | httpx.Response:
         """This method returns the details and status for an array of order tasks. Rather than using a
         request payload, it does this through specified input in query parameters, such as feed_type
-        or schedule_id. Specifying both feed_type and schedule_id results in an error. Since
-        schedules are based on feed types, you can specify a schedule (schedule_id) that returns the
-        needed feed_type.If specifying the feed_type, limit which order tasks are returned by
-        specifying filters such as the creation date range or period of time using look_back_days.
-        If specifying a schedule_id, the schedule template (that the schedule_id is based on)
-        determines which order tasks are returned (see schedule_id for additional information). Each
-        schedule_id applies to one feed_type.
+        or schedule_id . Specifying both feed_type and schedule_id results in an error. Since
+        schedules are based on feed types, you can specify a schedule ( schedule_id ) that returns
+        the needed feed_type .
         """
         return await self._request(
             'getOrderTasks',
@@ -12226,19 +10861,9 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_order_task(self, *, body: sell_feed_models.CreateOrderTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an order download task with filter criteria for the order report. When
-        using this method, specify the feedType, schemaVersion, and filterCriteria for the report.
+        using this method, specify the feedType , schemaVersion , and filterCriteria for the report.
         The method returns the location response header containing the getOrderTask call URI to
-        retrieve the order task you just created. The URL includes the eBay-assigned task ID, which
-        you can use to reference the order task. To retrieve the status of the task, use the
-        getOrderTask method to retrieve a single task ID or the getOrderTasks method to retrieve
-        multiple order task IDs. Note: The scope depends on the feed type. An error message results
-        when an unsupported scope or feed type is specified.The following contains this method's
-        authorization scope and its corresponding feed
-        type:https://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_REPORT For details
-        about how this method is used, see General feed types in the Selling Integration Guide.
-        Note: At this time, the createOrderTask method only supports order creation date filters and
-        not modified order date filters. Do not include the modifiedDateRange filter in your request
-        payload.
+        retrieve the order task you just created.
         """
         return await self._request(
             'createOrderTask',
@@ -12258,7 +10883,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_order_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_order_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.OrderTask | httpx.Response:
         """This method retrieves the task details and status of the specified task. The input is
-        task_id. For details about how this method is used, see Working with Order Feeds in the
+        task_id . For details about how this method is used, see Working with Order Feeds in the
         Selling Integration Guide.
         """
         return await self._request(
@@ -12297,16 +10922,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_inventory_task(self, *, body: sell_feed_models.CreateInventoryTaskRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an inventory-related download task for a specified feed type with
-        optional filter criteria. When using this method, specify the feedType. This method returns
+        optional filter criteria. When using this method, specify the feedType . This method returns
         the location response header containing the getInventoryTask call URI to retrieve the
         inventory task you just created. The URL includes the eBay-assigned task ID, which you can
-        use to reference the inventory task.To retrieve the status of the task, use the
-        getInventoryTask method to retrieve a single task ID or the getInventoryTasks method to
-        retrieve multiple task IDs. Note: The scope depends on the feed type. An error message
-        results when an unsupported scope or feed type is specified.Presently, this method supports
-        Active Inventory Report. The ActiveInventoryReport returns a report that contains price and
-        quantity information for all of the active listings for a specific seller. A seller can use
-        this information to maintain their inventory on eBay.
+        use to reference the inventory task.
         """
         return await self._request(
             'createInventoryTask',
@@ -12326,7 +10945,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_inventory_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_inventory_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.InventoryTask | httpx.Response:
         """This method retrieves the task details and status of the specified inventory-related task.
-        The input is task_id.
+        The input is task_id .
         """
         return await self._request(
             'getInventoryTask',
@@ -12345,8 +10964,8 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_schedules(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedules based on
-        the specified feed_type. Use this method to find a schedule if you do not know the
-        schedule_id.
+        the specified feed_type . Use this method to find a schedule if you do not know the
+        schedule_id .
         """
         return await self._request(
             'getSchedules',
@@ -12368,20 +10987,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
         A schedule periodically generates a report for the feedType specified by the template.
         Specify the same feedType as the feedType of the associated schedule template. When creating
         the schedule, if available from the template, you can specify a preferred trigger hour, day
-        of the week, or day of the month. These and other fields are conditionally available as
-        specified by the template. Note: Make sure to include all fields required by the schedule
-        template (scheduleTemplateId). Call the getScheduleTemplate method (or the
-        getScheduleTemplates method), to find out which fields are required or optional. If a field
-        is optional and a default value is provided by the template, the default value will be used
-        if omitted from the payload.A successful call returns the location response header
-        containing the getSchedule call URI to retrieve the schedule you just created. The URL
-        includes the eBay-assigned schedule ID, which you can use to reference the schedule task. To
-        retrieve the details of the create schedule task, use the getSchedule method for a single
-        schedule ID or the getSchedules method to retrieve all schedule details for the specified
-        feed_type. The number of schedules for each feedType is limited. Error code 160031 is
-        returned when you have reached this maximum. Note: Except for schedules with a HALF-HOUR
-        frequency, all schedules will ideally run at the start of each hour ('00' minutes). Actual
-        start time may vary due to load and other factors.
+        of the week, or day of the month.
         """
         return await self._request(
             'createSchedule',
@@ -12401,8 +11007,8 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_schedule(self, schedule_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_schedule(self, schedule_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.UserScheduleResponse | httpx.Response:
         """This method retrieves schedule details and status of the specified schedule. Specify the
-        schedule to retrieve using the schedule_id. Use the getSchedules method to find a schedule
-        if you do not know the schedule_id.
+        schedule to retrieve using the schedule_id . Use the getSchedules method to find a schedule
+        if you do not know the schedule_id .
         """
         return await self._request(
             'getSchedule',
@@ -12423,10 +11029,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
         """This method updates an existing schedule. Specify the schedule to update using the
         schedule_id path parameter. If the schedule template has changed after the schedule was
         created or updated, the input will be validated using the changed template. Note: Make sure
-        to include all fields required by the schedule template (scheduleTemplateId). Call the
-        getScheduleTemplate method (or the getScheduleTemplates method), to find out which fields
-        are required or optional. If you do not know the scheduleTemplateId, call the getSchedule
-        method to find out.
+        to include all fields required by the schedule template ( scheduleTemplateId ).
         """
         return await self._request(
             'updateSchedule',
@@ -12497,7 +11100,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_schedule_template(self, schedule_template_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateResponse | httpx.Response:
         """This method retrieves the details of the specified template. Specify the template to
         retrieve using the schedule_template_id path parameter. Use the getScheduleTemplates method
-        to find a schedule template if you do not know the schedule_template_id.
+        to find a schedule template if you do not know the schedule_template_id .
         """
         return await self._request(
             'getScheduleTemplate',
@@ -12516,8 +11119,8 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_schedule_templates(self, *, feed_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ScheduleTemplateCollection | httpx.Response:
         """This method retrieves an array containing the details and status of all schedule templates
-        based on the specified feed_type. Use this method to find a schedule template if you do not
-        know the schedule_template_id.
+        based on the specified feed_type . Use this method to find a schedule template if you do not
+        know the schedule_template_id .
         """
         return await self._request(
             'getScheduleTemplates',
@@ -12536,14 +11139,9 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, schedule_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.TaskCollection | httpx.Response:
         """This method returns the details and status for an array of tasks based on a specified
-        feed_type or schedule_id. Specifying both feed_type and schedule_id results in an error.
-        Since schedules are based on feed types, you can specify a schedule (schedule_id) that
-        returns the needed feed_type.If specifying the feed_type, limit which tasks are returned by
-        specifying filters, such as the creation date range or period of time using look_back_days.
-        Also, by specifying the feed_type, both on-demand and scheduled reports are returned.If
-        specifying a schedule_id, the schedule template (that the schedule ID is based on)
-        determines which tasks are returned (see schedule_id for additional information). Each
-        scheduledId applies to one feed_type.
+        feed_type or schedule_id . Specifying both feed_type and schedule_id results in an error.
+        Since schedules are based on feed types, you can specify a schedule ( schedule_id ) that
+        returns the needed feed_type .
         """
         return await self._request(
             'getTasks',
@@ -12562,16 +11160,10 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_task(self, *, body: sell_feed_models.CreateTaskRequest, x_ebay_c_marketplace_id: str | None = None, accept_language: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method creates an upload task or a download task without filter criteria. When using
-        this method, specify the feedType and the feed file schemaVersion. The feed type specified
+        this method, specify the feedType and the feed file schemaVersion . The feed type specified
         sets the task as a download or an upload task. For details about the upload and download
         flows, see Working with Order Feeds in the Selling Integration Guide. Note: The scope
-        depends on the feed type. An error message results when an unsupported scope or feed type is
-        specified.The following list contains this method's authorization scopes and their
-        corresponding feed types:https://api.ebay.com/oauth/api_scope/sell.inventory: See LMS
-        FeedTypeshttps://api.ebay.com/oauth/api_scope/sell.fulfillment: LMS_ORDER_ACK (specify for
-        upload tasks). Also see LMS FeedTypeshttps://api.ebay.com/oauth/api_scope/sell.marketing:
-        None*https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly: None** Reserved for
-        future release
+        depends on the feed type.
         """
         return await self._request(
             'createTask',
@@ -12590,9 +11182,9 @@ class AsyncSellFeedResource(AsyncBaseResource):
     @overload
     async def get_input_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_input_file(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
-        """This method downloads a file previously uploaded using uploadFile. Specify the task_id from
+        """This method downloads a file previously uploaded using uploadFile . Specify the task_id from
         the uploadFile call. Note: With respect to LMS, this method applies to all feed types except
-        LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT. See LMS API Feeds in the Selling
+        LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT . See LMS API Feeds in the Selling
         Integration Guide.
         """
         return await self._request(
@@ -12624,10 +11216,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
         """This method retrieves the generated file that is associated with the specified task ID. The
         response of this call is a compressed or uncompressed CSV, XML, or JSON file, with the
         applicable file extension (for example: csv.gz). For details about how this method is used,
-        see Working with Order Feeds in the Selling Integration Guide. Note: The status of the task
-        to retrieve must be in the COMPLETED or COMPLETED_WITH_ERROR state before this method can
-        retrieve the file. You can use the getTask or getTasks method to retrieve the status of the
-        task.
+        see Working with Order Feeds in the Selling Integration Guide.
         """
         return await self._request(
             'getResultFile',
@@ -12655,7 +11244,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     @overload
     async def get_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.Task | httpx.Response:
-        """This method retrieves the details and status of the specified task. The input is task_id.
+        """This method retrieves the details and status of the specified task. The input is task_id .
         For details of how this method is used, see Working with Order Feeds in the Selling
         Integration Guide.
         """
@@ -12679,19 +11268,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
         file. After the file has been uploaded, the processing of the file begins. Reports often
         take time to generate and it's common for this method to return an HTTP status of 202, which
         indicates the report is being generated. Use the getTask with the task ID or getTasks to
-        determine the status of a report. The status flow is QUEUED &gt; IN_PROCESS &gt; COMPLETED
-        or COMPLETED_WITH_ERROR. When the status is COMPLETED or COMPLETED_WITH_ERROR, this
-        indicates the file has been processed and the order report can be downloaded. If there are
-        errors, they will be indicated in the report file. For details of how this method is used in
-        the upload flow, see Working with Order Feeds in the Selling Integration Guide. This call
-        does not have a JSON Request payload but uploads the file as form-data. For example:
-        fileName: &quot;AddFixedPriceItem_Macbook.xml&quot; name: &quot;file&quot; type: &quot;form-
-        data&quot; file: @&quot;/C:/Users/.../AddFixedPriceItem_Macbook.7z&quot;See Samples for
-        information.Note: This method applies to all Seller Hub feed types, and to all LMS feed
-        types except LMS_ORDER_REPORT and LMS_ACTIVE_INVENTORY_REPORT. Note: You must use a Content-
-        Type header with its value set to "multipart/form-data". See Samples for information.Note:
-        For LMS feed types, upload a regular XML file or an XML file in zipped format (both formats
-        are allowed).
+        determine the status of a report.
         """
         return await self._request(
             'uploadFile',
@@ -12711,7 +11288,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_customer_service_metric_tasks(self, *, date_range: str | None = None, feed_type: str | None = None, limit: str | None = None, look_back_days: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.CustomerServiceMetricTaskCollection | httpx.Response:
         """Use this method to return an array of customer service metric tasks. You can limit the tasks
         returned by specifying a date range. Note: You can pass in either the look_back_days or
-        date_range, but not both.
+        date_range , but not both.
         """
         return await self._request(
             'getCustomerServiceMetricTasks',
@@ -12732,16 +11309,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
         """Use this method to create a customer service metrics download task with filter criteria for
         the customer service metrics report. When using this method, specify the feedType and
         filterCriteria including both evaluationMarketplaceId and customerServiceMetricType for the
-        report. The method returns the location response header containing the call URI to use with
-        getCustomerServiceMetricTask to retrieve status and details on the task.Only CURRENT
-        Customer Service Metrics reports can be generated with the Sell Feed API. PROJECTED reports
-        are not supported at this time. See the getCustomerServiceMetric method document in the
-        Analytics API for more information about these two types of reports.Note: Before calling
-        this API, retrieve the summary of the seller's performance and rating for the customer
-        service metric by calling getCustomerServiceMetric (part of the Analytics API). You can then
-        populate the create task request fields with the values from the response. This technique
-        eliminates failed tasks that request a report for a customerServiceMetricType and
-        evaluationMarketplaceId that are without evaluation.
+        report.
         """
         return await self._request(
             'createCustomerServiceMetricTask',
@@ -12761,7 +11329,7 @@ class AsyncSellFeedResource(AsyncBaseResource):
     async def get_customer_service_metric_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_customer_service_metric_task(self, task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_feed_models.ServiceMetricsTask | httpx.Response:
         """Use this method to retrieve customer service metric task details for the specified task. The
-        input is task_id.
+        input is task_id .
         """
         return await self._request(
             'getCustomerServiceMetricTask',
@@ -12794,29 +11362,6 @@ class SellFinancesResource(BaseResource):
         seller account. The returned order-level financial data includes order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
         refunds from the gross amount. Note: Expenses include fees, shipping labels, and donations.
-        Refunds include gross refunds, gross claims, and gross payment disputes.The financial data
-        for orders will be returned as filtered based on the order's creation date. Note: Only
-        charges and credits tied to the order are shown, and they appear in near real time for
-        orders created within the selected order creation time window.Pagination is supported
-        through the limit and offset parameters. These parameters can be used to control the number
-        of records returned in a single response and to retrieve subsequent pages of results when
-        the result set spans multiple pages.The response can be filtered by using the filter
-        parameter. This parameter allows consumers to restrict the results returned by the method
-        based on supported filtering criteria.Note: Access to the order_earnings resource is
-        currently limited to only US, China, or Hong&nbsp;Kong sellers who meet the following
-        criteria and also request access: - US sellers with the country of residence set to US and
-        having a payout currency in USD.- Hong Kong or China sellers having the country of residence
-        set to HK or CN and the payout currency set to USD have access.To request access, submit an
-        application growth check to have the required OAuth scope added to your app. After
-        submission, you can use the same growth check link to track the status of the request. eBay
-        plans on expanding this to other markets in the future.Important! Due to EU &amp; UK
-        Payments regulatory requirements, an additional security verification via Digital Signatures
-        is required for certain API calls that are made on behalf of EU/UK sellers, including all
-        Finances API methods. Please refer to Digital Signatures for APIs to learn more on the
-        impacted APIs and the process to create signatures to be included in the HTTP payload.Note:
-        The Finances API does not support Team Access. Financial information, such as payouts or
-        transactions, is only returned for the user that makes the call. You cannot use any of the
-        methods in this API to return financial information for another user.
         """
         return self._request(
             'getOrderEarnings',
@@ -12836,25 +11381,8 @@ class SellFinancesResource(BaseResource):
     def get_order_earnings_by_id(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarning | httpx.Response:
         """This method returns detailed order-level financial data including order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
-        refunds from the gross amount.Note: Expenses include fees, shipping labels, and donations.
-        Refunds include gross refunds, gross claims, and gross payment disputes.Note: Only charges
-        and credits tied to the order are shown, and they appear in near real time for orders
-        created within the selected order creation time window.The response returns earnings
-        information only for the order identified by the order_id path parameter.Note: Access to the
-        order_earnings resource is currently limited to only US, China, or Hong&nbsp;Kong sellers
-        who meet the following criteria and also request access: - US sellers with the country of
-        residence set to US and having a payout currency in USD.- Hong Kong or China sellers having
-        the country of residence set to HK or CN and the payout currency set to USD have access.To
-        request access, submit an application growth check to have the required OAuth scope added to
-        your app. After submission, you can use the same growth check link to track the status of
-        the request. eBay plans on expanding this to other markets in the future.Important! Due to
-        EU &amp; UK Payments regulatory requirements, an additional security verification via
-        Digital Signatures is required for certain API calls that are made on behalf of EU/UK
-        sellers, including all Finances API methods. Please refer to Digital Signatures for APIs to
-        learn more on the impacted APIs and the process to create signatures to be included in the
-        HTTP payload.Note: The Finances API does not support Team Access. Financial information,
-        such as payouts or transactions, is only returned for the user that makes the call. You
-        cannot use any of the methods in this API to return financial information for another user.
+        refunds from the gross amount. Note: Expenses include fees, shipping labels, and donations.
+        Refunds include gross refunds, gross claims, and gross payment disputes.
         """
         return self._request(
             'getOrderEarningsById',
@@ -12875,26 +11403,8 @@ class SellFinancesResource(BaseResource):
         """This method returns a summarized view of order earnings information for one or more orders
         associated with a seller account. The method retrieves aggregated data for order earnings
         after deducting expenses and refunds from the gross amount. You can use this method for
-        high-level financial reporting workflows.Note: Expenses include fees, shipping labels, and
-        donations. Refunds include gross refunds, gross claims, and gross payment disputes.Note:
-        Only charges and credits tied to the order are shown, and they appear in near real time for
-        orders created within the selected order creation time window.The response can be filtered
-        by using the filter parameter. This parameter allows consumers to restrict the summary
-        results returned by the method based on supported filtering criteria.Note: Access to the
-        order_earnings resource is currently limited to only US, China, or Hong&nbsp;Kong sellers
-        who meet the following criteria and also request access: - US sellers with the country of
-        residence set to US and having a payout currency in USD.- Hong Kong or China sellers having
-        the country of residence set to HK or CN and the payout currency set to USD have access.To
-        request access, submit an application growth check to have the required OAuth scope added to
-        your app. After submission, you can use the same growth check link to track the status of
-        the request. eBay plans on expanding this to other markets in the future.Important! Due to
-        EU &amp; UK Payments regulatory requirements, an additional security verification via
-        Digital Signatures is required for certain API calls that are made on behalf of EU/UK
-        sellers, including all Finances API methods. Please refer to Digital Signatures for APIs to
-        learn more on the impacted APIs and the process to create signatures to be included in the
-        HTTP payload.Note: The Finances API does not support Team Access. Financial information,
-        such as payouts or transactions, is only returned for the user that makes the call. You
-        cannot use any of the methods in this API to return financial information for another user.
+        high-level financial reporting workflows. Note: Expenses include fees, shipping labels, and
+        donations.
         """
         return self._request(
             'getOrderEarningsSummary',
@@ -12912,25 +11422,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_payout(self, payout_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_payout(self, payout_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.Payout | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves details on a specific seller payout. The
-        unique identifier of the payout is passed in as a path parameter at the end of the call URI.
-        The getPayouts method can be used to retrieve the unique identifier of a payout, or the user
-        can check Seller Hub.For split-payout cases, which are only available to sellers in mainland
-        China, this method will return the payoutPercentage for the specified payout. This value
-        indicates the current payout percentage allocated to a payment instrument. This method will
-        also return the convertedToCurrency and convertedToValue response fields in CNY value. Note:
-        In split-payout cases, this method will only return details on an individual payout, also
-        known as a true(actual) payoutid. If a user inputs a payoutReference id as a path parameter,
-        the call will fail and the 404 not found status code will be returned.For more information
-        on split payouts, see Mainland China Split Payout Playbook.This method returns mock data in
-        the sandbox environment.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getPayout',
@@ -12948,27 +11444,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method is used to retrieve the details of one or more
-        seller payouts. By using the filter query parameter, users can retrieve payouts processed
-        within a specific date range, and/or they can retrieve payouts in a specific state.Note:
-        Only payouts less than 5 years in the past can be retrieved.There are also pagination and
-        sort query parameters that allow users to control the payouts that are returned in the
-        response.If no payouts match the input criteria, an empty payload is returned.For split-
-        payout cases, which are only available to sellers in mainland China, this method will return
-        the payoutPercentage for the specified payout. This value indicates the current payout
-        percentage allocated to a payout instrument. This method will also return the
-        convertedToCurrency and convertedTo response fields set to CNY value and the
-        payoutReference, the unique identifier reference (not true payout). By using the filter
-        query parameter, users can retrieve the two true(actual) payouts associated with a
-        payoutReference.Note: For more information on split payouts, see Mainland China Split Payout
-        Playbook.This method returns mock data in the sandbox environment.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getPayouts',
@@ -12986,23 +11466,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_payout_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_payout_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_finances_models.PayoutSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method is used to retrieve cumulative values for payouts
-        in a particular state, or all states. The metadata in the response includes total payouts,
-        the total number of monetary transactions (sales, refunds, credits) associated with those
-        payouts, and the total dollar value of all payouts.Note: Only payouts less than 5 years in
-        the past can be retrieved.If the filter query parameter is used to filter by payout status,
-        only one payout status value may be used. If the filter query parameter is not used to
-        filter by a specific payout status, cumulative values for payouts in all states are
-        returned.The user can also use the filter query parameter to specify a date range, and then
-        only payouts that were processed within that date range are considered.This method returns
-        mock data in the sandbox environment.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getPayoutSummary',
@@ -13020,19 +11488,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_seller_funds_summary(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_seller_funds_summary(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.SellerFundsSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves all pending funds that have not yet been
-        distributed through a seller payout.There are no input parameters for this method. The
-        response payload includes available funds, funds being processed, funds on hold, and also an
-        aggregate count of all three of these categories.If there are no funds that are pending, on
-        hold, or being processed for the seller's account, no response payload is returned, and an
-        http status code of 204 - No Content is returned instead.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getSellerFundsSummary',
@@ -13050,24 +11510,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.The getTransactions method allows a seller to retrieve
-        information about one or more of their monetary transactions.Note: For a complete list of
-        transaction types, refer to TransactionTypeEnum.Numerous input filters are available which
-        can be used individually or combined to refine the data that are returned. For example:SALE
-        transactions for August 15, 2022;RETURN transactions for the month of January,
-        2021;Transactions currently in a transactionStatus equal to FUNDS_ON_HOLD.Refer to the
-        filter field for additional information about each filter and its use.Pagination and sort
-        query parameters are also provided that allow users to further control how monetary
-        transactions are displayed in the response.If no monetary transactions match the input
-        criteria, an http status code of 204 No Content is returned with no response payload.Note:
-        Only monetary transactions that have occurred within the last five years can be retrieved.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getTransactions',
@@ -13085,23 +11532,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_transaction_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_transaction_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_finances_models.TransactionSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.The getTransactionSummary method retrieves cumulative
-        information for monetary transactions. If applicable, the number of payments with a
-        transactionStatus equal to FUNDS_ON_HOLD and the total monetary amount of these on-hold
-        payments are also returned.Note: For a complete list of transaction types, refer to
-        TransactionTypeEnum.Refer to the filter field for additional information about each filter
-        and its use.Note: Unless a transactionType filter is used to retrieve a specific type of
-        transaction (e.g., SALE, REFUND, etc.,) the creditCount and creditAmount response fields
-        both include order sales and seller credits information. That is, the count and value fields
-        do not distinguish between these two types monetary transactions.Note: getTransactionSummary
-        will only return data on transactions that occurred less than five years in the past.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getTransactionSummary',
@@ -13119,19 +11554,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_transfer(self, transfer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_transfer(self, transfer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.Transfer | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves detailed information regarding a TRANSFER
-        transaction type. A TRANSFER is a monetary transaction type that involves a seller
-        transferring money to eBay for reimbursement of one or more charges. For example, when a
-        seller reimburses eBay for a buyer refund.If an ID is passed into the URI that is an
-        identifier for another transaction type, this call will return an http status code of 404
-        Not found.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getTransfer',
@@ -13149,17 +11576,11 @@ class SellFinancesResource(BaseResource):
     @overload
     def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves filtered billing activities of the
-        seller. Returned results are filtered through query parameters such as date range, activity
-        ID, listing ID, or order ID. Sorting and pagination features help organize and navigate
-        returned activities efficiently.
+        to be included in the HTTP payload.
         """
         return self._request(
             'getBillingActivities',
@@ -13192,29 +11613,6 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         seller account. The returned order-level financial data includes order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
         refunds from the gross amount. Note: Expenses include fees, shipping labels, and donations.
-        Refunds include gross refunds, gross claims, and gross payment disputes.The financial data
-        for orders will be returned as filtered based on the order's creation date. Note: Only
-        charges and credits tied to the order are shown, and they appear in near real time for
-        orders created within the selected order creation time window.Pagination is supported
-        through the limit and offset parameters. These parameters can be used to control the number
-        of records returned in a single response and to retrieve subsequent pages of results when
-        the result set spans multiple pages.The response can be filtered by using the filter
-        parameter. This parameter allows consumers to restrict the results returned by the method
-        based on supported filtering criteria.Note: Access to the order_earnings resource is
-        currently limited to only US, China, or Hong&nbsp;Kong sellers who meet the following
-        criteria and also request access: - US sellers with the country of residence set to US and
-        having a payout currency in USD.- Hong Kong or China sellers having the country of residence
-        set to HK or CN and the payout currency set to USD have access.To request access, submit an
-        application growth check to have the required OAuth scope added to your app. After
-        submission, you can use the same growth check link to track the status of the request. eBay
-        plans on expanding this to other markets in the future.Important! Due to EU &amp; UK
-        Payments regulatory requirements, an additional security verification via Digital Signatures
-        is required for certain API calls that are made on behalf of EU/UK sellers, including all
-        Finances API methods. Please refer to Digital Signatures for APIs to learn more on the
-        impacted APIs and the process to create signatures to be included in the HTTP payload.Note:
-        The Finances API does not support Team Access. Financial information, such as payouts or
-        transactions, is only returned for the user that makes the call. You cannot use any of the
-        methods in this API to return financial information for another user.
         """
         return await self._request(
             'getOrderEarnings',
@@ -13234,25 +11632,8 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     async def get_order_earnings_by_id(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.OrderEarning | httpx.Response:
         """This method returns detailed order-level financial data including order earnings, gross
         amount, expenses, and refunds. Order earnings includes earnings after deducting expenses and
-        refunds from the gross amount.Note: Expenses include fees, shipping labels, and donations.
-        Refunds include gross refunds, gross claims, and gross payment disputes.Note: Only charges
-        and credits tied to the order are shown, and they appear in near real time for orders
-        created within the selected order creation time window.The response returns earnings
-        information only for the order identified by the order_id path parameter.Note: Access to the
-        order_earnings resource is currently limited to only US, China, or Hong&nbsp;Kong sellers
-        who meet the following criteria and also request access: - US sellers with the country of
-        residence set to US and having a payout currency in USD.- Hong Kong or China sellers having
-        the country of residence set to HK or CN and the payout currency set to USD have access.To
-        request access, submit an application growth check to have the required OAuth scope added to
-        your app. After submission, you can use the same growth check link to track the status of
-        the request. eBay plans on expanding this to other markets in the future.Important! Due to
-        EU &amp; UK Payments regulatory requirements, an additional security verification via
-        Digital Signatures is required for certain API calls that are made on behalf of EU/UK
-        sellers, including all Finances API methods. Please refer to Digital Signatures for APIs to
-        learn more on the impacted APIs and the process to create signatures to be included in the
-        HTTP payload.Note: The Finances API does not support Team Access. Financial information,
-        such as payouts or transactions, is only returned for the user that makes the call. You
-        cannot use any of the methods in this API to return financial information for another user.
+        refunds from the gross amount. Note: Expenses include fees, shipping labels, and donations.
+        Refunds include gross refunds, gross claims, and gross payment disputes.
         """
         return await self._request(
             'getOrderEarningsById',
@@ -13273,26 +11654,8 @@ class AsyncSellFinancesResource(AsyncBaseResource):
         """This method returns a summarized view of order earnings information for one or more orders
         associated with a seller account. The method retrieves aggregated data for order earnings
         after deducting expenses and refunds from the gross amount. You can use this method for
-        high-level financial reporting workflows.Note: Expenses include fees, shipping labels, and
-        donations. Refunds include gross refunds, gross claims, and gross payment disputes.Note:
-        Only charges and credits tied to the order are shown, and they appear in near real time for
-        orders created within the selected order creation time window.The response can be filtered
-        by using the filter parameter. This parameter allows consumers to restrict the summary
-        results returned by the method based on supported filtering criteria.Note: Access to the
-        order_earnings resource is currently limited to only US, China, or Hong&nbsp;Kong sellers
-        who meet the following criteria and also request access: - US sellers with the country of
-        residence set to US and having a payout currency in USD.- Hong Kong or China sellers having
-        the country of residence set to HK or CN and the payout currency set to USD have access.To
-        request access, submit an application growth check to have the required OAuth scope added to
-        your app. After submission, you can use the same growth check link to track the status of
-        the request. eBay plans on expanding this to other markets in the future.Important! Due to
-        EU &amp; UK Payments regulatory requirements, an additional security verification via
-        Digital Signatures is required for certain API calls that are made on behalf of EU/UK
-        sellers, including all Finances API methods. Please refer to Digital Signatures for APIs to
-        learn more on the impacted APIs and the process to create signatures to be included in the
-        HTTP payload.Note: The Finances API does not support Team Access. Financial information,
-        such as payouts or transactions, is only returned for the user that makes the call. You
-        cannot use any of the methods in this API to return financial information for another user.
+        high-level financial reporting workflows. Note: Expenses include fees, shipping labels, and
+        donations.
         """
         return await self._request(
             'getOrderEarningsSummary',
@@ -13310,25 +11673,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_payout(self, payout_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_payout(self, payout_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.Payout | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves details on a specific seller payout. The
-        unique identifier of the payout is passed in as a path parameter at the end of the call URI.
-        The getPayouts method can be used to retrieve the unique identifier of a payout, or the user
-        can check Seller Hub.For split-payout cases, which are only available to sellers in mainland
-        China, this method will return the payoutPercentage for the specified payout. This value
-        indicates the current payout percentage allocated to a payment instrument. This method will
-        also return the convertedToCurrency and convertedToValue response fields in CNY value. Note:
-        In split-payout cases, this method will only return details on an individual payout, also
-        known as a true(actual) payoutid. If a user inputs a payoutReference id as a path parameter,
-        the call will fail and the 404 not found status code will be returned.For more information
-        on split payouts, see Mainland China Split Payout Playbook.This method returns mock data in
-        the sandbox environment.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getPayout',
@@ -13346,27 +11695,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_payouts(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Payouts | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method is used to retrieve the details of one or more
-        seller payouts. By using the filter query parameter, users can retrieve payouts processed
-        within a specific date range, and/or they can retrieve payouts in a specific state.Note:
-        Only payouts less than 5 years in the past can be retrieved.There are also pagination and
-        sort query parameters that allow users to control the payouts that are returned in the
-        response.If no payouts match the input criteria, an empty payload is returned.For split-
-        payout cases, which are only available to sellers in mainland China, this method will return
-        the payoutPercentage for the specified payout. This value indicates the current payout
-        percentage allocated to a payout instrument. This method will also return the
-        convertedToCurrency and convertedTo response fields set to CNY value and the
-        payoutReference, the unique identifier reference (not true payout). By using the filter
-        query parameter, users can retrieve the two true(actual) payouts associated with a
-        payoutReference.Note: For more information on split payouts, see Mainland China Split Payout
-        Playbook.This method returns mock data in the sandbox environment.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getPayouts',
@@ -13384,23 +11717,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_payout_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_payout_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_finances_models.PayoutSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method is used to retrieve cumulative values for payouts
-        in a particular state, or all states. The metadata in the response includes total payouts,
-        the total number of monetary transactions (sales, refunds, credits) associated with those
-        payouts, and the total dollar value of all payouts.Note: Only payouts less than 5 years in
-        the past can be retrieved.If the filter query parameter is used to filter by payout status,
-        only one payout status value may be used. If the filter query parameter is not used to
-        filter by a specific payout status, cumulative values for payouts in all states are
-        returned.The user can also use the filter query parameter to specify a date range, and then
-        only payouts that were processed within that date range are considered.This method returns
-        mock data in the sandbox environment.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getPayoutSummary',
@@ -13418,19 +11739,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_seller_funds_summary(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_seller_funds_summary(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.SellerFundsSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves all pending funds that have not yet been
-        distributed through a seller payout.There are no input parameters for this method. The
-        response payload includes available funds, funds being processed, funds on hold, and also an
-        aggregate count of all three of these categories.If there are no funds that are pending, on
-        hold, or being processed for the seller's account, no response payload is returned, and an
-        http status code of 204 - No Content is returned instead.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getSellerFundsSummary',
@@ -13448,24 +11761,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_transactions(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, raw_response: bool = False) -> sell_finances_models.Transactions | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.The getTransactions method allows a seller to retrieve
-        information about one or more of their monetary transactions.Note: For a complete list of
-        transaction types, refer to TransactionTypeEnum.Numerous input filters are available which
-        can be used individually or combined to refine the data that are returned. For example:SALE
-        transactions for August 15, 2022;RETURN transactions for the month of January,
-        2021;Transactions currently in a transactionStatus equal to FUNDS_ON_HOLD.Refer to the
-        filter field for additional information about each filter and its use.Pagination and sort
-        query parameters are also provided that allow users to further control how monetary
-        transactions are displayed in the response.If no monetary transactions match the input
-        criteria, an http status code of 204 No Content is returned with no response payload.Note:
-        Only monetary transactions that have occurred within the last five years can be retrieved.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getTransactions',
@@ -13483,23 +11783,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_transaction_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_transaction_summary(self, *, x_ebay_c_marketplace_id: str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_finances_models.TransactionSummaryResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.The getTransactionSummary method retrieves cumulative
-        information for monetary transactions. If applicable, the number of payments with a
-        transactionStatus equal to FUNDS_ON_HOLD and the total monetary amount of these on-hold
-        payments are also returned.Note: For a complete list of transaction types, refer to
-        TransactionTypeEnum.Refer to the filter field for additional information about each filter
-        and its use.Note: Unless a transactionType filter is used to retrieve a specific type of
-        transaction (e.g., SALE, REFUND, etc.,) the creditCount and creditAmount response fields
-        both include order sales and seller credits information. That is, the count and value fields
-        do not distinguish between these two types monetary transactions.Note: getTransactionSummary
-        will only return data on transactions that occurred less than five years in the past.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getTransactionSummary',
@@ -13517,19 +11805,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_transfer(self, transfer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_transfer(self, transfer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.Transfer | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves detailed information regarding a TRANSFER
-        transaction type. A TRANSFER is a monetary transaction type that involves a seller
-        transferring money to eBay for reimbursement of one or more charges. For example, when a
-        seller reimburses eBay for a buyer refund.If an ID is passed into the URI that is an
-        identifier for another transaction type, this call will return an http status code of 404
-        Not found.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getTransfer',
@@ -13547,17 +11827,11 @@ class AsyncSellFinancesResource(AsyncBaseResource):
     @overload
     async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_billing_activities(self, *, accept_language: str | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_finances_models.BillingActivityResponse | httpx.Response:
-        """Important! Due to EU &amp; UK Payments regulatory requirements, an additional security
+        """Important! Due to EU & UK Payments regulatory requirements, an additional security
         verification via Digital Signatures is required for certain API calls that are made on
         behalf of EU/UK sellers, including all Finances API methods. Please refer to Digital
         Signatures for APIs to learn more on the impacted APIs and the process to create signatures
-        to be included in the HTTP payload.Note: The Finances API does not support Team Access.
-        Financial information, such as payouts or transactions, is only returned for the user that
-        makes the call. You cannot use any of the methods in this API to return financial
-        information for another user.This method retrieves filtered billing activities of the
-        seller. Returned results are filtered through query parameters such as date range, activity
-        ID, listing ID, or order ID. Sorting and pagination features help organize and navigate
-        returned activities efficiently.
+        to be included in the HTTP payload.
         """
         return await self._request(
             'getBillingActivities',
@@ -13585,16 +11859,11 @@ class SellFulfillmentResource(BaseResource):
     @overload
     def get_order(self, order_id: str, *, field_groups: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_order(self, order_id: str, *, field_groups: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Order | httpx.Response:
-        """Use this call to retrieve the contents of an order based on its unique identifier, orderId.
+        """Use this call to retrieve the contents of an order based on its unique identifier, orderId .
         This value is returned in the getOrders call's orders.orderId field when you search for
         orders by creation date, modification date, or fulfillment status. Include the optional
         fieldGroups query parameter set to TAX_BREAKDOWN to return a breakdown of the taxes and
-        fees. The returned Order object contains information you can use to create and process
-        fulfillments, including the following: Information about the buyer and seller Information
-        about the order's line items The plans for packaging, addressing, and shipping the order The
-        status of payment, packaging, addressing, and shipping the order A summary of monetary
-        amounts specific to the order such as pricing, payments, and shipping costs A summary of
-        applied taxes and fees and, optionally, a breakdown of each
+        fees.
         """
         return self._request(
             'getOrder',
@@ -13616,16 +11885,7 @@ class SellFulfillmentResource(BaseResource):
         last modification date, or fulfillment status using the filter parameter. You can
         alternatively specify a list of orders using the orderIds parameter. Include the optional
         fieldGroups query parameter set to TAX_BREAKDOWN to return a breakdown of the taxes and
-        fees. By default, when no filters are used this call returns all orders created within the
-        last 90 days. The returned Order objects contain information you can use to create and
-        process fulfillments, including: Information about the buyer and seller Information about
-        the order's line items The plans for packaging, addressing and shipping the order The status
-        of payment, packaging, addressing, and shipping the order A summary of monetary amounts
-        specific to the order such as pricing, payments, and shipping costs A summary of applied
-        taxes and fees, and optionally a breakdown of each Important: In this call, the
-        cancelStatus.cancelRequests array is returned but is always empty. Use the getOrder call
-        instead, which returns this array fully populated with information about any cancellation
-        requests.
+        fees.
         """
         return self._request(
             'getOrders',
@@ -13663,7 +11923,7 @@ class SellFulfillmentResource(BaseResource):
     def get_shipping_fulfillments(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_shipping_fulfillments(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.ShippingFulfillmentPagedCollection | httpx.Response:
         """Use this call to retrieve the contents of all fulfillments currently defined for a specified
-        order based on the order's unique identifier, orderId. This value is returned in the
+        order based on the order's unique identifier, orderId . This value is returned in the
         getOrders call's members.orderId field when you search for orders by creation date or
         shipment status.
         """
@@ -13684,18 +11944,9 @@ class SellFulfillmentResource(BaseResource):
     def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """When you group an order's line items into one or more packages, each package requires a
-        corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For
-        each package, execute this call once to generate the shipping fulfillment associated with
-        that package. Note: A single line item in an order can consist of multiple units of a
-        purchased item, and one unit can consist of multiple parts or components. Although these
-        components might be provided by the manufacturer in separate packaging, the seller must
-        include all components of a given line item in the same package.Before using this call for a
-        given package, you must determine which line items are in the package. If the package has
-        been shipped, you should provide the date of shipment in the request. If not provided, it
-        will default to the current date and time.This method can also be used to provide proof of
-        delivery for contested payment disputes. To do so, use this method to create a shipping
-        fulfillment and provide shipment tracking information for all line items involved in the
-        dispute. EBay will then pick up this information for the dispute directly.
+        corresponding plan for handling, addressing, and shipping; this is shipping fulfillment .
+        For each package, execute this call once to generate the shipping fulfillment associated
+        with that package.
         """
         return self._request(
             'createShippingFulfillment',
@@ -13715,7 +11966,7 @@ class SellFulfillmentResource(BaseResource):
     def get_shipping_fulfillment(self, fulfillment_id: str, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_shipping_fulfillment(self, fulfillment_id: str, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.ShippingFulfillment | httpx.Response:
         """Use this call to retrieve the contents of a fulfillment based on its unique identifier,
-        fulfillmentId (combined with the associated order's orderId). The fulfillmentId value was
+        fulfillmentId (combined with the associated order's orderId ). The fulfillmentId value was
         originally generated by the createShippingFulfillment call and is returned by the
         getShippingFulfillments call in the members.fulfillmentId field.
         """
@@ -13913,16 +12164,11 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
     @overload
     async def get_order(self, order_id: str, *, field_groups: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_order(self, order_id: str, *, field_groups: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.Order | httpx.Response:
-        """Use this call to retrieve the contents of an order based on its unique identifier, orderId.
+        """Use this call to retrieve the contents of an order based on its unique identifier, orderId .
         This value is returned in the getOrders call's orders.orderId field when you search for
         orders by creation date, modification date, or fulfillment status. Include the optional
         fieldGroups query parameter set to TAX_BREAKDOWN to return a breakdown of the taxes and
-        fees. The returned Order object contains information you can use to create and process
-        fulfillments, including the following: Information about the buyer and seller Information
-        about the order's line items The plans for packaging, addressing, and shipping the order The
-        status of payment, packaging, addressing, and shipping the order A summary of monetary
-        amounts specific to the order such as pricing, payments, and shipping costs A summary of
-        applied taxes and fees and, optionally, a breakdown of each
+        fees.
         """
         return await self._request(
             'getOrder',
@@ -13944,16 +12190,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
         last modification date, or fulfillment status using the filter parameter. You can
         alternatively specify a list of orders using the orderIds parameter. Include the optional
         fieldGroups query parameter set to TAX_BREAKDOWN to return a breakdown of the taxes and
-        fees. By default, when no filters are used this call returns all orders created within the
-        last 90 days. The returned Order objects contain information you can use to create and
-        process fulfillments, including: Information about the buyer and seller Information about
-        the order's line items The plans for packaging, addressing and shipping the order The status
-        of payment, packaging, addressing, and shipping the order A summary of monetary amounts
-        specific to the order such as pricing, payments, and shipping costs A summary of applied
-        taxes and fees, and optionally a breakdown of each Important: In this call, the
-        cancelStatus.cancelRequests array is returned but is always empty. Use the getOrder call
-        instead, which returns this array fully populated with information about any cancellation
-        requests.
+        fees.
         """
         return await self._request(
             'getOrders',
@@ -13991,7 +12228,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
     async def get_shipping_fulfillments(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_shipping_fulfillments(self, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.ShippingFulfillmentPagedCollection | httpx.Response:
         """Use this call to retrieve the contents of all fulfillments currently defined for a specified
-        order based on the order's unique identifier, orderId. This value is returned in the
+        order based on the order's unique identifier, orderId . This value is returned in the
         getOrders call's members.orderId field when you search for orders by creation date or
         shipment status.
         """
@@ -14012,18 +12249,9 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
     async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_shipping_fulfillment(self, order_id: str, *, body: sell_fulfillment_models.ShippingFulfillmentDetails, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """When you group an order's line items into one or more packages, each package requires a
-        corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For
-        each package, execute this call once to generate the shipping fulfillment associated with
-        that package. Note: A single line item in an order can consist of multiple units of a
-        purchased item, and one unit can consist of multiple parts or components. Although these
-        components might be provided by the manufacturer in separate packaging, the seller must
-        include all components of a given line item in the same package.Before using this call for a
-        given package, you must determine which line items are in the package. If the package has
-        been shipped, you should provide the date of shipment in the request. If not provided, it
-        will default to the current date and time.This method can also be used to provide proof of
-        delivery for contested payment disputes. To do so, use this method to create a shipping
-        fulfillment and provide shipment tracking information for all line items involved in the
-        dispute. EBay will then pick up this information for the dispute directly.
+        corresponding plan for handling, addressing, and shipping; this is shipping fulfillment .
+        For each package, execute this call once to generate the shipping fulfillment associated
+        with that package.
         """
         return await self._request(
             'createShippingFulfillment',
@@ -14043,7 +12271,7 @@ class AsyncSellFulfillmentResource(AsyncBaseResource):
     async def get_shipping_fulfillment(self, fulfillment_id: str, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_shipping_fulfillment(self, fulfillment_id: str, order_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_fulfillment_models.ShippingFulfillment | httpx.Response:
         """Use this call to retrieve the contents of a fulfillment based on its unique identifier,
-        fulfillmentId (combined with the associated order's orderId). The fulfillmentId value was
+        fulfillmentId (combined with the associated order's orderId ). The fulfillmentId value was
         originally generated by the createShippingFulfillment call and is returned by the
         getShippingFulfillments call in the members.fulfillmentId field.
         """
@@ -14242,41 +12470,9 @@ class SellInventoryResource(BaseResource):
     def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call can be used to create and/or update
-        up to 25 new inventory item records. It is up to sellers whether they want to create a
-        complete inventory item records right from the start, or sellers can provide only some
-        information with the initial bulkCreateOrReplaceInventoryItem call, and then make one or
-        more additional bulkCreateOrReplaceInventoryItem calls to complete all required fields for
-        the inventory item records and prepare for publishing. Upon first creating inventory item
-        records, only the SKU values are required.Important!Publish offer note: Fields may be
-        optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Inventory item fields
-        for a list of fields required to publish an offer.Note: In addition to the authorization
-        header, which is required for all eBay REST API calls, this call also requires the Content-
-        Language and Content-Type headers. In the case of updating existing inventory item records,
-        the bulkCreateOrReplaceInventoryItem call will do a complete replacement of the existing
-        inventory item records, so all fields that are currently defined for the inventory item
-        record are required in that update action, regardless of whether their values changed. So,
-        when replacing/updating an inventory item record, it is advised that the seller run a 'Get'
-        call to retrieve the full details of the inventory item records and see all of its current
-        values/settings before attempting to update the records. Any changes that are made to
-        inventory item records that are part of one or more active eBay listings, a successful call
-        will automatically update these active listings. The key information that is set with the
-        bulkCreateOrReplaceInventoryItem call include: Seller-defined SKU value for the product.
-        Each seller product, including products within an item inventory group, must have their own
-        SKU value. Condition of the item Product details, including any product identifier(s), such
-        as a UPC, ISBN, EAN, or Brand/Manufacturer Part Number pair, a product description, a
-        product title, product/item aspects, and links to images. eBay will use any supplied eBay
-        Product ID (ePID) or a GTIN (UPC, ISBN, or EAN) and attempt to match those identifiers to a
-        product in the eBay Catalog, and if a product match is found, the product details for the
-        inventory item will automatically be populated. Quantity of the inventory item that is
-        available for purchase Package weight and dimensions, which is required if the seller will
-        be offering calculated shipping options. The package weight will also be required if the
-        seller will be providing flat-rate shipping services, but charging a weight surcharge. For
-        those who prefer to create or update a single inventory item record, the
-        createOrReplaceInventoryItem method can be used.
+        revising the item until the next calendar day.
         """
         return self._request(
             'bulkCreateOrReplaceInventoryItem',
@@ -14296,12 +12492,9 @@ class SellInventoryResource(BaseResource):
     def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
         """This call retrieves up to 25 inventory item records. The SKU value of each inventory item
-        record to retrieve is specified in the request payload.Note: In addition to the
+        record to retrieve is specified in the request payload. Note: In addition to the
         authorization header, which is required for all Inventory API calls, this call also requires
-        the Content-Type header.For those who prefer to retrieve only one inventory item record by
-        SKU value, the getInventoryItem method can be used. To retrieve all inventory item records
-        defined on the seller's account, the getInventoryItems method can be used (with pagination
-        control if desired).
+        the Content-Type header.
         """
         return self._request(
             'bulkGetInventoryItem',
@@ -14323,23 +12516,7 @@ class SellInventoryResource(BaseResource):
         """This call is used by the seller to update the total ship-to-home quantity of one inventory
         item, and/or to update the price and/or quantity of one or more offers associated with one
         inventory item. Up to 25 offers associated with an inventory item may be updated with one
-        bulkUpdatePriceQuantity call. Only one SKU (one product) can be updated per call.Note: Each
-        listing can be revised up to 250 times in one calendar day. If this revision threshold is
-        reached, the seller will be blocked from revising the item until the next calendar day.Note:
-        In addition to the authorization header, which is required for all Inventory API calls, this
-        call also requires the Content-Type header.The getOffers call can be used to retrieve all
-        offers associated with a SKU. The seller will just pass in the correct SKU value through the
-        sku query parameter. To update an offer, the offerId value is required, and this value is
-        returned in the getOffers call response. It is also useful to know which offers are
-        unpublished and which ones are published. To get this status, look for the status value in
-        the getOffers call response. Offers in the published state are live eBay listings, and these
-        listings will be revised with a successful bulkUpdatePriceQuantity call.An issue will occur
-        if duplicate offerId values are passed through the same offers container, or if one or more
-        of the specified offers are associated with different products/SKUs.Note: For multiple-
-        variation listings, it is recommended that the bulkUpdatePriceQuantity call be used to
-        update price and quantity information for each SKU within that multiple-variation listing
-        instead of using createOrReplaceInventoryItem calls to update the price and quantity for
-        each SKU. Just remember that only one SKU (one product variation) can be updated per call.
+        bulkUpdatePriceQuantity call. Only one SKU (one product) can be updated per call.
         """
         return self._request(
             'bulkUpdatePriceQuantity',
@@ -14359,13 +12536,9 @@ class SellInventoryResource(BaseResource):
     def get_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItemWithSkuLocaleGroupid | httpx.Response:
         """This call retrieves the inventory item record for a given SKU. The SKU value is passed in at
-        the end of the call URI. There is no request payload for this call.The authorization header
+        the end of the call URI. There is no request payload for this call. The authorization header
         is the only required HTTP header for this call, and it is required for all Inventory API
-        calls. See the HTTP request headers section for more information.For those who prefer to
-        retrieve numerous inventory item records by SKU value with one call (up to 25 at a time),
-        the bulkGetInventoryItem method can be used. To retrieve all inventory item records defined
-        on the seller's account, the getInventoryItems method can be used (with pagination control
-        if desired).
+        calls. See the HTTP request headers section for more information.
         """
         return self._request(
             'getInventoryItem',
@@ -14384,48 +12557,9 @@ class SellInventoryResource(BaseResource):
     def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call creates a new inventory item record
-        or replaces an existing inventory item record. It is up to sellers whether they want to
-        create a complete inventory item record right from the start, or sellers can provide only
-        some information with the initial createOrReplaceInventoryItem call, and then make one or
-        more additional createOrReplaceInventoryItem calls to complete all required fields for the
-        inventory item record and prepare it for publishing. Upon first creating an inventory item
-        record, only the SKU value in the call path is required.Important!Publish offer note: Fields
-        may be optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Inventory item fields
-        for a list of fields required to publish an offer.Note: In addition to the authorization
-        header, which is required for all Inventory API calls, this call also requires the Content-
-        Type and Content-Language headers. In the case of replacing an existing inventory item
-        record, the createOrReplaceInventoryItem call will do a complete replacement of the existing
-        inventory item record, so all fields that are currently defined for the inventory item
-        record are required in that update action, regardless of whether their values changed. So,
-        when replacing/updating an inventory item record, it is advised that the seller run a
-        getInventoryItem call to retrieve the full inventory item record and see all of its current
-        values/settings before attempting to update the record. And if changes are made to an
-        inventory item that is part of one or more active eBay listings, a successful call will
-        automatically update these eBay listings. The key information that is set with the
-        createOrReplaceInventoryItem call include: The seller-defined SKU value for the product.
-        Each seller product, including products within an item inventory group, must have their own
-        SKU value. This SKU value is passed in at the end of the call URI. The condition of the
-        item. Product details, including any product identifier(s), such as a UPC, ISBN, EAN, or
-        Brand/Manufacturer Part Number pair, a product description, a product title, product/item
-        aspects, and links to images. eBay will use any supplied eBay Product ID (ePID) or a GTIN
-        (UPC, ISBN, or EAN) and attempt to match those identifiers to a product in the eBay Catalog,
-        and if a product match is found, the product details for the inventory item will
-        automatically be populated. The quantity of the inventory item that is available for
-        purchase. Package weight and dimensions, which is required if the seller will be offering
-        calculated shipping options. The package weight will also be required if the seller will be
-        providing flat-rate shipping services, but charging a weight surcharge. In addition to the
-        authorization header, which is required for all eBay REST API calls, the
-        createOrReplaceInventoryItem call also requires the Content-Language header, that sets the
-        natural language that will be used in the field values of the request payload. For US
-        English, the code value passed in this header should be en-US. To view other supported
-        Content-Language values, and to read more about all supported HTTP headers for eBay REST API
-        calls, see the HTTP request headers topic in the Using eBay RESTful APIs document.For those
-        who prefer to create or update numerous inventory item records with one call (up to 25 at a
-        time), the bulkCreateOrReplaceInventoryItem method can be used.
+        revising the item until the next calendar day.
         """
         return self._request(
             'createOrReplaceInventoryItem',
@@ -14444,14 +12578,7 @@ class SellInventoryResource(BaseResource):
     @overload
     def delete_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
-        """This call is used to delete an inventory item record associated with a specified SKU. A
-        successful call will not only delete that inventory item record, but will also have the
-        following effects:Delete any and all unpublished offers associated with that SKU;Delete any
-        and all single-variation eBay listings associated with that SKU;Automatically remove that
-        SKU from a multiple-variation listing and remove that SKU from any and all inventory item
-        groups in which that SKU was a member.The authorization header is the only required HTTP
-        header for this call. See the HTTP request headers section for more information.
-        """
+        """This call is used to delete an inventory item record associated with a specified SKU."""
         return self._request(
             'deleteInventoryItem',
             'DELETE',
@@ -14472,10 +12599,7 @@ class SellInventoryResource(BaseResource):
         query parameter allows the seller to control how many records are returned per page, and the
         offset query parameter is used to retrieve a specific page of records. The seller can make
         multiple calls to scan through multiple pages of records. There is no request payload for
-        this call.The authorization header is the only required HTTP header for this call, and it is
-        required for all Inventory API calls. See the HTTP request headers section for more
-        information.For those who prefer to retrieve numerous inventory item records by SKU value
-        with one call (up to 25 at a time), the bulkGetInventoryItem method can be used.
+        this call.
         """
         return self._request(
             'getInventoryItems',
@@ -14496,8 +12620,6 @@ class SellInventoryResource(BaseResource):
         """This call is used by the seller to retrieve the list of products that are compatible with
         the inventory item. The SKU value for the inventory item is passed into the call URI, and a
         successful call with return the compatible vehicle list associated with this inventory item.
-        Product compatibility is currently only applicable to motor vehicle parts and accessory
-        categories, but more categories may be supported in the future.
         """
         return self._request(
             'getProductCompatibility',
@@ -14518,9 +12640,7 @@ class SellInventoryResource(BaseResource):
         """This call is used by the seller to create or replace a list of products that are compatible
         with the inventory item. The inventory item is identified with a SKU value in the URI.
         Product compatibility is currently only applicable to motor vehicle parts and accessory
-        categories, but more categories may be supported in the future.Note: In addition to the
-        authorization header, which is required for all Inventory API calls, this call also requires
-        the Content-Type and Content-Language headers.
+        categories, but more categories may be supported in the future.
         """
         return self._request(
             'createOrReplaceProductCompatibility',
@@ -14582,37 +12702,8 @@ class SellInventoryResource(BaseResource):
     def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call creates a new inventory item group or updates an existing inventory
-        item group. It is up to sellers whether they want to create a complete inventory item group
-        record right from the start, or sellers can provide only some information with the initial
-        createOrReplaceInventoryItemGroup call, and then make one or more additional
-        createOrReplaceInventoryItemGroup calls to complete the inventory item group record. Upon
-        first creating an inventory item group record, the only required elements are the
-        inventoryItemGroupKey identifier in the call URI, and the members of the inventory item
-        group specified through the variantSKUs array in the request payload.Important!Publish offer
-        note: Fields may be optional or conditionally required when calling this method, but become
-        required when publishing the offer to create an active listing. For this method, see
-        Inventory item group fields for a list of fields required to publish an offer.Note: In
-        addition to the authorization header, which is required for all Inventory API calls, this
-        call also requires the Content-Type and Content-Language headers.In the case of
-        updating/replacing an existing inventory item group, this call does a complete replacement
-        of the existing inventory item group record, so all fields (including the member SKUs) that
-        make up the inventory item group are required, regardless of whether their values changed.
-        So, when replacing/updating an inventory item group record, it is advised that the seller
-        run a getInventoryItemGroup call for that inventory item group to see all of its current
-        values/settings/members before attempting to update the record. And if changes are made to
-        an inventory item group that is part of a live, multiple-variation eBay listing, these
-        changes automatically update the eBay listing. For example, if a SKU value is removed from
-        the inventory item group, the corresponding product variation will be removed from the eBay
-        listing as well.In addition to the required inventory item group identifier and member SKUs,
-        other key information that is set with this call include: Title and description of the
-        inventory item group. The string values provided in these fields will actually become the
-        listing title and listing description of the listing once the first SKU of the inventory
-        item group is published successfully Common aspects that inventory items in the group share
-        Product aspects that vary within each product variation Links to images demonstrating the
-        variations of the product, and these images should correspond to the product aspect that is
-        set with the variesBy.aspectsImageVariesBy field Note: For more information, see Creating
-        and managing inventory item groups.
+        calendar day. This call creates a new inventory item group or updates an existing inventory
+        item group.
         """
         return self._request(
             'createOrReplaceInventoryItemGroup',
@@ -14650,52 +12741,7 @@ class SellInventoryResource(BaseResource):
     def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
         """This call is used to convert existing eBay Listings to the corresponding Inventory API
         objects. If an eBay listing is successfully migrated to the Inventory API model, new
-        Inventory Location, Inventory Item, and Offer objects are created. For a multiple-variation
-        listing that is successfully migrated, in addition to the three new Inventory API objects
-        just mentioned, an Inventory Item Group object will also be created. If the eBay listing is
-        a motor vehicle part or accessory listing with a compatible vehicle list
-        (ItemCompatibilityList container in Trading API's Add/Revise/Relist/Verify calls), a Product
-        Compatibility object will be created.Migration RequirementsTo be eligible for migration, the
-        active eBay listings must meet the following requirements:Listing type is Fixed-PriceNote:
-        Auction listings are supported by the Inventory API, but the bulkMigrateListing method
-        cannot be used to migrate auction listings.The item(s) in the listings must have seller-
-        defined SKU values associated with them, and in the case of a multiple-variation listing,
-        each product variation must also have its own SKU valueBusiness Polices (Payment, Return
-        Policy, and Shipping) must be used on the listing, as legacy payment, return policy, and
-        shipping fields will not be accepted. With the Payment Policy associated with a listing, the
-        immediate payment requirement must be enabled.The postal/zip code (PostalCode field in
-        Trading's ItemType) or city (Location field in Trading's ItemType) must be set in the
-        listing; the country is also needed, but this value is required in Trading API, so it will
-        always be set for every listingUnsupported Listing FeaturesThe following features are not
-        yet available to be set or modified through the Inventory API, but they will remain on the
-        active eBay listing, even after a successful migration to the Inventory model. The downside
-        to this is that the seller will be completely blocked (in APIs or My eBay) from revising
-        these features/settings once the migration takes place:Any listing-level Buyer
-        RequirementsListing enhancements like a bold listing title or Gallery PlusMaking the CallIn
-        the request payload of the bulkMigrateListings call, the seller will pass in an array of one
-        to five eBay listing IDs (aka Item IDs). To save time and hassle, that seller should do a
-        pre-check on each listing to make sure those listings meet the requirements to be migrated
-        to the new Inventory model. This method also requires the Content-Type request header. There
-        are no path or query parameters for this call.Call ResponseIf an eBay listing is migrated
-        successfully to the new Inventory model, the following will occur:An Inventory Item object
-        will be created for the item(s) in the listing, and this object will be accessible through
-        the Inventory APIAn Offer object will be created for the listing, and this object will be
-        accessible through the Inventory APIAn Inventory Location object will be created and
-        associated with the Offer object, as an Inventory Location must be associated with a
-        published OfferThe response payload of the Bulk Migrate Listings call will show the results
-        of each listing migration. These results include an HTTP status code to indicate the success
-        or failure of each listing migration, the SKU value associated with each item, and if the
-        migration is successful, an Offer ID value. The SKU value will be used in the Inventory API
-        to manage the Inventory Item object, and the Offer ID value will be used in the Inventory
-        API to manage the Offer object. Errors and/or warnings containers will be returned for each
-        listing where an error and/or warning occurred with the attempted migration.If a multiple-
-        variation listing is successfully migrated, along with the Offer and Inventory Location
-        objects, an Inventory Item object will be created for each product variation within the
-        listing, and an Inventory Item Group object will also be created, grouping those variations
-        together in the Inventory API platform. For a motor vehicle part or accessory listing that
-        has a specified list of compatible vehicles, in addition to the Inventory Item, Inventory
-        Location, and Offer objects that are created, a Product Compatibility object will also be
-        created in the Inventory API platform.
+        Inventory Location, Inventory Item, and Offer objects are created.
         """
         return self._request(
             'bulkMigrateListing',
@@ -14715,12 +12761,10 @@ class SellInventoryResource(BaseResource):
     def get_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationMapping | httpx.Response:
         """This method allows sellers to retrieve the locations mapped to a specific SKU within a
-        listing.The listingId and sku of the listing are passed in as path parameters. This method
+        listing. The listingId and sku of the listing are passed in as path parameters. This method
         only retrieves location mappings for a single SKU value; if a seller wishes to retrieve the
         location mappings for all items in a multiple-variation listing, this method must be called
-        for each variation in the listing.If there are fulfillment center locations mapped to the
-        SKU, they will be returned in the locations array. If no locations are mapped to the SKU,
-        status code 404 Not Found will be returned.
+        for each variation in the listing.
         """
         return self._request(
             'getSkuLocationMapping',
@@ -14741,26 +12785,7 @@ class SellInventoryResource(BaseResource):
         """This method allows sellers to map multiple fulfillment center locations to single-SKU
         listing, or to a single SKU within a multiple-variation listing. This allows eBay to
         leverage the location metadata associated with a seller’s fulfillment centers to calculate
-        more accurate estimated delivery dates on their listing.Note: While location mappings can be
-        created for listings on any eBay marketplace, the improved delivery date estimate feature is
-        currently only supported for US-based fulfillment centers shipping domestically within the
-        US.The listing for which the locations will be mapped is specified through the listingId and
-        sku values associated with the item. Note that only a single SKU value can be identified; if
-        the seller wishes to map locations to multiple/all SKU values in a multiple-variation
-        listing, this method must be called for each of those SKUs within the listing.Note: Sellers
-        should keep track of listingId/sku pairs that have been used for location mapping, as there
-        is no programmatic way to retrieve or delete these pairs at this time.In the case of
-        replacing/updating existing location mappings, this method will do a complete replacement of
-        the location mappings associated with a SKU. This means that each existing location mappings
-        that the seller wants to continue to associate with the SKU are required in the update call,
-        regardless of if they are affected by the update.This method is only supported for inventory
-        locations that have FULFILLMENT_CENTER as one of their locationTypes. For more information
-        on fulfillment center locations, see Create a fulfillment center location.For more
-        information on location mapping features, see Multi-warehouse program in the Selling
-        Integration Guide.Note: Only listings with SKU values are supported. Sellers using listings
-        creating through the Trading API can add a SKU value to their single variation listing
-        through the Item.SKU field during listing creation or by using the ReviseItem family of
-        calls.
+        more accurate estimated delivery dates on their listing.
         """
         return self._request(
             'createOrReplaceSkuLocationMapping',
@@ -14780,9 +12805,9 @@ class SellInventoryResource(BaseResource):
     def delete_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method allows sellers to remove all location mappings associated with a specific SKU
-        within a listing.The listingId and sku of the listing are passed in as path
-        parameters.Important! To remove all location mappings from a multiple-variation listing,
-        this method must be used for each individual SKU in the listing.
+        within a listing. The listingId and sku of the listing are passed in as path parameters.
+        Important! To remove all location mappings from a multiple-variation listing, this method
+        must be used for each individual SKU in the listing.
         """
         return self._request(
             'deleteSkuLocationMapping',
@@ -14801,27 +12826,7 @@ class SellInventoryResource(BaseResource):
     def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
         """This call creates multiple offers (up to 25) for specific inventory items on a specific eBay
-        marketplace. Although it is not a requirement for the seller to create complete offers (with
-        all necessary details) right from the start, eBay recommends that the seller provide all
-        necessary details with this call since there is currently no bulk operation available to
-        update multiple offers with one call. The following fields are always required in the
-        request payload: sku, marketplaceId, and (listing) format. Important!Publish offer note:
-        Fields may be optional or conditionally required when calling this method, but become
-        required when publishing the offer to create an active listing. For this method, see Offer
-        fields for a list of fields required to publish an offer.Other information that will be
-        required before a offer can be published are highlighted below: Inventory location Offer
-        price Available quantity eBay listing category Referenced listing policy profiles to set
-        payment, return, and fulfillment values/settings Note: Though the
-        includeCatalogProductDetails parameter is not required to be submitted in the request, the
-        parameter defaults to true if omitted.Note: In addition to the authorization header, which
-        is required for all Inventory API calls, this call also requires the Content-Type and
-        Content-Language headers. If the call is successful, unique offerId values are returned in
-        the response for each successfully created offer. The offerId value will be required for
-        many other offer-related calls. Note that this call only stages an offer for publishing. The
-        seller must run either the publishOffer, bulkPublishOffer, or
-        publishOfferByInventoryItemGroup call to convert offer(s) into an active single- or
-        multiple-variation listing.For those who prefer to create a single offer per call, the
-        createOffer method can be used instead.
+        marketplace.
         """
         return self._request(
             'bulkCreateOffer',
@@ -14842,20 +12847,9 @@ class SellInventoryResource(BaseResource):
     def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call is used to convert unpublished offers (up to 25) into published
-        offers, or live eBay listings. The unique identifier (offerId) of each offer to publish is
-        passed into the request payload. It is possible that some unpublished offers will be
-        successfully created into eBay listings, but others may fail. The response payload will show
-        the results for each offerId value that is passed into the request payload. The errors and
-        warnings containers will be returned for an offer that had one or more issues being
-        published. Important!Publish offer note: Fields may be optional or conditionally required
-        when calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.For those who prefer to publish one offer per call, the publishOffer method
-        can be used instead. In the case of a multiple-variation listing, the
-        publishOfferByInventoryItemGroup call should be used instead, as this call will convert all
-        unpublished offers associated with an inventory item group into a multiple-variation
-        listing.
+        calendar day. This call is used to convert unpublished offers (up to 25) into published
+        offers, or live eBay listings. The unique identifier ( offerId ) of each offer to publish is
+        passed into the request payload.
         """
         return self._request(
             'bulkPublishOffer',
@@ -14876,12 +12870,9 @@ class SellInventoryResource(BaseResource):
     def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
         """This call retrieves all existing offers for the specified SKU value. The seller has the
         option of limiting the offers that are retrieved to a specific eBay marketplace, or to a
-        listing format.Note: At this time, the same SKU value can not be offered across multiple
+        listing format. Note: At this time, the same SKU value can not be offered across multiple
         eBay marketplaces, so the marketplace_id query parameter currently does not have any
-        practical use for this call.Note: The same SKU can be offered through an auction and a
-        fixed-price listing concurrently. If this is the case, getOffers will return two offers.
-        Otherwise, only one offer will be returned.The authorization header is the only required
-        HTTP header for this call. See the HTTP request headers section for more information.
+        practical use for this call.
         """
         return self._request(
             'getOffers',
@@ -14903,24 +12894,7 @@ class SellInventoryResource(BaseResource):
         is up to the sellers whether they want to create a complete offer (with all necessary
         details) right from the start, or sellers can provide only some information with the initial
         createOffer call, and then make one or more subsequent updateOffer calls to complete the
-        offer and prepare to publish the offer. Upon first creating an offer, the following fields
-        are required in the request payload: sku, marketplaceId, and (listing)
-        format.Important!Publish offer note: Fields may be optional or conditionally required when
-        calling this method, but become required when publishing the offer to create an active
-        listing. For this method, see Offer fields for a list of fields required to publish an
-        offer.Other information that will be required before an offer can be published are
-        highlighted below. These settings are either set with createOffer, or they can be set with a
-        subsequent updateOffer call: Inventory location Offer price Available quantity eBay listing
-        category Referenced listing policy profiles to set payment, return, and fulfillment
-        values/settings Note: Though the includeCatalogProductDetails parameter is not required to
-        be submitted in the request, the parameter defaults to true if omitted.Note: In addition to
-        the authorization header, which is required for all Inventory API calls, this call also
-        requires the Content-Type and Content-Language headers.If the call is successful, a unique
-        offerId value is returned in the response. This value will be required for many other offer-
-        related calls. Note that this call only stages an offer for publishing. The seller must run
-        the publishOffer call to convert the offer to an active eBay listing.For those who prefer to
-        create multiple offers (up to 25 at a time) with one call, the bulkCreateOffer method can be
-        used.
+        offer and prepare to publish the offer.
         """
         return self._request(
             'createOffer',
@@ -14940,8 +12914,8 @@ class SellInventoryResource(BaseResource):
     def get_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.EbayOfferDetailsWithAll | httpx.Response:
         """This call retrieves a specific published or unpublished offer. The unique identifier of the
-        offer (offerId) is passed in at the end of the call URI.The authorization header is the only
-        required HTTP header for this call. See the HTTP request headers section for more
+        offer ( offerId ) is passed in at the end of the call URI. The authorization header is the
+        only required HTTP header for this call. See the HTTP request headers section for more
         information.
         """
         return self._request(
@@ -14962,25 +12936,8 @@ class SellInventoryResource(BaseResource):
     def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call updates an existing offer. An existing offer may be in published state (active
         eBay listing), or in an unpublished state and yet to be published with the publishOffer
-        call. The unique identifier (offerId) for the offer to update is passed in at the end of the
-        call URI. The updateOffer call does a complete replacement of the existing offer object, so
-        all fields that make up the current offer object are required, regardless of whether their
-        values changed. Important!Publish offer note: Fields may be optional or conditionally
-        required when calling this method, but become required when publishing the offer to create
-        an active listing. For this method, see Offer fields for a list of fields required to
-        publish an offer.Other information that is required before an unpublished offer can be
-        published or before a published offer can be revised include: Inventory location Offer price
-        Available quantity eBay listing category Referenced listing policy profiles to set payment,
-        return, and fulfillment values/settings Note: Though the includeCatalogProductDetails
-        parameter is not required to be submitted in the request, the parameter defaults to true if
-        omitted from both the updateOffer and the createOffer calls. If a value is specified in the
-        updateOffer call, this value will be used.Note: In addition to the authorization header,
-        which is required for all Inventory API calls, this call also requires the Content-Type and
-        Content-Language headers.Note: Each listing can be revised up to 250 times in one calendar
-        day. If this revision threshold is reached, the seller will be blocked from revising the
-        item until the next calendar day. For published offers, the listingDescription field is also
-        required to update the offer/eBay listing. For unpublished offers, this field is not
-        necessarily required unless it is already set for the unpublished offer.
+        call. The unique identifier ( offerId ) for the offer to update is passed in at the end of
+        the call URI.
         """
         return self._request(
             'updateOffer',
@@ -15003,12 +12960,7 @@ class SellInventoryResource(BaseResource):
         case of a published offer (or live eBay listing), a successful call will either end the
         single-variation listing associated with the offer, or it will remove that product variation
         from the eBay listing and also automatically remove that product variation from the
-        inventory item group. In the case of a multiple-variation listing, the deleteOffer will not
-        remove the product variation from the listing if that variation has one or more sales. If
-        that product variation has one or more sales, the seller can alternately just set the
-        available quantity of that product variation to 0, so it is not available in the eBay search
-        or View Item page, and then the seller can remove that product variation from the inventory
-        item group at a later time.
+        inventory item group.
         """
         return self._request(
             'deleteOffer',
@@ -15027,12 +12979,9 @@ class SellInventoryResource(BaseResource):
     def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
         """This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An
-        array of one or more >offerId values are passed in under the offers container.In the
+        array of one or more >offerId values are passed in under the offers container. In the
         response payload, all listing fees are grouped by eBay marketplace, and listing fees per
-        offer are not shown. A fees container will be returned for each eBay marketplace where the
-        seller is selling the products associated with the specified offers. Errors will occur if
-        the seller passes in offerIds that represent published offers, so this call should be made
-        before the seller publishes offers with the publishOffer.
+        offer are not shown.
         """
         return self._request(
             'getListingFees',
@@ -15053,16 +13002,9 @@ class SellInventoryResource(BaseResource):
     def publish_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call is used to convert an unpublished offer into a published offer, or
-        live eBay listing. The unique identifier of the offer (offerId) is passed in at the end of
-        the call URI.Important!Publish offer note: Fields may be optional or conditionally required
-        when calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.For those who prefer to publish multiple offers (up to 25 at a time) with
-        one call, the bulkPublishOffer method can be used. In the case of a multiple-variation
-        listing, the publishOfferByInventoryItemGroup call should be used instead, as this call will
-        convert all unpublished offers associated with an inventory item group into a multiple-
-        variation listing.
+        calendar day. This call is used to convert an unpublished offer into a published offer, or
+        live eBay listing. The unique identifier of the offer ( offerId ) is passed in at the end of
+        the call URI.
         """
         return self._request(
             'publishOffer',
@@ -15081,24 +13023,9 @@ class SellInventoryResource(BaseResource):
     def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call is used to convert all unpublished
-        offers associated with an inventory item group into an active, multiple-variation
-        listing.Important!Publish offer note: Fields may be optional or conditionally required when
-        calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.The unique identifier of the inventory item group (inventoryItemGroupKey)
-        is passed in the request payload. All inventory items and their corresponding offers in the
-        inventory item group must be valid (meet all requirements) for the
-        publishOfferByInventoryItemGroup call to be completely successful. For any inventory items
-        in the group that are missing required data or have no corresponding offers, the
-        publishOfferByInventoryItemGroup will create a new multiple-variation listing, but any
-        inventory items with missing required data/offers will not be in the newly-created listing.
-        If any inventory items in the group to be published have invalid data, or one or more of the
-        inventory items have conflicting data with one another, the publishOfferByInventoryItemGroup
-        call will fail. Be sure to check for any error or warning messages in the call response for
-        any applicable information about one or more inventory items/offers having issues.
+        revising the item until the next calendar day.
         """
         return self._request(
             'publishOfferByInventoryItemGroup',
@@ -15119,14 +13046,7 @@ class SellInventoryResource(BaseResource):
     def withdraw_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.WithdrawResponse | httpx.Response:
         """This call is used to end a single-variation listing that is associated with the specified
         offer. This call is used in place of the deleteOffer call if the seller only wants to end
-        the listing associated with the offer but does not want to delete the offer object. With
-        this call, the offer object remains, but it goes into the unpublished state, and will
-        require a publishOffer call to relist the offer.To end a multiple-variation listing that is
-        associated with an inventory item group, the withdrawOfferByInventoryItemGroup method can be
-        used. This call only ends the multiple-variation listing associated with an inventory item
-        group but does not delete the inventory item group object, nor does it delete any of the
-        offers associated with the inventory item group, but instead all of these offers go into the
-        unpublished state.
+        the listing associated with the offer but does not want to delete the offer object.
         """
         return self._request(
             'withdrawOffer',
@@ -15147,10 +13067,7 @@ class SellInventoryResource(BaseResource):
         """This call is used to end a multiple-variation eBay listing that is associated with the
         specified inventory item group. This call only ends multiple-variation eBay listing
         associated with the inventory item group but does not delete the inventory item group
-        object. Similarly, this call also does not delete any of the offers associated with the
-        inventory item group, but instead all of these offers go into the unpublished state. If the
-        seller wanted to relist the multiple-variation eBay listing, they could use the
-        publishOfferByInventoryItemGroup method.
+        object.
         """
         return self._request(
             'withdrawOfferByInventoryItemGroup',
@@ -15170,8 +13087,8 @@ class SellInventoryResource(BaseResource):
     def get_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryLocationResponse | httpx.Response:
         """This call retrieves all defined details of the inventory location that is specified by the
-        merchantLocationKey path parameter.A successful call will return an HTTP status value of 200
-        OK.
+        merchantLocationKey path parameter. A successful call will return an HTTP status value of
+        200 OK .
         """
         return self._request(
             'getInventoryLocation',
@@ -15191,31 +13108,7 @@ class SellInventoryResource(BaseResource):
     def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to create a new inventory location. In order to create and publish an offer
         (and create an eBay listing), a seller must have at least one location, as every offer must
-        be associated with at least one location.Important!Publish offer note: Fields may be
-        optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Location fields for a
-        list of fields required to publish an offer.Upon first creating an inventory location, only
-        a seller-defined location identifier and a physical location is required, and once set,
-        these values can not be changed. The unique identifier value (merchantLocationKey) is passed
-        in at the end of the call URI. This merchantLocationKey value will be used in other
-        Inventory Location calls to identify the location to perform an action against.When creating
-        an inventory location, the locationTypes can be specified to define the function of a
-        location. At this time, the following locationTypes are supported:Fulfillment center
-        locations are used by sellers selling products through the Multi-warehouse program to get
-        improved estimated delivery dates on their listings. A full address is required when
-        creating a fulfillment center location, as well as the fulfillmentCenterSpecifications of
-        the location. For more information on using the fulfillment center location type to get
-        improved delivery dates, see Multi-warehouse program.Warehouse locations are used for
-        traditional shipping. A full street address is not needed, but the postalCode and country OR
-        city, stateOrProvince, and country of the location must be provided.Store locations are
-        generally used by merchants selling product through the In-Store Pickup program. A full
-        address is required when creating a store location.Note that all inventory locations are
-        "enabled" by default when they are created, and you must specifically disable them (by
-        passing in a value of DISABLED in the merchantLocationStatus field) if you want them to be
-        set to the disabled state. The seller's inventory cannot be loaded to inventory locations in
-        the disabled state.Unless one or more errors and/or warnings occur with the call, there is
-        no response payload for this call. A successful call will return an HTTP status value of 204
-        No Content.
+        be associated with at least one location.
         """
         return self._request(
             'createInventoryLocation',
@@ -15237,12 +13130,7 @@ class SellInventoryResource(BaseResource):
         """This call deletes the inventory location that is specified in the merchantLocationKey path
         parameter. Note that deleting a location will not affect any active eBay listings associated
         with the deleted location, but the seller will not be able modify the offers associated with
-        the location once it is deleted.Note: Deletion is not currently supported for fulfillment
-        center locations, as location mappings will still be retained despite the location being
-        deleted. Instead, fulfillment center locations should be disabled using the
-        disableInventoryLocation method.Unless one or more errors and/or warnings occur with the
-        call, there is no response payload for this call. A successful call will return an HTTP
-        status value of 200 OK.
+        the location once it is deleted.
         """
         return self._request(
             'deleteInventoryLocation',
@@ -15263,8 +13151,7 @@ class SellInventoryResource(BaseResource):
         """This call disables the inventory location that is specified in the merchantLocationKey path
         parameter. Sellers can not load/modify inventory to disabled locations. Note that disabling
         a location will not affect any active eBay listings associated with the disabled location,
-        but the seller will not be able modify the offers associated with a disabled location.A
-        successful call will return an HTTP status value of 200 OK.
+        but the seller will not be able modify the offers associated with a disabled location.
         """
         return self._request(
             'disableInventoryLocation',
@@ -15284,7 +13171,7 @@ class SellInventoryResource(BaseResource):
     def enable_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This call enables a disabled inventory location that is specified in the merchantLocationKey
         path parameter. Once a disabled location is enabled, sellers can start loading/modifying
-        inventory to that location.A successful call will return an HTTP status value of 200 OK.
+        inventory to that location. A successful call will return an HTTP status value of 200 OK .
         """
         return self._request(
             'enableInventoryLocation',
@@ -15304,11 +13191,7 @@ class SellInventoryResource(BaseResource):
     def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
         """This call retrieves all defined details for every inventory location associated with the
         seller's account. There are no required parameters for this call and no request payload.
-        However, there are two optional query parameters, limit and offset. The limit query
-        parameter sets the maximum number of locations returned on one page of data, and the offset
-        query parameter specifies the page of data to return. These query parameters are discussed
-        more in the URI parameters table below. The authorization HTTP header is the only required
-        request header for this call.A successful call will return an HTTP status value of 200 OK.
+        However, there are two optional query parameters, limit and offset .
         """
         return self._request(
             'getInventoryLocations',
@@ -15327,20 +13210,7 @@ class SellInventoryResource(BaseResource):
     def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to update location details for an existing inventory location. Specify the
-        inventory location you want to update using the merchantLocationKey path parameter. You can
-        update the following text-based fields: name, phone, timeZoneId, geoCoordinates,
-        fulfillmentCenterSpecifications, locationTypes, locationWebUrl, locationInstructions and
-        locationAdditionalInformation any number of times for any location type. For warehouse and
-        store inventory locations, address fields can be updated any number of times. Address fields
-        cannot be updated for fulfillment center locations. However, if any address fields were
-        omitted during the createInventoryLocation call, they can be added through this method.Note:
-        When updating a warehouse location to a fulfillment center, sellers can update any of the
-        address fields a single time during the same call used to make this update. After this, they
-        can no longer be updated.For store locations, the operating hours and/or the special hours
-        can also be updated.Whatever text is passed in for these fields in an
-        updateInventoryLocation call will replace the current text strings defined for these
-        fields.Unless one or more errors and/or warnings occurs with the call, there is no response
-        payload for this call. A successful call will return an HTTP status value of 204 No Content.
+        inventory location you want to update using the merchantLocationKey path parameter.
         """
         return self._request(
             'updateInventoryLocation',
@@ -15370,41 +13240,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_or_replace_inventory_item(self, *, body: sell_inventory_models.BulkInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkInventoryItemResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call can be used to create and/or update
-        up to 25 new inventory item records. It is up to sellers whether they want to create a
-        complete inventory item records right from the start, or sellers can provide only some
-        information with the initial bulkCreateOrReplaceInventoryItem call, and then make one or
-        more additional bulkCreateOrReplaceInventoryItem calls to complete all required fields for
-        the inventory item records and prepare for publishing. Upon first creating inventory item
-        records, only the SKU values are required.Important!Publish offer note: Fields may be
-        optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Inventory item fields
-        for a list of fields required to publish an offer.Note: In addition to the authorization
-        header, which is required for all eBay REST API calls, this call also requires the Content-
-        Language and Content-Type headers. In the case of updating existing inventory item records,
-        the bulkCreateOrReplaceInventoryItem call will do a complete replacement of the existing
-        inventory item records, so all fields that are currently defined for the inventory item
-        record are required in that update action, regardless of whether their values changed. So,
-        when replacing/updating an inventory item record, it is advised that the seller run a 'Get'
-        call to retrieve the full details of the inventory item records and see all of its current
-        values/settings before attempting to update the records. Any changes that are made to
-        inventory item records that are part of one or more active eBay listings, a successful call
-        will automatically update these active listings. The key information that is set with the
-        bulkCreateOrReplaceInventoryItem call include: Seller-defined SKU value for the product.
-        Each seller product, including products within an item inventory group, must have their own
-        SKU value. Condition of the item Product details, including any product identifier(s), such
-        as a UPC, ISBN, EAN, or Brand/Manufacturer Part Number pair, a product description, a
-        product title, product/item aspects, and links to images. eBay will use any supplied eBay
-        Product ID (ePID) or a GTIN (UPC, ISBN, or EAN) and attempt to match those identifiers to a
-        product in the eBay Catalog, and if a product match is found, the product details for the
-        inventory item will automatically be populated. Quantity of the inventory item that is
-        available for purchase Package weight and dimensions, which is required if the seller will
-        be offering calculated shipping options. The package weight will also be required if the
-        seller will be providing flat-rate shipping services, but charging a weight surcharge. For
-        those who prefer to create or update a single inventory item record, the
-        createOrReplaceInventoryItem method can be used.
+        revising the item until the next calendar day.
         """
         return await self._request(
             'bulkCreateOrReplaceInventoryItem',
@@ -15424,12 +13262,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_get_inventory_item(self, *, body: sell_inventory_models.BulkGetInventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkGetInventoryItemResponse | httpx.Response:
         """This call retrieves up to 25 inventory item records. The SKU value of each inventory item
-        record to retrieve is specified in the request payload.Note: In addition to the
+        record to retrieve is specified in the request payload. Note: In addition to the
         authorization header, which is required for all Inventory API calls, this call also requires
-        the Content-Type header.For those who prefer to retrieve only one inventory item record by
-        SKU value, the getInventoryItem method can be used. To retrieve all inventory item records
-        defined on the seller's account, the getInventoryItems method can be used (with pagination
-        control if desired).
+        the Content-Type header.
         """
         return await self._request(
             'bulkGetInventoryItem',
@@ -15451,23 +13286,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call is used by the seller to update the total ship-to-home quantity of one inventory
         item, and/or to update the price and/or quantity of one or more offers associated with one
         inventory item. Up to 25 offers associated with an inventory item may be updated with one
-        bulkUpdatePriceQuantity call. Only one SKU (one product) can be updated per call.Note: Each
-        listing can be revised up to 250 times in one calendar day. If this revision threshold is
-        reached, the seller will be blocked from revising the item until the next calendar day.Note:
-        In addition to the authorization header, which is required for all Inventory API calls, this
-        call also requires the Content-Type header.The getOffers call can be used to retrieve all
-        offers associated with a SKU. The seller will just pass in the correct SKU value through the
-        sku query parameter. To update an offer, the offerId value is required, and this value is
-        returned in the getOffers call response. It is also useful to know which offers are
-        unpublished and which ones are published. To get this status, look for the status value in
-        the getOffers call response. Offers in the published state are live eBay listings, and these
-        listings will be revised with a successful bulkUpdatePriceQuantity call.An issue will occur
-        if duplicate offerId values are passed through the same offers container, or if one or more
-        of the specified offers are associated with different products/SKUs.Note: For multiple-
-        variation listings, it is recommended that the bulkUpdatePriceQuantity call be used to
-        update price and quantity information for each SKU within that multiple-variation listing
-        instead of using createOrReplaceInventoryItem calls to update the price and quantity for
-        each SKU. Just remember that only one SKU (one product variation) can be updated per call.
+        bulkUpdatePriceQuantity call. Only one SKU (one product) can be updated per call.
         """
         return await self._request(
             'bulkUpdatePriceQuantity',
@@ -15487,13 +13306,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryItemWithSkuLocaleGroupid | httpx.Response:
         """This call retrieves the inventory item record for a given SKU. The SKU value is passed in at
-        the end of the call URI. There is no request payload for this call.The authorization header
+        the end of the call URI. There is no request payload for this call. The authorization header
         is the only required HTTP header for this call, and it is required for all Inventory API
-        calls. See the HTTP request headers section for more information.For those who prefer to
-        retrieve numerous inventory item records by SKU value with one call (up to 25 at a time),
-        the bulkGetInventoryItem method can be used. To retrieve all inventory item records defined
-        on the seller's account, the getInventoryItems method can be used (with pagination control
-        if desired).
+        calls. See the HTTP request headers section for more information.
         """
         return await self._request(
             'getInventoryItem',
@@ -15512,48 +13327,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_or_replace_inventory_item(self, sku: str, *, body: sell_inventory_models.InventoryItem, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call creates a new inventory item record
-        or replaces an existing inventory item record. It is up to sellers whether they want to
-        create a complete inventory item record right from the start, or sellers can provide only
-        some information with the initial createOrReplaceInventoryItem call, and then make one or
-        more additional createOrReplaceInventoryItem calls to complete all required fields for the
-        inventory item record and prepare it for publishing. Upon first creating an inventory item
-        record, only the SKU value in the call path is required.Important!Publish offer note: Fields
-        may be optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Inventory item fields
-        for a list of fields required to publish an offer.Note: In addition to the authorization
-        header, which is required for all Inventory API calls, this call also requires the Content-
-        Type and Content-Language headers. In the case of replacing an existing inventory item
-        record, the createOrReplaceInventoryItem call will do a complete replacement of the existing
-        inventory item record, so all fields that are currently defined for the inventory item
-        record are required in that update action, regardless of whether their values changed. So,
-        when replacing/updating an inventory item record, it is advised that the seller run a
-        getInventoryItem call to retrieve the full inventory item record and see all of its current
-        values/settings before attempting to update the record. And if changes are made to an
-        inventory item that is part of one or more active eBay listings, a successful call will
-        automatically update these eBay listings. The key information that is set with the
-        createOrReplaceInventoryItem call include: The seller-defined SKU value for the product.
-        Each seller product, including products within an item inventory group, must have their own
-        SKU value. This SKU value is passed in at the end of the call URI. The condition of the
-        item. Product details, including any product identifier(s), such as a UPC, ISBN, EAN, or
-        Brand/Manufacturer Part Number pair, a product description, a product title, product/item
-        aspects, and links to images. eBay will use any supplied eBay Product ID (ePID) or a GTIN
-        (UPC, ISBN, or EAN) and attempt to match those identifiers to a product in the eBay Catalog,
-        and if a product match is found, the product details for the inventory item will
-        automatically be populated. The quantity of the inventory item that is available for
-        purchase. Package weight and dimensions, which is required if the seller will be offering
-        calculated shipping options. The package weight will also be required if the seller will be
-        providing flat-rate shipping services, but charging a weight surcharge. In addition to the
-        authorization header, which is required for all eBay REST API calls, the
-        createOrReplaceInventoryItem call also requires the Content-Language header, that sets the
-        natural language that will be used in the field values of the request payload. For US
-        English, the code value passed in this header should be en-US. To view other supported
-        Content-Language values, and to read more about all supported HTTP headers for eBay REST API
-        calls, see the HTTP request headers topic in the Using eBay RESTful APIs document.For those
-        who prefer to create or update numerous inventory item records with one call (up to 25 at a
-        time), the bulkCreateOrReplaceInventoryItem method can be used.
+        revising the item until the next calendar day.
         """
         return await self._request(
             'createOrReplaceInventoryItem',
@@ -15572,14 +13348,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     @overload
     async def delete_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_inventory_item(self, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
-        """This call is used to delete an inventory item record associated with a specified SKU. A
-        successful call will not only delete that inventory item record, but will also have the
-        following effects:Delete any and all unpublished offers associated with that SKU;Delete any
-        and all single-variation eBay listings associated with that SKU;Automatically remove that
-        SKU from a multiple-variation listing and remove that SKU from any and all inventory item
-        groups in which that SKU was a member.The authorization header is the only required HTTP
-        header for this call. See the HTTP request headers section for more information.
-        """
+        """This call is used to delete an inventory item record associated with a specified SKU."""
         return await self._request(
             'deleteInventoryItem',
             'DELETE',
@@ -15600,10 +13369,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         query parameter allows the seller to control how many records are returned per page, and the
         offset query parameter is used to retrieve a specific page of records. The seller can make
         multiple calls to scan through multiple pages of records. There is no request payload for
-        this call.The authorization header is the only required HTTP header for this call, and it is
-        required for all Inventory API calls. See the HTTP request headers section for more
-        information.For those who prefer to retrieve numerous inventory item records by SKU value
-        with one call (up to 25 at a time), the bulkGetInventoryItem method can be used.
+        this call.
         """
         return await self._request(
             'getInventoryItems',
@@ -15624,8 +13390,6 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call is used by the seller to retrieve the list of products that are compatible with
         the inventory item. The SKU value for the inventory item is passed into the call URI, and a
         successful call with return the compatible vehicle list associated with this inventory item.
-        Product compatibility is currently only applicable to motor vehicle parts and accessory
-        categories, but more categories may be supported in the future.
         """
         return await self._request(
             'getProductCompatibility',
@@ -15646,9 +13410,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call is used by the seller to create or replace a list of products that are compatible
         with the inventory item. The inventory item is identified with a SKU value in the URI.
         Product compatibility is currently only applicable to motor vehicle parts and accessory
-        categories, but more categories may be supported in the future.Note: In addition to the
-        authorization header, which is required for all Inventory API calls, this call also requires
-        the Content-Type and Content-Language headers.
+        categories, but more categories may be supported in the future.
         """
         return await self._request(
             'createOrReplaceProductCompatibility',
@@ -15710,37 +13472,8 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def create_or_replace_inventory_item_group(self, inventory_item_group_key: str, *, body: sell_inventory_models.InventoryItemGroup, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BaseResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call creates a new inventory item group or updates an existing inventory
-        item group. It is up to sellers whether they want to create a complete inventory item group
-        record right from the start, or sellers can provide only some information with the initial
-        createOrReplaceInventoryItemGroup call, and then make one or more additional
-        createOrReplaceInventoryItemGroup calls to complete the inventory item group record. Upon
-        first creating an inventory item group record, the only required elements are the
-        inventoryItemGroupKey identifier in the call URI, and the members of the inventory item
-        group specified through the variantSKUs array in the request payload.Important!Publish offer
-        note: Fields may be optional or conditionally required when calling this method, but become
-        required when publishing the offer to create an active listing. For this method, see
-        Inventory item group fields for a list of fields required to publish an offer.Note: In
-        addition to the authorization header, which is required for all Inventory API calls, this
-        call also requires the Content-Type and Content-Language headers.In the case of
-        updating/replacing an existing inventory item group, this call does a complete replacement
-        of the existing inventory item group record, so all fields (including the member SKUs) that
-        make up the inventory item group are required, regardless of whether their values changed.
-        So, when replacing/updating an inventory item group record, it is advised that the seller
-        run a getInventoryItemGroup call for that inventory item group to see all of its current
-        values/settings/members before attempting to update the record. And if changes are made to
-        an inventory item group that is part of a live, multiple-variation eBay listing, these
-        changes automatically update the eBay listing. For example, if a SKU value is removed from
-        the inventory item group, the corresponding product variation will be removed from the eBay
-        listing as well.In addition to the required inventory item group identifier and member SKUs,
-        other key information that is set with this call include: Title and description of the
-        inventory item group. The string values provided in these fields will actually become the
-        listing title and listing description of the listing once the first SKU of the inventory
-        item group is published successfully Common aspects that inventory items in the group share
-        Product aspects that vary within each product variation Links to images demonstrating the
-        variations of the product, and these images should correspond to the product aspect that is
-        set with the variesBy.aspectsImageVariesBy field Note: For more information, see Creating
-        and managing inventory item groups.
+        calendar day. This call creates a new inventory item group or updates an existing inventory
+        item group.
         """
         return await self._request(
             'createOrReplaceInventoryItemGroup',
@@ -15778,52 +13511,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def bulk_migrate_listing(self, *, body: sell_inventory_models.BulkMigrateListing, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkMigrateListingResponse | httpx.Response:
         """This call is used to convert existing eBay Listings to the corresponding Inventory API
         objects. If an eBay listing is successfully migrated to the Inventory API model, new
-        Inventory Location, Inventory Item, and Offer objects are created. For a multiple-variation
-        listing that is successfully migrated, in addition to the three new Inventory API objects
-        just mentioned, an Inventory Item Group object will also be created. If the eBay listing is
-        a motor vehicle part or accessory listing with a compatible vehicle list
-        (ItemCompatibilityList container in Trading API's Add/Revise/Relist/Verify calls), a Product
-        Compatibility object will be created.Migration RequirementsTo be eligible for migration, the
-        active eBay listings must meet the following requirements:Listing type is Fixed-PriceNote:
-        Auction listings are supported by the Inventory API, but the bulkMigrateListing method
-        cannot be used to migrate auction listings.The item(s) in the listings must have seller-
-        defined SKU values associated with them, and in the case of a multiple-variation listing,
-        each product variation must also have its own SKU valueBusiness Polices (Payment, Return
-        Policy, and Shipping) must be used on the listing, as legacy payment, return policy, and
-        shipping fields will not be accepted. With the Payment Policy associated with a listing, the
-        immediate payment requirement must be enabled.The postal/zip code (PostalCode field in
-        Trading's ItemType) or city (Location field in Trading's ItemType) must be set in the
-        listing; the country is also needed, but this value is required in Trading API, so it will
-        always be set for every listingUnsupported Listing FeaturesThe following features are not
-        yet available to be set or modified through the Inventory API, but they will remain on the
-        active eBay listing, even after a successful migration to the Inventory model. The downside
-        to this is that the seller will be completely blocked (in APIs or My eBay) from revising
-        these features/settings once the migration takes place:Any listing-level Buyer
-        RequirementsListing enhancements like a bold listing title or Gallery PlusMaking the CallIn
-        the request payload of the bulkMigrateListings call, the seller will pass in an array of one
-        to five eBay listing IDs (aka Item IDs). To save time and hassle, that seller should do a
-        pre-check on each listing to make sure those listings meet the requirements to be migrated
-        to the new Inventory model. This method also requires the Content-Type request header. There
-        are no path or query parameters for this call.Call ResponseIf an eBay listing is migrated
-        successfully to the new Inventory model, the following will occur:An Inventory Item object
-        will be created for the item(s) in the listing, and this object will be accessible through
-        the Inventory APIAn Offer object will be created for the listing, and this object will be
-        accessible through the Inventory APIAn Inventory Location object will be created and
-        associated with the Offer object, as an Inventory Location must be associated with a
-        published OfferThe response payload of the Bulk Migrate Listings call will show the results
-        of each listing migration. These results include an HTTP status code to indicate the success
-        or failure of each listing migration, the SKU value associated with each item, and if the
-        migration is successful, an Offer ID value. The SKU value will be used in the Inventory API
-        to manage the Inventory Item object, and the Offer ID value will be used in the Inventory
-        API to manage the Offer object. Errors and/or warnings containers will be returned for each
-        listing where an error and/or warning occurred with the attempted migration.If a multiple-
-        variation listing is successfully migrated, along with the Offer and Inventory Location
-        objects, an Inventory Item object will be created for each product variation within the
-        listing, and an Inventory Item Group object will also be created, grouping those variations
-        together in the Inventory API platform. For a motor vehicle part or accessory listing that
-        has a specified list of compatible vehicles, in addition to the Inventory Item, Inventory
-        Location, and Offer objects that are created, a Product Compatibility object will also be
-        created in the Inventory API platform.
+        Inventory Location, Inventory Item, and Offer objects are created.
         """
         return await self._request(
             'bulkMigrateListing',
@@ -15843,12 +13531,10 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationMapping | httpx.Response:
         """This method allows sellers to retrieve the locations mapped to a specific SKU within a
-        listing.The listingId and sku of the listing are passed in as path parameters. This method
+        listing. The listingId and sku of the listing are passed in as path parameters. This method
         only retrieves location mappings for a single SKU value; if a seller wishes to retrieve the
         location mappings for all items in a multiple-variation listing, this method must be called
-        for each variation in the listing.If there are fulfillment center locations mapped to the
-        SKU, they will be returned in the locations array. If no locations are mapped to the SKU,
-        status code 404 Not Found will be returned.
+        for each variation in the listing.
         """
         return await self._request(
             'getSkuLocationMapping',
@@ -15869,26 +13555,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This method allows sellers to map multiple fulfillment center locations to single-SKU
         listing, or to a single SKU within a multiple-variation listing. This allows eBay to
         leverage the location metadata associated with a seller’s fulfillment centers to calculate
-        more accurate estimated delivery dates on their listing.Note: While location mappings can be
-        created for listings on any eBay marketplace, the improved delivery date estimate feature is
-        currently only supported for US-based fulfillment centers shipping domestically within the
-        US.The listing for which the locations will be mapped is specified through the listingId and
-        sku values associated with the item. Note that only a single SKU value can be identified; if
-        the seller wishes to map locations to multiple/all SKU values in a multiple-variation
-        listing, this method must be called for each of those SKUs within the listing.Note: Sellers
-        should keep track of listingId/sku pairs that have been used for location mapping, as there
-        is no programmatic way to retrieve or delete these pairs at this time.In the case of
-        replacing/updating existing location mappings, this method will do a complete replacement of
-        the location mappings associated with a SKU. This means that each existing location mappings
-        that the seller wants to continue to associate with the SKU are required in the update call,
-        regardless of if they are affected by the update.This method is only supported for inventory
-        locations that have FULFILLMENT_CENTER as one of their locationTypes. For more information
-        on fulfillment center locations, see Create a fulfillment center location.For more
-        information on location mapping features, see Multi-warehouse program in the Selling
-        Integration Guide.Note: Only listings with SKU values are supported. Sellers using listings
-        creating through the Trading API can add a SKU value to their single variation listing
-        through the Item.SKU field during listing creation or by using the ReviseItem family of
-        calls.
+        more accurate estimated delivery dates on their listing.
         """
         return await self._request(
             'createOrReplaceSkuLocationMapping',
@@ -15908,9 +13575,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def delete_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_sku_location_mapping(self, listing_id: str, sku: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method allows sellers to remove all location mappings associated with a specific SKU
-        within a listing.The listingId and sku of the listing are passed in as path
-        parameters.Important! To remove all location mappings from a multiple-variation listing,
-        this method must be used for each individual SKU in the listing.
+        within a listing. The listingId and sku of the listing are passed in as path parameters.
+        Important! To remove all location mappings from a multiple-variation listing, this method
+        must be used for each individual SKU in the listing.
         """
         return await self._request(
             'deleteSkuLocationMapping',
@@ -15929,27 +13596,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_offer(self, *, body: sell_inventory_models.BulkEbayOfferDetailsWithKeys, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkOfferResponse | httpx.Response:
         """This call creates multiple offers (up to 25) for specific inventory items on a specific eBay
-        marketplace. Although it is not a requirement for the seller to create complete offers (with
-        all necessary details) right from the start, eBay recommends that the seller provide all
-        necessary details with this call since there is currently no bulk operation available to
-        update multiple offers with one call. The following fields are always required in the
-        request payload: sku, marketplaceId, and (listing) format. Important!Publish offer note:
-        Fields may be optional or conditionally required when calling this method, but become
-        required when publishing the offer to create an active listing. For this method, see Offer
-        fields for a list of fields required to publish an offer.Other information that will be
-        required before a offer can be published are highlighted below: Inventory location Offer
-        price Available quantity eBay listing category Referenced listing policy profiles to set
-        payment, return, and fulfillment values/settings Note: Though the
-        includeCatalogProductDetails parameter is not required to be submitted in the request, the
-        parameter defaults to true if omitted.Note: In addition to the authorization header, which
-        is required for all Inventory API calls, this call also requires the Content-Type and
-        Content-Language headers. If the call is successful, unique offerId values are returned in
-        the response for each successfully created offer. The offerId value will be required for
-        many other offer-related calls. Note that this call only stages an offer for publishing. The
-        seller must run either the publishOffer, bulkPublishOffer, or
-        publishOfferByInventoryItemGroup call to convert offer(s) into an active single- or
-        multiple-variation listing.For those who prefer to create a single offer per call, the
-        createOffer method can be used instead.
+        marketplace.
         """
         return await self._request(
             'bulkCreateOffer',
@@ -15970,20 +13617,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def bulk_publish_offer(self, *, body: sell_inventory_models.BulkOffer, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.BulkPublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call is used to convert unpublished offers (up to 25) into published
-        offers, or live eBay listings. The unique identifier (offerId) of each offer to publish is
-        passed into the request payload. It is possible that some unpublished offers will be
-        successfully created into eBay listings, but others may fail. The response payload will show
-        the results for each offerId value that is passed into the request payload. The errors and
-        warnings containers will be returned for an offer that had one or more issues being
-        published. Important!Publish offer note: Fields may be optional or conditionally required
-        when calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.For those who prefer to publish one offer per call, the publishOffer method
-        can be used instead. In the case of a multiple-variation listing, the
-        publishOfferByInventoryItemGroup call should be used instead, as this call will convert all
-        unpublished offers associated with an inventory item group into a multiple-variation
-        listing.
+        calendar day. This call is used to convert unpublished offers (up to 25) into published
+        offers, or live eBay listings. The unique identifier ( offerId ) of each offer to publish is
+        passed into the request payload.
         """
         return await self._request(
             'bulkPublishOffer',
@@ -16004,12 +13640,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_offers(self, *, sku: str, format: str | None = None, limit: str | None = None, marketplace_id: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.Offers | httpx.Response:
         """This call retrieves all existing offers for the specified SKU value. The seller has the
         option of limiting the offers that are retrieved to a specific eBay marketplace, or to a
-        listing format.Note: At this time, the same SKU value can not be offered across multiple
+        listing format. Note: At this time, the same SKU value can not be offered across multiple
         eBay marketplaces, so the marketplace_id query parameter currently does not have any
-        practical use for this call.Note: The same SKU can be offered through an auction and a
-        fixed-price listing concurrently. If this is the case, getOffers will return two offers.
-        Otherwise, only one offer will be returned.The authorization header is the only required
-        HTTP header for this call. See the HTTP request headers section for more information.
+        practical use for this call.
         """
         return await self._request(
             'getOffers',
@@ -16031,24 +13664,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         is up to the sellers whether they want to create a complete offer (with all necessary
         details) right from the start, or sellers can provide only some information with the initial
         createOffer call, and then make one or more subsequent updateOffer calls to complete the
-        offer and prepare to publish the offer. Upon first creating an offer, the following fields
-        are required in the request payload: sku, marketplaceId, and (listing)
-        format.Important!Publish offer note: Fields may be optional or conditionally required when
-        calling this method, but become required when publishing the offer to create an active
-        listing. For this method, see Offer fields for a list of fields required to publish an
-        offer.Other information that will be required before an offer can be published are
-        highlighted below. These settings are either set with createOffer, or they can be set with a
-        subsequent updateOffer call: Inventory location Offer price Available quantity eBay listing
-        category Referenced listing policy profiles to set payment, return, and fulfillment
-        values/settings Note: Though the includeCatalogProductDetails parameter is not required to
-        be submitted in the request, the parameter defaults to true if omitted.Note: In addition to
-        the authorization header, which is required for all Inventory API calls, this call also
-        requires the Content-Type and Content-Language headers.If the call is successful, a unique
-        offerId value is returned in the response. This value will be required for many other offer-
-        related calls. Note that this call only stages an offer for publishing. The seller must run
-        the publishOffer call to convert the offer to an active eBay listing.For those who prefer to
-        create multiple offers (up to 25 at a time) with one call, the bulkCreateOffer method can be
-        used.
+        offer and prepare to publish the offer.
         """
         return await self._request(
             'createOffer',
@@ -16068,8 +13684,8 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.EbayOfferDetailsWithAll | httpx.Response:
         """This call retrieves a specific published or unpublished offer. The unique identifier of the
-        offer (offerId) is passed in at the end of the call URI.The authorization header is the only
-        required HTTP header for this call. See the HTTP request headers section for more
+        offer ( offerId ) is passed in at the end of the call URI. The authorization header is the
+        only required HTTP header for this call. See the HTTP request headers section for more
         information.
         """
         return await self._request(
@@ -16090,25 +13706,8 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def update_offer(self, offer_id: str, *, body: sell_inventory_models.EbayOfferDetailsWithId, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.OfferResponse | httpx.Response:
         """This call updates an existing offer. An existing offer may be in published state (active
         eBay listing), or in an unpublished state and yet to be published with the publishOffer
-        call. The unique identifier (offerId) for the offer to update is passed in at the end of the
-        call URI. The updateOffer call does a complete replacement of the existing offer object, so
-        all fields that make up the current offer object are required, regardless of whether their
-        values changed. Important!Publish offer note: Fields may be optional or conditionally
-        required when calling this method, but become required when publishing the offer to create
-        an active listing. For this method, see Offer fields for a list of fields required to
-        publish an offer.Other information that is required before an unpublished offer can be
-        published or before a published offer can be revised include: Inventory location Offer price
-        Available quantity eBay listing category Referenced listing policy profiles to set payment,
-        return, and fulfillment values/settings Note: Though the includeCatalogProductDetails
-        parameter is not required to be submitted in the request, the parameter defaults to true if
-        omitted from both the updateOffer and the createOffer calls. If a value is specified in the
-        updateOffer call, this value will be used.Note: In addition to the authorization header,
-        which is required for all Inventory API calls, this call also requires the Content-Type and
-        Content-Language headers.Note: Each listing can be revised up to 250 times in one calendar
-        day. If this revision threshold is reached, the seller will be blocked from revising the
-        item until the next calendar day. For published offers, the listingDescription field is also
-        required to update the offer/eBay listing. For unpublished offers, this field is not
-        necessarily required unless it is already set for the unpublished offer.
+        call. The unique identifier ( offerId ) for the offer to update is passed in at the end of
+        the call URI.
         """
         return await self._request(
             'updateOffer',
@@ -16131,12 +13730,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         case of a published offer (or live eBay listing), a successful call will either end the
         single-variation listing associated with the offer, or it will remove that product variation
         from the eBay listing and also automatically remove that product variation from the
-        inventory item group. In the case of a multiple-variation listing, the deleteOffer will not
-        remove the product variation from the listing if that variation has one or more sales. If
-        that product variation has one or more sales, the seller can alternately just set the
-        available quantity of that product variation to 0, so it is not available in the eBay search
-        or View Item page, and then the seller can remove that product variation from the inventory
-        item group at a later time.
+        inventory item group.
         """
         return await self._request(
             'deleteOffer',
@@ -16155,12 +13749,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_listing_fees(self, *, body: sell_inventory_models.OfferKeysWithId | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.FeesSummaryResponse | httpx.Response:
         """This call is used to retrieve the expected listing fees for up to 250 unpublished offers. An
-        array of one or more >offerId values are passed in under the offers container.In the
+        array of one or more >offerId values are passed in under the offers container. In the
         response payload, all listing fees are grouped by eBay marketplace, and listing fees per
-        offer are not shown. A fees container will be returned for each eBay marketplace where the
-        seller is selling the products associated with the specified offers. Errors will occur if
-        the seller passes in offerIds that represent published offers, so this call should be made
-        before the seller publishes offers with the publishOffer.
+        offer are not shown.
         """
         return await self._request(
             'getListingFees',
@@ -16181,16 +13772,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def publish_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Each listing can be revised up to 250 times in one calendar day. If this revision
         threshold is reached, the seller will be blocked from revising the item until the next
-        calendar day.This call is used to convert an unpublished offer into a published offer, or
-        live eBay listing. The unique identifier of the offer (offerId) is passed in at the end of
-        the call URI.Important!Publish offer note: Fields may be optional or conditionally required
-        when calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.For those who prefer to publish multiple offers (up to 25 at a time) with
-        one call, the bulkPublishOffer method can be used. In the case of a multiple-variation
-        listing, the publishOfferByInventoryItemGroup call should be used instead, as this call will
-        convert all unpublished offers associated with an inventory item group into a multiple-
-        variation listing.
+        calendar day. This call is used to convert an unpublished offer into a published offer, or
+        live eBay listing. The unique identifier of the offer ( offerId ) is passed in at the end of
+        the call URI.
         """
         return await self._request(
             'publishOffer',
@@ -16209,24 +13793,9 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def publish_offer_by_inventory_item_group(self, *, body: sell_inventory_models.PublishByInventoryItemGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.PublishResponse | httpx.Response:
         """Note: Please note that any eBay listing created using the Inventory API cannot be revised or
-        relisted using the Trading API calls.Note: Each listing can be revised up to 250 times in
+        relisted using the Trading API calls. Note: Each listing can be revised up to 250 times in
         one calendar day. If this revision threshold is reached, the seller will be blocked from
-        revising the item until the next calendar day.This call is used to convert all unpublished
-        offers associated with an inventory item group into an active, multiple-variation
-        listing.Important!Publish offer note: Fields may be optional or conditionally required when
-        calling the create or update methods, but become required when publishing the offer to
-        create active listings. For this method, see Offer fields for a list of fields required to
-        publish an offer.The unique identifier of the inventory item group (inventoryItemGroupKey)
-        is passed in the request payload. All inventory items and their corresponding offers in the
-        inventory item group must be valid (meet all requirements) for the
-        publishOfferByInventoryItemGroup call to be completely successful. For any inventory items
-        in the group that are missing required data or have no corresponding offers, the
-        publishOfferByInventoryItemGroup will create a new multiple-variation listing, but any
-        inventory items with missing required data/offers will not be in the newly-created listing.
-        If any inventory items in the group to be published have invalid data, or one or more of the
-        inventory items have conflicting data with one another, the publishOfferByInventoryItemGroup
-        call will fail. Be sure to check for any error or warning messages in the call response for
-        any applicable information about one or more inventory items/offers having issues.
+        revising the item until the next calendar day.
         """
         return await self._request(
             'publishOfferByInventoryItemGroup',
@@ -16247,14 +13816,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def withdraw_offer(self, offer_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.WithdrawResponse | httpx.Response:
         """This call is used to end a single-variation listing that is associated with the specified
         offer. This call is used in place of the deleteOffer call if the seller only wants to end
-        the listing associated with the offer but does not want to delete the offer object. With
-        this call, the offer object remains, but it goes into the unpublished state, and will
-        require a publishOffer call to relist the offer.To end a multiple-variation listing that is
-        associated with an inventory item group, the withdrawOfferByInventoryItemGroup method can be
-        used. This call only ends the multiple-variation listing associated with an inventory item
-        group but does not delete the inventory item group object, nor does it delete any of the
-        offers associated with the inventory item group, but instead all of these offers go into the
-        unpublished state.
+        the listing associated with the offer but does not want to delete the offer object.
         """
         return await self._request(
             'withdrawOffer',
@@ -16275,10 +13837,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call is used to end a multiple-variation eBay listing that is associated with the
         specified inventory item group. This call only ends multiple-variation eBay listing
         associated with the inventory item group but does not delete the inventory item group
-        object. Similarly, this call also does not delete any of the offers associated with the
-        inventory item group, but instead all of these offers go into the unpublished state. If the
-        seller wanted to relist the multiple-variation eBay listing, they could use the
-        publishOfferByInventoryItemGroup method.
+        object.
         """
         return await self._request(
             'withdrawOfferByInventoryItemGroup',
@@ -16298,8 +13857,8 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.InventoryLocationResponse | httpx.Response:
         """This call retrieves all defined details of the inventory location that is specified by the
-        merchantLocationKey path parameter.A successful call will return an HTTP status value of 200
-        OK.
+        merchantLocationKey path parameter. A successful call will return an HTTP status value of
+        200 OK .
         """
         return await self._request(
             'getInventoryLocation',
@@ -16319,31 +13878,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def create_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocationFull, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to create a new inventory location. In order to create and publish an offer
         (and create an eBay listing), a seller must have at least one location, as every offer must
-        be associated with at least one location.Important!Publish offer note: Fields may be
-        optional or conditionally required when calling this method, but become required when
-        publishing the offer to create an active listing. For this method, see Location fields for a
-        list of fields required to publish an offer.Upon first creating an inventory location, only
-        a seller-defined location identifier and a physical location is required, and once set,
-        these values can not be changed. The unique identifier value (merchantLocationKey) is passed
-        in at the end of the call URI. This merchantLocationKey value will be used in other
-        Inventory Location calls to identify the location to perform an action against.When creating
-        an inventory location, the locationTypes can be specified to define the function of a
-        location. At this time, the following locationTypes are supported:Fulfillment center
-        locations are used by sellers selling products through the Multi-warehouse program to get
-        improved estimated delivery dates on their listings. A full address is required when
-        creating a fulfillment center location, as well as the fulfillmentCenterSpecifications of
-        the location. For more information on using the fulfillment center location type to get
-        improved delivery dates, see Multi-warehouse program.Warehouse locations are used for
-        traditional shipping. A full street address is not needed, but the postalCode and country OR
-        city, stateOrProvince, and country of the location must be provided.Store locations are
-        generally used by merchants selling product through the In-Store Pickup program. A full
-        address is required when creating a store location.Note that all inventory locations are
-        "enabled" by default when they are created, and you must specifically disable them (by
-        passing in a value of DISABLED in the merchantLocationStatus field) if you want them to be
-        set to the disabled state. The seller's inventory cannot be loaded to inventory locations in
-        the disabled state.Unless one or more errors and/or warnings occur with the call, there is
-        no response payload for this call. A successful call will return an HTTP status value of 204
-        No Content.
+        be associated with at least one location.
         """
         return await self._request(
             'createInventoryLocation',
@@ -16365,12 +13900,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call deletes the inventory location that is specified in the merchantLocationKey path
         parameter. Note that deleting a location will not affect any active eBay listings associated
         with the deleted location, but the seller will not be able modify the offers associated with
-        the location once it is deleted.Note: Deletion is not currently supported for fulfillment
-        center locations, as location mappings will still be retained despite the location being
-        deleted. Instead, fulfillment center locations should be disabled using the
-        disableInventoryLocation method.Unless one or more errors and/or warnings occur with the
-        call, there is no response payload for this call. A successful call will return an HTTP
-        status value of 200 OK.
+        the location once it is deleted.
         """
         return await self._request(
             'deleteInventoryLocation',
@@ -16391,8 +13921,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
         """This call disables the inventory location that is specified in the merchantLocationKey path
         parameter. Sellers can not load/modify inventory to disabled locations. Note that disabling
         a location will not affect any active eBay listings associated with the disabled location,
-        but the seller will not be able modify the offers associated with a disabled location.A
-        successful call will return an HTTP status value of 200 OK.
+        but the seller will not be able modify the offers associated with a disabled location.
         """
         return await self._request(
             'disableInventoryLocation',
@@ -16412,7 +13941,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def enable_inventory_location(self, merchant_location_key: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This call enables a disabled inventory location that is specified in the merchantLocationKey
         path parameter. Once a disabled location is enabled, sellers can start loading/modifying
-        inventory to that location.A successful call will return an HTTP status value of 200 OK.
+        inventory to that location. A successful call will return an HTTP status value of 200 OK .
         """
         return await self._request(
             'enableInventoryLocation',
@@ -16432,11 +13961,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def get_inventory_locations(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_inventory_models.LocationResponse | httpx.Response:
         """This call retrieves all defined details for every inventory location associated with the
         seller's account. There are no required parameters for this call and no request payload.
-        However, there are two optional query parameters, limit and offset. The limit query
-        parameter sets the maximum number of locations returned on one page of data, and the offset
-        query parameter specifies the page of data to return. These query parameters are discussed
-        more in the URI parameters table below. The authorization HTTP header is the only required
-        request header for this call.A successful call will return an HTTP status value of 200 OK.
+        However, there are two optional query parameters, limit and offset .
         """
         return await self._request(
             'getInventoryLocations',
@@ -16455,20 +13980,7 @@ class AsyncSellInventoryResource(AsyncBaseResource):
     async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_inventory_location(self, merchant_location_key: str, *, body: sell_inventory_models.InventoryLocation, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """Use this call to update location details for an existing inventory location. Specify the
-        inventory location you want to update using the merchantLocationKey path parameter. You can
-        update the following text-based fields: name, phone, timeZoneId, geoCoordinates,
-        fulfillmentCenterSpecifications, locationTypes, locationWebUrl, locationInstructions and
-        locationAdditionalInformation any number of times for any location type. For warehouse and
-        store inventory locations, address fields can be updated any number of times. Address fields
-        cannot be updated for fulfillment center locations. However, if any address fields were
-        omitted during the createInventoryLocation call, they can be added through this method.Note:
-        When updating a warehouse location to a fulfillment center, sellers can update any of the
-        address fields a single time during the same call used to make this update. After this, they
-        can no longer be updated.For store locations, the operating hours and/or the special hours
-        can also be updated.Whatever text is passed in for these fields in an
-        updateInventoryLocation call will replace the current text strings defined for these
-        fields.Unless one or more errors and/or warnings occurs with the call, there is no response
-        payload for this call. A successful call will return an HTTP status value of 204 No Content.
+        inventory location you want to update using the merchantLocationKey path parameter.
         """
         return await self._request(
             'updateInventoryLocation',
@@ -16498,7 +14010,7 @@ class SellLeadsResource(BaseResource):
     def get_all_classified_leads(self, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_all_classified_leads(self, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_leads_models.ClassifiedLeadsListResponse | httpx.Response:
         """This method retrieves leads for all of the seller's active classified ad listings.
-        Optionally, just those matching specified filter criteria can be returned.Note: This is a
+        Optionally, just those matching specified filter criteria can be returned. Note: This is a
         (Limited Release) API available only to select developers approved by business units. For
         information on how to obtain access to this API in production, please contact eBay support.
         """
@@ -16520,9 +14032,8 @@ class SellLeadsResource(BaseResource):
     def get_classified_leads_by_item_id(self, item_id: str, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_leads_models.ClassifiedLead | httpx.Response:
         """This method returns a seller account's leads generated by the specified classified ad and
         includes any contact information that prospective buyers have submitted. Optionally, just
-        those matching specified filter criteria can be returned.Note: This is a (Limited Release)
-        API available only to select developers approved by business units. For information on how
-        to obtain access to this API in production, please contact eBay support.
+        those matching specified filter criteria can be returned. Note: This is a (Limited Release)
+        API available only to select developers approved by business units.
         """
         return self._request(
             'getClassifiedLeadsByItemId',
@@ -16551,7 +14062,7 @@ class AsyncSellLeadsResource(AsyncBaseResource):
     async def get_all_classified_leads(self, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_all_classified_leads(self, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_leads_models.ClassifiedLeadsListResponse | httpx.Response:
         """This method retrieves leads for all of the seller's active classified ad listings.
-        Optionally, just those matching specified filter criteria can be returned.Note: This is a
+        Optionally, just those matching specified filter criteria can be returned. Note: This is a
         (Limited Release) API available only to select developers approved by business units. For
         information on how to obtain access to this API in production, please contact eBay support.
         """
@@ -16573,9 +14084,8 @@ class AsyncSellLeadsResource(AsyncBaseResource):
     async def get_classified_leads_by_item_id(self, item_id: str, *, end_time: str | None = None, include_messages: str | None = None, start_time: str | None = None, status: str | None = None, accept_encoding: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_leads_models.ClassifiedLead | httpx.Response:
         """This method returns a seller account's leads generated by the specified classified ad and
         includes any contact information that prospective buyers have submitted. Optionally, just
-        those matching specified filter criteria can be returned.Note: This is a (Limited Release)
-        API available only to select developers approved by business units. For information on how
-        to obtain access to this API in production, please contact eBay support.
+        those matching specified filter criteria can be returned. Note: This is a (Limited Release)
+        API available only to select developers approved by business units.
         """
         return await self._request(
             'getClassifiedLeadsByItemId',
@@ -16606,10 +14116,7 @@ class SellListingResource(BaseResource):
         """This call gives Partners the ability to create an eBay draft of a item for their seller
         using information from their site. This lets the Partner increase the exposure of items on
         their site and leverage the eBay user listing experience seamlessly. This experience
-        provides guidance on pricing, aspects, etc. and recommendations that help create a listing
-        that is complete and improves the exposure of the listing in search results. After the
-        listing draft is created, the seller logs into their eBay account and uses the listing
-        experience to finish the listing and publish the item on eBay.
+        provides guidance on pricing, aspects, etc.
         """
         return self._request(
             'createItemDraft',
@@ -16641,10 +14148,7 @@ class AsyncSellListingResource(AsyncBaseResource):
         """This call gives Partners the ability to create an eBay draft of a item for their seller
         using information from their site. This lets the Partner increase the exposure of items on
         their site and leverage the eBay user listing experience seamlessly. This experience
-        provides guidance on pricing, aspects, etc. and recommendations that help create a listing
-        that is complete and improves the exposure of the listing in search results. After the
-        listing draft is created, the seller logs into their eBay account and uses the listing
-        experience to finish the listing and publish the item on eBay.
+        provides guidance on pricing, aspects, etc.
         """
         return await self._request(
             'createItemDraft',
@@ -16699,31 +14203,7 @@ class SellLogisticsResource(BaseResource):
         the request. The rate identified by the rateId value specifies the carrier and service for
         the package shipment, and the rate ID must be contained in the shipping quote identified by
         the shippingQuoteId value. Call createShippingQuote to retrieve a set of live shipping
-        rates.Note: The Logistics API only supports USPS shipping rates and labels.When you create a
-        shipment, eBay generates a shipping label that you can download and use to ship your
-        package.In a createFromShippingQuote request, sellers can include a list of shipping options
-        they want to add to the base service quoted in the selected rate. The list of available
-        shipping options is specific to each quoted rate and if available, the options are listed in
-        the rate container of the shipping quote.In addition to a configurable return-to location
-        and other details about the shipment, the response to this method includes:The shipping
-        carrier and service to be used for the package shipmentA list of selected shipping options,
-        if anyThe shipment tracking numberThe total shipping cost (the sum cost of the base shipping
-        service and any added options)When you create a shipment, your billing agreement account is
-        charged the sum of the baseShippingCost and the total cost of any additional shipping
-        options you might have selected. Use the URL returned in labelDownloadUrl field, or call
-        downloadLabelFile with the shipmentId value from the response, to download a shipping label
-        for your package.Important! Sellers must set up their payment method before they can use
-        this method to create a shipment and the associated shipping label.Set up a billing
-        agreementPrior to using this method to create a shipment, sellers must first set up their
-        billing agreement. Failure to do so will return Error 90030 Payment could not be
-        completed.The preferred method for sellers to set up their billing agreement is to go to Set
-        up billing agreement and follow the on-screen directions.Alternatively, sellers can do the
-        following:Go to https://www.ebay.com/ship/single/{order_id}, where {order_id} is that of the
-        order for which the label is being printed.When prompted, select PayPal.Verify that Save
-        PayPal for future purchases is selected.Click Set up Payments which will open PayPal in a
-        pop-up window.Log in using PayPal credentials, and then follow the on-screen prompts to set
-        up the billing agreement.Once the agreement has been set up, sellers can leave this page as
-        there is no need to actually print a label.
+        rates.
         """
         return self._request(
             'createFromShippingQuote',
@@ -16743,8 +14223,8 @@ class SellLogisticsResource(BaseResource):
     def download_label_file(self, shipment_id: str, *, accept: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def download_label_file(self, shipment_id: str, *, accept: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This method returns the shipping label file that was generated for the shipmentId value
-        specified in the request. Call createFromShippingQuote to generate a shipment ID.Note: The
-        Logistics API only supports USPS shipping rates and labels.Use the Accept HTTP header to
+        specified in the request. Call createFromShippingQuote to generate a shipment ID. Note: The
+        Logistics API only supports USPS shipping rates and labels. Use the Accept HTTP header to
         specify the format of the returned file. The default file format is a PDF file.
         """
         return self._request(
@@ -16795,20 +14275,7 @@ class SellLogisticsResource(BaseResource):
         """The createShippingQuote method returns a shipping quote that contains a list of live
         "rates." Each rate represents an offer made by a shipping carrier for a specific service and
         each offer has a live quote for the base service cost. Rates have a time window in which
-        they are "live," and rates expire when their purchase window ends. If offered by the
-        carrier, rates can include shipping options (and their associated prices), and users can add
-        any offered shipping option to the base service should they desire. Also, depending on the
-        services required, rates can also include pickup and delivery windows.Note: The Logistics
-        API only supports USPS shipping rates and labels.Each rate is for a single package and is
-        based on the following information: The shipping origin The shipping destination The package
-        size (weight and dimensions) Rates are identified by a unique eBay-assigned rateId and rates
-        are based on price points, pickup and delivery time frames, and other user requirements.
-        Because each rate offered must be compliant with the eBay shipping program, all rates
-        reflect eBay-negotiated prices. The various rates returned in a shipping quote offer the
-        user a choice from which they can choose a shipping service that best fits their needs.
-        Select the rate for your shipment and using the associated rateId, call
-        createFromShippingQuote to create a shipment and generate a shipping label that you can use
-        to ship the package.
+        they are "live," and rates expire when their purchase window ends.
         """
         return self._request(
             'createShippingQuote',
@@ -16831,7 +14298,7 @@ class SellLogisticsResource(BaseResource):
         specified shippingQuoteId value. A "shipping quote" pertains to a single specific package
         and contains a set of shipping "rates" that quote the cost to ship the package by different
         shipping carriers and services. The quotes are based on the package's origin, destination,
-        and size. Call createShippingQuote to create a shippingQuoteId.
+        and size.
         """
         return self._request(
             'getShippingQuote',
@@ -16885,31 +14352,7 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
         the request. The rate identified by the rateId value specifies the carrier and service for
         the package shipment, and the rate ID must be contained in the shipping quote identified by
         the shippingQuoteId value. Call createShippingQuote to retrieve a set of live shipping
-        rates.Note: The Logistics API only supports USPS shipping rates and labels.When you create a
-        shipment, eBay generates a shipping label that you can download and use to ship your
-        package.In a createFromShippingQuote request, sellers can include a list of shipping options
-        they want to add to the base service quoted in the selected rate. The list of available
-        shipping options is specific to each quoted rate and if available, the options are listed in
-        the rate container of the shipping quote.In addition to a configurable return-to location
-        and other details about the shipment, the response to this method includes:The shipping
-        carrier and service to be used for the package shipmentA list of selected shipping options,
-        if anyThe shipment tracking numberThe total shipping cost (the sum cost of the base shipping
-        service and any added options)When you create a shipment, your billing agreement account is
-        charged the sum of the baseShippingCost and the total cost of any additional shipping
-        options you might have selected. Use the URL returned in labelDownloadUrl field, or call
-        downloadLabelFile with the shipmentId value from the response, to download a shipping label
-        for your package.Important! Sellers must set up their payment method before they can use
-        this method to create a shipment and the associated shipping label.Set up a billing
-        agreementPrior to using this method to create a shipment, sellers must first set up their
-        billing agreement. Failure to do so will return Error 90030 Payment could not be
-        completed.The preferred method for sellers to set up their billing agreement is to go to Set
-        up billing agreement and follow the on-screen directions.Alternatively, sellers can do the
-        following:Go to https://www.ebay.com/ship/single/{order_id}, where {order_id} is that of the
-        order for which the label is being printed.When prompted, select PayPal.Verify that Save
-        PayPal for future purchases is selected.Click Set up Payments which will open PayPal in a
-        pop-up window.Log in using PayPal credentials, and then follow the on-screen prompts to set
-        up the billing agreement.Once the agreement has been set up, sellers can leave this page as
-        there is no need to actually print a label.
+        rates.
         """
         return await self._request(
             'createFromShippingQuote',
@@ -16929,8 +14372,8 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
     async def download_label_file(self, shipment_id: str, *, accept: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def download_label_file(self, shipment_id: str, *, accept: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This method returns the shipping label file that was generated for the shipmentId value
-        specified in the request. Call createFromShippingQuote to generate a shipment ID.Note: The
-        Logistics API only supports USPS shipping rates and labels.Use the Accept HTTP header to
+        specified in the request. Call createFromShippingQuote to generate a shipment ID. Note: The
+        Logistics API only supports USPS shipping rates and labels. Use the Accept HTTP header to
         specify the format of the returned file. The default file format is a PDF file.
         """
         return await self._request(
@@ -16981,20 +14424,7 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
         """The createShippingQuote method returns a shipping quote that contains a list of live
         "rates." Each rate represents an offer made by a shipping carrier for a specific service and
         each offer has a live quote for the base service cost. Rates have a time window in which
-        they are "live," and rates expire when their purchase window ends. If offered by the
-        carrier, rates can include shipping options (and their associated prices), and users can add
-        any offered shipping option to the base service should they desire. Also, depending on the
-        services required, rates can also include pickup and delivery windows.Note: The Logistics
-        API only supports USPS shipping rates and labels.Each rate is for a single package and is
-        based on the following information: The shipping origin The shipping destination The package
-        size (weight and dimensions) Rates are identified by a unique eBay-assigned rateId and rates
-        are based on price points, pickup and delivery time frames, and other user requirements.
-        Because each rate offered must be compliant with the eBay shipping program, all rates
-        reflect eBay-negotiated prices. The various rates returned in a shipping quote offer the
-        user a choice from which they can choose a shipping service that best fits their needs.
-        Select the rate for your shipment and using the associated rateId, call
-        createFromShippingQuote to create a shipment and generate a shipping label that you can use
-        to ship the package.
+        they are "live," and rates expire when their purchase window ends.
         """
         return await self._request(
             'createShippingQuote',
@@ -17017,7 +14447,7 @@ class AsyncSellLogisticsResource(AsyncBaseResource):
         specified shippingQuoteId value. A "shipping quote" pertains to a single specific package
         and contains a set of shipping "rates" that quote the cost to ship the package by different
         shipping carriers and services. The quotes are based on the package's origin, destination,
-        and size. Call createShippingQuote to create a shippingQuoteId.
+        and size.
         """
         return await self._request(
             'getShippingQuote',
@@ -17046,17 +14476,10 @@ class SellMarketingResource(BaseResource):
     def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
         """This method adds multiple listings that are managed with the Inventory API to an existing
-        Promoted Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS)
-        model, bulk ads may be directly created for the listing.For each listing specified in the
-        request, this method:Creates an ad for the listing. Sets the bid percentage (also known as
-        the ad rate) for the ads created. Associates the ads created with the specified campaign.To
-        create ads for a listing, specify their inventoryReferenceId and inventoryReferenceType,
-        plus the bidPercentage for the ad in the payload of the request. Specify the campaign to
-        which you want to associate the ads using the campaign_id path parameter.Note: This method
-        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
-        Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.Use createCampaign to create a new campaign and use getCampaigns to get a list
-        of existing campaigns.
+        Promoted Listings campaign. For general strategy campaigns using the Cost Per Sale (CPS)
+        model, bulk ads may be directly created for the listing. For each listing specified in the
+        request, this method: Creates an ad for the listing. Sets the bid percentage (also known as
+        the ad rate ) for the ads created.
         """
         return self._request(
             'bulkCreateAdsByInventoryReference',
@@ -17076,26 +14499,9 @@ class SellMarketingResource(BaseResource):
     def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
         """This method adds multiple listings to an existing Promoted Listings campaign using listingId
-        values generated by the Trading API or Inventory API, or using values generated by an ad
-        group ID.For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
-        ads may be directly created for the listing.For each listing ID specified in the request,
-        this method: Creates an ad for the listing. Sets the bid percentage (also known as the ad
-        rate) for the ad. Associates the ad with the specified campaign.To create an ad for a
-        listing, specify its listingId, plus the bidPercentage for the ad in the payload of the
-        request. Specify the campaign to associate the ads with using the campaign_id path
-        parameter. Listing IDs are generated by eBay when a seller creates listings with the Trading
-        API.You can specify a maximum of 500 listings per call and each campaign can have ads for a
-        maximum of 50,000 items. Be aware when using this call that each variation in a multiple-
-        variation listing creates an individual ad.For manual targeting priority strategy campaigns
-        using the Cost Per Click (CPC) funding model, an ad group must be created first. If no ad
-        group has been created for the campaign, ads cannot be created.Note: Ad groups are not
-        required when adding listings to a smart targeting campaign.For the ad group specified in
-        the request, this method associates the ad with the specified ad group.To create an ad for
-        an ad group, specify the name of the ad group plus the defaultBid for the ad in the payload
-        of the request. Specify the campaign to associate the ads with using the campaign_id path
-        parameter. Ad groups are generated using the createAdGroup method. You can specify one or
-        more ad groups per campaign.Use createCampaign to create a new campaign and use getCampaigns
-        to get a list of existing campaigns.
+        values generated by the Trading API or Inventory API , or using values generated by an ad
+        group ID. For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
+        ads may be directly created for the listing.
         """
         return self._request(
             'bulkCreateAdsByListingId',
@@ -17114,15 +14520,9 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
-        """This method works with listings created with the Inventory API.The method deletes a set of
+        """This method works with listings created with the Inventory API . The method deletes a set of
         ads, as specified by a list of inventory reference IDs, from the specified campaign.
-        Inventory reference IDs are seller-defined IDs that are used with the Inventory API.Pass the
-        campaign_id as a path parameter and populate the payload with a list of inventoryReferenceId
-        and inventoryReferenceType pairs that you want to delete.Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        Inventory reference IDs are seller-defined IDs that are used with the Inventory API .
         """
         return self._request(
             'bulkDeleteAdsByInventoryReference',
@@ -17141,17 +14541,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
-        """This method works with listing IDs created with either the Trading API or the Inventory
-        API.The method deletes a set of ads, as specified by a list of listingID values from a
+        """This method works with listing IDs created with either the Trading API or the Inventory API
+        . The method deletes a set of ads, as specified by a list of listingID values from a
         Promoted Listings campaign. A listing ID value is generated by eBay when a seller creates a
-        listing with either the Trading API and Inventory API.Pass the campaign_id as a path
-        parameter and populate the payload with the set of listing IDs that you want to delete.Get
-        the campaign IDs for a seller by calling getCampaigns and call getAds to get a list of the
-        seller's inventory reference IDs.Note: This method only applies to the Cost Per Sale (CPS)
-        funding model; it does not apply to the Cost Per Click (CPC) funding model. See Funding
-        Models in the Promoted Listings Playbook for more information.When using the CPC funding
-        model, use the bulkUpdateAdsStatusByListingId method to change the status of ads to
-        ARCHIVED.
+        listing with either the Trading API and Inventory API.
         """
         return self._request(
             'bulkDeleteAdsByListingId',
@@ -17170,15 +14563,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
-        """This method works with listings created with either the Trading API or the Inventory API.
+        """This method works with listings created with either the Trading API or the Inventory API .
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
-        their associated updated bidPercentage values in the request body. An eBay listing ID is
-        generated when a listing is created with the Trading API. Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        their associated updated bidPercentage values in the request body.
         """
         return self._request(
             'bulkUpdateAdsBidByInventoryReference',
@@ -17197,15 +14585,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
-        """This method works with listings created with either the Trading API or the Inventory API.
+        """This method works with listings created with either the Trading API or the Inventory API .
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
-        their associated updated bidPercentage values in the request body. An eBay listing ID is
-        generated when a listing is created with the Trading API. Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        their associated updated bidPercentage values in the request body.
         """
         return self._request(
             'bulkUpdateAdsBidByListingId',
@@ -17228,9 +14611,7 @@ class SellMarketingResource(BaseResource):
         priority strategy program. For information about how to request access to this program,
         refer to Priority Strategy Access Requests in the Promoted Listings Playbook. To determine
         if a seller qualifies for priority strategy, use the getAdvertisingEligibility method in
-        Account API.This method works with listings created with either the Trading API or the
-        Inventory API.This method updates the status of ads in bulk.Specify the campaign_id you want
-        to update as a URI parameter, and configure the adGroupStatus in the request payload.
+        Account API.
         """
         return self._request(
             'bulkUpdateAdsStatus',
@@ -17249,11 +14630,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
-        """The method updates the status of ads in bulk, based on listing ID values.Specify the
+        """The method updates the status of ads in bulk, based on listing ID values. Specify the
         campaign_id as a path parameter and supply a set of listing IDs with their updated adStatus
         values in the request body. An eBay listing ID is generated when a listing is created with
-        the Trading API.Get the campaign IDs for a seller by calling getCampaigns and call getAds to
-        retrieve a list of seller inventory reference IDs.
+        the Trading API.
         """
         return self._request(
             'bulkUpdateAdsStatusByListingId',
@@ -17273,13 +14653,9 @@ class SellMarketingResource(BaseResource):
     def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
         """This method retrieves Promoted Listings ads that are associated with listings created with
-        either the Trading API or the Inventory API. The method retrieves ads related to the
+        either the Trading API or the Inventory API . The method retrieves ads related to the
         specified campaign. Specify the Promoted Listings campaign to target with the campaign_id
-        path parameter. Because of the large number of possible results, you can use query
-        parameters to paginate the result set by specifying a limit, which dictates how many ads to
-        return on each page of the response. You can also specify how many ads to skip in the result
-        set before returning the first result using the offset path parameter. Call getCampaigns to
-        retrieve the current campaign IDs for the seller.
+        path parameter.
         """
         return self._request(
             'getAds',
@@ -17298,25 +14674,10 @@ class SellMarketingResource(BaseResource):
     def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a listing to an existing Promoted Listings campaign using a listingId value
-        generated by the Trading API or Inventory API, or using a value generated by an ad group ID.
-        For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
-        directly created for the listing.For the listing ID specified in the request, this method:
-        Creates an ad for the listing. Sets the bid percentage (also known as the ad rate) for the
-        ad. Associates the ad with the specified campaign. To create an ad for a listing, specify
-        its listingId, plus the bidPercentage for the ad in the payload of the request. Specify the
-        campaign to associate the ad with using the campaign_id path parameter. Listing IDs are
-        generated by eBay when a seller creates listings with the Trading API.For manual targeting
-        priority strategy campaigns using the Cost Per Click (CPC) funding model, an ad group must
-        be created first. If no ad group has been created for the campaign, ads cannot be
-        created.Note: Ad groups are not required when adding listings to a smart targeting
-        campaign.For the ad group specified in the request, this method associates the ad with the
-        specified ad group.To create an ad for an ad group, specify the name of the ad group in the
-        payload of the request. Specify the campaign to associate the ads with using the campaign_id
-        path parameter. Ad groups are generated using the createAdGroup method. You can specify one
-        or more ad groups per campaign.Use createCampaign to create a new campaign and use
-        getCampaigns to get a list of existing campaigns.This call has no response payload. If the
-        ad is successfully created, a 201 Created HTTP status code and the getAd URI of the ad are
-        returned in the location header.
+        generated by the Trading API or Inventory API , or using a value generated by an ad group
+        ID. For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
+        directly created for the listing. For the listing ID specified in the request, this method:
+        Creates an ad for the listing.
         """
         return self._request(
             'createAdByListingId',
@@ -17336,17 +14697,10 @@ class SellMarketingResource(BaseResource):
     def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
         """This method adds a listing that is managed with the Inventory API to an existing Promoted
-        Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS) funding
-        model, an ad may be directly created for the listing.For each listing specified in the
-        request, this method:Creates an ad for the listing. Sets the bid percentage (also known as
-        the ad rate) for the ads created. Associates the created ad with the specified campaign.To
-        create an ad for a listing, specify its inventoryReferenceId and inventoryReferenceType,
-        plus the bidPercentage for the ad in the payload of the request. Specify the campaign to
-        associate the ad with using the campaign_id path parameter.Note: This method only applies to
-        the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC) funding
-        model. See Funding Models in the Promoted Listings Playbook for more information.Use
-        createCampaign to create a new campaign and use getCampaigns to get a list of existing
-        campaigns.
+        Listings campaign. For general strategy campaigns using the Cost Per Sale (CPS) funding
+        model, an ad may be directly created for the listing. For each listing specified in the
+        request, this method: Creates an ad for the listing. Sets the bid percentage (also known as
+        the ad rate ) for the ads created.
         """
         return self._request(
             'createAdsByInventoryReference',
@@ -17385,13 +14739,11 @@ class SellMarketingResource(BaseResource):
     @overload
     def delete_ad(self, ad_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_ad(self, ad_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method removes the specified ad from the specified campaign.Pass the ID of the ad to
-        delete with the ID of the campaign associated with the ad as path parameters to the
-        call.Call getCampaigns to get the current list of the seller's campaign IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.When using the CPC funding model, use the bulkUpdateAdsStatusByListingId method
-        to change the status of ads to ARCHIVED.
+        """This method removes the specified ad from the specified campaign. Pass the ID of the ad to
+        delete with the ID of the campaign associated with the ad as path parameters to the call.
+        Call getCampaigns to get the current list of the seller's campaign IDs. Note: This method
+        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
+        Click (CPC) funding model.
         """
         return self._request(
             'deleteAd',
@@ -17409,15 +14761,11 @@ class SellMarketingResource(BaseResource):
     @overload
     def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
-        """This method works with listings that are managed with the Inventory API. The method deletes
+        """This method works with listings that are managed with the Inventory API . The method deletes
         ads using a list of seller-defined inventory reference IDs, used with the Inventory API,
         that are associated with the specified campaign ID. Specify the campaign ID (as a path
         parameter) and a list of inventoryReferenceId and inventoryReferenceType pairs to be
-        deleted. Call getCampaigns to get a list of the seller's current campaign IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.When using the CPC funding model, use the
-        bulkUpdateAdsStatusByInventoryReference method to change the status of ads to ARCHIVED.
+        deleted.
         """
         return self._request(
             'deleteAdsByInventoryReference',
@@ -17437,16 +14785,9 @@ class SellMarketingResource(BaseResource):
     def get_ads_by_inventory_reference(self, campaign_id: str, *, inventory_reference_id: str, inventory_reference_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_ads_by_inventory_reference(self, campaign_id: str, *, inventory_reference_id: str, inventory_reference_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Ads | httpx.Response:
         """This method retrieves Promoted Listings ads associated with listings that are managed with
-        the Inventory API from the specified campaign.Supply the campaign_id as a path parameter and
-        use query parameters to specify the inventory_reference_id and inventory_reference_type
-        pairs.In the Inventory API, an inventory reference ID is either a seller-defined SKU value
-        or an inventoryItemGroupKey (a seller-defined ID for an inventory item group, which is an
-        entity that's used in the Inventory API to create a multiple-variation listing). To indicate
-        a listing managed by the Inventory API, you must always specify both an
-        inventory_reference_id and the associated inventory_reference_type.Call getCampaigns to
-        retrieve all of the seller's the current campaign IDs.Note: This method only applies to the
-        Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC) funding
-        model. See Funding Models in the Promoted Listings Playbook for more information.
+        the Inventory API from the specified campaign. Supply the campaign_id as a path parameter
+        and use query parameters to specify the inventory_reference_id and inventory_reference_type
+        pairs.
         """
         return self._request(
             'getAdsByInventoryReference',
@@ -17467,10 +14808,7 @@ class SellMarketingResource(BaseResource):
         """This method updates the bid percentage (also known as the "ad rate") for the specified ad in
         the specified campaign. In the request, supply the campaign_id and ad_id as path parameters,
         and supply the new bidPercentage value in the payload of the call. Call getCampaigns to
-        retrieve a seller's current campaign IDs and call getAds to get their ad IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.
+        retrieve a seller's current campaign IDs and call getAds to get their ad IDs.
         """
         return self._request(
             'updateBid',
@@ -17489,8 +14827,8 @@ class SellMarketingResource(BaseResource):
     @overload
     def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
-        """This method retrieves ad groups for the specified campaign.Each campaign can only have one
-        ad group.In the request, supply the campaign_id as the path parameter.Call getCampaigns to
+        """This method retrieves ad groups for the specified campaign. Each campaign can only have one
+        ad group. In the request, supply the campaign_id as the path parameter. Call getCampaigns to
         retrieve a list of the current campaign IDs for a seller.
         """
         return self._request(
@@ -17510,9 +14848,9 @@ class SellMarketingResource(BaseResource):
     def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds an ad group to an existing priority strategy campaign that uses manual
-        targeting.To create an ad group for a campaign, specify the defaultBid for the ad group in
+        targeting. To create an ad group for a campaign, specify the defaultBid for the ad group in
         the payload of the request. Then specify the campaign to which the ad group should be
-        associated using the campaign_id path parameter.Each campaign can have one or more
+        associated using the campaign_id path parameter. Each campaign can have one or more
         associated ad groups.
         """
         return self._request(
@@ -17533,9 +14871,9 @@ class SellMarketingResource(BaseResource):
     def get_ad_group(self, ad_group_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_ad_group(self, ad_group_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroup | httpx.Response:
         """This method retrieves the details of a specified ad group, such as the ad group’s default
-        bid and status.In the request, specify the campaign_id and ad_group_id as path
-        parameters.Call getCampaigns to retrieve a list of the current campaign IDs for a seller and
-        call getAdGroups for the ad group ID of the ad group you wish to retrieve.
+        bid and status. In the request, specify the campaign_id and ad_group_id as path parameters.
+        Call getCampaigns to retrieve a list of the current campaign IDs for a seller and call
+        getAdGroups for the ad group ID of the ad group you wish to retrieve.
         """
         return self._request(
             'getAdGroup',
@@ -17553,11 +14891,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method updates the ad group associated with a campaign.With this method, you can modify
-        the default bid for the ad group, change the state of the ad group, or change the name of
-        the ad group. Pass the ad_group_id you want to update as a URI parameter, and configure the
-        adGroupStatus and defaultBid in the request payload.Call getAdGroup to retrieve the current
-        default bid and status of the ad group that you would like to update.
+        """This method updates the ad group associated with a campaign. With this method, you can
+        modify the default bid for the ad group, change the state of the ad group, or change the
+        name of the ad group. Pass the ad_group_id you want to update as a URI parameter, and
+        configure the adGroupStatus and defaultBid in the request payload.
         """
         return self._request(
             'updateAdGroup',
@@ -17614,15 +14951,11 @@ class SellMarketingResource(BaseResource):
     @overload
     def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
-        """This method clones (makes a copy of) the specified campaign's campaign criterion. The
+        """This method clones (makes a copy of) the specified campaign's campaign criterion . The
         campaign criterion is a container for the fields that define the criteria for a rule-based
-        campaign.To clone a campaign, supply the campaign_id as a path parameter in your call. There
-        is no request payload. The ID of the newly-cloned campaign is returned in the Location
-        response header.Call getCampaigns to retrieve a seller's current campaign IDs. Requirement:
-        In order to clone a campaign, the campaignStatus must be ENDED and the campaign must define
-        a set of selection rules (it must be a rules-based campaign).Note: This method only applies
-        to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC)
-        funding model. See Funding Models in the Promoted Listings Playbook for more information.
+        campaign. To clone a campaign, supply the campaign_id as a path parameter in your call.
+        There is no request payload. The ID of the newly-cloned campaign is returned in the Location
+        response header.
         """
         return self._request(
             'cloneCampaign',
@@ -17644,10 +14977,7 @@ class SellMarketingResource(BaseResource):
         """This method retrieves the details for all of the seller's defined campaigns. Request
         parameters can be used to retrieve a specific campaign, such as the campaign's name, the
         start and end date, the channel, the status, and the funding model (i.e., Cost Per Sale
-        (CPS) or Cost Per Click (CPC)). You can filter the result set by a campaign name, end date
-        range, start date range, campaign channel, or campaign status. You can also paginate the
-        records returned from the result set using the limit query parameter, and control which
-        records to return using the offset parameter.
+        (CPS) or Cost Per Click (CPC)).
         """
         return self._request(
             'getCampaigns',
@@ -17666,26 +14996,10 @@ class SellMarketingResource(BaseResource):
     def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method can be used to create a Promoted Listings general, priority, or offsite
-        campaign.A Promoted Listings campaign is the structure in which you place the ads or ad
-        group for the listings you wish to promote.Note: Campaigns can only contain ads for a
-        maximum of 50,000 items.General strategy campaigns utilize a Cost Per Sale (CPS) funding
-        model. Sellers can set the ad rate and bidding strategies that are right for their business
-        through the adRateStrategy, biddingStrategy, bidPercentage fields. For more information on
-        general strategy campaigns, see Promoted Listings general strategy campaign flow.Priority
-        strategy campaigns utilize a Cost per Click (CPC) funding model. Sellers can create a daily
-        budget through the budget container and choose what channel that their ads appear on. In
-        addition, priority strategy campaigns give sellers the ability to create ad groups and
-        specify keywords to ensure their ads reach their intended audience. For more information on
-        priority strategy campaigns, see Promoted listings priority strategy campaign flow.Promoted
-        Offsite campaigns give sellers the ability to create their own advertising campaign and
-        promote their eBay listing in leading external search channels. For more information on
-        Promoted Offsite campaigns, see Promoted Offsite.Note: Sellers can use the
-        getAdvertisingEligibility method of the Account API v1 to determine their eligibility status
-        for eBay advertising programs.To create a basic campaign, supply: The user-defined campaign
-        name The start date (and optionally the end date) of the campaign The eBay marketplace on
-        which the campaign is hosted Details on the campaign funding modelFor details on creating
-        Promoted Listings campaigns and how to select the items to be included in your campaigns,
-        see Promoted Listings campaign creation.
+        campaign. A Promoted Listings campaign is the structure in which you place the ads or ad
+        group for the listings you wish to promote. Note: Campaigns can only contain ads for a
+        maximum of 50,000 items. General strategy campaigns utilize a Cost Per Sale (CPS) funding
+        model.
         """
         return self._request(
             'createCampaign',
@@ -17707,7 +15021,7 @@ class SellMarketingResource(BaseResource):
         """This method retrieves the details of a single campaign, as specified with the campaign_id
         query parameter. This method returns all the details of a campaign (including the campaign's
         the selection rules), except the for the listing IDs or inventory reference IDs included in
-        the campaign. These IDs are returned by getAds. Call getCampaigns to retrieve a list of the
+        the campaign. These IDs are returned by getAds . Call getCampaigns to retrieve a list of the
         seller's campaign IDs.
         """
         return self._request(
@@ -17726,9 +15040,9 @@ class SellMarketingResource(BaseResource):
     @overload
     def delete_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method deletes the campaign specified by the campaign_id query parameter.Note: You can
-        only delete campaigns that have ended.Call getCampaigns to retrieve the campaign_id and the
-        campaign status (RUNNING, PAUSED, ENDED, and so on) for all the seller's campaigns.
+        """This method deletes the campaign specified by the campaign_id query parameter. Note: You can
+        only delete campaigns that have ended. Call getCampaigns to retrieve the campaign_id and the
+        campaign status ( RUNNING , PAUSED , ENDED , and so on) for all the seller's campaigns.
         """
         return self._request(
             'deleteCampaign',
@@ -17746,10 +15060,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def end_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def end_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method ends an active (RUNNING) or paused campaign. Specify the campaign you want to
+        """This method ends an active ( RUNNING ) or paused campaign. Specify the campaign you want to
         end by supplying its campaign ID in a query parameter. Call getCampaigns to retrieve the
-        campaign_id and the campaign status (RUNNING, PAUSED, ENDED, and so on) for all the seller's
-        campaigns.
+        campaign_id and the campaign status ( RUNNING , PAUSED , ENDED , and so on) for all the
+        seller's campaigns.
         """
         return self._request(
             'endCampaign',
@@ -17769,13 +15083,8 @@ class SellMarketingResource(BaseResource):
     def find_campaign_by_ad_reference(self, *, inventory_reference_id: str | None = None, inventory_reference_type: str | None = None, listing_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Campaigns | httpx.Response:
         """This method retrieves the campaigns containing the listing that is specified using either a
         listing ID, or an inventory reference ID and inventory reference type pair. The request
-        accepts either a listing_id, or an inventory_reference_id and inventory_reference_type pair,
-        as used in the Inventory API.eBay listing IDs are generated by either the Trading API or the
-        Inventory API when you create a listing.An inventory reference ID can be either a seller-
-        defined SKU or inventoryItemGroupKey, as specified in the Inventory API.Note: This method
-        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
-        Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.
+        accepts either a listing_id , or an inventory_reference_id and inventory_reference_type
+        pair, as used in the Inventory API.
         """
         return self._request(
             'findCampaignByAdReference',
@@ -17795,7 +15104,7 @@ class SellMarketingResource(BaseResource):
     def get_campaign_by_name(self, *, campaign_name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Campaign | httpx.Response:
         """This method retrieves the details of a single campaign, as specified with the campaign_name
         query parameter. Note that the campaign name you specify must be an exact, case-sensitive
-        match of the name of the campaign you want to retrieve.Call getCampaigns to retrieve a list
+        match of the name of the campaign you want to retrieve. Call getCampaigns to retrieve a list
         of the seller's campaign names.
         """
         return self._request(
@@ -17815,10 +15124,10 @@ class SellMarketingResource(BaseResource):
     def pause_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def pause_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method pauses an active (RUNNING) campaign. You can restart the campaign by calling
-        resumeCampaign, as long as the campaign's end date is in the future.Note:The listings
-        associated with a paused campaign cannot be added into another campaign.Call getCampaigns to
-        retrieve the campaign_id and the campaign status (RUNNING, PAUSED, ENDED, and so on) for all
-        the seller's campaigns.
+        resumeCampaign , as long as the campaign's end date is in the future. Note: The listings
+        associated with a paused campaign cannot be added into another campaign. Call getCampaigns
+        to retrieve the campaign_id and the campaign status ( RUNNING , PAUSED , ENDED , and so on)
+        for all the seller's campaigns.
         """
         return self._request(
             'pauseCampaign',
@@ -17838,8 +15147,8 @@ class SellMarketingResource(BaseResource):
     def resume_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method resumes a paused campaign, as long as its end date is in the future. Supply the
         campaign_id for the campaign you want to restart as a query parameter in the request. Call
-        getCampaigns to retrieve the campaign_id and the campaign status (RUNNING, PAUSED, ENDED,
-        and so on) for all the seller's campaigns.
+        getCampaigns to retrieve the campaign_id and the campaign status ( RUNNING , PAUSED , ENDED
+        , and so on) for all the seller's campaigns.
         """
         return self._request(
             'resumeCampaign',
@@ -17859,8 +15168,8 @@ class SellMarketingResource(BaseResource):
     def suggest_budget(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestBudgetResponse | httpx.Response:
         """Note: This method is only supported for Promoted Offsite campaigns. Sellers can use the
         getAdvertisingEligibility method of the Account API v1 to determine if they are eligible for
-        offsite campaigns.This method allows sellers to retrieve the suggested budget for an offsite
-        campaign.
+        offsite campaigns. This method allows sellers to retrieve the suggested budget for an
+        offsite campaign.
         """
         return self._request(
             'suggestBudget',
@@ -17899,10 +15208,8 @@ class SellMarketingResource(BaseResource):
     def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
         """Note: This method is only supported for smart targeting priority strategy campaigns. Sellers
         can use the getAdvertisingEligibility method of the Account API v1 to determine if they are
-        eligible for a priority strategy campaign.This method allows sellers to retrieve the
-        suggested maximum cost-per-click value for a smart targeting campaign. This value is
-        required when creating a smart targeting campaign and indicates the maximum amount for which
-        the eBay suggested bid can be adjusted.
+        eligible for a priority strategy campaign. This method allows sellers to retrieve the
+        suggested maximum cost-per-click value for a smart targeting campaign.
         """
         return self._request(
             'suggestMaxCpc',
@@ -17922,11 +15229,10 @@ class SellMarketingResource(BaseResource):
     def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad rate strategy for an existing rules-based general strategy ad
-        campaign that uses the Cost Per Sale (CPS) funding model.Specify the campaign_id as a path
+        campaign that uses the Cost Per Sale (CPS) funding model. Specify the campaign_id as a path
         parameter. You can retrieve the campaign IDs for a seller by calling the getCampaigns
-        method.Note: This method only applies to the CPS funding model; it does not apply to the
-        Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for
-        more information.
+        method. Note: This method only applies to the CPS funding model; it does not apply to the
+        Cost Per Click (CPC) funding model.
         """
         return self._request(
             'updateAdRateStrategy',
@@ -17946,17 +15252,9 @@ class SellMarketingResource(BaseResource):
     def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method allows sellers to change the bidding strategy for a specified Cost Per Click
-        (CPC) campaign that uses manual targeting. Available bidding strategies are:FIXEDWhen using
-        a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
-        campaign.DYNAMICWhen using a dynamic bidding strategy, eBay will manage a campaign's keyword
-        bids and automatically update them daily to the suggested bid.Note: For a CPC campaign using
-        dynamic bidding, sellers can continue to manually add keywords for the campaign, but they
-        are no longer able to manually adjust their associated bid values. In order to manually
-        adjust bid values, sellers must use the FIXED bidding strategy.In addition, this method
-        allows sellers to modify the maxCPC value of a smart targeting campaign.Note: This method
-        only applies to the Cost Per Click (CPC) funding model; it does not apply to the Cost Per
-        Sale (CPS) funding model. Refer to Funding Models in the Promoted Listings Playbook for more
-        information.
+        (CPC) campaign that uses manual targeting. Available bidding strategies are: FIXED When
+        using a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
+        campaign.
         """
         return self._request(
             'updateBiddingStrategy',
@@ -17976,15 +15274,9 @@ class SellMarketingResource(BaseResource):
     def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method updates the daily budget for a priority strategy campaign that uses the Cost Per
-        Click (CPC) funding model.A click occurs when an eBay user finds and clicks on the seller’s
+        Click (CPC) funding model. A click occurs when an eBay user finds and clicks on the seller’s
         listing (within the search results) after using a keyword that the seller has created for
-        the campaign. For each ad in an ad group in the campaign, each click triggers a cost, which
-        gets subtracted from the campaign’s daily budget. If the cost of the clicks exceeds the
-        daily budget, the Promoted Listings campaign will be paused until the next day.Specify the
-        campaign_id as a path parameter. You can retrieve the campaign IDs for a seller by calling
-        the getCampaigns method.Note: The daily budget for a campaign can only be updated 15 times
-        per day. If this limit is exceeded, an error will occur and you will be blocked from
-        updating the budget until the next day.
+        the campaign.
         """
         return self._request(
             'updateCampaignBudget',
@@ -18005,14 +15297,7 @@ class SellMarketingResource(BaseResource):
     def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method can be used to change the name of a campaign, as well as modify the start or end
         dates. Specify the campaign_id you want to update as a URI parameter, and configure the
-        campaignName and startDate in the request payload. If you want to change only the end date
-        of the campaign, specify the current campaign name, set endDate as desired, and set
-        startDate to the actual start date of the campaign. This applies if the campaign status is
-        RUNNING or PAUSED. You can retrieve the startDate using the getCampaign method. Note that if
-        you do not set a new end date in this call, any current endDate value will be set to null.
-        To preserve the currently-set end date, you must specify the value again in your request.
-        Call getCampaigns to retrieve a seller's campaign details, including the campaign ID,
-        campaign name, and the start and end dates of the campaign.
+        campaignName and startDate in the request payload.
         """
         return self._request(
             'updateCampaignIdentification',
@@ -18032,12 +15317,10 @@ class SellMarketingResource(BaseResource):
     def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
         """This method adds keywords, in bulk, to an existing priority strategy ad group in a campaign
-        that uses manual targeting.This method also sets the CPC rate for each keyword, depending on
-        the selected bidding strategy, as follows:FIXED: If the seller provides a keyword bid, that
-        bid value will be used.If no bid is provided, the adgroup's default bid value will be
-        used.DYNAMIC: The eBay suggested bid will be used.If the seller passes in a value, a warning
-        will be returned.In the request, supply the campaign_id as a path parameter.Call the
-        getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
+        that uses manual targeting. This method also sets the CPC rate for each keyword, depending
+        on the selected bidding strategy, as follows: FIXED : If the seller provides a keyword bid,
+        that bid value will be used. If no bid is provided, the adgroup's default bid value will be
+        used.
         """
         return self._request(
             'bulkCreateKeyword',
@@ -18057,7 +15340,7 @@ class SellMarketingResource(BaseResource):
     def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
         """This method updates the bids and statuses of keywords, in bulk, for an existing priority
-        strategy campaign.In the request, supply the campaign_id as a path parameter.Call the
+        strategy campaign. In the request, supply the campaign_id as a path parameter. Call the
         getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
         """
         return self._request(
@@ -18078,11 +15361,9 @@ class SellMarketingResource(BaseResource):
     def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the keywords for ad groups in priority strategy
-        campaigns that use the Cost Per Click (CPC) funding model.In the request, specify the
+        campaigns that use the Cost Per Click (CPC) funding model. In the request, specify the
         campaign_id as a path parameter. If one or more ad_group_ids are passed in the request body,
-        the keywords for those ad groups will be returned. If ad_group_ids are not passed in the
-        response body, the call will return all the keywords in the campaign.Call the getCampaigns
-        method to retrieve a list of current campaign IDs for a seller.
+        the keywords for those ad groups will be returned.
         """
         return self._request(
             'getKeywords',
@@ -18101,10 +15382,10 @@ class SellMarketingResource(BaseResource):
     def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates keywords using a specified campaign ID for an existing priority strategy
-        campaign that uses manual targeting.In the request, supply the campaign_id as a path
-        parameter.Call the suggestKeywords method to retrieve a list of keyword ideas to be targeted
-        for priority strategy campaigns, and call the getCampaigns method to retrieve a list of
-        current campaign IDs for a seller.
+        campaign that uses manual targeting. In the request, supply the campaign_id as a path
+        parameter. Call the suggestKeywords method to retrieve a list of keyword ideas to be
+        targeted for priority strategy campaigns, and call the getCampaigns method to retrieve a
+        list of current campaign IDs for a seller.
         """
         return self._request(
             'createKeyword',
@@ -18124,10 +15405,10 @@ class SellMarketingResource(BaseResource):
     def get_keyword(self, campaign_id: str, keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_keyword(self, campaign_id: str, keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Keyword | httpx.Response:
         """This method retrieves details on a specific keyword from an ad group within a priority
-        strategy campaign that uses the Cost Per Click (CPC) funding model.In the request, specify
-        the campaign_id and keyword_id as path parameters.Call the getCampaigns method to retrieve a
-        list of current campaign IDs for a seller and call the getKeywords method to retrieve their
-        keyword IDs.
+        strategy campaign that uses the Cost Per Click (CPC) funding model. In the request, specify
+        the campaign_id and keyword_id as path parameters. Call the getCampaigns method to retrieve
+        a list of current campaign IDs for a seller and call the getKeywords method to retrieve
+        their keyword IDs.
         """
         return self._request(
             'getKeyword',
@@ -18146,8 +15427,8 @@ class SellMarketingResource(BaseResource):
     def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
         """This method updates keywords using a campaign ID and keyword ID for an existing priority
-        strategy campaign.In the request, specify the campaign_id and keyword_id as path
-        parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
+        strategy campaign. In the request, specify the campaign_id and keyword_id as path
+        parameters. Call the getCampaigns method to retrieve a list of current campaign IDs for a
         seller and call the getKeywords method to retrieve their keyword IDs.
         """
         return self._request(
@@ -18168,9 +15449,9 @@ class SellMarketingResource(BaseResource):
     def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
         """This method adds negative keywords, in bulk, to an existing ad group in a priority strategy
-        campaign that uses manual targeting.Specify the campaignId and adGroupId in the request
-        body, along with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns
-        method to retrieve a list of current campaign IDs for a specified seller.
+        campaign that uses manual targeting. Specify the campaignId and adGroupId in the request
+        body, along with the negativeKeywordText and negativeKeywordMatchType . Call the
+        getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
         """
         return self._request(
             'bulkCreateNegativeKeyword',
@@ -18189,7 +15470,7 @@ class SellMarketingResource(BaseResource):
     @overload
     def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
-        """This method updates the statuses of existing negative keywords, in bulk.Specify the
+        """This method updates the statuses of existing negative keywords, in bulk. Specify the
         negativeKeywordId and negativeKeywordStatus in the request body.
         """
         return self._request(
@@ -18210,9 +15491,9 @@ class SellMarketingResource(BaseResource):
     def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the negative keywords for ad groups in priority
-        strategy campaigns that use the Cost Per Click (CPC) funding model.The results can be
-        filtered using the campaign_ids, ad_group_ids, and negative_keyword_status query
-        parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
+        strategy campaigns that use the Cost Per Click (CPC) funding model. The results can be
+        filtered using the campaign_ids , ad_group_ids , and negative_keyword_status query
+        parameters. Call the getCampaigns method to retrieve a list of current campaign IDs for a
         seller.
         """
         return self._request(
@@ -18232,8 +15513,8 @@ class SellMarketingResource(BaseResource):
     def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a negative keyword to an existing ad group in a priority strategy campaign
-        that uses manual targeting.Specify the campaignId and adGroupId in the request body, along
-        with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns method to
+        that uses manual targeting. Specify the campaignId and adGroupId in the request body, along
+        with the negativeKeywordText and negativeKeywordMatchType . Call the getCampaigns method to
         retrieve a list of current campaign IDs for a specified seller.
         """
         return self._request(
@@ -18253,7 +15534,7 @@ class SellMarketingResource(BaseResource):
     @overload
     def get_negative_keyword(self, negative_keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_negative_keyword(self, negative_keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeyword | httpx.Response:
-        """This method retrieves details on a specific negative keyword.In the request, specify the
+        """This method retrieves details on a specific negative keyword. In the request, specify the
         negative_keyword_id as a path parameter.
         """
         return self._request(
@@ -18272,7 +15553,7 @@ class SellMarketingResource(BaseResource):
     @overload
     def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method updates the status of an existing negative keyword.Specify the
+        """This method updates the status of an existing negative keyword. Specify the
         negative_keyword_id as a path parameter, and specify the negativeKeywordStatus in the
         request body.
         """
@@ -18295,14 +15576,9 @@ class SellMarketingResource(BaseResource):
     def get_report(self, report_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This call downloads the report as specified by the report_id path parameter. Call
         createReportTask to schedule and generate a Promoted Listings report. All date values are
-        returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ).Note: The reporting of some data related
-        to sales and ad-fees may require a 72-hour (maximum) adjustment period which is often
-        referred to as the Reconciliation Period. Such adjustment periods should, on average, be
-        minimal. However, at any given time, the payments tab may be used to view those amounts that
-        have actually been charged.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ). Note: The reporting of some data
+        related to sales and ad-fees may require a 72-hour ( maximum ) adjustment period which is
+        often referred to as the Reconciliation Period .
         """
         return self._request(
             'getReport',
@@ -18333,11 +15609,7 @@ class SellMarketingResource(BaseResource):
         """This call retrieves information that details the fields used in each of the Promoted
         Listings reports. Use the returned information to configure the different types of Promoted
         Listings reports. You can retrieve metadata for all report types,funding models and
-        channels, or you can filter based on funding model and/or channel.Note: The reporting of
-        some data related to sales and ad-fees may require a 72-hour (maximum) adjustment period
-        which is often referred to as the Reconciliation Period. Such adjustment periods should, on
-        average, be minimal. However, at any given time, the payments tab may be used to view those
-        amounts that have actually been charged.
+        channels, or you can filter based on funding model and/or channel.
         """
         return self._request(
             'getReportMetadata',
@@ -18356,12 +15628,10 @@ class SellMarketingResource(BaseResource):
     def get_report_metadata_for_report_type(self, report_type: str, *, funding_model: str | None = None, channel: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_report_metadata_for_report_type(self, report_type: str, *, funding_model: str | None = None, channel: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportMetadata | httpx.Response:
         """This call retrieves metadata that details the fields used by a specific Promoted Listings
-        report type. Use the report_type path parameter to indicate metadata to retrieve.This method
-        does not use a request payload.Note: The reporting of some data related to sales and ad-fees
-        may require a 72-hour (maximum) adjustment period which is often referred to as the
-        Reconciliation Period. Such adjustment periods should, on average, be minimal. However, at
-        any given time, the payments tab may be used to view those amounts that have actually been
-        charged.
+        report type. Use the report_type path parameter to indicate metadata to retrieve. This
+        method does not use a request payload. Note: The reporting of some data related to sales and
+        ad-fees may require a 72-hour ( maximum ) adjustment period which is often referred to as
+        the Reconciliation Period .
         """
         return self._request(
             'getReportMetadataForReportType',
@@ -18381,12 +15651,8 @@ class SellMarketingResource(BaseResource):
     def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
         """This method returns information on all the existing report tasks related to a seller. Use
         the report_task_statuses query parameter to control which reports to return. You can
-        paginate the result set by specifying a limit, which dictates how many report tasks to
-        return on each page of the response. Use the offset parameter to specify how many reports to
-        skip in the result set before returning the first result.Important!For ad_report and
-        ad_report_task methods, the API call limit is subject to a per user quota. These API calls
-        can only be executed a maximum of 200 times per hour for each seller/user. If the number of
-        calls per hour exceeds this limit, any new calls will be blocked for the next hour.
+        paginate the result set by specifying a limit , which dictates how many report tasks to
+        return on each page of the response.
         """
         return self._request(
             'getReportTasks',
@@ -18404,34 +15670,10 @@ class SellMarketingResource(BaseResource):
     @overload
     def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method creates a report task, which generates a Promoted Listings report based on the
-        values specified in the call.The report is generated based on the criteria you specify,
+        """This method creates a report task , which generates a Promoted Listings report based on the
+        values specified in the call. The report is generated based on the criteria you specify,
         including the report type, the report's dimensions and metrics, the report's start and end
-        dates, the listings to include in the report, and more. Metrics are the quantitative
-        measurements in the report while dimensions specify the attributes of the data included in
-        the reports.When creating a report task, you can specify the items you want included in the
-        report. The items you specify, using either listingId or inventoryReference values, must be
-        in a Promoted Listings campaign for them to be included in the report.For details on the
-        required and optional fields for each report type, see Promoted Listings reporting.This call
-        returns the URL to the report task in the Location response header, and the URL includes the
-        report-task ID.Reports often take time to generate and it's common for this call to return
-        an HTTP status of 202, which indicates the report is being generated. Call getReportTasks
-        (or getReportTask with the report-task ID) to determine the status of a Promoted Listings
-        report. When a report is complete, eBay sets its status to SUCCESS and you can download it
-        using the URL returned in the reportHref field of the getReportTask call. Report files are
-        tab-separated value gzip files with a file extension of .tsv.gz.Note: The reporting of some
-        data related to sales and ad-fees may require a 72-hour (maximum) adjustment period which is
-        often referred to as the Reconciliation Period. Such adjustment periods should, on average,
-        be minimal. However, at any given time, the payments tab may be used to view those amounts
-        that have actually been charged.Note: This call fails if you don't submit all the required
-        fields for the specified report type. Fields not supported by the specified report type are
-        ignored. Call getReportMetadata to retrieve a list of the fields you need to configure for
-        each Promoted Listings report type.Important!For ad_report and ad_report_task methods, the
-        API call limit is subject to a per user quota. These API calls can only be executed a
-        maximum of 200 times per hour for each seller/user. If the number of calls per hour exceeds
-        this limit, any new calls will be blocked for the next hour.Important! The data threshold
-        for a single report is currently 1 million records; if this threshold is exceeded, the
-        report will fail.
+        dates, the listings to include in the report, and more.
         """
         return self._request(
             'createReportTask',
@@ -18453,12 +15695,7 @@ class SellMarketingResource(BaseResource):
         """This call returns the details of a specific Promoted Listings report task, as specified by
         the report_task_id path parameter. The report task includes the report criteria (such as the
         report dimensions, metrics, and included listing) and the report-generation rules (such as
-        starting and ending dates for the specified report task). Report-task IDs are generated by
-        eBay when you call createReportTask. Get a complete list of a seller's report-task IDs by
-        calling getReportTasks.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        starting and ending dates for the specified report task).
         """
         return self._request(
             'getReportTask',
@@ -18478,11 +15715,8 @@ class SellMarketingResource(BaseResource):
     def delete_report_task(self, report_task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This call deletes the report task specified by the report_task_id path parameter. This
         method also deletes any reports generated by the report task. Report task IDs are generated
-        by eBay when you call createReportTask. Get a complete list of a seller's report-task IDs by
-        calling getReportTasks.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        by eBay when you call createReportTask . Get a complete list of a seller's report-task IDs
+        by calling getReportTasks .
         """
         return self._request(
             'deleteReportTask',
@@ -18502,32 +15736,7 @@ class SellMarketingResource(BaseResource):
     def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        creates an item price markdown discount (know simply as a "markdown discount") where a
-        discount amount is applied directly to the items included in the discount. Discounts can be
-        specified as either a monetary amount or a percentage off the standard sales price. eBay
-        highlights discounted items by placing teasers for the items throughout the online sales
-        flows. Unlike an item discount, a markdown discount does not require the buyer meet a
-        "threshold" before the offer takes effect. With markdown discounts, all the buyer needs to
-        do is purchase the item to receive the discount benefit. Important: There are some
-        restrictions for which listings are available for price markdown discounts. For details, see
-        Discounts Manager requirements and restrictions. In addition, we recommend you list items at
-        competitive prices before including them in your markdown discounts. For an extensive list
-        of pricing recommendations, see the Growth tab in Seller Hub. There are two ways to enable
-        items for markdown discounts: Key-based discounts select items using either the listing IDs
-        or inventory reference IDs of the items you want to discount. Note that if you use inventory
-        reference IDs, you must specify both the inventoryReferenceId and the associated
-        inventoryReferenceType of the item(s) you want to include. Rule-based discounts select items
-        using a list of eBay category IDs or seller Store category IDs. Rules can further constrain
-        items being discounted by minimum and maximum prices, brands, and item conditions. New
-        discounts must be created in either a DRAFT or a SCHEDULED state. Use the DRAFT state when
-        you are initially creating a discount and you want to be sure it's correctly configured
-        before scheduling it to run. When you create a discount, the promotionId is returned in the
-        Location response header. Use this ID to reference the discount in subsequent requests (such
-        as to schedule a discount that's in a DRAFT state). Tip: Refer to Discounts Manager in the
-        Selling Integration Guide for details and examples showing how to create and manage seller
-        discounts. Markdown discounts are available on all eBay marketplaces. For more information,
-        see Discounts Manager requirements and restrictions.
+        product name change, but note that no API interface changes have been made.
         """
         return self._request(
             'createItemPriceMarkdownPromotion',
@@ -18548,9 +15757,9 @@ class SellMarketingResource(BaseResource):
     def get_item_price_markdown_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemPriceMarkdown | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the complete details of the item price markdown discount that's indicated by the
-        promotion_id path parameter. Call getPromotions to retrieve the IDs of a seller's discounts.
+        promotion_id path parameter.
         """
         return self._request(
             'getItemPriceMarkdownPromotion',
@@ -18570,19 +15779,9 @@ class SellMarketingResource(BaseResource):
     def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         updates the specified item price markdown discount with the new configuration that you
-        supply in the payload of the request. Specify the discount you want to update using the
-        promotion_id path parameter. Call getPromotions to retrieve the IDs of a seller's
-        discounts.When updating a discount, supply all the fields that you used to configure the
-        original discount (and not just the fields you are updating). eBay replaces the specified
-        discount with the values you supply in the update request and if you don't pass a field that
-        currently has a value, the update request fails. The parameters you are allowed to update
-        with this request depend on the status of the discount you're updating: DRAFT or SCHEDULED
-        discounts: You can update any of the parameters in these discounts that have not yet started
-        to run, including the discountRules. RUNNING discounts: You can change the endDate and the
-        item's inventory but you cannot change the discount or the start date. ENDED discounts:
-        Nothing can be changed.
+        supply in the payload of the request.
         """
         return self._request(
             'updateItemPriceMarkdownPromotion',
@@ -18603,11 +15802,8 @@ class SellMarketingResource(BaseResource):
     def delete_item_price_markdown_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        deletes the item price markdown discount specified by the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of a seller's discounts. You can delete any discount with
-        the exception of those that are currently active (RUNNING). To end a running discount, call
-        updateItemPriceMarkdownPromotion and adjust the endDate field as appropriate.
+        product name change, but note that no API interface changes have been made. This method
+        deletes the item price markdown discount specified by the promotion_id path parameter.
         """
         return self._request(
             'deleteItemPriceMarkdownPromotion',
@@ -18627,34 +15823,9 @@ class SellMarketingResource(BaseResource):
     def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        creates an item discount, where the buyer receives a discount when they meet the specific
-        buying criteria. Known here as "threshold discounts", these discounts trigger when a
-        threshold is met. eBay highlights discounted items by placing teasers for the discounted
-        items throughout the online buyer flows. Discounts are specified as either a monetary amount
-        or a percentage off the standard sales price of a listing, letting you offer deals such as
-        "Buy 1 Get 1" and "Buy $50, get 20% off". Volume pricing discounts increase the value of the
-        discount as the buyer increases the quantity they purchase. Coded Coupons provide unique
-        codes that a buyer can use during checkout to receive a discount. The seller can specify the
-        number of times a buyer can use the coupon and the maximum amount across all purchases that
-        can be discounted using the coupon. The coupon code can also be made public (appearing on
-        the seller's Offer page, search pages, the item listing, and the checkout page) or private
-        (only on the seller's Offer page, but the seller can include the code in email and social
-        media). Note: Coded Coupons are currently available in the US, UK, DE, FR, IT, ES, and AU
-        marketplaces.There are two ways to add items to a threshold discount: Key-based discounts
-        select items using either the listing IDs or inventory reference IDs of the items you want
-        to discount. Note that if you use inventory reference IDs, you must specify both the
-        inventoryReferenceId and the associated inventoryReferenceType of the item(s) you want to be
-        discounted. Rule-based discounts select items using a list of eBay category IDs or seller
-        Store category IDs. Rules can further constrain the items being discounted by minimum and
-        maximum prices, brands, and item conditions. You must create a new discount in either a
-        DRAFT or SCHEDULED state. Use the DRAFT state when you are initially creating a discount and
-        you want to be sure it's correctly configured before scheduling it to run. When you create a
-        discount, the promotion ID is returned in the Location response header. Use this ID to
-        reference the discount in subsequent requests. Tip: Refer to the Selling Integration Guide
-        for details and examples showing how to create and manage threshold discounts using the
-        Discounts Manager. For information on the eBay marketplaces that support item discounts, see
-        Discounts Manager requirements and restrictions.
+        product name change, but note that no API interface changes have been made. This method
+        creates an item discount , where the buyer receives a discount when they meet the specific
+        buying criteria.
         """
         return self._request(
             'createItemPromotion',
@@ -18675,9 +15846,9 @@ class SellMarketingResource(BaseResource):
     def get_item_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemPromotionResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the complete details of the threshold discount specified by the promotion_id path
-        parameter. Call getPromotions to retrieve the IDs of a seller's discounts.
+        parameter.
         """
         return self._request(
             'getItemPromotion',
@@ -18697,21 +15868,9 @@ class SellMarketingResource(BaseResource):
     def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         updates the specified threshold discount with the new configuration that you supply in the
-        request. Indicate the discount you want to update using the promotion_id path parameter.
-        Call getPromotions to retrieve the IDs of a seller's discounts. When updating a discount,
-        supply all the fields that you used to configure the original discount (and not just the
-        fields you are updating). eBay replaces the specified discount with the values you supply in
-        the update request and if you don't pass a field that currently has a value, the update
-        request will fail. The parameters you are allowed to update with this request depend on the
-        status of the discount you're updating: DRAFT or SCHEDULED discounts: You can update any of
-        the parameters in these discounts that have not yet started to run, including the
-        discountRules. RUNNING or PAUSED discounts: You can change the endDate and the item's
-        inventory but you cannot change the discount or the start date. ENDED discounts: Nothing can
-        be changed. Tip: When updating a RUNNING or PAUSED discount, set the status field to
-        SCHEDULED for the update request. When the discount is updated, the previous status (either
-        RUNNING or PAUSED) is retained.
+        request.
         """
         return self._request(
             'updateItemPromotion',
@@ -18732,11 +15891,8 @@ class SellMarketingResource(BaseResource):
     def delete_item_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        deletes the threshold discount specified by the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of a seller's discounts. You can delete any discount with
-        the exception of those that are currently active (RUNNING). To end a running threshold
-        discount, call updateItemPromotion and adjust the endDate field as appropriate.
+        product name change, but note that no API interface changes have been made. This method
+        deletes the threshold discount specified by the promotion_id path parameter.
         """
         return self._request(
             'deleteItemPromotion',
@@ -18756,12 +15912,9 @@ class SellMarketingResource(BaseResource):
     def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the set of listings associated with the promotion_id specified in the path
-        parameter. Call getPromotions to retrieve the IDs of a seller's discounts. The listing
-        details are returned in a paginated set and you can control and results returned using the
-        following query parameters: limit, offset, q, sort, and status. Maximum associated listings
-        returned: 200 Default number of listings returned: 200
+        parameter.
         """
         return self._request(
             'getListingSet',
@@ -18781,15 +15934,8 @@ class SellMarketingResource(BaseResource):
     def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        returns a list of a seller's undeleted discounts. The call returns up to 200 currently-
-        available discounts on the specified marketplace. While the response body does not include
-        the discount's discountRules or inventoryCriterion containers, it does include the
-        promotionHref (which you can use to retrieve the complete details of the discount). Use
-        query parameters to sort and filter the results by the number of discounts to return, the
-        discount state or type, and the eBay marketplace. You can also supply keywords to limit the
-        response to the discounts that contain that keywords in the title of the discount. Maximum
-        returned: 200
+        product name change, but note that no API interface changes have been made. This method
+        returns a list of a seller's undeleted discounts.
         """
         return self._request(
             'getPromotions',
@@ -18809,14 +15955,9 @@ class SellMarketingResource(BaseResource):
     def pause_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         pauses a currently-active (RUNNING) threshold discount and changes the state of the discount
-        from RUNNING to PAUSED. Pausing a discount makes the discount temporarily unavailable to
-        buyers and any currently-incomplete transactions will not receive the offer until the
-        discount is resumed. Also, discount teasers are not displayed when a discount is paused.
-        Pass the ID of the discount you want to pause using the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of the seller's discounts. Note: You can only pause
-        threshold discounts (you cannot pause markdown discounts).
+        from RUNNING to PAUSED .
         """
         return self._request(
             'pausePromotion',
@@ -18836,13 +15977,9 @@ class SellMarketingResource(BaseResource):
     def resume_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         restarts a threshold discount that was previously paused and changes the state of the
-        discount from PAUSED to RUNNING. Only discounts that have been previously paused can be
-        resumed. Resuming a discount reinstates the teasers and any transactions that were in motion
-        before the discount was paused will again be eligible for the discount. Pass the ID of the
-        discount you want to resume using the promotion_id path parameter. Call getPromotions to
-        retrieve the IDs of the seller's discounts.
+        discount from PAUSED to RUNNING .
         """
         return self._request(
             'resumePromotion',
@@ -18862,13 +15999,9 @@ class SellMarketingResource(BaseResource):
     def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         generates a report that lists the seller's running, paused, and ended discounts for the
-        specified eBay marketplace. The result set can be filtered by the discount status and the
-        number of results to return. You can also supply keywords to limit the report to discounts
-        that contain the specified keywords. Specify the eBay marketplace for which you want the
-        report run using the marketplace_id query parameter. Supply additional query parameters to
-        control the report as needed.
+        specified eBay marketplace.
         """
         return self._request(
             'getPromotionReports',
@@ -18888,12 +16021,9 @@ class SellMarketingResource(BaseResource):
     def get_promotion_summary_report(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SummaryReportResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         generates a report that summarizes the seller's discounts for the specified eBay
-        marketplace. The report returns information on RUNNING, PAUSED, and ENDED discounts (deleted
-        reports are not returned) and summarizes the seller's campaign performance for all discounts
-        on a given site. For information about summary reports, see Reading the item discount
-        Summary report.
+        marketplace.
         """
         return self._request(
             'getPromotionSummaryReport',
@@ -18911,8 +16041,8 @@ class SellMarketingResource(BaseResource):
     @overload
     def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
-        """This method retrieves a list of email campaigns from a seller's eBay store.Users can filter
-        the results by email campaign type, email campaign status, and marketplace ID using the q
+        """This method retrieves a list of email campaigns from a seller's eBay store. Users can filter
+        the results by email campaign type , email campaign status , and marketplace ID using the q
         query parameter.
         """
         return self._request(
@@ -18933,12 +16063,8 @@ class SellMarketingResource(BaseResource):
     def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
         """This method creates a new email campaign. An eBay store owner can create six different types
         of email campaigns: Welcome, New products & collections, Coupon, Sale event + markdown,
-        Order discount, and Volume pricing.A successful createEmailCampaign request returns the
-        emailCampaignId assigned to the new email campaign.The fields emailCampaignType,
-        audienceCodes, itemSelectMode, subject, and personalizedMessage are required for all email
-        campaign types. Specific email campaign types have required values for additional fields.
-        For more information on the email campaign types, see the Store Email Campaigns section of
-        the Selling Integration Guide.
+        Order discount, and Volume pricing. A successful createEmailCampaign request returns the
+        emailCampaignId assigned to the new email campaign.
         """
         return self._request(
             'createEmailCampaign',
@@ -18958,7 +16084,7 @@ class SellMarketingResource(BaseResource):
     def get_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignResponse | httpx.Response:
         """This method returns the details of a single email campaign specified by the
-        email_campaign_id path parameter.Call getEmailCampaigns to retrieve a list of all email
+        email_campaign_id path parameter. Call getEmailCampaigns to retrieve a list of all email
         campaigns from a seller's eBay store.
         """
         return self._request(
@@ -18978,10 +16104,9 @@ class SellMarketingResource(BaseResource):
     def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
         """This method lets users update an existing email campaign. Pass the emailCampaignId in the
-        request URL and specify the changes to field values in the request payload.Note: You can
+        request URL and specify the changes to field values in the request payload. Note: You can
         only update the custom fields of an email campaign. Fixed values, such as the
-        emailCampaignType, cannot be changed. For full specifications of fixed values for each email
-        campaign type, see the createEmailCampaign method documentation.
+        emailCampaignType , cannot be changed.
         """
         return self._request(
             'updateEmailCampaign',
@@ -19000,8 +16125,8 @@ class SellMarketingResource(BaseResource):
     @overload
     def delete_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def delete_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.DeleteEmailCampaignResponse | httpx.Response:
-        """This method deletes the email campaign specified by the email_campaign_id path
-        parameter.Call getEmailCampaigns to retrieve all of the seller's email campaigns. Use the
+        """This method deletes the email campaign specified by the email_campaign_id path parameter.
+        Call getEmailCampaigns to retrieve all of the seller's email campaigns. Use the
         email_campaign_id of the desired email campaign in the response as the path parameter for
         this request.
         """
@@ -19022,7 +16147,7 @@ class SellMarketingResource(BaseResource):
     def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
         """This method retrieves all available email newsletter audiences for the email campaign type
-        specified by the emailCampaignType path parameter.Use the optional limit and offset path
+        specified by the emailCampaignType path parameter. Use the optional limit and offset path
         parameters to paginate the results and to control which records are returned, respectively.
         """
         return self._request(
@@ -19042,14 +16167,9 @@ class SellMarketingResource(BaseResource):
     def get_email_preview(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_email_preview(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailPreviewResponse | httpx.Response:
         """This method returns a preview of the email sent by the email campaign indicated by the
-        email_campaign_id path parameter.Call getEmailCampaigns to obtain a list of email campaigns.
-        Use the emailCampaignId value of the desired email campaign as the email_campaign_id path
-        parameter value.If this call is executed successfully, the response returns a content field
-        that contains the raw HTML code of the email campaign that can then be rendered
-        anywhere.Note: The eBay listings in the email are sorted according to the email campaign
-        sort criteria. The individual listings can change over time, as well.The result of the email
-        preview call can be treated as a snapshot of the email campaign taken at the date and time
-        of the renderDate value found in the results of the call.
+        email_campaign_id path parameter. Call getEmailCampaigns to obtain a list of email
+        campaigns. Use the emailCampaignId value of the desired email campaign as the
+        email_campaign_id path parameter value.
         """
         return self._request(
             'getEmailPreview',
@@ -19069,10 +16189,7 @@ class SellMarketingResource(BaseResource):
     def get_email_report(self, *, end_date: str, start_date: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailReportResponse | httpx.Response:
         """This method returns the seller's email campaign performance report for a time period
         specified by the startDate and endDate path parameters. The maximum date range for a report
-        retrieved by this method is one year. Note: The startDate and endDate must be given in UTC
-        format, as shown in the following example: sell/marketing/v1/email_campaign/report?startDate
-        =2022-11-01T19:09:02.768Z&endDate=2022-12-28T19:09:02.768ZThe email report returns a list of
-        metrics, such as the number of times an email report has been opened and resulted in clicks.
+        retrieved by this method is one year.
         """
         return self._request(
             'getEmailReport',
@@ -19101,17 +16218,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateAdsByInventoryReferenceResponse | httpx.Response:
         """This method adds multiple listings that are managed with the Inventory API to an existing
-        Promoted Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS)
-        model, bulk ads may be directly created for the listing.For each listing specified in the
-        request, this method:Creates an ad for the listing. Sets the bid percentage (also known as
-        the ad rate) for the ads created. Associates the ads created with the specified campaign.To
-        create ads for a listing, specify their inventoryReferenceId and inventoryReferenceType,
-        plus the bidPercentage for the ad in the payload of the request. Specify the campaign to
-        which you want to associate the ads using the campaign_id path parameter.Note: This method
-        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
-        Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.Use createCampaign to create a new campaign and use getCampaigns to get a list
-        of existing campaigns.
+        Promoted Listings campaign. For general strategy campaigns using the Cost Per Sale (CPS)
+        model, bulk ads may be directly created for the listing. For each listing specified in the
+        request, this method: Creates an ad for the listing. Sets the bid percentage (also known as
+        the ad rate ) for the ads created.
         """
         return await self._request(
             'bulkCreateAdsByInventoryReference',
@@ -19131,26 +16241,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdResponse | httpx.Response:
         """This method adds multiple listings to an existing Promoted Listings campaign using listingId
-        values generated by the Trading API or Inventory API, or using values generated by an ad
-        group ID.For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
-        ads may be directly created for the listing.For each listing ID specified in the request,
-        this method: Creates an ad for the listing. Sets the bid percentage (also known as the ad
-        rate) for the ad. Associates the ad with the specified campaign.To create an ad for a
-        listing, specify its listingId, plus the bidPercentage for the ad in the payload of the
-        request. Specify the campaign to associate the ads with using the campaign_id path
-        parameter. Listing IDs are generated by eBay when a seller creates listings with the Trading
-        API.You can specify a maximum of 500 listings per call and each campaign can have ads for a
-        maximum of 50,000 items. Be aware when using this call that each variation in a multiple-
-        variation listing creates an individual ad.For manual targeting priority strategy campaigns
-        using the Cost Per Click (CPC) funding model, an ad group must be created first. If no ad
-        group has been created for the campaign, ads cannot be created.Note: Ad groups are not
-        required when adding listings to a smart targeting campaign.For the ad group specified in
-        the request, this method associates the ad with the specified ad group.To create an ad for
-        an ad group, specify the name of the ad group plus the defaultBid for the ad in the payload
-        of the request. Specify the campaign to associate the ads with using the campaign_id path
-        parameter. Ad groups are generated using the createAdGroup method. You can specify one or
-        more ad groups per campaign.Use createCampaign to create a new campaign and use getCampaigns
-        to get a list of existing campaigns.
+        values generated by the Trading API or Inventory API , or using values generated by an ad
+        group ID. For general strategy campaigns using the Cost Per Sale (CPS) funding model, bulk
+        ads may be directly created for the listing.
         """
         return await self._request(
             'bulkCreateAdsByListingId',
@@ -19169,15 +16262,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdsByInventoryReferenceResponse | httpx.Response:
-        """This method works with listings created with the Inventory API.The method deletes a set of
+        """This method works with listings created with the Inventory API . The method deletes a set of
         ads, as specified by a list of inventory reference IDs, from the specified campaign.
-        Inventory reference IDs are seller-defined IDs that are used with the Inventory API.Pass the
-        campaign_id as a path parameter and populate the payload with a list of inventoryReferenceId
-        and inventoryReferenceType pairs that you want to delete.Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        Inventory reference IDs are seller-defined IDs that are used with the Inventory API .
         """
         return await self._request(
             'bulkDeleteAdsByInventoryReference',
@@ -19196,17 +16283,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_delete_ads_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkDeleteAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkDeleteAdResponse | httpx.Response:
-        """This method works with listing IDs created with either the Trading API or the Inventory
-        API.The method deletes a set of ads, as specified by a list of listingID values from a
+        """This method works with listing IDs created with either the Trading API or the Inventory API
+        . The method deletes a set of ads, as specified by a list of listingID values from a
         Promoted Listings campaign. A listing ID value is generated by eBay when a seller creates a
-        listing with either the Trading API and Inventory API.Pass the campaign_id as a path
-        parameter and populate the payload with the set of listing IDs that you want to delete.Get
-        the campaign IDs for a seller by calling getCampaigns and call getAds to get a list of the
-        seller's inventory reference IDs.Note: This method only applies to the Cost Per Sale (CPS)
-        funding model; it does not apply to the Cost Per Click (CPC) funding model. See Funding
-        Models in the Promoted Listings Playbook for more information.When using the CPC funding
-        model, use the bulkUpdateAdsStatusByListingId method to change the status of ads to
-        ARCHIVED.
+        listing with either the Trading API and Inventory API.
         """
         return await self._request(
             'bulkDeleteAdsByListingId',
@@ -19225,15 +16305,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_ads_bid_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateAdsByInventoryReferenceResponse | httpx.Response:
-        """This method works with listings created with either the Trading API or the Inventory API.
+        """This method works with listings created with either the Trading API or the Inventory API .
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
-        their associated updated bidPercentage values in the request body. An eBay listing ID is
-        generated when a listing is created with the Trading API. Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        their associated updated bidPercentage values in the request body.
         """
         return await self._request(
             'bulkUpdateAdsBidByInventoryReference',
@@ -19252,15 +16327,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_ads_bid_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateResponse | httpx.Response:
-        """This method works with listings created with either the Trading API or the Inventory API.
+        """This method works with listings created with either the Trading API or the Inventory API .
         The method updates the bidPercentage values for a set of ads associated with the specified
         campaign. Specify the campaign_id as a path parameter and supply a set of listing IDs with
-        their associated updated bidPercentage values in the request body. An eBay listing ID is
-        generated when a listing is created with the Trading API. Get the campaign IDs for a seller
-        by calling getCampaigns and call getAds to get a list of the seller's inventory reference
-        IDs.Note: This method only applies to the Cost Per Sale (CPS) funding model; it does not
-        apply to the Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings
-        Playbook for more information.
+        their associated updated bidPercentage values in the request body.
         """
         return await self._request(
             'bulkUpdateAdsBidByListingId',
@@ -19283,9 +16353,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         priority strategy program. For information about how to request access to this program,
         refer to Priority Strategy Access Requests in the Promoted Listings Playbook. To determine
         if a seller qualifies for priority strategy, use the getAdvertisingEligibility method in
-        Account API.This method works with listings created with either the Trading API or the
-        Inventory API.This method updates the status of ads in bulk.Specify the campaign_id you want
-        to update as a URI parameter, and configure the adGroupStatus in the request payload.
+        Account API.
         """
         return await self._request(
             'bulkUpdateAdsStatus',
@@ -19304,11 +16372,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_ads_status_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateAdStatusByListingIdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkAdUpdateStatusByListingIdResponse | httpx.Response:
-        """The method updates the status of ads in bulk, based on listing ID values.Specify the
+        """The method updates the status of ads in bulk, based on listing ID values. Specify the
         campaign_id as a path parameter and supply a set of listing IDs with their updated adStatus
         values in the request body. An eBay listing ID is generated when a listing is created with
-        the Trading API.Get the campaign IDs for a seller by calling getCampaigns and call getAds to
-        retrieve a list of seller inventory reference IDs.
+        the Trading API.
         """
         return await self._request(
             'bulkUpdateAdsStatusByListingId',
@@ -19328,13 +16395,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_ads(self, campaign_id: str, *, ad_group_ids: str | None = None, ad_status: str | None = None, limit: str | None = None, listing_ids: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdPagedCollectionResponse | httpx.Response:
         """This method retrieves Promoted Listings ads that are associated with listings created with
-        either the Trading API or the Inventory API. The method retrieves ads related to the
+        either the Trading API or the Inventory API . The method retrieves ads related to the
         specified campaign. Specify the Promoted Listings campaign to target with the campaign_id
-        path parameter. Because of the large number of possible results, you can use query
-        parameters to paginate the result set by specifying a limit, which dictates how many ads to
-        return on each page of the response. You can also specify how many ads to skip in the result
-        set before returning the first result using the offset path parameter. Call getCampaigns to
-        retrieve the current campaign IDs for the seller.
+        path parameter.
         """
         return await self._request(
             'getAds',
@@ -19353,25 +16416,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_ad_by_listing_id(self, campaign_id: str, *, body: sell_marketing_models.CreateAdRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a listing to an existing Promoted Listings campaign using a listingId value
-        generated by the Trading API or Inventory API, or using a value generated by an ad group ID.
-        For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
-        directly created for the listing.For the listing ID specified in the request, this method:
-        Creates an ad for the listing. Sets the bid percentage (also known as the ad rate) for the
-        ad. Associates the ad with the specified campaign. To create an ad for a listing, specify
-        its listingId, plus the bidPercentage for the ad in the payload of the request. Specify the
-        campaign to associate the ad with using the campaign_id path parameter. Listing IDs are
-        generated by eBay when a seller creates listings with the Trading API.For manual targeting
-        priority strategy campaigns using the Cost Per Click (CPC) funding model, an ad group must
-        be created first. If no ad group has been created for the campaign, ads cannot be
-        created.Note: Ad groups are not required when adding listings to a smart targeting
-        campaign.For the ad group specified in the request, this method associates the ad with the
-        specified ad group.To create an ad for an ad group, specify the name of the ad group in the
-        payload of the request. Specify the campaign to associate the ads with using the campaign_id
-        path parameter. Ad groups are generated using the createAdGroup method. You can specify one
-        or more ad groups per campaign.Use createCampaign to create a new campaign and use
-        getCampaigns to get a list of existing campaigns.This call has no response payload. If the
-        ad is successfully created, a 201 Created HTTP status code and the getAd URI of the ad are
-        returned in the location header.
+        generated by the Trading API or Inventory API , or using a value generated by an ad group
+        ID. For general strategy campaigns using the Cost Per Sale (CPS) funding model, an ad may be
+        directly created for the listing. For the listing ID specified in the request, this method:
+        Creates an ad for the listing.
         """
         return await self._request(
             'createAdByListingId',
@@ -19391,17 +16439,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.CreateAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdReferences | httpx.Response:
         """This method adds a listing that is managed with the Inventory API to an existing Promoted
-        Listings campaign.For general strategy campaigns using the Cost Per Sale (CPS) funding
-        model, an ad may be directly created for the listing.For each listing specified in the
-        request, this method:Creates an ad for the listing. Sets the bid percentage (also known as
-        the ad rate) for the ads created. Associates the created ad with the specified campaign.To
-        create an ad for a listing, specify its inventoryReferenceId and inventoryReferenceType,
-        plus the bidPercentage for the ad in the payload of the request. Specify the campaign to
-        associate the ad with using the campaign_id path parameter.Note: This method only applies to
-        the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC) funding
-        model. See Funding Models in the Promoted Listings Playbook for more information.Use
-        createCampaign to create a new campaign and use getCampaigns to get a list of existing
-        campaigns.
+        Listings campaign. For general strategy campaigns using the Cost Per Sale (CPS) funding
+        model, an ad may be directly created for the listing. For each listing specified in the
+        request, this method: Creates an ad for the listing. Sets the bid percentage (also known as
+        the ad rate ) for the ads created.
         """
         return await self._request(
             'createAdsByInventoryReference',
@@ -19440,13 +16481,11 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def delete_ad(self, ad_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_ad(self, ad_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method removes the specified ad from the specified campaign.Pass the ID of the ad to
-        delete with the ID of the campaign associated with the ad as path parameters to the
-        call.Call getCampaigns to get the current list of the seller's campaign IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.When using the CPC funding model, use the bulkUpdateAdsStatusByListingId method
-        to change the status of ads to ARCHIVED.
+        """This method removes the specified ad from the specified campaign. Pass the ID of the ad to
+        delete with the ID of the campaign associated with the ad as path parameters to the call.
+        Call getCampaigns to get the current list of the seller's campaign IDs. Note: This method
+        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
+        Click (CPC) funding model.
         """
         return await self._request(
             'deleteAd',
@@ -19464,15 +16503,11 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_ads_by_inventory_reference(self, campaign_id: str, *, body: sell_marketing_models.DeleteAdsByInventoryReferenceRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdIds | httpx.Response:
-        """This method works with listings that are managed with the Inventory API. The method deletes
+        """This method works with listings that are managed with the Inventory API . The method deletes
         ads using a list of seller-defined inventory reference IDs, used with the Inventory API,
         that are associated with the specified campaign ID. Specify the campaign ID (as a path
         parameter) and a list of inventoryReferenceId and inventoryReferenceType pairs to be
-        deleted. Call getCampaigns to get a list of the seller's current campaign IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.When using the CPC funding model, use the
-        bulkUpdateAdsStatusByInventoryReference method to change the status of ads to ARCHIVED.
+        deleted.
         """
         return await self._request(
             'deleteAdsByInventoryReference',
@@ -19492,16 +16527,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_ads_by_inventory_reference(self, campaign_id: str, *, inventory_reference_id: str, inventory_reference_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_ads_by_inventory_reference(self, campaign_id: str, *, inventory_reference_id: str, inventory_reference_type: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Ads | httpx.Response:
         """This method retrieves Promoted Listings ads associated with listings that are managed with
-        the Inventory API from the specified campaign.Supply the campaign_id as a path parameter and
-        use query parameters to specify the inventory_reference_id and inventory_reference_type
-        pairs.In the Inventory API, an inventory reference ID is either a seller-defined SKU value
-        or an inventoryItemGroupKey (a seller-defined ID for an inventory item group, which is an
-        entity that's used in the Inventory API to create a multiple-variation listing). To indicate
-        a listing managed by the Inventory API, you must always specify both an
-        inventory_reference_id and the associated inventory_reference_type.Call getCampaigns to
-        retrieve all of the seller's the current campaign IDs.Note: This method only applies to the
-        Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC) funding
-        model. See Funding Models in the Promoted Listings Playbook for more information.
+        the Inventory API from the specified campaign. Supply the campaign_id as a path parameter
+        and use query parameters to specify the inventory_reference_id and inventory_reference_type
+        pairs.
         """
         return await self._request(
             'getAdsByInventoryReference',
@@ -19522,10 +16550,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         """This method updates the bid percentage (also known as the "ad rate") for the specified ad in
         the specified campaign. In the request, supply the campaign_id and ad_id as path parameters,
         and supply the new bidPercentage value in the payload of the call. Call getCampaigns to
-        retrieve a seller's current campaign IDs and call getAds to get their ad IDs.Note: This
-        method only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost
-        Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.
+        retrieve a seller's current campaign IDs and call getAds to get their ad IDs.
         """
         return await self._request(
             'updateBid',
@@ -19544,8 +16569,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_ad_groups(self, campaign_id: str, *, ad_group_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroupPagedCollectionResponse | httpx.Response:
-        """This method retrieves ad groups for the specified campaign.Each campaign can only have one
-        ad group.In the request, supply the campaign_id as the path parameter.Call getCampaigns to
+        """This method retrieves ad groups for the specified campaign. Each campaign can only have one
+        ad group. In the request, supply the campaign_id as the path parameter. Call getCampaigns to
         retrieve a list of the current campaign IDs for a seller.
         """
         return await self._request(
@@ -19565,9 +16590,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_ad_group(self, campaign_id: str, *, body: sell_marketing_models.CreateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds an ad group to an existing priority strategy campaign that uses manual
-        targeting.To create an ad group for a campaign, specify the defaultBid for the ad group in
+        targeting. To create an ad group for a campaign, specify the defaultBid for the ad group in
         the payload of the request. Then specify the campaign to which the ad group should be
-        associated using the campaign_id path parameter.Each campaign can have one or more
+        associated using the campaign_id path parameter. Each campaign can have one or more
         associated ad groups.
         """
         return await self._request(
@@ -19588,9 +16613,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_ad_group(self, ad_group_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_ad_group(self, ad_group_id: str, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.AdGroup | httpx.Response:
         """This method retrieves the details of a specified ad group, such as the ad group’s default
-        bid and status.In the request, specify the campaign_id and ad_group_id as path
-        parameters.Call getCampaigns to retrieve a list of the current campaign IDs for a seller and
-        call getAdGroups for the ad group ID of the ad group you wish to retrieve.
+        bid and status. In the request, specify the campaign_id and ad_group_id as path parameters.
+        Call getCampaigns to retrieve a list of the current campaign IDs for a seller and call
+        getAdGroups for the ad group ID of the ad group you wish to retrieve.
         """
         return await self._request(
             'getAdGroup',
@@ -19608,11 +16633,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_ad_group(self, ad_group_id: str, campaign_id: str, *, body: sell_marketing_models.UpdateAdGroupRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method updates the ad group associated with a campaign.With this method, you can modify
-        the default bid for the ad group, change the state of the ad group, or change the name of
-        the ad group. Pass the ad_group_id you want to update as a URI parameter, and configure the
-        adGroupStatus and defaultBid in the request payload.Call getAdGroup to retrieve the current
-        default bid and status of the ad group that you would like to update.
+        """This method updates the ad group associated with a campaign. With this method, you can
+        modify the default bid for the ad group, change the state of the ad group, or change the
+        name of the ad group. Pass the ad_group_id you want to update as a URI parameter, and
+        configure the adGroupStatus and defaultBid in the request payload.
         """
         return await self._request(
             'updateAdGroup',
@@ -19669,15 +16693,11 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def clone_campaign(self, campaign_id: str, *, body: sell_marketing_models.CloneCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
-        """This method clones (makes a copy of) the specified campaign's campaign criterion. The
+        """This method clones (makes a copy of) the specified campaign's campaign criterion . The
         campaign criterion is a container for the fields that define the criteria for a rule-based
-        campaign.To clone a campaign, supply the campaign_id as a path parameter in your call. There
-        is no request payload. The ID of the newly-cloned campaign is returned in the Location
-        response header.Call getCampaigns to retrieve a seller's current campaign IDs. Requirement:
-        In order to clone a campaign, the campaignStatus must be ENDED and the campaign must define
-        a set of selection rules (it must be a rules-based campaign).Note: This method only applies
-        to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per Click (CPC)
-        funding model. See Funding Models in the Promoted Listings Playbook for more information.
+        campaign. To clone a campaign, supply the campaign_id as a path parameter in your call.
+        There is no request payload. The ID of the newly-cloned campaign is returned in the Location
+        response header.
         """
         return await self._request(
             'cloneCampaign',
@@ -19699,10 +16719,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         """This method retrieves the details for all of the seller's defined campaigns. Request
         parameters can be used to retrieve a specific campaign, such as the campaign's name, the
         start and end date, the channel, the status, and the funding model (i.e., Cost Per Sale
-        (CPS) or Cost Per Click (CPC)). You can filter the result set by a campaign name, end date
-        range, start date range, campaign channel, or campaign status. You can also paginate the
-        records returned from the result set using the limit query parameter, and control which
-        records to return using the offset parameter.
+        (CPS) or Cost Per Click (CPC)).
         """
         return await self._request(
             'getCampaigns',
@@ -19721,26 +16738,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_campaign(self, *, body: sell_marketing_models.CreateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method can be used to create a Promoted Listings general, priority, or offsite
-        campaign.A Promoted Listings campaign is the structure in which you place the ads or ad
-        group for the listings you wish to promote.Note: Campaigns can only contain ads for a
-        maximum of 50,000 items.General strategy campaigns utilize a Cost Per Sale (CPS) funding
-        model. Sellers can set the ad rate and bidding strategies that are right for their business
-        through the adRateStrategy, biddingStrategy, bidPercentage fields. For more information on
-        general strategy campaigns, see Promoted Listings general strategy campaign flow.Priority
-        strategy campaigns utilize a Cost per Click (CPC) funding model. Sellers can create a daily
-        budget through the budget container and choose what channel that their ads appear on. In
-        addition, priority strategy campaigns give sellers the ability to create ad groups and
-        specify keywords to ensure their ads reach their intended audience. For more information on
-        priority strategy campaigns, see Promoted listings priority strategy campaign flow.Promoted
-        Offsite campaigns give sellers the ability to create their own advertising campaign and
-        promote their eBay listing in leading external search channels. For more information on
-        Promoted Offsite campaigns, see Promoted Offsite.Note: Sellers can use the
-        getAdvertisingEligibility method of the Account API v1 to determine their eligibility status
-        for eBay advertising programs.To create a basic campaign, supply: The user-defined campaign
-        name The start date (and optionally the end date) of the campaign The eBay marketplace on
-        which the campaign is hosted Details on the campaign funding modelFor details on creating
-        Promoted Listings campaigns and how to select the items to be included in your campaigns,
-        see Promoted Listings campaign creation.
+        campaign. A Promoted Listings campaign is the structure in which you place the ads or ad
+        group for the listings you wish to promote. Note: Campaigns can only contain ads for a
+        maximum of 50,000 items. General strategy campaigns utilize a Cost Per Sale (CPS) funding
+        model.
         """
         return await self._request(
             'createCampaign',
@@ -19762,7 +16763,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         """This method retrieves the details of a single campaign, as specified with the campaign_id
         query parameter. This method returns all the details of a campaign (including the campaign's
         the selection rules), except the for the listing IDs or inventory reference IDs included in
-        the campaign. These IDs are returned by getAds. Call getCampaigns to retrieve a list of the
+        the campaign. These IDs are returned by getAds . Call getCampaigns to retrieve a list of the
         seller's campaign IDs.
         """
         return await self._request(
@@ -19781,9 +16782,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def delete_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method deletes the campaign specified by the campaign_id query parameter.Note: You can
-        only delete campaigns that have ended.Call getCampaigns to retrieve the campaign_id and the
-        campaign status (RUNNING, PAUSED, ENDED, and so on) for all the seller's campaigns.
+        """This method deletes the campaign specified by the campaign_id query parameter. Note: You can
+        only delete campaigns that have ended. Call getCampaigns to retrieve the campaign_id and the
+        campaign status ( RUNNING , PAUSED , ENDED , and so on) for all the seller's campaigns.
         """
         return await self._request(
             'deleteCampaign',
@@ -19801,10 +16802,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def end_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def end_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method ends an active (RUNNING) or paused campaign. Specify the campaign you want to
+        """This method ends an active ( RUNNING ) or paused campaign. Specify the campaign you want to
         end by supplying its campaign ID in a query parameter. Call getCampaigns to retrieve the
-        campaign_id and the campaign status (RUNNING, PAUSED, ENDED, and so on) for all the seller's
-        campaigns.
+        campaign_id and the campaign status ( RUNNING , PAUSED , ENDED , and so on) for all the
+        seller's campaigns.
         """
         return await self._request(
             'endCampaign',
@@ -19824,13 +16825,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def find_campaign_by_ad_reference(self, *, inventory_reference_id: str | None = None, inventory_reference_type: str | None = None, listing_id: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Campaigns | httpx.Response:
         """This method retrieves the campaigns containing the listing that is specified using either a
         listing ID, or an inventory reference ID and inventory reference type pair. The request
-        accepts either a listing_id, or an inventory_reference_id and inventory_reference_type pair,
-        as used in the Inventory API.eBay listing IDs are generated by either the Trading API or the
-        Inventory API when you create a listing.An inventory reference ID can be either a seller-
-        defined SKU or inventoryItemGroupKey, as specified in the Inventory API.Note: This method
-        only applies to the Cost Per Sale (CPS) funding model; it does not apply to the Cost Per
-        Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for more
-        information.
+        accepts either a listing_id , or an inventory_reference_id and inventory_reference_type
+        pair, as used in the Inventory API.
         """
         return await self._request(
             'findCampaignByAdReference',
@@ -19850,7 +16846,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_campaign_by_name(self, *, campaign_name: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Campaign | httpx.Response:
         """This method retrieves the details of a single campaign, as specified with the campaign_name
         query parameter. Note that the campaign name you specify must be an exact, case-sensitive
-        match of the name of the campaign you want to retrieve.Call getCampaigns to retrieve a list
+        match of the name of the campaign you want to retrieve. Call getCampaigns to retrieve a list
         of the seller's campaign names.
         """
         return await self._request(
@@ -19870,10 +16866,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def pause_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def pause_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method pauses an active (RUNNING) campaign. You can restart the campaign by calling
-        resumeCampaign, as long as the campaign's end date is in the future.Note:The listings
-        associated with a paused campaign cannot be added into another campaign.Call getCampaigns to
-        retrieve the campaign_id and the campaign status (RUNNING, PAUSED, ENDED, and so on) for all
-        the seller's campaigns.
+        resumeCampaign , as long as the campaign's end date is in the future. Note: The listings
+        associated with a paused campaign cannot be added into another campaign. Call getCampaigns
+        to retrieve the campaign_id and the campaign status ( RUNNING , PAUSED , ENDED , and so on)
+        for all the seller's campaigns.
         """
         return await self._request(
             'pauseCampaign',
@@ -19893,8 +16889,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def resume_campaign(self, campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method resumes a paused campaign, as long as its end date is in the future. Supply the
         campaign_id for the campaign you want to restart as a query parameter in the request. Call
-        getCampaigns to retrieve the campaign_id and the campaign status (RUNNING, PAUSED, ENDED,
-        and so on) for all the seller's campaigns.
+        getCampaigns to retrieve the campaign_id and the campaign status ( RUNNING , PAUSED , ENDED
+        , and so on) for all the seller's campaigns.
         """
         return await self._request(
             'resumeCampaign',
@@ -19914,8 +16910,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def suggest_budget(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestBudgetResponse | httpx.Response:
         """Note: This method is only supported for Promoted Offsite campaigns. Sellers can use the
         getAdvertisingEligibility method of the Account API v1 to determine if they are eligible for
-        offsite campaigns.This method allows sellers to retrieve the suggested budget for an offsite
-        campaign.
+        offsite campaigns. This method allows sellers to retrieve the suggested budget for an
+        offsite campaign.
         """
         return await self._request(
             'suggestBudget',
@@ -19954,10 +16950,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def suggest_max_cpc(self, *, body: sell_marketing_models.SuggestMaxCpcRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SuggestMaxCpcResponse | httpx.Response:
         """Note: This method is only supported for smart targeting priority strategy campaigns. Sellers
         can use the getAdvertisingEligibility method of the Account API v1 to determine if they are
-        eligible for a priority strategy campaign.This method allows sellers to retrieve the
-        suggested maximum cost-per-click value for a smart targeting campaign. This value is
-        required when creating a smart targeting campaign and indicates the maximum amount for which
-        the eBay suggested bid can be adjusted.
+        eligible for a priority strategy campaign. This method allows sellers to retrieve the
+        suggested maximum cost-per-click value for a smart targeting campaign.
         """
         return await self._request(
             'suggestMaxCpc',
@@ -19977,11 +16971,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_ad_rate_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateAdrateStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method updates the ad rate strategy for an existing rules-based general strategy ad
-        campaign that uses the Cost Per Sale (CPS) funding model.Specify the campaign_id as a path
+        campaign that uses the Cost Per Sale (CPS) funding model. Specify the campaign_id as a path
         parameter. You can retrieve the campaign IDs for a seller by calling the getCampaigns
-        method.Note: This method only applies to the CPS funding model; it does not apply to the
-        Cost Per Click (CPC) funding model. See Funding Models in the Promoted Listings Playbook for
-        more information.
+        method. Note: This method only applies to the CPS funding model; it does not apply to the
+        Cost Per Click (CPC) funding model.
         """
         return await self._request(
             'updateAdRateStrategy',
@@ -20001,17 +16994,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_bidding_strategy(self, campaign_id: str, *, body: sell_marketing_models.UpdateBiddingStrategyRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method allows sellers to change the bidding strategy for a specified Cost Per Click
-        (CPC) campaign that uses manual targeting. Available bidding strategies are:FIXEDWhen using
-        a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
-        campaign.DYNAMICWhen using a dynamic bidding strategy, eBay will manage a campaign's keyword
-        bids and automatically update them daily to the suggested bid.Note: For a CPC campaign using
-        dynamic bidding, sellers can continue to manually add keywords for the campaign, but they
-        are no longer able to manually adjust their associated bid values. In order to manually
-        adjust bid values, sellers must use the FIXED bidding strategy.In addition, this method
-        allows sellers to modify the maxCPC value of a smart targeting campaign.Note: This method
-        only applies to the Cost Per Click (CPC) funding model; it does not apply to the Cost Per
-        Sale (CPS) funding model. Refer to Funding Models in the Promoted Listings Playbook for more
-        information.
+        (CPC) campaign that uses manual targeting. Available bidding strategies are: FIXED When
+        using a fixed bidding strategy, sellers manually assign and adjust keyword bids for the CPC
+        campaign.
         """
         return await self._request(
             'updateBiddingStrategy',
@@ -20031,15 +17016,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_campaign_budget(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignBudgetRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method updates the daily budget for a priority strategy campaign that uses the Cost Per
-        Click (CPC) funding model.A click occurs when an eBay user finds and clicks on the seller’s
+        Click (CPC) funding model. A click occurs when an eBay user finds and clicks on the seller’s
         listing (within the search results) after using a keyword that the seller has created for
-        the campaign. For each ad in an ad group in the campaign, each click triggers a cost, which
-        gets subtracted from the campaign’s daily budget. If the cost of the clicks exceeds the
-        daily budget, the Promoted Listings campaign will be paused until the next day.Specify the
-        campaign_id as a path parameter. You can retrieve the campaign IDs for a seller by calling
-        the getCampaigns method.Note: The daily budget for a campaign can only be updated 15 times
-        per day. If this limit is exceeded, an error will occur and you will be blocked from
-        updating the budget until the next day.
+        the campaign.
         """
         return await self._request(
             'updateCampaignBudget',
@@ -20060,14 +17039,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_campaign_identification(self, campaign_id: str, *, body: sell_marketing_models.UpdateCampaignIdentificationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This method can be used to change the name of a campaign, as well as modify the start or end
         dates. Specify the campaign_id you want to update as a URI parameter, and configure the
-        campaignName and startDate in the request payload. If you want to change only the end date
-        of the campaign, specify the current campaign name, set endDate as desired, and set
-        startDate to the actual start date of the campaign. This applies if the campaign status is
-        RUNNING or PAUSED. You can retrieve the startDate using the getCampaign method. Note that if
-        you do not set a new end date in this call, any current endDate value will be set to null.
-        To preserve the currently-set end date, you must specify the value again in your request.
-        Call getCampaigns to retrieve a seller's campaign details, including the campaign ID,
-        campaign name, and the start and end dates of the campaign.
+        campaignName and startDate in the request payload.
         """
         return await self._request(
             'updateCampaignIdentification',
@@ -20087,12 +17059,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkCreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateKeywordResponse | httpx.Response:
         """This method adds keywords, in bulk, to an existing priority strategy ad group in a campaign
-        that uses manual targeting.This method also sets the CPC rate for each keyword, depending on
-        the selected bidding strategy, as follows:FIXED: If the seller provides a keyword bid, that
-        bid value will be used.If no bid is provided, the adgroup's default bid value will be
-        used.DYNAMIC: The eBay suggested bid will be used.If the seller passes in a value, a warning
-        will be returned.In the request, supply the campaign_id as a path parameter.Call the
-        getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
+        that uses manual targeting. This method also sets the CPC rate for each keyword, depending
+        on the selected bidding strategy, as follows: FIXED : If the seller provides a keyword bid,
+        that bid value will be used. If no bid is provided, the adgroup's default bid value will be
+        used.
         """
         return await self._request(
             'bulkCreateKeyword',
@@ -20112,7 +17082,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_keyword(self, campaign_id: str, *, body: sell_marketing_models.BulkUpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateKeywordResponse | httpx.Response:
         """This method updates the bids and statuses of keywords, in bulk, for an existing priority
-        strategy campaign.In the request, supply the campaign_id as a path parameter.Call the
+        strategy campaign. In the request, supply the campaign_id as a path parameter. Call the
         getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
         """
         return await self._request(
@@ -20133,11 +17103,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_keywords(self, campaign_id: str, *, ad_group_ids: str | None = None, keyword_status: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.KeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the keywords for ad groups in priority strategy
-        campaigns that use the Cost Per Click (CPC) funding model.In the request, specify the
+        campaigns that use the Cost Per Click (CPC) funding model. In the request, specify the
         campaign_id as a path parameter. If one or more ad_group_ids are passed in the request body,
-        the keywords for those ad groups will be returned. If ad_group_ids are not passed in the
-        response body, the call will return all the keywords in the campaign.Call the getCampaigns
-        method to retrieve a list of current campaign IDs for a seller.
+        the keywords for those ad groups will be returned.
         """
         return await self._request(
             'getKeywords',
@@ -20156,10 +17124,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_keyword(self, campaign_id: str, *, body: sell_marketing_models.CreateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method creates keywords using a specified campaign ID for an existing priority strategy
-        campaign that uses manual targeting.In the request, supply the campaign_id as a path
-        parameter.Call the suggestKeywords method to retrieve a list of keyword ideas to be targeted
-        for priority strategy campaigns, and call the getCampaigns method to retrieve a list of
-        current campaign IDs for a seller.
+        campaign that uses manual targeting. In the request, supply the campaign_id as a path
+        parameter. Call the suggestKeywords method to retrieve a list of keyword ideas to be
+        targeted for priority strategy campaigns, and call the getCampaigns method to retrieve a
+        list of current campaign IDs for a seller.
         """
         return await self._request(
             'createKeyword',
@@ -20179,10 +17147,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_keyword(self, campaign_id: str, keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_keyword(self, campaign_id: str, keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Keyword | httpx.Response:
         """This method retrieves details on a specific keyword from an ad group within a priority
-        strategy campaign that uses the Cost Per Click (CPC) funding model.In the request, specify
-        the campaign_id and keyword_id as path parameters.Call the getCampaigns method to retrieve a
-        list of current campaign IDs for a seller and call the getKeywords method to retrieve their
-        keyword IDs.
+        strategy campaign that uses the Cost Per Click (CPC) funding model. In the request, specify
+        the campaign_id and keyword_id as path parameters. Call the getCampaigns method to retrieve
+        a list of current campaign IDs for a seller and call the getKeywords method to retrieve
+        their keyword IDs.
         """
         return await self._request(
             'getKeyword',
@@ -20201,8 +17169,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_keyword(self, campaign_id: str, keyword_id: str, *, body: sell_marketing_models.UpdateKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateKeywordResponse | httpx.Response:
         """This method updates keywords using a campaign ID and keyword ID for an existing priority
-        strategy campaign.In the request, specify the campaign_id and keyword_id as path
-        parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
+        strategy campaign. In the request, specify the campaign_id and keyword_id as path
+        parameters. Call the getCampaigns method to retrieve a list of current campaign IDs for a
         seller and call the getKeywords method to retrieve their keyword IDs.
         """
         return await self._request(
@@ -20223,9 +17191,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_create_negative_keyword(self, *, body: sell_marketing_models.BulkCreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkCreateNegativeKeywordResponse | httpx.Response:
         """This method adds negative keywords, in bulk, to an existing ad group in a priority strategy
-        campaign that uses manual targeting.Specify the campaignId and adGroupId in the request
-        body, along with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns
-        method to retrieve a list of current campaign IDs for a specified seller.
+        campaign that uses manual targeting. Specify the campaignId and adGroupId in the request
+        body, along with the negativeKeywordText and negativeKeywordMatchType . Call the
+        getCampaigns method to retrieve a list of current campaign IDs for a specified seller.
         """
         return await self._request(
             'bulkCreateNegativeKeyword',
@@ -20244,7 +17212,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def bulk_update_negative_keyword(self, *, body: sell_marketing_models.BulkUpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BulkUpdateNegativeKeywordResponse | httpx.Response:
-        """This method updates the statuses of existing negative keywords, in bulk.Specify the
+        """This method updates the statuses of existing negative keywords, in bulk. Specify the
         negativeKeywordId and negativeKeywordStatus in the request body.
         """
         return await self._request(
@@ -20265,9 +17233,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_negative_keywords(self, *, ad_group_ids: str, campaign_ids: str | None = None, limit: str | None = None, negative_keyword_status: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeywordPagedCollectionResponse | httpx.Response:
         """This method can be used to retrieve all of the negative keywords for ad groups in priority
-        strategy campaigns that use the Cost Per Click (CPC) funding model.The results can be
-        filtered using the campaign_ids, ad_group_ids, and negative_keyword_status query
-        parameters.Call the getCampaigns method to retrieve a list of current campaign IDs for a
+        strategy campaigns that use the Cost Per Click (CPC) funding model. The results can be
+        filtered using the campaign_ids , ad_group_ids , and negative_keyword_status query
+        parameters. Call the getCampaigns method to retrieve a list of current campaign IDs for a
         seller.
         """
         return await self._request(
@@ -20287,8 +17255,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_negative_keyword(self, *, body: sell_marketing_models.CreateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """This method adds a negative keyword to an existing ad group in a priority strategy campaign
-        that uses manual targeting.Specify the campaignId and adGroupId in the request body, along
-        with the negativeKeywordText and negativeKeywordMatchType.Call the getCampaigns method to
+        that uses manual targeting. Specify the campaignId and adGroupId in the request body, along
+        with the negativeKeywordText and negativeKeywordMatchType . Call the getCampaigns method to
         retrieve a list of current campaign IDs for a specified seller.
         """
         return await self._request(
@@ -20308,7 +17276,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def get_negative_keyword(self, negative_keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_negative_keyword(self, negative_keyword_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.NegativeKeyword | httpx.Response:
-        """This method retrieves details on a specific negative keyword.In the request, specify the
+        """This method retrieves details on a specific negative keyword. In the request, specify the
         negative_keyword_id as a path parameter.
         """
         return await self._request(
@@ -20327,7 +17295,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_negative_keyword(self, negative_keyword_id: str, *, body: sell_marketing_models.UpdateNegativeKeywordRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method updates the status of an existing negative keyword.Specify the
+        """This method updates the status of an existing negative keyword. Specify the
         negative_keyword_id as a path parameter, and specify the negativeKeywordStatus in the
         request body.
         """
@@ -20350,14 +17318,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_report(self, report_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> bytes | httpx.Response:
         """This call downloads the report as specified by the report_id path parameter. Call
         createReportTask to schedule and generate a Promoted Listings report. All date values are
-        returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ).Note: The reporting of some data related
-        to sales and ad-fees may require a 72-hour (maximum) adjustment period which is often
-        referred to as the Reconciliation Period. Such adjustment periods should, on average, be
-        minimal. However, at any given time, the payments tab may be used to view those amounts that
-        have actually been charged.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ). Note: The reporting of some data
+        related to sales and ad-fees may require a 72-hour ( maximum ) adjustment period which is
+        often referred to as the Reconciliation Period .
         """
         return await self._request(
             'getReport',
@@ -20388,11 +17351,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         """This call retrieves information that details the fields used in each of the Promoted
         Listings reports. Use the returned information to configure the different types of Promoted
         Listings reports. You can retrieve metadata for all report types,funding models and
-        channels, or you can filter based on funding model and/or channel.Note: The reporting of
-        some data related to sales and ad-fees may require a 72-hour (maximum) adjustment period
-        which is often referred to as the Reconciliation Period. Such adjustment periods should, on
-        average, be minimal. However, at any given time, the payments tab may be used to view those
-        amounts that have actually been charged.
+        channels, or you can filter based on funding model and/or channel.
         """
         return await self._request(
             'getReportMetadata',
@@ -20411,12 +17370,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_report_metadata_for_report_type(self, report_type: str, *, funding_model: str | None = None, channel: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_report_metadata_for_report_type(self, report_type: str, *, funding_model: str | None = None, channel: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportMetadata | httpx.Response:
         """This call retrieves metadata that details the fields used by a specific Promoted Listings
-        report type. Use the report_type path parameter to indicate metadata to retrieve.This method
-        does not use a request payload.Note: The reporting of some data related to sales and ad-fees
-        may require a 72-hour (maximum) adjustment period which is often referred to as the
-        Reconciliation Period. Such adjustment periods should, on average, be minimal. However, at
-        any given time, the payments tab may be used to view those amounts that have actually been
-        charged.
+        report type. Use the report_type path parameter to indicate metadata to retrieve. This
+        method does not use a request payload. Note: The reporting of some data related to sales and
+        ad-fees may require a 72-hour ( maximum ) adjustment period which is often referred to as
+        the Reconciliation Period .
         """
         return await self._request(
             'getReportMetadataForReportType',
@@ -20436,12 +17393,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_report_tasks(self, *, limit: str | None = None, offset: str | None = None, report_task_statuses: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ReportTaskPagedCollection | httpx.Response:
         """This method returns information on all the existing report tasks related to a seller. Use
         the report_task_statuses query parameter to control which reports to return. You can
-        paginate the result set by specifying a limit, which dictates how many report tasks to
-        return on each page of the response. Use the offset parameter to specify how many reports to
-        skip in the result set before returning the first result.Important!For ad_report and
-        ad_report_task methods, the API call limit is subject to a per user quota. These API calls
-        can only be executed a maximum of 200 times per hour for each seller/user. If the number of
-        calls per hour exceeds this limit, any new calls will be blocked for the next hour.
+        paginate the result set by specifying a limit , which dictates how many report tasks to
+        return on each page of the response.
         """
         return await self._request(
             'getReportTasks',
@@ -20459,34 +17412,10 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def create_report_task(self, *, body: sell_marketing_models.CreateReportTask, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
-        """This method creates a report task, which generates a Promoted Listings report based on the
-        values specified in the call.The report is generated based on the criteria you specify,
+        """This method creates a report task , which generates a Promoted Listings report based on the
+        values specified in the call. The report is generated based on the criteria you specify,
         including the report type, the report's dimensions and metrics, the report's start and end
-        dates, the listings to include in the report, and more. Metrics are the quantitative
-        measurements in the report while dimensions specify the attributes of the data included in
-        the reports.When creating a report task, you can specify the items you want included in the
-        report. The items you specify, using either listingId or inventoryReference values, must be
-        in a Promoted Listings campaign for them to be included in the report.For details on the
-        required and optional fields for each report type, see Promoted Listings reporting.This call
-        returns the URL to the report task in the Location response header, and the URL includes the
-        report-task ID.Reports often take time to generate and it's common for this call to return
-        an HTTP status of 202, which indicates the report is being generated. Call getReportTasks
-        (or getReportTask with the report-task ID) to determine the status of a Promoted Listings
-        report. When a report is complete, eBay sets its status to SUCCESS and you can download it
-        using the URL returned in the reportHref field of the getReportTask call. Report files are
-        tab-separated value gzip files with a file extension of .tsv.gz.Note: The reporting of some
-        data related to sales and ad-fees may require a 72-hour (maximum) adjustment period which is
-        often referred to as the Reconciliation Period. Such adjustment periods should, on average,
-        be minimal. However, at any given time, the payments tab may be used to view those amounts
-        that have actually been charged.Note: This call fails if you don't submit all the required
-        fields for the specified report type. Fields not supported by the specified report type are
-        ignored. Call getReportMetadata to retrieve a list of the fields you need to configure for
-        each Promoted Listings report type.Important!For ad_report and ad_report_task methods, the
-        API call limit is subject to a per user quota. These API calls can only be executed a
-        maximum of 200 times per hour for each seller/user. If the number of calls per hour exceeds
-        this limit, any new calls will be blocked for the next hour.Important! The data threshold
-        for a single report is currently 1 million records; if this threshold is exceeded, the
-        report will fail.
+        dates, the listings to include in the report, and more.
         """
         return await self._request(
             'createReportTask',
@@ -20508,12 +17437,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
         """This call returns the details of a specific Promoted Listings report task, as specified by
         the report_task_id path parameter. The report task includes the report criteria (such as the
         report dimensions, metrics, and included listing) and the report-generation rules (such as
-        starting and ending dates for the specified report task). Report-task IDs are generated by
-        eBay when you call createReportTask. Get a complete list of a seller's report-task IDs by
-        calling getReportTasks.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        starting and ending dates for the specified report task).
         """
         return await self._request(
             'getReportTask',
@@ -20533,11 +17457,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def delete_report_task(self, report_task_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """This call deletes the report task specified by the report_task_id path parameter. This
         method also deletes any reports generated by the report task. Report task IDs are generated
-        by eBay when you call createReportTask. Get a complete list of a seller's report-task IDs by
-        calling getReportTasks.Important!For ad_report and ad_report_task methods, the API call
-        limit is subject to a per user quota. These API calls can only be executed a maximum of 200
-        times per hour for each seller/user. If the number of calls per hour exceeds this limit, any
-        new calls will be blocked for the next hour.
+        by eBay when you call createReportTask . Get a complete list of a seller's report-task IDs
+        by calling getReportTasks .
         """
         return await self._request(
             'deleteReportTask',
@@ -20557,32 +17478,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_item_price_markdown_promotion(self, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        creates an item price markdown discount (know simply as a "markdown discount") where a
-        discount amount is applied directly to the items included in the discount. Discounts can be
-        specified as either a monetary amount or a percentage off the standard sales price. eBay
-        highlights discounted items by placing teasers for the items throughout the online sales
-        flows. Unlike an item discount, a markdown discount does not require the buyer meet a
-        "threshold" before the offer takes effect. With markdown discounts, all the buyer needs to
-        do is purchase the item to receive the discount benefit. Important: There are some
-        restrictions for which listings are available for price markdown discounts. For details, see
-        Discounts Manager requirements and restrictions. In addition, we recommend you list items at
-        competitive prices before including them in your markdown discounts. For an extensive list
-        of pricing recommendations, see the Growth tab in Seller Hub. There are two ways to enable
-        items for markdown discounts: Key-based discounts select items using either the listing IDs
-        or inventory reference IDs of the items you want to discount. Note that if you use inventory
-        reference IDs, you must specify both the inventoryReferenceId and the associated
-        inventoryReferenceType of the item(s) you want to include. Rule-based discounts select items
-        using a list of eBay category IDs or seller Store category IDs. Rules can further constrain
-        items being discounted by minimum and maximum prices, brands, and item conditions. New
-        discounts must be created in either a DRAFT or a SCHEDULED state. Use the DRAFT state when
-        you are initially creating a discount and you want to be sure it's correctly configured
-        before scheduling it to run. When you create a discount, the promotionId is returned in the
-        Location response header. Use this ID to reference the discount in subsequent requests (such
-        as to schedule a discount that's in a DRAFT state). Tip: Refer to Discounts Manager in the
-        Selling Integration Guide for details and examples showing how to create and manage seller
-        discounts. Markdown discounts are available on all eBay marketplaces. For more information,
-        see Discounts Manager requirements and restrictions.
+        product name change, but note that no API interface changes have been made.
         """
         return await self._request(
             'createItemPriceMarkdownPromotion',
@@ -20603,9 +17499,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_item_price_markdown_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemPriceMarkdown | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the complete details of the item price markdown discount that's indicated by the
-        promotion_id path parameter. Call getPromotions to retrieve the IDs of a seller's discounts.
+        promotion_id path parameter.
         """
         return await self._request(
             'getItemPriceMarkdownPromotion',
@@ -20625,19 +17521,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_item_price_markdown_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPriceMarkdown | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> dict[str, Any] | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         updates the specified item price markdown discount with the new configuration that you
-        supply in the payload of the request. Specify the discount you want to update using the
-        promotion_id path parameter. Call getPromotions to retrieve the IDs of a seller's
-        discounts.When updating a discount, supply all the fields that you used to configure the
-        original discount (and not just the fields you are updating). eBay replaces the specified
-        discount with the values you supply in the update request and if you don't pass a field that
-        currently has a value, the update request fails. The parameters you are allowed to update
-        with this request depend on the status of the discount you're updating: DRAFT or SCHEDULED
-        discounts: You can update any of the parameters in these discounts that have not yet started
-        to run, including the discountRules. RUNNING discounts: You can change the endDate and the
-        item's inventory but you cannot change the discount or the start date. ENDED discounts:
-        Nothing can be changed.
+        supply in the payload of the request.
         """
         return await self._request(
             'updateItemPriceMarkdownPromotion',
@@ -20658,11 +17544,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def delete_item_price_markdown_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        deletes the item price markdown discount specified by the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of a seller's discounts. You can delete any discount with
-        the exception of those that are currently active (RUNNING). To end a running discount, call
-        updateItemPriceMarkdownPromotion and adjust the endDate field as appropriate.
+        product name change, but note that no API interface changes have been made. This method
+        deletes the item price markdown discount specified by the promotion_id path parameter.
         """
         return await self._request(
             'deleteItemPriceMarkdownPromotion',
@@ -20682,34 +17565,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_item_promotion(self, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        creates an item discount, where the buyer receives a discount when they meet the specific
-        buying criteria. Known here as "threshold discounts", these discounts trigger when a
-        threshold is met. eBay highlights discounted items by placing teasers for the discounted
-        items throughout the online buyer flows. Discounts are specified as either a monetary amount
-        or a percentage off the standard sales price of a listing, letting you offer deals such as
-        "Buy 1 Get 1" and "Buy $50, get 20% off". Volume pricing discounts increase the value of the
-        discount as the buyer increases the quantity they purchase. Coded Coupons provide unique
-        codes that a buyer can use during checkout to receive a discount. The seller can specify the
-        number of times a buyer can use the coupon and the maximum amount across all purchases that
-        can be discounted using the coupon. The coupon code can also be made public (appearing on
-        the seller's Offer page, search pages, the item listing, and the checkout page) or private
-        (only on the seller's Offer page, but the seller can include the code in email and social
-        media). Note: Coded Coupons are currently available in the US, UK, DE, FR, IT, ES, and AU
-        marketplaces.There are two ways to add items to a threshold discount: Key-based discounts
-        select items using either the listing IDs or inventory reference IDs of the items you want
-        to discount. Note that if you use inventory reference IDs, you must specify both the
-        inventoryReferenceId and the associated inventoryReferenceType of the item(s) you want to be
-        discounted. Rule-based discounts select items using a list of eBay category IDs or seller
-        Store category IDs. Rules can further constrain the items being discounted by minimum and
-        maximum prices, brands, and item conditions. You must create a new discount in either a
-        DRAFT or SCHEDULED state. Use the DRAFT state when you are initially creating a discount and
-        you want to be sure it's correctly configured before scheduling it to run. When you create a
-        discount, the promotion ID is returned in the Location response header. Use this ID to
-        reference the discount in subsequent requests. Tip: Refer to the Selling Integration Guide
-        for details and examples showing how to create and manage threshold discounts using the
-        Discounts Manager. For information on the eBay marketplaces that support item discounts, see
-        Discounts Manager requirements and restrictions.
+        product name change, but note that no API interface changes have been made. This method
+        creates an item discount , where the buyer receives a discount when they meet the specific
+        buying criteria.
         """
         return await self._request(
             'createItemPromotion',
@@ -20730,9 +17588,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_item_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemPromotionResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the complete details of the threshold discount specified by the promotion_id path
-        parameter. Call getPromotions to retrieve the IDs of a seller's discounts.
+        parameter.
         """
         return await self._request(
             'getItemPromotion',
@@ -20752,21 +17610,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_item_promotion(self, promotion_id: str, *, body: sell_marketing_models.ItemPromotion | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.BaseResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         updates the specified threshold discount with the new configuration that you supply in the
-        request. Indicate the discount you want to update using the promotion_id path parameter.
-        Call getPromotions to retrieve the IDs of a seller's discounts. When updating a discount,
-        supply all the fields that you used to configure the original discount (and not just the
-        fields you are updating). eBay replaces the specified discount with the values you supply in
-        the update request and if you don't pass a field that currently has a value, the update
-        request will fail. The parameters you are allowed to update with this request depend on the
-        status of the discount you're updating: DRAFT or SCHEDULED discounts: You can update any of
-        the parameters in these discounts that have not yet started to run, including the
-        discountRules. RUNNING or PAUSED discounts: You can change the endDate and the item's
-        inventory but you cannot change the discount or the start date. ENDED discounts: Nothing can
-        be changed. Tip: When updating a RUNNING or PAUSED discount, set the status field to
-        SCHEDULED for the update request. When the discount is updated, the previous status (either
-        RUNNING or PAUSED) is retained.
+        request.
         """
         return await self._request(
             'updateItemPromotion',
@@ -20787,11 +17633,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def delete_item_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        deletes the threshold discount specified by the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of a seller's discounts. You can delete any discount with
-        the exception of those that are currently active (RUNNING). To end a running threshold
-        discount, call updateItemPromotion and adjust the endDate field as appropriate.
+        product name change, but note that no API interface changes have been made. This method
+        deletes the threshold discount specified by the promotion_id path parameter.
         """
         return await self._request(
             'deleteItemPromotion',
@@ -20811,12 +17654,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_listing_set(self, promotion_id: str, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, status: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.ItemsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         returns the set of listings associated with the promotion_id specified in the path
-        parameter. Call getPromotions to retrieve the IDs of a seller's discounts. The listing
-        details are returned in a paginated set and you can control and results returned using the
-        following query parameters: limit, offset, q, sort, and status. Maximum associated listings
-        returned: 200 Default number of listings returned: 200
+        parameter.
         """
         return await self._request(
             'getListingSet',
@@ -20836,15 +17676,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_promotions(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
-        returns a list of a seller's undeleted discounts. The call returns up to 200 currently-
-        available discounts on the specified marketplace. While the response body does not include
-        the discount's discountRules or inventoryCriterion containers, it does include the
-        promotionHref (which you can use to retrieve the complete details of the discount). Use
-        query parameters to sort and filter the results by the number of discounts to return, the
-        discount state or type, and the eBay marketplace. You can also supply keywords to limit the
-        response to the discounts that contain that keywords in the title of the discount. Maximum
-        returned: 200
+        product name change, but note that no API interface changes have been made. This method
+        returns a list of a seller's undeleted discounts.
         """
         return await self._request(
             'getPromotions',
@@ -20864,14 +17697,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def pause_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         pauses a currently-active (RUNNING) threshold discount and changes the state of the discount
-        from RUNNING to PAUSED. Pausing a discount makes the discount temporarily unavailable to
-        buyers and any currently-incomplete transactions will not receive the offer until the
-        discount is resumed. Also, discount teasers are not displayed when a discount is paused.
-        Pass the ID of the discount you want to pause using the promotion_id path parameter. Call
-        getPromotions to retrieve the IDs of the seller's discounts. Note: You can only pause
-        threshold discounts (you cannot pause markdown discounts).
+        from RUNNING to PAUSED .
         """
         return await self._request(
             'pausePromotion',
@@ -20891,13 +17719,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def resume_promotion(self, promotion_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.Error | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         restarts a threshold discount that was previously paused and changes the state of the
-        discount from PAUSED to RUNNING. Only discounts that have been previously paused can be
-        resumed. Resuming a discount reinstates the teasers and any transactions that were in motion
-        before the discount was paused will again be eligible for the discount. Pass the ID of the
-        discount you want to resume using the promotion_id path parameter. Call getPromotions to
-        retrieve the IDs of the seller's discounts.
+        discount from PAUSED to RUNNING .
         """
         return await self._request(
             'resumePromotion',
@@ -20917,13 +17741,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_promotion_reports(self, *, marketplace_id: str, limit: str | None = None, offset: str | None = None, promotion_status: str | None = None, promotion_type: str | None = None, q: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.PromotionsReportPagedCollection | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         generates a report that lists the seller's running, paused, and ended discounts for the
-        specified eBay marketplace. The result set can be filtered by the discount status and the
-        number of results to return. You can also supply keywords to limit the report to discounts
-        that contain the specified keywords. Specify the eBay marketplace for which you want the
-        report run using the marketplace_id query parameter. Supply additional query parameters to
-        control the report as needed.
+        specified eBay marketplace.
         """
         return await self._request(
             'getPromotionReports',
@@ -20943,12 +17763,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_promotion_summary_report(self, *, marketplace_id: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.SummaryReportResponse | httpx.Response:
         """Note: As of July 8th 2024, promotions are now being referred to as discounts on Seller Hub
         and eBay help pages. Sell Marketing API documentation has been updated to reflect this
-        product name change, but note that no API interface changes have been made.This method
+        product name change, but note that no API interface changes have been made. This method
         generates a report that summarizes the seller's discounts for the specified eBay
-        marketplace. The report returns information on RUNNING, PAUSED, and ENDED discounts (deleted
-        reports are not returned) and summarizes the seller's campaign performance for all discounts
-        on a given site. For information about summary reports, see Reading the item discount
-        Summary report.
+        marketplace.
         """
         return await self._request(
             'getPromotionSummaryReport',
@@ -20966,8 +17783,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_email_campaigns(self, *, limit: str | None = None, offset: str | None = None, q: str | None = None, sort: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignsResponse | httpx.Response:
-        """This method retrieves a list of email campaigns from a seller's eBay store.Users can filter
-        the results by email campaign type, email campaign status, and marketplace ID using the q
+        """This method retrieves a list of email campaigns from a seller's eBay store. Users can filter
+        the results by email campaign type , email campaign status , and marketplace ID using the q
         query parameter.
         """
         return await self._request(
@@ -20988,12 +17805,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def create_email_campaign(self, *, body: sell_marketing_models.CreateEmailCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.CreateEmailCampaignResponse | httpx.Response:
         """This method creates a new email campaign. An eBay store owner can create six different types
         of email campaigns: Welcome, New products & collections, Coupon, Sale event + markdown,
-        Order discount, and Volume pricing.A successful createEmailCampaign request returns the
-        emailCampaignId assigned to the new email campaign.The fields emailCampaignType,
-        audienceCodes, itemSelectMode, subject, and personalizedMessage are required for all email
-        campaign types. Specific email campaign types have required values for additional fields.
-        For more information on the email campaign types, see the Store Email Campaigns section of
-        the Selling Integration Guide.
+        Order discount, and Volume pricing. A successful createEmailCampaign request returns the
+        emailCampaignId assigned to the new email campaign.
         """
         return await self._request(
             'createEmailCampaign',
@@ -21013,7 +17826,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignResponse | httpx.Response:
         """This method returns the details of a single email campaign specified by the
-        email_campaign_id path parameter.Call getEmailCampaigns to retrieve a list of all email
+        email_campaign_id path parameter. Call getEmailCampaigns to retrieve a list of all email
         campaigns from a seller's eBay store.
         """
         return await self._request(
@@ -21033,10 +17846,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def update_email_campaign(self, email_campaign_id: str, *, body: sell_marketing_models.UpdateCampaignRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.UpdateEmailCampaignResponse | httpx.Response:
         """This method lets users update an existing email campaign. Pass the emailCampaignId in the
-        request URL and specify the changes to field values in the request payload.Note: You can
+        request URL and specify the changes to field values in the request payload. Note: You can
         only update the custom fields of an email campaign. Fixed values, such as the
-        emailCampaignType, cannot be changed. For full specifications of fixed values for each email
-        campaign type, see the createEmailCampaign method documentation.
+        emailCampaignType , cannot be changed.
         """
         return await self._request(
             'updateEmailCampaign',
@@ -21055,8 +17867,8 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     @overload
     async def delete_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def delete_email_campaign(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.DeleteEmailCampaignResponse | httpx.Response:
-        """This method deletes the email campaign specified by the email_campaign_id path
-        parameter.Call getEmailCampaigns to retrieve all of the seller's email campaigns. Use the
+        """This method deletes the email campaign specified by the email_campaign_id path parameter.
+        Call getEmailCampaigns to retrieve all of the seller's email campaigns. Use the
         email_campaign_id of the desired email campaign in the response as the path parameter for
         this request.
         """
@@ -21077,7 +17889,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_audiences(self, *, email_campaign_type: str, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailCampaignAudiencesResponse | httpx.Response:
         """This method retrieves all available email newsletter audiences for the email campaign type
-        specified by the emailCampaignType path parameter.Use the optional limit and offset path
+        specified by the emailCampaignType path parameter. Use the optional limit and offset path
         parameters to paginate the results and to control which records are returned, respectively.
         """
         return await self._request(
@@ -21097,14 +17909,9 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_email_preview(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_email_preview(self, email_campaign_id: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailPreviewResponse | httpx.Response:
         """This method returns a preview of the email sent by the email campaign indicated by the
-        email_campaign_id path parameter.Call getEmailCampaigns to obtain a list of email campaigns.
-        Use the emailCampaignId value of the desired email campaign as the email_campaign_id path
-        parameter value.If this call is executed successfully, the response returns a content field
-        that contains the raw HTML code of the email campaign that can then be rendered
-        anywhere.Note: The eBay listings in the email are sorted according to the email campaign
-        sort criteria. The individual listings can change over time, as well.The result of the email
-        preview call can be treated as a snapshot of the email campaign taken at the date and time
-        of the renderDate value found in the results of the call.
+        email_campaign_id path parameter. Call getEmailCampaigns to obtain a list of email
+        campaigns. Use the emailCampaignId value of the desired email campaign as the
+        email_campaign_id path parameter value.
         """
         return await self._request(
             'getEmailPreview',
@@ -21124,10 +17931,7 @@ class AsyncSellMarketingResource(AsyncBaseResource):
     async def get_email_report(self, *, end_date: str, start_date: str, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_marketing_models.GetEmailReportResponse | httpx.Response:
         """This method returns the seller's email campaign performance report for a time period
         specified by the startDate and endDate path parameters. The maximum date range for a report
-        retrieved by this method is one year. Note: The startDate and endDate must be given in UTC
-        format, as shown in the following example: sell/marketing/v1/email_campaign/report?startDate
-        =2022-11-01T19:09:02.768Z&endDate=2022-12-28T19:09:02.768ZThe email report returns a list of
-        metrics, such as the number of times an email report has been opened and resulted in clicks.
+        retrieved by this method is one year.
         """
         return await self._request(
             'getEmailReport',
@@ -21158,13 +17962,7 @@ class SellMetadataResource(BaseResource):
         """This method returns the eBay policies that define how to list automotive parts compatibility
         items in the categories of the specified marketplace. By default, this method returns all
         categories that support parts compatibility. You can limit the size of the result set by
-        using the filter query parameter to specify only the category IDs you want to review.Note:
-        To return policy information for the eBay US marketplace, specify EBAY_MOTORS_US as the path
-        parameter for marketplace_id.Tip: This method can potentially return a very large response
-        payload. eBay recommends that the response payload be compressed by passing in the Accept-
-        Encoding request header and setting the value to gzip.If you specify a valid marketplace ID
-        but that marketplace does not contain policy information, or if you filter out all results,
-        a 204 No content status code is returned with an empty response body.
+        using the filter query parameter to specify only the category IDs you want to review.
         """
         return self._request(
             'getAutomotivePartsCompatibilityPolicies',
@@ -21183,11 +17981,9 @@ class SellMetadataResource(BaseResource):
     def get_category_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_category_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.CategoryPolicyResponse | httpx.Response:
         """This method returns eBay category policy metadata for all leaf categories on the specified
-        marketplace.By default, this method returns metadata on all leaf categories. You can limit
+        marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.
+        category IDs you want to review.
         """
         return self._request(
             'getCategoryPolicies',
@@ -21206,13 +18002,9 @@ class SellMetadataResource(BaseResource):
     def get_classified_ad_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_classified_ad_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ClassifiedAdPolicyResponse | httpx.Response:
         """This method returns eBay classified ad policy metadata for all leaf categories on the
-        specified marketplace.By default, this method returns metadata on all leaf categories. You
+        specified marketplace. By default, this method returns metadata on all leaf categories. You
         can limit the size of the result set by using the filter query parameter to specify only the
-        leaf category IDs you want to review.If you specify a valid marketplace ID but that
-        marketplace does not contain policy information, or if you filter out all results, a
-        successful call returns a 204 No content status code with an empty response body.Note: This
-        method does not support classified ads for eBay US Motors categories (EBAY_MOTORS_US). For
-        eBay Motors Pro users, use getMotorsListingPolicies.
+        leaf category IDs you want to review.
         """
         return self._request(
             'getClassifiedAdPolicies',
@@ -21251,16 +18043,10 @@ class SellMetadataResource(BaseResource):
     def get_extended_producer_responsibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_encoding: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_extended_producer_responsibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_encoding: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ExtendedProducerResponsibilityPolicyResponse | httpx.Response:
         """This method returns the Extended Producer Responsibility policies for one, multiple, or all
-        eBay categories in an eBay marketplace.The identifier of the eBay marketplace is passed in
+        eBay categories in an eBay marketplace. The identifier of the eBay marketplace is passed in
         as a path parameter, and unless one or more eBay category IDs are passed in through the
         filter query parameter, this method will return metadata on every applicable category for
-        the specified marketplace.Note: Currently, the Extended Producer Responsibility policies are
-        only applicable to a limited number of categories.Note: Extended Producer Responsibility IDs
-        are no longer set at the listing level so category-level metadata is no longer returned.
-        Instead, sellers will provide/manage these IDs at the account level by going to Account
-        Settings.Tip: This method can potentially return a very large response payload. eBay
-        recommends that the response payload be compressed by passing in the Accept-Encoding request
-        header and setting the value to gzip.
+        the specified marketplace.
         """
         return self._request(
             'getExtendedProducerResponsibilityPolicies',
@@ -21281,10 +18067,7 @@ class SellMetadataResource(BaseResource):
         """This method returns hazardous materials label information for the specified eBay
         marketplace. The information includes IDs, descriptions, and URLs (as applicable) for the
         available signal words, statements, and pictograms. The returned statements are localized
-        for the default language of the marketplace. If a marketplace does not support hazardous
-        materials label information, no response payload is returned, but only a 204 No content
-        status code.This information is used by the seller to add hazardous materials label related
-        information to their listings (see Specifying hazardous material related information).
+        for the default language of the marketplace.
         """
         return self._request(
             'getHazardousMaterialsLabels',
@@ -21305,34 +18088,7 @@ class SellMetadataResource(BaseResource):
         """This method returns item condition metadata on one, multiple, or all eBay categories on an
         eBay marketplace. This metadata consists of the different item conditions (with IDs) that an
         eBay category supports, and a boolean to indicate if an eBay category requires an item
-        condition. If applicable, this metadata also shows the different condition descriptors (with
-        IDs) that an eBay category supports.Note: Currently, condition grading is only applicable to
-        the following trading card leaf categories: Non-Sport Trading Card SinglesCCG Individual
-        CardsSports Trading Cards Singlesand the following coin categories:Coins: USCoins:
-        WorldCoins: CanadaCoins: AncientCoins: MedievalNote that these coin categories are not leaf
-        categories, so condition grading is available for all leaf categories descending from the
-        above categories (except for rolls, sets, and lots).Additionally, condition grading is
-        available for Salvage items in select categories for eligible users. Use the
-        getItemConditionPolicies method to see supported categories.The identifier of the eBay
-        marketplace is passed in as a path parameter, and unless one or more eBay category IDs are
-        passed in through the filter query parameter, this method will return metadata on every
-        single category for the specified marketplace. If you only want to view item condition
-        metadata for one eBay category or a select group of eBay categories, you can pass in up to
-        50 eBay category ID through the filter query parameter.Important: Certified - Refurbished-
-        eligible sellers, and sellers who are eligible to list with the new values
-        (EXCELLENT_REFURBISHED, VERY_GOOD_REFURBISHED, and GOOD_REFURBISHED) must use an OAuth token
-        created with the authorization code grant flow and
-        https://api.ebay.com/oauth/api_scope/sell.inventory scope in order to retrieve the
-        refurbished conditions for the relevant categories.Refurbished item conditions are only
-        supported in the Australia, Canada, French Canada, Germany, France, Italy, UK, and US
-        marketplaces. See the eBay Refurbished Program page in help center for the categories that
-        support refurbished conditions. These restricted item conditions will not be returned if an
-        OAuth token created with the client credentials grant flow and
-        https://api.ebay.com/oauth/api_scope scope is used, or if any seller is not eligible to list
-        with that item condition. See the Specifying OAuth scopes topic for more information about
-        specifying scopes.Tip: This method can potentially return a very large response payload.
-        eBay recommends that the response payload be compressed by passing in the Accept-Encoding
-        request header and setting the value to gzip.
+        condition.
         """
         return self._request(
             'getItemConditionPolicies',
@@ -21353,11 +18109,7 @@ class SellMetadataResource(BaseResource):
         """This method returns the eBay policies that define the allowed listing structures for the
         categories of a specific marketplace. The listing-structure policies currently pertain to
         whether or not you can list items with variations. By default, this method returns the
-        entire category tree for the specified marketplace. You can limit the size of the result set
-        by using the filter query parameter to specify only the category IDs you want to review.Tip:
-        This method can potentially return a very large response payload. eBay recommends that the
-        response payload be compressed by passing in the Accept-Encoding request header and setting
-        the value to gzip.
+        entire category tree for the specified marketplace.
         """
         return self._request(
             'getListingStructurePolicies',
@@ -21378,9 +18130,7 @@ class SellMetadataResource(BaseResource):
         """This method returns eBay listing type policy metadata for all leaf categories on the
         specified marketplace. By default, this method returns metadata on all leaf categories. You
         can limit the size of the result set by using the filter query parameter to specify only the
-        leaf category IDs you want to review.If you specify a valid marketplace ID but that
-        marketplace does not contain policy information, or if you filter out all results, a
-        successful call returns a 204 No content status code with an empty response body.
+        leaf category IDs you want to review.
         """
         return self._request(
             'getListingTypePolicies',
@@ -21401,10 +18151,7 @@ class SellMetadataResource(BaseResource):
         """This method returns minimum listing price policies for supported types of listings on a
         specific marketplace. This includes the minimum start price for auction listings, the
         minimum sale price for fixed-price listings, and the minimum percentage value that a Buy It
-        Now or auction listing must be above the minimum start price for the same listing.Note: The
-        only applicable listing type values for this method are AUCTION and FIXED_PRICE_ITEM.The
-        identifier of the eBay marketplace for which to retrieve supported minimum listing price
-        policies is passed through the marketplace_id path parameter.
+        Now or auction listing must be above the minimum start price for the same listing.
         """
         return self._request(
             'getMinimumListingPricePolicies',
@@ -21425,10 +18172,7 @@ class SellMetadataResource(BaseResource):
         """This method returns eBay Motors policy metadata for all leaf categories on the specified
         marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.Note: To return policy
-        information for eBay US Motors categories, specify marketplace_id as EBAY_MOTORS_US.
+        category IDs you want to review.
         """
         return self._request(
             'getMotorsListingPolicies',
@@ -21450,9 +18194,7 @@ class SellMetadataResource(BaseResource):
         (like "best offer") for the categories of a specific marketplace. By default, this method
         returns the entire category tree for the specified marketplace. You can limit the size of
         the result set by using the filter query parameter to specify only the category IDs you want
-        to review.Tip: This method can potentially return a very large response payload. eBay
-        recommends that the response payload be compressed by passing in the Accept-Encoding request
-        header and setting the value to gzip.
+        to review.
         """
         return self._request(
             'getNegotiatedPricePolicies',
@@ -21473,11 +18215,7 @@ class SellMetadataResource(BaseResource):
         """This method returns product safety label information for the specified eBay marketplace. The
         information includes IDs, descriptions, and URLs (as applicable) for the available
         statements and pictograms. The returned statements are localized for the default language of
-        the marketplace. If a marketplace does not support product safety label information, no
-        response payload is returned, but only a 204 No content status code.This information is used
-        by the seller to add product safety label related information to their listings. The
-        getRegulatoryPolicies method can be used to see which categories recommend or require
-        product safety labels.
+        the marketplace.
         """
         return self._request(
             'getProductSafetyLabels',
@@ -21498,10 +18236,7 @@ class SellMetadataResource(BaseResource):
         """This method returns regulatory policies for one, multiple, or all eBay categories in an eBay
         marketplace. The identifier of the eBay marketplace is passed in as a path parameter, and
         unless one or more eBay category IDs are passed in through the filter query parameter, this
-        method will return metadata for every listing category in the specified marketplace.Tip:
-        This method can potentially return a very large response payload. eBay recommends that the
-        response payload be compressed by passing in the Accept-Encoding request header and setting
-        the value to gzip.
+        method will return metadata for every listing category in the specified marketplace.
         """
         return self._request(
             'getRegulatoryPolicies',
@@ -21523,10 +18258,7 @@ class SellMetadataResource(BaseResource):
         policy for the items you list in the categories of a specific marketplace, plus the
         guidelines for creating domestic and international return policies in the different eBay
         categories. By default, this method returns the entire category tree for the specified
-        marketplace. You can limit the size of the result set by using the filter query parameter to
-        specify only the category IDs you want to review.Tip: This method can potentially return a
-        very large response payload. eBay recommends that the response payload be compressed by
-        passing in the Accept-Encoding request header and setting the value to gzip.
+        marketplace.
         """
         return self._request(
             'getReturnPolicies',
@@ -21545,11 +18277,9 @@ class SellMetadataResource(BaseResource):
     def get_shipping_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_shipping_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ShippingPoliciesResponse | httpx.Response:
         """This method returns eBay shipping policy metadata for all leaf categories on the specified
-        marketplace.By default, this method returns metadata on all leaf categories. You can limit
+        marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.
+        category IDs you want to review.
         """
         return self._request(
             'getShippingPolicies',
@@ -21568,11 +18298,9 @@ class SellMetadataResource(BaseResource):
     def get_site_visibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_site_visibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SiteVisibilityPoliciesResponse | httpx.Response:
         """This method returns eBay international site visibility policy metadata for all leaf
-        categories on the specified marketplace.By default, this method returns metadata on all leaf
-        categories. You can limit the size of the result set by using the filter query parameter to
-        specify only the leaf category IDs you want to review.If you specify a valid marketplace ID
-        but that marketplace does not contain policy information, or if you filter out all results,
-        a successful call returns a 204 No content status code with an empty response body.
+        categories on the specified marketplace. By default, this method returns metadata on all
+        leaf categories. You can limit the size of the result set by using the filter query
+        parameter to specify only the leaf category IDs you want to review.
         """
         return self._request(
             'getSiteVisibilityPolicies',
@@ -21591,15 +18319,8 @@ class SellMetadataResource(BaseResource):
     def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
         """This method is used to retrieve all compatible application name-value pairs for a part based
-        on the provided specification(s).The part's relevant dimensions and/or characteristics can
-        be provided through the specifications container. For example, when retrieving compatible
-        application name-value pairs for a tire, the tire's dimensions (such as the section width or
-        rim diameter) should be provided.By default, all compatible application name-value pairs for
-        the specifications are returned. You can limit the size of the result set by using the
-        compatibilityPropertyFilters array to specify the properties (such as make, model, year, or
-        trim) you wish to be included in the response.Note: The getCompatibilityPropertyNames and
-        getCompatibilityPropertyValues methods can be used to retrieve valid property names and
-        values that can be used as the name-value pairs to define specifications.
+        on the provided specification(s). The part's relevant dimensions and/or characteristics can
+        be provided through the specifications container.
         """
         return self._request(
             'getCompatibilitiesBySpecification',
@@ -21619,14 +18340,10 @@ class SellMetadataResource(BaseResource):
     def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property names for the specified
-        compatibility-enabled category.Compatibility property names can be used alongside the
+        compatibility-enabled category. Compatibility property names can be used alongside the
         corresponding compatibility property value (retrieved using the
         getCompatibilityPropertyValues method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property names is required in the request body.By default, all property names
-        within the compatibility category of the specified compatibility-enable category are
-        returned. You can limit the size of the result set by using the dataset array to specify the
-        types of properties you want returned.
+        compatible.
         """
         return self._request(
             'getCompatibilityPropertyNames',
@@ -21646,15 +18363,10 @@ class SellMetadataResource(BaseResource):
     def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with a
-        single property name, in the specified category.Compatibility property values can be used
+        single property name, in the specified category. Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
         getCompatibilityPropertyNames method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property values is required in the request body, as well as the propertyName
-        for which you wish to retrieve associated values.By default, all property values associated
-        with the specified propertyName are returned. You can limit the size of the result set by
-        using the propertyFilter array. Only property values associated with the specified name-
-        value pairs will be returned.
+        compatible.
         """
         return self._request(
             'getCompatibilityPropertyValues',
@@ -21674,14 +18386,10 @@ class SellMetadataResource(BaseResource):
     def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with
-        multiple property names, in the specified category.Compatibility property values can be used
-        alongside the corresponding compatibility property name (retrieved using the
+        multiple property names, in the specified category. Compatibility property values can be
+        used alongside the corresponding compatibility property name (retrieved using the
         getCompatibilityPropertyNames method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property values is required in the request body, as well as the propertyNames
-        for which you wish to retrieve associated property values. The propertyFilter array is also
-        required to constrain the output. Only property values associated with the specified name-
-        value pairs will be returned.
+        compatible.
         """
         return self._request(
             'getMultiCompatibilityPropertyValues',
@@ -21701,17 +18409,9 @@ class SellMetadataResource(BaseResource):
     def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
         """This method is used to retrieve all available item compatibility details for the specified
-        product.Item compatibility details can be used to see the properties for which an item is
+        product. Item compatibility details can be used to see the properties for which an item is
         compatible. For example, if you are searching for a part for a specific vehicle, you can use
-        this method to see the years, engine, and/or trim for which the part is compatible. Item
-        compatibility details are returned as name-value pairs.The product for which to retrieve
-        item compatibility details must be provided through the productIdentifier field. This value
-        can be either an eBay specific identifier (such as an ePID) or an external identifier (such
-        as a UPC).By default, all available item compatibility details for the specified product are
-        returned. You can limit the size of the result set using the dataset or datasetPropertyName
-        fields to specify the types of properties you want returned in the response. The
-        applicationPropertyFilter array can also be used so that only parts compatible with the
-        specified name-value pairs are returned.
+        this method to see the years, engine, and/or trim for which the part is compatible.
         """
         return self._request(
             'getProductCompatibilities',
@@ -21733,11 +18433,7 @@ class SellMetadataResource(BaseResource):
         """This method retrieves a list of locations that the seller can use as excluded shipping
         locations within their listings or in their fulfillment business policies for the specified
         marketplace. These are locations that a seller designates as areas where they will not ship
-        items. Excluded shipping locations and ship-to locations are used in tandem at the listing
-        level and in fulfillment business policies. Excluded shipping locations and ship-to
-        locations share a lot of the same values and they should not contradict each other.Manage
-        excluded shipping locations using business policies through the fulfillment_policy resource
-        of the Account v1 API.
+        items.
         """
         return self._request(
             'getExcludeShippingLocations',
@@ -21758,10 +18454,7 @@ class SellMetadataResource(BaseResource):
         """This method retrieves a list of supported handling times for the specified marketplace. The
         handling time returned specifies the maximum number of business days the eBay site allows
         for shipping an item to domestic buyers after receiving a cleared payment. Handling times
-        apply to both domestic and international orders. If the handling time is 1 day, the seller
-        commits to dropping the item off for shipment one business day after payment clears. Manage
-        handing times using business policies through the fulfillment_policy resource of the Account
-        v1 API.
+        apply to both domestic and international orders.
         """
         return self._request(
             'getHandlingTimes',
@@ -21783,10 +18476,7 @@ class SellMetadataResource(BaseResource):
         It provides essential information for sellers to understand which shipping carriers are
         available for use when listing items on that eBay marketplace. Knowing the supported
         carriers can help sellers optimize their shipping options and ensure efficient delivery to
-        buyers.The value returned in the shippingCarrier field is the enumerated value required when
-        providing shipment tracking information for that carrier.Tip: Use the getShippingServices
-        method to explore available shipping services for each carrier.Manage shipping carriers
-        using business policies through the fulfillment_policy resource of the Account v1 API.
+        buyers.
         """
         return self._request(
             'getShippingCarriers',
@@ -21807,9 +18497,7 @@ class SellMetadataResource(BaseResource):
         """This method retrieves a list of supported shipping locations for the specified marketplace.
         It provides sellers with information on where they can ship their items. Sellers can use
         this information to configure their shipping settings. Tip: Use the
-        getExcludeShippingLocations method to return locations where the seller does not ship.Manage
-        shipping locations using business policies through the fulfillment_policy resource of the
-        Account v1 API.
+        getExcludeShippingLocations method to return locations where the seller does not ship.
         """
         return self._request(
             'getShippingLocations',
@@ -21829,8 +18517,8 @@ class SellMetadataResource(BaseResource):
     def get_shipping_services(self, marketplace_id: str, *, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ShippingServiceResponse | httpx.Response:
         """This method retrieves a list of shipping services supported for the specified marketplace,
         including valid shipping services, shipping times, and package constraints such as size and
-        weight.Manage shipping services using business policies through the fulfillment_policy
-        resource of the Account v1 API.
+        weight. Manage shipping services using business policies through the fulfillment_policy
+        resource of the Account v1 API .
         """
         return self._request(
             'getShippingServices',
@@ -21850,16 +18538,8 @@ class SellMetadataResource(BaseResource):
     def get_sales_tax_jurisdictions(self, country_code: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SalesTaxJurisdictions | httpx.Response:
         """This method retrieves all sales-tax jurisdictions for the country specified in the
         countryCode path parameter. Countries with valid sales-tax jurisdictions are Canada and the
-        US.The response from this call tells you the jurisdictions for which a seller can configure
-        tax tables. Although setting up tax tables is optional, you can use the
-        createOrReplaceSalesTax method in the Account API call to configure the tax tables for the
-        jurisdictions into which you sell.Note: Sales-tax tables are only available for the US
-        (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the US, eBay now calculates,
-        collects, and remits sales tax to the proper taxing authorities in all 50 states and
-        Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using
-        a tax table.However, sellers may continue to use a sales-tax table to set rates for the
-        following US territories:American Samoa (AS)Guam (GU)Northern Mariana Islands (MP)Palau
-        (PW)US Virgin Islands (VI)For additional information, refer to Taxes and import charges.
+        US. The response from this call tells you the jurisdictions for which a seller can configure
+        tax tables.
         """
         return self._request(
             'getSalesTaxJurisdictions',
@@ -21890,13 +18570,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns the eBay policies that define how to list automotive parts compatibility
         items in the categories of the specified marketplace. By default, this method returns all
         categories that support parts compatibility. You can limit the size of the result set by
-        using the filter query parameter to specify only the category IDs you want to review.Note:
-        To return policy information for the eBay US marketplace, specify EBAY_MOTORS_US as the path
-        parameter for marketplace_id.Tip: This method can potentially return a very large response
-        payload. eBay recommends that the response payload be compressed by passing in the Accept-
-        Encoding request header and setting the value to gzip.If you specify a valid marketplace ID
-        but that marketplace does not contain policy information, or if you filter out all results,
-        a 204 No content status code is returned with an empty response body.
+        using the filter query parameter to specify only the category IDs you want to review.
         """
         return await self._request(
             'getAutomotivePartsCompatibilityPolicies',
@@ -21915,11 +18589,9 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_category_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_category_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.CategoryPolicyResponse | httpx.Response:
         """This method returns eBay category policy metadata for all leaf categories on the specified
-        marketplace.By default, this method returns metadata on all leaf categories. You can limit
+        marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.
+        category IDs you want to review.
         """
         return await self._request(
             'getCategoryPolicies',
@@ -21938,13 +18610,9 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_classified_ad_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_classified_ad_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ClassifiedAdPolicyResponse | httpx.Response:
         """This method returns eBay classified ad policy metadata for all leaf categories on the
-        specified marketplace.By default, this method returns metadata on all leaf categories. You
+        specified marketplace. By default, this method returns metadata on all leaf categories. You
         can limit the size of the result set by using the filter query parameter to specify only the
-        leaf category IDs you want to review.If you specify a valid marketplace ID but that
-        marketplace does not contain policy information, or if you filter out all results, a
-        successful call returns a 204 No content status code with an empty response body.Note: This
-        method does not support classified ads for eBay US Motors categories (EBAY_MOTORS_US). For
-        eBay Motors Pro users, use getMotorsListingPolicies.
+        leaf category IDs you want to review.
         """
         return await self._request(
             'getClassifiedAdPolicies',
@@ -21983,16 +18651,10 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_extended_producer_responsibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_encoding: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_extended_producer_responsibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_encoding: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ExtendedProducerResponsibilityPolicyResponse | httpx.Response:
         """This method returns the Extended Producer Responsibility policies for one, multiple, or all
-        eBay categories in an eBay marketplace.The identifier of the eBay marketplace is passed in
+        eBay categories in an eBay marketplace. The identifier of the eBay marketplace is passed in
         as a path parameter, and unless one or more eBay category IDs are passed in through the
         filter query parameter, this method will return metadata on every applicable category for
-        the specified marketplace.Note: Currently, the Extended Producer Responsibility policies are
-        only applicable to a limited number of categories.Note: Extended Producer Responsibility IDs
-        are no longer set at the listing level so category-level metadata is no longer returned.
-        Instead, sellers will provide/manage these IDs at the account level by going to Account
-        Settings.Tip: This method can potentially return a very large response payload. eBay
-        recommends that the response payload be compressed by passing in the Accept-Encoding request
-        header and setting the value to gzip.
+        the specified marketplace.
         """
         return await self._request(
             'getExtendedProducerResponsibilityPolicies',
@@ -22013,10 +18675,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns hazardous materials label information for the specified eBay
         marketplace. The information includes IDs, descriptions, and URLs (as applicable) for the
         available signal words, statements, and pictograms. The returned statements are localized
-        for the default language of the marketplace. If a marketplace does not support hazardous
-        materials label information, no response payload is returned, but only a 204 No content
-        status code.This information is used by the seller to add hazardous materials label related
-        information to their listings (see Specifying hazardous material related information).
+        for the default language of the marketplace.
         """
         return await self._request(
             'getHazardousMaterialsLabels',
@@ -22037,34 +18696,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns item condition metadata on one, multiple, or all eBay categories on an
         eBay marketplace. This metadata consists of the different item conditions (with IDs) that an
         eBay category supports, and a boolean to indicate if an eBay category requires an item
-        condition. If applicable, this metadata also shows the different condition descriptors (with
-        IDs) that an eBay category supports.Note: Currently, condition grading is only applicable to
-        the following trading card leaf categories: Non-Sport Trading Card SinglesCCG Individual
-        CardsSports Trading Cards Singlesand the following coin categories:Coins: USCoins:
-        WorldCoins: CanadaCoins: AncientCoins: MedievalNote that these coin categories are not leaf
-        categories, so condition grading is available for all leaf categories descending from the
-        above categories (except for rolls, sets, and lots).Additionally, condition grading is
-        available for Salvage items in select categories for eligible users. Use the
-        getItemConditionPolicies method to see supported categories.The identifier of the eBay
-        marketplace is passed in as a path parameter, and unless one or more eBay category IDs are
-        passed in through the filter query parameter, this method will return metadata on every
-        single category for the specified marketplace. If you only want to view item condition
-        metadata for one eBay category or a select group of eBay categories, you can pass in up to
-        50 eBay category ID through the filter query parameter.Important: Certified - Refurbished-
-        eligible sellers, and sellers who are eligible to list with the new values
-        (EXCELLENT_REFURBISHED, VERY_GOOD_REFURBISHED, and GOOD_REFURBISHED) must use an OAuth token
-        created with the authorization code grant flow and
-        https://api.ebay.com/oauth/api_scope/sell.inventory scope in order to retrieve the
-        refurbished conditions for the relevant categories.Refurbished item conditions are only
-        supported in the Australia, Canada, French Canada, Germany, France, Italy, UK, and US
-        marketplaces. See the eBay Refurbished Program page in help center for the categories that
-        support refurbished conditions. These restricted item conditions will not be returned if an
-        OAuth token created with the client credentials grant flow and
-        https://api.ebay.com/oauth/api_scope scope is used, or if any seller is not eligible to list
-        with that item condition. See the Specifying OAuth scopes topic for more information about
-        specifying scopes.Tip: This method can potentially return a very large response payload.
-        eBay recommends that the response payload be compressed by passing in the Accept-Encoding
-        request header and setting the value to gzip.
+        condition.
         """
         return await self._request(
             'getItemConditionPolicies',
@@ -22085,11 +18717,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns the eBay policies that define the allowed listing structures for the
         categories of a specific marketplace. The listing-structure policies currently pertain to
         whether or not you can list items with variations. By default, this method returns the
-        entire category tree for the specified marketplace. You can limit the size of the result set
-        by using the filter query parameter to specify only the category IDs you want to review.Tip:
-        This method can potentially return a very large response payload. eBay recommends that the
-        response payload be compressed by passing in the Accept-Encoding request header and setting
-        the value to gzip.
+        entire category tree for the specified marketplace.
         """
         return await self._request(
             'getListingStructurePolicies',
@@ -22110,9 +18738,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns eBay listing type policy metadata for all leaf categories on the
         specified marketplace. By default, this method returns metadata on all leaf categories. You
         can limit the size of the result set by using the filter query parameter to specify only the
-        leaf category IDs you want to review.If you specify a valid marketplace ID but that
-        marketplace does not contain policy information, or if you filter out all results, a
-        successful call returns a 204 No content status code with an empty response body.
+        leaf category IDs you want to review.
         """
         return await self._request(
             'getListingTypePolicies',
@@ -22133,10 +18759,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns minimum listing price policies for supported types of listings on a
         specific marketplace. This includes the minimum start price for auction listings, the
         minimum sale price for fixed-price listings, and the minimum percentage value that a Buy It
-        Now or auction listing must be above the minimum start price for the same listing.Note: The
-        only applicable listing type values for this method are AUCTION and FIXED_PRICE_ITEM.The
-        identifier of the eBay marketplace for which to retrieve supported minimum listing price
-        policies is passed through the marketplace_id path parameter.
+        Now or auction listing must be above the minimum start price for the same listing.
         """
         return await self._request(
             'getMinimumListingPricePolicies',
@@ -22157,10 +18780,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns eBay Motors policy metadata for all leaf categories on the specified
         marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.Note: To return policy
-        information for eBay US Motors categories, specify marketplace_id as EBAY_MOTORS_US.
+        category IDs you want to review.
         """
         return await self._request(
             'getMotorsListingPolicies',
@@ -22182,9 +18802,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         (like "best offer") for the categories of a specific marketplace. By default, this method
         returns the entire category tree for the specified marketplace. You can limit the size of
         the result set by using the filter query parameter to specify only the category IDs you want
-        to review.Tip: This method can potentially return a very large response payload. eBay
-        recommends that the response payload be compressed by passing in the Accept-Encoding request
-        header and setting the value to gzip.
+        to review.
         """
         return await self._request(
             'getNegotiatedPricePolicies',
@@ -22205,11 +18823,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns product safety label information for the specified eBay marketplace. The
         information includes IDs, descriptions, and URLs (as applicable) for the available
         statements and pictograms. The returned statements are localized for the default language of
-        the marketplace. If a marketplace does not support product safety label information, no
-        response payload is returned, but only a 204 No content status code.This information is used
-        by the seller to add product safety label related information to their listings. The
-        getRegulatoryPolicies method can be used to see which categories recommend or require
-        product safety labels.
+        the marketplace.
         """
         return await self._request(
             'getProductSafetyLabels',
@@ -22230,10 +18844,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method returns regulatory policies for one, multiple, or all eBay categories in an eBay
         marketplace. The identifier of the eBay marketplace is passed in as a path parameter, and
         unless one or more eBay category IDs are passed in through the filter query parameter, this
-        method will return metadata for every listing category in the specified marketplace.Tip:
-        This method can potentially return a very large response payload. eBay recommends that the
-        response payload be compressed by passing in the Accept-Encoding request header and setting
-        the value to gzip.
+        method will return metadata for every listing category in the specified marketplace.
         """
         return await self._request(
             'getRegulatoryPolicies',
@@ -22255,10 +18866,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         policy for the items you list in the categories of a specific marketplace, plus the
         guidelines for creating domestic and international return policies in the different eBay
         categories. By default, this method returns the entire category tree for the specified
-        marketplace. You can limit the size of the result set by using the filter query parameter to
-        specify only the category IDs you want to review.Tip: This method can potentially return a
-        very large response payload. eBay recommends that the response payload be compressed by
-        passing in the Accept-Encoding request header and setting the value to gzip.
+        marketplace.
         """
         return await self._request(
             'getReturnPolicies',
@@ -22277,11 +18885,9 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_shipping_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_shipping_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ShippingPoliciesResponse | httpx.Response:
         """This method returns eBay shipping policy metadata for all leaf categories on the specified
-        marketplace.By default, this method returns metadata on all leaf categories. You can limit
+        marketplace. By default, this method returns metadata on all leaf categories. You can limit
         the size of the result set by using the filter query parameter to specify only the leaf
-        category IDs you want to review.If you specify a valid marketplace ID but that marketplace
-        does not contain policy information, or if you filter out all results, a successful call
-        returns a 204 No content status code with an empty response body.
+        category IDs you want to review.
         """
         return await self._request(
             'getShippingPolicies',
@@ -22300,11 +18906,9 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_site_visibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_site_visibility_policies(self, marketplace_id: str, *, filter: str | None = None, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SiteVisibilityPoliciesResponse | httpx.Response:
         """This method returns eBay international site visibility policy metadata for all leaf
-        categories on the specified marketplace.By default, this method returns metadata on all leaf
-        categories. You can limit the size of the result set by using the filter query parameter to
-        specify only the leaf category IDs you want to review.If you specify a valid marketplace ID
-        but that marketplace does not contain policy information, or if you filter out all results,
-        a successful call returns a 204 No content status code with an empty response body.
+        categories on the specified marketplace. By default, this method returns metadata on all
+        leaf categories. You can limit the size of the result set by using the filter query
+        parameter to specify only the leaf category IDs you want to review.
         """
         return await self._request(
             'getSiteVisibilityPolicies',
@@ -22323,15 +18927,8 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_compatibilities_by_specification(self, *, body: sell_metadata_models.SpecificationRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SpecificationResponse | httpx.Response:
         """This method is used to retrieve all compatible application name-value pairs for a part based
-        on the provided specification(s).The part's relevant dimensions and/or characteristics can
-        be provided through the specifications container. For example, when retrieving compatible
-        application name-value pairs for a tire, the tire's dimensions (such as the section width or
-        rim diameter) should be provided.By default, all compatible application name-value pairs for
-        the specifications are returned. You can limit the size of the result set by using the
-        compatibilityPropertyFilters array to specify the properties (such as make, model, year, or
-        trim) you wish to be included in the response.Note: The getCompatibilityPropertyNames and
-        getCompatibilityPropertyValues methods can be used to retrieve valid property names and
-        values that can be used as the name-value pairs to define specifications.
+        on the provided specification(s). The part's relevant dimensions and/or characteristics can
+        be provided through the specifications container.
         """
         return await self._request(
             'getCompatibilitiesBySpecification',
@@ -22351,14 +18948,10 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_compatibility_property_names(self, *, body: sell_metadata_models.PropertyNamesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyNamesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property names for the specified
-        compatibility-enabled category.Compatibility property names can be used alongside the
+        compatibility-enabled category. Compatibility property names can be used alongside the
         corresponding compatibility property value (retrieved using the
         getCompatibilityPropertyValues method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property names is required in the request body.By default, all property names
-        within the compatibility category of the specified compatibility-enable category are
-        returned. You can limit the size of the result set by using the dataset array to specify the
-        types of properties you want returned.
+        compatible.
         """
         return await self._request(
             'getCompatibilityPropertyNames',
@@ -22378,15 +18971,10 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_compatibility_property_values(self, *, body: sell_metadata_models.PropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.PropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with a
-        single property name, in the specified category.Compatibility property values can be used
+        single property name, in the specified category. Compatibility property values can be used
         alongside the corresponding compatibility property name (retrieved using the
         getCompatibilityPropertyNames method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property values is required in the request body, as well as the propertyName
-        for which you wish to retrieve associated values.By default, all property values associated
-        with the specified propertyName are returned. You can limit the size of the result set by
-        using the propertyFilter array. Only property values associated with the specified name-
-        value pairs will be returned.
+        compatible.
         """
         return await self._request(
             'getCompatibilityPropertyValues',
@@ -22406,14 +18994,10 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_multi_compatibility_property_values(self, *, body: sell_metadata_models.MultiCompatibilityPropertyValuesRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.MultiCompatibilityPropertyValuesResponse | httpx.Response:
         """This method is used to retrieve product compatibility property values associated with
-        multiple property names, in the specified category.Compatibility property values can be used
-        alongside the corresponding compatibility property name (retrieved using the
+        multiple property names, in the specified category. Compatibility property values can be
+        used alongside the corresponding compatibility property name (retrieved using the
         getCompatibilityPropertyNames method) to describe the assembly for which an item is
-        compatible.The categoryId of the compatibility-enabled category for which to retrieve
-        compatibility property values is required in the request body, as well as the propertyNames
-        for which you wish to retrieve associated property values. The propertyFilter array is also
-        required to constrain the output. Only property values associated with the specified name-
-        value pairs will be returned.
+        compatible.
         """
         return await self._request(
             'getMultiCompatibilityPropertyValues',
@@ -22433,17 +19017,9 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_product_compatibilities(self, *, body: sell_metadata_models.ProductRequest | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ProductResponse | httpx.Response:
         """This method is used to retrieve all available item compatibility details for the specified
-        product.Item compatibility details can be used to see the properties for which an item is
+        product. Item compatibility details can be used to see the properties for which an item is
         compatible. For example, if you are searching for a part for a specific vehicle, you can use
-        this method to see the years, engine, and/or trim for which the part is compatible. Item
-        compatibility details are returned as name-value pairs.The product for which to retrieve
-        item compatibility details must be provided through the productIdentifier field. This value
-        can be either an eBay specific identifier (such as an ePID) or an external identifier (such
-        as a UPC).By default, all available item compatibility details for the specified product are
-        returned. You can limit the size of the result set using the dataset or datasetPropertyName
-        fields to specify the types of properties you want returned in the response. The
-        applicationPropertyFilter array can also be used so that only parts compatible with the
-        specified name-value pairs are returned.
+        this method to see the years, engine, and/or trim for which the part is compatible.
         """
         return await self._request(
             'getProductCompatibilities',
@@ -22465,11 +19041,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method retrieves a list of locations that the seller can use as excluded shipping
         locations within their listings or in their fulfillment business policies for the specified
         marketplace. These are locations that a seller designates as areas where they will not ship
-        items. Excluded shipping locations and ship-to locations are used in tandem at the listing
-        level and in fulfillment business policies. Excluded shipping locations and ship-to
-        locations share a lot of the same values and they should not contradict each other.Manage
-        excluded shipping locations using business policies through the fulfillment_policy resource
-        of the Account v1 API.
+        items.
         """
         return await self._request(
             'getExcludeShippingLocations',
@@ -22490,10 +19062,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method retrieves a list of supported handling times for the specified marketplace. The
         handling time returned specifies the maximum number of business days the eBay site allows
         for shipping an item to domestic buyers after receiving a cleared payment. Handling times
-        apply to both domestic and international orders. If the handling time is 1 day, the seller
-        commits to dropping the item off for shipment one business day after payment clears. Manage
-        handing times using business policies through the fulfillment_policy resource of the Account
-        v1 API.
+        apply to both domestic and international orders.
         """
         return await self._request(
             'getHandlingTimes',
@@ -22515,10 +19084,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         It provides essential information for sellers to understand which shipping carriers are
         available for use when listing items on that eBay marketplace. Knowing the supported
         carriers can help sellers optimize their shipping options and ensure efficient delivery to
-        buyers.The value returned in the shippingCarrier field is the enumerated value required when
-        providing shipment tracking information for that carrier.Tip: Use the getShippingServices
-        method to explore available shipping services for each carrier.Manage shipping carriers
-        using business policies through the fulfillment_policy resource of the Account v1 API.
+        buyers.
         """
         return await self._request(
             'getShippingCarriers',
@@ -22539,9 +19105,7 @@ class AsyncSellMetadataResource(AsyncBaseResource):
         """This method retrieves a list of supported shipping locations for the specified marketplace.
         It provides sellers with information on where they can ship their items. Sellers can use
         this information to configure their shipping settings. Tip: Use the
-        getExcludeShippingLocations method to return locations where the seller does not ship.Manage
-        shipping locations using business policies through the fulfillment_policy resource of the
-        Account v1 API.
+        getExcludeShippingLocations method to return locations where the seller does not ship.
         """
         return await self._request(
             'getShippingLocations',
@@ -22561,8 +19125,8 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_shipping_services(self, marketplace_id: str, *, accept_language: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.ShippingServiceResponse | httpx.Response:
         """This method retrieves a list of shipping services supported for the specified marketplace,
         including valid shipping services, shipping times, and package constraints such as size and
-        weight.Manage shipping services using business policies through the fulfillment_policy
-        resource of the Account v1 API.
+        weight. Manage shipping services using business policies through the fulfillment_policy
+        resource of the Account v1 API .
         """
         return await self._request(
             'getShippingServices',
@@ -22582,16 +19146,8 @@ class AsyncSellMetadataResource(AsyncBaseResource):
     async def get_sales_tax_jurisdictions(self, country_code: str, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_metadata_models.SalesTaxJurisdictions | httpx.Response:
         """This method retrieves all sales-tax jurisdictions for the country specified in the
         countryCode path parameter. Countries with valid sales-tax jurisdictions are Canada and the
-        US.The response from this call tells you the jurisdictions for which a seller can configure
-        tax tables. Although setting up tax tables is optional, you can use the
-        createOrReplaceSalesTax method in the Account API call to configure the tax tables for the
-        jurisdictions into which you sell.Note: Sales-tax tables are only available for the US
-        (EBAY_US) and Canada (EBAY_CA) marketplaces.Important! In the US, eBay now calculates,
-        collects, and remits sales tax to the proper taxing authorities in all 50 states and
-        Washington, DC. Sellers can no longer specify sales-tax rates for these jurisdictions using
-        a tax table.However, sellers may continue to use a sales-tax table to set rates for the
-        following US territories:American Samoa (AS)Guam (GU)Northern Mariana Islands (MP)Palau
-        (PW)US Virgin Islands (VI)For additional information, refer to Taxes and import charges.
+        US. The response from this call tells you the jurisdictions for which a seller can configure
+        tax tables.
         """
         return await self._request(
             'getSalesTaxJurisdictions',
@@ -22621,11 +19177,7 @@ class SellNegotiationResource(BaseResource):
     def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
         """This method evaluates a seller's current listings and returns the set of IDs that are
         eligible for a seller-initiated discount offer to a buyer. A listing ID is returned only
-        when one or more buyers have shown an interest in the listing. If any buyers have shown
-        interest in a listing, the seller can initiate a negotiation with them by calling
-        sendOfferToInterestedBuyers, which sends all interested buyers a message that offers the
-        listing at a discount. For details about how to create seller offers to buyers, see Sending
-        offers to buyers.
+        when one or more buyers have shown an interest in the listing.
         """
         return self._request(
             'findEligibleItems',
@@ -22646,11 +19198,7 @@ class SellNegotiationResource(BaseResource):
         """This method sends eligible buyers offers to purchase items in a listing at a discount. When
         a buyer has shown interest in a listing, they become "eligible" to receive a seller-
         initiated offer to purchase the item(s). Sellers use findEligibleItems to get the set of
-        listings that have interested buyers. If a listing has interested buyers, sellers can use
-        this method (sendOfferToInterestedBuyers) to send an offer to the buyers who are interested
-        in the listing. The offer gives buyers the ability to purchase the associated listings at a
-        discounted price. For details about how to create seller offers to buyers, see Sending
-        offers to buyers.
+        listings that have interested buyers.
         """
         return self._request(
             'sendOfferToInterestedBuyers',
@@ -22681,11 +19229,7 @@ class AsyncSellNegotiationResource(AsyncBaseResource):
     async def find_eligible_items(self, *, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_negotiation_models.PagedEligibleItemCollection | httpx.Response:
         """This method evaluates a seller's current listings and returns the set of IDs that are
         eligible for a seller-initiated discount offer to a buyer. A listing ID is returned only
-        when one or more buyers have shown an interest in the listing. If any buyers have shown
-        interest in a listing, the seller can initiate a negotiation with them by calling
-        sendOfferToInterestedBuyers, which sends all interested buyers a message that offers the
-        listing at a discount. For details about how to create seller offers to buyers, see Sending
-        offers to buyers.
+        when one or more buyers have shown an interest in the listing.
         """
         return await self._request(
             'findEligibleItems',
@@ -22706,11 +19250,7 @@ class AsyncSellNegotiationResource(AsyncBaseResource):
         """This method sends eligible buyers offers to purchase items in a listing at a discount. When
         a buyer has shown interest in a listing, they become "eligible" to receive a seller-
         initiated offer to purchase the item(s). Sellers use findEligibleItems to get the set of
-        listings that have interested buyers. If a listing has interested buyers, sellers can use
-        this method (sendOfferToInterestedBuyers) to send an offer to the buyers who are interested
-        in the listing. The offer gives buyers the ability to purchase the associated listings at a
-        discounted price. For details about how to create seller offers to buyers, see Sending
-        offers to buyers.
+        listings that have interested buyers.
         """
         return await self._request(
             'sendOfferToInterestedBuyers',
@@ -22739,33 +19279,10 @@ class SellRecommendationResource(BaseResource):
     @overload
     def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
-        """The find method currently returns information for a single recommendation type (AD) which
+        """The find method currently returns information for a single recommendation type ( AD ) which
         contains information that sellers can use to configure Promoted Listings ad campaigns. The
         response from this method includes an array of the seller's listing IDs, where each element
-        in the array contains recommendations related to the associated listing ID. For details on
-        how to use this method, see Using the Recommendation API to help configure campaigns. The AD
-        recommendation type The AD type contains two sets of information: The promoteWithAd
-        indicator The promoteWithAd response field indicates whether or not eBay recommends you
-        place the associated listing in a Promoted Listings ad campaign. The returned value is set
-        to either RECOMMENDED or UNDETERMINED, where RECOMMENDED identifies the listings that will
-        benefit the most from having them included in an ad campaign. The bid percentage Also known
-        as the "ad rate," the bidPercentage field provides the current trending bid percentage of
-        similarly promoted items in the marketplace. The ad rate is a user-specified value that
-        indicates the level of promotion that eBay applies to the campaign across the marketplace.
-        The value is also used to calculate the Promotion Listings fee, which is assessed to the
-        seller if a Promoted Listings action results in the sale of an item. Configuring the request
-        You can configure a request to review all of a seller's currently active listings, or just a
-        subset of them. All active listings &ndash; If you leave the request body empty, the request
-        targets all the items currently listed by the seller. Here, the response is filtered to
-        contain only the items where promoteWithAd equals RECOMMENDED. In this case, eBay recommends
-        that all the returned listings should be included in a Promoted Listings ad campaign.
-        Selected listing IDs &ndash; If you populate the request body with a set of listingIds, the
-        response contains data for all the specified listing IDs. In this scenario, the response
-        provides you with information on listings where the promoteWithAd can be either RECOMMENDED
-        or UNDETERMINED. The paginated response Because the response can contain many listing IDs,
-        the findListingRecommendations method paginates the response set. You can control size of
-        the returned pages, as well as an offset that dictates where to start the pagination, using
-        query parameters in the request.
+        in the array contains recommendations related to the associated listing ID.
         """
         return self._request(
             'findListingRecommendations',
@@ -22794,33 +19311,10 @@ class AsyncSellRecommendationResource(AsyncBaseResource):
     @overload
     async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def find_listing_recommendations(self, *, body: sell_recommendation_models.FindListingRecommendationRequest | None = None, filter: str | None = None, limit: str | None = None, offset: str | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_recommendation_models.PagedListingRecommendationCollection | httpx.Response:
-        """The find method currently returns information for a single recommendation type (AD) which
+        """The find method currently returns information for a single recommendation type ( AD ) which
         contains information that sellers can use to configure Promoted Listings ad campaigns. The
         response from this method includes an array of the seller's listing IDs, where each element
-        in the array contains recommendations related to the associated listing ID. For details on
-        how to use this method, see Using the Recommendation API to help configure campaigns. The AD
-        recommendation type The AD type contains two sets of information: The promoteWithAd
-        indicator The promoteWithAd response field indicates whether or not eBay recommends you
-        place the associated listing in a Promoted Listings ad campaign. The returned value is set
-        to either RECOMMENDED or UNDETERMINED, where RECOMMENDED identifies the listings that will
-        benefit the most from having them included in an ad campaign. The bid percentage Also known
-        as the "ad rate," the bidPercentage field provides the current trending bid percentage of
-        similarly promoted items in the marketplace. The ad rate is a user-specified value that
-        indicates the level of promotion that eBay applies to the campaign across the marketplace.
-        The value is also used to calculate the Promotion Listings fee, which is assessed to the
-        seller if a Promoted Listings action results in the sale of an item. Configuring the request
-        You can configure a request to review all of a seller's currently active listings, or just a
-        subset of them. All active listings &ndash; If you leave the request body empty, the request
-        targets all the items currently listed by the seller. Here, the response is filtered to
-        contain only the items where promoteWithAd equals RECOMMENDED. In this case, eBay recommends
-        that all the returned listings should be included in a Promoted Listings ad campaign.
-        Selected listing IDs &ndash; If you populate the request body with a set of listingIds, the
-        response contains data for all the specified listing IDs. In this scenario, the response
-        provides you with information on listings where the promoteWithAd can be either RECOMMENDED
-        or UNDETERMINED. The paginated response Because the response can contain many listing IDs,
-        the findListingRecommendations method paginates the response set. You can control size of
-        the returned pages, as well as an offset that dictates where to start the pagination, using
-        query parameters in the request.
+        in the array contains recommendations related to the associated listing ID.
         """
         return await self._request(
             'findListingRecommendations',
@@ -22849,7 +19343,7 @@ class SellStoresResource(BaseResource):
     @overload
     def get_store_categories(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     def get_store_categories(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_stores_models.GetStoreCategoriesResponseType | httpx.Response:
-        """This method is used to retrieve the category hierarchy for an eBay user's store.Note: Three
+        """This method is used to retrieve the category hierarchy for an eBay user's store. Note: Three
         levels of store categories are supported.
         """
         return self._request(
@@ -22870,11 +19364,8 @@ class SellStoresResource(BaseResource):
     def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to add a single new custom category to a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
-        response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
-        add category operation.Note: Three levels of store categories are supported.Important! If
-        you initiate a category change, you cannot make additional category changes until the
-        previous change request has completed. Use getStoreTask (or getStoreTasks) method to get
-        latest status of your last request.
+        response header. Call getStoreTask (or getStoreTasks ) method to retrieve the status of the
+        add category operation. Note: Three levels of store categories are supported.
         """
         return self._request(
             'addStoreCategory',
@@ -22915,10 +19406,8 @@ class SellStoresResource(BaseResource):
     def delete_store_category(self, category_id: str, *, body: sell_stores_models.DeleteStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to delete one custom category of a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
-        response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
-        delete category operation.Important! If you initiate a category change, you cannot make
-        additional category changes until the previous change request has completed. Use
-        getStoreTask (or getStoreTasks) method to get latest status of your last request.
+        response header. Call getStoreTask (or getStoreTasks ) method to retrieve the status of the
+        delete category operation.
         """
         return self._request(
             'deleteStoreCategory',
@@ -22997,9 +19486,7 @@ class SellStoresResource(BaseResource):
         """This method is used to move an existing user's eBay store custom category through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. The user calls getStoreTask to retrieve the status of the move category
-        operation.Important! If you initiate a category change, you cannot make additional category
-        changes until the previous change request has completed. Use getStoreTask (or getStoreTasks)
-        method to get latest status of your last request.
+        operation.
         """
         return self._request(
             'moveStoreCategory',
@@ -23028,7 +19515,7 @@ class AsyncSellStoresResource(AsyncBaseResource):
     @overload
     async def get_store_categories(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx.Response: ...
     async def get_store_categories(self, *, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> sell_stores_models.GetStoreCategoriesResponseType | httpx.Response:
-        """This method is used to retrieve the category hierarchy for an eBay user's store.Note: Three
+        """This method is used to retrieve the category hierarchy for an eBay user's store. Note: Three
         levels of store categories are supported.
         """
         return await self._request(
@@ -23049,11 +19536,8 @@ class AsyncSellStoresResource(AsyncBaseResource):
     async def add_store_category(self, *, body: sell_stores_models.AddStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to add a single new custom category to a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
-        response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
-        add category operation.Note: Three levels of store categories are supported.Important! If
-        you initiate a category change, you cannot make additional category changes until the
-        previous change request has completed. Use getStoreTask (or getStoreTasks) method to get
-        latest status of your last request.
+        response header. Call getStoreTask (or getStoreTasks ) method to retrieve the status of the
+        add category operation. Note: Three levels of store categories are supported.
         """
         return await self._request(
             'addStoreCategory',
@@ -23094,10 +19578,8 @@ class AsyncSellStoresResource(AsyncBaseResource):
     async def delete_store_category(self, category_id: str, *, body: sell_stores_models.DeleteStoreCategoryRequestType | None = None, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx.Response:
         """This method is used to delete one custom category of a user's eBay store through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
-        response header. Call getStoreTask (or getStoreTasks) method to retrieve the status of the
-        delete category operation.Important! If you initiate a category change, you cannot make
-        additional category changes until the previous change request has completed. Use
-        getStoreTask (or getStoreTasks) method to get latest status of your last request.
+        response header. Call getStoreTask (or getStoreTasks ) method to retrieve the status of the
+        delete category operation.
         """
         return await self._request(
             'deleteStoreCategory',
@@ -23176,9 +19658,7 @@ class AsyncSellStoresResource(AsyncBaseResource):
         """This method is used to move an existing user's eBay store custom category through an
         asynchronous request. A successful call returns the getStoreTask URI in the Location
         response header. The user calls getStoreTask to retrieve the status of the move category
-        operation.Important! If you initiate a category change, you cannot make additional category
-        changes until the previous change request has completed. Use getStoreTask (or getStoreTasks)
-        method to get latest status of your last request.
+        operation.
         """
         return await self._request(
             'moveStoreCategory',

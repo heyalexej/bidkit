@@ -329,7 +329,7 @@ class Phone(EbayModel):
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a> standard of the country to which the phone number belongs.',
+        description='The two-letter ISO 3166 standard of the country to which the phone number belongs.',
     )
     number: str | None = Field(
         None, description='The numeric string representing the phone number.'
@@ -337,7 +337,7 @@ class Phone(EbayModel):
     phone_type: str | None = Field(
         None,
         alias='phoneType',
-        description='The type of phone service. <br /><br /><b> Valid Values: </b> MOBILE or LAND_LINE  <br /><br />Code so that your app gracefully handles any future changes to this list.',
+        description='The type of phone service. Valid Values: MOBILE or LAND_LINE Code so that your app gracefully handles any future changes to this list.',
     )
 
 
@@ -360,7 +360,7 @@ class Address(EbayModel):
     city: str | None = Field(None, description='The city of the address.')
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a> standard of the country of the address.',
+        description='The two-letter ISO 3166 standard of the country of the address.',
     )
     county: str | None = Field(None, description='The county of the address.')
     postal_code: str | None = Field(
@@ -376,12 +376,12 @@ class Address(EbayModel):
 class BusinessAccount(EbayModel):
     address: Address | None = Field(
         None,
-        description='The container that returns the address of the business account. ',
+        description='The container that returns the address of the business account.',
     )
     doing_business_as: str | None = Field(
         None,
         alias='doingBusinessAs',
-        description='An additional name that is used for their business on eBay. The business name is returned in the <b> name</b> field.',
+        description='An additional name that is used for their business on eBay. The business name is returned in the name field.',
     )
     email: str | None = Field(
         None, description='The email address of the business account.'
@@ -479,7 +479,7 @@ class UserResponse(EbayModel):
     account_type: AccountTypeEnum | None = Field(
         None,
         alias='accountType',
-        description='Indicates the user account type. This is determined when the user registers with eBay. If they register for a business account, this value will be <code>BUSINESS</code>. If they register for a private account, this value will be <code>INDIVIDUAL</code>. This designation is required by the tax laws in the following countries:   <ul><li>EBAY_AT</li><li>EBAY_BE</li><li>EBAY_CH</li><li>EBAY_DE</li><li>EBAY_ES</li><li>EBAY_FR</li><li>EBAY_GB</li><li>EBAY_IE</li><li>EBAY_IT</li><li>EBAY_PL</li></ul> <br /><b> Valid Values:</b> <code>BUSINESS</code> or <code>INDIVIDUAL</code> <br /><br />Code so that your app gracefully handles any future changes to this list.',
+        description='Indicates the user account type. This is determined when the user registers with eBay. If they register for a business account, this value will be BUSINESS . If they register for a private account, this value will be INDIVIDUAL .',
     )
     business_account: BusinessAccount | None = Field(
         None,
@@ -498,7 +498,7 @@ class UserResponse(EbayModel):
     )
     status: UserStatusEnum | None = Field(
         None,
-        description="Indicates the user's account status. Possible values: <code>CONFIRMED</code>, <code>UNCONFIRMED</code>, <code>ACCOUNTONHOLD</code> and <code>UNDETERMINED</code>.",
+        description="Indicates the user's account status. Possible values: CONFIRMED , UNCONFIRMED , ACCOUNTONHOLD and UNDETERMINED .",
     )
     user_id: str | None = Field(
         None,
@@ -507,5 +507,5 @@ class UserResponse(EbayModel):
     )
     username: str | None = Field(
         None,
-        description='The user name, which was specified by the user when they created the account. <br /><br /><span class="tablenote"><b>Note: </b> This value can be changed by the user.</span><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html">Data Handling Compliance</a>. </span>',
+        description='The user name, which was specified by the user when they created the account. Note: This value can be changed by the user. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )

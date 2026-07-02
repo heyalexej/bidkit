@@ -40,7 +40,7 @@ class AspectGroup(EbayModel):
     localized_group_name: str | None = Field(
         None,
         alias='localizedGroupName',
-        description='The name of a group of aspects.<br><br>In the following example, <b>Product Identifiers</b> and <b>Process</b> are product aspect group names. Under the group name are the product aspect name/value pairs.<br><br><b>Product Identifiers</b><br>&nbsp;&nbsp;&nbsp;Brand/Apple<br>&nbsp;&nbsp;&nbsp;Product Family/iMac<br><br><b>Processor</b><br>&nbsp;&nbsp;&nbsp;Processor Type/Intel<br>&nbsp;&nbsp;&nbsp;Processor Speed/3.10',
+        description='The name of a group of aspects. In the following example, Product Identifiers and Process are product aspect group names. Under the group name are the product aspect name/value pairs. Product Identifiers Brand/Apple Product Family/iMac Processor Processor Type/Intel Processor Speed/3.10',
     )
 
 
@@ -61,11 +61,11 @@ class AspectValueDistribution(EbayModel):
 class AttributeNameValue(EbayModel):
     name: str | None = Field(
         None,
-        description='The name of the product attribute, such as <i>Make</i>, <i>Model</i>, <i>Year</i>, etc.',
+        description='The name of the product attribute, such as Make , Model , Year , etc.',
     )
     value: str | None = Field(
         None,
-        description='The value for the <code>name</code> attribute, such as <i>BMW</i>, <i>R1200GS</i>, <i>2011</i>, etc.',
+        description='The value for the name attribute, such as BMW , R1200GS , 2011 , etc.',
     )
 
 
@@ -112,7 +112,7 @@ class BuyingOptionDistribution(EbayModel):
     buying_option: str | None = Field(
         None,
         alias='buyingOption',
-        description='The container that returns the buying option type. This will be AUCTION, FIXED_PRICE, CLASSIFIED_AD, or a combination of these options. For details, see <a href="/develop/api/buy/browse_api#buy-browse_api-item_summary-search.itemsummary.buyingoptions">buyingOptions</a>.',
+        description='The container that returns the buying option type. This will be AUCTION, FIXED_PRICE, CLASSIFIED_AD, or a combination of these options. For details, see buyingOptions .',
     )
     match_count: int | None = Field(
         None,
@@ -142,7 +142,7 @@ class CategoryDistribution(EbayModel):
     category_name: str | None = Field(
         None,
         alias='categoryName',
-        description='The name of the category, such as <b>Baby &amp; Toddler Clothing</b>.',
+        description='The name of the category, such as Baby & Toddler Clothing .',
     )
     match_count: int | None = Field(
         None, alias='matchCount', description='The number of items in this category.'
@@ -175,7 +175,7 @@ class CompatibilityPayload(EbayModel):
     compatibility_properties: list[AttributeNameValue] | None = Field(
         None,
         alias='compatibilityProperties',
-        description='An array of attribute name/value pairs used to define a specific product. For example: If you wanted to specify a specific car, one of the name/value pairs would be<br><br><code>"name" : "Year", <br>"value" : "2019"</code><br><br>For a list of the attributes required for cars and trucks and motorcycles see <a href="/api-docs/buy/static/api-browse.html#Check">Check compatibility</a> in the Buy Integration Guide.',
+        description='An array of attribute name/value pairs used to define a specific product. For example: If you wanted to specify a specific car, one of the name/value pairs would be "name" : "Year", "value" : "2019" For a list of the attributes required for cars and trucks and motorcycles see Check compatibility in the Buy Integration Guide.',
     )
 
 
@@ -191,7 +191,7 @@ class CompatibilityProperty(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='The value for the <code>name</code> attribute, such as <b>BMW</b>, <b>R1200GS</b>, <b>2011</b>, etc.',
+        description='The value for the name attribute, such as BMW , R1200GS , 2011 , etc.',
     )
 
 
@@ -205,23 +205,23 @@ class ConditionDescriptorValue(EbayModel):
     additional_info: list[str] | None = Field(
         None,
         alias='additionalInfo',
-        description='Additional information about the condition of an item as it relates to a condition descriptor. This array elaborates on the value specified in the <b>content</b> field and provides additional details about the condition of an item.',
+        description='Additional information about the condition of an item as it relates to a condition descriptor. This array elaborates on the value specified in the content field and provides additional details about the condition of an item.',
     )
     content: str | None = Field(
         None,
-        description='The value for the condition descriptor indicated in the associated <b>name</b> field.',
+        description='The value for the condition descriptor indicated in the associated name field.',
     )
 
 
 class ConditionDistribution(EbayModel):
     condition: str | None = Field(
         None,
-        description='The text describing the condition of the item, such as <i>New</i> or <i>Used</i>. For a list of condition names, refer to <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>.',
+        description='The text describing the condition of the item, such as New or Used . For a list of condition names, refer to Item Condition IDs and Names .',
     )
     condition_id: str | None = Field(
         None,
         alias='conditionId',
-        description='The identifier of the condition. For example, <code>1000</code> is the identifier for <code>NEW</code>.',
+        description='The identifier of the condition. For example, 1000 is the identifier for NEW .',
     )
     match_count: int | None = Field(
         None,
@@ -697,7 +697,7 @@ class EconomicOperator(EbayModel):
     )
     country: str | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard abbreviation of the country of the registered Economic Operator\'s address.',
+        description="The two-letter ISO 3166 standard abbreviation of the country of the registered Economic Operator's address.",
     )
     phone: str | None = Field(
         None, description="The registered Economic Operator's business phone number."
@@ -719,7 +719,7 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This is the actual value that was passed in for the element specified in the <code>name</code> field.',
+        description='This is the actual value that was passed in for the element specified in the name field.',
     )
 
 
@@ -727,32 +727,32 @@ class EstimatedAvailability(EbayModel):
     availability_threshold: int | None = Field(
         None,
         alias='availabilityThreshold',
-        description='This field is return only when the seller sets their \'<a href="#display-item-quantity">display item quantity</a>\' preference to <b> Display "More than 10 available" in your listing (if applicable)</b>. The value of this field will be "10", which is the threshold value. <br><br>Code so that your app gracefully handles any future changes to this value.',
+        description='This field is return only when the seller sets their \' display item quantity \' preference to Display "More than 10 available" in your listing (if applicable) . The value of this field will be "10", which is the threshold value. Code so that your app gracefully handles any future changes to this value.',
     )
     availability_threshold_type: AvailabilityThresholdEnum | None = Field(
         None,
         alias='availabilityThresholdType',
-        description='<a name="display-item-quantity"></a> This field is return only when the seller sets their <b> Display Item Quantity</b> preference to <b> Display "More than 10 available" in your listing (if applicable)</b>. The value of this field will be <code> MORE_THAN</code>. This indicates that the seller has more than the \'quantity display preference\', which is 10, in stock for this item.    <br><br> The following are the display item quantity preferences the seller can set. <br><ul><li> <b> Display "More than 10 available" in your listing (if applicable) </b><ul> <li>If the seller enables this preference, this field is returned as long as there are more than 10 of this item in inventory.</li>  <li> If the quantity is equal to 10 or drops below 10, this field is not returned and the estimated quantity of the item is returned in the <b> estimatedAvailableQuantity</b> field.</li></ul> </li> <li> <b> Display the exact quantity in your items</b> <br>If the seller enables this preference, the <b> availabilityThresholdType</b> and <b> availabilityThreshold</b> fields are not returned and the estimated quantity of the item is returned in the <b> estimatedAvailableQuantity</b> field.<br><br><b> Note: </b> Because the quantity of an item can change several times within a second, it is impossible to return the exact quantity. </li></ul>   <br>Code so that your app gracefully handles any future changes to these preferences.',
+        description='This field is return only when the seller sets their Display Item Quantity preference to Display "More than 10 available" in your listing (if applicable) . The value of this field will be MORE_THAN . This indicates that the seller has more than the \'quantity display preference\', which is 10, in stock for this item. The following are the display item quantity preferences the seller can set.',
     )
     delivery_options: list[DeliveryOptionsEnum] | None = Field(
         None,
         alias='deliveryOptions',
-        description='An array of available delivery options. <br><br><b> Valid Values: </b> SHIP_TO_HOME, SELLER_ARRANGED_LOCAL_PICKUP, IN_STORE_PICKUP, PICKUP_DROP_OFF, or DIGITAL_DELIVERY <br><br>Code so that your app gracefully handles any future changes to this list. ',
+        description='An array of available delivery options. Valid Values: SHIP_TO_HOME, SELLER_ARRANGED_LOCAL_PICKUP, IN_STORE_PICKUP, PICKUP_DROP_OFF, or DIGITAL_DELIVERY Code so that your app gracefully handles any future changes to this list.',
     )
     estimated_availability_status: AvailabilityStatusEnum | None = Field(
         None,
         alias='estimatedAvailabilityStatus',
-        description='An enumeration value representing the inventory status of this item.<br><br><span class="tablenote"><b> Note: </b>Be sure to review the <b>itemEndDate</b> field to determine whether the item is available for purchase.</span><br><br><b> Valid Values: </b> IN_STOCK, LIMITED_STOCK, or OUT_OF_STOCK <br><br>Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value representing the inventory status of this item. Note: Be sure to review the itemEndDate field to determine whether the item is available for purchase. Valid Values: IN_STOCK, LIMITED_STOCK, or OUT_OF_STOCK Code so that your app gracefully handles any future changes to this list.',
     )
     estimated_available_quantity: int | None = Field(
         None,
         alias='estimatedAvailableQuantity',
-        description='The estimated number of this item that are available for purchase. Because the quantity of an item can change several times within a second, it is impossible to return the exact quantity. So instead of returning quantity, the estimated availability of the item is returned.<br><br><span class="tablenote"><b>Note:</b> To see if a listing is available for purchase, review the <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.item.itemenddate">itemEndDate</a> and <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.estimatedavailability.estimatedavailabilitystatus">estimatedAvailablityStatus</a> fields. If the item has an <b>EndDate</b> in the past, or the <b>estimatedAvailabilityStatus</b> is <code>OUT_OF_STOCK</code>, the item is unavailable for purchase.</span>',
+        description='The estimated number of this item that are available for purchase. Because the quantity of an item can change several times within a second, it is impossible to return the exact quantity. So instead of returning quantity, the estimated availability of the item is returned. Note: To see if a listing is available for purchase, review the itemEndDate and estimatedAvailablityStatus fields.',
     )
     estimated_remaining_quantity: int | None = Field(
         None,
         alias='estimatedRemainingQuantity',
-        description='The estimated number of this item that are available for purchase. Because the quantity of an item can change several times within a second, it is impossible to return the exact quantity. So instead of returning quantity, the estimated availability of the item is returned.<br><br><span class="tablenote"><b>Note:</b> To see if a listing is available for purchase, review the <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.item.itemenddate">itemEndDate</a> and <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.estimatedavailability.estimatedavailabilitystatus">estimatedAvailablityStatus</a> fields. If the item has an <b>EndDate</b> in the past, or the <b>estimatedAvailabilityStatus</b> is <code>OUT_OF_STOCK</code>, the item is unavailable for purchase.</span>',
+        description='The estimated number of this item that are available for purchase. Because the quantity of an item can change several times within a second, it is impossible to return the exact quantity. So instead of returning quantity, the estimated availability of the item is returned. Note: To see if a listing is available for purchase, review the itemEndDate and estimatedAvailablityStatus fields.',
     )
     estimated_sold_quantity: int | None = Field(
         None,
@@ -832,12 +832,12 @@ class ItemCharityTerms(EbayModel):
     donation_percentage: float | None = Field(
         None,
         alias='donationPercentage',
-        description='The percentage of the purchase price of the item that the charitable organization (identified in the <b>charityOrgId</b> field) will receive for each sale.',
+        description='The percentage of the purchase price of the item that the charitable organization (identified in the charityOrgId field) will receive for each sale.',
     )
     logo_image: Image | None = Field(
         None,
         alias='LogoImage',
-        description='The details of the charity\'s logo image, such as the size and URL.<br><br><span class="tablenote"> <b> Note: </b> Currently, only the <b>imageUrl</b> is populated.</span>',
+        description="The details of the charity's logo image, such as the size and URL. Note: Currently, only the imageUrl is populated.",
     )
     name: str | None = Field(None, description='The name of the charity organization.')
     website: str | None = Field(None, description="The URL to the charity's eBay page.")
@@ -858,11 +858,11 @@ class ItemLocationImpl(EbayModel):
     )
     city: str | None = Field(
         None,
-        description='The city in which the item is located.<br><br><b>Restriction:</b> This field is populated in the <code>search</code> method response <i>only</i> when <code>fieldgroups</code> = <code>EXTENDED</code>.',
+        description='The city in which the item is located. Restriction: This field is populated in the search method response only when fieldgroups = EXTENDED .',
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard code that indicates the country in which the item is located.',
+        description='The two-letter ISO 3166 standard code that indicates the country in which the item is located.',
     )
     county: str | None = Field(
         None, description='The county in which the item is located.'
@@ -870,7 +870,7 @@ class ItemLocationImpl(EbayModel):
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description='The postal code (or zip code in US) where the item is located. Sellers set a postal code for items when they are listed. The postal code is used for calculating proximity searches. It is anonymized when returned in <code>itemLocation.postalCode</code> via the API.',
+        description='The postal code (or zip code in US) where the item is located. Sellers set a postal code for items when they are listed. The postal code is used for calculating proximity searches. It is anonymized when returned in itemLocation.postalCode via the API.',
     )
     state_or_province: str | None = Field(
         None,
@@ -891,7 +891,7 @@ class LegalAddress(EbayModel):
     city: str | None = Field(None, description='The city of the address.')
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard code for the country of the address.',
+        description='The two-letter ISO 3166 standard code for the country of the address.',
     )
     country_name: str | None = Field(
         None, alias='countryName', description='The name of the country of the address.'
@@ -1006,7 +1006,7 @@ class PickupOptionSummary(EbayModel):
     pickup_location_type: str | None = Field(
         None,
         alias='pickupLocationType',
-        description='This container returns the local pickup options available to the buyer. Possible values are <code>ARRANGED_LOCATION</code> and <code>STORE</code>.',
+        description='This container returns the local pickup options available to the buyer. Possible values are ARRANGED_LOCATION and STORE .',
     )
 
 
@@ -1081,12 +1081,12 @@ class RangeValue(EbayModel):
     exclusive_end: bool | None = Field(
         None,
         alias='exclusiveEnd',
-        description='Specifies whether the <code>end</code> value is to be included in the range. For example, if <code> end</code> is <code>100</code>, and <code>exclusiveEnd</code> is <code>true</code>, the end range would be &lt;100. But if it is set to <code>false</code>, it is &lt;=100.',
+        description='Specifies whether the end value is to be included in the range. For example, if end is 100 , and exclusiveEnd is true , the end range would be <100. But if it is set to false , it is <=100.',
     )
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description='Specifies whether the <code>start</code> value is to be included in the range. For example, if <code>start</code> is <code>60</code>, and <code>exclusiveStart</code> is <code>true</code>, the start range would be &gt;60. But if it is set to <code>false</code>, it is &gt;=60.',
+        description='Specifies whether the start value is to be included in the range. For example, if start is 60 , and exclusiveStart is true , the start range would be >60. But if it is set to false , it is >=60.',
     )
     range: bool | None = Field(
         None, description='Specifies whether the filter is for a range of values.'
@@ -1104,7 +1104,7 @@ class RatingHistogram(EbayModel):
     )
     rating: str | None = Field(
         None,
-        description='This is the average rating for the product. As part of a product review, users rate the product. Products are rated from one star (terrible) to five stars (excellent), with each star having a corresponding point value - one star gets 1 point, two stars get 2 points, and so on. If a product had one four-star rating and one five-star rating, its average rating would be <code> 4.5</code>, and this is the value that would appear in this field.',
+        description='This is the average rating for the product. As part of a product review, users rate the product. Products are rated from one star (terrible) to five stars (excellent), with each star having a corresponding point value - one star gets 1 point, two stars get 2 points, and so on.',
     )
 
 
@@ -1156,7 +1156,7 @@ class ReviewRating(EbayModel):
 class SearchByImageRequest(EbayModel):
     image: str | None = Field(
         None,
-        description='The Base64 string of the image.<br><br>To get the Base64 image string, you can use sites such as <a href="https://codebeautify.org/image-to-base64-converter " target="_blank">https://codebeautify.org/image-to-base64-converter</a>.',
+        description='The Base64 string of the image. To get the Base64 image string, you can use sites such as https://codebeautify.org/image-to-base64-converter .',
     )
 
 
@@ -1174,11 +1174,11 @@ class Seller(EbayModel):
     seller_account_type: str | None = Field(
         None,
         alias='sellerAccountType',
-        description='Indicates if the seller is a business or an individual. This is determined when the seller registers with eBay:<ul><li>If they register for a business account, this value will be <code>BUSINESS</code>.</li><li>If they register for a private account, this value will be <code>INDIVIDUAL</code>.</li></ul>This designation is required by the tax laws in some countries.<br><br>This field is returned only on the following sites:<br><br>EBAY_AT, EBAY_BE, EBAY_CH, EBAY_DE, EBAY_ES, EBAY_FR, EBAY_GB, EBAY_IE, EBAY_IT, EBAY_PL<br><br><b>Valid Values:</b> <code>BUSINESS</code> or <code>INDIVIDUAL</code>',
+        description='Indicates if the seller is a business or an individual. This is determined when the seller registers with eBay: If they register for a business account, this value will be BUSINESS . If they register for a private account, this value will be INDIVIDUAL . This designation is required by the tax laws in some countries.',
     )
     username: str | None = Field(
         None,
-        description='The user name created by the seller for use on eBay.<br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html">Data Handling Compliance</a>. </span>',
+        description='The user name created by the seller for use on eBay. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
 
 
@@ -1195,7 +1195,7 @@ class SellerInstructionEnum(OpenStrEnum):
 class ShipToLocation(EbayModel):
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard of the country for where the item is to be shipped.',
+        description='The two-letter ISO 3166 standard of the country for where the item is to be shipped.',
     )
     postal_code: str | None = Field(
         None,
@@ -1208,17 +1208,17 @@ class ShipToRegion(EbayModel):
     region_id: str | None = Field(
         None,
         alias='regionId',
-        description='The unique identifier of the shipping region. The value returned here is dependent on the corresponding <b>regionType</b> value. The <b>regionId</b> value for a region does not vary based on the eBay marketplace. However, the corresponding <b>regionName</b> value for a region is a localized, text-based description of the shipping region. <br><br> If the <b>regionType</b> value is <code>WORLDWIDE</code>, the <b>regionId</b> value will also be <code>WORLDWIDE</code>.<br><br> If the <b>regionType</b> value is <code>WORLD_REGION</code>, the <b>regionId</b> value will be one of the following: <code>AFRICA</code>, <code>AMERICAS</code>, <code>ASIA</code>, <code>AUSTRALIA</code>, <code>CENTRAL_AMERICA_AND_CARIBBEAN</code>, <code>EUROPE</code>, <code>EUROPEAN_UNION</code>, <code>GREATER_CHINA</code>, <code>MIDDLE_EAST</code>, <code>NORTH_AMERICA</code>, <code>OCEANIA</code>, <code>SOUTH_AMERICA</code>, <code>SOUTHEAST_ASIA</code> or <code>CHANNEL_ISLANDS</code>.<br><br>If the <b>regionType</b> value is <code>COUNTRY</code>, the <b>regionId</b> value will be the two-letter code for the country, as defined in the <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard.<br><br>If the <b>regionType</b> value is <code>STATE_OR_PROVINCE</code>, the <b>regionId</b> value will either be the two-letter code for US states and DC (as defined on this <a href="https://www.ssa.gov/international/coc-docs/states.html " target="_blank">Social Security Administration</a> page), or the two-letter code for Canadian provinces (as defined by this <a href="https://www.canadapost.ca/tools/pg/manual/PGaddress-e.asp?ecid=murl10006450#1442131 " target="_blank">Canada Post</a> page).<br><br>If the <b>regionType</b> value is <code>COUNTRY_REGION</code>, the <b>regionId</b> value may be one of following: <code>_AH</code> (if a seller is not willing to ship to Alaska/Hawaii), <code>_PR</code> (if the seller is not willing to ship to US Protectorates), <code>_AP</code> (if seller is not willing to ship to a US Army or Fleet Post Office), and <code>PO_BOX</code> (if the seller is not willing to ship to a Post Office Box).',
+        description='The unique identifier of the shipping region. The value returned here is dependent on the corresponding regionType value. The regionId value for a region does not vary based on the eBay marketplace. However, the corresponding regionName value for a region is a localized, text-based description of the shipping region.',
     )
     region_name: str | None = Field(
         None,
         alias='regionName',
-        description='A localized text string that indicates the name of the shipping region. The value returned here is dependent on the corresponding <b>regionType</b> value. <br><br> If the <b>regionType</b> value is <code>WORLDWIDE</code>, the <b>regionName</b> value will show <code>Worldwide</code>.<br><br> If the <b>regionType</b> value is <code>WORLD_REGION</code>, the <b>regionName</b> value will be a localized text string for one of the following large geographical regions: Africa, Americas, Asia, Australia, Central America and Caribbean, Europe, European Union, Greater China, Middle East, North America, Oceania, South America, Southeast Asia, or Channel Islands.<br><br>If the <b>regionType</b> value is <code>COUNTRY</code>, the <b>regionName</b> value will be a localized text string for any country in the world.<br><br>If the <b>regionType</b> value is <code>STATE_OR_PROVINCE</code>, the <b>regionName</b> value will be a localized text string for any US state or Canadian province. <br><br>If the <b>regionType</b> value is <code>COUNTRY_REGION</code>, the <b>regionName</b> value may be a localized version of one of the following: Alaska/Hawaii, US Protectorates, APO/FPO (Army or Fleet Post Office), or PO BOX.',
+        description='A localized text string that indicates the name of the shipping region. The value returned here is dependent on the corresponding regionType value. If the regionType value is WORLDWIDE , the regionName value will show Worldwide .',
     )
     region_type: RegionTypeEnum | None = Field(
         None,
         alias='regionType',
-        description='An enumeration value that indicates the level or type of shipping region. <br><br><b> Valid Values: </b> <ul><li><b> COUNTRY_REGION </b> - Indicates the region is a domestic region or special location within a country.</li><li><b> STATE_OR_PROVINCE </b> - Indicates the region is a state or province within a country, such as California or New York in the US, or Ontario or Alberta in Canada.</li><li><b> COUNTRY </b> - Indicates the region is a single country.</li><li><b> WORLD_REGION </b> - Indicates the region is a world region, such as Africa, the Middle East, or Southeast Asia.</li><li><b> WORLDWIDE </b> - Indicates the region is the entire world. This value is only applicable for included shiping regions, and not excluded shipping regions.</li></ul> For more detail on the actual <b>regionName</b>/<b>regionId</b> values that will be returned based on the <b>regionType</b> value, see the <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.shiptoregion.regionid">regionId</a> and/or <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem.shiptoregion.regionname">regionName</a> field descriptions.<br><br> Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value that indicates the level or type of shipping region. Valid Values: COUNTRY_REGION - Indicates the region is a domestic region or special location within a country. STATE_OR_PROVINCE - Indicates the region is a state or province within a country, such as California or New York in the US, or Ontario or Alberta in Canada. COUNTRY - Indicates the region is a single country.',
     )
 
 
@@ -1229,7 +1229,7 @@ class SortField(EbayModel):
     )
     field: str | None = Field(
         None,
-        description='Specifies the name of a field in which to sort items using the value of that field. For example, if the field name is <code>amount</code>, the items will be sorted by the amount, or cost of the item.',
+        description='Specifies the name of a field in which to sort items using the value of that field. For example, if the field name is amount , the items will be sorted by the amount, or cost of the item.',
     )
 
 
@@ -1237,11 +1237,11 @@ class TargetLocation(EbayModel):
     unit_of_measure: str | None = Field(
         None,
         alias='unitOfMeasure',
-        description="This value shows the unit of measurement used to measure the distance between the location of the item and the buyer's location. This value is typically <code> mi</code> or <code> km</code>.",
+        description="This value shows the unit of measurement used to measure the distance between the location of the item and the buyer's location. This value is typically mi or km .",
     )
     value: str | None = Field(
         None,
-        description="This value indicates the distance (measured in the measurement unit in the <b> unitOfMeasure</b>  field) between the item location and the buyer's location.",
+        description="This value indicates the distance (measured in the measurement unit in the unitOfMeasure field) between the item location and the buyer's location.",
     )
 
 
@@ -1274,7 +1274,7 @@ class VatDetail(EbayModel):
     issuing_country: CountryCodeEnum | None = Field(
         None,
         alias='issuingCountry',
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard of the country issuing the seller\'s VAT (value added tax) ID. VAT is a tax added by some European countries.',
+        description="The two-letter ISO 3166 standard of the country issuing the seller's VAT (value added tax) ID. VAT is a tax added by some European countries.",
     )
     vat_id: str | None = Field(
         None,
@@ -1287,7 +1287,7 @@ class AdditionalProductIdentity(EbayModel):
     product_identity: list[ProductIdentity] | None = Field(
         None,
         alias='productIdentity',
-        description='An array of product identifier/value pairs for the product associated with the item. This is returned if the seller has associated the eBay Product Identifier (ePID) with the item and the request has <code>fieldgroups</code> set to <code>PRODUCT</code>.<br><br>The following table shows what is returned, based on the item information provided by the seller, when <code>fieldgroups</code> is set to <code>PRODUCT</code>.<br><br><div style="overflow-x:auto;"><table border=1><tr><th>ePID Provided</th><th>Product ID(s) Provided</th><th>Response</th></tr><tr><td>No</td><td>No</td><td>The <code>AdditionalProductIdentity</code> container is <i>not</i> returned.</td></tr><tr><td>No</td><td>Yes</td><td>The <code>AdditionalProductIdentity</code> container is <i>not</i> returned but the product identifiers specified by the seller are returned in the <code>localizedAspects</code> container.</td></tr><tr><td>Yes</td><td>No</td><td>The <code>AdditionalProductIdentity</code> container is returned listing the product identifiers of the product.</td></tr><tr><td>Yes</td><td>Yes</td><td>The <code>AdditionalProductIdentity</code> container is returned listing all the product identifiers of the product and the product identifiers specified by the seller are returned in the <code>localizedAspects</code> container.</td></tr></table></div>',
+        description='An array of product identifier/value pairs for the product associated with the item. This is returned if the seller has associated the eBay Product Identifier (ePID) with the item and the request has fieldgroups set to PRODUCT . The following table shows what is returned, based on the item information provided by the seller, when fieldgroups is set to PRODUCT .',
     )
 
 
@@ -1295,7 +1295,7 @@ class Address(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description='The first line of the street address.<br><br><span class="tablenote"><b>Note:</b> This is conditionally returned in the <code>itemLocation</code> field.</span>',
+        description='The first line of the street address. Note: This is conditionally returned in the itemLocation field.',
     )
     address_line2: str | None = Field(
         None,
@@ -1305,29 +1305,29 @@ class Address(EbayModel):
     city: str | None = Field(None, description='The city of the address.')
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard code for the country of the address.',
+        description='The two-letter ISO 3166 standard code for the country of the address.',
     )
     county: str | None = Field(None, description='The county of the address.')
     postal_code: str | None = Field(
         None,
         alias='postalCode',
-        description='The postal code (or zip code in US) code of the address. Sellers set a postal code (or zip code in US) for items when they are listed. The postal code is used for calculating proximity searches. It is anonymized when returned in <code>itemLocation.postalCode</code> via the API.',
+        description='The postal code (or zip code in US) code of the address. Sellers set a postal code (or zip code in US) for items when they are listed. The postal code is used for calculating proximity searches. It is anonymized when returned in itemLocation.postalCode via the API.',
     )
     state_or_province: str | None = Field(
         None,
         alias='stateOrProvince',
-        description='The state or province of the address.<br><br><span class="tablenote"><b>Note:</b> This is conditionally returned in the <code>itemLocation</code> field.</span>',
+        description='The state or province of the address. Note: This is conditionally returned in the itemLocation field.',
     )
 
 
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The list of valid currencies. Each <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> currency code includes the currency name followed by the numeric value.<br><br>For example, the Canadian Dollar code (CAD) would take the following form: <code>Canadian Dollar, 124</code>.',
+        description='The list of valid currencies. Each ISO 4217 currency code includes the currency name followed by the numeric value. For example, the Canadian Dollar code (CAD) would take the following form: Canadian Dollar, 124 .',
     )
     value: str | None = Field(
         None,
-        description='The monetary value of the amount in the currency defined by the <b>currency</b> field.',
+        description='The monetary value of the amount in the currency defined by the currency field.',
     )
 
 
@@ -1335,12 +1335,12 @@ class AspectDistribution(EbayModel):
     aspect_value_distributions: list[AspectValueDistribution] | None = Field(
         None,
         alias='aspectValueDistributions',
-        description='An array of containers for the various values of the aspect and the match count, and a HATEOAS reference (<code>refinementHref</code>) for this aspect.',
+        description='An array of containers for the various values of the aspect and the match count, and a HATEOAS reference ( refinementHref ) for this aspect.',
     )
     localized_aspect_name: str | None = Field(
         None,
         alias='localizedAspectName',
-        description='The name of an aspect, such as <i>Brand</i>, <i>Color</i>, etc.',
+        description='The name of an aspect, such as Brand , Color , etc.',
     )
 
 
@@ -1360,7 +1360,7 @@ class AvailableCoupon(EbayModel):
     )
     message: str | None = Field(
         None,
-        description='A description of the coupon.<br><br><span class="tablenote"><b>Note:</b> The value returned in the <code>termsWebUrl</code> field should appear for all experiences when displaying coupons. The value in the <code>availableCoupons.message</code> field must also be included if returned in the API response.</span>',
+        description='A description of the coupon. Note: The value returned in the termsWebUrl field should appear for all experiences when displaying coupons. The value in the availableCoupons.message field must also be included if returned in the API response.',
     )
     redemption_code: str | None = Field(
         None, alias='redemptionCode', description='The coupon code.'
@@ -1368,7 +1368,7 @@ class AvailableCoupon(EbayModel):
     terms_web_url: str | None = Field(
         None,
         alias='termsWebUrl',
-        description='The URL to the coupon terms of use.<br><br><span class="tablenote"><b>Note:</b> The value returned in the <code>termsWebUrl</code> field should appear for all experiences when displaying coupons. The value in the <code>availableCoupons.message</code> field must also be included if returned in the API response.</span>',
+        description='The URL to the coupon terms of use. Note: The value returned in the termsWebUrl field should appear for all experiences when displaying coupons. The value in the availableCoupons.message field must also be included if returned in the API response.',
     )
 
 
@@ -1398,7 +1398,7 @@ class CompanyAddress(EbayModel):
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard code for the country of the address.',
+        description='The two-letter ISO 3166 standard code for the country of the address.',
     )
     country_name: str | None = Field(
         None,
@@ -1429,11 +1429,11 @@ class CompanyAddress(EbayModel):
 class ConditionDescriptor(EbayModel):
     name: str | None = Field(
         None,
-        description='The name of a condition descriptor. The value(s) for this condition descriptor is returned in the associated <b>values</b> array.',
+        description='The name of a condition descriptor. The value(s) for this condition descriptor is returned in the associated values array.',
     )
     values: list[ConditionDescriptorValue] | None = Field(
         None,
-        description='This array displays the value(s) for a condition descriptor (denoted by the associated <b>name</b> field), as well as any other additional information about the condition of the item.',
+        description='This array displays the value(s) for a condition descriptor (denoted by the associated name field), as well as any other additional information about the condition of the item.',
     )
 
 
@@ -1441,20 +1441,20 @@ class ConvertedAmount(EbayModel):
     converted_from_currency: CurrencyCodeEnum | None = Field(
         None,
         alias='convertedFromCurrency',
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <code>convertedFromValue</code> field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the convertedFromValue field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency.',
     )
     converted_from_value: str | None = Field(
         None,
         alias='convertedFromValue',
-        description='The monetary amount before any conversion is performed, in the currency specified by the <code>convertedFromCurrency</code> field. This value is required or returned only if currency conversion/localization is required. The <code>value</code> field contains the converted amount of this value, in the currency specified by the <code>currency</code> field.',
+        description='The monetary amount before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is required or returned only if currency conversion/localization is required. The value field contains the converted amount of this value, in the currency specified by the currency field.',
     )
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <code>value</code> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <code>value</code> field.<br><br><b>Default:</b> The currency of the authenticated user\'s country.',
+        description="The three-letter ISO 4217 code representing the currency of the amount in the value field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the value field. Default: The currency of the authenticated user's country.",
     )
     value: str | None = Field(
         None,
-        description='The monetary amount in the currency specified by the <code>currency</code> field. If currency conversion/localization is required, this value is the converted amount, and the <code>convertedFromValue</code> field contains the amount in the original currency.',
+        description='The monetary amount in the currency specified by the currency field. If currency conversion/localization is required, this value is the converted amount, and the convertedFromValue field contains the amount in the original currency.',
     )
 
 
@@ -1499,7 +1499,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='This string value indicates the error category. There are three categories of errors: <i>request errors</i>, <i>application errors</i>, and <i>system errors</i>.',
+        description='This string value indicates the error category. There are three categories of errors: request errors , application errors , and system errors .',
     )
     domain: str | None = Field(
         None,
@@ -1544,11 +1544,10 @@ class FilterField(EbayModel):
         None, description='Provides a way to specify the field for the filter.'
     )
     negated: bool | None = Field(
-        None,
-        description='<span class="tablenote"><b>Note:</b>Currently this filter is not supported.</span>',
+        None, description='Note: Currently this filter is not supported.'
     )
     range: RangeValue | None = Field(
-        None, description='Provides a way to specify a range of values for the filter. '
+        None, description='Provides a way to specify a range of values for the filter.'
     )
     set: list[str] | None = Field(
         None, description='Provides a way to specify a "list of values" for the filter.'
@@ -1562,27 +1561,27 @@ class ItemGroupSummary(EbayModel):
     item_group_additional_images: list[Image] | None = Field(
         None,
         alias='itemGroupAdditionalImages',
-        description='An array of containers with the URLs for images that are in addition to the primary image of the item group.  The primary image is returned in the <b> itemGroupImage</b> field.',
+        description='An array of containers with the URLs for images that are in addition to the primary image of the item group. The primary image is returned in the itemGroupImage field.',
     )
     item_group_href: str | None = Field(
         None,
         alias='itemGroupHref',
-        description='The HATEOAS reference of the parent page of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. ',
+        description='The HATEOAS reference of the parent page of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc.',
     )
     item_group_id: str | None = Field(
         None,
         alias='itemGroupId',
-        description='The unique identifier for the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. ',
+        description='The unique identifier for the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc.',
     )
     item_group_image: Image | None = Field(
         None,
         alias='itemGroupImage',
-        description='The URL of the primary image of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. ',
+        description='The URL of the primary image of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc.',
     )
     item_group_title: str | None = Field(
         None,
         alias='itemGroupTitle',
-        description='The title of the item that appears on the item group page. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. ',
+        description='The title of the item that appears on the item group page. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc.',
     )
     item_group_type: ItemGroupTypeEnum | None = Field(
         None,
@@ -1600,7 +1599,7 @@ class MarketingPrice(EbayModel):
     discount_percentage: str | None = Field(
         None,
         alias='discountPercentage',
-        description='This field expresses the percentage of the seller discount based on the value in the <code>originalPrice</code> container.',
+        description='This field expresses the percentage of the seller discount based on the value in the originalPrice container.',
     )
     original_price: ConvertedAmount | None = Field(
         None,
@@ -1610,7 +1609,7 @@ class MarketingPrice(EbayModel):
     price_treatment: PriceTreatmentEnum | None = Field(
         None,
         alias='priceTreatment',
-        description='Indicates the pricing treatment (discount) that was applied to the price of the item.<br><br><span class="tablenote"><b>Note:</b> The pricing treatment affects the way and where the discounted price can be displayed.</span>',
+        description='Indicates the pricing treatment (discount) that was applied to the price of the item. Note: The pricing treatment affects the way and where the discounted price can be displayed.',
     )
 
 
@@ -1623,7 +1622,7 @@ class PaymentMethodBrand(EbayModel):
     logo_image: Image | None = Field(
         None,
         alias='logoImage',
-        description='The details of the logo image, such as the size and URL.<br><br><span class="tablenote"> <b> Note: </b> Currently, only the <b>imageUrl</b> is populated.</span>',
+        description='The details of the logo image, such as the size and URL. Note: Currently, only the imageUrl is populated.',
     )
 
 
@@ -1631,12 +1630,12 @@ class Product(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='An array of containers with the URLs for the product images that are in addition to the primary image. ',
+        description='An array of containers with the URLs for the product images that are in addition to the primary image.',
     )
     additional_product_identities: list[AdditionalProductIdentity] | None = Field(
         None,
         alias='additionalProductIdentities',
-        description='An array of product identifiers associated with the item. This container is returned if the seller has associated the eBay Product Identifier (ePID) with the item and in the request <b> fieldgroups</b> is set to <code>PRODUCT</code>.',
+        description='An array of product identifiers associated with the item. This container is returned if the seller has associated the eBay Product Identifier (ePID) with the item and in the request fieldgroups is set to PRODUCT .',
     )
     aspect_groups: list[AspectGroup] | None = Field(
         None,
@@ -1653,7 +1652,7 @@ class Product(EbayModel):
     )
     gtins: list[str] | None = Field(
         None,
-        description='An array of all the possible GTINs values associated with the product. A GTIN is a unique Global Trade Item number of the item as defined by <a href="https://www.gtin.info " target="_blank">https://www.gtin.info</a>. This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
+        description='An array of all the possible GTINs values associated with the product. A GTIN is a unique Global Trade Item number of the item as defined by https://www.gtin.info . This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
     )
     image: Image | None = Field(
         None,
@@ -1690,7 +1689,7 @@ class Refinement(EbayModel):
     dominant_category_id: str | None = Field(
         None,
         alias='dominantCategoryId',
-        description='The identifier of the category that most of the items are part of. ',
+        description='The identifier of the category that most of the items are part of.',
     )
 
 
@@ -1698,12 +1697,12 @@ class Region(EbayModel):
     region_name: str | None = Field(
         None,
         alias='regionName',
-        description='A localized text string that indicates the name of the region. Taxes are generally charged at the state/province level or at the country level in the case of VAT tax. ',
+        description='A localized text string that indicates the name of the region. Taxes are generally charged at the state/province level or at the country level in the case of VAT tax.',
     )
     region_type: RegionTypeEnum | None = Field(
         None,
         alias='regionType',
-        description='An enumeration value that indicates the type of region for the tax jurisdiction. <br><br><b> Valid Values: </b> <ul><li><b> STATE_OR_PROVINCE </b> - Indicates the region is a state or province within a country, such as California or New York in the US, or Ontario or Alberta in Canada.</li><li><b> COUNTRY </b> - Indicates the region is a single country.</li></ul>  Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value that indicates the type of region for the tax jurisdiction. Valid Values: STATE_OR_PROVINCE - Indicates the region is a state or province within a country, such as California or New York in the US, or Ontario or Alberta in Canada. COUNTRY - Indicates the region is a single country. Code so that your app gracefully handles any future changes to this list.',
     )
 
 
@@ -1733,7 +1732,7 @@ class ResponsiblePerson(EbayModel):
     )
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> standard of the country of the address.',
+        description='The two-letter ISO 3166 standard of the country of the address.',
     )
     country_name: str | None = Field(
         None,
@@ -1834,7 +1833,7 @@ class ShipToLocations(EbayModel):
     region_included: list[ShipToRegion] | None = Field(
         None,
         alias='regionIncluded',
-        description="An array of containers that express the large geographical regions, countries, or state/provinces within a country where the seller is willing to ship to. Prospective buyers must look at the shipping regions under this container, as well as the shipping regions that are under the <b>regionExcluded</b> to see where the seller is willing to ship items. Sellers can specify that they ship 'Worldwide', but then add several large geographical regions (e.g. Asia, Oceania, Middle East) to the exclusion list, or sellers can specify that they ship to Europe and Africa, but then add several individual countries to the exclusion list.",
+        description='An array of containers that express the large geographical regions, countries, or state/provinces within a country where the seller is willing to ship to. Prospective buyers must look at the shipping regions under this container, as well as the shipping regions that are under the regionExcluded to see where the seller is willing to ship items.',
     )
 
 
@@ -1842,17 +1841,17 @@ class ShippingOption(EbayModel):
     additional_shipping_cost_per_unit: ConvertedAmount | None = Field(
         None,
         alias='additionalShippingCostPerUnit',
-        description="Any per item additional shipping costs for a multi-item purchase. For example, let's say the shipping cost for a power cord is $3. But for an additional cord, the shipping cost is only $1. So if you bought 3 cords, the <b> shippingCost</b> would be $3 and this value would be $2 ($1 for each additional item).",
+        description="Any per item additional shipping costs for a multi-item purchase. For example, let's say the shipping cost for a power cord is $3. But for an additional cord, the shipping cost is only $1. So if you bought 3 cords, the shippingCost would be $3 and this value would be $2 ($1 for each additional item).",
     )
     cut_off_date_used_for_estimate: str | None = Field(
         None,
         alias='cutOffDateUsedForEstimate',
-        description="The deadline date that the item must be purchased by in order to be received by the buyer within the delivery window (<b> maxEstimatedDeliveryDate</b> and  <b> minEstimatedDeliveryDate</b> fields). This field is returned only for items that are eligible for 'Same Day Handling'. For these items, the value of this field is what is displayed in the <b> Delivery</b> line on the View Item page.  <br><br>This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer.",
+        description="The deadline date that the item must be purchased by in order to be received by the buyer within the delivery window ( maxEstimatedDeliveryDate and minEstimatedDeliveryDate fields). This field is returned only for items that are eligible for 'Same Day Handling'. For these items, the value of this field is what is displayed in the Delivery line on the View Item page.",
     )
     fulfilled_through: FulfilledThroughEnum | None = Field(
         None,
         alias='fulfilledThrough',
-        description='If the item is being shipped by the eBay <a href="https://pages.ebay.com/seller-center/shipping/global-shipping-program.html " target="_blank">Global Shipping program</a>, this field returns <code>GLOBAL_SHIPPING</code>.<br><br>If the item is being shipped using the eBay International Shipping program, this field returns <code>INTERNATIONAL_SHIPPING</code>. <br><br>Otherwise, this field is null.',
+        description='If the item is being shipped by the eBay Global Shipping program , this field returns GLOBAL_SHIPPING . If the item is being shipped using the eBay International Shipping program, this field returns INTERNATIONAL_SHIPPING . Otherwise, this field is null.',
     )
     guaranteed_delivery: bool | None = Field(
         None,
@@ -1862,22 +1861,22 @@ class ShippingOption(EbayModel):
     import_charges: ConvertedAmount | None = Field(
         None,
         alias='importCharges',
-        description='The <a href="https://pages.ebay.com/seller-center/shipping/global-shipping-program.html " target="_blank">Global Shipping Program</a> import charges for this item.',
+        description='The Global Shipping Program import charges for this item.',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='The end date of the delivery window (latest projected delivery date).  This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. <br> <br> <span class="tablenote"> <b> Note: </b> For the best accuracy, always include the location of where the item is be shipped in the <code> contextualLocation</code> values of the <a href="/api-docs/buy/static/api-browse.html#Headers"> <code>X-EBAY-C-ENDUSERCTX</code></a> request header.</span> ',
+        description='The end date of the delivery window (latest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. Note: For the best accuracy, always include the location of where the item is be shipped in the contextualLocation values of the X-EBAY-C-ENDUSERCTX request header.',
     )
     min_estimated_delivery_date: str | None = Field(
         None,
         alias='minEstimatedDeliveryDate',
-        description='The start date of the delivery window (earliest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. <br> <br><span class="tablenote"> <b> Note: </b> For the best accuracy, always include the location of where the item is be shipped in the <code> contextualLocation</code> values of the <a href="/api-docs/buy/static/api-browse.html#Headers"> <code>X-EBAY-C-ENDUSERCTX</code></a> request header.</span>',
+        description='The start date of the delivery window (earliest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. Note: For the best accuracy, always include the location of where the item is be shipped in the contextualLocation values of the X-EBAY-C-ENDUSERCTX request header.',
     )
     quantity_used_for_estimate: int | None = Field(
         None,
         alias='quantityUsedForEstimate',
-        description='The number of items used when calculating the estimation information.<br><br>This field will reflect the value input in the <b>quantity_for_shipping_estimate</b> query parameter.',
+        description='The number of items used when calculating the estimation information. This field will reflect the value input in the quantity_for_shipping_estimate query parameter.',
     )
     shipping_carrier_code: str | None = Field(
         None,
@@ -1887,12 +1886,12 @@ class ShippingOption(EbayModel):
     shipping_cost: ConvertedAmount | None = Field(
         None,
         alias='shippingCost',
-        description='The final shipping cost for all the items after all discounts are applied.<br><br>This container will reflect the cost for the quantity specified through the <b>quantity_for_shipping_estimate</b> query parameter.<br><br><span class="tablenote"><b> Note: </b>The cost does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see the VAT-inclusive cost. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT" target="_blank">VAT Obligations in the EU</a>.</span>',
+        description='The final shipping cost for all the items after all discounts are applied. This container will reflect the cost for the quantity specified through the quantity_for_shipping_estimate query parameter. Note: The cost does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces.',
     )
     shipping_cost_type: str | None = Field(
         None,
         alias='shippingCostType',
-        description='Indicates the class of the shipping cost. <br><br><b> Valid Values: </b> FIXED or CALCULATED <br><br>Code so that your app gracefully handles any future changes to this list. ',
+        description='Indicates the class of the shipping cost. Valid Values: FIXED or CALCULATED Code so that your app gracefully handles any future changes to this list.',
     )
     shipping_service_code: str | None = Field(
         None,
@@ -1902,12 +1901,12 @@ class ShippingOption(EbayModel):
     ship_to_location_used_for_estimate: ShipToLocation | None = Field(
         None,
         alias='shipToLocationUsedForEstimate',
-        description='The container that returns the country and postal code of where the item is to be shipped. These values come from the <code>contextualLocation</code> values in the  <a href="/api-docs/buy/static/api-browse.html#Headers"> <code>X-EBAY-C-ENDUSERCTX</code></a> request header. If the header is not submitted, marketplace is used.',
+        description='The container that returns the country and postal code of where the item is to be shipped. These values come from the contextualLocation values in the X-EBAY-C-ENDUSERCTX request header. If the header is not submitted, marketplace is used.',
     )
     trademark_symbol: str | None = Field(
         None,
         alias='trademarkSymbol',
-        description='Any trademark symbol, such as &#8482; or &reg;, that needs to be shown in superscript next to the shipping service name.',
+        description='Any trademark symbol, such as ™ or ®, that needs to be shown in superscript next to the shipping service name.',
     )
     type: str | None = Field(
         None,
@@ -1924,22 +1923,22 @@ class ShippingOptionSummary(EbayModel):
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='The end date of the delivery window (latest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer.<br><br><span class="tablenote"> <b>Note: </b> For the best accuracy, always include the <code>contextualLocation</code> values in the <a href="/api-docs/buy/static/api-browse.html#Headers" target="_blank"><code>X-EBAY-C-ENDUSERCTX</code></a> request header.</span><br><span class="tablenote"> <b>Note: </b> Estimated delivery dates are not returned for CBT items.</span>',
+        description='The end date of the delivery window (latest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. Note: For the best accuracy, always include the contextualLocation values in the X-EBAY-C-ENDUSERCTX request header. Note: Estimated delivery dates are not returned for CBT items.',
     )
     min_estimated_delivery_date: str | None = Field(
         None,
         alias='minEstimatedDeliveryDate',
-        description='The start date of the delivery window (earliest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer.<br><br><span class="tablenote"><b>Note:</b> For the best accuracy, always include the <code>contextualLocation</code> values in the <a href="/api-docs/buy/static/api-browse.html#Headers" target="_blank"><code>X-EBAY-C-ENDUSERCTX</code></a> request header.</span><br><span class="tablenote"> <b>Note: </b> Estimated delivery dates are not returned for CBT items.</span>',
+        description='The start date of the delivery window (earliest projected delivery date). This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which you can convert into the local time of the buyer. Note: For the best accuracy, always include the contextualLocation values in the X-EBAY-C-ENDUSERCTX request header. Note: Estimated delivery dates are not returned for CBT items.',
     )
     shipping_cost: ConvertedAmount | None = Field(
         None,
         alias='shippingCost',
-        description='This is the estimated price to ship the item.<br><br>The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must do one or more of the following to see VAT-inclusive pricing:<ul><li>Pass the <a href="/api-docs/static/rest-request-components.html#HTTP" target="_blank"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>)</li><li>Pass the <code>contextualLocation</code> values for the supported marketplace in the <a href="/api-docs/buy/static/api-browse.html#Headers"><code>X-EBAY-C-ENDUSERCTX</code></a> request header</li><li>Specify the supported marketplace using the <a href="/api-docs/buy/static/ref-buy-browse-filters.html#deliveryCountry" target="_blank"><code>deliveryCountry</code></a> <b>filter</b> URI parameter (such as <code>filter=deliveryCountry:GB</code>)</li></ul><span class="tablenote"><b>Note:</b>For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650 " target="_blank">Your VAT Obligations in the UK &amp; EU</a>.</span>',
+        description='This is the estimated price to ship the item. The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces.',
     )
     shipping_cost_type: str | None = Field(
         None,
         alias='shippingCostType',
-        description='Indicates the type of shipping used to ship the item. Possible values are <code>FIXED</code> (flat-rate shipping) and <code>CALCULATED</code> (shipping cost calculated based on item and buyer location).',
+        description='Indicates the type of shipping used to ship the item. Possible values are FIXED (flat-rate shipping) and CALCULATED (shipping cost calculated based on item and buyer location).',
     )
 
 
@@ -1958,7 +1957,7 @@ class Taxes(EbayModel):
     ebay_collect_and_remit_tax: bool | None = Field(
         None,
         alias='ebayCollectAndRemitTax',
-        description="This field is only returned if <code>true</code>, and indicates that eBay will collect tax (sales tax, Goods and Services tax, or VAT) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. ",
+        description="This field is only returned if true , and indicates that eBay will collect tax (sales tax, Goods and Services tax, or VAT) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence.",
     )
     included_in_price: bool | None = Field(
         None,
@@ -1988,7 +1987,7 @@ class Taxes(EbayModel):
 class TimeDuration(EbayModel):
     unit: TimeDurationUnitEnum | None = Field(
         None,
-        description='An enumeration value that indicates the units of the time span (e.g., <code>HOURS</code>). The enumeration value in this field defines the period of time being used to measure the duration.<br><br>Refer to <a href="/api-docs/buy/browse/types/ba:TimeDurationUnitEnum">TimeDurationUnitEnum</a> for the list of supported values.',
+        description='An enumeration value that indicates the units of the time span (e.g., HOURS ). The enumeration value in this field defines the period of time being used to measure the duration. Refer to TimeDurationUnitEnum for the list of supported values.',
     )
     value: int | None = Field(
         None,
@@ -2003,7 +2002,7 @@ class TypedNameValue(EbayModel):
     )
     type: ValueTypeEnum | None = Field(
         None,
-        description='This indicates if the value being returned is a string or an array of values. <br><br><b> Valid Values: </b> <ul><li><b> STRING</b> - Indicates the value returned is a string.</li>  <li><b> STRING_ARRAY</b> - Indicates the value returned is an array of strings.</li></ul>  Code so that your app gracefully handles any future changes to this list.',
+        description='This indicates if the value being returned is a string or an array of values. Valid Values: STRING - Indicates the value returned is a string. STRING_ARRAY - Indicates the value returned is an array of strings. Code so that your app gracefully handles any future changes to this list.',
     )
     value: str | None = Field(
         None,
@@ -2027,7 +2026,7 @@ class AddonService(EbayModel):
     service_type: AddonServiceTypeEnum | None = Field(
         None,
         alias='serviceType',
-        description='The type of add-on service, such as <code>AUTHENTICITY_GUARANTEE</code>.',
+        description='The type of add-on service, such as AUTHENTICITY_GUARANTEE .',
     )
 
 
@@ -2039,7 +2038,7 @@ class AspectFilter(EbayModel):
     )
     filters: list[FilterField] | None = Field(
         None,
-        description='This query parameter supports multiple field filters that can be used to limit/customize the result set. This is specific to limiting the items return based on item aspects, such as <i>Brand</i>. For an example, refer to the <a href="#h2-samples">Samples</a> section.',
+        description='This query parameter supports multiple field filters that can be used to limit/customize the result set. This is specific to limiting the items return based on item aspects, such as Brand . For an example, refer to the Samples section.',
     )
 
 
@@ -2054,7 +2053,7 @@ class CompatibilityResponse(EbayModel):
     compatibility_status: CompatibilityStatus | None = Field(
         None,
         alias='compatibilityStatus',
-        description='An enumeration value that tells you if the item is compatible with the product. <br><br>The values are: <ul>   <li>   <b> COMPATIBLE</b> - Indicates the item is compatible with the product specified in the request.</li>   <li>   <b> NOT_COMPATIBLE</b> - Indicates the item is not compatible with the product specified in the request. Be sure to check all the <b> value</b> fields to ensure they are correct as errors in the value can also cause this response.</li>   <li> <b> UNDETERMINED</b> - Indicates one or more attributes for the specified product are missing so compatibility cannot be determined.  The response returns the attributes that are missing.</li>  </ul>  Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value that tells you if the item is compatible with the product. The values are: COMPATIBLE - Indicates the item is compatible with the product specified in the request. NOT_COMPATIBLE - Indicates the item is not compatible with the product specified in the request. Be sure to check all the value fields to ensure they are correct as errors in the value can also cause this response.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2066,17 +2065,17 @@ class ItemReturnTerms(EbayModel):
     extended_holiday_returns_offered: bool | None = Field(
         None,
         alias='extendedHolidayReturnsOffered',
-        description="This indicates if the seller has enabled the Extended Holiday Returns feature on the item. Extended Holiday Returns are only applicable during the US holiday season, and gives buyers extra time to return an item. This 'extra time' will typically extend beyond what is set through the <b> returnPeriod</b> value.",
+        description="This indicates if the seller has enabled the Extended Holiday Returns feature on the item. Extended Holiday Returns are only applicable during the US holiday season, and gives buyers extra time to return an item. This 'extra time' will typically extend beyond what is set through the returnPeriod value.",
     )
     refund_method: RefundMethodEnum | None = Field(
         None,
         alias='refundMethod',
-        description='An enumeration value that indicates how a buyer is refunded when an item is returned. <br><br><b> Valid Values: </b> MONEY_BACK or MERCHANDISE_CREDIT  <br><br>Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value that indicates how a buyer is refunded when an item is returned. Valid Values: MONEY_BACK or MERCHANDISE_CREDIT Code so that your app gracefully handles any future changes to this list.',
     )
     restocking_fee_percentage: str | None = Field(
         None,
         alias='restockingFeePercentage',
-        description='This string field indicates the restocking fee percentage that the seller has set on the item. Sellers have the option of setting no restocking fee for an item, or they can set the percentage to 10, 15, or 20 percent. So, if the cost of the item was $100, and the restocking percentage was 20 percent, the buyer would be charged $20 to return that item, so instead of receiving a $100 refund, they would receive $80 due to the restocking fee.',
+        description='This string field indicates the restocking fee percentage that the seller has set on the item. Sellers have the option of setting no restocking fee for an item, or they can set the percentage to 10, 15, or 20 percent.',
     )
     return_instructions: str | None = Field(
         None,
@@ -2086,7 +2085,7 @@ class ItemReturnTerms(EbayModel):
     return_method: ReturnMethodEnum | None = Field(
         None,
         alias='returnMethod',
-        description='An enumeration value that indicates the alternative methods for a full refund when an item is returned. This field is returned if the seller offers the buyer an item replacement or exchange instead of a monetary refund. <br><br><b> Valid Values: </b>  <ul><li><b> REPLACEMENT</b> - Indicates that the buyer has the option of receiving money back for the returned item, or they can choose to have the seller replace the item with an identical item.</li>  <li><b> EXCHANGE</b> - Indicates that the buyer has the option of receiving money back for the returned item, or they can exchange the item for another similar item.</li></ul>  Code so that your app gracefully handles any future changes to this list.',
+        description='An enumeration value that indicates the alternative methods for a full refund when an item is returned. This field is returned if the seller offers the buyer an item replacement or exchange instead of a monetary refund.',
     )
     return_period: TimeDuration | None = Field(
         None,
@@ -2101,7 +2100,7 @@ class ItemReturnTerms(EbayModel):
     return_shipping_cost_payer: ReturnShippingCostPayerEnum | None = Field(
         None,
         alias='returnShippingCostPayer',
-        description='This enumeration value indicates whether the buyer or seller is responsible for return shipping costs when an item is returned. <br><br><b> Valid Values: </b> <ul><li><b> SELLER</b> - Indicates the seller will pay for the shipping costs to return the item.</li>  <li><b> BUYER</b> - Indicates the buyer will pay for the shipping costs to return the item.</li>  </ul>  Code so that your app gracefully handles any future changes to this list.',
+        description='This enumeration value indicates whether the buyer or seller is responsible for return shipping costs when an item is returned. Valid Values: SELLER - Indicates the seller will pay for the shipping costs to return the item. BUYER - Indicates the buyer will pay for the shipping costs to return the item. Code so that your app gracefully handles any future changes to this list.',
     )
 
 
@@ -2109,17 +2108,17 @@ class ItemSummary(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='An array of containers with the URLs for the images that are in addition to the primary image. The primary image is returned in the <code>image.imageUrl</code> field.',
+        description='An array of containers with the URLs for the images that are in addition to the primary image. The primary image is returned in the image.imageUrl field.',
     )
     adult_only: bool | None = Field(
         None,
         alias='adultOnly',
-        description='This indicates if the item is for adults only. For more information about adult-only items on eBay, refer to the <a href="https://www.ebay.com/help/policies/prohibited-restricted-items/adult-items-policy?id=4278 " target="_blank">Adult items policy</a>.',
+        description='This indicates if the item is for adults only. For more information about adult-only items on eBay, refer to the Adult items policy .',
     )
     available_coupons: bool | None = Field(
         None,
         alias='availableCoupons',
-        description='This boolean attribute indicates if coupons are available for the item.<br><br><span class="tablenote"><b>Note:</b> The Browse API only acknowledges item-level coupons. This field will only be returned as true if a coupon is linked with an item. It does not recognize store-level coupons offered by sellers across their entire store.</span>',
+        description='This boolean attribute indicates if coupons are available for the item. Note: The Browse API only acknowledges item-level coupons. This field will only be returned as true if a coupon is linked with an item. It does not recognize store-level coupons offered by sellers across their entire store.',
     )
     bid_count: int | None = Field(
         None,
@@ -2129,7 +2128,7 @@ class ItemSummary(EbayModel):
     buying_options: list[str] | None = Field(
         None,
         alias='buyingOptions',
-        description='A comma separated list of all the purchase options available for the item.<br><br><b>Values Returned:</b><ul><li><code>FIXED_PRICE</code><br>Indicates the buyer can purchase the item for a set price using the <i>Buy It Now</i> button.</li><li><code>AUCTION</code><br>Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.</li><li><code>BEST_OFFER</code><br>Items where the buyer can send the seller a price they are willing to pay for the item. The seller can accept, reject, or send a counter offer. For additional information about Best Offer, refer to <a href="https://www.ebay.com/help/selling/listings/selling-buy-now/adding-best-offer-listing?id=4144 " target="_blank">Adding Best Offer to your listing and sending offers to buyers</a>.</li><li><code>CLASSIFIED_AD</code><br>Indicates that the final sales transaction is to be completed outside of the eBay environment.</li></ul>',
+        description='A comma separated list of all the purchase options available for the item. Values Returned: FIXED_PRICE Indicates the buyer can purchase the item for a set price using the Buy It Now button. AUCTION Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.',
     )
     categories: list[Category] | None = Field(
         None,
@@ -2138,40 +2137,40 @@ class ItemSummary(EbayModel):
     compatibility_match: CompatibilityMatchEnum | None = Field(
         None,
         alias='compatibilityMatch',
-        description='This indicates how well an item matches the <code>compatibility_filter</code> product attributes.<br><br><b>Valid Values:</b><ul><li><code>EXACT</code></li><li><code>POSSIBLE</code></li></ul>',
+        description='This indicates how well an item matches the compatibility_filter product attributes. Valid Values: EXACT POSSIBLE',
     )
     compatibility_properties: list[CompatibilityProperty] | None = Field(
         None,
         alias='compatibilityProperties',
-        description='This container returns only the product attributes that are compatible with the item. These attributes were specified in the <code>compatibility_filter</code> in the request. This means that if you passed in 5 attributes and only 4 are compatible, only those 4 are returned. If none of the attributes are compatible, this container is not returned.',
+        description='This container returns only the product attributes that are compatible with the item. These attributes were specified in the compatibility_filter in the request. This means that if you passed in 5 attributes and only 4 are compatible, only those 4 are returned. If none of the attributes are compatible, this container is not returned.',
     )
     condition: str | None = Field(
         None,
-        description='The text describing the condition of the item, such as <b>New</b> or <b>Used</b>. For a list of condition names, refer to <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>.',
+        description='The text describing the condition of the item, such as New or Used . For a list of condition names, refer to Item Condition IDs and Names .',
     )
     condition_id: str | None = Field(
         None,
         alias='conditionId',
-        description='The identifier of the condition of the item. For example, <code>1000</code> is the identifier for <code>NEW</code>. For a list of condition names and IDs, refer to <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>.',
+        description='The identifier of the condition of the item. For example, 1000 is the identifier for NEW . For a list of condition names and IDs, refer to Item Condition IDs and Names .',
     )
     current_bid_price: ConvertedAmount | None = Field(
         None,
         alias='currentBidPrice',
-        description='This container returns the current highest bid for an auction item. The <code>value</code> field shows the dollar value of the current highest bid, and the <code>currency</code> field (3-digit ISO code) denotes the currency associated with that bid value. This field is only returned for auction items.',
+        description='This container returns the current highest bid for an auction item. The value field shows the dollar value of the current highest bid, and the currency field (3-digit ISO code) denotes the currency associated with that bid value. This field is only returned for auction items.',
     )
     distance_from_pickup_location: TargetLocation | None = Field(
         None,
         alias='distanceFromPickupLocation',
-        description='This container returns the distance away that the item is from the <code>pickupPostalCode</code> value that was supplied in the method request. This container is only returned if the "local pickup" filter fields are used in the request.',
+        description='This container returns the distance away that the item is from the pickupPostalCode value that was supplied in the method request. This container is only returned if the "local pickup" filter fields are used in the request.',
     )
     energy_efficiency_class: str | None = Field(
         None,
         alias='energyEfficiencyClass',
-        description='This indicates the <a href="https://en.wikipedia.org/wiki/European_Union_energy_label " target="_blank">European energy efficiency</a> rating (EEK) of the item. Energy efficiency ratings apply to products listed by commercial vendors in electronics categories only. <br><br>Currently, this field is only applicable for the Germany site, and is returned only if the seller specifies the energy efficiency rating through item specifics at listing time. Rating values include <code>A+++</code>, <code>A++</code>, <code>A+</code>, <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>, <code>E</code>, <code>F</code>, and <code>G</code>.',
+        description='This indicates the European energy efficiency rating (EEK) of the item. Energy efficiency ratings apply to products listed by commercial vendors in electronics categories only. Currently, this field is only applicable for the Germany site, and is returned only if the seller specifies the energy efficiency rating through item specifics at listing time.',
     )
     epid: str | None = Field(
         None,
-        description='An ePID is the eBay product identifier of a product from the eBay product catalog.  This indicates the product in which the item belongs.',
+        description='An ePID is the eBay product identifier of a product from the eBay product catalog. This indicates the product in which the item belongs.',
     )
     image: Image | None = Field(
         None, description='The URL to the primary image of the item.'
@@ -2179,32 +2178,32 @@ class ItemSummary(EbayModel):
     item_affiliate_web_url: str | None = Field(
         None,
         alias='itemAffiliateWebUrl',
-        description='The URL to the View Item page of the item which includes the affiliate tracking ID.<br><br><span class="tablenote"><b>Note:</b> In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace.</span><br>The <code>itemAffiliateWebUrl</code> is returned only if:<ul><li>The marketplace through which the item is being viewed is part of the eBay Partner Network. Currently Singapore (<code>EBAY_SG</code>) is <b>not</b> supported.<br><br>For additional information, refer to <a href="https://partnerhelp.ebay.com/helpcenter/s/article/countries-available-as-a-program-in-EPN?language=en_US " target="_blank">eBay Partner Network</a>.</li><li>The seller enables affiliate tracking for the item by including the <code><a href="/api-docs/buy/static/api-browse.html#Headers">X-EBAY-C-ENDUSERCTX</a></code> request header in the method.</li></ul>',
+        description='The URL to the View Item page of the item which includes the affiliate tracking ID. Note: In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace. The itemAffiliateWebUrl is returned only if: The marketplace through which the item is being viewed is part of the eBay Partner Network.',
     )
     item_creation_date: str | None = Field(
         None,
         alias='itemCreationDate',
-        description='The date and time when the item listing was created. This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which you can convert into the local time of the buyer.<br><br>This field is always returned with <b>itemSummaries</b>.',
+        description='The date and time when the item listing was created. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which you can convert into the local time of the buyer. This field is always returned with itemSummaries .',
     )
     item_end_date: str | None = Field(
         None,
         alias='itemEndDate',
-        description='A timestamp that indicates the date and time a listing is scheduled to end.<br><br>This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time a listing is scheduled to end. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which can be converted into the local time of the buyer.',
     )
     item_group_href: str | None = Field(
         None,
         alias='itemGroupHref',
-        description='The HATEOAS reference of the parent page of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc.<br><br><span class="tablenote"><b>Note:</b> This field is returned only for item groups.</span>',
+        description='The HATEOAS reference of the parent page of the item group. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. Note: This field is returned only for item groups.',
     )
     item_group_type: str | None = Field(
         None,
         alias='itemGroupType',
-        description='The indicates the item group type. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. <br><br>Currently only the <code>SELLER_DEFINED_VARIATIONS</code> is supported and indicates this is an item group created by the seller.<br><br><span class="tablenote"><b>Note:</b> This field is returned only for item groups.</span>',
+        description='The indicates the item group type. An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. Currently only the SELLER_DEFINED_VARIATIONS is supported and indicates this is an item group created by the seller. Note: This field is returned only for item groups.',
     )
     item_href: str | None = Field(
         None,
         alias='itemHref',
-        description='The URI for the Browse API <a href="/develop/api/buy/browse_api#buy-browse_api-item-getitem">getItem</a> method, which can be used to retrieve more details about items in the search results.',
+        description='The URI for the Browse API getItem method, which can be used to retrieve more details about items in the search results.',
     )
     item_id: str | None = Field(
         None, alias='itemId', description='The unique RESTful identifier of the item.'
@@ -2217,7 +2216,7 @@ class ItemSummary(EbayModel):
     item_origin_date: str | None = Field(
         None,
         alias='itemOriginDate',
-        description='The date and time when the listing was first made available. This date will be retained if an item is relisted. This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which you can convert into the local time of the buyer.<br><br>This timestamp is used to sort the response when the <code>sort=newlyListed</code> parameter is used.<br><br>This field is always returned with <b>itemSummaries</b>.',
+        description='The date and time when the listing was first made available. This date will be retained if an item is relisted. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which you can convert into the local time of the buyer. This timestamp is used to sort the response when the sort=newlyListed parameter is used. This field is always returned with itemSummaries .',
     )
     item_web_url: str | None = Field(
         None,
@@ -2251,7 +2250,7 @@ class ItemSummary(EbayModel):
     )
     price: ConvertedAmount | None = Field(
         None,
-        description='The price of the item after it has been converted into another currency.<br><br>The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must do one or more of the following to view VAT-inclusive pricing:<ul><li>Pass the <a href="/api-docs/static/rest-request-components.html#HTTP" target="_blank"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>)</li><li>Pass the <code>contextualLocation</code> values for the supported marketplace in the <a href="/api-docs/buy/static/api-browse.html#Headers" target="_blank"><code>X-EBAY-C-ENDUSERCTX</code></a> request header</li><li>Specify the supported marketplace using the <a href="/api-docs/buy/static/ref-buy-browse-filters.html#deliveryCountry" target="_blank"><code>deliveryCountry</code></a> <code>filter</code> URI parameter (such as <code>filter=deliveryCountry:GB</code>)</li></ul><span class="tablenote"><b>Note:</b> For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650 " target="_blank">Your VAT Obligations in the UK &amp; EU</a>.</span>',
+        description='The price of the item after it has been converted into another currency. The price includes the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces.',
     )
     price_display_condition: PriceDisplayConditionEnum | None = Field(
         None,
@@ -2261,12 +2260,12 @@ class ItemSummary(EbayModel):
     priority_listing: bool | None = Field(
         None,
         alias='priorityListing',
-        description='This field is returned as <code>true</code> if the listing is part of a Promoted Listing campaign. Promoted Listings are available to <b>Above Standard</b> and <b>Top Rated</b> sellers with recent sales activity.<br><br><span class="tablenote"><b>Note:</b> Priority Listing is returned only with a Best Match sort and will not be returned for other sort options.</span>',
+        description='This field is returned as true if the listing is part of a Promoted Listing campaign. Promoted Listings are available to Above Standard and Top Rated sellers with recent sales activity. Note: Priority Listing is returned only with a Best Match sort and will not be returned for other sort options.',
     )
     qualified_programs: list[str] | None = Field(
         None,
         alias='qualifiedPrograms',
-        description='An array of the qualified programs available for the item, such as <code>EBAY_PLUS</code>, <code>AUTHENTICITY_GUARANTEE</code>, and <code>AUTHENTICITY_VERIFICATION</code>.<br><br>eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.The eBay <a href="https://pages.ebay.com/authenticity-guarantee/ " target="_blank">Authenticity Guarantee</a> program enables third-party authenticators to perform authentication verification inspections on items such as watches and sneakers.<br><br><span class="tablenote"><b>Note:</b> eBay Plus was recently deprecated on the eBay Germany marketplace, and this feature is now only available on eBay Australia marketplace.',
+        description='An array of the qualified programs available for the item, such as EBAY_PLUS , AUTHENTICITY_GUARANTEE , and AUTHENTICITY_VERIFICATION . eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.',
     )
     seller: Seller | None = Field(
         None,
@@ -2280,7 +2279,7 @@ class ItemSummary(EbayModel):
     short_description: str | None = Field(
         None,
         alias='shortDescription',
-        description='This text string is derived from the item condition and the item aspects (such as size, color, capacity, model, brand, etc.) Sometimes the title does not provide enough information but the description is too big. Surfacing the <code>shortDescription</code> can often provide buyers with the additional information that could help them make a buying decision.<br><br>For example:<pre>"<b>title</b>": "Petrel U42W FPV Drone RC Quadcopter w/HD Camera Live Video One Key Off / Landing",<br>"<b>shortDescription</b>": "1 U42W Quadcopter. Syma X5SW-V3 Wifi FPV RC Drone Quadcopter 2.4Ghz 6-Axis Gyro with Headless Mode. Syma X20 Pocket Drone 2.4Ghz Mini RC Quadcopter Headless Mode Altitude Hold. One Key Take Off / Landing function: allow beginner to easy to fly the drone without any skill.",</pre><br><b>Restriction:</b> This field is returned by the <b>search</b> method only when <code>fieldgroups</code> = <code>EXTENDED</code>.',
+        description='This text string is derived from the item condition and the item aspects (such as size, color, capacity, model, brand, etc.) Sometimes the title does not provide enough information but the description is too big. Surfacing the shortDescription can often provide buyers with the additional information that could help them make a buying decision.',
     )
     thumbnail_images: list[Image] | None = Field(
         None,
@@ -2289,12 +2288,12 @@ class ItemSummary(EbayModel):
     )
     title: str | None = Field(
         None,
-        description='The seller-created title of the item.<br><br><b>Maximum Length:</b> 80 characters',
+        description='The seller-created title of the item. Maximum Length: 80 characters',
     )
     top_rated_buying_experience: bool | None = Field(
         None,
         alias='topRatedBuyingExperience',
-        description='This indicates if the item is a top-rated plus item. There are three benefits of a top-rated plus item: a  minimum 30-day money-back return policy; shipping the item in 1 business day with tracking provided; and the added comfort of knowing that this item is from an experienced seller with the highest buyer ratings. For more information, refer to <a href="https://pages.ebay.com/topratedplus/index.html " target="_blank">Look for Top Rated Plus Items</a> and <a href="https://www.ebay.com/help/selling/seller-levels-performance-standards/seller-levels-performance-standards?id=4080 " target="_blank">Seller performance overview</a>.',
+        description='This indicates if the item is a top-rated plus item. There are three benefits of a top-rated plus item: a minimum 30-day money-back return policy; shipping the item in 1 business day with tracking provided; and the added comfort of knowing that this item is from an experienced seller with the highest buyer ratings.',
     )
     tyre_label_image_url: str | None = Field(
         None,
@@ -2304,17 +2303,17 @@ class ItemSummary(EbayModel):
     unit_price: ConvertedAmount | None = Field(
         None,
         alias='unitPrice',
-        description='The price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices.<br><br>For example:<pre>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</pre>',
+        description='The price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices. For example: "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     unit_pricing_measure: str | None = Field(
         None,
         alias='unitPricingMeasure',
-        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item. This helps buyers compare prices.<br><br>For example, the following tells the buyer that the item is 7.99 per 100 grams.<pre>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</pre>',
+        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item. This helps buyers compare prices. For example, the following tells the buyer that the item is 7.99 per 100 grams. "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     watch_count: int | None = Field(
         None,
         alias='watchCount',
-        description='The number of users that have added the item to their watch list.<br><br><span class="tablenote"><b>Note:</b> This field is restricted to applications that have been granted permission to access this feature. You must submit an <a href="/my/support/tickets?tab=app-check " target="_blank">App Check ticket</a> to request this access. In the App Check form, add a note to the <b>Application Title/Summary</b> and/or <b>Application Details</b> fields indicating that you want access to Watch Count data in the Browse API.</span>',
+        description='The number of users that have added the item to their watch list. Note: This field is restricted to applications that have been granted permission to access this feature. You must submit an App Check ticket to request this access.',
     )
 
 
@@ -2332,12 +2331,12 @@ class PaymentMethod(EbayModel):
     payment_instructions: list[PaymentInstructionEnum] | None = Field(
         None,
         alias='paymentInstructions',
-        description='The payment instructions for the buyer, such as <i>cash in person</i> or <i>contact seller</i>.',
+        description='The payment instructions for the buyer, such as cash in person or contact seller .',
     )
     seller_instructions: list[SellerInstructionEnum] | None = Field(
         None,
         alias='sellerInstructions',
-        description='The seller instructions to the buyer, such as <i>accepts credit cards</i> or <i>see description</i>.',
+        description='The seller instructions to the buyer, such as accepts credit cards or see description .',
     )
 
 
@@ -2347,7 +2346,7 @@ class SearchPagedCollection(EbayModel):
     )
     href: str | None = Field(
         None,
-        description='The URI of the current page of results.<br><br>The following example of the <b>search</b> method returns items 1 thru 5 from the list of items found.<pre>https://api.ebay.com/buy/v1/item_summary/search?q=shirt&limit=5&offset=0</pre>',
+        description='The URI of the current page of results. The following example of the search method returns items 1 thru 5 from the list of items found. https://api.ebay.com/buy/v1/item_summary/search?q=shirt&limit=5&offset=0',
     )
     item_summaries: list[ItemSummary] | None = Field(
         None,
@@ -2356,26 +2355,26 @@ class SearchPagedCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <code>limit</code> parameter submitted in the request, which is the maximum number of items to return on a page, from the result set. A result set is the complete set of items returned by the method.',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of items to return on a page, from the result set. A result set is the complete set of items returned by the method.',
     )
     next: str | None = Field(
         None,
-        description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set.<br><br>The following example of the <b>search</b> method returns items 5 thru 10 from the list of items found.<pre>https://api.ebay.com/buy/v1/item_summary/search?query=t-shirts&limit=5&offset=10</pre>',
+        description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set. The following example of the search method returns items 5 thru 10 from the list of items found. https://api.ebay.com/buy/v1/item_summary/search?query=t-shirts&limit=5&offset=10',
     )
     offset: int | None = Field(
         None,
-        description='This value indicates the <code>offset</code> used for current page of items being returned. Assume the initial request used an <code>offset</code> of <code>0</code> and a <code>limit</code> of <code>3</code>. Then in the first page of results, this value would be <code>0</code>, and items 1-3 are returned. For the second page, this value is <code>3</code> and so on.',
+        description='This value indicates the offset used for current page of items being returned. Assume the initial request used an offset of 0 and a limit of 3 . Then in the first page of results, this value would be 0 , and items 1-3 are returned. For the second page, this value is 3 and so on.',
     )
     prev: str | None = Field(
         None,
-        description='The URI for the previous page of results. This is returned if there is a previous page of results from the result set.<br><br>The following example of the <b>search</b> method returns items 1 thru 5 from the list of items found, which would be the first set of items returned.<pre>https://api.ebay.com/buy/v1/item_summary/search?query=t-shirts&limit=5&offset=0</pre>',
+        description='The URI for the previous page of results. This is returned if there is a previous page of results from the result set. The following example of the search method returns items 1 thru 5 from the list of items found, which would be the first set of items returned. https://api.ebay.com/buy/v1/item_summary/search?query=t-shirts&limit=5&offset=0',
     )
     refinement: Refinement | None = Field(
         None, description='The container for all the search refinements.'
     )
     total: int | None = Field(
         None,
-        description='The total number of items that match the input criteria.<br><br><span class="tablenote"><b>Note:</b> <code>total</code> is just an indicator of the number of listings for a given query. It could vary based on the number of listings with variations included in the result. It is strongly recommended that <code>total</code> not be used in pagination use cases. Instead, use <a href="/api-docs/buy/browse/resources/item_summary/methods/search#response.next ">next</a> to determine the results on the next page.</span>',
+        description='The total number of items that match the input criteria. Note: total is just an indicator of the number of listings for a given query. It could vary based on the number of listings with variations included in the result. It is strongly recommended that total not be used in pagination use cases. Instead, use next to determine the results on the next page.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None, description='The container with all the warnings for the request.'
@@ -2396,7 +2395,7 @@ class SellerDetail(EbayModel):
     seller_account_type: str | None = Field(
         None,
         alias='sellerAccountType',
-        description='This indicates if the seller is a business or an individual. This is determined when the seller registers with eBay. If they register for a business account, this value will be <code>BUSINESS</code>. If they register for a private account, this value will be <code>INDIVIDUAL</code>. This designation is required by the tax laws in the following countries:  <br><br> This field is applicable only on the following marketplaces: <br><ul><li>EBAY_AT</li><li>EBAY_BE</li><li>EBAY_CH</li><li>EBAY_DE</li><li>EBAY_ES</li><li>EBAY_FR</li><li>EBAY_GB</li><li>EBAY_IE</li><li>EBAY_IT</li><li>EBAY_PL</li></ul><span class="tablenote"><b>Note:</b> This field will be returned empty on unsupported marketplaces.</span><br><b> Valid Values:</b> <code>BUSINESS</code> or <code>INDIVIDUAL</code>',
+        description='This indicates if the seller is a business or an individual. This is determined when the seller registers with eBay. If they register for a business account, this value will be BUSINESS . If they register for a private account, this value will be INDIVIDUAL .',
     )
     seller_legal_info: SellerLegalInfo | None = Field(
         None,
@@ -2410,7 +2409,7 @@ class SellerDetail(EbayModel):
     )
     username: str | None = Field(
         None,
-        description='The user name created by the seller for use on eBay.<br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html">Data Handling Compliance</a>. </span>',
+        description='The user name created by the seller for use on eBay. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
 
 
@@ -2418,27 +2417,27 @@ class CoreItem(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='An array of containers with the URLs for the images that are in addition to the primary image.  The primary image is returned in the <b> image.imageUrl</b> field.',
+        description='An array of containers with the URLs for the images that are in addition to the primary image. The primary image is returned in the image.imageUrl field.',
     )
     adult_only: bool | None = Field(
         None,
         alias='adultOnly',
-        description='This indicates if the item is for  adults only. For more information about adult-only items on eBay, see <a href="https://pages.ebay.com/help/policies/adult-only.html " target="_blank">Adult items policy</a> for sellers and <a href="https://www.ebay.com/help/terms-conditions/default/searching-adult-items?id=4661 " target="_blank">Adult-Only items on eBay</a> for buyers.',
+        description='This indicates if the item is for adults only. For more information about adult-only items on eBay, see Adult items policy for sellers and Adult-Only items on eBay for buyers.',
     )
     age_group: str | None = Field(
         None,
         alias='ageGroup',
-        description='(Primary Item Aspect) The age group for which the product is recommended. For example, newborn, infant, toddler, kids, adult, etc. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The age group for which the product is recommended. For example, newborn, infant, toddler, kids, adult, etc. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     authenticity_guarantee: AuthenticityGuaranteeProgram | None = Field(
         None,
         alias='authenticityGuarantee',
-        description='A container for information about whether an item is qualified for the Authenticity Guarantee program.<br><br>Under the Authenticity Guarantee program, the seller ships a purchased item to a a third-party authenticator who inspects the item and provides an authentication card for it before the item is shipped to the buyer. If the buyer returns the item, the authenticator first verifies that it is the same item in the same condition before returning it to the seller.<br><br><span class="tablenote"><b> Note: </b>Refer to the <a href="https://pages.ebay.com/authenticity-guarantee/ " target="_blank">Authenticity Guarantee</a> page for more information.</span>',
+        description='A container for information about whether an item is qualified for the Authenticity Guarantee program. Under the Authenticity Guarantee program, the seller ships a purchased item to a a third-party authenticator who inspects the item and provides an authentication card for it before the item is shipped to the buyer.',
     )
     authenticity_verification: AuthenticityVerificationProgram | None = Field(
         None,
         alias='authenticityVerification',
-        description='A container for information about whether an item is from a verified seller.</span>',
+        description='A container for information about whether an item is from a verified seller.',
     )
     available_coupons: list[AvailableCoupon] | None = Field(
         None,
@@ -2452,12 +2451,12 @@ class CoreItem(EbayModel):
     )
     brand: str | None = Field(
         None,
-        description='(Primary Item Aspect) The name brand of the item, such as Nike, Apple, etc.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The name brand of the item, such as Nike, Apple, etc. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     buying_options: list[str] | None = Field(
         None,
         alias='buyingOptions',
-        description='A comma separated list of all the purchase options available for the item. The values returned are:<ul><li><code>FIXED_PRICE</code> - Indicates the buyer can purchase the item for a set price using the Buy It Now button.</li><li><code>AUCTION</code> - Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.</li><li><code>BEST_OFFER</code> - Indicates the buyer can send the seller a price they\'re willing to pay for the item. The seller can accept, reject, or send a counter offer. For more information on how this works, see <a href="https://www.ebay.com/help/buying/buy-now/making-best-offer?id=4019 " target="_blank">Making a Best Offer</a>.</li><li><code>CLASSIFIED_AD</code> - Indicates that the final sales transaction is to be completed outside of the eBay environment.</li></ul>Code so that your app gracefully handles any future changes to this list.',
+        description='A comma separated list of all the purchase options available for the item. The values returned are: FIXED_PRICE - Indicates the buyer can purchase the item for a set price using the Buy It Now button. AUCTION - Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.',
     )
     category_id: str | None = Field(
         None,
@@ -2467,30 +2466,30 @@ class CoreItem(EbayModel):
     category_path: str | None = Field(
         None,
         alias='categoryPath',
-        description='Text that shows the category hierarchy of the item. For example: Computers/Tablets &amp; Networking, Laptops &amp; Netbooks, PC Laptops &amp; Netbooks',
+        description='Text that shows the category hierarchy of the item. For example: Computers/Tablets & Networking, Laptops & Netbooks, PC Laptops & Netbooks',
     )
     color: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing the color of the item.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing the color of the item. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     charity_terms: ItemCharityTerms | None = Field(
         None,
         alias='charityTerms',
-        description='This container returns any applicable charity information associated with the specified item.<br><br>This container is only returned if the <b>fieldgroups</b> query parameter is set to <code>CHARITY_DETAILS</code>.',
+        description='This container returns any applicable charity information associated with the specified item. This container is only returned if the fieldgroups query parameter is set to CHARITY_DETAILS .',
     )
     condition: str | None = Field(
         None,
-        description='A short text description for the condition of the item, such as New or Used. For a list of condition names, see <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>.  <br><br>Code so that your app gracefully handles any future changes to this list.',
+        description='A short text description for the condition of the item, such as New or Used. For a list of condition names, see Item Condition IDs and Names . Code so that your app gracefully handles any future changes to this list.',
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description='A full text description for the condition of the item. This field elaborates on the value specified in the <b>condition</b> field and provides full details for the condition of the item.',
+        description='A full text description for the condition of the item. This field elaborates on the value specified in the condition field and provides full details for the condition of the item.',
     )
     condition_id: str | None = Field(
         None,
         alias='conditionId',
-        description='The identifier of the condition of the item. For example, 1000 is the identifier for NEW. For a list of condition names and IDs, see <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>. <br><br>Code so that your app gracefully handles any future changes to this list.</span>',
+        description='The identifier of the condition of the item. For example, 1000 is the identifier for NEW. For a list of condition names and IDs, see Item Condition IDs and Names . Code so that your app gracefully handles any future changes to this list.',
     )
     current_bid_price: ConvertedAmount | None = Field(
         None,
@@ -2504,21 +2503,21 @@ class CoreItem(EbayModel):
     eligible_for_inline_checkout: bool | None = Field(
         None,
         alias='eligibleForInlineCheckout',
-        description='This field indicates if the item can be purchased using the Buy <a href="/api-docs/buy/order/resources/methods">Order API</a>. <ul> <li>If the value of this field is <code>true</code>, this indicates that the item can be purchased using the <b> Order API</b>. </li>  <li>If the value of this field is <code>false</code>, this indicates that the item cannot be purchased using the <b> Order API</b> and must be purchased on the eBay site.</li> </ul>',
+        description='This field indicates if the item can be purchased using the Buy Order API . If the value of this field is true , this indicates that the item can be purchased using the Order API . If the value of this field is false , this indicates that the item cannot be purchased using the Order API and must be purchased on the eBay site.',
     )
     enabled_for_guest_checkout: bool | None = Field(
         None,
         alias='enabledForGuestCheckout',
-        description='This indicates if the item can be purchased using Guest Checkout in the <a href="/api-docs/buy/order/resources/methods">Order API</a>. You can use this flag to exclude items from your inventory that are not eligible for Guest Checkout, such as gift cards.',
+        description='This indicates if the item can be purchased using Guest Checkout in the Order API . You can use this flag to exclude items from your inventory that are not eligible for Guest Checkout, such as gift cards.',
     )
     energy_efficiency_class: str | None = Field(
         None,
         alias='energyEfficiencyClass',
-        description='This indicates the <a href="https://en.wikipedia.org/wiki/European_Union_energy_label " target="_blank">European energy efficiency</a> rating (EEK) of the item. This field is returned only if the seller specified the energy efficiency rating. <br><br>The rating is a set of energy efficiency classes from A to G, where \'A\' is the most energy efficient and \'G\' is the least efficient. This rating helps buyers choose between various models. <br><br>When the manufacturer\'s specifications for this item are available, the link to this information is returned in the <b>productFicheWebUrl</b> field.',
+        description="This indicates the European energy efficiency rating (EEK) of the item. This field is returned only if the seller specified the energy efficiency rating. The rating is a set of energy efficiency classes from A to G, where 'A' is the most energy efficient and 'G' is the least efficient. This rating helps buyers choose between various models.",
     )
     epid: str | None = Field(
         None,
-        description='An EPID is the eBay product identifier of a product from the eBay product catalog.  This indicates the product in which the item belongs.',
+        description='An EPID is the eBay product identifier of a product from the eBay product catalog. This indicates the product in which the item belongs.',
     )
     estimated_availabilities: list[EstimatedAvailability] | None = Field(
         None,
@@ -2527,40 +2526,40 @@ class CoreItem(EbayModel):
     )
     gender: str | None = Field(
         None,
-        description='(Primary Item Aspect) The gender for the item. This is used for items that could vary by gender, such as clothing. For example: male, female, or unisex. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The gender for the item. This is used for items that could vary by gender, such as clothing. For example: male, female, or unisex. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     gtin: str | None = Field(
         None,
-        description='The unique Global Trade Item number of the item as defined by <a href="https://www.gtin.info " target="_blank">https://www.gtin.info</a>. This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
+        description='The unique Global Trade Item number of the item as defined by https://www.gtin.info . This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
     )
     image: Image | None = Field(
         None,
-        description='The URL of the primary image of the item. The other images of the item are returned in the <b> additionalImages</b> container.',
+        description='The URL of the primary image of the item. The other images of the item are returned in the additionalImages container.',
     )
     immediate_pay: bool | None = Field(
         None,
         alias='immediatePay',
-        description='A value of <code>true</code> indicates that the seller requires immediate payment from the buyer when purchasing an item.<br><br><span class="tablenote"><b>Note:</b> It is possible for this field to be set to <code>true</code>, but not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyers\' purchases that involve the Best Offer feature, or for offline transactions.</span>',
+        description="A value of true indicates that the seller requires immediate payment from the buyer when purchasing an item. Note: It is possible for this field to be set to true , but not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyers' purchases that involve the Best Offer feature, or for offline transactions.",
     )
     inferred_epid: str | None = Field(
         None,
         alias='inferredEpid',
-        description='The ePID (eBay Product ID of a product from the eBay product catalog) for the item, which has been programmatically determined by eBay using the item\'s title, aspects, and other data. <br><br>If the seller provided an ePID for the item, the seller\'s value is returned in the <b> epid</b> field. <br><br><span class="tablenote"><b> Note: </b> This field is returned only for authorized Partners.</span>',
+        description="The ePID (eBay Product ID of a product from the eBay product catalog) for the item, which has been programmatically determined by eBay using the item's title, aspects, and other data. If the seller provided an ePID for the item, the seller's value is returned in the epid field. Note: This field is returned only for authorized Partners.",
     )
     item_affiliate_web_url: str | None = Field(
         None,
         alias='itemAffiliateWebUrl',
-        description='The URL to the View Item page of the item which includes the affiliate tracking ID.<br><br><span class="tablenote"><b>Note:</b> In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace.</span><br>The <b>itemAffiliateWebUrl</b> is only returned if:<ul><li>The marketplace through which the item is being viewed is part of the eBay Partner Network. Currently Singapore (<code>EBAY_SG</code>) is <b>not</b> supported.<br><br>For additional information, refer to <a href="https://partnerhelp.ebay.com/helpcenter/s/article/countries-available-as-a-program-in-EPN?language=en_US " target="_blank">eBay Partner Network</a>.</li><li>The seller enables affiliate tracking for the item by including the <code><a href="/api-docs/buy/static/api-browse.html#Headers">X-EBAY-C-ENDUSERCTX</a></code> request header in the method.</li></ul>',
+        description='The URL to the View Item page of the item which includes the affiliate tracking ID. Note: In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace. The itemAffiliateWebUrl is only returned if: The marketplace through which the item is being viewed is part of the eBay Partner Network.',
     )
     item_creation_date: str | None = Field(
         None,
         alias='itemCreationDate',
-        description='A timestamp that indicates the date and time an item listing was created.<br><br>This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time an item listing was created. This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which can be converted into the local time of the buyer.',
     )
     item_end_date: str | None = Field(
         None,
         alias='itemEndDate',
-        description='A timestamp that indicates the date and time an auction listing will end.<br><br>If a fixed-price listing has ended, this field indicates the date and time the listing ended.<br><br>This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time an auction listing will end. If a fixed-price listing has ended, this field indicates the date and time the listing ended. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which can be converted into the local time of the buyer.',
     )
     item_id: str | None = Field(
         None, alias='itemId', description='The unique RESTful identifier of the item.'
@@ -2586,7 +2585,7 @@ class CoreItem(EbayModel):
     lot_size: int | None = Field(
         None,
         alias='lotSize',
-        description='The number of items in a lot. In other words, a lot size is the number of items that are being sold together.  <br><br>A lot is a set of two or more items included in a single listing that must be purchased together in a single order line item. All the items in the lot are the same but there can be multiple items in a single lot,  such as the package of batteries shown in the example below.   <br><br><table border="1"> <tr> <tr>  <th>Item</th>  <th>Lot Definition</th> <th>Lot Size</th></tr>  <tr>  <td>A package of 24 AA batteries</td>  <td>A box of 10 packages</td>  <td>10  </td> </tr>  <tr>  <td>A P235/75-15 Goodyear tire </td>  <td>4 tires  </td>  <td>4  </td> </tr> <tr> <td>Fashion Jewelry Rings  </td> <td>Package of 100 assorted rings  </td> <td>100 </td> </tr></table>  <br><br><span class="tablenote"><b>Note: </b>  Lots are not supported in all categories.  </span>',
+        description='The number of items in a lot. In other words, a lot size is the number of items that are being sold together. A lot is a set of two or more items included in a single listing that must be purchased together in a single order line item. All the items in the lot are the same but there can be multiple items in a single lot, such as the package of batteries shown in the example below.',
     )
     marketing_price: MarketingPrice | None = Field(
         None,
@@ -2595,12 +2594,12 @@ class CoreItem(EbayModel):
     )
     material: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing what the item is made of. For example, silk. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing what the item is made of. For example, silk. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     minimum_price_to_bid: ConvertedAmount | None = Field(
         None,
         alias='minimumPriceToBid',
-        description='The minimum price of the next bid, which means to place a bid it must be equal to or greater than this amount. If the auction hasn\'t received any bids, the minimum bid price is the same as the starting bid. Otherwise, the minimum bid price is equal to the current bid plus the bid increment.  For details about bid increments, see <a href="https://www.ebay.com/help/buying/bidding/automatic-bidding?id=4014 " target="_blank">Automatic bidding</a>.',
+        description="The minimum price of the next bid, which means to place a bid it must be equal to or greater than this amount. If the auction hasn't received any bids, the minimum bid price is the same as the starting bid. Otherwise, the minimum bid price is equal to the current bid plus the bid increment. For details about bid increments, see Automatic bidding .",
     )
     mpn: str | None = Field(
         None,
@@ -2608,7 +2607,7 @@ class CoreItem(EbayModel):
     )
     pattern: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing the pattern used on the item. For example, paisley. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing the pattern used on the item. For example, paisley. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
@@ -2617,7 +2616,7 @@ class CoreItem(EbayModel):
     )
     price: ConvertedAmount | None = Field(
         None,
-        description='The cost of just the item. This amount does not include any adjustments such as discounts or shipping costs.<br><br><span class="tablenote"><b> Note: </b>The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see the VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT" target="_blank">VAT Obligations in the EU</a>.</span>',
+        description='The cost of just the item. This amount does not include any adjustments such as discounts or shipping costs. Note: The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see the VAT-inclusive pricing.',
     )
     price_display_condition: PriceDisplayConditionEnum | None = Field(
         None,
@@ -2627,7 +2626,7 @@ class CoreItem(EbayModel):
     primary_item_group: ItemGroupSummary | None = Field(
         None,
         alias='primaryItemGroup',
-        description='The container that returns details of a primary item group (parent ID of an item group). An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. <br><br>When an item group is created, one of the item variations, such as the red shirt size L, is chosen as the "parent". All the other items in the group are the children, such as the blue shirt size L, red shirt size M, etc.<br><br><span class="tablenote"><b> Note: </b> This container is returned if the <b> item_id</b> in the request is for an item group (items with variations, such as color and size). This container is also returned on a request for <b> item_group_ids</b>.</span>',
+        description='The container that returns details of a primary item group (parent ID of an item group). An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. When an item group is created, one of the item variations, such as the red shirt size L, is chosen as the "parent".',
     )
     primary_product_review_rating: ReviewRating | None = Field(
         None,
@@ -2637,7 +2636,7 @@ class CoreItem(EbayModel):
     priority_listing: bool | None = Field(
         None,
         alias='priorityListing',
-        description='This field is returned as <code>true</code> if the listing is part of a Promoted Listing campaign. Promoted Listings are available to Above Standard and Top Rated sellers with recent sales activity.<br><br>For more information, see <a href="https://pages.ebay.com/seller-center/listing-and-marketing/promoted-listings.html " target="_blank">Promoted Listings</a>.',
+        description='This field is returned as true if the listing is part of a Promoted Listing campaign. Promoted Listings are available to Above Standard and Top Rated sellers with recent sales activity. For more information, see Promoted Listings .',
     )
     product: Product | None = Field(
         None,
@@ -2646,12 +2645,12 @@ class CoreItem(EbayModel):
     product_fiche_web_url: str | None = Field(
         None,
         alias='productFicheWebUrl',
-        description="The URL of a page containing the manufacturer's specification of this item, which helps buyers make a purchasing decision. This information is available only for items that include the European energy efficiency rating (EEK) but is not available for <em> all</em> items with an EEK rating and is returned only if this information is available. The EEK rating of the item is returned in the <b> energyEfficiencyClass</b> field.",
+        description="The URL of a page containing the manufacturer's specification of this item, which helps buyers make a purchasing decision. This information is available only for items that include the European energy efficiency rating (EEK) but is not available for all items with an EEK rating and is returned only if this information is available.",
     )
     qualified_programs: list[str] | None = Field(
         None,
         alias='qualifiedPrograms',
-        description='An array of the qualified programs available for the item, such as <code>EBAY_PLUS</code>, <code>AUTHENTICITY_GUARANTEE</code>, and <code>AUTHENTICITY_VERIFICATION</code>.<br><br>eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.The eBay <a href="https://pages.ebay.com/authenticity-guarantee/ " target="_blank">Authenticity Guarantee</a> program enables third-party authenticators to perform authentication verification inspections on items such as watches and sneakers.<br><br><span class="tablenote"><b>Note:</b> eBay Plus was recently deprecated on the eBay Germany marketplace, and this feature is now only available on eBay Australia marketplace.',
+        description='An array of the qualified programs available for the item, such as EBAY_PLUS , AUTHENTICITY_GUARANTEE , and AUTHENTICITY_VERIFICATION . eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.',
     )
     quantity_limit_per_buyer: int | None = Field(
         None,
@@ -2661,7 +2660,7 @@ class CoreItem(EbayModel):
     reserve_price_met: bool | None = Field(
         None,
         alias='reservePriceMet',
-        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. <p>If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold.</p> <p><b> Note: </b>This is returned only for auctions that have a reserve price.</p>',
+        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold. Note: This is returned only for auctions that have a reserve price.',
     )
     return_terms: ItemReturnTerms | None = Field(
         None,
@@ -2675,12 +2674,12 @@ class CoreItem(EbayModel):
     seller_item_revision: str | None = Field(
         None,
         alias='sellerItemRevision',
-        description='An identifier generated/incremented when a seller revises the item. There are two types of item revisions: <ul><li>Seller changes, such as changing the title</li>  <li>eBay system changes, such as changing the quantity when an item is purchased</li></ul> This ID is changed <em> only</em> when the seller makes a change to the item. This means you cannot use this value to determine if the quantity has changed.',
+        description='An identifier generated/incremented when a seller revises the item. There are two types of item revisions: Seller changes, such as changing the title eBay system changes, such as changing the quantity when an item is purchased This ID is changed only when the seller makes a change to the item. This means you cannot use this value to determine if the quantity has changed.',
     )
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='An array of shipping options containers that have the details about cost, carrier, etc. of one shipping option.<br><br><span class="tablenote"><b>Note:</b> For items with calculated shipping, this array is only returned if the <b>X-EBAY-C-ENDUSERCTX</b> header is supplied.</span> ',
+        description='An array of shipping options containers that have the details about cost, carrier, etc. of one shipping option. Note: For items with calculated shipping, this array is only returned if the X-EBAY-C-ENDUSERCTX header is supplied.',
     )
     ship_to_locations: ShipToLocations | None = Field(
         None,
@@ -2694,17 +2693,17 @@ class CoreItem(EbayModel):
     )
     size: str | None = Field(
         None,
-        description="(Primary Item Aspect) The size of the item. For example, '7' for a size 7 shoe. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.",
+        description="(Primary Item Aspect) The size of the item. For example, '7' for a size 7 shoe. All the item aspects, including this aspect, are returned in the localizedAspects container.",
     )
     size_system: str | None = Field(
         None,
         alias='sizeSystem',
-        description='(Primary Item Aspect) The sizing system of the country.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container. <br><br><b> Valid Values: </b> <br>AU (Australia),  <br>BR (Brazil), <br>CN (China),  <br>DE (Germany),  <br>EU (European Union),  <br> FR (France), <br> IT (Italy),  <br>JP (Japan), <br>MX (Mexico),  <br>US (USA), <br> UK (United Kingdom) <br><br>Code so that your app gracefully handles any future changes to this list. ',
+        description='(Primary Item Aspect) The sizing system of the country. All the item aspects, including this aspect, are returned in the localizedAspects container. Valid Values: AU (Australia), BR (Brazil), CN (China), DE (Germany), EU (European Union), FR (France), IT (Italy), JP (Japan), MX (Mexico), US (USA), UK (United Kingdom) Code so that your app gracefully handles any future changes to this list.',
     )
     size_type: str | None = Field(
         None,
         alias='sizeType',
-        description='(Primary Item Aspect) Text describing a size group in which the item would be included, such as regular, petite, plus, big-and-tall or maternity. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing a size group in which the item would be included, such as regular, petite, plus, big-and-tall or maternity. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     subtitle: str | None = Field(
         None,
@@ -2715,12 +2714,12 @@ class CoreItem(EbayModel):
     )
     title: str | None = Field(
         None,
-        description='The seller-created title of the item. <br><br><b> Maximum Length: </b> 80 characters',
+        description='The seller-created title of the item. Maximum Length: 80 characters',
     )
     top_rated_buying_experience: bool | None = Field(
         None,
         alias='topRatedBuyingExperience',
-        description='This indicates if the item a top-rated plus item. There are three benefits of a top-rated plus item: a  minimum 30-day money-back return policy, shipping the items in 1 business day with tracking provided, and the added comfort of knowing this item is from experienced sellers with the highest buyer ratings. See the <a href="https://pages.ebay.com/topratedplus/index.html " target="_blank">Top Rated Plus Items </a> and <a href="https://pages.ebay.com/help/sell/top-rated.html " target="_blank">Becoming a Top Rated Seller and qualifying for Top Rated Plus</a> help topics for more information.',
+        description='This indicates if the item a top-rated plus item. There are three benefits of a top-rated plus item: a minimum 30-day money-back return policy, shipping the items in 1 business day with tracking provided, and the added comfort of knowing this item is from experienced sellers with the highest buyer ratings.',
     )
     tyre_label_image_url: str | None = Field(
         None,
@@ -2735,12 +2734,12 @@ class CoreItem(EbayModel):
     unit_price: ConvertedAmount | None = Field(
         None,
         alias='unitPrice',
-        description='This is the price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices.   <br><br>For example: <br><br><code>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='This is the price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices. For example: "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     unit_pricing_measure: str | None = Field(
         None,
         alias='unitPricingMeasure',
-        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item.  This helps buyers compare prices. <br><br>For example, the following tells the buyer that the item is 7.99 per 100 grams. <br><br><code>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item. This helps buyers compare prices. For example, the following tells the buyer that the item is 7.99 per 100 grams. "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
 
 
@@ -2748,7 +2747,7 @@ class Item(EbayModel):
     additional_images: list[Image] | None = Field(
         None,
         alias='additionalImages',
-        description='An array of containers with the URLs for the images that are in addition to the primary image.  The primary image is returned in the <b> image.imageUrl</b> field.',
+        description='An array of containers with the URLs for the images that are in addition to the primary image. The primary image is returned in the image.imageUrl field.',
     )
     addon_services: list[AddonService] | None = Field(
         None,
@@ -2758,27 +2757,27 @@ class Item(EbayModel):
     adult_only: bool | None = Field(
         None,
         alias='adultOnly',
-        description='This indicates if the item is for  adults only. For more information about adult-only items on eBay, see <a href="https://pages.ebay.com/help/policies/adult-only.html " target="_blank">Adult items policy</a> for sellers and <a href="https://www.ebay.com/help/terms-conditions/default/searching-adult-items?id=4661" target="_blank">Adult-Only items on eBay</a> for buyers.',
+        description='This indicates if the item is for adults only. For more information about adult-only items on eBay, see Adult items policy for sellers and Adult-Only items on eBay for buyers.',
     )
     age_group: str | None = Field(
         None,
         alias='ageGroup',
-        description='(Primary Item Aspect) The age group for which the product is recommended. For example, newborn, infant, toddler, kids, adult, etc. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The age group for which the product is recommended. For example, newborn, infant, toddler, kids, adult, etc. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     authenticity_guarantee: AuthenticityGuaranteeProgram | None = Field(
         None,
         alias='authenticityGuarantee',
-        description='A container for information about whether an item, or the item group when returned for the <b>getItemsByItemGroup</b> method, is qualified for the Authenticity Guarantee program.<br><br><span class="tablenote"><b>Note: </b>The <code>AUTHENTICITY_GUARANTEE</code> value being returned by the <b>getItemsByItemGroup</b> method indicates that at least one item in the item group supports this program, but doesn\'t guarantee that the program is available to all items in the item group. To verify if the Authenticity Program is indeed available for the item that you are interested in, grab the <b>items.itemId</b> value for that item and use the <b>getItem</b> method. This method will return specific details on that particular item, including whether or not the Authenticity Guarantee Program is available for the item. Look for the <b>qualifiedPrograms</b> array and <b>authenticityGuarantee</b> container in the <b>getItem</b> response for this information.</span><br><br>Under the Authenticity Guarantee program, the seller ships a purchased item to a a third-party authenticator who inspects the item and provides an authentication card for it before the item is shipped to the buyer. If the buyer returns the item, the authenticator first verifies that it is the same item in the same condition before returning it to the seller.<br><br><span class="tablenote"><b> Note: </b>Refer to the <a href="https://pages.ebay.com/authenticity-guarantee/ " target="_blank">Authenticity Guarantee</a> page for more information.</span>',
+        description='A container for information about whether an item, or the item group when returned for the getItemsByItemGroup method, is qualified for the Authenticity Guarantee program.',
     )
     authenticity_verification: AuthenticityVerificationProgram | None = Field(
         None,
         alias='authenticityVerification',
-        description='A container for information about whether an item is from a verified seller.</span>',
+        description='A container for information about whether an item is from a verified seller.',
     )
     available_coupons: list[AvailableCoupon] | None = Field(
         None,
         alias='availableCoupons',
-        description='A list of available coupons for the item.<br><br><span class="tablenote"><b>Note:</b> The Browse API only acknowledges item-level coupons. This array will only return coupons linked with an item. Store-level coupons offered by sellers across their entire store will not be returned.</span>',
+        description='A list of available coupons for the item. Note: The Browse API only acknowledges item-level coupons. This array will only return coupons linked with an item. Store-level coupons offered by sellers across their entire store will not be returned.',
     )
     bid_count: int | None = Field(
         None,
@@ -2787,12 +2786,12 @@ class Item(EbayModel):
     )
     brand: str | None = Field(
         None,
-        description='(Primary Item Aspect) The name brand of the item, such as Nike, Apple, etc.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The name brand of the item, such as Nike, Apple, etc. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     buying_options: list[str] | None = Field(
         None,
         alias='buyingOptions',
-        description='A comma separated list of all the purchase options available for the item. The values returned are:<ul><li><code>FIXED_PRICE</code> - Indicates the buyer can purchase the item for a set price using the Buy It Now button.</li><li><code>AUCTION</code> - Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.</li><li><code>BEST_OFFER</code> - Indicates the buyer can send the seller a price they\'re willing to pay for the item. The seller can accept, reject, or send a counter offer. For more information on how this works, see <a href="https://www.ebay.com/help/buying/buy-now/making-best-offer?id=4019 " target="_blank">Making a Best Offer</a>.</li><li><code>CLASSIFIED_AD</code> - Indicates that the final sales transaction is to be completed outside of the eBay environment.</li></ul>Code so that your app gracefully handles any future changes to this list.',
+        description='A comma separated list of all the purchase options available for the item. The values returned are: FIXED_PRICE - Indicates the buyer can purchase the item for a set price using the Buy It Now button. AUCTION - Indicates the buyer can place a bid for the item. After the first bid is placed, this becomes a live auction item and is the only buying option for this item.',
     )
     category_id: str | None = Field(
         None,
@@ -2802,40 +2801,40 @@ class Item(EbayModel):
     category_id_path: str | None = Field(
         None,
         alias='categoryIdPath',
-        description='The IDs of every category in the item path, separated by pipe characters, starting with the top level parent category.<br><br>For example, if an item belongs to the top level category Home and Garden (category ID 11700), followed by Home Improvement (159907), Heating, Cooling and Air (69197), and Thermostats (115947), the field would return the value: <code>11700|159907|69197|115947</code>.',
+        description='The IDs of every category in the item path, separated by pipe characters, starting with the top level parent category. For example, if an item belongs to the top level category Home and Garden (category ID 11700), followed by Home Improvement (159907), Heating, Cooling and Air (69197), and Thermostats (115947), the field would return the value: 11700|159907|69197|115947 .',
     )
     category_path: str | None = Field(
         None,
         alias='categoryPath',
-        description='Text that shows the category hierarchy of the item. For example: Computers/Tablets &amp; Networking, Laptops &amp; Netbooks, PC Laptops &amp; Netbooks',
+        description='Text that shows the category hierarchy of the item. For example: Computers/Tablets & Networking, Laptops & Netbooks, PC Laptops & Netbooks',
     )
     charity_terms: ItemCharityTerms | None = Field(
         None,
         alias='charityTerms',
-        description='This container returns any applicable charity information associated with the specified item.<br><br>This container is only returned if the <b>fieldgroups</b> query parameter is set to <code>CHARITY_DETAILS</code>.',
+        description='This container returns any applicable charity information associated with the specified item. This container is only returned if the fieldgroups query parameter is set to CHARITY_DETAILS .',
     )
     color: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing the color of the item.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing the color of the item. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     condition: str | None = Field(
         None,
-        description='A short text description for the condition of the item, such as New or Used. For a list of condition names, see <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>.  <br><br>Code so that your app gracefully handles any future changes to this list.',
+        description='A short text description for the condition of the item, such as New or Used. For a list of condition names, see Item Condition IDs and Names . Code so that your app gracefully handles any future changes to this list.',
     )
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description='A full text description for the condition of the item. This field elaborates on the value specified in the <b>condition</b> field and provides full details for the condition of the item.',
+        description='A full text description for the condition of the item. This field elaborates on the value specified in the condition field and provides full details for the condition of the item.',
     )
     condition_descriptors: list[ConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This array is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that indicate details about a particular condition of an item.<br><br><span class="tablenote"><b>Note:</b> Condition descriptors are currently only available for the following trading card categories:<ul><li>Non-Sport Trading Card Singles</li><li>CCG Individual Cards</li><li>Sports Trading Card Singles</li></ul></span>',
+        description='This array is used by the seller to provide additional information about the condition of an item in a structured format. Condition descriptors are name-value attributes that indicate details about a particular condition of an item.',
     )
     condition_id: str | None = Field(
         None,
         alias='conditionId',
-        description='The identifier of the condition of the item. For example, 1000 is the identifier for NEW. For a list of condition names and IDs, see <a href="/api-docs/sell/static/metadata/condition-id-values.html " target="_blank">Item Condition IDs and Names</a>. <br><br>Code so that your app gracefully handles any future changes to this list.',
+        description='The identifier of the condition of the item. For example, 1000 is the identifier for NEW. For a list of condition names and IDs, see Item Condition IDs and Names . Code so that your app gracefully handles any future changes to this list.',
     )
     current_bid_price: ConvertedAmount | None = Field(
         None,
@@ -2849,26 +2848,26 @@ class Item(EbayModel):
     eco_participation_fee: ConvertedAmount | None = Field(
         None,
         alias='ecoParticipationFee',
-        description='The Eco Participation fee, a fee paid by the buyer that is applied to the cost of the eventual disposal of the purchased item. The fee is remitted in full to the eco organization.<br><br>Currently, this value is required for electronic devices and furniture.',
+        description='The Eco Participation fee, a fee paid by the buyer that is applied to the cost of the eventual disposal of the purchased item. The fee is remitted in full to the eco organization. Currently, this value is required for electronic devices and furniture.',
     )
     eligible_for_inline_checkout: bool | None = Field(
         None,
         alias='eligibleForInlineCheckout',
-        description='This field indicates if the item can be purchased using the Buy <a href="/api-docs/buy/order/resources/methods">Order API</a>. <ul> <li>If the value of this field is <code>true</code>, this indicates that the item can be purchased using the <b> Order API</b>. </li>  <li>If the value of this field is <code>false</code>, this indicates that the item cannot be purchased using the <b> Order API</b> and must be purchased on the eBay site.</li> </ul>',
+        description='This field indicates if the item can be purchased using the Buy Order API . If the value of this field is true , this indicates that the item can be purchased using the Order API . If the value of this field is false , this indicates that the item cannot be purchased using the Order API and must be purchased on the eBay site.',
     )
     enabled_for_guest_checkout: bool | None = Field(
         None,
         alias='enabledForGuestCheckout',
-        description='This indicates if the item can be purchased using Guest Checkout in the <a href="/api-docs/buy/order/resources/methods">Order API</a>. You can use this flag to exclude items from your inventory that are not eligible for Guest Checkout, such as gift cards.',
+        description='This indicates if the item can be purchased using Guest Checkout in the Order API . You can use this flag to exclude items from your inventory that are not eligible for Guest Checkout, such as gift cards.',
     )
     energy_efficiency_class: str | None = Field(
         None,
         alias='energyEfficiencyClass',
-        description='This indicates the <a href="https://en.wikipedia.org/wiki/European_Union_energy_label " target="_blank">European energy efficiency</a> rating (EEK) of the item. This field is returned only if the seller specified the energy efficiency rating. <br><br>The rating is a set of energy efficiency classes from A to G, where \'A\' is the most energy efficient and \'G\' is the least efficient. This rating helps buyers choose between various models. <br><br>When the manufacturer\'s specifications for this item are available, the link to this information is returned in the <b> productFicheWebUrl</b> field.',
+        description="This indicates the European energy efficiency rating (EEK) of the item. This field is returned only if the seller specified the energy efficiency rating. The rating is a set of energy efficiency classes from A to G, where 'A' is the most energy efficient and 'G' is the least efficient. This rating helps buyers choose between various models.",
     )
     epid: str | None = Field(
         None,
-        description='An EPID is the eBay product identifier of a product from the eBay product catalog.  This indicates the product in which the item belongs.',
+        description='An EPID is the eBay product identifier of a product from the eBay product catalog. This indicates the product in which the item belongs.',
     )
     estimated_availabilities: list[EstimatedAvailability] | None = Field(
         None,
@@ -2877,11 +2876,11 @@ class Item(EbayModel):
     )
     gender: str | None = Field(
         None,
-        description='(Primary Item Aspect) The gender for the item. This is used for items that could vary by gender, such as clothing. For example: male, female, or unisex. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) The gender for the item. This is used for items that could vary by gender, such as clothing. For example: male, female, or unisex. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     gtin: str | None = Field(
         None,
-        description='The unique Global Trade Item number of the item as defined by <a href="https://www.gtin.info " target="_blank">https://www.gtin.info</a>. This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
+        description='The unique Global Trade Item number of the item as defined by https://www.gtin.info . This can be a UPC (Universal Product Code), EAN (European Article Number), or an ISBN (International Standard Book Number) value.',
     )
     hazardous_materials_labels: HazardousMaterialsLabels | None = Field(
         None,
@@ -2890,32 +2889,32 @@ class Item(EbayModel):
     )
     image: Image | None = Field(
         None,
-        description='The URL of the primary image of the item. The other images of the item are returned in the <b> additionalImages</b> container.',
+        description='The URL of the primary image of the item. The other images of the item are returned in the additionalImages container.',
     )
     immediate_pay: bool | None = Field(
         None,
         alias='immediatePay',
-        description='A value of <code>true</code> indicates that the seller requires immediate payment from the buyer when purchasing an item.<br><br><span class="tablenote"><b>Note:</b> It is possible for this field to be set to <code>true</code>, but not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyers purchases that involve the Best Offer feature, or for offline transactions.</span>',
+        description='A value of true indicates that the seller requires immediate payment from the buyer when purchasing an item. Note: It is possible for this field to be set to true , but not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyers purchases that involve the Best Offer feature, or for offline transactions.',
     )
     inferred_epid: str | None = Field(
         None,
         alias='inferredEpid',
-        description='The ePID (eBay Product ID of a product from the eBay product catalog) for the item, which has been programmatically determined by eBay using the item\'s title, aspects, and other data. <br><br>If the seller provided an ePID for the item, the seller\'s value is returned in the <b> epid</b> field. <br><br><span class="tablenote"><b> Note: </b> This field is returned only for authorized Partners.</span>',
+        description="The ePID (eBay Product ID of a product from the eBay product catalog) for the item, which has been programmatically determined by eBay using the item's title, aspects, and other data. If the seller provided an ePID for the item, the seller's value is returned in the epid field. Note: This field is returned only for authorized Partners.",
     )
     item_affiliate_web_url: str | None = Field(
         None,
         alias='itemAffiliateWebUrl',
-        description='The URL to the View Item page of the item which includes the affiliate tracking ID.<br><br><span class="tablenote"><b>Note:</b> In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace.</span><br>The <b>itemAffiliateWebUrl</b> is only returned if:<ul><li>The marketplace through which the item is being viewed is part of the eBay Partner Network. Currently Singapore (<code>EBAY_SG</code>) is <b>not</b> supported.<br><br>For additional information, refer to <a href="https://partnerhelp.ebay.com/helpcenter/s/article/countries-available-as-a-program-in-EPN?language=en_US " target="_blank">eBay Partner Network</a>.</li><li>The seller enables affiliate tracking for the item by including the <code><a href="/api-docs/buy/static/api-browse.html#Headers">X-EBAY-C-ENDUSERCTX</a></code> request header in the method.</li></ul>',
+        description='The URL to the View Item page of the item which includes the affiliate tracking ID. Note: In order to receive commissions on sales, eBay Partner Network affiliates must use this URL to forward buyers to the listing on the eBay marketplace. The itemAffiliateWebUrl is only returned if: The marketplace through which the item is being viewed is part of the eBay Partner Network.',
     )
     item_creation_date: str | None = Field(
         None,
         alias='itemCreationDate',
-        description='A timestamp that indicates the date and time an item listing was created.<br><br>This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time an item listing was created. This value is returned in UTC format (yyyy-MM-ddThh:mm:ss.sssZ), which can be converted into the local time of the buyer.',
     )
     item_end_date: str | None = Field(
         None,
         alias='itemEndDate',
-        description='A timestamp that indicates the date and time an auction listing will end.<br><br>If a fixed-price listing has ended, this field indicates the date and time the listing ended.<br><br>This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time an auction listing will end. If a fixed-price listing has ended, this field indicates the date and time the listing ended. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which can be converted into the local time of the buyer.',
     )
     item_id: str | None = Field(
         None, alias='itemId', description='The unique RESTful identifier of the item.'
@@ -2946,7 +2945,7 @@ class Item(EbayModel):
     lot_size: int | None = Field(
         None,
         alias='lotSize',
-        description='The number of items in a lot. In other words, a lot size is the number of items that are being sold together.  <br><br>A lot is a set of two or more items included in a single listing that must be purchased together in a single order line item. All the items in the lot are the same but there can be multiple items in a single lot,  such as the package of batteries shown in the example below.   <br><br><table border="1"> <tr> <tr>  <th>Item</th>  <th>Lot Definition</th> <th>Lot Size</th></tr>  <tr>  <td>A package of 24 AA batteries</td>  <td>A box of 10 packages</td>  <td>10  </td> </tr>  <tr>  <td>A P235/75-15 Goodyear tire </td>  <td>4 tires  </td>  <td>4  </td> </tr> <tr> <td>Fashion Jewelry Rings  </td> <td>Package of 100 assorted rings  </td> <td>100 </td> </tr></table>  <br><br><span class="tablenote"><b>Note: </b>  Lots are not supported in all categories.  </span>',
+        description='The number of items in a lot. In other words, a lot size is the number of items that are being sold together. A lot is a set of two or more items included in a single listing that must be purchased together in a single order line item. All the items in the lot are the same but there can be multiple items in a single lot, such as the package of batteries shown in the example below.',
     )
     manufacturer: CompanyAddress | None = Field(
         None, description='Contact information for the manufacturer of the product.'
@@ -2958,12 +2957,12 @@ class Item(EbayModel):
     )
     material: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing what the item is made of. For example, silk. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing what the item is made of. For example, silk. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     minimum_price_to_bid: ConvertedAmount | None = Field(
         None,
         alias='minimumPriceToBid',
-        description='The minimum price of the next bid, which means to place a bid it must be equal to or greater than this amount. If the auction hasn\'t received any bids, the minimum bid price is the same as the starting bid. Otherwise, the minimum bid price is equal to the current bid plus the bid increment. For details about bid increments, see <a href="https://www.ebay.com/help/buying/bidding/automatic-bidding?id=4014 " target="_blank">Automatic bidding</a>.',
+        description="The minimum price of the next bid, which means to place a bid it must be equal to or greater than this amount. If the auction hasn't received any bids, the minimum bid price is the same as the starting bid. Otherwise, the minimum bid price is equal to the current bid plus the bid increment. For details about bid increments, see Automatic bidding .",
     )
     mpn: str | None = Field(
         None,
@@ -2971,7 +2970,7 @@ class Item(EbayModel):
     )
     pattern: str | None = Field(
         None,
-        description='(Primary Item Aspect) Text describing the pattern used on the item. For example, paisley. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing the pattern used on the item. For example, paisley. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
@@ -2980,7 +2979,7 @@ class Item(EbayModel):
     )
     price: ConvertedAmount | None = Field(
         None,
-        description='The cost of just the item. This amount does not include any adjustments such as discounts or shipping costs.<br><br><span class="tablenote"><b> Note: </b>The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the <a href="/api-docs/static/rest-request-components.html#HTTP"><code>X-EBAY-C-MARKETPLACE-ID</code></a> request header specifying the supported marketplace (such as <code>EBAY_GB</code>) to see the VAT-inclusive pricing. For more information on VAT, refer to <a href="https://www.ebay.co.uk/help/listings/default/vat-obligations-eu?id=4650&st=12&pos=1&query=Your%20VAT%20obligations%20in%20the%20EU&intent=VAT" target="_blank">VAT Obligations in the EU</a>.</span>',
+        description='The cost of just the item. This amount does not include any adjustments such as discounts or shipping costs. Note: The price does include the value-added tax (VAT) for applicable jurisdictions when requested from supported marketplaces. In this case, users must pass the X-EBAY-C-MARKETPLACE-ID request header specifying the supported marketplace (such as EBAY_GB ) to see the VAT-inclusive pricing.',
     )
     price_display_condition: PriceDisplayConditionEnum | None = Field(
         None,
@@ -2990,7 +2989,7 @@ class Item(EbayModel):
     primary_item_group: ItemGroupSummary | None = Field(
         None,
         alias='primaryItemGroup',
-        description='The container that returns details of a primary item group (parent ID of an item group). An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. <br><br>When an item group is created, one of the item variations, such as the red shirt size L, is chosen as the "parent". All the other items in the group are the children, such as the blue shirt size L, red shirt size M, etc.<br><br><span class="tablenote"><b> Note: </b> This container is returned only if the <b> item_id</b> in the request is for an item group (items with variations, such as color and size).</span>',
+        description='The container that returns details of a primary item group (parent ID of an item group). An item group is an item that has various aspect differences, such as color, size, storage capacity, etc. When an item group is created, one of the item variations, such as the red shirt size L, is chosen as the "parent".',
     )
     primary_product_review_rating: ReviewRating | None = Field(
         None,
@@ -3000,7 +2999,7 @@ class Item(EbayModel):
     priority_listing: bool | None = Field(
         None,
         alias='priorityListing',
-        description='This field is returned as <code>true</code> if the listing is part of a Promoted Listing campaign. Promoted Listings are available to Above Standard and Top Rated sellers with recent sales activity.<br><br>For more information, see <a href="https://pages.ebay.com/seller-center/listing-and-marketing/promoted-listings.html " target="_blank">Promoted Listings</a>.',
+        description='This field is returned as true if the listing is part of a Promoted Listing campaign. Promoted Listings are available to Above Standard and Top Rated sellers with recent sales activity. For more information, see Promoted Listings .',
     )
     product: Product | None = Field(
         None,
@@ -3009,17 +3008,17 @@ class Item(EbayModel):
     product_fiche_web_url: str | None = Field(
         None,
         alias='productFicheWebUrl',
-        description="The URL of a page containing the manufacturer's specification of this item, which helps buyers make a purchasing decision. This information is available only for items that include the European energy efficiency rating (EEK) but is not available for <em> all</em> items with an EEK rating and is returned only if this information is available. The EEK rating of the item is returned in the <b> energyEfficiencyClass</b> field.",
+        description="The URL of a page containing the manufacturer's specification of this item, which helps buyers make a purchasing decision. This information is available only for items that include the European energy efficiency rating (EEK) but is not available for all items with an EEK rating and is returned only if this information is available.",
     )
     product_safety_labels: ProductSafetyLabels | None = Field(
         None,
         alias='productSafetyLabels',
-        description='This container provides product safety labels which were provided by the seller, for the listing.<br><br>The <a href="/api-docs/sell/metadata/resources/marketplace/methods/getProductSafetyLabels">getProductSafetyLabels</a> method of the <a href="/api-docs/sell/metadata/static/overview.html" target="_blank">Sell Metadata API</a> can be used to retrieve the full set of available Product Safety pictogram labels and safety statements.',
+        description='This container provides product safety labels which were provided by the seller, for the listing. The getProductSafetyLabels method of the Sell Metadata API can be used to retrieve the full set of available Product Safety pictogram labels and safety statements.',
     )
     qualified_programs: list[str] | None = Field(
         None,
         alias='qualifiedPrograms',
-        description='An array of the qualified programs available for the item, such as <code>EBAY_PLUS</code>, <code>AUTHENTICITY_GUARANTEE</code>, and <code>AUTHENTICITY_VERIFICATION</code>.<br><br>eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.The eBay <a href="https://pages.ebay.com/authenticity-guarantee/ " target="_blank">Authenticity Guarantee</a> program enables third-party authenticators to perform authentication verification inspections on items such as watches and sneakers.<br><br><span class="tablenote"><b>Note:</b> eBay Plus was recently deprecated on the eBay Germany marketplace, and this feature is now only available on eBay Australia marketplace.',
+        description='An array of the qualified programs available for the item, such as EBAY_PLUS , AUTHENTICITY_GUARANTEE , and AUTHENTICITY_VERIFICATION . eBay Plus is a premium account option for buyers, which provides benefits such as fast, free domestic shipping and free returns on selected items. Sellers must commit to next-day delivery of those items.',
     )
     quantity_limit_per_buyer: int | None = Field(
         None,
@@ -3034,7 +3033,7 @@ class Item(EbayModel):
     reserve_price_met: bool | None = Field(
         None,
         alias='reservePriceMet',
-        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. <p>If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold.</p> <p><b> Note: </b>This is returned only for auctions that have a reserve price.</p>',
+        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold. Note: This is returned only for auctions that have a reserve price.',
     )
     responsible_persons: list[ResponsiblePerson] | None = Field(
         None,
@@ -3058,12 +3057,12 @@ class Item(EbayModel):
     seller_item_revision: str | None = Field(
         None,
         alias='sellerItemRevision',
-        description='An identifier generated/incremented when a seller revises the item. There are two types of item revisions: <ul><li>Seller changes, such as changing the title</li>  <li>eBay system changes, such as changing the quantity when an item is purchased</li></ul> This ID is changed <em> only</em> when the seller makes a change to the item. This means you cannot use this value to determine if the quantity has changed.',
+        description='An identifier generated/incremented when a seller revises the item. There are two types of item revisions: Seller changes, such as changing the title eBay system changes, such as changing the quantity when an item is purchased This ID is changed only when the seller makes a change to the item. This means you cannot use this value to determine if the quantity has changed.',
     )
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='An array of shipping options containers that have the details about cost, carrier, etc. of one shipping option.<br><br><span class="tablenote"><b>Note:</b> For items with calculated shipping, this array is only returned if the <b>X-EBAY-C-ENDUSERCTX</b> header is supplied.</span> ',
+        description='An array of shipping options containers that have the details about cost, carrier, etc. of one shipping option. Note: For items with calculated shipping, this array is only returned if the X-EBAY-C-ENDUSERCTX header is supplied.',
     )
     ship_to_locations: ShipToLocations | None = Field(
         None,
@@ -3077,17 +3076,17 @@ class Item(EbayModel):
     )
     size: str | None = Field(
         None,
-        description="(Primary Item Aspect) The size of the item. For example, '7' for a size 7 shoe. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.",
+        description="(Primary Item Aspect) The size of the item. For example, '7' for a size 7 shoe. All the item aspects, including this aspect, are returned in the localizedAspects container.",
     )
     size_system: str | None = Field(
         None,
         alias='sizeSystem',
-        description='(Primary Item Aspect) The sizing system of the country.  All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container. <br><br><b> Valid Values: </b> <br>AU (Australia),  <br>BR (Brazil), <br>CN (China),  <br>DE (Germany),  <br>EU (European Union),  <br> FR (France), <br> IT (Italy),  <br>JP (Japan), <br>MX (Mexico),  <br>US (USA), <br> UK (United Kingdom) <br><br>Code so that your app gracefully handles any future changes to this list. ',
+        description='(Primary Item Aspect) The sizing system of the country. All the item aspects, including this aspect, are returned in the localizedAspects container. Valid Values: AU (Australia), BR (Brazil), CN (China), DE (Germany), EU (European Union), FR (France), IT (Italy), JP (Japan), MX (Mexico), US (USA), UK (United Kingdom) Code so that your app gracefully handles any future changes to this list.',
     )
     size_type: str | None = Field(
         None,
         alias='sizeType',
-        description='(Primary Item Aspect) Text describing a size group in which the item would be included, such as regular, petite, plus, big-and-tall or maternity. All the item aspects, including this aspect, are returned in the <b> localizedAspects</b> container.',
+        description='(Primary Item Aspect) Text describing a size group in which the item would be included, such as regular, petite, plus, big-and-tall or maternity. All the item aspects, including this aspect, are returned in the localizedAspects container.',
     )
     subtitle: str | None = Field(
         None,
@@ -3098,12 +3097,12 @@ class Item(EbayModel):
     )
     title: str | None = Field(
         None,
-        description='The seller-created title of the item. <br><br><b> Maximum Length: </b> 80 characters',
+        description='The seller-created title of the item. Maximum Length: 80 characters',
     )
     top_rated_buying_experience: bool | None = Field(
         None,
         alias='topRatedBuyingExperience',
-        description='This indicates if the item a top-rated plus item. There are three benefits of a top-rated plus item: a  minimum 30-day money-back return policy, shipping the items in 1 business day with tracking provided, and the added comfort of knowing this item is from experienced sellers with the highest buyer ratings. See the <a href="https://pages.ebay.com/topratedplus/index.html " target="_blank">Top Rated Plus Items </a> and <a href="https://pages.ebay.com/help/sell/top-rated.html " target="_blank">Becoming a Top Rated Seller and qualifying for Top Rated Plus</a> help topics for more information.',
+        description='This indicates if the item a top-rated plus item. There are three benefits of a top-rated plus item: a minimum 30-day money-back return policy, shipping the items in 1 business day with tracking provided, and the added comfort of knowing this item is from experienced sellers with the highest buyer ratings.',
     )
     tyre_label_image_url: str | None = Field(
         None,
@@ -3118,12 +3117,12 @@ class Item(EbayModel):
     unit_price: ConvertedAmount | None = Field(
         None,
         alias='unitPrice',
-        description='This is the price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices.   <br><br>For example: <br><br><code>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='This is the price per unit for the item. Some European countries require listings for certain types of products to include the price per unit so buyers can accurately compare prices. For example: "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     unit_pricing_measure: str | None = Field(
         None,
         alias='unitPricingMeasure',
-        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item.  This helps buyers compare prices. <br><br>For example, the following tells the buyer that the item is 7.99 per 100 grams. <br><br><code>"unitPricingMeasure": "100g",<br> "unitPrice": {<br>&nbsp;&nbsp;"value": "7.99",<br>&nbsp;&nbsp;"currency": "GBP"</code>',
+        description='The designation, such as size, weight, volume, count, etc., that was used to specify the quantity of the item. This helps buyers compare prices. For example, the following tells the buyer that the item is 7.99 per 100 grams. "unitPricingMeasure": "100g", "unitPrice": { "value": "7.99", "currency": "GBP"',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -3132,7 +3131,7 @@ class Item(EbayModel):
     watch_count: int | None = Field(
         None,
         alias='watchCount',
-        description='The number of users that have added the item to their watch list.<br><br><span class="tablenote"> <strong>Note:</strong> This field is restricted to applications that have been granted permission to access this feature. You must submit an <a href="https://developer.ebay.com/my/support/tickets?tab=app-check ">App Check ticket</a> to request this access. In the App Check form, add a note to the <b>Application Title/Summary</b> and/or <b>Application Details</b> fields that you want access to Watch Count data in the Browse API.</span>',
+        description='The number of users that have added the item to their watch list. Note: This field is restricted to applications that have been granted permission to access this feature. You must submit an App Check ticket to request this access. In the App Check form, add a note to the Application Title/Summary and/or Application Details fields that you want access to Watch Count data in the Browse API.',
     )
 
 
@@ -3140,7 +3139,7 @@ class ItemGroup(EbayModel):
     common_descriptions: list[CommonDescriptions] | None = Field(
         None,
         alias='commonDescriptions',
-        description='An array of containers for a description and the item IDs of all the items that have this exact description. Often the item variations within an item group all have the same description. Instead of repeating this description in the item details of each item, a description that is shared by at least one other item is returned in this container. If the description is unique, it is returned in the <b> items.description</b> field.',
+        description='An array of containers for a description and the item IDs of all the items that have this exact description. Often the item variations within an item group all have the same description. Instead of repeating this description in the item details of each item, a description that is shared by at least one other item is returned in this container.',
     )
     items: list[Item] | None = Field(
         None,

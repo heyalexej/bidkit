@@ -346,7 +346,7 @@ class VeroReasonCodeDetailResponse(EbayModel):
     vero_reason_codes: list[VeroReasonCode] | None = Field(
         None,
         alias='veroReasonCodes',
-        description='This array provides a list of VeRO reason codes, as well as the ID and details of each code, based on the input criteria.<br><br>If a <b>X-EBAY-C-MARKETPLACE-ID</b> header is used, only VeRO reason codes for that specific site will be returned. If this header is not included, all reason codes for all sites are returned.  ',
+        description='This array provides a list of VeRO reason codes, as well as the ID and details of each code, based on the input criteria. If a X-EBAY-C-MARKETPLACE-ID header is used, only VeRO reason codes for that specific site will be returned. If this header is not included, all reason codes for all sites are returned.',
     )
 
 
@@ -434,21 +434,21 @@ class Error(EbayModel):
 class ReportItemDetails(EbayModel):
     brand: str | None = Field(
         None,
-        description='The brand name of the item being reported for VeRO violation.<br><br><b>Max length:</b> 50 characters',
+        description='The brand name of the item being reported for VeRO violation. Max length: 50 characters',
     )
     copy_email_to_rights_owner: bool | None = Field(
         None,
         alias='copyEmailToRightsOwner',
-        description='If the VeRO Program member wants a copy of the Notice of Claimed Infringement (NOCI) document sent to their email address, this field should be included in the request and set to <code>true</code>. This same document is automatically sent to the seller of the reported item.<br><br>As this field defaults to <code>true</code>, the report will be automatically emailed if this field is omitted.<br><br><b>Default:</b> true',
+        description='If the VeRO Program member wants a copy of the Notice of Claimed Infringement (NOCI) document sent to their email address, this field should be included in the request and set to true . This same document is automatically sent to the seller of the reported item. As this field defaults to true , the report will be automatically emailed if this field is omitted. Default: true',
     )
     countries: list[CountryCodeEnum] | None = Field(
         None,
-        description='If the infringement type stated in the <b>VeroReasonCodeId</b> has anything to do with which country the item is being shipped to, each country that would trigger this infringement type should be specified in this comma-delimited array.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9037</code> (Item(s) is unlawful importation of product bearing trademark).',
+        description='If the infringement type stated in the VeroReasonCodeId has anything to do with which country the item is being shipped to, each country that would trigger this infringement type should be specified in this comma-delimited array. This field is required when the veroReasonCodeId is 9037 (Item(s) is unlawful importation of product bearing trademark).',
     )
     detailed_message: str | None = Field(
         None,
         alias='detailedMessage',
-        description='This field is used to provide further information about the VeRO reason code.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9052</code> or <code>7052</code> (Other - Provide details information in additional information box below).<br><br><b>Max length:</b> 1000 characters',
+        description='This field is used to provide further information about the VeRO reason code. This field is required when the veroReasonCodeId is 9052 or 7052 (Other - Provide details information in additional information box below). Max length: 1000 characters',
     )
     item_id: str | None = Field(
         None,
@@ -458,20 +458,20 @@ class ReportItemDetails(EbayModel):
     message_to_seller: str | None = Field(
         None,
         alias='messageToSeller',
-        description='This field is used by the VeRO Program member to provide more details to the seller as to why the item is being reported for the alleged infringement.<br><br><b>Max length:</b> 1000 characters',
+        description='This field is used by the VeRO Program member to provide more details to the seller as to why the item is being reported for the alleged infringement. Max length: 1000 characters',
     )
     patent: str | None = Field(
         None,
-        description='This field is used to specify the number of a product patent that is being violated.<br><br>This field is required when the <b>veroReasonCodeId</b> is <code>9048</code> (Item(s) infringes a valid patent).<br><br><b>Max length:</b> 15 characters',
+        description='This field is used to specify the number of a product patent that is being violated. This field is required when the veroReasonCodeId is 9048 (Item(s) infringes a valid patent). Max length: 15 characters',
     )
     regions: list[WorldRegionEnum] | None = Field(
         None,
-        description='If the infringement type stated in the <b>veroReasonCodeId</b> has anything to do with which geographical region the item is being shipped to, each region that would trigger this infringement type should be specified in this comma-delimited array.',
+        description='If the infringement type stated in the veroReasonCodeId has anything to do with which geographical region the item is being shipped to, each region that would trigger this infringement type should be specified in this comma-delimited array.',
     )
     vero_reason_code_id: str | None = Field(
         None,
         alias='veroReasonCodeId',
-        description='The unique identifier for the type of claimed infringement.<br><br>Use <a href="/develop/api/sell/vero_api#sell-vero_api-vero_reason_code-getveroreasoncodes">getVeroReasonCodes</a> to retrieve a list of valid reason codes for a given eBay site.',
+        description='The unique identifier for the type of claimed infringement. Use getVeroReasonCodes to retrieve a list of valid reason codes for a given eBay site.',
     )
 
 
@@ -484,7 +484,7 @@ class ReportedItem(EbayModel):
     reason_for_failure: str | None = Field(
         None,
         alias='reasonForFailure',
-        description='This text explanation is submitted by eBay when the submission of a VeRO Report has failed or was blocked.<br><br>This field is conditionally returned if the <b>status</b> value of the report is <code>ClarificationRequired</code> or <code>SubmissionFailed</code>.',
+        description='This text explanation is submitted by eBay when the submission of a VeRO Report has failed or was blocked. This field is conditionally returned if the status value of the report is ClarificationRequired or SubmissionFailed .',
     )
     status: VeroReportedItemStatusEnum | None = Field(
         None, description='The current status of the VeRO reported item.'
@@ -495,7 +495,7 @@ class VeroReportItemsRequest(EbayModel):
     report_items: list[ReportItemDetails] | None = Field(
         None,
         alias='reportItems',
-        description='This array is used to report one or more eBay items that are allegedly violating the product owner\'s copyright, trademark, or intellectual property rights.<br><br>The <b>itemId</b> and <b>veroReasonCodeId</b> fields are required for each reported violation.<br><br><span class="tablenote"><b>Note:</b> You can report the same item more than once if a different reason code is used each time.</span>',
+        description="This array is used to report one or more eBay items that are allegedly violating the product owner's copyright, trademark, or intellectual property rights. The itemId and veroReasonCodeId fields are required for each reported violation. Note: You can report the same item more than once if a different reason code is used each time.",
     )
 
 
@@ -503,7 +503,7 @@ class VeroReportItemsResponse(EbayModel):
     vero_report_id: str | None = Field(
         None,
         alias='veroReportId',
-        description='The unique identifier of the VeRO report that the item violations have been added to.<br><br><span class="tablenote"><b>Note:</b> Users should keep track of the returned <b>veroReportId</b>, as there is no programmatic way to retrieve this value at this time.</span>',
+        description='The unique identifier of the VeRO report that the item violations have been added to. Note: Users should keep track of the returned veroReportId , as there is no programmatic way to retrieve this value at this time.',
     )
     vero_report_status: VeroReportStatusEnum | None = Field(
         None,
@@ -518,16 +518,14 @@ class VeroReportStatusResponse(EbayModel):
         description='The URL to the current page of the VeRO reported item results.',
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <b>limit</b> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
         description='The URI for the next page of results. This value is returned if there is an additional page of results to return from the result set',
     )
     offset: int | None = Field(
-        None,
-        description='The value off the <b>offset</b> parameter submitted in the request.',
+        None, description='The value off the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
@@ -548,7 +546,7 @@ class ReportStatusResponse(EbayModel):
     reported_item_details: list[ReportedItem] | None = Field(
         None,
         alias='reportedItemDetails',
-        description='This array returns the status for each eBay item that was included as part of the report.<br><br>This array is only returned if the <b>includeItemDetails</b> query parameter is set to <code>true</code>.',
+        description='This array returns the status for each eBay item that was included as part of the report. This array is only returned if the includeItemDetails query parameter is set to true .',
     )
     vero_report_id: str | None = Field(
         None,

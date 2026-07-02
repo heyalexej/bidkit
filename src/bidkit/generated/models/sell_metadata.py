@@ -70,12 +70,12 @@ class ClassifiedAdPolicy(EbayModel):
     classified_ad_company_name_enabled: bool | None = Field(
         None,
         alias='classifiedAdCompanyNameEnabled',
-        description="Indicates whether this category supports including a company name in the seller's contact information. This element is for <b>For Sale By Owner</b> listings. ",
+        description="Indicates whether this category supports including a company name in the seller's contact information. This element is for For Sale By Owner listings.",
     )
     classified_ad_contact_by_address_enabled: bool | None = Field(
         None,
         alias='classifiedAdContactByAddressEnabled',
-        description="Indicates whether this category supports including an address in the seller's contact information. This element is for <b>For Sale By Owner</b> listings. ",
+        description="Indicates whether this category supports including an address in the seller's contact information. This element is for For Sale By Owner listings.",
     )
     classified_ad_contact_by_email_enabled: bool | None = Field(
         None,
@@ -102,17 +102,17 @@ class ClassifiedAdPolicy(EbayModel):
     classified_ad_phone_count: int | None = Field(
         None,
         alias='classifiedAdPhoneCount',
-        description='Indicates how many contact phone numbers can be specified in contact information for the category. This element is for <b>For Sale By Owner</b> listings.',
+        description='Indicates how many contact phone numbers can be specified in contact information for the category. This element is for For Sale By Owner listings.',
     )
     classified_ad_shipping_method_enabled: bool | None = Field(
         None,
         alias='classifiedAdShippingMethodEnabled',
-        description='Indicates if shipping methods can be specified and displayed in the <b>View Item</b> page for the category.',
+        description='Indicates if shipping methods can be specified and displayed in the View Item page for the category.',
     )
     classified_ad_street_count: int | None = Field(
         None,
         alias='classifiedAdStreetCount',
-        description='Indicates how many street addresses can be specified in contact information for the category. This element is for <b>For Sale By Owner</b> listings.',
+        description='Indicates how many street addresses can be specified in contact information for the category. This element is for For Sale By Owner listings.',
     )
     seller_contact_details_enabled: bool | None = Field(
         None,
@@ -130,7 +130,7 @@ class CompatibilityDetails(EbayModel):
     property_value: str | None = Field(
         None,
         alias='propertyValue',
-        description='The value for the property specified in the <b>propertyName</b> field.',
+        description='The value for the property specified in the propertyName field.',
     )
 
 
@@ -582,12 +582,12 @@ class DisabledProductFilter(EbayModel):
     exclude_for_ebay_reviews: bool | None = Field(
         None,
         alias='excludeForEbayReviews',
-        description='Specifies whether to filter out products excluded for eBay reviews.<br><br>If set to <code>true</code>, items excluded from eBay reviews are not returned.',
+        description='Specifies whether to filter out products excluded for eBay reviews. If set to true , items excluded from eBay reviews are not returned.',
     )
     exclude_for_ebay_selling: bool | None = Field(
         None,
         alias='excludeForEbaySelling',
-        description='Specifies whether to filter out products excluded for eBay selling.<br><br>If set to <code>true</code>, items excluded from eBay selling are not returned.',
+        description='Specifies whether to filter out products excluded for eBay selling. If set to true , items excluded from eBay selling are not returned.',
     )
 
 
@@ -644,12 +644,12 @@ class HazardStatement(EbayModel):
     statement_id: str | None = Field(
         None,
         alias='statementId',
-        description="The identifier of the statement. For sample values, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Hazard' target='_blank'>Hazard statement sample values</a>.",
+        description='The identifier of the statement. For sample values, see Hazard statement sample values .',
     )
     statement_description: str | None = Field(
         None,
         alias='statementDescription',
-        description="The description of the statement localized to the default language of the marketplace. For sample values, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Hazard' target='_blank'>Hazard statement sample values</a>.",
+        description='The description of the statement localized to the default language of the marketplace. For sample values, see Hazard statement sample values .',
     )
 
 
@@ -675,12 +675,12 @@ class ListingStructurePolicy(EbayModel):
     category_tree_id: str | None = Field(
         None,
         alias='categoryTreeId',
-        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.    <br><br>A <i>category tree</i> is a hierarchical framework of eBay categories that begins at the root node of the tree and extends to include all the child nodes in the tree. Each child node in the tree is an eBay category that is represented by a unique <b>categoryId</b> value. Within a category tree, the root node has no parent node and <i>leaf nodes</i> are nodes that have no child nodes.',
+        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.',
     )
     variations_supported: bool | None = Field(
         None,
         alias='variationsSupported',
-        description='This flag denotes whether or not the associated category supports listings with item variations. If set to <code>true</code>, the category does support item variations.',
+        description='This flag denotes whether or not the associated category supports listings with item variations. If set to true , the category does support item variations.',
     )
 
 
@@ -767,7 +767,7 @@ class MotorsListingPolicy(EbayModel):
     deposit_supported: bool | None = Field(
         None,
         alias='depositSupported',
-        description='This field is returned as <code>true</code> if the corresponding category supports the use of a deposit/down payment on a motor vehicle listing. In an AddItem call, the seller can configure a down payment for a motor vehicle listing using the PaymentDetails container.',
+        description='This field is returned as true if the corresponding category supports the use of a deposit/down payment on a motor vehicle listing. In an AddItem call, the seller can configure a down payment for a motor vehicle listing using the PaymentDetails container.',
     )
     ebay_motors_pro_ad_format_enabled: AdFormatEnabledEnum | None = Field(
         None,
@@ -844,12 +844,12 @@ class MotorsListingPolicy(EbayModel):
     epid_supported: bool | None = Field(
         None,
         alias='epidSupported',
-        description='If returned as <code>true</code>, this indicates the category supports the use of an eBay Product ID (e.g. ePID) to identify which motorcycles and/or scooters are compatible with a motor vehicle part or accessory. ePIDs can only be used to identify motorcycles and scooters on the Germany and UK sites.',
+        description='If returned as true , this indicates the category supports the use of an eBay Product ID (e.g. ePID) to identify which motorcycles and/or scooters are compatible with a motor vehicle part or accessory. ePIDs can only be used to identify motorcycles and scooters on the Germany and UK sites.',
     )
     k_type_supported: bool | None = Field(
         None,
         alias='kTypeSupported',
-        description='This field indicates whether or not the category supports the use of a K type to identify the cars and trucks compatible with a motor vehicle part or accessory. Only the AU, DE, ES, FR, IT, and UK marketplaces support the use of K types. See <a href="/api-docs/user-guides/static/trading-user-guide/manually-specify-compatibility.html#ktype" target="_blank">Compatibility by K type</a> for more information',
+        description='This field indicates whether or not the category supports the use of a K type to identify the cars and trucks compatible with a motor vehicle part or accessory. Only the AU, DE, ES, FR, IT, and UK marketplaces support the use of K types. See Compatibility by K type for more information',
     )
     local_listing_distances: list[LocalListingDistance] | None = Field(
         None,
@@ -874,7 +874,7 @@ class MotorsListingPolicy(EbayModel):
     local_market_best_offer_enabled: ClassifiedAdBestOfferEnabledEnum | None = Field(
         None,
         alias='localMarketBestOfferEnabled',
-        description='Indicates if Best Offer is enabled/required for Motors Local Market Classified Ad listings in this category. ',
+        description='Indicates if Best Offer is enabled/required for Motors Local Market Classified Ad listings in this category.',
     )
     local_market_company_name_enabled: bool | None = Field(
         None,
@@ -889,7 +889,7 @@ class MotorsListingPolicy(EbayModel):
     local_market_contact_by_email_enabled: bool | None = Field(
         None,
         alias='localMarketContactByEmailEnabled',
-        description="Indicates whether the category supports including an email address in the seller's contact information. ",
+        description="Indicates whether the category supports including an email address in the seller's contact information.",
     )
     local_market_contact_by_phone_enabled: bool | None = Field(
         None,
@@ -956,12 +956,12 @@ class MotorsListingPolicy(EbayModel):
     max_item_compatibility: int | None = Field(
         None,
         alias='maxItemCompatibility',
-        description='Indicates the maximum number of compatible applications allowed per item when adding or revising items. This is relevant for specifying parts compatibility by application manually only. See <a href="/api-docs/user-guides/static/trading-user-guide/manually-specify-compatibility.html" target="_blank">Specify parts compatibility manually</a> and <a href="/api-docs/sell/static/inventory/managing-product-compatibility.html" target="_blank">Managing product compatibility</a> for more information.',
+        description='Indicates the maximum number of compatible applications allowed per item when adding or revising items. This is relevant for specifying parts compatibility by application manually only. See Specify parts compatibility manually and Managing product compatibility for more information.',
     )
     min_item_compatibility: int | None = Field(
         None,
         alias='minItemCompatibility',
-        description='Indicates the minimum number of required compatible applications for listing items. A value of <code>0</code> indicates it is not mandatory to specify parts compatibilities when listing.',
+        description='Indicates the minimum number of required compatible applications for listing items. A value of 0 indicates it is not mandatory to specify parts compatibilities when listing.',
     )
     non_subscription: GeographicExposureEnum | None = Field(
         None,
@@ -981,7 +981,7 @@ class MotorsListingPolicy(EbayModel):
     seller_provided_title_supported: bool | None = Field(
         None,
         alias='sellerProvidedTitleSupported',
-        description="This field is returned as <code>true</code> if the corresponding category supports the use of a seller-provided title for a motor vehicle listing on the US or Canada Motors marketplaces. A seller-provided title is a descriptive title, given by the seller, that appears below eBay's pre-filled listing title for the motor vehicle. Visually, the seller-provided title is similar to a subtitle on other types of eBay listings (non-vehicle). A seller-provided title can assist in helping buyers discover the vehicle.",
+        description="This field is returned as true if the corresponding category supports the use of a seller-provided title for a motor vehicle listing on the US or Canada Motors marketplaces. A seller-provided title is a descriptive title, given by the seller, that appears below eBay's pre-filled listing title for the motor vehicle.",
     )
     speciality_subscription: GeographicExposureEnum | None = Field(
         None,
@@ -1004,17 +1004,17 @@ class NegotiatedPricePolicy(EbayModel):
     best_offer_auto_accept_enabled: bool | None = Field(
         None,
         alias='bestOfferAutoAcceptEnabled',
-        description='This flag denotes whether or not the category supports the setting of a price at which best offers are automatically accepted. If set to <code>true</code>, the category does support the setting of an automatic price for best-offers.',
+        description='This flag denotes whether or not the category supports the setting of a price at which best offers are automatically accepted. If set to true , the category does support the setting of an automatic price for best-offers.',
     )
     best_offer_auto_decline_enabled: bool | None = Field(
         None,
         alias='bestOfferAutoDeclineEnabled',
-        description='This flag denotes whether or not the category supports the setting of an auto-decline price for best offers. If set to <code>true</code>, the category does support the setting of an automatic-decline price for best-offers.',
+        description='This flag denotes whether or not the category supports the setting of an auto-decline price for best offers. If set to true , the category does support the setting of an automatic-decline price for best-offers.',
     )
     best_offer_counter_enabled: bool | None = Field(
         None,
         alias='bestOfferCounterEnabled',
-        description='This flag denotes whether or not the category supports the setting for an automatic counter-offer on best offers. If set to <code>true</code>, the category does support the setting of an automatic counter-offer price for best-offers.',
+        description='This flag denotes whether or not the category supports the setting for an automatic counter-offer on best offers. If set to true , the category does support the setting of an automatic counter-offer price for best-offers.',
     )
     category_id: str | None = Field(
         None,
@@ -1024,7 +1024,7 @@ class NegotiatedPricePolicy(EbayModel):
     category_tree_id: str | None = Field(
         None,
         alias='categoryTreeId',
-        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.    <br><br>A <i>category tree</i> is a hierarchical framework of eBay categories that begins at the root node of the tree and extends to include all the child nodes in the tree. Each child node in the tree is an eBay category that is represented by a unique <b>categoryId</b> value. Within a category tree, the root node has no parent node and <i>leaf nodes</i> are nodes that have no child nodes.',
+        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.',
     )
 
 
@@ -1032,62 +1032,62 @@ class PackageLimits(EbayModel):
     dimension_unit: str | None = Field(
         None,
         alias='dimensionUnit',
-        description='Unit of dimensional measurement, for example <code>INCH</code> or <code>CENTIMETER</code>. ',
+        description='Unit of dimensional measurement, for example INCH or CENTIMETER .',
     )
     max_girth: float | None = Field(
         None,
         alias='maxGirth',
-        description='The maximum girth allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The maximum girth allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     max_height: float | None = Field(
         None,
         alias='maxHeight',
-        description='The maximum height allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The maximum height allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     max_length: float | None = Field(
         None,
         alias='maxLength',
-        description='The maximum length allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The maximum length allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     max_weight: float | None = Field(
         None,
         alias='maxWeight',
-        description='The maximum weight allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.weightunit">weightUnit</a>.',
+        description='The maximum weight allowed for a package shipped through the corresponding shipping service, as measured in units of weightUnit .',
     )
     max_width: float | None = Field(
         None,
         alias='maxWidth',
-        description='The maximum width allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The maximum width allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     min_girth: float | None = Field(
         None,
         alias='minGirth',
-        description='The minimum girth allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The minimum girth allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     min_height: float | None = Field(
         None,
         alias='minHeight',
-        description='The minimum height allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The minimum height allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     min_length: float | None = Field(
         None,
         alias='minLength',
-        description='The minimum length allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The minimum length allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     min_weight: float | None = Field(
         None,
         alias='minWeight',
-        description='The minimum weight allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.weightunit">weightUnit</a>.',
+        description='The minimum weight allowed for a package shipped through the corresponding shipping service, as measured in units of weightUnit .',
     )
     min_width: float | None = Field(
         None,
         alias='minWidth',
-        description='The minimum width allowed for a package shipped through the corresponding shipping service, as measured in units of <a href="/develop/api/sell/metadata_api#sell-metadata_api-shipping:marketplace-getshippingservices.packagelimits.dimensionunit">dimensionUnit</a>.',
+        description='The minimum width allowed for a package shipped through the corresponding shipping service, as measured in units of dimensionUnit .',
     )
     weight_unit: str | None = Field(
         None,
         alias='weightUnit',
-        description='Unit of weight measurement, for example <code>KILOGRAM</code> or <code>OUNCE</code>. ',
+        description='Unit of weight measurement, for example KILOGRAM or OUNCE .',
     )
 
 
@@ -1112,11 +1112,11 @@ class Pagination(EbayModel):
 class PaginationInput(EbayModel):
     limit: int | None = Field(
         None,
-        description='The max number of items, from the current result set, returned on a single page.<br><br><span class="tablenote"><b>Note:</b> For <b>getProductCompatibilities</b>, the max value is 100. If no <b>limit</b> is specified, this field defaults to the max value.</span>',
+        description='The max number of items, from the current result set, returned on a single page. Note: For getProductCompatibilities , the max value is 100. If no limit is specified, this field defaults to the max value.',
     )
     offset: int | None = Field(
         None,
-        description='The number of items that will be skipped in the result set before returning the first item in the paginated response.<br><br>Combine <b>offset</b> with <b>limit</b> to control the items returned in the response. For example, if you supply an offset of 10 and a limit of 20, the first page of the response contains items 11-30 from the complete result set.<br><br><b>Default:</b> 0',
+        description='The number of items that will be skipped in the result set before returning the first item in the paginated response. Combine offset with limit to control the items returned in the response. For example, if you supply an offset of 10 and a limit of 20, the first page of the response contains items 11-30 from the complete result set. Default: 0',
     )
 
 
@@ -1132,12 +1132,12 @@ class Pictogram(EbayModel):
     pictogram_id: str | None = Field(
         None,
         alias='pictogramId',
-        description="The identifier of the pictogram. For sample values, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Pictogra' target='_blank'>Pictogram sample values</a>.",
+        description='The identifier of the pictogram. For sample values, see Pictogram sample values .',
     )
     pictogram_description: str | None = Field(
         None,
         alias='pictogramDescription',
-        description="The description of the pictogram localized to the default language of the marketplace. For sample values, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Pictogra' target='_blank'>Pictogram sample values</a>.",
+        description='The description of the pictogram localized to the default language of the marketplace. For sample values, see Pictogram sample values .',
     )
     pictogram_url: str | None = Field(
         None, alias='pictogramUrl', description='The URL of the pictogram.'
@@ -1157,7 +1157,7 @@ class ProductIdentifier(EbayModel):
     )
     epid: str | None = Field(
         None,
-        description='The ePID (eBay Product Identifier) of the item, if applicable. ePID is a unique identifier used by eBay to track products in its catalog.<br><br>Use the <a href="/api-docs/commerce/catalog/resources/product/methods/getProduct" target="_blank ">getProduct</a> method of the Catalog API to retrieve the ePID of an item.',
+        description='The ePID (eBay Product Identifier) of the item, if applicable. ePID is a unique identifier used by eBay to track products in its catalog. Use the getProduct method of the Catalog API to retrieve the ePID of an item.',
     )
     isbn: str | None = Field(
         None,
@@ -1178,7 +1178,7 @@ class ProductSafetyLabelPictogram(EbayModel):
     pictogram_description: str | None = Field(
         None,
         alias='pictogramDescription',
-        description='The description of the pictogram localized to the default language of the marketplace. ',
+        description='The description of the pictogram localized to the default language of the marketplace.',
     )
     pictogram_id: str | None = Field(
         None, alias='pictogramId', description='The identifier of the pictogram.'
@@ -1192,7 +1192,7 @@ class ProductSafetyLabelStatement(EbayModel):
     statement_description: str | None = Field(
         None,
         alias='statementDescription',
-        description='The description of the statement localized to the default language of the marketplace. ',
+        description='The description of the statement localized to the default language of the marketplace.',
     )
     statement_id: str | None = Field(
         None, alias='statementId', description='The identifier of the statement.'
@@ -1202,11 +1202,11 @@ class ProductSafetyLabelStatement(EbayModel):
 class ProductSafetyLabelsResponse(EbayModel):
     pictograms: list[ProductSafetyLabelPictogram] | None = Field(
         None,
-        description='This array contains a list of pictograms of product safety labels  for the specified marketplace.',
+        description='This array contains a list of pictograms of product safety labels for the specified marketplace.',
     )
     statements: list[ProductSafetyLabelStatement] | None = Field(
         None,
-        description='This array contains available product safety labels statements for the specified marketplace. ',
+        description='This array contains available product safety labels statements for the specified marketplace.',
     )
 
 
@@ -1214,12 +1214,12 @@ class PropertyFilterInner(EbayModel):
     property_name: str | None = Field(
         None,
         alias='propertyName',
-        description='The name of the property being described.<br><br>For example, typical vehicle property names are \'Make\', \'Model\', \'Year\', \'Engine\', and \'Trim\', but will vary based on the eBay marketplace and the eBay category. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-compatibilities-getcompatibilitypropertynames">getCompatibilityPropertyNames</a> method to retrieve valid property names for a specified category.',
+        description="The name of the property being described. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category. Use the getCompatibilityPropertyNames method to retrieve valid property names for a specified category.",
     )
     property_value: str | None = Field(
         None,
         alias='propertyValue',
-        description='The value for the property specified in the <b>properyName</b> field.<br><br>For example, if the <b>propertyName</b> is <code>Make</code>, then the <b>propertyValue</b> will be the specific make of the vehicle, such as <code>Toyota</code>. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-compatibilities-getcompatibilitypropertyvalues">getCompatibilityPropertyValues</a> to retrieve valid property values associated with a specified property name.',
+        description='The value for the property specified in the properyName field. For example, if the propertyName is Make , then the propertyValue will be the specific make of the vehicle, such as Toyota . Use the getCompatibilityPropertyValues to retrieve valid property values associated with a specified property name.',
     )
     unit_of_measurement: str | None = Field(
         None,
@@ -1236,11 +1236,11 @@ class PropertyNamesRequest(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay leaf category for which to retrieve compatibility property names. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility.<br><br>Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getautomotivepartscompatibilitypolicies">getAutomotivePartsCompatibilityPolicies</a> method to retrieve a list of categories that support parts compatibility.',
+        description='The unique identifier of the eBay leaf category for which to retrieve compatibility property names. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility. Use the getAutomotivePartsCompatibilityPolicies method to retrieve a list of categories that support parts compatibility.',
     )
     dataset: list[str] | None = Field(
         None,
-        description='This array defines the properties that will be returned for the compatibility-enabled category.<br><br> For example, if you specify <code>Searchable</code>, the compatibility details will contain properties that can be used to search for products, such as make or model.<br><br><b>Valid values:</b><ul><li><code>DisplayableProductDetails</code>: Properties for use in a user interface to describe products.</li><li><code>DisplayableSearchResults</code>: Properties for use in results for product searches.</li><li><code>Searchable</code>: Properties for use in searches.</li><li><code>Sortable</code>: Properties that are suitable for sorting.</li></ul><b>Default:</b> <code>DisplayableSearchResults</code>',
+        description='This array defines the properties that will be returned for the compatibility-enabled category. For example, if you specify Searchable , the compatibility details will contain properties that can be used to search for products, such as make or model. Valid values: DisplayableProductDetails : Properties for use in a user interface to describe products.',
     )
 
 
@@ -1272,12 +1272,12 @@ class PropertyValues(EbayModel):
     property_name: str | None = Field(
         None,
         alias='propertyName',
-        description="The name of the property.<br><br>For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description="The name of the property. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
     )
     property_value: str | None = Field(
         None,
         alias='propertyValue',
-        description='The value for the property specified in the <b>properyName</b> field.<br><br>For example, if the <b>propertyName</b> is <code>make</code>, then the <b>propertyValue</b> will be the specific make of the vehicle, such as <code>Toyota</code>.',
+        description='The value for the property specified in the properyName field. For example, if the propertyName is make , then the propertyValue will be the specific make of the vehicle, such as Toyota .',
     )
 
 
@@ -1285,22 +1285,22 @@ class PropertyValuesRequest(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay leaf category for which to retrieve compatibility property values. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility.<br><br>Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getautomotivepartscompatibilitypolicies">getAutomotivePartsCompatibilityPolicies</a> method to retrieve a list of categories that support parts compatibility.',
+        description='The unique identifier of the eBay leaf category for which to retrieve compatibility property values. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility. Use the getAutomotivePartsCompatibilityPolicies method to retrieve a list of categories that support parts compatibility.',
     )
     property_filters: list[PropertyFilterInner] | None = Field(
         None,
         alias='propertyFilters',
-        description='This array can be used to specify the compatibility properties used limit the result set. Only values associated with the specified name-value pairs will be returned in the response.<br><br>For example, if the <b>propertyName</b> is set to <code>Make</code> and the <b>propertyValue</b> is set to <code>Honda</code>, only compatible Honda vehicles will be returned.',
+        description='This array can be used to specify the compatibility properties used limit the result set. Only values associated with the specified name-value pairs will be returned in the response. For example, if the propertyName is set to Make and the propertyValue is set to Honda , only compatible Honda vehicles will be returned.',
     )
     property_name: str | None = Field(
         None,
         alias='propertyName',
-        description='This field specifies the name of the property for which to retrieve associated property values.<br><br>For example, typical vehicle property names are \'Make\', \'Model\', \'Year\', \'Engine\', and \'Trim\', but will vary based on the eBay marketplace and the eBay category. Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-compatibilities-getcompatibilitypropertynames">getCompatibilityPropertyNames</a> method to retrieve valid property names for a specified category.',
+        description="This field specifies the name of the property for which to retrieve associated property values. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category. Use the getCompatibilityPropertyNames method to retrieve valid property names for a specified category.",
     )
     sort_order: str | None = Field(
         None,
         alias='sortOrder',
-        description='This field specifies the sort order for the property values in the result set.<br><br><b>Valid values:</b><ul><li><code>Ascending</code></li><li>Descending</li></ul><span class="tablenote"><b>Note:</b> If no search order is specified, values are sorted in ascending order.</span>',
+        description='This field specifies the sort order for the property values in the result set. Valid values: Ascending Descending Note: If no search order is specified, values are sorted in ascending order.',
     )
 
 
@@ -1318,7 +1318,7 @@ class PropertyValuesResponse(EbayModel):
     property_values: list[str] | None = Field(
         None,
         alias='propertyValues',
-        description='This array specifies the property values associated with the specified <b>propertyName</b>, in the specified category.',
+        description='This array specifies the property values associated with the specified propertyName , in the specified category.',
     )
 
 
@@ -1346,7 +1346,7 @@ class SalesTaxJurisdiction(EbayModel):
     sales_tax_jurisdiction_id: str | None = Field(
         None,
         alias='salesTaxJurisdictionId',
-        description='The unique ID for a sales-tax jurisdiction.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> When <code>countryCode</code> is set to <code>US</code>, IDs for all 50 states, Washington, DC, and all US territories will be returned. However, the only <code>salesTaxJurisdictionId</code> values currently supported are:<ul><li><code>AS</code> (American Samoa)</li><li><code>GU</code> (Guam</li><li><code>MP</code> Northern Mariana Islands</li><li><code>PW (Palau)</li><li><code>VI</code> (US Virgin Islands)</li></ul></p></div>',
+        description='The unique ID for a sales-tax jurisdiction. Important! When countryCode is set to US , IDs for all 50 states, Washington, DC, and all US territories will be returned. However, the only salesTaxJurisdictionId values currently supported are: AS (American Samoa) GU (Guam MP Northern Mariana Islands PW (Palau) VI (US Virgin Islands)',
     )
 
 
@@ -1361,12 +1361,12 @@ class SalesTaxJurisdictions(EbayModel):
 class ShippingCarrier(EbayModel):
     description: str | None = Field(
         None,
-        description='The localized description of the shipping carrier, such as <code>UPS</code>, <code>FedEx</code>, and <code>USPS</code>.',
+        description='The localized description of the shipping carrier, such as UPS , FedEx , and USPS .',
     )
     shipping_carrier: str | None = Field(
         None,
         alias='shippingCarrier',
-        description='An enumerated value describing the shipping carrier returned, for example, <code>UPS</code>, <code>FedEx</code>, and <code>USPS</code>. These values are needed when providing shipment tracking information for each specific shipping carrier.',
+        description='An enumerated value describing the shipping carrier returned, for example, UPS , FedEx , and USPS . These values are needed when providing shipment tracking information for each specific shipping carrier.',
     )
 
 
@@ -1382,11 +1382,11 @@ class ShippingExcludeLocation(EbayModel):
     description: str | None = Field(None, description='The localized location name.')
     location: str | None = Field(
         None,
-        description=' The location or region to be excluded. Countries are returned through <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166 codes</a>. This field may also include continents and other larger geographical regions (for example, the Middle East, Southeast Asia), as well as domestic/special locations (like APO/FPO, PO Box, Alaska/Hawaii). The values returned in this field are used in fulfillment business policies (such as in <a href="/api-docs/sell/account/resources/fulfillment_policy/methods/createFulfillmentPolicy#request.shippingOptions.shippingServices.shipToLocations.regionExcluded.regionName" target="_blank">regionName</a>) or through the <a href="/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ShippingDetails.ExcludeShipToLocation" target="_blank">ExcludeShipToLocation</a> field in an <b>AddItem</b> call.',
+        description='The location or region to be excluded. Countries are returned through ISO 3166 codes . This field may also include continents and other larger geographical regions (for example, the Middle East, Southeast Asia), as well as domestic/special locations (like APO/FPO, PO Box, Alaska/Hawaii).',
     )
     region: str | None = Field(
         None,
-        description='The region of the excluded shipping area specified, such as:<br><ul><li><code>Africa</code> </li> <li><code>Americas</code> </li> <li><code>Asia</code> </li>  <li><code>Central America and Caribbean</code> </li> <li><code>Europe</code> </li> <li><code>Middle East</code> </li> <li><code>North America</code> </li> <li><code>Oceania</code> </li>  <li><code>South America</code> </li> <li><code>Southeast Asia</code> </li></ul>',
+        description='The region of the excluded shipping area specified, such as: Africa Americas Asia Central America and Caribbean Europe Middle East North America Oceania South America Southeast Asia',
     )
 
 
@@ -1405,12 +1405,12 @@ class ShippingHandlingTime(EbayModel):
     extended_handling: bool | None = Field(
         None,
         alias='extendedHandling',
-        description='This field is only returned if its value is <code>true</code>. If returned, it indicates that the corresponding handling time is considered extended handling for the marketplace. Extended handling times may be used for freight shipping, but should generally be avoided if possible, as they might adversely affect the buying decisions of potential customers.',
+        description='This field is only returned if its value is true . If returned, it indicates that the corresponding handling time is considered extended handling for the marketplace. Extended handling times may be used for freight shipping, but should generally be avoided if possible, as they might adversely affect the buying decisions of potential customers.',
     )
     max_handling_time: int | None = Field(
         None,
         alias='maxHandlingTime',
-        description="The integer value returned in this field indicates the maximum number of business days that the eBay site allows as a seller's handling time measured from when the buyer pays for the order. For example,  if the <b>maxHandlingTime</b> value is set to 1 and  a buyer pays for the order on a Wednesday, the seller would have to ship the item by the next day (Thursday). <br><br>A <b>maxHandlingTime</b> value of <code>0</code> indicates same day handling for an item. In this case, the seller's handling time commitment depends on the order cut off time set in the seller's user preferences. This defaults to 2:00 PM local time on most eBay sites. For orders placed (and cleared payment received) before the local order cut off time, the item must be shipped by the end of the current day. For orders completed on or after the order cut off time, the item must be shipped by the end of the following day (excluding weekends and local holidays).",
+        description="The integer value returned in this field indicates the maximum number of business days that the eBay site allows as a seller's handling time measured from when the buyer pays for the order. For example, if the maxHandlingTime value is set to 1 and a buyer pays for the order on a Wednesday, the seller would have to ship the item by the next day (Thursday).",
     )
 
 
@@ -1427,7 +1427,7 @@ class ShippingLocation(EbayModel):
     shipping_location: str | None = Field(
         None,
         alias='shippingLocation',
-        description='The name or abbreviation of the shipping location or region. Countries are returned through <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166 codes</a>. This field may also include continents and other larger geographical regions (for example, the Middle East, Southeast Asia), as well as domestic/special locations (like APO/FPO, PO Box, Alaska/Hawaii). The values returned in this field are used in fulfillment business policies (such as in <a href="/api-docs/sell/account/resources/fulfillment_policy/methods/createFulfillmentPolicy#request.shippingOptions.shippingServices.shipToLocations.regionExcluded.regionName" target="_blank">regionName</a>) or through the <a href="/Devzone/XML/docs/Reference/eBay/AddItem.html#Request.Item.ShippingDetails.ExcludeShipToLocation" target="_blank">ExcludeShipToLocation</a> field in an <b>AddItem</b> call.',
+        description='The name or abbreviation of the shipping location or region. Countries are returned through ISO 3166 codes . This field may also include continents and other larger geographical regions (for example, the Middle East, Southeast Asia), as well as domestic/special locations (like APO/FPO, PO Box, Alaska/Hawaii).',
     )
 
 
@@ -1447,47 +1447,47 @@ class ShippingService(EbayModel):
     international_service: bool | None = Field(
         None,
         alias='internationalService',
-        description='A value of <code>true</code> indicates that the shipping service is international. An international shipping service option is required if an item is being shipped from one country (origin) to another (destination).',
+        description='A value of true indicates that the shipping service is international. An international shipping service option is required if an item is being shipped from one country (origin) to another (destination).',
     )
     max_shipping_time: int | None = Field(
         None,
         alias='maxShippingTime',
-        description='This value indicates the maximum number of business days that it takes the <b>shippingCarrier</b> to ship an item using the corresponding <b>shippingService</b>. ',
+        description='This value indicates the maximum number of business days that it takes the shippingCarrier to ship an item using the corresponding shippingService .',
     )
     min_shipping_time: int | None = Field(
         None,
         alias='minShippingTime',
-        description='This value indicates the minimum number of business days that it takes the <b>shippingCarrier</b> to ship an item using the corresponding <b>shippingService</b>. ',
+        description='This value indicates the minimum number of business days that it takes the shippingCarrier to ship an item using the corresponding shippingService .',
     )
     package_limits: PackageLimits | None = Field(
         None,
         alias='packageLimits',
-        description='This container provides name-value pairs that specify physical constraints and measurement units of packages for the <b>shippingCarrier</b> and the corresponding <b>shippingService</b>. An empty container is returned if the shipping service does not have any package limits defined.',
+        description='This container provides name-value pairs that specify physical constraints and measurement units of packages for the shippingCarrier and the corresponding shippingService . An empty container is returned if the shipping service does not have any package limits defined.',
     )
     shipping_carrier: str | None = Field(
         None,
         alias='shippingCarrier',
-        description='The code for the shipping carrier returned, for example, <code>UPS</code>, <code>FedEx</code>, and <code>USPS</code>.',
+        description='The code for the shipping carrier returned, for example, UPS , FedEx , and USPS .',
     )
     shipping_category: str | None = Field(
         None,
         alias='shippingCategory',
-        description='The shipping category of the shipping service including:  <code>ECONOMY</code>, <code>STANDARD</code>, <code>EXPEDITED</code>, <code>ONE_DAY</code>, <code>PICKUP</code>, and other similar categories.',
+        description='The shipping category of the shipping service including: ECONOMY , STANDARD , EXPEDITED , ONE_DAY , PICKUP , and other similar categories.',
     )
     shipping_cost_types: list[str] | None = Field(
         None,
         alias='shippingCostTypes',
-        description='A list of shipping cost types that this shipping service option supports. For example, <code>FLAT_RATE</code>, <code>CALCULATED</code>, and <code>FREIGHT</code>.',
+        description='A list of shipping cost types that this shipping service option supports. For example, FLAT_RATE , CALCULATED , and FREIGHT .',
     )
     shipping_service: str | None = Field(
         None,
         alias='shippingService',
-        description='The name of the shipping service. The shipping service named here can only be used in listings or in business policies if <b>validForSellingFlow</b> is <code>true</code>. The value returned in this field is used in listing APIs and business policies to set the shipping service.',
+        description='The name of the shipping service. The shipping service named here can only be used in listings or in business policies if validForSellingFlow is true . The value returned in this field is used in listing APIs and business policies to set the shipping service.',
     )
     valid_for_selling_flow: bool | None = Field(
         None,
         alias='validForSellingFlow',
-        description='A value of <code>true</code> indicates that the <b>shippingService</b> can be set as an available shipping service in the listing or through the fulfillment business policy.',
+        description='A value of true indicates that the shippingService can be set as an available shipping service in the listing or through the fulfillment business policy.',
     )
 
 
@@ -1503,12 +1503,12 @@ class SignalWord(EbayModel):
     signal_word_id: str | None = Field(
         None,
         alias='signalWordId',
-        description="The identifier of the signal word. For more information, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Signal' target='_blank'>Signal word information</a>.",
+        description='The identifier of the signal word. For more information, see Signal word information .',
     )
     signal_word_description: str | None = Field(
         None,
         alias='signalWordDescription',
-        description="The description of the signal word localized to the default language of the marketplace. For more information, see <a href='/api-docs/sell/static/metadata/feature-regulatorhazmatcontainer.html#Signal' target='_blank'>Signal word information</a>.",
+        description='The description of the signal word localized to the default language of the marketplace. For more information, see Signal word information .',
     )
 
 
@@ -1526,29 +1526,29 @@ class SiteVisibilityPolicy(EbayModel):
     cross_border_trade_australia_enabled: bool | None = Field(
         None,
         alias='crossBorderTradeAustraliaEnabled',
-        description='If <code>true</code>, the category supports specifying that listings of a seller on the UK marketplace can pass in Australia as a value in a <CrossBorderTrade> field to expose that item on the eBay Australia site (ebay.com.au). For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/cross-border-trading.html"  target="_blank">Cross-border trading</a>.',
+        description='If true , the category supports specifying that listings of a seller on the UK marketplace can pass in Australia as a value in a field to expose that item on the eBay Australia site (ebay.com.au). For more information, see Cross-border trading .',
     )
     cross_border_trade_gb_enabled: bool | None = Field(
         None,
         alias='crossBorderTradeGBEnabled',
-        description='If <code>true</code>, the category supports specifying that listings of a seller on the US or Canada marketplaces can pass in UK as a value in a <CrossBorderTrade> field to expose that item on the eBay UK (ebay.co.uk) and eBay IE (ebay.ie) sites. For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/cross-border-trading.html"  target="_blank">Cross-border trading</a>.',
+        description='If true , the category supports specifying that listings of a seller on the US or Canada marketplaces can pass in UK as a value in a field to expose that item on the eBay UK (ebay.co.uk) and eBay IE (ebay.ie) sites. For more information, see Cross-border trading .',
     )
     cross_border_trade_north_america_enabled: bool | None = Field(
         None,
         alias='crossBorderTradeNorthAmericaEnabled',
-        description='If <code>true</code>, the category supports specifying that listings of a seller on the US or Canada marketplaces can pass in North America as a value in a <CrossBorderTrade> field to expose that item on the eBay US (ebay.com) and eBay Canada (ebay.ca) sites (English). For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/cross-border-trading.html"  target="_blank">Cross-border trading</a>. ',
+        description='If true , the category supports specifying that listings of a seller on the US or Canada marketplaces can pass in North America as a value in a field to expose that item on the eBay US (ebay.com) and eBay Canada (ebay.ca) sites (English). For more information, see Cross-border trading .',
     )
 
 
 class SortOrderProperties(EbayModel):
     order: str | None = Field(
         None,
-        description='Defines the order of the sort.<br><br><b>Valid values</b>:<ul><li><code>Ascending</code></li><li><code>Descending</code></li></ul>',
+        description='Defines the order of the sort. Valid values : Ascending Descending',
     )
     property_name: str | None = Field(
         None,
         alias='propertyName',
-        description="The name of the searchable property to be used for sorting.<br><br>For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description="The name of the searchable property to be used for sorting. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
     )
 
 
@@ -1571,11 +1571,11 @@ class UsageEnum(OpenStrEnum):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> value</b> field.  <br /><br /><b>Restriction: </b> Only the currency of the marketplace is supported. For example, on the US marketplace the only currency supported is USD.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the value field. Restriction: Only the currency of the marketplace is supported. For example, on the US marketplace the only currency supported is USD.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <b>currency</b> field.',
+        description='The monetary amount, in the currency specified by the currency field.',
     )
 
 
@@ -1588,12 +1588,12 @@ class AutomotivePartsCompatibilityPolicy(EbayModel):
     category_tree_id: str | None = Field(
         None,
         alias='categoryTreeId',
-        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.    <br><br>A <i>category tree</i> is a hierarchical framework of eBay categories that begins at the root node of the tree and extends to include all the child nodes in the tree. Each child node in the tree is an eBay category that is represented by a unique <b>categoryId</b> value. Within a category tree, the root node has no parent node and <i>leaf nodes</i> are nodes that have no child nodes.',
+        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.',
     )
     compatibility_based_on: CompatibilityTypeEnum | None = Field(
         None,
         alias='compatibilityBasedOn',
-        description='Indicates whether the category supports parts compatibility by either <code>ASSEMBLY</code> or by <code>SPECIFICATION</code>.<br><br><span class="tablenote"><b>Note:</b> Only categories returning the <b>compatibilityBasedOn</b> field support compatibility. Categories where all compatibility fields are missing, or where only <b>compatibilityBasedOn</b> is missing, should be considered as not supporting compatibility.</span>',
+        description='Indicates whether the category supports parts compatibility by either ASSEMBLY or by SPECIFICATION . Note: Only categories returning the compatibilityBasedOn field support compatibility. Categories where all compatibility fields are missing, or where only compatibilityBasedOn is missing, should be considered as not supporting compatibility.',
     )
     compatible_vehicle_types: list[CompatibleVehicleTypeEnum] | None = Field(
         None,
@@ -1611,12 +1611,12 @@ class CategoryPolicy(EbayModel):
     auto_pay_enabled: bool | None = Field(
         None,
         alias='autoPayEnabled',
-        description="If this field is returned as <code>true</code>, the corresponding category supports immediate payment for listings. The immediate payment feature is applicable to fixed-price listings, to auction listings with the 'Buy It Now' option enabled, and for a motor vehicle listing that requires an initial deposit. If the immediate payment feature is enabled for a listing, the buyer must pay immediately after clicking the 'Buy it Now' button. <p>This field is only returned when <code>true</code> (not returned when false).</p>",
+        description="If this field is returned as true , the corresponding category supports immediate payment for listings. The immediate payment feature is applicable to fixed-price listings, to auction listings with the 'Buy It Now' option enabled, and for a motor vehicle listing that requires an initial deposit.",
     )
     b2b_vat_enabled: bool | None = Field(
         None,
         alias='b2bVatEnabled',
-        description='If this field is returned as <code>true</code>, the corresponding category supports business-to-business (B2B) VAT listings. If this field is not present, the category does not have B2B VAT listings. This feature is applicable to the eBay Germany (DE), Austria (AT), and Switzerland (CH) sites only.<p>This field is only returned when <code>true</code> (not returned when false).</p>',
+        description='If this field is returned as true , the corresponding category supports business-to-business (B2B) VAT listings. If this field is not present, the category does not have B2B VAT listings. This feature is applicable to the eBay Germany (DE), Austria (AT), and Switzerland (CH) sites only. This field is only returned when true (not returned when false).',
     )
     category_id: str | None = Field(
         None,
@@ -1635,12 +1635,12 @@ class CategoryPolicy(EbayModel):
     )
     expired: bool | None = Field(
         None,
-        description='If this field is returned as <code>true</code>, the corresponding category is no longer a valid eBay category on the site, and items may not be listed in this category. You can use the <a href="/api-docs/sell/taxonomy/resources/category_tree/methods/getExpiredCategories" target="_blank">getExpiredCategories</a> method (of the <b>Taxonomy API</b>) to find the leaf category that replaced the expired category. <p>This field is only returned when <code>true</code> (not returned when false).</p>',
+        description='If this field is returned as true , the corresponding category is no longer a valid eBay category on the site, and items may not be listed in this category. You can use the getExpiredCategories method (of the Taxonomy API ) to find the leaf category that replaced the expired category. This field is only returned when true (not returned when false).',
     )
     intangible_enabled: bool | None = Field(
         None,
         alias='intangibleEnabled',
-        description='If this field is returned as <code>true</code>, the category supports the listing of intangible goods or services.',
+        description='If this field is returned as true , the category supports the listing of intangible goods or services.',
     )
     isbn_support: ProductIdentiferEnabledEnum | None = Field(
         None,
@@ -1649,20 +1649,20 @@ class CategoryPolicy(EbayModel):
     )
     lsd: bool | None = Field(
         None,
-        description='If this field (Lot Size Disabled) is returned as <code>true</code>, the corresponding category does not support lot listings. A lot listing is a listing that features multiple related items that must be purchased by one buyer in one transaction. <p>This field is only returned when <code>true</code> (not returned when false).</p>',
+        description='If this field (Lot Size Disabled) is returned as true , the corresponding category does not support lot listings. A lot listing is a listing that features multiple related items that must be purchased by one buyer in one transaction. This field is only returned when true (not returned when false).',
     )
     minimum_reserve_price: float | None = Field(
         None,
         alias='minimumReservePrice',
-        description='Indicates the Minimum Reserve Price for an auction listing in this category. If there is no Minimum Reserve Price, a value of <code>0.0</code> is returned in this field.',
+        description='Indicates the Minimum Reserve Price for an auction listing in this category. If there is no Minimum Reserve Price, a value of 0.0 is returned in this field.',
     )
     orpa: bool | None = Field(
         None,
-        description='This field (Override Reserve Price Allowed) is returned as <code>true</code> if the eBay marketplace\'s default policy is to allow reserve prices for auction listings, but the corresponding category does not allow a reserve price. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>This field is not returned if the marketplace does not permit reserve prices.</span></p>',
+        description="This field (Override Reserve Price Allowed) is returned as true if the eBay marketplace's default policy is to allow reserve prices for auction listings, but the corresponding category does not allow a reserve price. Note: This field is not returned if the marketplace does not permit reserve prices.",
     )
     orra: bool | None = Field(
         None,
-        description='If this field (Override Reduce Reserve Allowed) is returned as <code>true</code>, the seller can reduce or remove a reserve price that had already been reduced for an active auction listing.',
+        description='If this field (Override Reduce Reserve Allowed) is returned as true , the seller can reduce or remove a reserve price that had already been reduced for an active auction listing.',
     )
     payment_methods: list[PaymentEnum] | None = Field(
         None,
@@ -1672,12 +1672,12 @@ class CategoryPolicy(EbayModel):
     reduce_reserve_allowed: bool | None = Field(
         None,
         alias='reduceReserveAllowed',
-        description="If this field (Reduce Reserve Allowed) is <code>true</code>, the corresponding leaf category allows the seller to reduce an item's reserve price. If false, this field is not returned in the response and the corresponding leaf category on the site do not normally allow sellers to reduce an item's reserve price.<p>This field is only returned when <code>true</code> (not returned when false).</p>",
+        description="If this field (Reduce Reserve Allowed) is true , the corresponding leaf category allows the seller to reduce an item's reserve price. If false, this field is not returned in the response and the corresponding leaf category on the site do not normally allow sellers to reduce an item's reserve price. This field is only returned when true (not returned when false).",
     )
     reserve_price_allowed: bool | None = Field(
         None,
         alias='reservePriceAllowed',
-        description='This field indicates whether reserve prices are allowed for auction listings in this category. This field returns as <code>true</code> when the category supports reserve prices, or <code>false</code> if the eBay marketplace does not permit reserve prices or the category override blocks reserve prices (<b>orpa</b> is <code>true</code>).',
+        description='This field indicates whether reserve prices are allowed for auction listings in this category. This field returns as true when the category supports reserve prices, or false if the eBay marketplace does not permit reserve prices or the category override blocks reserve prices ( orpa is true ).',
     )
     upc_support: ProductIdentiferEnabledEnum | None = Field(
         None,
@@ -1687,11 +1687,11 @@ class CategoryPolicy(EbayModel):
     value_category: bool | None = Field(
         None,
         alias='valueCategory',
-        description='When returned as <code>true</code>, this boolean indicates that the leaf category for the specified site is designated by eBay as a value category. Value categories can be used as a secondary category for a listing at no extra charge.',
+        description='When returned as true , this boolean indicates that the leaf category for the specified site is designated by eBay as a value category. Value categories can be used as a secondary category for a listing at no extra charge.',
     )
     virtual: bool | None = Field(
         None,
-        description='If this field is returned as <code>true</code>, the corresponding category is an eBay virtual category, a category in which items may not be listed.<p>This field is only returned when <code>true</code> (not returned when false).</p>',
+        description='If this field is returned as true , the corresponding category is an eBay virtual category, a category in which items may not be listed. This field is only returned when true (not returned when false).',
     )
 
 
@@ -1706,11 +1706,11 @@ class Compatibility(EbayModel):
 class Currency(EbayModel):
     code: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code returned.  <br /><br /><b>Restriction: </b> Only the currency of the marketplace is supported. Examples: on the US marketplace, the only currency supported is the United States dollar, <code>USD</code>; on the Canadian marketplace, the only currency supported is the Canadian dollar, <code>CAD</code>.',
+        description='The three-letter ISO 4217 code returned. Restriction: Only the currency of the marketplace is supported. Examples: on the US marketplace, the only currency supported is the United States dollar, USD ; on the Canadian marketplace, the only currency supported is the Canadian dollar, CAD .',
     )
     description: str | None = Field(
         None,
-        description='The description of the returned three-letter code. For example, if the code is <code>USD</code>, the description returned would be <code>US Dollar</code>.',
+        description='The description of the returned three-letter code. For example, if the code is USD , the description returned would be US Dollar .',
     )
 
 
@@ -1755,7 +1755,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='The category type for this error or warning. It takes an ErrorCategory object which can have one of three values:<ul><li><code>Application</code>: Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service\'s business logic, system failures, or request errors from a dependency.</li><li><code>Business</code>: Used when your service or a dependent service refused to continue processing on the resource because of a business rule violation such as "Seller does not ship item to Antarctica" or "Buyer ineligible to purchase an alcoholic item". Business errors are not syntactical input errors.</li><li><code>Request</code>: Used when there is anything wrong with the request, such as authentication, syntactical errors, rate limiting or missing headers, bad HTTP header values, and so on.</li></ul>',
+        description="The category type for this error or warning. It takes an ErrorCategory object which can have one of three values: Application : Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service's business logic, system failures, or request errors from a dependency.",
     )
     domain: str | None = Field(
         None, description='Name of the domain containing the service or application.'
@@ -1768,7 +1768,7 @@ class ErrorDetailV3(EbayModel):
     input_ref_ids: list[str] | None = Field(
         None,
         alias='inputRefIds',
-        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use <i>JSONPath</i> notation.",
+        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use JSONPath notation.",
     )
     long_message: str | None = Field(
         None,
@@ -1782,11 +1782,11 @@ class ErrorDetailV3(EbayModel):
     output_ref_ids: list[str] | None = Field(
         None,
         alias='outputRefIds',
-        description='Identifies specific response elements associated with the error, if any. Path format is the same as <code>inputRefId</code>.',
+        description='Identifies specific response elements associated with the error, if any. Path format is the same as inputRefId .',
     )
     parameters: list[ErrorParameterV3] | None = Field(
         None,
-        description='This optional complex field type contains a list of one or more context-specific <code>ErrorParameter</code> objects, with each item in the list entry being a parameter (or input field name) that caused an error condition. Each <code>ErrorParameter</code> object consists of two fields, a <code>name</code> and a <code>value</code>.',
+        description='This optional complex field type contains a list of one or more context-specific ErrorParameter objects, with each item in the list entry being a parameter (or input field name) that caused an error condition. Each ErrorParameter object consists of two fields, a name and a value .',
     )
     subdomain: str | None = Field(
         None,
@@ -1798,7 +1798,7 @@ class ExtendedProducerResponsibility(EbayModel):
     enabled_for_variations: bool | None = Field(
         None,
         alias='enabledForVariations',
-        description='An indication of whether the attribute can be enabled for listing variations.<br><br>If the value is <code>true</code>, the attribute may be specified at the variation level.',
+        description='An indication of whether the attribute can be enabled for listing variations. If the value is true , the attribute may be specified at the variation level.',
     )
     name: ExtendedProducerResponsibilityEnum | None = Field(
         None, description='The name of the attribute included in the policy.'
@@ -1873,7 +1873,7 @@ class ItemConditionDescriptorConstraint(EbayModel):
     applicable_to_condition_descriptor_ids: list[str] | None = Field(
         None,
         alias='applicableToConditionDescriptorIds',
-        description='This array is returned if the corresponding condition descriptor requires that one or more other associated condition descriptors must also be specified in a listing. The condition descriptor IDs for the associated condition descriptors are returned here.<br><br>For example, the <code>Grade</code> and <code>Grader</code> condition descriptors must always be specified together in a listing for Graded cards.',
+        description='This array is returned if the corresponding condition descriptor requires that one or more other associated condition descriptors must also be specified in a listing. The condition descriptor IDs for the associated condition descriptors are returned here. For example, the Grade and Grader condition descriptors must always be specified together in a listing for Graded cards.',
     )
     cardinality: CardinalityEnum | None = Field(
         None,
@@ -1887,11 +1887,11 @@ class ItemConditionDescriptorConstraint(EbayModel):
     max_length: int | None = Field(
         None,
         alias='maxLength',
-        description='The maximum characters allowed for a condition descriptor. This field is only returned/applicable for condition descriptors that allow free text for condition descriptor values. ',
+        description='The maximum characters allowed for a condition descriptor. This field is only returned/applicable for condition descriptors that allow free text for condition descriptor values.',
     )
     mode: ModeEnum | None = Field(
         None,
-        description='The value returned in this field indicates whether the supported values for a condition descriptor are predefined or if the seller manually specified the value.<br><br><span class="tablenote"><b>Note:</b> <code>FREE_TEXT</code> is currently only applicable to the Certification Number condition descriptor.</span>',
+        description='The value returned in this field indicates whether the supported values for a condition descriptor are predefined or if the seller manually specified the value. Note: FREE_TEXT is currently only applicable to the Certification Number condition descriptor.',
     )
     usage: DescriptorUsageEnum | None = Field(
         None,
@@ -1903,7 +1903,7 @@ class ItemConditionDescriptorValue(EbayModel):
     condition_descriptor_value_additional_help_text: list[str] | None = Field(
         None,
         alias='conditionDescriptorValueAdditionalHelpText',
-        description='Additional information about the the condition of the item that is not included in the <b>conditionDescriptorValueHelpText</b> field.',
+        description='Additional information about the the condition of the item that is not included in the conditionDescriptorValueHelpText field.',
     )
     condition_descriptor_value_constraints: (
         list[ItemConditionDescriptorValueConstraint] | None
@@ -1915,17 +1915,17 @@ class ItemConditionDescriptorValue(EbayModel):
     condition_descriptor_value_help_text: str | None = Field(
         None,
         alias='conditionDescriptorValueHelpText',
-        description='A detailed description of the condition descriptor value. ',
+        description='A detailed description of the condition descriptor value.',
     )
     condition_descriptor_value_id: str | None = Field(
         None,
         alias='conditionDescriptorValueId',
-        description='The unique identification number of a condition descriptor value associated with the <b>conditionDescriptorValueName</b>.',
+        description='The unique identification number of a condition descriptor value associated with the conditionDescriptorValueName .',
     )
     condition_descriptor_value_name: str | None = Field(
         None,
         alias='conditionDescriptorValueName',
-        description='The human-readable label for the condition descriptor value associated with the <b>conditionDescriptorValueID</b>.',
+        description='The human-readable label for the condition descriptor value associated with the conditionDescriptorValueID .',
     )
 
 
@@ -1968,7 +1968,7 @@ class ListingTypePolicy(EbayModel):
     digital_good_delivery_enabled: bool | None = Field(
         None,
         alias='digitalGoodDeliveryEnabled',
-        description="A <code>true</code> value in this field indicates that the leaf category supports the listing of items (such as gift cards) that can be delivered electronically via a download link or sent to a buyer's email address.",
+        description="A true value in this field indicates that the leaf category supports the listing of items (such as gift cards) that can be delivered electronically via a download link or sent to a buyer's email address.",
     )
     listing_durations: list[ListingDuration] | None = Field(
         None,
@@ -1978,7 +1978,7 @@ class ListingTypePolicy(EbayModel):
     pickup_drop_off_enabled: bool | None = Field(
         None,
         alias='pickupDropOffEnabled',
-        description="A true value in this field indicates that items listed in the category (specified in the <b>listingTypePolicies.categoryId</b> field) may be enabled with the 'Click and Collect' feature. With the 'Click and Collect' feature, a buyer can purchase certain items on an eBay site and collect them at a local store. Buyers are notified by eBay once their items are available. A false value in this field indicates that items listed in the category are not eligible for the 'Click and Collect' feature.",
+        description="A true value in this field indicates that items listed in the category (specified in the listingTypePolicies.categoryId field) may be enabled with the 'Click and Collect' feature. With the 'Click and Collect' feature, a buyer can purchase certain items on an eBay site and collect them at a local store. Buyers are notified by eBay once their items are available.",
     )
 
 
@@ -1990,17 +1990,17 @@ class MinimumListingPricePoliciesType(EbayModel):
     listing_type: ListingTypeEnum | None = Field(
         None,
         alias='listingType',
-        description='This enum value indicates the listing type for which minimum starting price policies are being returned.<br><br><span class="tablenote"><b>Note:</b> The only applicable values for this method are <code>AUCTION</code> and <code>FIXED_PRICE_ITEM</code>.</span>',
+        description='This enum value indicates the listing type for which minimum starting price policies are being returned. Note: The only applicable values for this method are AUCTION and FIXED_PRICE_ITEM .',
     )
     min_buy_it_now_price_percent: str | None = Field(
         None,
         alias='minBuyItNowPricePercent',
-        description='The minimum percentage value that a Buy It Now price for an auction listing must be above the starting bid price for the same listing.<br><br>This field is only returned and applicable for auction listings.',
+        description='The minimum percentage value that a Buy It Now price for an auction listing must be above the starting bid price for the same listing. This field is only returned and applicable for auction listings.',
     )
     start_price: Amount | None = Field(
         None,
         alias='startPrice',
-        description="For auction listings, this field indicates the lowest dollar value that can be set for the item's starting bid.<br><br>For fixed-price listings, this field indicates the lower dollar value that can be set for the item's sale price.",
+        description="For auction listings, this field indicates the lowest dollar value that can be set for the item's starting bid. For fixed-price listings, this field indicates the lower dollar value that can be set for the item's sale price.",
     )
 
 
@@ -2008,7 +2008,7 @@ class MotorsListingPoliciesResponse(EbayModel):
     motors_listing_policies: list[MotorsListingPolicy] | None = Field(
         None,
         alias='motorsListingPolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2020,17 +2020,17 @@ class MultiCompatibilityPropertyValuesRequest(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay leaf category for which to retrieve property values.<br><br>Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getautomotivepartscompatibilitypolicies">getAutomotivePartsCompatibilityPolicies</a> method to retrieve a list of categories that support parts compatibility.',
+        description='The unique identifier of the eBay leaf category for which to retrieve property values. Use the getAutomotivePartsCompatibilityPolicies method to retrieve a list of categories that support parts compatibility.',
     )
     property_filters: list[PropertyFilterInner] | None = Field(
         None,
         alias='propertyFilters',
-        description='This array can be used to specify the compatibility properties used to limit the result set. Only values associated with the specified name-value pairs will be returned in the response.<br><br>For example, if the <b>propertyName</b> is set to <code>Year</code> and the <b>propertyValue</b> is set to <code>2022</code>, only compatible vehicles from 2022 will be returned.<br><br>At least one property name-value pair must be used.',
+        description='This array can be used to specify the compatibility properties used to limit the result set. Only values associated with the specified name-value pairs will be returned in the response. For example, if the propertyName is set to Year and the propertyValue is set to 2022 , only compatible vehicles from 2022 will be returned. At least one property name-value pair must be used.',
     )
     property_names: list[str] | None = Field(
         None,
         alias='propertyNames',
-        description="This comma-delimited array specifies the names of the properties for which to retrieve associated property values.<br><br>For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description="This comma-delimited array specifies the names of the properties for which to retrieve associated property values. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
     )
 
 
@@ -2067,19 +2067,19 @@ class ProductResponseCompatibilityDetails(EbayModel):
     product_details: list[PropertyValues] | None = Field(
         None,
         alias='productDetails',
-        description='This array returns details about the product in the form of name-value pairs. ',
+        description='This array returns details about the product in the form of name-value pairs.',
     )
 
 
 class PropertyNamesResponseProperties(EbayModel):
     dataset: str | None = Field(
         None,
-        description='This field defines the types of properties are returned for the specified catalog-enabled category.<br><br><b>Valid values:</b><ul><li><code>DisplayableProductDetails</code>: Properties for use in a user interface to describe products.</li><li><code>DisplayableSearchResults</code>: Properties for use in results for product searches.</li><li><code>Searchable</code>: Properties for use in searches.</li><li><code>Sortable</code>: Properties that are suitable for sorting.</li></ul>',
+        description='This field defines the types of properties are returned for the specified catalog-enabled category. Valid values: DisplayableProductDetails : Properties for use in a user interface to describe products. DisplayableSearchResults : Properties for use in results for product searches. Searchable : Properties for use in searches. Sortable : Properties that are suitable for sorting.',
     )
     property_names: list[PropertyNamesResponsePropertyNames] | None = Field(
         None,
         alias='propertyNames',
-        description="This array specifies the names of the properties associated with the specified category in the specified marketplace.<br><br>For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description="This array specifies the names of the properties associated with the specified category in the specified marketplace. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
     )
 
 
@@ -2137,7 +2137,7 @@ class ShippingPolicy(EbayModel):
     global_shipping_enabled: bool | None = Field(
         None,
         alias='globalShippingEnabled',
-        description='Indicates if the Global Shipping Program (GSP) is supported for the category. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>GSP is only supported by the eBay UK marketplace (<code>EBAY_GB</code>).</span></p>',
+        description='Indicates if the Global Shipping Program (GSP) is supported for the category. Note: GSP is only supported by the eBay UK marketplace ( EBAY_GB ).',
     )
     group1_max_flat_shipping_cost: Amount | None = Field(
         None,
@@ -2175,7 +2175,7 @@ class SiteVisibilityPoliciesResponse(EbayModel):
     site_visibility_policies: list[SiteVisibilityPolicy] | None = Field(
         None,
         alias='siteVisibilityPolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2192,7 +2192,7 @@ class SortOrderInner(EbayModel):
     sort_priority: str | None = Field(
         None,
         alias='sortPriority',
-        description='The priority of the specified sort order provided.<br><br>For example, when a property is assigned <code>Sort1</code>, its values are sorted first. Values for the property assigned <code>Sort2</code> are sorted second, and so on.<br><br><b>Valid values</b>:<ul><li><code>Sort1</code></li><li><code>Sort2</code></li><li><code>Sort3</code></li><li><code>Sort4</code></li><li><code>Sort5</code></li></ul>',
+        description='The priority of the specified sort order provided. For example, when a property is assigned Sort1 , its values are sorted first. Values for the property assigned Sort2 are sorted second, and so on. Valid values : Sort1 Sort2 Sort3 Sort4 Sort5',
     )
 
 
@@ -2200,36 +2200,36 @@ class SpecificationRequest(EbayModel):
     category_id: str | None = Field(
         None,
         alias='categoryId',
-        description='The unique identifier of the eBay leaf category for which compatibility details are being retrieved. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility for cars, trucks, or motorcycles.<br><br>Use the <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getautomotivepartscompatibilitypolicies">getAutomotivePartsCompatibilityPolicies</a> method to retrieve a list of categories that support parts compatibility by specification. For the categories in the response that support compatibility by specification, you’ll see <code>SPECIFICATIONS</code> as the value for the <b>compatibilityBasedOn</b> field ',
+        description='The unique identifier of the eBay leaf category for which compatibility details are being retrieved. This category must be a valid eBay category on the specified eBay marketplace, and the category must support parts compatibility for cars, trucks, or motorcycles.',
     )
     compatibility_property_filters: list[PropertyFilterInner] | None = Field(
         None,
         alias='compatibilityPropertyFilters',
-        description='This comma-delimited array can be used to restrict the number of compatible application name-value pairs returned in the response by specifying the properties that the seller wishes to be included in the response.<br><br>Only compatible applications with the specified properties will be returned. Properties that can be specified here include make, model, year, and trim.',
+        description='This comma-delimited array can be used to restrict the number of compatible application name-value pairs returned in the response by specifying the properties that the seller wishes to be included in the response. Only compatible applications with the specified properties will be returned. Properties that can be specified here include make, model, year, and trim.',
     )
     dataset: str | None = Field(
         None,
-        description='This field can be used to define the type of properties that will be returned in the response.<br><br> For example, if you specify <code>Searchable</code>, the compatibility details will contain properties that can be used to search for products, such as make or model.<br><br><span class="tablenote"><b>Note:</b> This field cannot be used alongside <b>dataPropertyName</b>. If both are used, an error will occur.</span><br><b>Valid values:</b><ul><li><code>DisplayableProductDetails</code>: Properties for use in a user interface to describe products.</li><li><code>DisplayableSearchResults</code>: Properties for use in results for product searches.</li><li><code>Searchable</code>: Properties for use in searches.</li><li><code>Sortable</code>: Properties that are suitable for sorting.</li></ul><b>Default value:</b> <code>DisplayableSearchResults</code>',
+        description='This field can be used to define the type of properties that will be returned in the response. For example, if you specify Searchable , the compatibility details will contain properties that can be used to search for products, such as make or model. Note: This field cannot be used alongside dataPropertyName . If both are used, an error will occur.',
     )
     dataset_property_name: list[str] | None = Field(
         None,
         alias='datasetPropertyName',
-        description='This comma-delimited array can be used to define the specific property name(s) that will be returned in the response.<br><br>For example, if you specify <code>Engine</code>, the result set will only contain engines that are compatible with the input criteria.<br><br><span class="tablenote"><b>Note:</b> This array cannot be used alongside <b>dataset</b>. If both are used, an error will occur.</span>',
+        description='This comma-delimited array can be used to define the specific property name(s) that will be returned in the response. For example, if you specify Engine , the result set will only contain engines that are compatible with the input criteria. Note: This array cannot be used alongside dataset . If both are used, an error will occur.',
     )
     exact_match: bool | None = Field(
         None,
         alias='exactMatch',
-        description='This boolean can be used to specify that the compatibilities returned in the response are to be defined by an exact match on the input value of specification properties.<br><br>By default, an expanded compatibility match is done when it applies, such as for Load Index, where a compatible vehicle is one that has a load index requirement that is less than or equal to the input. By specifying this field as <code>true</code>, only exact matches are returned.',
+        description='This boolean can be used to specify that the compatibilities returned in the response are to be defined by an exact match on the input value of specification properties. By default, an expanded compatibility match is done when it applies, such as for Load Index, where a compatible vehicle is one that has a load index requirement that is less than or equal to the input.',
     )
     pagination_input: PaginationInput | None = Field(
         None,
         alias='paginationInput',
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Pagination is not yet supported by this method. If this container is included in the request, it will be ignored.</p></div>',
+        description='Important! Pagination is not yet supported by this method. If this container is included in the request, it will be ignored.',
     )
     sort_orders: list[SortOrderInner] | None = Field(
         None,
         alias='sortOrders',
-        description='This array specifies the sorting order of the compatibility properties. Any of the searchable properties can be used to specify search order. Up to 5 levels of sort order may be specified.<br><br><span class="tablenote"><b>Note:</b> If no sort order is specified through this field, the default sort order of <b>popularity descending</b> is applied.</span>',
+        description='This array specifies the sorting order of the compatibility properties. Any of the searchable properties can be used to specify search order. Up to 5 levels of sort order may be specified. Note: If no sort order is specified through this field, the default sort order of popularity descending is applied.',
     )
     specifications: list[PropertyFilterInner] | None = Field(
         None,
@@ -2244,19 +2244,18 @@ class SpecificationResponse(EbayModel):
         description='This container returns the list of all compatible application name-value pairs for the given filter criteria.',
     )
     pagination: Pagination | None = Field(
-        None,
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><b><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></b></span></span> Not currently returned. For future use. </p></div> <!-- This container returns the pagination settings for the result set.-->',
+        None, description='Important! Not currently returned. For future use.'
     )
 
 
 class TimeDuration(EbayModel):
     unit: TimeDurationUnitEnum | None = Field(
         None,
-        description='A time-measurement unit that specifies a singular period of time.  <br><br>A span of time is defined when you apply the value specified in the <b>value</b> field to the value specified for <b>unit</b>.  <br><br>Time-measurement units can be YEAR, MONTH, DAY, and so on. See <b>TimeDurationUnitEnum</b> for a complete list of possible time-measurement units.',
+        description='A time-measurement unit that specifies a singular period of time. A span of time is defined when you apply the value specified in the value field to the value specified for unit . Time-measurement units can be YEAR, MONTH, DAY, and so on. See TimeDurationUnitEnum for a complete list of possible time-measurement units.',
     )
     value: int | None = Field(
         None,
-        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the <b>unit</b> field.',
+        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the unit field.',
     )
 
 
@@ -2278,7 +2277,7 @@ class CategoryPolicyResponse(EbayModel):
     category_policies: list[CategoryPolicy] | None = Field(
         None,
         alias='categoryPolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2290,7 +2289,7 @@ class ClassifiedAdPolicyResponse(EbayModel):
     classified_ad_policies: list[ClassifiedAdPolicy] | None = Field(
         None,
         alias='classifiedAdPolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2317,22 +2316,22 @@ class ItemConditionDescriptor(EbayModel):
     condition_descriptor_help_text: str | None = Field(
         None,
         alias='conditionDescriptorHelpText',
-        description='A description of the condition descriptor that directs a user to its condition descriptor values.<br><br> For example, the help text for <code>Card Condition</code> is <code>Select ungraded condition</code>.',
+        description='A description of the condition descriptor that directs a user to its condition descriptor values. For example, the help text for Card Condition is Select ungraded condition .',
     )
     condition_descriptor_id: str | None = Field(
         None,
         alias='conditionDescriptorId',
-        description='The unique identification number of a condition descriptor associated with with a <b>conditionDescriptorName</b>. <br><br>For example, <code>40001</code> is the ID for <code>Card Condition</code>.<br><br>These IDs are used in the addItem family of calls of the <b>Trading API</b> to provide condition descriptor names for the item. These IDs are used by the inventoryItem family of calls of the <b>Inventory API</b> to provide condition descriptor names for the item.',
+        description='The unique identification number of a condition descriptor associated with with a conditionDescriptorName . For example, 40001 is the ID for Card Condition . These IDs are used in the addItem family of calls of the Trading API to provide condition descriptor names for the item.',
     )
     condition_descriptor_name: str | None = Field(
         None,
         alias='conditionDescriptorName',
-        description='The human-readable label for the condition descriptor associated with the <b>conditionDescriptorID</b>. <br><br>For example, <code>Card Condition</code> is the condition descriptor name for ID <code>40001</code>',
+        description='The human-readable label for the condition descriptor associated with the conditionDescriptorID . For example, Card Condition is the condition descriptor name for ID 40001',
     )
     condition_descriptor_values: list[ItemConditionDescriptorValue] | None = Field(
         None,
         alias='conditionDescriptorValues',
-        description='This array shows the possible values that map to the corresponding <b>conditionDescriptorName</b> values. Constraint information and help text are also shown for each value. <br><br>For example, The ID <code>40001</code> is ID for the condition descriptor <code>card condition</code>. The ID <code>400012</code> is the ID for the <code>Very Good</code> card condition value.',
+        description='This array shows the possible values that map to the corresponding conditionDescriptorName values. Constraint information and help text are also shown for each value. For example, The ID 40001 is ID for the condition descriptor card condition . The ID 400012 is the ID for the Very Good card condition value.',
     )
 
 
@@ -2340,7 +2339,7 @@ class ListingTypePoliciesResponse(EbayModel):
     listing_type_policies: list[ListingTypePolicy] | None = Field(
         None,
         alias='listingTypePolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2352,21 +2351,21 @@ class ProductRequest(EbayModel):
     application_property_filters: list[PropertyFilterInner] | None = Field(
         None,
         alias='applicationPropertyFilters',
-        description="This array is used to filter the properties of an application, such as a vehicle's make or model, that will be returned in the response.<br><br>Application property filters are specified as name-value pairs. Only products compatible with these name-value pairs will be returned.",
+        description="This array is used to filter the properties of an application, such as a vehicle's make or model, that will be returned in the response. Application property filters are specified as name-value pairs. Only products compatible with these name-value pairs will be returned.",
     )
     dataset: list[str] | None = Field(
         None,
-        description='This array defines the type of properties that are returned for the catalog-enabled category.<br><br>For example, if you specify <code>Searchable</code>, the compatibility details will contain properties that can be used to search for products, such as make or model.<br><br><span class="tablenote"><b>Note:</b> This field cannot be used alongside <b>dataPropertyName</b>. If both are used, an error will occur.</span><br><b>Valid values:</b><ul><li><code>DisplayableProductDetails</code>: Properties for use in a user interface to describe products.</li><li><code>DisplayableSearchResults</code>: Properties for use in results for product searches.</li><li><code>Searchable</code>: Properties for use in searches.</li><li><code>Sortable</code>: Properties that are suitable for sorting.</li></ul><br><b>Default:</b> <code>DisplayableSearchResults</code>',
+        description='This array defines the type of properties that are returned for the catalog-enabled category. For example, if you specify Searchable , the compatibility details will contain properties that can be used to search for products, such as make or model. Note: This field cannot be used alongside dataPropertyName . If both are used, an error will occur.',
     )
     dataset_property_name: list[str] | None = Field(
         None,
         alias='datasetPropertyName',
-        description='This comma-delimted array can be used to define the specific property name(s) that will be returned in the response.<br><br>For example, if you specify <code>Engine</code>, the result set will only contain engines that are compatible with the input criteria.<br><br><span class="tablenote"><b>Note:</b> This array cannot be used alongside <b>dataset</b>. If both are used, an error will occur.</span>',
+        description='This comma-delimted array can be used to define the specific property name(s) that will be returned in the response. For example, if you specify Engine , the result set will only contain engines that are compatible with the input criteria. Note: This array cannot be used alongside dataset . If both are used, an error will occur.',
     )
     disabled_product_filter: DisabledProductFilter | None = Field(
         None,
         alias='disabledProductFilter',
-        description='This container can be used to specify whether or not to filter out products which are disabled for selling on eBay and/or disabled for product review. ',
+        description='This container can be used to specify whether or not to filter out products which are disabled for selling on eBay and/or disabled for product review.',
     )
     pagination_input: PaginationInput | None = Field(
         None,
@@ -2413,32 +2412,32 @@ class ReturnPolicyDetails(EbayModel):
     policy_description_enabled: bool | None = Field(
         None,
         alias='policyDescriptionEnabled',
-        description='If set to <code>true</code>, this flag indicates you can supply a detailed return policy description within your return policy (for example, by populating the <b>returnInstructions</b> field in the Account API\'s <b>createReturnPolicy</b>). User-supplied return policy details are allowed only in the DE, ES, FR, and IT marketplaces.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, return instructions are defined differently.<ul><li><b>Account v1 API</b><br/>When using <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> to create/manage business policies, use <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.returnInstructions" target="_blank">returnInstructions</a> to provide both domestic and international return instructions for the business policy.</li><li><b>Trading API or Sell Feed API</b><br/><br.>When using the legacy <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy" target="_blank">ReturnPolicy</a> fields, use <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.Description" target="_blank">Item.ReturnPolicyDescription</a> to provide both domestic and internation return instructions for the business policy.</li></ul></span>',
+        description="If set to true , this flag indicates you can supply a detailed return policy description within your return policy (for example, by populating the returnInstructions field in the Account API's createReturnPolicy ). User-supplied return policy details are allowed only in the DE, ES, FR, and IT marketplaces.",
     )
     refund_methods: list[RefundMethodEnum] | None = Field(
         None,
         alias='refundMethods',
-        description='A list of refund methods allowed for the associated category.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, available refund methods are defined differently.<ul><li><b>Account v1 API</b><br/>When using the <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> methods to create/manage business policies, use the appropriate <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy#request.refundMethod" target="_blank">refundMethod</a> field to specify the refund method for both domestic and international returns for the business policy.</li><li><b>Trading API or Sell Feed API</b><br/><br.>When using legacy <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy" target="_blank">ReturnPolicy</a> fields, use <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.RefundOption" target="_blank">RefundOption</a> and <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalRefundOption" target="_blank">InternationalRefundOption</a> to specify the domestic and international refund method, respectively, for returns for the business policy.<br/><br/>Note that if <b>MONEY_BACK</b> is returned by <b>getReturnPolicies</b>, use <b>MoneyBack</b> in <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.RefundOption" target="_blank">RefundOption</a> and <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalRefundOption" target="_blank">InternationalRefundOption</a>.</li></ul></span>',
+        description='A list of refund methods allowed for the associated category. Note: Depending on the API used to setup your return policy, available refund methods are defined differently.',
     )
     return_methods: list[ReturnMethodEnum] | None = Field(
         None,
         alias='returnMethods',
-        description='A list of return methods allowed for the associated category.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, available return methods are defined differently.<ul><li><b>Account v1 API</b><br/>When using <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> to create/manage business policies, use <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy#request.returnMethod" target="_blank">returnMethod</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.internationalOverride.returnMethod" target="_blank">internationalOverride.returnMethod</a> to specify the domestic and international return method, respectively, for the business policy.</li></ul></span>',
+        description='A list of return methods allowed for the associated category. Note: Depending on the API used to setup your return policy, available return methods are defined differently.',
     )
     return_periods: list[TimeDuration] | None = Field(
         None,
         alias='returnPeriods',
-        description='A list of return periods allowed for the associated category.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, return periods are defined differently.<ul><li><b>Account v1 API</b><br/>When using <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> to create/manage business policies, use the <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.returnPeriod" target="_blank">returnPeriod</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.internationalOverride.returnPeriod" target="_blank">internationalOverride.returnPeriod</a> containers to set the return period(s) for the business policy. You will use the supported values returned under the <code>returnPeriods</code> array in the <b>getReturnPolicies</b> response.</li><li><b>Trading API or Sell Feed API</b><br/><br.>When using legacy <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy" target="_blank">ReturnPolicy</a> fields, use <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.ReturnsWithinOption" target="_blank">ReturnsWithinOption</a> and <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalReturnsWithinOption" target="_blank">InternationalReturnsWithinOption</a> to pass in one of the supported enum values defined in <a href="/devzone/xml/docs/Reference/eBay/types/ReturnsWithinOptionsCodeType.html" target="_blank">ReturnsWithinOptionsCodeType</a>.<br/><br/>For example, if a value of <b>30</b> is returned in the <a href="/api-docs/sell/metadata/resources/marketplace/methods/getReturnPolicies#response.returnPolicies.domestic.returnPeriods.value" target="_blank">returnPeriods.value</a> field of <b>getReturnPolicies</b>, use <b>Days_30</b> in <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.ReturnsWithinOption" target="_blank">ReturnsWithinOption</a> or <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalReturnsWithinOption" target="_blank">InternationalReturnsWithinOption</a>.</li></ul></span>',
+        description='A list of return periods allowed for the associated category. Note: Depending on the API used to setup your return policy, return periods are defined differently. Account v1 API When using createReturnPolicy and updateReturnPolicy to create/manage business policies, use the returnPeriod and internationalOverride.returnPeriod containers to set the return period(s) for the business policy.',
     )
     returns_acceptance_enabled: bool | None = Field(
         None,
         alias='returnsAcceptanceEnabled',
-        description='A value of <code>true</code> in this field indicates that return policies are applicable to the corresponding leaf category.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, whether or not you accept returns is configured as follows:<ul><li><b>Account v1 API</b><br/>When using <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> to create/manage business policies, use <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.returnsAccepted" target="_blank">returnsAccepted</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy#request.internationalOverride.returnsAccepted" target="_blank">internationalOverride.returnsAccepted</a> to indicate whether or not you accept returns.</li><li><b>Trading API or Sell Feed API</b><br/><br.>When using legacy <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy" target="_blank">ReturnPolicy</a> fields, use <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.ReturnsAcceptedOption" target="_blank">ReturnsAcceptedOption</a> and <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalReturnsAcceptedOption" target="_blank">InternationalReturnsAcceptedOption</a> to indicate whether or not you accept returns.</li></ul></span>',
+        description='A value of true in this field indicates that return policies are applicable to the corresponding leaf category.',
     )
     return_shipping_cost_payers: list[ReturnShippingCostPayerEnum] | None = Field(
         None,
         alias='returnShippingCostPayers',
-        description='A list of allowed values for who pays for the return shipping cost.<br><br>Note that for SNAD returns, the seller is always responsible for the return shipping cost.<br/><br/><span class="tablenote"><strong>Note:</strong> Depending on the API used to setup your return policy, specifiying that the buyer or seller is responsible for paying for return shipping costs is defined differently.<ul><li><b>Account v1 API</b><br/>When using <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy" target="_blank">createReturnPolicy</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/updateReturnPolicy" target="_blank">updateReturnPolicy</a> to create/manage business policies, use <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.returnShippingCostPayer" target="_blank">returnShippingCostPayer</a> and <a href="/api-docs/sell/account/resources/return_policy/methods/createReturnPolicy#request.internationalOverride.returnShippingCostPayer" target="_blank">internationalOverride.returnShippingCostPayer</a> to specify if the buyer or seller is responsible for paying return shipping charges for the business policy.</li><li><b>Trading API or Sell Feed API</b><br/><br.>When using legacy <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy" target="_blank">ReturnPolicy</a> fields, use <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.ShippingCostPaidByOption" target="_blank">ShippingCostPaidByOption</a> and <a href="/devzone/xml/docs/Reference/eBay/AddItem.html#Request.Item.ReturnPolicy.InternationalShippingCostPaidByOption" target="_blank">InternationalShippingCostPaidByOption</a> fields to specify if the buyer or seller is responsible for paying return shipping charges for the business policy.</li></ul></span>',
+        description='A list of allowed values for who pays for the return shipping cost. Note that for SNAD returns, the seller is always responsible for the return shipping cost. Note: Depending on the API used to setup your return policy, specifiying that the buyer or seller is responsible for paying for return shipping costs is defined differently.',
     )
 
 
@@ -2446,7 +2445,7 @@ class ShippingPoliciesResponse(EbayModel):
     shipping_policies: list[ShippingPolicy] | None = Field(
         None,
         alias='shippingPolicies',
-        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter <b>marketplace_id</b> and optionally limited by only those leaf category IDs specified in the query parameter <b>filter</b>.',
+        description='This array contains applicable policy metadata for the leaf categories returned for the marketplace specified in the path parameter marketplace_id and optionally limited by only those leaf category IDs specified in the query parameter filter .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2458,26 +2457,26 @@ class ItemCondition(EbayModel):
     condition_description: str | None = Field(
         None,
         alias='conditionDescription',
-        description='The human-readable label for the condition (e.g., "New"). This value is typically localized for each site.  <br><br>Note that the display name can vary by category. For example, the description for condition ID <code>1000</code> could be called "New: with Tags" in one category and "Brand New" in another. For details on condition IDs and descriptions, see <a href=\'/api-docs/sell/static/metadata/condition-id-values.html\' target=\'_blank\'>Item condition ID and name values</a>.',
+        description='The human-readable label for the condition (e.g., "New"). This value is typically localized for each site. Note that the display name can vary by category. For example, the description for condition ID 1000 could be called "New: with Tags" in one category and "Brand New" in another. For details on condition IDs and descriptions, see Item condition ID and name values .',
     )
     condition_descriptors: list[ItemConditionDescriptor] | None = Field(
         None,
         alias='conditionDescriptors',
-        description='This array contains the possible condition descriptors and condition descriptor values applicable for the specified category. It also returns usage requirements, maximum length, cardinality, and help text.<br><br><span class="tablenote"><b>Note:</b> This array is only returned for categories that support condition descriptors.</span>',
+        description='This array contains the possible condition descriptors and condition descriptor values applicable for the specified category. It also returns usage requirements, maximum length, cardinality, and help text. Note: This array is only returned for categories that support condition descriptors.',
     )
     condition_help_text: str | None = Field(
         None,
         alias='conditionHelpText',
-        description='A detailed description of the condition denoted by the <b>conditionID</b> and <b>conditionDescription</b>. ',
+        description='A detailed description of the condition denoted by the conditionID and conditionDescription .',
     )
     condition_id: str | None = Field(
         None,
         alias='conditionId',
-        description="The ID value of the selected item condition. For information on the supported condition ID values, see <a href='/api-docs/sell/static/metadata/condition-id-values.html' target='_blank'>Item condition ID and name values</a>.",
+        description='The ID value of the selected item condition. For information on the supported condition ID values, see Item condition ID and name values .',
     )
     usage: UsageEnum | None = Field(
         None,
-        description='The value returned in this field indicates if there are any usage restrictions or requirements for the corresponding item condition in the corresponding category.<br><br><span class="tablenote"><b>Note:</b> Currently, the only supported value is \'RESTRICTED\', and this field will only be returned for the following conditions: 2000, 2010, 2020, 2030. Sellers must be pre-approved to use any of these item conditions.</span>',
+        description="The value returned in this field indicates if there are any usage restrictions or requirements for the corresponding item condition in the corresponding category. Note: Currently, the only supported value is 'RESTRICTED', and this field will only be returned for the following conditions: 2000, 2010, 2020, 2030. Sellers must be pre-approved to use any of these item conditions.",
     )
 
 
@@ -2490,17 +2489,17 @@ class ItemConditionPolicy(EbayModel):
     category_tree_id: str | None = Field(
         None,
         alias='categoryTreeId',
-        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.    <br><br>A <i>category tree</i> is a hierarchical framework of eBay categories that begins at the root node of the tree and extends to include all the child nodes in the tree. Each child node in the tree is an eBay category that is represented by a unique <b>categoryId</b> value. Within a category tree, the root node has no parent node and <i>leaf nodes</i> are nodes that have no child nodes.',
+        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.',
     )
     item_condition_required: bool | None = Field(
         None,
         alias='itemConditionRequired',
-        description='This flag denotes whether or not you must list the item condition in a listing for the specified category. If set to <code>true</code>, you must specify an item condition for the associated category.',
+        description='This flag denotes whether or not you must list the item condition in a listing for the specified category. If set to true , you must specify an item condition for the associated category.',
     )
     item_conditions: list[ItemCondition] | None = Field(
         None,
         alias='itemConditions',
-        description='The item-condition values allowed in the category.<br><br><span class="tablenote"><b>Note:</b> The ‘Seller Refurbished’ item condition (condition ID 2500) has been replaced by the \'Excellent - Refurbished\', \'Very Good - Refurbished\', and \'Good - Refurbished\' item conditions in a select number of eBay marketplaces and categories.<br/><br/>Similar to the ‘Certified Refurbished’ item condition (condition ID 2000), a seller’s OAuth user token will have to be used instead of an OAuth application token, since each seller must  go through an application and qualification process before using any of these new refurbished item conditions in supported categories. If a seller is not qualified to use the new refurbished item conditions, these item condition values will not be returned by <b>getItemConditionPolicies</b>.</span>',
+        description="The item-condition values allowed in the category. Note: The ‘Seller Refurbished’ item condition (condition ID 2500) has been replaced by the 'Excellent - Refurbished', 'Very Good - Refurbished', and 'Good - Refurbished' item conditions in a select number of eBay marketplaces and categories.",
     )
 
 
@@ -2525,7 +2524,7 @@ class ReturnPolicy(EbayModel):
     category_tree_id: str | None = Field(
         None,
         alias='categoryTreeId',
-        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.    <br><br>A <i>category tree</i> is a hierarchical framework of eBay categories that begins at the root node of the tree and extends to include all the child nodes in the tree. Each child node in the tree is an eBay category that is represented by a unique <b>categoryId</b> value. Within a category tree, the root node has no parent node and <i>leaf nodes</i> are nodes that have no child nodes.',
+        description='A value that indicates the root node of the category tree used for the response set. Each marketplace is based on a category tree whose root node is indicated by this unique category ID value. All category policy information returned by this call pertains to the categories included below this root node of the tree.',
     )
     domestic: ReturnPolicyDetails | None = Field(
         None,
@@ -2537,7 +2536,7 @@ class ReturnPolicy(EbayModel):
     )
     required: bool | None = Field(
         None,
-        description='If set to <code>true</code>, this flag indicates that you must specify a return policy for items listed in the associated category.  <br><br>Note that not accepting returns (setting <b>returnsAcceptedEnabled</b> to <code>false</code>) is a valid return policy.',
+        description='If set to true , this flag indicates that you must specify a return policy for items listed in the associated category. Note that not accepting returns (setting returnsAcceptedEnabled to false ) is a valid return policy.',
     )
 
 

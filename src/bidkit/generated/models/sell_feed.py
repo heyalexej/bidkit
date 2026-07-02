@@ -19,12 +19,12 @@ class CreateTaskRequest(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The feed type associated with the task. Available feed types:<br><ul><li><a href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#trading-upload-feed-types" target="_blank">Inventory upload feed types</a></li><li><a href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#merchant-data-upload-feed-types" target="_blank">Fulfillment upload feed types</a></li><li><a href="/api-docs/sell/static/feed/fx-feeds-quick-reference.html#availabl" target="_blank">Seller Hub feed types</a></li></ul>',
+        description='The feed type associated with the task. Available feed types: Inventory upload feed types Fulfillment upload feed types Seller Hub feed types',
     )
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The schemaVersion/version number of the file format:<br><ul><li><a href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#Version" target="_blank">Version Details / Schema Version</a></li><li><a href="/api-docs/sell/static/feed/fx-feeds-quick-reference.html#schema" target="_blank">Seller Hub feed schema version</a></li></ul>',
+        description='The schemaVersion/version number of the file format: Version Details / Schema Version Seller Hub feed schema version',
     )
 
 
@@ -37,11 +37,11 @@ class DateRange(EbayModel):
     from_: str | None = Field(
         None,
         alias='from',
-        description='The beginning date in the range. If the parent type is included, both the <strong>from</strong> and the <strong>to</strong> fields become conditionally required.<br /><br /><strong>Format: </strong>UTC <code>yyyy-MM-ddThh:mm:ss.SSSZ </code> <br /><br /><strong>For example: </strong> Tasks within a range  <br /> <code>yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ </code> <br /><br /> Tasks created on March 31, 2021<br /><code>2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z</code>    ',
+        description='The beginning date in the range. If the parent type is included, both the from and the to fields become conditionally required. Format: UTC yyyy-MM-ddThh:mm:ss. SSSZ For example: Tasks within a range yyyy-MM-ddThh:mm:ss. SSSZ..yyyy-MM-ddThh:mm:ss. SSSZ Tasks created on March 31, 2021 2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z',
     )
     to: str | None = Field(
         None,
-        description='The end date for the date range, which is inclusive. If the parent type is included, both the <strong>from</strong> and the <strong>to</strong> fields become conditionally required.  <br /><br /><strong>For example: </strong> <br /><br />Tasks within a range  <br /> <code>yyyy-MM-ddThh:mm:ss.SSSZ..yyyy-MM-ddThh:mm:ss.SSSZ </code> <br /><br /> Tasks created on March 31, 2021<br /> <code>2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z</code>  ',
+        description='The end date for the date range, which is inclusive. If the parent type is included, both the from and the to fields become conditionally required. For example: Tasks within a range yyyy-MM-ddThh:mm:ss. SSSZ..yyyy-MM-ddThh:mm:ss. SSSZ Tasks created on March 31, 2021 2021-03-31T00:00:00.000Z..2021-03-31T00:00:00.000Z',
     )
 
 
@@ -167,7 +167,7 @@ class SupportedConfiguration(EbayModel):
     )
     property: str | None = Field(
         None,
-        description='Properties supported by the template. Properties can include the following: <ul><li><strong>scheduleStartDate:</strong> The timestamp that the report generation (subscription) begins. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplate becomes inactive.<br /><strong>Format</strong>: UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code></li><li><strong>scheduleEndDate:</strong> The timestamp that the report generation (subscription) ends. After this date, the schedule status becomes INACTIVE.<br /><strong>Format</strong>: UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code></li><li><strong>schemaVersion:</strong> The schema version of the schedule templates feedType. This field is required if the feedType has a schema version.</li><li><strong>preferredTriggerDayOfMonth:</strong> The preferred day of the month to trigger the schedule. </li><li><strong>preferredTriggerDayOfWeek:</strong> The preferred day of the week to trigger the schedule. </li><li><strong>preferredTriggerHour:</strong> The preferred two-digit hour of the day to trigger the schedule.<br /><strong>Format</strong>: UTC <code>hhZ</code></li><ul>',
+        description='Properties supported by the template. Properties can include the following: scheduleStartDate: The timestamp that the report generation (subscription) begins. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplate becomes inactive.',
     )
     usage: ConfigurationsUsageEnum | None = Field(
         None, description='Whether the specified property is REQUIRED or OPTIONAL.'
@@ -178,22 +178,22 @@ class UpdateUserScheduleRequest(EbayModel):
     preferred_trigger_day_of_month: int | None = Field(
         None,
         alias='preferredTriggerDayOfMonth',
-        description='The preferred day of the month to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. <br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value. <br /><br /><strong>Minimum: </strong>1<br /><br /><strong>Maximum: </strong>31',
+        description='The preferred day of the month to trigger the schedule. This field can be used with preferredTriggerHour for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. This field is available as specified by the template ( scheduleTemplateId ).',
     )
     preferred_trigger_day_of_week: DayOfWeekEnum | None = Field(
         None,
         alias='preferredTriggerDayOfWeek',
-        description='The preferred day of the week to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for weekly schedules. <br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.',
+        description='The preferred day of the week to trigger the schedule. This field can be used with preferredTriggerHour for weekly schedules. This field is available as specified by the template ( scheduleTemplateId ). The template can specify this field as optional or required and optionally provides a default value.',
     )
     preferred_trigger_hour: str | None = Field(
         None,
         alias='preferredTriggerHour',
-        description='The preferred two-digit hour of the day to trigger the schedule.<br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value. <br /><br /><strong>Format:</strong> UTC <code>hhZ</code><br /><br />For example, the following represents 11:00 am UTC: <code>11Z</code><br /><br /><strong>Minimum: </strong><code>00Z</code><br /><br /><strong>Maximum:</strong> <code>23Z</code>',
+        description='The preferred two-digit hour of the day to trigger the schedule. This field is available as specified by the template ( scheduleTemplateId ). The template can specify this field as optional or required and optionally provides a default value. Format: UTC hhZ For example, the following represents 11:00 am UTC: 11Z Minimum: 00Z Maximum: 23Z',
     )
     schedule_end_date: str | None = Field(
         None,
         alias='scheduleEndDate',
-        description='The timestamp on which the schedule (report generation) ends. After this date, the schedule status becomes <code>INACTIVE</code>. <br /><br />Use this field, if available, to end the schedule in the future. This value must be later than <strong>scheduleStartDate</strong> (if supplied). This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Format:</strong> UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code><br /><br />For example, the following represents UTC October 10, 2021 at 10:00 AM:<br /><code> 2021-10-10T10Z</code>',
+        description='The timestamp on which the schedule (report generation) ends. After this date, the schedule status becomes INACTIVE . Use this field, if available, to end the schedule in the future. This value must be later than scheduleStartDate (if supplied). This field is available as specified by the template ( scheduleTemplateId ).',
     )
     schedule_name: str | None = Field(
         None,
@@ -203,7 +203,7 @@ class UpdateUserScheduleRequest(EbayModel):
     schedule_start_date: str | None = Field(
         None,
         alias='scheduleStartDate',
-        description='The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the <strong>scheduleEndDate</strong> occurs or the <strong>scheduleTemplateId</strong> becomes inactive. <br /><br />Use this field, if available, to start the schedule in the future but before the <strong>scheduleEndDate</strong> (if supplied). This field is available as specified by the template <strong>(scheduleTemplateId)</strong>.  The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Format:</strong> UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code><br /><br />For example, the following represents a schedule start date of UTC October 01, 2020 at 12:00 PM:<br /><code> 2020-01-01T12Z</code>',
+        description='The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplateId becomes inactive. Use this field, if available, to start the schedule in the future but before the scheduleEndDate (if supplied). This field is available as specified by the template (scheduleTemplateId) .',
     )
     schema_version: str | None = Field(
         None, alias='schemaVersion', description='The schema version of a schedule.'
@@ -227,17 +227,15 @@ class UserScheduleResponse(EbayModel):
     schedule_id: str | None = Field(
         None,
         alias='scheduleId',
-        description='The ID of the schedule. This ID is generated when the schedule was created by the <strong>createSchedule</strong> method.',
+        description='The ID of the schedule. This ID is generated when the schedule was created by the createSchedule method.',
     )
     creation_date: str | None = Field(
         None,
         alias='creationDate',
-        description='The creation date of the schedule in hours based on the 24&#8209;hour Coordinated Universal Time (UTC) clock.',
+        description='The creation date of the schedule in hours based on the 24‑hour Coordinated Universal Time (UTC) clock.',
     )
     feed_type: str | None = Field(
-        None,
-        alias='feedType',
-        description='The <strong>feedType</strong> associated with the schedule.',
+        None, alias='feedType', description='The feedType associated with the schedule.'
     )
     last_modified_date: str | None = Field(
         None,
@@ -247,22 +245,22 @@ class UserScheduleResponse(EbayModel):
     preferred_trigger_day_of_month: int | None = Field(
         None,
         alias='preferredTriggerDayOfMonth',
-        description='The preferred day of the month to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for monthly schedules. The last day of the month is used for numbers larger than the number of days in the month.',
+        description='The preferred day of the month to trigger the schedule. This field can be used with preferredTriggerHour for monthly schedules. The last day of the month is used for numbers larger than the number of days in the month.',
     )
     preferred_trigger_day_of_week: DayOfWeekEnum | None = Field(
         None,
         alias='preferredTriggerDayOfWeek',
-        description='The preferred day of the week to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for weekly schedules.',
+        description='The preferred day of the week to trigger the schedule. This field can be used with preferredTriggerHour for weekly schedules.',
     )
     preferred_trigger_hour: str | None = Field(
         None,
         alias='preferredTriggerHour',
-        description='The preferred two-digit hour of the day to trigger the schedule. <br /><br /><strong>Format:</strong> UTC <code>hhZ</code><br /><br />For example, the following represents 11:00 am UTC: <code>11Z</code>',
+        description='The preferred two-digit hour of the day to trigger the schedule. Format: UTC hhZ For example, the following represents 11:00 am UTC: 11Z',
     )
     schedule_end_date: str | None = Field(
         None,
         alias='scheduleEndDate',
-        description='The timestamp on which the report generation (subscription) ends. After this date, the schedule status becomes <code>INACTIVE</code>.',
+        description='The timestamp on which the report generation (subscription) ends. After this date, the schedule status becomes INACTIVE .',
     )
     schedule_name: str | None = Field(
         None,
@@ -282,7 +280,7 @@ class UserScheduleResponse(EbayModel):
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The schema version of the <strong>feedType</strong> for the schedule.',
+        description='The schema version of the feedType for the schedule.',
     )
     status: StatusEnum | None = Field(
         None,
@@ -297,27 +295,27 @@ class CreateUserScheduleRequest(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The name of the feed type for the created schedule.<br><br> Use the <a href="/develop/api/sell/feed_api#sell-feed_api-schedule-getscheduletemplates" target="_blank">getScheduleTemplates</a> method to retrieve the feed type of a schedule template.<br><br><span class="tablenote"><strong>Note:</strong> Schedules are currently only available for <code>LMS_ORDER_REPORT</code>.</span>',
+        description='The name of the feed type for the created schedule. Use the getScheduleTemplates method to retrieve the feed type of a schedule template. Note: Schedules are currently only available for LMS_ORDER_REPORT .',
     )
     preferred_trigger_day_of_month: int | None = Field(
         None,
         alias='preferredTriggerDayOfMonth',
-        description='The preferred day of the month to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. <br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Minimum: </strong>1<br /><br /><strong>Maximum: </strong>31',
+        description='The preferred day of the month to trigger the schedule. This field can be used with preferredTriggerHour for monthly schedules. The last day of the month is used for numbers larger than the actual number of days in the month. This field is available as specified by the template ( scheduleTemplateId ).',
     )
     preferred_trigger_day_of_week: DayOfWeekEnum | None = Field(
         None,
         alias='preferredTriggerDayOfWeek',
-        description='The preferred day of the week to trigger the schedule. This field can be used with <strong>preferredTriggerHour</strong> for weekly schedules. <br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.',
+        description='The preferred day of the week to trigger the schedule. This field can be used with preferredTriggerHour for weekly schedules. This field is available as specified by the template ( scheduleTemplateId ). The template can specify this field as optional or required and optionally provides a default value.',
     )
     preferred_trigger_hour: str | None = Field(
         None,
         alias='preferredTriggerHour',
-        description='The preferred two-digit hour of the day to trigger the schedule. <br /><br />This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Format:</strong> UTC <code>hhZ</code><br /><br />For example, the following represents 11:00 am UTC: <code>11Z</code>',
+        description='The preferred two-digit hour of the day to trigger the schedule. This field is available as specified by the template ( scheduleTemplateId ). The template can specify this field as optional or required and optionally provides a default value. Format: UTC hhZ For example, the following represents 11:00 am UTC: 11Z',
     )
     schedule_end_date: str | None = Field(
         None,
         alias='scheduleEndDate',
-        description='The timestamp on which the report generation (subscription) ends. After this date, the schedule status becomes <code>INACTIVE</code>. <br /><br />Use this field, if available, to end the schedule in the future. This value must be later than <strong>scheduleStartDate</strong> (if supplied). This field is available as specified by the template (<strong>scheduleTemplateId</strong>). The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Format:</strong> UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code><br /><br />For example, the following represents UTC October 10, 2021 at 10:00 AM:<br /><code>2021-10-10T10Z</code>',
+        description='The timestamp on which the report generation (subscription) ends. After this date, the schedule status becomes INACTIVE . Use this field, if available, to end the schedule in the future. This value must be later than scheduleStartDate (if supplied). This field is available as specified by the template ( scheduleTemplateId ).',
     )
     schedule_name: str | None = Field(
         None,
@@ -327,12 +325,12 @@ class CreateUserScheduleRequest(EbayModel):
     schedule_start_date: str | None = Field(
         None,
         alias='scheduleStartDate',
-        description='The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the <strong>scheduleEndDate</strong> occurs or the <strong>scheduleTemplateId</strong> becomes inactive. <br /><br />Use this field, if available, to start the schedule in the future but before the <strong>scheduleEndDate</strong> (if supplied). This field is available as specified by the template <strong>(scheduleTemplateId)</strong>. The template can specify this field as optional or required and optionally provides a default value.<br /><br /><strong>Format:</strong> UTC <code>yyyy-MM-dd<strong>T</strong>HH<strong>Z</strong></code><br /><br />For example, the following represents a schedule start date of UTC October 01, 2020 at 12:00 PM:<br /><code> 2020-01-01T12Z</code>',
+        description='The timestamp to start generating the report. After this timestamp, the schedule status becomes active until either the scheduleEndDate occurs or the scheduleTemplateId becomes inactive. Use this field, if available, to start the schedule in the future but before the scheduleEndDate (if supplied). This field is available as specified by the template (scheduleTemplateId) .',
     )
     schedule_template_id: str | None = Field(
         None,
         alias='scheduleTemplateId',
-        description='The unique identifier of the template to be used for this schedule. <br><br>Use the <a href="/develop/api/sell/feed_api#sell-feed_api-schedule-getscheduletemplates" target="_blank">getScheduleTemplates</a> method to retrieve the schedule template ID. This method requires a schedule template ID that is <code>ACTIVE</code>.<br><br><span class="tablenote"><strong>Note:</strong> Schedules are currently only available for <code>LMS_ORDER_REPORT</code>.</span>',
+        description='The unique identifier of the template to be used for this schedule. Use the getScheduleTemplates method to retrieve the schedule template ID. This method requires a schedule template ID that is ACTIVE . Note: Schedules are currently only available for LMS_ORDER_REPORT .',
     )
     schema_version: str | None = Field(
         None, alias='schemaVersion', description='The schema version of a schedule.'
@@ -353,12 +351,12 @@ class CustomerServiceMetricsFilterCriteria(EbayModel):
     listing_categories: list[str] | None = Field(
         None,
         alias='listingCategories',
-        description='A list of listing category IDs on which the service metric is measured. A seller can use one or more L1 (top-level) eBay categories to get metrics specific to those L1 categories. The Category IDs for each L1 category are required. Category ID values for L1 categories can be retrieved using the Taxonomy API.<p> <span class="tablenote"><strong>Note: </strong>Pass this attribute to narrow down your filter results for the <code>ITEM_NOT_AS_DESCRIBED</code> <strong>customerServiceMetricType</strong>.</span></p> <p>Supported categories include:</p><p><code>primary(L1) category Id</code></p>',
+        description='A list of listing category IDs on which the service metric is measured. A seller can use one or more L1 (top-level) eBay categories to get metrics specific to those L1 categories. The Category IDs for each L1 category are required. Category ID values for L1 categories can be retrieved using the Taxonomy API.',
     )
     shipping_regions: list[ShippingRegionTypeEnum] | None = Field(
         None,
         alias='shippingRegions',
-        description='A list of shipping region enumeration values on which the service metric is measured. This comma delimited array allows the seller to customize the report to focus on domestic or international shipping. <p> <span class="tablenote"><strong>Note: </strong>Pass this attribute to narrow down your filter results for the <code>ITEM_NOT_RECEIVED</code> customerServiceMetricType.</span></p> <p>Supported categories include:</p><p><code>primary(L1) category Id</code></p>',
+        description='A list of shipping region enumeration values on which the service metric is measured. This comma delimited array allows the seller to customize the report to focus on domestic or international shipping. Note: Pass this attribute to narrow down your filter results for the ITEM_NOT_RECEIVED customerServiceMetricType. Supported categories include: primary(L1) category Id',
     )
 
 
@@ -404,7 +402,7 @@ class InventoryFilterCriteria(EbayModel):
     listing_format: ListingFormatEnum | None = Field(
         None,
         alias='listingFormat',
-        description='The listing format for the ActiveInventoryReport being created. Supported types are:<br><ul><li><code>AUCTION</code></li><li><code>FIXED_PRICE</code></li></ul>',
+        description='The listing format for the ActiveInventoryReport being created. Supported types are: AUCTION FIXED_PRICE',
     )
 
 
@@ -412,7 +410,7 @@ class InventoryTask(EbayModel):
     task_id: str | None = Field(
         None,
         alias='taskId',
-        description='The ID of the task. This ID is generated when the task was created by the <strong>createInventoryTask</strong> method.',
+        description='The ID of the task. This ID is generated when the task was created by the createInventoryTask method.',
     )
     status: FeedStatusEnum | None = Field(
         None,
@@ -429,7 +427,7 @@ class InventoryTask(EbayModel):
     completion_date: str | None = Field(
         None,
         alias='completionDate',
-        description='The timestamp when the task <strong>status</strong> went into the <code>COMPLETED</code>, <code>COMPLETED_WITH_ERROR</code>, or <code>PARTIALLY_PROCESSED</code> state. This field is only returned if the status is one of the three completed values.',
+        description='The timestamp when the task status went into the COMPLETED , COMPLETED_WITH_ERROR , or PARTIALLY_PROCESSED state. This field is only returned if the status is one of the three completed values.',
     )
     schema_version: str | None = Field(
         None,
@@ -439,7 +437,7 @@ class InventoryTask(EbayModel):
     detail_href: str | None = Field(
         None,
         alias='detailHref',
-        description='The path to the call URI used to retrieve the task. This field points to the <strong>getInventoryTask</strong> URI.',
+        description='The path to the call URI used to retrieve the task. This field points to the getInventoryTask URI.',
     )
     upload_summary: UploadSummary | None = Field(
         None,
@@ -460,7 +458,7 @@ class InventoryTaskCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of inventory tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method.<br /><br /><span class="tablenote"><strong>Note:</strong> Though this parameter is not required to be submitted in the request, the parameter defaults to <code>10</code> if omitted. Additionally, if this is the last or only page of the result set, the page may contain fewer tasks than the <strong>limit</strong> value submitted in the request.</span><br />To determine the number of pages in a result set, divide the total value (total number of tasks matching the input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getInventoryTasks</strong> calls to view all tasks matching the input criteria.',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of inventory tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -468,7 +466,7 @@ class InventoryTaskCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be specified in the request with the <strong>offset</strong> query parameter.<br /><br /><span class="tablenote"><strong>Note:</strong> The items in a paginated result set use a zero-based list, where the first item in the list has an offset of <code>0</code>.</span>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be specified in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list, where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
@@ -476,7 +474,7 @@ class InventoryTaskCollection(EbayModel):
     )
     tasks: list[InventoryTask] | None = Field(
         None,
-        description='An array of the inventory tasks on this page. The tasks are sorted by creation date.<br /><br /><span class="tablenote"><strong>Note:</strong> An empty array is returned if the filter criteria excludes all tasks.</span>',
+        description='An array of the inventory tasks on this page. The tasks are sorted by creation date. Note: An empty array is returned if the filter criteria excludes all tasks.',
     )
     total: int | None = Field(
         None,
@@ -488,17 +486,17 @@ class OrderFilterCriteria(EbayModel):
     creation_date_range: DateRange | None = Field(
         None,
         alias='creationDateRange',
-        description='The creation date range of the orders you want returned. Set the date range so it contains less than 10 days (maximum). If you do not specify a <strong>DateRange</strong>, results from the last 10 days will be returned by default.',
+        description='The creation date range of the orders you want returned. Set the date range so it contains less than 10 days (maximum). If you do not specify a DateRange , results from the last 10 days will be returned by default.',
     )
     modified_date_range: DateRange | None = Field(
         None,
         alias='modifiedDateRange',
-        description='The modified date range of the orders you want returned. <p> <span class="tablenote"><strong>Note:</strong> This container is for future use. At this time, the <strong>createOrderTask</strong> method only supports order creation date filters and not modified order date filters.</span></p>',
+        description='The modified date range of the orders you want returned. Note: This container is for future use. At this time, the createOrderTask method only supports order creation date filters and not modified order date filters.',
     )
     order_status: OrderStatusEnum | None = Field(
         None,
         alias='orderStatus',
-        description='The order status of the orders returned. If the filter is omitted from the <strong>createOrderTask</strong> call, orders that are in both <code>ACTIVE</code> and <code>COMPLETED</code> states are returned.',
+        description='The order status of the orders returned. If the filter is omitted from the createOrderTask call, orders that are in both ACTIVE and COMPLETED states are returned.',
     )
 
 
@@ -506,7 +504,7 @@ class OrderTask(EbayModel):
     completion_date: str | None = Field(
         None,
         alias='completionDate',
-        description='The timestamp when the task went into the <code>COMPLETED</code> or <code>COMPLETED_WITH_ERROR</code> state. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a <strong>getResultFile</strong> call to download the report.',
+        description='The timestamp when the task went into the COMPLETED or COMPLETED_WITH_ERROR state. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a getResultFile call to download the report.',
     )
     creation_date: str | None = Field(
         None, alias='creationDate', description='The date the task was created.'
@@ -531,7 +529,7 @@ class OrderTask(EbayModel):
     )
     status: FeedStatusEnum | None = Field(
         None,
-        description='The enumeration value that indicates the state of the task that was submitted in the request. See <strong>FeedStatusEnum</strong> for information. <p>The values <code>COMPLETED</code> and <code>COMPLETED_WITH_ERROR</code> indicate the Order Report file is ready to download.</p>',
+        description='The enumeration value that indicates the state of the task that was submitted in the request. See FeedStatusEnum for information. The values COMPLETED and COMPLETED_WITH_ERROR indicate the Order Report file is ready to download.',
     )
     task_id: str | None = Field(
         None,
@@ -552,7 +550,7 @@ class OrderTaskCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of order tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. <p> <span class="tablenote"><strong>Note:</strong> Though this parameter is not required to be submitted in the request, the parameter defaults to <code>10</code> if omitted.</span></p><p> <span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer tasks than the <strong>limit</strong> value. To determine the number of pages in a result set, divide the total value (total number of tasks matching input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getOrderTasks</strong> calls to view all tasks matching the input criteria.</span></p>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of order tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -560,7 +558,7 @@ class OrderTaskCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
@@ -580,11 +578,11 @@ class ScheduleTemplateResponse(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The feed type of the schedule template. <p> <span class="tablenote"><strong>Note:</strong> When calling <strong>createSchedule</strong> and <strong>updateSchedule</strong> methods, you must match the feed type specified by the schedule template (this <strong>feedType</strong>).</span></p>',
+        description='The feed type of the schedule template. Note: When calling createSchedule and updateSchedule methods, you must match the feed type specified by the schedule template (this feedType ).',
     )
     frequency: FrequencyEnum | None = Field(
         None,
-        description='This field specifies how often the schedule is generated. If set to <code>HALF_HOUR</code> or <code>ONE_HOUR</code>, you cannot set a <strong>preferredTriggerHour</strong> using <strong>createSchedule</strong> or <strong>updateSchedule</strong>.',
+        description='This field specifies how often the schedule is generated. If set to HALF_HOUR or ONE_HOUR , you cannot set a preferredTriggerHour using createSchedule or updateSchedule .',
     )
     name: str | None = Field(
         None, description='The template name provided by the template.'
@@ -596,7 +594,7 @@ class ScheduleTemplateResponse(EbayModel):
     )
     status: StatusEnum | None = Field(
         None,
-        description='The present status of the template. You cannot create or modify a schedule using a template with an <code>INACTIVE</code> status. ',
+        description='The present status of the template. You cannot create or modify a schedule using a template with an INACTIVE status.',
     )
     supported_configurations: list[SupportedConfiguration] | None = Field(
         None,
@@ -609,7 +607,7 @@ class ServiceMetricsTask(EbayModel):
     completion_date: str | None = Field(
         None,
         alias='completionDate',
-        description='The timestamp when the customer service metrics task went into the <code>COMPLETED</code> or <code>COMPLETED_WITH_ERROR</code> state. This field is only returned if the status is one of the two completed values. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a <strong>getResultFile</strong> call to download the report.',
+        description='The timestamp when the customer service metrics task went into the COMPLETED or COMPLETED_WITH_ERROR state. This field is only returned if the status is one of the two completed values. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a getResultFile call to download the report.',
     )
     creation_date: str | None = Field(
         None,
@@ -619,7 +617,7 @@ class ServiceMetricsTask(EbayModel):
     detail_href: str | None = Field(
         None,
         alias='detailHref',
-        description='The relative <strong>getCustomerServiceMetricTask</strong> call URI path to retrieve the corresponding task.',
+        description='The relative getCustomerServiceMetricTask call URI path to retrieve the corresponding task.',
     )
     feed_type: str | None = Field(
         None, alias='feedType', description='The feed type associated with the task.'
@@ -632,7 +630,7 @@ class ServiceMetricsTask(EbayModel):
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The schema version number of the file format. If omitted, the default value is used. <p><strong>Default value: </strong><code>1.0</code><p>',
+        description='The schema version number of the file format. If omitted, the default value is used. Default value: 1.0',
     )
     status: FeedStatusEnum | None = Field(
         None, description='An enumeration value that indicates the state of the task.'
@@ -646,7 +644,7 @@ class Task(EbayModel):
     completion_date: str | None = Field(
         None,
         alias='completionDate',
-        description='The timestamp when the task went into the <code>COMPLETED</code> or <code>COMPLETED_WITH_ERROR</code> state. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a <strong>getResultFile</strong> call to download the report.',
+        description='The timestamp when the task went into the COMPLETED or COMPLETED_WITH_ERROR state. This state means that eBay has compiled the report for the seller based on the seller’s filter criteria, and the seller can run a getResultFile call to download the report.',
     )
     creation_date: str | None = Field(
         None, alias='creationDate', description='The date the task was created.'
@@ -654,7 +652,7 @@ class Task(EbayModel):
     detail_href: str | None = Field(
         None,
         alias='detailHref',
-        description='The path to the call URI used to retrieve the task. This field points to the <strong>GetOrderTask</strong> URI if the task is for <code>LMS_ORDER_REPORT</code>, or it will be null if this task is for <code>LMS_ORDER_ACK</code>.',
+        description='The path to the call URI used to retrieve the task. This field points to the GetOrderTask URI if the task is for LMS_ORDER_REPORT , or it will be null if this task is for LMS_ORDER_ACK .',
     )
     feed_type: str | None = Field(
         None, alias='feedType', description='The feed type associated with the task.'
@@ -666,7 +664,7 @@ class Task(EbayModel):
     )
     status: FeedStatusEnum | None = Field(
         None,
-        description='The enumeration value that indicates the state of the task that was submitted in the request. See <strong>FeedStatusEnum</strong> for information. <p>The values <code>COMPLETED</code> and <code>COMPLETED_WITH_ERROR</code> indicate the Order Report file is ready to download.</p>',
+        description='The enumeration value that indicates the state of the task that was submitted in the request. See FeedStatusEnum for information. The values COMPLETED and COMPLETED_WITH_ERROR indicate the Order Report file is ready to download.',
     )
     task_id: str | None = Field(
         None,
@@ -683,11 +681,11 @@ class Task(EbayModel):
 class TaskCollection(EbayModel):
     href: str | None = Field(
         None,
-        description='The path to the call URI that produced the current page of results. ',
+        description='The path to the call URI that produced the current page of results.',
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. <p> <span class="tablenote"><strong>Note:</strong> Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.</span></p><p> <span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer tasks than the <strong>limit</strong> value. To determine the number of pages in a result set, divide the total value (total number of tasks matching input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getTasks</strong> calls to view all tasks matching the input criteria.</span></p>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -695,7 +693,7 @@ class TaskCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
@@ -703,7 +701,7 @@ class TaskCollection(EbayModel):
     )
     tasks: list[Task] | None = Field(
         None,
-        description='An array of the tasks on this page. The tasks are sorted by creation date. An empty array is returned if the filter criteria excludes all tasks. ',
+        description='An array of the tasks on this page. The tasks are sorted by creation date. An empty array is returned if the filter criteria excludes all tasks.',
     )
     total: int | None = Field(
         None, description='The total number of tasks that match the input criteria.'
@@ -717,7 +715,7 @@ class UserScheduleCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of schedules to return per page, from the result set. A result set is the complete set of schedules returned by the method. <p> <span class="tablenote"><strong>Note:</strong> Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.<p> <span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer tasks than the <strong>limit</strong> value. To determine the number of pages in a result set, divide the total value (total number of tasks matching input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getSchedules</strong> calls to view all tasks matching the input criteria.</span></p></span></p>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of schedules to return per page, from the result set. A result set is the complete set of schedules returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -725,7 +723,7 @@ class UserScheduleCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
@@ -744,7 +742,7 @@ class CreateInventoryTaskRequest(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The feed type associated with the inventory task you are about to create. Presently, only one feed type is available:<br><ul><li><code>LMS_ACTIVE_INVENTORY_REPORT</code></li></ul>See <a href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#merchant-data-reports-download-feed-types" target="_blank">Report download feed types</a> for more information.',
+        description='The feed type associated with the inventory task you are about to create. Presently, only one feed type is available: LMS_ACTIVE_INVENTORY_REPORT See Report download feed types for more information.',
     )
     filter_criteria: InventoryFilterCriteria | None = Field(
         None,
@@ -754,7 +752,7 @@ class CreateInventoryTaskRequest(EbayModel):
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The version number of the inventory task to use for the <strong>feedType</strong>.<br><br><span class="tablenote"><strong>Note:</strong> This field <strong>must</strong> have a value of <code>1.0</code>.</span>',
+        description='The version number of the inventory task to use for the feedType . Note: This field must have a value of 1.0 .',
     )
 
 
@@ -762,7 +760,7 @@ class CreateOrderTaskRequest(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The feed type associated with the task. The only presently supported value is <code>LMS_ORDER_REPORT</code>.<br><br>See <a href="/api-docs/sell/static/feed/lms-feeds-quick-reference.html#merchant-data-reports-download-feed-types" target="_blank">Report download feed types</a> for more information.',
+        description='The feed type associated with the task. The only presently supported value is LMS_ORDER_REPORT . See Report download feed types for more information.',
     )
     filter_criteria: OrderFilterCriteria | None = Field(
         None,
@@ -772,7 +770,7 @@ class CreateOrderTaskRequest(EbayModel):
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The schema version of the LMS OrderReport. For the <code>LMS_ORDER_REPORT</code> feed type, see the <a href="/devzone/merchant-data/CallRef/OrderReport.html#OrderReport" target="_blank">OrderReport</a> reference page to see the present schema version. The <strong>schemaVersion</strong> value is the version number shown at the top of the <strong>OrderReport</strong> page. <br /><br /><strong>Restriction: </strong> This value must be 1113 or higher. The OrderReport schema version is updated about every two weeks. All version numbers are odd numbers (even numbers are skipped). For example, the next release version after \'1113\' is \'1115\'.',
+        description='The schema version of the LMS OrderReport. For the LMS_ORDER_REPORT feed type, see the OrderReport reference page to see the present schema version. The schemaVersion value is the version number shown at the top of the OrderReport page. Restriction: This value must be 1113 or higher. The OrderReport schema version is updated about every two weeks.',
     )
 
 
@@ -780,7 +778,7 @@ class CreateServiceMetricsTaskRequest(EbayModel):
     feed_type: str | None = Field(
         None,
         alias='feedType',
-        description='The <strong>feedType</strong> specified for the customer service metric task being created. The report lists the transaction details that contribute to the service metrics evaluation. Supported types include:<p><code>CUSTOMER_SERVICE_METRICS_REPORT</code></p>',
+        description='The feedType specified for the customer service metric task being created. The report lists the transaction details that contribute to the service metrics evaluation. Supported types include: CUSTOMER_SERVICE_METRICS_REPORT',
     )
     filter_criteria: CustomerServiceMetricsFilterCriteria | None = Field(
         None,
@@ -790,7 +788,7 @@ class CreateServiceMetricsTaskRequest(EbayModel):
     schema_version: str | None = Field(
         None,
         alias='schemaVersion',
-        description='The version number of the customer service metric.<br><br><span class="tablenote"><strong>Note:</strong> This field <strong>must</strong> have a value of <code>1.0</code>.</span>',
+        description='The version number of the customer service metric. Note: This field must have a value of 1.0 .',
     )
 
 
@@ -800,7 +798,7 @@ class CustomerServiceMetricTaskCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. <p> <span class="tablenote"><strong>Note:</strong> Even though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.</span></p><p> <span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer tasks than the limit value. To determine the number of pages in a result set, divide the total value (total number of tasks matching input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getCustomerServiceMetricTasks</strong> calls to view all tasks matching the input criteria.</span></p>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of tasks to return per page, from the result set. A result set is the complete set of tasks returned by the method. Note: Even though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -808,7 +806,7 @@ class CustomerServiceMetricTaskCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before returning the first result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before returning the first result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
@@ -830,7 +828,7 @@ class ScheduleTemplateCollection(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request, which is the maximum number of schedule templates to return per page, from the result set. A result set is the complete set of schedule templates returned by the method. <p> <span class="tablenote"><strong>Note:</strong> Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.</span></p><p> <span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer tasks than the <strong>limit</strong> value. To determine the number of pages in a result set, divide the total value (total number of tasks matching input criteria) by this limit value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total tasks) and the <strong>limit</strong> value was <code>50</code> (show 50 tasks per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getScheduleTemplates</strong> calls to view all tasks matching the input criteria.</span></p>',
+        description='The value of the limit parameter submitted in the request, which is the maximum number of schedule templates to return per page, from the result set. A result set is the complete set of schedule templates returned by the method. Note: Though this parameter is not required to be submitted in the request, the parameter defaults to 10 if omitted.',
     )
     next: str | None = Field(
         None,
@@ -838,7 +836,7 @@ class ScheduleTemplateCollection(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,

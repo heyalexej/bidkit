@@ -18,7 +18,7 @@ class BookingEntryEnum(OpenStrEnum):
 class Buyer(EbayModel):
     username: str | None = Field(
         None,
-        description='The eBay user ID of the order\'s buyer.<br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description="The eBay user ID of the order's buyer. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .",
     )
 
 
@@ -28,7 +28,7 @@ class BuyerWithId(EbayModel):
     )
     username: str | None = Field(
         None,
-        description='The username of the buyer. <br><br><span class="tablenote"><b>Note:</b> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description='The username of the buyer. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
 
 
@@ -266,7 +266,7 @@ class FundingSource(EbayModel):
     )
     type: str | None = Field(
         None,
-        description="The string value returned here indicates the funding source. Possible values include the following:<ul><li><code>AVAILABLE_FUNDS</code>: transfer is funded with seller payout funds</li><li><code>CREDIT_CARD</code>: transfer is funded with seller's credit card</li><li><code>BANK</code>: transfer is funded with a direct debit to seller's bank account on file with eBay</li><li><code>PAY_UPON_INVOICE</code>: eBay will bill the seller for the transfer on the monthly invoice</li></ul>",
+        description="The string value returned here indicates the funding source. Possible values include the following: AVAILABLE_FUNDS : transfer is funded with seller payout funds CREDIT_CARD : transfer is funded with seller's credit card BANK : transfer is funded with a direct debit to seller's bank account on file with eBay PAY_UPON_INVOICE : eBay will bill the seller for the transfer on the monthly invoice",
     )
 
 
@@ -274,12 +274,12 @@ class PayoutDetails(EbayModel):
     payout_ids: list[str] | None = Field(
         None,
         alias='payoutIds',
-        description='This array indicates the list of true(actual) payout ids associated with a split payout. These values can be used as a path parameter for the <b>getPayout</b> method to retrieve details on the associated payouts.',
+        description='This array indicates the list of true(actual) payout ids associated with a split payout. These values can be used as a path parameter for the getPayout method to retrieve details on the associated payouts.',
     )
     payout_reference: str | None = Field(
         None,
         alias='payoutReference',
-        description='This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout id(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account.  This value can be used by the <b>filter</b> query parameter of the <b>getPayouts</b> method to get the monetary details of each true(actual) payout associated with the payoutReference. <br><br><span class="tablenote"><b>Note:</b>Split-payout functionality will <b>only</b> be available to mainland China sellers.</span>',
+        description='This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout id(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account.',
     )
 
 
@@ -292,16 +292,16 @@ class PayoutInstrument(EbayModel):
     instrument_type: str | None = Field(
         None,
         alias='instrumentType',
-        description='This value indicates the type of account that received the payout. The value returned in this field may be:<br><ul><li><code>BANK</code>: indicates that the payout was made to a seller\'s bank account.</li><li><code>CARD</code>: indicates that the payout went to a seller\'s debit card</li><li>The name of a digital wallet provider or payment processor (e.g., <code>PAYONEER</code>)</li></ul><span class="tablenote"><b>Note:</b> Only Payoneer is currently supported for sellers in mainland China. Card payouts are not currently available for sellers in mainland China.</span>',
+        description="This value indicates the type of account that received the payout. The value returned in this field may be: BANK : indicates that the payout was made to a seller's bank account. CARD : indicates that the payout went to a seller's debit card The name of a digital wallet provider or payment processor (e.g., PAYONEER ) Note: Only Payoneer is currently supported for sellers in mainland China.",
     )
     nickname: str | None = Field(
         None,
-        description='When <b>instrumentType</b> returns <code>BANK</code>, this value is the seller-provided nickname that the seller uses to represent the bank account that receives the payout.<br><br>When <b>instrumentType</b> returns <code>CARD</code>, this value is the debit card network for the debit card that receives the payout.<br><br>When <b>instrumentType</b> returns a provider of digital wallet or payment processing services, the value returned is the name of the service provider (e.g., <code>PAYONEER</code>).<br><br><span class="tablenote"><b>Note:</b> Card payouts are not currently available for sellers in mainland China.</span>',
+        description='When instrumentType returns BANK , this value is the seller-provided nickname that the seller uses to represent the bank account that receives the payout. When instrumentType returns CARD , this value is the debit card network for the debit card that receives the payout.',
     )
     payout_percentage: str | None = Field(
         None,
         alias='payoutPercentage',
-        description='This value indicates the current payout percentage allocated to a payout instrument. For example, <code>50</code> indicates that 50% of the payout goes to the instrument.<br><br>This field will be returned even when 100% of the payout funds are going to one payout instrument.<br><br>This field is only returned to sellers in mainland China.',
+        description='This value indicates the current payout percentage allocated to a payout instrument. For example, 50 indicates that 50% of the payout goes to the instrument. This field will be returned even when 100% of the payout funds are going to one payout instrument. This field is only returned to sellers in mainland China.',
     )
 
 
@@ -374,35 +374,35 @@ class Amount(EbayModel):
     converted_from_currency: CurrencyCodeEnum | None = Field(
         None,
         alias='convertedFromCurrency',
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> convertedFromValue</b> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the convertedFromValue field. This value is the pre-conversion currency. This field is only returned if/when currency conversion was applied by eBay.',
     )
     converted_from_value: str | None = Field(
         None,
         alias='convertedFromValue',
-        description='The monetary amount before any conversion is performed, in the currency specified by the <b> convertedFromCurrency</b> field. This value is the pre-conversion amount. The <b> value</b> field contains the converted amount of this value, in the currency specified by the <b> currency</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The monetary amount before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is the pre-conversion amount. The value field contains the converted amount of this value, in the currency specified by the currency field. This field is only returned if/when currency conversion was applied by eBay.',
     )
     converted_to_currency: CurrencyCodeEnum | None = Field(
         None,
         alias='convertedToCurrency',
-        description='<span class="tablenote"><b>Note:</b> This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response can <b>only</b> have a value of <code>CNY</code>.</span><br>The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b>convertedToValue</b> field. <br/><br/>This field is only returned for payouts to bank accounts when currency conversion was applied by eBay.',
+        description='Note: This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response can only have a value of CNY . The three-letter ISO 4217 code representing the currency of the amount in the convertedToValue field. This field is only returned for payouts to bank accounts when currency conversion was applied by eBay.',
     )
     converted_to_value: str | None = Field(
         None,
         alias='convertedToValue',
-        description='<span class="tablenote"><b>Note:</b> This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response <b>only</b> returns value in CNY.</span><br>The monetary value after any conversion is performed, in the currency specified by the <b>convertedToCurrency</b> field. This value is the converted amount. <br/><br/>The field is only returned for payouts to bank accounts when currency conversion was applied by eBay.',
+        description='Note: This field is only applicable for Mainland China sellers with an available CNY Bank payment instrument. This response only returns value in CNY. The monetary value after any conversion is performed, in the currency specified by the convertedToCurrency field. This value is the converted amount.',
     )
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description="A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. This field is always returned with any container using <b>Amount</b> type. <br><br><b>Default</b>: The currency of the authenticated user's country.",
+        description="A three-letter ISO 4217 code that indicates the currency of the amount in the value field. This field is always returned with any container using Amount type. Default : The currency of the authenticated user's country.",
     )
     exchange_rate: str | None = Field(
         None,
         alias='exchangeRate',
-        description='The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <b>value</b> field from the dollar value in the <b>convertedFromValue</b> field.<br><br> For sellers in mainland China, this field shows the exchange rate to convert the dollar value in the <b>value</b> field to the CNY value in the <b>convertedToValue</b> field.<br><br>This field is only returned when eBay does a currency version, and a currency conversion is generally needed if the buyer is viewing, or has purchased an item on an international site. <br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the value field from the dollar value in the convertedFromValue field. For sellers in mainland China, this field shows the exchange rate to convert the dollar value in the value field to the CNY value in the convertedToValue field.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <b>currency</b> field. This field is always returned with any container using <b>Amount</b> type.',
+        description='The monetary amount, in the currency specified by the currency field. This field is always returned with any container using Amount type.',
     )
 
 
@@ -410,12 +410,12 @@ class BalanceAdjustment(EbayModel):
     adjustment_amount: Amount | None = Field(
         None,
         alias='adjustmentAmount',
-        description='The seller payout balance amount that will be applied toward the charges outlined in the <b>charges</b> array.',
+        description='The seller payout balance amount that will be applied toward the charges outlined in the charges array.',
     )
     adjustment_type: BookingEntryEnum | None = Field(
         None,
         alias='adjustmentType',
-        description='The enumeration value returned here indicates if the charge is a <code>DEBIT</code> or a <code>CREDIT</code> to the seller. Generally, all transfer transaction types are going to be <code>DEBIT</code>, since the money is being transferred from the seller to eBay.',
+        description='The enumeration value returned here indicates if the charge is a DEBIT or a CREDIT to the seller. Generally, all transfer transaction types are going to be DEBIT , since the money is being transferred from the seller to eBay.',
     )
 
 
@@ -423,7 +423,7 @@ class Charge(EbayModel):
     cancellation_id: str | None = Field(
         None,
         alias='cancellationId',
-        description='The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order  cancellation.',
+        description='The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order cancellation.',
     )
     case_id: str | None = Field(
         None,
@@ -433,7 +433,7 @@ class Charge(EbayModel):
     charge_net_amount: Amount | None = Field(
         None,
         alias='chargeNetAmount',
-        description='This container shows the net amount of the charge, which is the total amount of the charge minus the total amount of fees credited towards this refund as per eBay policy. It is possible for there to be multiple charges from multiple orders with one transfer. The net aggregate amount for all charges found in the <b>charges</b> array can be found in the <b>transferDetail.totalChargeNetAmount</b> container.',
+        description='This container shows the net amount of the charge, which is the total amount of the charge minus the total amount of fees credited towards this refund as per eBay policy. It is possible for there to be multiple charges from multiple orders with one transfer. The net aggregate amount for all charges found in the charges array can be found in the transferDetail.totalChargeNetAmount container.',
     )
     inquiry_id: str | None = Field(
         None,
@@ -470,7 +470,7 @@ class DiscountDetail(EbayModel):
     offer_type: str | None = Field(
         None,
         alias='offerType',
-        description="The type of promotional discount applied through the activity's promotional offer <b>amount</b>. Examples include offer types such as <code>ETRS</code> (eBay Top Rated Seller) and <code>PROMOTION</code>.",
+        description="The type of promotional discount applied through the activity's promotional offer amount . Examples include offer types such as ETRS (eBay Top Rated Seller) and PROMOTION .",
     )
 
 
@@ -516,7 +516,7 @@ class FeeJurisdiction(EbayModel):
     region_name: str | None = Field(
         None,
         alias='regionName',
-        description='The name of the region to which the fee applies.<br/><br/>The set of valid <b>regionName</b> values returned is determined by the corresponding <b>regionType</b> value.<br/><br/><span class="tablenote"><strong>Note:</strong> Currently supported <b>regionName</b> values are standard two-character country or state codes.<br/><br/>Typical examples include:<ul><li><b>MX</b> (Mexico)</li><li><b>IN</b> (India)</li><li><b>US</b> (United States)</li><li><b>CA</b> (California)</li><li><b>VT</b> (Vermont)</li><li><b>ME</b> (Maine)</li></ul></span>',
+        description='The name of the region to which the fee applies. The set of valid regionName values returned is determined by the corresponding regionType value. Note: Currently supported regionName values are standard two-character country or state codes. Typical examples include: MX (Mexico) IN (India) US (United States) CA (California) VT (Vermont) ME (Maine)',
     )
     region_type: RegionTypeEnum | None = Field(
         None,
@@ -547,12 +547,12 @@ class OrderEarningFee(EbayModel):
 class OrderEarningsSummary(EbayModel):
     expenses: Amount | None = Field(
         None,
-        description='The aggregate amount of expenses for all orders included in the summary.<br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Expenses are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b>) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="The aggregate amount of expenses for all orders included in the summary. Note: Expenses are always in the seller's payout currency. Conversion-related fields (such as exchangeRate ) in this container do not apply to the order_earnings resource.",
     )
     gross_amount: Amount | None = Field(
         None,
         alias='grossAmount',
-        description='The aggregate gross amount for all orders included in the order earnings summary. This amount equals the item subtotal plus shipping and handling, and any seller-collected taxes paid by the buyer, minus any seller-offered discount.<br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Gross amount is always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b>) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="The aggregate gross amount for all orders included in the order earnings summary. This amount equals the item subtotal plus shipping and handling, and any seller-collected taxes paid by the buyer, minus any seller-offered discount. Note: Gross amount is always in the seller's payout currency.",
     )
     order_count: int | None = Field(
         None,
@@ -562,11 +562,11 @@ class OrderEarningsSummary(EbayModel):
     order_earnings: Amount | None = Field(
         None,
         alias='orderEarnings',
-        description='The aggregate earnings amount for all orders included in the summary, which includes the amount of order earnings after deducting expenses and any refunds from the gross amount.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Order earnings are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b>) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="The aggregate earnings amount for all orders included in the summary, which includes the amount of order earnings after deducting expenses and any refunds from the gross amount. Note: Order earnings are always in the seller's payout currency. Conversion-related fields (such as exchangeRate ) in this container do not apply to the order_earnings resource.",
     )
     refunds: Amount | None = Field(
         None,
-        description='The aggregate amount of all refunds issued for the orders included in the summary.<br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Refunds include gross refunds, gross claims, and gross payment disputes.</span></p><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Refunds are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b>) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="The aggregate amount of all refunds issued for the orders included in the summary. Note: Refunds include gross refunds, gross claims, and gross payment disputes. Note: Refunds are always in the seller's payout currency. Conversion-related fields (such as exchangeRate ) in this container do not apply to the order_earnings resource.",
     )
 
 
@@ -583,7 +583,7 @@ class OrderSummary(EbayModel):
     seller_collected_taxes: Amount | None = Field(
         None,
         alias='sellerCollectedTaxes',
-        description='The total amount of <a href="https://www.ebay.com/help/selling/fees-credits-invoices/taxes-import-charges?id=4121" target="_blank">tax collected by the seller</a> on all sold items for the order.',
+        description='The total amount of tax collected by the seller on all sold items for the order.',
     )
     shipping_and_handling_costs: Amount | None = Field(
         None,
@@ -600,12 +600,12 @@ class PayoutSummaryResponse(EbayModel):
     payout_count: int | None = Field(
         None,
         alias='payoutCount',
-        description='This integer value indicates the total count of payouts to the seller that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show <code>0</code>).',
+        description='This integer value indicates the total count of payouts to the seller that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0 ).',
     )
     transaction_count: int | None = Field(
         None,
         alias='transactionCount',
-        description='This integer value indicates the total count of monetary transactions (order payments, buyer refunds, and seller credits) associated with the payouts that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show <code>0</code>). If there is at least one payout that matches the input criteria, the value in this field will be at least <code>1</code>.',
+        description='This integer value indicates the total count of monetary transactions (order payments, buyer refunds, and seller credits) associated with the payouts that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0 ).',
     )
 
 
@@ -613,12 +613,12 @@ class Reference(EbayModel):
     reference_id: str | None = Field(
         None,
         alias='referenceId',
-        description='The identifier of the transaction as specified by the <strong>referenceType</strong>. For example, with a <strong>referenceType</strong> of <strong>item_id</strong>, the <strong>referenceId</strong> refers to a unique item. This item may have several <code>NON_SALE_CHARGE</code> transactions.',
+        description='The identifier of the transaction as specified by the referenceType . For example, with a referenceType of item_id , the referenceId refers to a unique item. This item may have several NON_SALE_CHARGE transactions.',
     )
     reference_type: ReferenceTypeEnum | None = Field(
         None,
         alias='referenceType',
-        description='An enumeration value that identifies the reference type associated with the <strong>referenceId</strong>.',
+        description='An enumeration value that identifies the reference type associated with the referenceId .',
     )
 
 
@@ -626,22 +626,22 @@ class SellerFundsSummaryResponse(EbayModel):
     available_funds: Amount | None = Field(
         None,
         alias='availableFunds',
-        description='This field represents the total amount of order funds that are available for a payout, but processing for a seller payout has not yet begun. If a seller wants to get more details on sales transactions that have yet to be processed, the seller can use the <strong>getTransactions</strong> method, and use the <strong>transactionStatus</strong> filter with its value set to <code>FUNDS_AVAILABLE_FOR_PAYOUT</code>.<br><br>This container will return 0.0 with the appropriate payout currency if there are no funds available to be processed for a payout.',
+        description='This field represents the total amount of order funds that are available for a payout, but processing for a seller payout has not yet begun. If a seller wants to get more details on sales transactions that have yet to be processed, the seller can use the getTransactions method, and use the transactionStatus filter with its value set to FUNDS_AVAILABLE_FOR_PAYOUT .',
     )
     funds_on_hold: Amount | None = Field(
         None,
         alias='fundsOnHold',
-        description='This field represents the total amount of order funds on hold. Seller payment holds can occur for different reasons. If a seller wants to get more details on sales transactions where funds are currently on hold, the seller can use the <strong>getTransactions</strong> method, and use the <strong>transactionStatus</strong> filter with its value set to <code>FUNDS_ON_HOLD</code>.<br><br>This container will return 0.0 with the appropriate payout currency if there are no seller payment holds that will eventually be processed for a payout.',
+        description='This field represents the total amount of order funds on hold. Seller payment holds can occur for different reasons. If a seller wants to get more details on sales transactions where funds are currently on hold, the seller can use the getTransactions method, and use the transactionStatus filter with its value set to FUNDS_ON_HOLD .',
     )
     processing_funds: Amount | None = Field(
         None,
         alias='processingFunds',
-        description='This field represents the total amount of order funds being prepared and processed for a seller payout. If a seller wants to get more details on sales transactions that are being processed, the seller can use the <strong>getTransactions</strong> method, and use the <strong>transactionStatus</strong> filter with its value set to <code>FUNDS_PROCESSING</code>.<br><br>This container will return 0.0 with the appropriate payout currency if there are no funds available to be processed for a payout.',
+        description='This field represents the total amount of order funds being prepared and processed for a seller payout. If a seller wants to get more details on sales transactions that are being processed, the seller can use the getTransactions method, and use the transactionStatus filter with its value set to FUNDS_PROCESSING .',
     )
     total_funds: Amount | None = Field(
         None,
         alias='totalFunds',
-        description='This field represents the total amount of order funds still due to be distributed to the seller through a seller payout. This field should equal the sum of the amounts returned in the following fields:<br><ul><li><b>processingFunds</b></li><li><b>availableFunds</b></li><li><b>fundsOnHold</b></li></ul><br>If no payout funds are due to the seller, a <code>204 - No Content</code>  status code will be returned along with an empty payload.',
+        description='This field represents the total amount of order funds still due to be distributed to the seller through a seller payout. This field should equal the sum of the amounts returned in the following fields: processingFunds availableFunds fundsOnHold If no payout funds are due to the seller, a 204 - No Content status code will be returned along with an empty payload.',
     )
 
 
@@ -688,47 +688,47 @@ class TransactionSummaryResponse(EbayModel):
     credit_amount: Amount | None = Field(
         None,
         alias='creditAmount',
-        description='This amount is the total dollar value of all the seller\'s sales and/or credits that match the input criteria. <br><br><span class="tablenote"><strong>Note:</strong> Unless the <b>transactionType</b> filter is used in the request to retrieve a specific type of monetary transaction, the <b>creditCount</b> and <b>creditAmount</b> fields account for both order sales and seller credits (the count and value is not distinguished between the two monetary transaction types).</span><br>If there are no sales/credits (<strong>creditCount</strong>=<code>0</code>), this container is not returned.',
+        description="This amount is the total dollar value of all the seller's sales and/or credits that match the input criteria.",
     )
     credit_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='creditBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>creditAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>CREDIT</code>.',
+        description='The enumeration value indicates whether the dollar amount in the creditAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be CREDIT .',
     )
     credit_count: int | None = Field(
         None,
         alias='creditCount',
-        description='This integer value indicates the total number of the seller\'s sales and/or credits that match the input criteria. <br><br><span class="tablenote"><strong>Note:</strong> Unless the <b>transactionType</b> filter is used in the request to retrieve a specific type of monetary transaction (sale, buyer refund, or seller credit), the <b>creditCount</b> and <b>creditAmount</b> fields account for both order sales and seller credits (the count and value is not distinguished between the two monetary transaction types).</span><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionType</strong> filter is used, and its value is set to either <code>REFUND</code>, <code>DISPUTE</code>, or <code>SHIPPING_LABEL</code>.',
+        description="This integer value indicates the total number of the seller's sales and/or credits that match the input criteria.",
     )
     dispute_amount: Amount | None = Field(
         None,
         alias='disputeAmount',
-        description='This amount is the total dollar value associated with any existing payment disputes that have been initiated by one or more buyers. Only the orders that match the input criteria are considered. The Payment Disputes methods in the Fulfillment API can be used by the seller to retrieve more information about any payment disputes.<br><br>If there are no payment disputes (<strong>disputeCount</strong>=<code>0</code>), this container is not returned.',
+        description='This amount is the total dollar value associated with any existing payment disputes that have been initiated by one or more buyers. Only the orders that match the input criteria are considered. The Payment Disputes methods in the Fulfillment API can be used by the seller to retrieve more information about any payment disputes.',
     )
     dispute_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='disputeBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>disputeAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>DEBIT</code>, but its possible that <code>CREDIT</code> could be returned if the seller contested one or more payment disputes and won the dispute.',
+        description='The enumeration value indicates whether the dollar amount in the disputeAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be DEBIT , but its possible that CREDIT could be returned if the seller contested one or more payment disputes and won the dispute.',
     )
     dispute_count: int | None = Field(
         None,
         alias='disputeCount',
-        description='This integer value indicates the total number of payment disputes that have been initiated by one or more buyers. Only the orders that match the input criteria are considered. The Payment Disputes methods in the Fulfillment API can be used by the seller to retrieve more information about any payment disputes. <br><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionType</strong> filter is used, and its value is set to any value other than <code>DISPUTE</code>.',
+        description='This integer value indicates the total number of payment disputes that have been initiated by one or more buyers. Only the orders that match the input criteria are considered. The Payment Disputes methods in the Fulfillment API can be used by the seller to retrieve more information about any payment disputes.',
     )
     loan_repayment_amount: Amount | None = Field(
         None,
         alias='loanRepaymentAmount',
-        description='The sum of all <code>LOAN_REPAYMENT</code> transactions (i.e., debit and credit,) that match the input criteria.<br><br>For example, within a specified <code>transactionDate</code> range, three <code>LOAN_REPAYMENT</code> transactions are identified:<ul><li>DEBIT of 15.00 USD</li><li>DEBIT of 10.00 USD</li><li>CREDIT of 5.00 USD</li></ul><br>The net amount of these three transactions is a <i>DEBIT of 20.00 USD</i> to the seller\'s account. Therefore, the value returned for <code>loanRepaymentAmount</code> will be <b>20.00 USD</b>.<br><br><span class="tablenote"><b>Note:</b> For this example:<ul><li>The value returned for <code>loanRepaymentCount</code> will be <b>3</b></li><li>The <code>loanRepaymentBookingEntry</code> will be <b>DEBIT</b></li></ul></span><br>If there are no transactions that match the input criteria (i.e., <code>loanRepaymentCount</code>=<b>0</b>,) this container is not returned.',
+        description="The sum of all LOAN_REPAYMENT transactions (i.e., debit and credit,) that match the input criteria. For example, within a specified transactionDate range, three LOAN_REPAYMENT transactions are identified: DEBIT of 15.00 USD DEBIT of 10.00 USD CREDIT of 5.00 USD The net amount of these three transactions is a DEBIT of 20.00 USD to the seller's account.",
     )
     loan_repayment_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='loanRepaymentBookingEntry',
-        description="The enumeration value indicates whether the <code>loanRepaymentAmount</code> is a <code>DEBIT</code> against, or a <code>CREDIT</code> to, the sellers's account.<br><br>For most <code>loanRepaymentAmount</code> transactions, <code>loanRepaymentBookingEntry</code> will be <b>DEBIT</b>. However, if a loan repayment transaction is reversed, that transaction will be shown as a <b>CREDIT</b>.",
+        description="The enumeration value indicates whether the loanRepaymentAmount is a DEBIT against, or a CREDIT to, the sellers's account. For most loanRepaymentAmount transactions, loanRepaymentBookingEntry will be DEBIT . However, if a loan repayment transaction is reversed, that transaction will be shown as a CREDIT .",
     )
     loan_repayment_count: int | None = Field(
         None,
         alias='loanRepaymentCount',
-        description='This integer value indicates the total number of <code>LOAN_REPAYMENT</code> transactions (i.e., <code>DEBIT</code> and <code>CREDIT</code>,) that match the input criteria.<br><br>This field is generally returned even if it equals <b>0</b>. However it will not be returned if a <code>transactionType</code> filter is used and its value has been set to any enumeration value other than <code>LOAN_REPAYMENT</code>.',
+        description='This integer value indicates the total number of LOAN_REPAYMENT transactions (i.e., DEBIT and CREDIT ,) that match the input criteria. This field is generally returned even if it equals 0 . However it will not be returned if a transactionType filter is used and its value has been set to any enumeration value other than LOAN_REPAYMENT .',
     )
     non_sale_charge_amount: Amount | None = Field(
         None,
@@ -748,92 +748,92 @@ class TransactionSummaryResponse(EbayModel):
     on_hold_amount: Amount | None = Field(
         None,
         alias='onHoldAmount',
-        description='This amount is the total dollar value of order sales where the associated funds are on hold. Only the orders that match the input criteria are considered.<br><br>If there are no seller payment holds (<strong>onHoldCount</strong>=<code>0</code>), this container is not returned.',
+        description='This amount is the total dollar value of order sales where the associated funds are on hold. Only the orders that match the input criteria are considered. If there are no seller payment holds ( onHoldCount = 0 ), this container is not returned.',
     )
     on_hold_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='onHoldBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>onHoldAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>CREDIT</code>, since on-hold funds should eventually be released as part of a payout to the seller once the hold is cleared.',
+        description='The enumeration value indicates whether the dollar amount in the onHoldAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be CREDIT , since on-hold funds should eventually be released as part of a payout to the seller once the hold is cleared.',
     )
     on_hold_count: int | None = Field(
         None,
         alias='onHoldCount',
-        description='This integer value indicates the total number of order sales where the associated funds are on hold. Only the orders that match the input criteria are considered.<br><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionStatus</strong> filter is used, and its value is set to any value other than <code>FUNDS_ON_HOLD</code>.',
+        description='This integer value indicates the total number of order sales where the associated funds are on hold. Only the orders that match the input criteria are considered. This field is generally returned, even if 0 , but it will not be returned if a transactionStatus filter is used, and its value is set to any value other than FUNDS_ON_HOLD .',
     )
     purchase_amount: Amount | None = Field(
         None,
         alias='purchaseAmount',
-        description='<span class="tablenote"><b>Note:</b> The <code>PURCHASE</code> transaction type is currently only applicable in the US marketplace.</span><br>This amount is the total dollar value of all the purchases that have been initiated by a seller using spendable funds that match the input criteria.<br><br>If there are no transactions that match the input criteria (i.e., <code><b>purchaseCount</b>=0</code>), this container will not be returned.',
+        description='Note: The PURCHASE transaction type is currently only applicable in the US marketplace. This amount is the total dollar value of all the purchases that have been initiated by a seller using spendable funds that match the input criteria. If there are no transactions that match the input criteria (i.e., purchaseCount =0 ), this container will not be returned.',
     )
     purchase_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='purchaseBookingEntry',
-        description='<span class="tablenote"><b>Note:</b> The <code>PURCHASE</code> transaction type is currently only applicable in the US marketplace.</span><br>This enumeration value indicates whether the dollar amount in the <b>purchase</b> field is a charge (debit) to the seller or a credit.',
+        description='Note: The PURCHASE transaction type is currently only applicable in the US marketplace. This enumeration value indicates whether the dollar amount in the purchase field is a charge (debit) to the seller or a credit.',
     )
     purchase_count: int | None = Field(
         None,
         alias='purchaseCount',
-        description='<span class="tablenote"><b>Note:</b> The <code>PURCHASE</code> transaction type is currently only applicable in the US marketplace.</span><br>This integer value indicates the total number of purchases that have been initiated by a seller using spendable funds that match the input criteria.<br><br>This field is generally returned, even if it equals <code>0</code>. However, it will not be returned if a <code>transactionType</code> filter is used and its value has been set to any enumeration value other than <code>PURCHASE</code>.',
+        description='Note: The PURCHASE transaction type is currently only applicable in the US marketplace. This integer value indicates the total number of purchases that have been initiated by a seller using spendable funds that match the input criteria. This field is generally returned, even if it equals 0 .',
     )
     refund_amount: Amount | None = Field(
         None,
         alias='refundAmount',
-        description='This amount is the total dollar value of buyer refunds that match the input criteria.<br><br>If there are no refunds (<strong>refundCount</strong>=<code>0</code>), this container is not returned.',
+        description='This amount is the total dollar value of buyer refunds that match the input criteria. If there are no refunds ( refundCount = 0 ), this container is not returned.',
     )
     refund_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='refundBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>refundAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>DEBIT</code> since this a refund from the seller to the buyer.',
+        description='The enumeration value indicates whether the dollar amount in the refundAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be DEBIT since this a refund from the seller to the buyer.',
     )
     refund_count: int | None = Field(
         None,
         alias='refundCount',
-        description='This integer value indicates the total number of buyer refunds that match the input criteria. <br><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionType</strong> filter is used, and its value is set to any value other than <code>REFUND</code>.',
+        description='This integer value indicates the total number of buyer refunds that match the input criteria. This field is generally returned, even if 0 , but it will not be returned if a transactionType filter is used, and its value is set to any value other than REFUND .',
     )
     shipping_label_amount: Amount | None = Field(
         None,
         alias='shippingLabelAmount',
-        description='This is the total dollar value of the eBay shipping labels purchased by the seller. <br><br><span class="tablenote"><b>Note:</b> eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in the amounts returned in this container.</span>',
+        description='This is the total dollar value of the eBay shipping labels purchased by the seller. Note: eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in the amounts returned in this container.',
     )
     shipping_label_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='shippingLabelBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>shippingLabelAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>DEBIT</code>, as eBay will charge the seller when eBay shipping labels are purchased, but it can be <code>CREDIT</code> if the seller was refunded for a shipping label or was possibly overcharged for a shipping label. <br><br><span class="tablenote"><b>Note:</b> eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in this field.</span>',
+        description='The enumeration value indicates whether the dollar amount in the shippingLabelAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be DEBIT , as eBay will charge the seller when eBay shipping labels are purchased, but it can be CREDIT if the seller was refunded for a shipping label or was possibly overcharged for a shipping label.',
     )
     shipping_label_count: int | None = Field(
         None,
         alias='shippingLabelCount',
-        description='This is the total number of eBay shipping labels purchased by the seller. The count returned here may depend on the specified input criteria.<br><br><span class="tablenote"><b>Note:</b> eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in the count returned in this container.</span>',
+        description='This is the total number of eBay shipping labels purchased by the seller. The count returned here may depend on the specified input criteria. Note: eBay SHIPPING_LABEL transactions paid through PayPal are not currently supported by the Finances API, so those transactions will not be reflected in the count returned in this container.',
     )
     transfer_amount: Amount | None = Field(
         None,
         alias='transferAmount',
-        description='This amount is the total dollar value of buyer refund transfers that match the input criteria.<br><br>If there are no transfers (<strong>refundCount</strong>=<code>0</code>), this container is not returned.',
+        description='This amount is the total dollar value of buyer refund transfers that match the input criteria. If there are no transfers ( refundCount = 0 ), this container is not returned.',
     )
     transfer_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='transferBookingEntry',
-        description='The enumeration value indicates whether the dollar amount in the <strong>transferAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>DEBIT</code> since this a seller reimbursement to eBay for buyer refunds.',
+        description='The enumeration value indicates whether the dollar amount in the transferAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be DEBIT since this a seller reimbursement to eBay for buyer refunds.',
     )
     transfer_count: int | None = Field(
         None,
         alias='transferCount',
-        description='This integer value indicates the total number of buyer refund transfers that match the input criteria. <br><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionType</strong> filter is used, and its value is set to any value other than <code>TRANSFER</code>.',
+        description='This integer value indicates the total number of buyer refund transfers that match the input criteria. This field is generally returned, even if 0 , but it will not be returned if a transactionType filter is used, and its value is set to any value other than TRANSFER .',
     )
     withdrawal_amount: Amount | None = Field(
         None,
         alias='withdrawalAmount',
-        description='This amount is the total dollar value of on-demand payouts (withdrawals) that match the input criteria.<br><br>If there are no withdrawals (<strong>withdrawalCount</strong>=<code>0</code>), this container is not returned.',
+        description='This amount is the total dollar value of on-demand payouts (withdrawals) that match the input criteria. If there are no withdrawals ( withdrawalCount = 0 ), this container is not returned.',
     )
     withdrawal_booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='withdrawalBookingEntry',
-        description="The enumeration value indicates whether the dollar amount in the <strong>withdrawalAmount</strong> field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be <code>DEBIT</code> since this transaction involves a debit to the seller's available payout funds.",
+        description="The enumeration value indicates whether the dollar amount in the withdrawalAmount field is a charge (debit) to the seller or a credit. Typically, the enumeration value returned here will be DEBIT since this transaction involves a debit to the seller's available payout funds.",
     )
     withdrawal_count: int | None = Field(
         None,
         alias='withdrawalCount',
-        description='This integer value indicates the total number of on-demand payouts (withdrawals) that match the input criteria. <br><br>This field is generally returned, even if <code>0</code>, but it will not be returned if a <strong>transactionType</strong> filter is used, and its value is set to any value other than <code>WITHDRAWAL</code>.',
+        description='This integer value indicates the total number of on-demand payouts (withdrawals) that match the input criteria. This field is generally returned, even if 0 , but it will not be returned if a transactionType filter is used, and its value is set to any value other than WITHDRAWAL .',
     )
 
 
@@ -841,7 +841,7 @@ class TransferDetail(EbayModel):
     balance_adjustment: BalanceAdjustment | None = Field(
         None,
         alias='balanceAdjustment',
-        description='This container shows the seller payout balance that will be applied toward the charges outlined in the <b>charges</b> array.',
+        description='This container shows the seller payout balance that will be applied toward the charges outlined in the charges array.',
     )
     charges: list[Charge] | None = Field(
         None,
@@ -850,7 +850,7 @@ class TransferDetail(EbayModel):
     total_charge_net_amount: Amount | None = Field(
         None,
         alias='totalChargeNetAmount',
-        description='This container shows the total amount that the seller owes for all of the charges outlined in the <b>charges</b> array.',
+        description='This container shows the total amount that the seller owes for all of the charges outlined in the charges array.',
     )
 
 
@@ -867,22 +867,22 @@ class BillingActivityLineItem(EbayModel):
     billing_transaction_id: str | None = Field(
         None,
         alias='billingTransactionId',
-        description='This field provides a unique identifier of the billing transaction. If a seller wants to view details on a specific billing transaction, they can use the <b>actvityId</b> filter and pass in a specific <b>billingTransactionId</b> value.',
+        description='This field provides a unique identifier of the billing transaction. If a seller wants to view details on a specific billing transaction, they can use the actvityId filter and pass in a specific billingTransactionId value.',
     )
     booking_entry: str | None = Field(
         None,
         alias='bookingEntry',
-        description="The value returned in this field will indicate if the billing transaction is a debit against the seller's account, or a credit. A debit is much more prevalent than a credit, but sometimes a listing fee will get reversed and they will get a credit for this fee. Possible values:<br><ul><li><code>DEBIT</code></li><li><code>CREDIT</code></li></ul>",
+        description="The value returned in this field will indicate if the billing transaction is a debit against the seller's account, or a credit. A debit is much more prevalent than a credit, but sometimes a listing fee will get reversed and they will get a credit for this fee. Possible values: DEBIT CREDIT",
     )
     fee_type: str | None = Field(
         None,
         alias='feeType',
-        description='This field describes the type of fee associated with the transaction. An example value is  <code>FinalValueFeeFixedFeePerOrder</code>.',
+        description='This field describes the type of fee associated with the transaction. An example value is FinalValueFeeFixedFeePerOrder .',
     )
     fee_type_description: str | None = Field(
         None,
         alias='feeTypeDescription',
-        description='This field contains the human-readable description of the fee type associated with the transaction. For example, <code>Final Value Fee</code>.',
+        description='This field contains the human-readable description of the fee type associated with the transaction. For example, Final Value Fee .',
     )
     listing_id: str | None = Field(
         None,
@@ -913,7 +913,7 @@ class BillingActivityResponse(EbayModel):
     )
     limit: int | None = Field(
         None,
-        description='The value of the <b>limit</b> parameter. This is the maximum number of line items, as filtered, of billing transactions to return per page from the result set.',
+        description='The value of the limit parameter. This is the maximum number of line items, as filtered, of billing transactions to return per page from the result set.',
     )
     next: str | None = Field(
         None,
@@ -921,7 +921,7 @@ class BillingActivityResponse(EbayModel):
     )
     offset: int | None = Field(
         None,
-        description='The value of the <b>offset</b> parameter. This field indicates how many results were skipped in the response. If an <b>offset</b> parameter was not included in the request, this value will default to <code>0</code>, returning the first page of results.',
+        description='The value of the offset parameter. This field indicates how many results were skipped in the response. If an offset parameter was not included in the request, this value will default to 0 , returning the first page of results.',
     )
     prev: str | None = Field(
         None,
@@ -929,7 +929,7 @@ class BillingActivityResponse(EbayModel):
     )
     total: int | None = Field(
         None,
-        description='The total number of billing transactions available that match the filter criteria. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>When the <b>total</b> value exceeds the <b>limit</b> value, there are multiple pages of results.</span></p>',
+        description='The total number of billing transactions available that match the filter criteria. Note: When the total value exceeds the limit value, there are multiple pages of results.',
     )
 
 
@@ -940,7 +940,7 @@ class Expense(EbayModel):
     )
     donations: list[OrderEarningFee] | None = Field(
         None,
-        description='This array shows the amount(s) of one or more donations that are submitted to eBay charity organizations for one or more orders. <br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Donations are always tied to specific items. When an item is listed with a charity contribution (for example, 10%), the donation is calculated per item at the time of sale. Order earnings factor in only the items within the order that are eligible for donation.</span></p>',
+        description='This array shows the amount(s) of one or more donations that are submitted to eBay charity organizations for one or more orders. Note: Donations are always tied to specific items. When an item is listed with a charity contribution (for example, 10%), the donation is calculated per item at the time of sale. Order earnings factor in only the items within the order that are eligible for donation.',
     )
     marketplace_fees: list[OrderEarningFee] | None = Field(
         None,
@@ -950,7 +950,7 @@ class Expense(EbayModel):
     shipping_labels: Amount | None = Field(
         None,
         alias='shippingLabels',
-        description='This container shows the total amount paid by the seller for eBay shipping labels for one or more orders.<br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Charges and credits for shipping labels purchased with non-eBay payment methods (for example, PayPal) are excluded from the order earnings calculation.</span></p>',
+        description='This container shows the total amount paid by the seller for eBay shipping labels for one or more orders. Note: Charges and credits for shipping labels purchased with non-eBay payment methods (for example, PayPal) are excluded from the order earnings calculation.',
     )
     value: str | None = Field(
         None,
@@ -982,12 +982,12 @@ class Fee(EbayModel):
 class OrderLineItem(EbayModel):
     donations: list[Fee] | None = Field(
         None,
-        description='The list of donations applied to the line item.<br><br><span class="tablenote"><b>Note: </b>Currently, this array is only returned if the seller chooses to donate a percentage of the sales proceeds to a charitable organization registered with the eBay for Charity program.</span>',
+        description='The list of donations applied to the line item. Note: Currently, this array is only returned if the seller chooses to donate a percentage of the sales proceeds to a charitable organization registered with the eBay for Charity program.',
     )
     fee_basis_amount: Amount | None = Field(
         None,
         alias='feeBasisAmount',
-        description="This amount is the order's total amount and equals what the buyer has paid. This value includes <b>transactions.amount</b>, <b>totalFeeAmount</b>, <b>eBayCollectedTaxAmount</b>, and shipping charges (if any).",
+        description="This amount is the order's total amount and equals what the buyer has paid. This value includes transactions.amount , totalFeeAmount , eBayCollectedTaxAmount , and shipping charges (if any).",
     )
     line_item_id: str | None = Field(
         None,
@@ -1014,12 +1014,12 @@ class Payout(EbayModel):
     last_attempted_payout_date: str | None = Field(
         None,
         alias='lastAttemptedPayoutDate',
-        description='This timestamp indicates the date/time when eBay last attempted to process a seller payout but it failed. This field is only returned if a seller payout fails, and the <strong>payoutStatus</strong> value shows <code>RETRYABLE_FAILED</code> or <code>TERMINAL_FAILED</code>. A seller can filter on the <b>lastAttemptedPayoutDate</b> in a <b>getPayouts</b> request.',
+        description='This timestamp indicates the date/time when eBay last attempted to process a seller payout but it failed. This field is only returned if a seller payout fails, and the payoutStatus value shows RETRYABLE_FAILED or TERMINAL_FAILED . A seller can filter on the lastAttemptedPayoutDate in a getPayouts request.',
     )
     payout_date: str | None = Field(
         None,
         alias='payoutDate',
-        description='This timestamp indicates when the seller payout began processing. The following format is used: <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>. For example, <code>2015-08-04T19:09:02.768Z</code>. This field is still returned even if the payout was pending but failed (<strong>payoutStatus</strong> value shows <code>RETRYABLE_FAILED</code> or <code>TERMINAL_FAILED</code>).',
+        description='This timestamp indicates when the seller payout began processing. The following format is used: YYYY-MM-DDTHH:MM:SS.SSSZ . For example, 2015-08-04T19:09:02.768Z . This field is still returned even if the payout was pending but failed ( payoutStatus value shows RETRYABLE_FAILED or TERMINAL_FAILED ).',
     )
     payout_id: str | None = Field(
         None,
@@ -1039,27 +1039,27 @@ class Payout(EbayModel):
     payout_reference: str | None = Field(
         None,
         alias='payoutReference',
-        description='This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout id(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account. <br><br><span class="tablenote"><b>Note: </b>Split-payout functionality will <b>only</b> be available to mainland China sellers.</span>',
+        description='This field contains the unique identifier for the Payout Reference. In split-payout cases, this is the unique identifier reference (not true payout). This field is only returned and will show the associated true(actual) payout id(s) when sellers in Mainland China enable split payouts between a Payoneer account and/or a bank account.',
     )
     payout_status: PayoutStatusEnum | None = Field(
         None,
         alias='payoutStatus',
-        description='This enumeration value indicates the current status of the seller payout. For a successful payout, the value returned will be <code>SUCCEEDED</code>. See the <strong>PayoutStatusEnum</strong> type for more details on each payout status value.',
+        description='This enumeration value indicates the current status of the seller payout. For a successful payout, the value returned will be SUCCEEDED . See the PayoutStatusEnum type for more details on each payout status value.',
     )
     payout_status_description: str | None = Field(
         None,
         alias='payoutStatusDescription',
-        description="This field provides more details about the current status of payout. The description returned here will correspond with enumeration value returned in the <strong>payoutStatus</strong> field. The following shows what description text might appear based on the different <strong>payoutStatus</strong> values:<ul><li><code>INITIATED</code>: <em>Preparing to send</em></li><li><code>SUCCEEDED</code>: <em>Funds sent</em></li><li><code>REVERSED</code>: <em>Waiting to retry : Money rejected by seller's bank</em></li><li><code>RETRYABLE_FAILED</code>: <em>Waiting to retry</em></li><li><code>TERMINAL_FAILED</code>: <em>Payout failed</em></li></ul>",
+        description='This field provides more details about the current status of payout. The description returned here will correspond with enumeration value returned in the payoutStatus field.',
     )
     total_amount: Amount | None = Field(
         None,
         alias='totalAmount',
-        description="This container indicates the sum of a seller's net payout amount plus the <code>EXPRESS_PAYOUT_FEE</code> charged by eBay. The is expressed as a numeric value and the currency used.",
+        description="This container indicates the sum of a seller's net payout amount plus the EXPRESS_PAYOUT_FEE charged by eBay. The is expressed as a numeric value and the currency used.",
     )
     total_fee: Amount | None = Field(
         None,
         alias='totalFee',
-        description='This container indicates the amount of the <code>EXPRESS_PAYOUT_FEE</code> charged by eBay when a seller requests payout to a debit card. The fee is expressed as a numeric value and the currency used.',
+        description='This container indicates the amount of the EXPRESS_PAYOUT_FEE charged by eBay when a seller requests payout to a debit card. The fee is expressed as a numeric value and the currency used.',
     )
     total_fee_details: list[Fee] | None = Field(
         None,
@@ -1069,26 +1069,26 @@ class Payout(EbayModel):
     transaction_count: int | None = Field(
         None,
         alias='transactionCount',
-        description='This integer value indicates the number of monetary transactions (all orders, refunds, and credits, etc.) that have occurred with the corresponding payout. Its value should always be at least <code>1</code>, since there is at least one order per seller payout.<br/><br/>For split payouts, each of the two sibling payouts would be considered its own transaction. Because of this, if a seller had a payout for one order, but split the order between two accounts, the value would be <code>2</code> instead of <code>1</code>.<br><br><span class="tablenote"><b>Note: </b>Split-payout functionality is <b>only</b> applicable to mainland China sellers. </span>',
+        description='This integer value indicates the number of monetary transactions (all orders, refunds, and credits, etc.) that have occurred with the corresponding payout. Its value should always be at least 1 , since there is at least one order per seller payout. For split payouts, each of the two sibling payouts would be considered its own transaction.',
     )
 
 
 class Payouts(EbayModel):
     href: str | None = Field(
         None,
-        description='The URI of the <b>getPayouts</b> call request that produced the current page of the result set.',
+        description='The URI of the getPayouts call request that produced the current page of the result set.',
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of payouts that may be returned per page of the result set. The <strong>limit</strong> value can be passed in as a query parameter, or if omitted, its value defaults to <code>20</code>. <br><br><span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer payouts than the <strong>limit</strong> value.  To determine the number of pages in a result set, divide the <b>total</b> value (total number of payouts matching input criteria) by this <strong>limit</strong> value, and then round up to the next integer. For example, if the <b>total</b> value was <code>120</code> (120 total payouts) and the <strong>limit</strong> value was <code>50</code> (show 50 payouts per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getPayouts</strong> calls to view all payouts matching the input criteria. </span><br><br><b>Maximum:</b> <code>200</code> <br> <b>Default:</b> <code>20</code>',
+        description='The maximum number of payouts that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20 . Note: If this is the last or only page of the result set, the page may contain fewer payouts than the limit value.',
     )
     next: str | None = Field(
         None,
-        description='The <b>getPayouts</b> call URI to use if you wish to view the next page of the result set. <br><br>This field is only returned if there is a next page of results to view based on the current input criteria.',
+        description='The getPayouts call URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.',
     )
     offset: int | None = Field(
         None,
-        description='This integer value indicates the actual position that the first payout returned on the current page has in the results set. So, if you wanted to view the 11th payout of the result set, you would set the <strong>offset</strong> value in the request to <code>10</code>. <br><br>In the request, you can use the <b>offset</b> parameter in conjunction with the <b>limit</b> parameter to control the pagination of the output. For example, if <b>offset</b> is set to <code>30</code> and <b>limit</b> is set to <code>10</code>, the call retrieves payouts 31 thru 40 from the resulting collection of payouts. <br><br> <span class="tablenote"><strong>Note:</strong> This feature employs a zero-based list, where the first item in the list has an offset of <code>0</code>.</span><br><br><b>Default:</b> <code>0</code> (zero)',
+        description='This integer value indicates the actual position that the first payout returned on the current page has in the results set. So, if you wanted to view the 11th payout of the result set, you would set the offset value in the request to 10 . In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output.',
     )
     payouts: list[Payout] | None = Field(
         None,
@@ -1096,11 +1096,11 @@ class Payouts(EbayModel):
     )
     prev: str | None = Field(
         None,
-        description='The <b>getPayouts</b> call URI to use if you wish to view the previous page of the result set. <br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.',
+        description='The getPayouts call URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.',
     )
     total: int | None = Field(
         None,
-        description='This integer value is the total number of payouts in the results set based on the current input criteria. Based on the total number of payouts that match the criteria, and on the <strong>limit</strong> and <strong>offset</strong> values, there may be additional pages in the results set.',
+        description='This integer value is the total number of payouts in the results set based on the current input criteria. Based on the total number of payouts that match the criteria, and on the limit and offset values, there may be additional pages in the results set.',
     )
 
 
@@ -1112,21 +1112,21 @@ class Transaction(EbayModel):
     booking_entry: BookingEntryEnum | None = Field(
         None,
         alias='bookingEntry',
-        description="The enumeration value returned in this field indicates if the monetary transaction amount is a (<code>CREDIT</code>) or a (<code>DEBIT</code>) to the seller's account. Typically, the <code>SALE</code> and <code>CREDIT</code> transaction types are credits to the seller's account, and the <code>REFUND</code>, <code>DISPUTE</code>, <code>SHIPPING_LABEL</code>, and <code>TRANSFER</code> transaction types are debits to the seller's account.",
+        description="The enumeration value returned in this field indicates if the monetary transaction amount is a ( CREDIT ) or a ( DEBIT ) to the seller's account. Typically, the SALE and CREDIT transaction types are credits to the seller's account, and the REFUND , DISPUTE , SHIPPING_LABEL , and TRANSFER transaction types are debits to the seller's account.",
     )
     buyer: Buyer | None = Field(
         None,
-        description='This is the unique eBay user ID for the buyer who purchased the order. This field is not returned for <code>TRANSFER</code> monetary transaction types.',
+        description='This is the unique eBay user ID for the buyer who purchased the order. This field is not returned for TRANSFER monetary transaction types.',
     )
     e_bay_collected_tax_amount: Amount | None = Field(
         None,
         alias='eBayCollectedTaxAmount',
-        description='This is the amount of sales tax that has been collected by eBay for an order.<br><br><span class="tablenote"><b>Note:</b> Sales tax applies only to <code>SALE</code> and <code>REFUND</code> transactions (<b>transactionType</b>).</span>',
+        description='This is the amount of sales tax that has been collected by eBay for an order. Note: Sales tax applies only to SALE and REFUND transactions ( transactionType ).',
     )
     fee_jurisdiction: FeeJurisdiction | None = Field(
         None,
         alias='feeJurisdiction',
-        description="This container stores information about region-specific fees that are charged to sellers.<br><br>This is returned for fees (i.e., <b>FeeTypeEnum</b> values,) that are mandated by a seller's governing jurisdiction.<br><br>For example:<ul><li><code>INCOME_TAX_WITHHOLDING</code></li><li><code>TAX_DEDUCTION_AT_SOURCE</code></li><li><code>VAT_WITHHOLDING</code></li></ul>",
+        description="This container stores information about region-specific fees that are charged to sellers. This is returned for fees (i.e., FeeTypeEnum values,) that are mandated by a seller's governing jurisdiction. For example: INCOME_TAX_WITHHOLDING TAX_DEDUCTION_AT_SOURCE VAT_WITHHOLDING",
     )
     fee_type: FeeTypeEnum | None = Field(
         None,
@@ -1141,7 +1141,7 @@ class Transaction(EbayModel):
     order_line_items: list[OrderLineItem] | None = Field(
         None,
         alias='orderLineItems',
-        description='This array either shows the order line item transactional fees related to a <code>SALE</code> transaction and deducted from the payout associated with that order, or it shows the transactional fee credits going back to the seller in the case of a <code>REFUND</code> transaction.<br><br><span class="tablenote"><strong>Note:</strong> In certain circumstances, transactional fees like <code>FINAL_VALUE_FEE</code> and <code>FINAL_VALUE_FEE_FIXED_PER_ORDER</code> are not deducted from a seller payout, but instead they are billed to the seller\'s account as "non-sale charges". When this happens, the <code>SALE</code> transaction entity will not have these fees under the <b>orderLineItems</b> array, but they will appear as separate <code>NON_SALE_CHARGE</code> transactions. When this happens, and you want to see those transactional fees for the order, one thing you can do is make another call to <b>getTransactions</b> and filter against the <b>orderId</b>. In the response, you will see the <code>SALE</code> transaction and the <code>NON_SALE_CHARGE</code> transactions applied against the order. See <a href="/api-docs/sell/finances/resources/transaction/methods/getTransactions#s0-1-28-4-7-5-6-Gettransactionalfeesforanorder-5" >Sample 6: Get transactional fees for an order</a> and <a href="/api-docs/sell/finances/resources/transaction/methods/getTransactions#s0-1-28-4-7-5-6-Getnon-salechargesforanorder-9">Sample 10: Get non-sale charges for an order</a> for examples.',
+        description='This array either shows the order line item transactional fees related to a SALE transaction and deducted from the payout associated with that order, or it shows the transactional fee credits going back to the seller in the case of a REFUND transaction.',
     )
     payments_entity: str | None = Field(
         None,
@@ -1156,7 +1156,7 @@ class Transaction(EbayModel):
     payout_id: str | None = Field(
         None,
         alias='payoutId',
-        description='The unique identifier of the seller payout associated with the monetary transaction. This identifier is generated once eBay begins processing the payout for the corresponding order. This field will not be returned if eBay has not yet begun processing the payout for an order.<br><br>This value can be used by the <b>filter</b> query parameter to get monetary transactions associated with the true(actual) payout associated with the <b>PayoutId</b>.<br><br><span class="tablenote"><b>Note:</b> In case of a split payout, always pick the first true(actual) payout id.</span> ',
+        description='The unique identifier of the seller payout associated with the monetary transaction. This identifier is generated once eBay begins processing the payout for the corresponding order. This field will not be returned if eBay has not yet begun processing the payout for an order.',
     )
     references: list[Reference] | None = Field(
         None,
@@ -1165,16 +1165,16 @@ class Transaction(EbayModel):
     sales_record_reference: str | None = Field(
         None,
         alias='salesRecordReference',
-        description='The Sales Record Number associated with a sales order. Sales Record Numbers are Selling Manager/Selling Manager Pro identifiers that are created at order checkout.<br><br><span class="tablenote"><strong>Note:</strong> For all orders originating after February 1, 2020, a value of <code>0</code> will be returned in this field. The Sales Record Number field has also been removed from Seller Hub. Instead of <strong>salesRecordReference</strong>, depend on <strong>orderId</strong> instead as the identifier of the order. The <strong>salesRecordReference</strong> field has been scheduled for deprecation, and a date for when this field will no longer be returned at all will be announced soon.</span>',
+        description='The Sales Record Number associated with a sales order. Sales Record Numbers are Selling Manager/Selling Manager Pro identifiers that are created at order checkout. Note: For all orders originating after February 1, 2020, a value of 0 will be returned in this field. The Sales Record Number field has also been removed from Seller Hub.',
     )
     taxes: list[Tax] | None = Field(
         None,
-        description='This array shows the tax type and amount applicable to the transaction. <br><br><span class="tablenote"><b>Note:</b> Currently, this array is only returned for tax charged against a purchased eBay shipping label.</span>',
+        description='This array shows the tax type and amount applicable to the transaction. Note: Currently, this array is only returned for tax charged against a purchased eBay shipping label.',
     )
     total_fee_amount: Amount | None = Field(
         None,
         alias='totalFeeAmount',
-        description='This amount is the total amount of selling fees paid for order. A breakdown of fees for each order line item can be found in the <b>orderLineItems</b> array.<br><br> This field is even returned if it is <code>0.0</code> (no fees deducted from seller payout).',
+        description='This amount is the total amount of selling fees paid for order. A breakdown of fees for each order line item can be found in the orderLineItems array. This field is even returned if it is 0.0 (no fees deducted from seller payout).',
     )
     total_fee_basis_amount: Amount | None = Field(
         None,
@@ -1184,54 +1184,54 @@ class Transaction(EbayModel):
     transaction_date: str | None = Field(
         None,
         alias='transactionDate',
-        description='This timestamp indicates when the monetary transaction (order purchase, buyer refund, seller credit) occurred. The following (UTC) format is used: <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>. For example, <code>2015-08-04T19:09:02.768Z</code>.',
+        description='This timestamp indicates when the monetary transaction (order purchase, buyer refund, seller credit) occurred. The following (UTC) format is used: YYYY-MM-DDTHH:MM:SS.SSSZ . For example, 2015-08-04T19:09:02.768Z .',
     )
     transaction_id: str | None = Field(
         None,
         alias='transactionId',
-        description='This field, when combined with the <a href="#response.transactions.transactionType" >transactionType</a> field, provide a unique identifier of the monetary transaction. A monetary transaction can be a sales order, an order refund to the buyer, a credit to the seller\'s account, a debit to the seller for the purchase of a shipping label, or a transaction where eBay recouped money from the seller if the seller lost a buyer-initiated payment dispute.',
+        description="This field, when combined with the transactionType field, provide a unique identifier of the monetary transaction. A monetary transaction can be a sales order, an order refund to the buyer, a credit to the seller's account, a debit to the seller for the purchase of a shipping label, or a transaction where eBay recouped money from the seller if the seller lost a buyer-initiated payment dispute.",
     )
     transaction_memo: str | None = Field(
         None,
         alias='transactionMemo',
-        description='This field applies to shipping label transactions, sales transactions where payout is on hold, and non-sale charge fees. The following are examples of how the field is used for each transaction type:<ul><li><b>Shipping label purchase</b>: the <b>transactionMemo</b> field gives details about a purchase, a refund, or a price adjustment to the cost of the shipping label.</li><li><b>Sales transactions with funds on hold</b>: the <b>transactionMemo</b> field provides information on the reason for the hold or when the hold will be released (e.g., "Funds on hold. Estimated release on Jun 1").</li><li><b>Non-sale charge fees</b>: the <b>transactionMemo</b> field will provide the type of fee that was charged, such as Promoted Offsite Fee.</li></ul>This field is only returned if applicable/available.',
+        description='This field applies to shipping label transactions, sales transactions where payout is on hold, and non-sale charge fees. The following are examples of how the field is used for each transaction type: Shipping label purchase : the transactionMemo field gives details about a purchase, a refund, or a price adjustment to the cost of the shipping label.',
     )
     transaction_status: TransactionStatusEnum | None = Field(
         None,
         alias='transactionStatus',
-        description='This enumeration value indicates the current status of the seller payout associated with the monetary transaction. See the <code>TransactionStatusEnum</code> type for more information on the different states.',
+        description='This enumeration value indicates the current status of the seller payout associated with the monetary transaction. See the TransactionStatusEnum type for more information on the different states.',
     )
     transaction_type: TransactionTypeEnum | None = Field(
         None,
         alias='transactionType',
-        description='This enumeration value indicates the type of monetary transaction. Examples of monetary transactions include a buyer\'s payment for an order, a refund to the buyer for a returned item or cancelled order, or a credit issued by eBay to the seller\'s account. For a complete list of monetary transaction types within the <strong>Finances API</strong>, see the <a href="/api-docs/sell/finances/types/pay:TransactionTypeEnum">TransactionTypeEnum</a> type.',
+        description="This enumeration value indicates the type of monetary transaction. Examples of monetary transactions include a buyer's payment for an order, a refund to the buyer for a returned item or cancelled order, or a credit issued by eBay to the seller's account. For a complete list of monetary transaction types within the Finances API , see the TransactionTypeEnum type.",
     )
 
 
 class Transactions(EbayModel):
     href: str | None = Field(
         None,
-        description='The URI of the <b>getTransactions</b> method request that produced the current page of the result set.',
+        description='The URI of the getTransactions method request that produced the current page of the result set.',
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of monetary transactions that may be returned per page of the result set. The <strong>limit</strong> value can be passed in as a query parameter, or if omitted, its value defaults to <code>20</code>. <br><br><span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer monetary transactions than the <strong>limit</strong> value.  To determine the number of pages in a result set, divide the <b>total</b> value (total number of monetary transactions matching input criteria) by this <strong>limit</strong> value, and then round up to the next integer. For example, if the <b>total</b> value was <code>120</code> (120 total monetary transactions) and the <strong>limit</strong> value was <code>50</code> (show 50 monetary transactions per page), the total number of pages in the result set is three, so the seller would have to make three separate <strong>getTransactions</strong> calls to view all monetary transactions matching the input criteria. </span><br><br><b>Maximum:</b> <code>200</code> <br> <b>Default:</b> <code>20</code>',
+        description='The maximum number of monetary transactions that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20 . Note: If this is the last or only page of the result set, the page may contain fewer monetary transactions than the limit value.',
     )
     next: str | None = Field(
         None,
-        description='The <b>getTransactions</b> method URI to use if you wish to view the next page of the result set. <br><br>This field is only returned if there is a next page of results to view based on the current input criteria.',
+        description='The getTransactions method URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.',
     )
     offset: int | None = Field(
         None,
-        description='This integer value indicates the actual position that the first monetary transaction returned on the current page has in the results set. So, if you wanted to view the 11th monetary transaction of the result set, you would set the <strong>offset</strong> value in the request to <code>10</code>. <br><br>In the request, you can use the <b>offset</b> parameter in conjunction with the <b>limit</b> parameter to control the pagination of the output. For example, if <b>offset</b> is set to <code>30</code> and <b>limit</b> is set to <code>10</code>, the method retrieves monetary transactions 31 thru 40 from the resulting collection of monetary transactions. <br><br> <span class="tablenote"><strong>Note:</strong> This feature employs a zero-based list, where the first item in the list has an offset of <code>0</code>.</span><br><br><b>Default:</b> <code>0</code> (zero)',
+        description='This integer value indicates the actual position that the first monetary transaction returned on the current page has in the results set. So, if you wanted to view the 11th monetary transaction of the result set, you would set the offset value in the request to 10 . In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output.',
     )
     prev: str | None = Field(
         None,
-        description='The <b>getTransactions</b> method URI to use if you wish to view the previous page of the result set. <br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.',
+        description='The getTransactions method URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.',
     )
     total: int | None = Field(
         None,
-        description='This integer value is the total amount of monetary transactions in the result set based on the current input criteria. Based on the total number of monetary transactions that match the criteria, and on the <strong>limit</strong> and <strong>offset</strong> values, there may be additional pages in the results set.',
+        description='This integer value is the total amount of monetary transactions in the result set based on the current input criteria. Based on the total number of monetary transactions that match the criteria, and on the limit and offset values, there may be additional pages in the results set.',
     )
     transactions: list[Transaction] | None = Field(
         None,
@@ -1248,7 +1248,7 @@ class Transfer(EbayModel):
     transaction_date: str | None = Field(
         None,
         alias='transactionDate',
-        description='This timestamp indicates the date/time of the transfer. The following (UTC) format is used: <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>. For example, <code>2020-08-04T19:09:02.768Z</code>',
+        description='This timestamp indicates the date/time of the transfer. The following (UTC) format is used: YYYY-MM-DDTHH:MM:SS.SSSZ . For example, 2020-08-04T19:09:02.768Z',
     )
     transfer_amount: Amount | None = Field(
         None,
@@ -1263,28 +1263,28 @@ class Transfer(EbayModel):
     transfer_id: str | None = Field(
         None,
         alias='transferId',
-        description='The unique identifier of the <code>TRANSFER</code> transaction type. This is the same value that was passed into the end of the call URI.',
+        description='The unique identifier of the TRANSFER transaction type. This is the same value that was passed into the end of the call URI.',
     )
 
 
 class EarningsSummary(EbayModel):
     expenses: Expense | None = Field(
         None,
-        description='This container provides the total expenses associated with an order, including:<br><ul><li>Fees and fee credits (transaction fees, other fees, and ad fees)</li><li>Shipping labels</li><li>Donations</li></ul>It is used by both the <b>getOrderEarnings</b> and <b>getOrderEarningsById</b> methods. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Expenses are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b> or converted from/to fields) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="This container provides the total expenses associated with an order, including: Fees and fee credits (transaction fees, other fees, and ad fees) Shipping labels Donations It is used by both the getOrderEarnings and getOrderEarningsById methods. Note: Expenses are always in the seller's payout currency.",
     )
     gross_amount: Amount | None = Field(
         None,
         alias='grossAmount',
-        description='This container shows the gross amount before any eBay deductions. This amount includes the item subtotal, buyer-paid shipping and handling, and seller-collected tax paid by the buyer. <br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>This amount does not include any taxes or fees that eBay collects from the buyer.</span></p><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Gross amount is always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b> or converted from/to fields) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="This container shows the gross amount before any eBay deductions. This amount includes the item subtotal, buyer-paid shipping and handling, and seller-collected tax paid by the buyer. Note: This amount does not include any taxes or fees that eBay collects from the buyer. Note: Gross amount is always in the seller's payout currency.",
     )
     order_earnings: Amount | None = Field(
         None,
         alias='orderEarnings',
-        description='This container shows your earnings after deducting expenses and any refunds from your gross amount.<p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Order earnings are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b> or converted from/to fields) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="This container shows your earnings after deducting expenses and any refunds from your gross amount. Note: Order earnings are always in the seller's payout currency. Conversion-related fields (such as exchangeRate or converted from/to fields) in this container do not apply to the order_earnings resource.",
     )
     refunds: Amount | None = Field(
         None,
-        description='This container includes refunds for returns, cases, cancellations, requests, and disputes. It does not include fee credits.<br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Refunds are always in the seller\'s payout currency. Conversion-related fields (such as <b>exchangeRate</b> or converted from/to fields) in this container do not apply to the <b>order_earnings</b> resource.</span></p>',
+        description="This container includes refunds for returns, cases, cancellations, requests, and disputes. It does not include fee credits. Note: Refunds are always in the seller's payout currency. Conversion-related fields (such as exchangeRate or converted from/to fields) in this container do not apply to the order_earnings resource.",
     )
 
 

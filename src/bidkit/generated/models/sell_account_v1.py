@@ -434,15 +434,15 @@ class CurrencyCodeEnum(OpenStrEnum):
 class CustomPolicyRequest(EbayModel):
     description: str | None = Field(
         None,
-        description='Contains the seller specified policy and policy terms.<br><br><span class="tablenote"><strong>Note:</strong> Always supply this field. If this field is not specified, any previous value is removed. Call the <a href="develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy">getCustomPolicy</a> method to return the present field value for this policy.</span><br><b>Max length:</b> 15,000',
+        description='Contains the seller specified policy and policy terms. Note: Always supply this field. If this field is not specified, any previous value is removed. Call the getCustomPolicy method to return the present field value for this policy. Max length: 15,000',
     )
     label: str | None = Field(
         None,
-        description='Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to seller specified policy information.<br><br><span class="tablenote"><strong>Note:</strong> Always supply this field. If this field is not specified, any previous value is removed. Call the <a href="develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy">getCustomPolicy</a> method to return the present field value for this policy.</span><br><b>Max length:</b> 65',
+        description='Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to seller specified policy information. Note: Always supply this field. If this field is not specified, any previous value is removed. Call the getCustomPolicy method to return the present field value for this policy. Max length: 65',
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.<br><br><span class="tablenote"><strong>Note:</strong> This field is visible only to the seller.</span><br><span class="tablenote"><strong>Note:</strong> Always supply this field. If this field is not specified, any previous value is removed. Call the <a href="develop/api/sell/account_api_v1#sell-account_api_v1-custom_policy-getcustompolicy">getCustomPolicy</a> method to return the present field value for this policy.</span><br><b>Max length:</b> 65',
+        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type. Note: This field is visible only to the seller. Note: Always supply this field. If this field is not specified, any previous value is removed. Call the getCustomPolicy method to return the present field value for this policy. Max length: 65',
     )
 
 
@@ -475,12 +475,12 @@ class KycCheck(EbayModel):
     data_required: DetailsType | None = Field(
         None,
         alias='dataRequired',
-        description='The enumeration value returned in this field categorizes the type of details needed for the KYC check. More information about the check is shown in the <b>detailMessage</b> and other applicable, corresponding fields.',
+        description='The enumeration value returned in this field categorizes the type of details needed for the KYC check. More information about the check is shown in the detailMessage and other applicable, corresponding fields.',
     )
     due_date: str | None = Field(
         None,
         alias='dueDate',
-        description='The timestamp in this field indicates the date by which the seller should resolve the KYC requirement.<br><br>The timestamp in this field uses the UTC date and time format described in the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" target="_blank">ISO 8601 Standard</a>. See below for this format and an example: <br><br><i>MM-DD-YYYY HH:MM:SS</i><br/><code>06-05-2020 10:34:18</code>',
+        description='The timestamp in this field indicates the date by which the seller should resolve the KYC requirement. The timestamp in this field uses the UTC date and time format described in the ISO 8601 Standard . See below for this format and an example: MM-DD-YYYY HH:MM:SS 06-05-2020 10:34:18',
     )
     remedy_url: str | None = Field(
         None,
@@ -489,12 +489,12 @@ class KycCheck(EbayModel):
     )
     alert: str | None = Field(
         None,
-        description="This field gives a short summary of what is required from the seller. An example might be, '<code>Upload bank document now.</code>'. The <b>detailMessage</b> field will often provide more details on what is required of the seller.",
+        description="This field gives a short summary of what is required from the seller. An example might be, ' Upload bank document now. '. The detailMessage field will often provide more details on what is required of the seller.",
     )
     detail_message: str | None = Field(
         None,
         alias='detailMessage',
-        description="This field gives a detailed message about what is required from the seller. An example might be, '<code>Please upload a bank document by 2020-08-01 to get your account back in good standing.</code>'.",
+        description="This field gives a detailed message about what is required from the seller. An example might be, ' Please upload a bank document by 2020-08-01 to get your account back in good standing. '.",
     )
 
 
@@ -502,7 +502,7 @@ class KycResponse(EbayModel):
     kyc_checks: list[KycCheck] | None = Field(
         None,
         alias='kycChecks',
-        description='This array contains one or more KYC checks required from a managed payments seller. The seller may need to provide more documentation and/or information about themselves, their company, or the bank account they are using for seller payouts.<br/><br/>If no KYC checks are currently required from the seller, this array is not returned, and the seller only receives a <code>204 No Content</code> HTTP status code.',
+        description='This array contains one or more KYC checks required from a managed payments seller. The seller may need to provide more documentation and/or information about themselves, their company, or the bank account they are using for seller payouts. If no KYC checks are currently required from the seller, this array is not returned, and the seller only receives a 204 No Content HTTP status code.',
     )
 
 
@@ -591,16 +591,16 @@ class PaymentsProgramOnboardingStepStatus(OpenStrEnum):
 class PaymentsProgramOnboardingSteps(EbayModel):
     name: str | None = Field(
         None,
-        description='The name of the step in the steps array. Over time, these names are subject to change as processes change. The output sample contains example step names. Review an actual call response for updated step names. ',
+        description='The name of the step in the steps array. Over time, these names are subject to change as processes change. The output sample contains example step names. Review an actual call response for updated step names.',
     )
     status: PaymentsProgramOnboardingStepStatus | None = Field(
         None,
-        description='This enumeration value indicates the status of the associated step. <p> <span class="tablenote"><strong>Note:</strong> Only one step can be <code>IN_PROGRESS</code> at a time.</span></p>',
+        description='This enumeration value indicates the status of the associated step. Note: Only one step can be IN_PROGRESS at a time.',
     )
     web_url: str | None = Field(
         None,
         alias='webUrl',
-        description='This URL provides access to the <code>IN_PROGRESS</code> step.',
+        description='This URL provides access to the IN_PROGRESS step.',
     )
 
 
@@ -650,22 +650,22 @@ class SalesTax(EbayModel):
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='The country code enumeration value identifies the country to which this sales tax rate applies.<br><br><span class="tablenote"><b>Note:</b> Sales-tax tables are available only for the US and Canada marketplaces. Therefore, the only supported values are:<ul><li><code>US</code></li><li><code>CA</code></li></ul></span>',
+        description='The country code enumeration value identifies the country to which this sales tax rate applies. Note: Sales-tax tables are available only for the US and Canada marketplaces. Therefore, the only supported values are: US CA',
     )
     sales_tax_jurisdiction_id: str | None = Field(
         None,
         alias='salesTaxJurisdictionId',
-        description='A unique ID that identifies the sales tax jurisdiction to which the sales tax rate applies.<br><br><span class="tablenote"><b>Note:</b> When the returned <code>countryCode</code> is <code>US</code>, the only supported return values for <code>salesTaxJurisdictionId</code> are:<ul><li><code>AS</code> (American Samoa)</li><li><code>GU</code> (Guam</li><li><code>MP</code> Northern Mariana Islands</li><li><code>PW (Palau)</li><li><code>VI</code> (US Virgin Islands)</li></ul></span>',
+        description='A unique ID that identifies the sales tax jurisdiction to which the sales tax rate applies. Note: When the returned countryCode is US , the only supported return values for salesTaxJurisdictionId are: AS (American Samoa) GU (Guam MP Northern Mariana Islands PW (Palau) VI (US Virgin Islands)',
     )
     sales_tax_percentage: str | None = Field(
         None,
         alias='salesTaxPercentage',
-        description='The sales tax rate that will be applied to sales price. The <b>shippingAndHandlingTaxed</b> value will indicate whether or not sales tax is also applied to shipping and handling charges<br><br>Although it is a string, a percentage value is returned here, such as <code>7.75</code>',
+        description='The sales tax rate that will be applied to sales price. The shippingAndHandlingTaxed value will indicate whether or not sales tax is also applied to shipping and handling charges Although it is a string, a percentage value is returned here, such as 7.75',
     )
     shipping_and_handling_taxed: bool | None = Field(
         None,
         alias='shippingAndHandlingTaxed',
-        description='If returned as <code>true</code>, sales tax is also applied to shipping and handling charges, and not just the total sales price of the order.',
+        description='If returned as true , sales tax is also applied to shipping and handling charges, and not just the total sales price of the order.',
     )
 
 
@@ -673,12 +673,12 @@ class SalesTaxBase(EbayModel):
     sales_tax_percentage: str | None = Field(
         None,
         alias='salesTaxPercentage',
-        description='This field is used to set the sales tax rate for the tax jurisdiction set in the call URI. When applicable to an order, this sales tax rate will be applied to sales price. The <b>shippingAndHandlingTaxed</b> value will indicate whether or not sales tax is also applied to shipping and handling charges<br><br>Although it is a string, a percentage value is set here, such as <code>7.75</code>.',
+        description='This field is used to set the sales tax rate for the tax jurisdiction set in the call URI. When applicable to an order, this sales tax rate will be applied to sales price. The shippingAndHandlingTaxed value will indicate whether or not sales tax is also applied to shipping and handling charges Although it is a string, a percentage value is set here, such as 7.75 .',
     )
     shipping_and_handling_taxed: bool | None = Field(
         None,
         alias='shippingAndHandlingTaxed',
-        description="This field is set to <code>true</code> if the seller wishes to apply sales tax to shipping and handling charges, and not just the total sales price of the order. Otherwise, this field's value should be set to <code>false</code>.",
+        description="This field is set to true if the seller wishes to apply sales tax to shipping and handling charges, and not just the total sales price of the order. Otherwise, this field's value should be set to false .",
     )
 
 
@@ -686,22 +686,22 @@ class SalesTaxInput(EbayModel):
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description='This parameter specifies the two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> code of the country for which a sales-tax table entry is to be created or updated.<br><br><span class="tablenote"><b>Note:</b> Sales-tax tables are available only for the US and Canada marketplaces. Therefore, the only supported values are:<ul><li><code>US</code></li><li><code>CA</code></li></ul></span>',
+        description='This parameter specifies the two-letter ISO 3166 code of the country for which a sales-tax table entry is to be created or updated. Note: Sales-tax tables are available only for the US and Canada marketplaces. Therefore, the only supported values are: US CA',
     )
     sales_tax_jurisdiction_id: str | None = Field(
         None,
         alias='salesTaxJurisdictionId',
-        description='This parameter specifies the ID of the tax jurisdiction for which a sales-tax table entry is to be created or updated.<br><br>Valid jurisdiction IDs can be retrieved using the <a href="/develop/api/sell/metadata_api#sell-metadata_api-country-getsalestaxjurisdictions" target="_blank ">getSalesTaxJurisdiction</a> method of the Metadata API.<br><br><span class="tablenote"><b>Note:</b> When <code>countryCode</code> is set to <code>US</code>, the only supported values for <code>jurisdictionId</code> are:<ul><li><code>AS</code> (American Samoa)</li><li><code>GU</code> (Guam)</li><li><code>MP</code> (Northern Mariana Islands)</li><li><code>PW</code> (Palau)</li><li><code>VI</code> (US Virgin Islands)</li></ul></span>',
+        description='This parameter specifies the ID of the tax jurisdiction for which a sales-tax table entry is to be created or updated. Valid jurisdiction IDs can be retrieved using the getSalesTaxJurisdiction method of the Metadata API.',
     )
     sales_tax_percentage: str | None = Field(
         None,
         alias='salesTaxPercentage',
-        description='This parameter specifies the sales tax rate for the specified <b>salesTaxJurisdictionId</b>. When applicable to an order, this sales tax rate will be applied to the sales price. The <b>shippingAndHandlingTaxed</b> value indicates whether or not sales tax is also applied to shipping and handling charges<br><br>Although it is a string, a percentage value is set here, such as <code>7.75</code>.',
+        description='This parameter specifies the sales tax rate for the specified salesTaxJurisdictionId . When applicable to an order, this sales tax rate will be applied to the sales price. The shippingAndHandlingTaxed value indicates whether or not sales tax is also applied to shipping and handling charges Although it is a string, a percentage value is set here, such as 7.75 .',
     )
     shipping_and_handling_taxed: bool | None = Field(
         None,
         alias='shippingAndHandlingTaxed',
-        description="This parameter is set to <code>true</code> if the seller wishes to apply sales tax to shipping and handling charges and not just the total sales price of an order. Otherwise, this parameter's value should be set to <code>false</code>.",
+        description="This parameter is set to true if the seller wishes to apply sales tax to shipping and handling charges and not just the total sales price of an order. Otherwise, this parameter's value should be set to false .",
     )
 
 
@@ -709,7 +709,7 @@ class SalesTaxes(EbayModel):
     sales_taxes: list[SalesTax] | None = Field(
         None,
         alias='salesTaxes',
-        description='An array of one or more sales-tax rate entries for a specified country.<br><br>If no sales-tax rate entries are set up, no response payload is returned, but an HTTP status code of <code>204 No Content</code> is returned.',
+        description='An array of one or more sales-tax rate entries for a specified country. If no sales-tax rate entries are set up, no response payload is returned, but an HTTP status code of 204 No Content is returned.',
     )
 
 
@@ -755,7 +755,7 @@ class UpdatedSalesTaxEntry(EbayModel):
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> code of the country associated with the sales-tax table entry.',
+        description='The two-letter ISO 3166 code of the country associated with the sales-tax table entry.',
     )
     jurisdiction_id: str | None = Field(
         None,
@@ -765,7 +765,7 @@ class UpdatedSalesTaxEntry(EbayModel):
     status_code: int | None = Field(
         None,
         alias='statusCode',
-        description='The HTTP status code for the call.<br><br><span class="tablenote"><b>Note:</b> The system returns one HTTP status code regardless of the number of sales-tax table entries provided. Therefore, the same HTTP <code>statusCode</code> will be listed for all sales-tax table entries returned in the payload.</span>',
+        description='The HTTP status code for the call. Note: The system returns one HTTP status code regardless of the number of sales-tax table entries provided. Therefore, the same HTTP statusCode will be listed for all sales-tax table entries returned in the payload.',
     )
 
 
@@ -780,10 +780,10 @@ class UpdatedSalesTaxResponse(EbayModel):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The base currency applied to the <b>value</b> field to establish a monetary amount.  <br><br>The currency is represented as a 3-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " title="https://www.iso.org " target="_blank">ISO 4217</a> currency code. For example, the code for the Canadian Dollar is <code>CAD</code>.<br><br><b>Default:</b> The default currency of the eBay marketplace that hosts the listing.',
+        description='The base currency applied to the value field to establish a monetary amount. The currency is represented as a 3-letter ISO 4217 currency code. For example, the code for the Canadian Dollar is CAD . Default: The default currency of the eBay marketplace that hosts the listing.',
     )
     value: str | None = Field(
-        None, description='The monetary amount in the specified <b>currency</b>.'
+        None, description='The monetary amount in the specified currency .'
     )
 
 
@@ -798,11 +798,11 @@ class BulkSalesTaxInput(EbayModel):
 class CategoryType(EbayModel):
     default: bool | None = Field(
         None,
-        description='<span class="tablenote"><strong>Note:</strong> This field has been deprecated and is no longer used.<ul><li>Do not include this field in any <b>create</b> or <b>update</b> method.</li><li>This field may be returned within the payload of a <b>get</b> method, but it can be ignored.</li></ul></span>',
+        description='Note: This field has been deprecated and is no longer used. Do not include this field in any create or update method. This field may be returned within the payload of a get method, but it can be ignored.',
     )
     name: CategoryTypeEnum | None = Field(
         None,
-        description='The category type to which the policy applies (motor vehicles or non-motor vehicles). <br><br><span class="tablenote"><strong>Note:</strong> The <code>MOTORS_VEHICLES</code> category type is not valid for return policies. eBay flows do not support the return of motor vehicles.</span>',
+        description='The category type to which the policy applies (motor vehicles or non-motor vehicles). Note: The MOTORS_VEHICLES category type is not valid for return policies. eBay flows do not support the return of motor vehicles.',
     )
 
 
@@ -810,15 +810,15 @@ class CompactCustomPolicyResponse(EbayModel):
     custom_policy_id: str | None = Field(
         None,
         alias='customPolicyId',
-        description='The unique custom policy identifier for the policy being returned.<br><br><span class="tablenote"><strong>Note:</strong> This value is automatically assigned by the system when the policy is created.</span>',
+        description='The unique custom policy identifier for the policy being returned. Note: This value is automatically assigned by the system when the policy is created.',
     )
     label: str | None = Field(
         None,
-        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information.<br><br><b>Max length:</b> 65",
+        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information. Max length: 65",
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.<br><br><span class="tablenote"><strong>Note:</strong> This field is visible only to the seller. </span><br><b>Max length:</b> 65',
+        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type. Note: This field is visible only to the seller. Max length: 65',
     )
     policy_type: CustomPolicyTypeEnum | None = Field(
         None,
@@ -835,15 +835,15 @@ class CustomPolicy(EbayModel):
     )
     description: str | None = Field(
         None,
-        description="Contains the seller's policy and policy terms. Buyers access this information from the View Item page for items to which the policy has been applied.<br><br><b>Max length:</b> 15,000",
+        description="Contains the seller's policy and policy terms. Buyers access this information from the View Item page for items to which the policy has been applied. Max length: 15,000",
     )
     label: str | None = Field(
         None,
-        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information.<br><br><b>Max length:</b> 65",
+        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information. Max length: 65",
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.<br><br><span class="tablenote"><strong>Note:</strong> This field is visible only to the seller. </span><br><b>Max length:</b> 65',
+        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type. Note: This field is visible only to the seller. Max length: 65',
     )
     policy_type: CustomPolicyTypeEnum | None = Field(
         None,
@@ -855,20 +855,20 @@ class CustomPolicy(EbayModel):
 class CustomPolicyCreateRequest(EbayModel):
     description: str | None = Field(
         None,
-        description="Contains the seller's policy and policy terms.<br><br><b>Max length:</b> 15,000",
+        description="Contains the seller's policy and policy terms. Max length: 15,000",
     )
     label: str | None = Field(
         None,
-        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information.<br><br><b>Max length:</b> 65",
+        description="Customer-facing label shown on View Item pages for items to which the policy applies. This seller-defined string is displayed as a system-generated hyperlink pointing to the seller's policy information. Max length: 65",
     )
     name: str | None = Field(
         None,
-        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type.<br><br><span class="tablenote"><strong>Note:</strong> This field is visible only to the seller. </span><br><b>Max length:</b> 65',
+        description='The seller-defined name for the custom policy. Names must be unique for policies assigned to the same seller and policy type. Note: This field is visible only to the seller. Max length: 65',
     )
     policy_type: CustomPolicyTypeEnum | None = Field(
         None,
         alias='policyType',
-        description='Specifies the type of custom policy being created. <br><br>Two Custom Policy types are supported: <ul><li>Product Compliance (PRODUCT_COMPLIANCE)</li> <li>Takeback (TAKE_BACK)</li></ul>',
+        description='Specifies the type of custom policy being created. Two Custom Policy types are supported: Product Compliance (PRODUCT_COMPLIANCE) Takeback (TAKE_BACK)',
     )
 
 
@@ -878,12 +878,12 @@ class CustomPolicyResponse(EbayModel):
         alias='customPolicies',
         description='This array contains the custom policies that match the input criteria.',
     )
-    href: str | None = Field(None, description='<i>This field is for future use.</i>')
-    limit: int | None = Field(None, description='<i>This field is for future use.</i>')
-    next: str | None = Field(None, description='<i>This field is for future use.</i>')
-    offset: int | None = Field(None, description='<i>This field is for future use.</i>')
-    prev: str | None = Field(None, description='<i>This field is for future use.</i>')
-    total: int | None = Field(None, description='<i>This field is for future use.</i>')
+    href: str | None = Field(None, description='This field is for future use.')
+    limit: int | None = Field(None, description='This field is for future use.')
+    next: str | None = Field(None, description='This field is for future use.')
+    offset: int | None = Field(None, description='This field is for future use.')
+    prev: str | None = Field(None, description='This field is for future use.')
+    total: int | None = Field(None, description='This field is for future use.')
 
 
 class Error(EbayModel):
@@ -927,7 +927,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='The category type for this error or warning. It is a string that can have one of three values:<ul><li><code>Application</code>: Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service\'s business logic, system failures, or request errors from a dependency.</li><li><code>Business</code>: Used when your service or a dependent service refused to continue processing on the resource because of a business rule violation such as "Seller does not ship item to Antarctica" or "Buyer ineligible to purchase an alcoholic item". Business errors are not syntactical input errors.</li><li><code>Request</code>: Used when there is anything wrong with the request, such as authentication, syntactical errors, rate limiting or missing headers, bad HTTP header values, and so on.</li></ul>',
+        description="The category type for this error or warning. It is a string that can have one of three values: Application : Indicates an exception or error occurred in the application code or at runtime. Examples include catching an exception in a service's business logic, system failures, or request errors from a dependency.",
     )
     domain: str | None = Field(
         None,
@@ -941,12 +941,12 @@ class ErrorDetailV3(EbayModel):
     input_ref_ids: list[str] | None = Field(
         None,
         alias='inputRefIds',
-        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use <i>JSONPath</i> notation.",
+        description="Identifies specific request elements associated with the error, if any. inputRefId's response is format specific. For JSON, use JSONPath notation.",
     )
     long_message: str | None = Field(
         None,
         alias='longMessage',
-        description='A more detailed explanation of the error than given in the <code>message</code> error field.',
+        description='A more detailed explanation of the error than given in the message error field.',
     )
     message: str | None = Field(
         None,
@@ -955,11 +955,11 @@ class ErrorDetailV3(EbayModel):
     output_ref_ids: list[str] | None = Field(
         None,
         alias='outputRefIds',
-        description='Identifies specific response elements associated with the error, if any. Path format is the same as <code>inputRefId</code>.',
+        description='Identifies specific response elements associated with the error, if any. Path format is the same as inputRefId .',
     )
     parameters: list[ErrorParameterV3] | None = Field(
         None,
-        description='This optional list of name/value pairs that contain context-specific <code>ErrorParameter</code> objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each <code>ErrorParameter</code> object consists of two fields, a <code>name</code> and a <code>value</code>.',
+        description='This optional list of name/value pairs that contain context-specific ErrorParameter objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each ErrorParameter object consists of two fields, a name and a value .',
     )
     subdomain: str | None = Field(
         None,
@@ -975,7 +975,7 @@ class PaymentsProgramOnboardingResponse(EbayModel):
     )
     steps: list[PaymentsProgramOnboardingSteps] | None = Field(
         None,
-        description='An array of the active process steps for payment onboarding and the status of each step. This array includes the step <strong>name</strong>, step <strong>status</strong>, and a <strong>webUrl</strong> to the <code>IN_PROGRESS</code> step. The step names are returned in sequential order. ',
+        description='An array of the active process steps for payment onboarding and the status of each step. This array includes the step name , step status , and a webUrl to the IN_PROGRESS step. The step names are returned in sequential order.',
     )
 
 
@@ -988,7 +988,7 @@ class PaymentsProgramResponse(EbayModel):
     payments_program_type: PaymentsProgramType | None = Field(
         None,
         alias='paymentsProgramType',
-        description='This parameter specifies the payment program whose status is returned by the call.  <br><br>Currently the only supported payments program is <code>EBAY_PAYMENTS</code>.',
+        description='This parameter specifies the payment program whose status is returned by the call. Currently the only supported payments program is EBAY_PAYMENTS .',
     )
     status: PaymentsProgramStatus | None = Field(
         None,
@@ -997,7 +997,7 @@ class PaymentsProgramResponse(EbayModel):
     was_previously_opted_in: bool | None = Field(
         None,
         alias='wasPreviouslyOptedIn',
-        description="If returned as <code>true</code>, the seller was at one point opted-in to the associated payment program, but they later opted out of the program. A value of <code>false</code> indicates the seller never opted-in to the program or if they did opt-in to the program, they never opted-out of it.  <br><br>It's important to note that the setting of this field does not indicate the seller's current status regarding the payment program. It is possible for this field to return <code>true</code> while the <b>status</b> field returns <code>OPTED_IN</code>.",
+        description="If returned as true , the seller was at one point opted-in to the associated payment program, but they later opted out of the program. A value of false indicates the seller never opted-in to the program or if they did opt-in to the program, they never opted-out of it. It's important to note that the setting of this field does not indicate the seller's current status regarding the payment program.",
     )
 
 
@@ -1005,7 +1005,7 @@ class Program(EbayModel):
     program_type: ProgramTypeEnum | None = Field(
         None,
         alias='programType',
-        description='The seller program to opt in to when part of an <b>optInToProgram</b> request, or out of when part of an  <b>optOutOfProgram</b> request. When returned in an <b>getOptedInPrograms</b> response, a separate <b>programType</b> field is returned for each seller program that the seller is opted in to.',
+        description='The seller program to opt in to when part of an optInToProgram request, or out of when part of an optOutOfProgram request. When returned in an getOptedInPrograms response, a separate programType field is returned for each seller program that the seller is opted in to.',
     )
 
 
@@ -1020,7 +1020,7 @@ class RateTable(EbayModel):
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='A two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> country code representing the eBay marketplace where the shipping rate table is defined.',
+        description='A two-letter ISO 3166 country code representing the eBay marketplace where the shipping rate table is defined.',
     )
     locality: ShippingOptionTypeEnum | None = Field(
         None,
@@ -1032,7 +1032,7 @@ class RateTable(EbayModel):
     rate_table_id: str | None = Field(
         None,
         alias='rateTableId',
-        description="A unique eBay-assigned ID for a seller's shipping rate table. These <b>rateTableId</b> values are used to associate shipping rate tables to fulfillment business policies or directly to listings through an add/revise/relist call in the Trading API.",
+        description="A unique eBay-assigned ID for a seller's shipping rate table. These rateTableId values are used to associate shipping rate tables to fulfillment business policies or directly to listings through an add/revise/relist call in the Trading API.",
     )
 
 
@@ -1040,7 +1040,7 @@ class RateTableResponse(EbayModel):
     rate_tables: list[RateTable] | None = Field(
         None,
         alias='rateTables',
-        description='An array of all shipping rate tables defined for a marketplace (or all marketplaces if no <b>country_code</b> query parameter is used). This array will be returned as empty if the seller has no defined shipping rate tables for the specified marketplace.',
+        description='An array of all shipping rate tables defined for a marketplace (or all marketplaces if no country_code query parameter is used). This array will be returned as empty if the seller has no defined shipping rate tables for the specified marketplace.',
     )
 
 
@@ -1048,12 +1048,12 @@ class RecipientAccountReference(EbayModel):
     reference_id: str | None = Field(
         None,
         alias='referenceId',
-        description='<span class="tablenote"><b>Note</b>: DO NOT USE THIS FIELD. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.</span>',
+        description='Note : DO NOT USE THIS FIELD. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.',
     )
     reference_type: RecipientAccountReferenceTypeEnum | None = Field(
         None,
         alias='referenceType',
-        description='<span class="tablenote"><b>Note</b>: DO NOT USE THIS FIELD. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.</span>',
+        description='Note : DO NOT USE THIS FIELD. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods.',
     )
 
 
@@ -1061,12 +1061,10 @@ class Region(EbayModel):
     region_name: str | None = Field(
         None,
         alias='regionName',
-        description='A string that indicates the name of a region, as defined by eBay. A "region" can be either a \'world region\' (e.g., the "Middle East" or "Southeast Asia"), a country (represented with a two-letter country code), a state or province (represented with a two-letter code), or a special domestic region within a country. <br><br>The <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> call in the Trading API can be used to retrieve the world regions and special domestic regions within a specific country. To get these enumeration values, call <b>GeteBayDetails</b> with the <b>DetailName</b> value set to <b>ExcludeShippingLocationDetails</b>.',
+        description='A string that indicates the name of a region, as defined by eBay. A "region" can be either a \'world region\' (e.g., the "Middle East" or "Southeast Asia"), a country (represented with a two-letter country code), a state or province (represented with a two-letter code), or a special domestic region within a country.',
     )
     region_type: RegionTypeEnum | None = Field(
-        None,
-        alias='regionType',
-        description="Reserved for future use. <!--The region's type, which can be one of the following: 'COUNTRY', 'COUNTRY_REGION', 'STATE_OR_PROVINCE', 'WORLD_REGION', or 'WORLDWIDE'.-->",
+        None, alias='regionType', description='Reserved for future use.'
     )
 
 
@@ -1074,12 +1072,12 @@ class RegionSet(EbayModel):
     region_excluded: list[Region] | None = Field(
         None,
         alias='regionExcluded',
-        description='An array of one or more <b>regionName</b> values that specify the areas to where a seller does not ship. A <b>regionExcluded</b> list should only be set in the top-level <b>shipToLocations</b> container and not within the <b>shippingServices.shipToLocations</b> container used to specify which shipping regions are serviced by each available shipping service option. <br><br>Many sellers are willing to ship to many international locations, but they may want to exclude some world regions or some countries as places they are willing to ship to.<br><br>This array will be returned as empty if no shipping regions are excluded with the fulfillment business policy.<br> <br><span class="tablenote"><b>Note: </b> The <b>regionExcluded</b> array is not applicable for motor vehicle business policies on the US, CA, or UK marketplaces. If this array is used in a <b>createFulfillmentPolicy</b> or <b>updateFulfillmentPolicy</b> request, it will be ignored.</span>',
+        description='An array of one or more regionName values that specify the areas to where a seller does not ship. A regionExcluded list should only be set in the top-level shipToLocations container and not within the shippingServices.shipToLocations container used to specify which shipping regions are serviced by each available shipping service option.',
     )
     region_included: list[Region] | None = Field(
         None,
         alias='regionIncluded',
-        description='An array of one or more <b>regionName</b> fields that specify the areas to where a seller ships. <br><br>Each eBay marketplace supports its own set of allowable shipping locations.<br> <br><span class="tablenote"><b>Note: </b> The <b>regionIncluded</b> array is not applicable for motor vehicle business policies on the US, CA, or UK marketplaces. If this array is used in a <b>createFulfillmentPolicy</b> or <b>updateFulfillmentPolicy</b> request, it will be ignored.</span>',
+        description='An array of one or more regionName fields that specify the areas to where a seller ships. Each eBay marketplace supports its own set of allowable shipping locations. Note: The regionIncluded array is not applicable for motor vehicle business policies on the US, CA, or UK marketplaces. If this array is used in a createFulfillmentPolicy or updateFulfillmentPolicy request, it will be ignored.',
     )
 
 
@@ -1091,7 +1089,7 @@ class SellerEligibilityResponse(EbayModel):
     )
     reason: SellerIneligibleReasonEnum | None = Field(
         None,
-        description='The reason why a seller is ineligible for the specified eBay advertising program.<br /><br />This field is only returned if the seller is ineligible for the eBay advertising program.',
+        description='The reason why a seller is ineligible for the specified eBay advertising program. This field is only returned if the seller is ineligible for the eBay advertising program.',
     )
     status: SellerEligibilityEnum | None = Field(
         None,
@@ -1114,12 +1112,12 @@ class SellingPrivileges(EbayModel):
     seller_registration_completed: bool | None = Field(
         None,
         alias='sellerRegistrationCompleted',
-        description="If this field is returned as <code>true</code>, the seller's registration is completed. If this field is returned as <code>false</code>, the registration process is not complete.",
+        description="If this field is returned as true , the seller's registration is completed. If this field is returned as false , the registration process is not complete.",
     )
     selling_limit: SellingLimit | None = Field(
         None,
         alias='sellingLimit',
-        description='This container lists the monthly cap for the quantity of items sold and total sales amount allowed for the seller\'s account. This container may not be returned if a seller does not have a monthly cap for total quantity sold and total sales amount. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>The selling limit value returned in <b>getPrivileges</b> may vary slightly from the value displayed in Seller Hub. The value in Seller Hub is an abbreviated figure, where rounding is applied.</span></p>',
+        description="This container lists the monthly cap for the quantity of items sold and total sales amount allowed for the seller's account. This container may not be returned if a seller does not have a monthly cap for total quantity sold and total sales amount. Note: The selling limit value returned in getPrivileges may vary slightly from the value displayed in Seller Hub.",
     )
 
 
@@ -1127,62 +1125,62 @@ class ShippingService(EbayModel):
     additional_shipping_cost: Amount | None = Field(
         None,
         alias='additionalShippingCost',
-        description='This container is used by the seller to cover the use case when a single buyer purchases multiple quantities of the same line item. This cost cannot exceed the corresponding <b>shippingCost</b> value. A seller will generally set this field when he/she wants to pass on a shipping discount to the buyer if that buyer purchases multiple quantities of a line item. <br><br>The seller can ship multiple quantities of the line item in the same package and pass on the shipping savings to the buyer.<br><br>If this field is not set, and a buyer purchases multiple quantities of an item, the seller can technically charge the same cost set in the <b>shippingCost</b> container for each individual item, but in general, it behooves both the seller and the buyer (and saves both parties money) if they discuss combined shipping.<br><br>This field is not applicable to auction listings or single-quantity, fixed-price listings.<br><br>This container is returned if set.',
+        description='This container is used by the seller to cover the use case when a single buyer purchases multiple quantities of the same line item. This cost cannot exceed the corresponding shippingCost value. A seller will generally set this field when he/she wants to pass on a shipping discount to the buyer if that buyer purchases multiple quantities of a line item.',
     )
     buyer_responsible_for_pickup: bool | None = Field(
         None,
         alias='buyerResponsibleForPickup',
-        description="This field should be included and set to <code>true</code> for a motor vehicle listing if it will be the buyer's responsibility to pick up the purchased motor vehicle after full payment is made. <br><br>This field is only applicable to motor vehicle listings. In the majority of motor vehicle listings, the seller does make the buyer responsible for pickup or shipment of the vehicle. <br><br>This field is returned if set.<br><br><b>Default</b>: false",
+        description="This field should be included and set to true for a motor vehicle listing if it will be the buyer's responsibility to pick up the purchased motor vehicle after full payment is made. This field is only applicable to motor vehicle listings. In the majority of motor vehicle listings, the seller does make the buyer responsible for pickup or shipment of the vehicle. This field is returned if set.",
     )
     buyer_responsible_for_shipping: bool | None = Field(
         None,
         alias='buyerResponsibleForShipping',
-        description="This field should be included and set to <code>true</code> for a motor vehicle listing if it will be the buyer's responsibility to arrange for shipment of a motor vehicle. <br><br>This field is only applicable to motor vehicle listings. In the majority of motor vehicle listings, the seller does make the buyer responsible for pickup or shipment of the vehicle. <br><br>This field is returned if set.<br><br><b>Default</b>: false",
+        description="This field should be included and set to true for a motor vehicle listing if it will be the buyer's responsibility to arrange for shipment of a motor vehicle. This field is only applicable to motor vehicle listings. In the majority of motor vehicle listings, the seller does make the buyer responsible for pickup or shipment of the vehicle. This field is returned if set. Default : false",
     )
     free_shipping: bool | None = Field(
         None,
         alias='freeShipping',
-        description="This field is included and set to <code>true</code> if the seller offers a free domestic shipping option to the buyer. <br><br>This field can only be included and set to <code>true</code> for the first domestic shipping service option specified in the <b>shippingServices</b> array (it is ignored if set for subsequent shipping services or for any international shipping service option). <br><br>The first specified shipping service option has a <b>sortOrder</b> value of <code>1</code> or if the <b>sortOrderId</b> field is not used, it is the shipping service option that's specified first in the <b>shippingServices</b> array.<br><br>This container is returned if set.",
+        description='This field is included and set to true if the seller offers a free domestic shipping option to the buyer. This field can only be included and set to true for the first domestic shipping service option specified in the shippingServices array (it is ignored if set for subsequent shipping services or for any international shipping service option).',
     )
     shipping_carrier_code: str | None = Field(
         None,
         alias='shippingCarrierCode',
-        description='This field sets/indicates the shipping carrier, such as <code>USPS</code>, <code>FedEx</code>, or <code>UPS</code>. Although this field uses the <b>string</b> type, the seller must pass in a pre-defined enumeration value here. <br><br>For a full list of shipping carrier enum values for a specified eBay marketplace, the <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> call of the <b>Trading API</b> can be used, and the <b>DetailName</b> field\'s value should be set to <code>ShippingCarrierDetails</code>. The enum values for each shipping carriers can be found in each <b>ShippingCarrierDetails.ShippingCarrier</b> field in the response payload.<br><br> This field is actually optional, as the shipping carrier is also tied into the <b>shippingServiceCode</b> enum value, and that field is required for every specified shipping service option.<br><br>This field is returned if set.',
+        description="This field sets/indicates the shipping carrier, such as USPS , FedEx , or UPS . Although this field uses the string type, the seller must pass in a pre-defined enumeration value here. For a full list of shipping carrier enum values for a specified eBay marketplace, the GeteBayDetails call of the Trading API can be used, and the DetailName field's value should be set to ShippingCarrierDetails .",
     )
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description="This container is used to set the shipping cost to ship one item using the corresponding shipping service option. This container is conditionally required if the seller is using flat-rate shipping and is not using a domestic or international shipping rate table. <br><br>This container is not necessary for calculated shipping, since eBay will calculate the shipping cost and display it in the View Item page based off of the potential buyer's ship-to location.<br><br>This value is automatically set to <code>0.0</code> for the first specified domestic shipping service option and if the corresponding <b>freeShipping</b> field is set to <code>true</code>.  <br><br>This container is returned if set for the policy.",
+        description='This container is used to set the shipping cost to ship one item using the corresponding shipping service option. This container is conditionally required if the seller is using flat-rate shipping and is not using a domestic or international shipping rate table.',
     )
     shipping_service_code: str | None = Field(
         None,
         alias='shippingServiceCode',
-        description='This field sets/indicates the domestic or international shipping service option, such as <code>USPSPriority</code>, <code>FedEx2Day</code>, or <code>UPS3rdDay</code>. Although this field uses the <b>string</b> type, the seller must pass in a pre-defined enumeration value here. <br><br>For a full list of shipping service option enum values for a specified eBay marketplace, the <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> call of the <b>Trading API</b> can be used, and the <b>DetailName</b> field\'s value should be set to <code>ShippingServiceDetails</code>. <br><br>The enum values for each shipping service option can be found in each <b>ShippingServiceDetails.ShippingService</b> field in the response payload. The seller must make sure that the shipping service option is still valid, which is indicated by a <code>true</code> value in the corresponding <b>ValidForSellingFlow</b> boolean field. International shipping service options are typically returned at the top of the response payload, and are indicated by an <b>InternationalService</b> boolean field that reads <code>true</code>. <br><br>The <b>InternationalService</b> boolean field is not returned at all for domestic shipping service options. <br><br> This field is required for every specified shipping service option.',
+        description='This field sets/indicates the domestic or international shipping service option, such as USPSPriority , FedEx2Day , or UPS3rdDay . Although this field uses the string type, the seller must pass in a pre-defined enumeration value here.',
     )
     ship_to_locations: RegionSet | None = Field(
         None,
         alias='shipToLocations',
-        description='This container is used to set the ship-to locations applicable to the corresponding shipping service option. Although the <b>regionExcluded</b> container is defined for <b>RegionSet</b> type and could technically be used here, it is recommened that only the <b>regionIncluded</b> container be used at the shipping service level. The excluded shipping regions (if any) can instead be set up in the top-level <b>regionExcluded</b> container. <br><br>The <b>regionIncluded</b> and <b>regionExcluded</b> containers define the geographical regions/countries/states or provinces/domestic regions where the seller does and doesn\'t ship to with this fulfillment policy.<br><br>To retrieve the valid geographical shipping region values, two-digit country values, or special domestic regions for an eBay marketplace, call <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> with <b>DetailName</b> value set to <code>ExcludeShippingLocationDetails</code>, then review the <b>ExcludeShippingLocationDetails</b> containers in the response for the strings you use in the <b>regionIncluded.regionName</b> field. <ul><li>For valid geographical region names, look for the <code>ExcludeShippingLocationDetails</code> containers in the <b>GeteBayDetails</b> response where the <b>Region</b> value is <code>Worldwide</code>, and the valid values will be shown in the corresponding <b>Location</b> fields.</li> <li>For valid two-digit country codes, look for <code>ExcludeShippingLocationDetails</code> in the <b>GeteBayDetails</b> response where the <b>Region</b> value is one of the defined geographical regions, and the valid values will be shown in the corresponding <b>Location</b> fields. Alternatively, you can find the two-digit country code values in the <a href="/api-docs/sell/account/types/ba:CountryCodeEnum">CountryCodeEnum</a> type definition.</li>  <li>For valid domestic region values, look for <code>ExcludeShippingLocationDetails</code> in the <b>GeteBayDetails</b> response where the <b>Region</b> value is either <code>Domestic Location</code> or <code>Additional Locations</code>, and the valid values will be shown in the corresponding <b>Location</b> fields.</li></ul> The <code>STATE_OR_PROVINCE</code> region type is only applicable to the US and Canada, and valid values for US states are the same <a href="https://about.usps.com/who-we-are/postal-history/state-abbreviations.htm ">two-digit abbreviations</a> used by the United States Postal Service, and valid values for Canadian provinces and territories are the same <a href="https://www.canadapost-postescanada.ca/cpc/en/support/articles/addressing-guidelines/symbols-and-abbreviations.page ">two-digit abbreviations</a> used by the Canada Post.',
+        description='This container is used to set the ship-to locations applicable to the corresponding shipping service option. Although the regionExcluded container is defined for RegionSet type and could technically be used here, it is recommened that only the regionIncluded container be used at the shipping service level.',
     )
     sort_order: int | None = Field(
         None,
         alias='sortOrder',
-        description='The integer value set in this field controls the order of the corresponding domestic or international shipping service option in the View Item and Checkout pages. <br><br>If the <b>sortOrder</b> field is not supplied, the order of domestic and international shipping service options is determined by the order in which they are listed in the API call. <br><br><b>Minimum</b>: 1<br><b>Maximum</b>: 4 (for domestic shipping service) or 5 (for international shipping service).',
+        description='The integer value set in this field controls the order of the corresponding domestic or international shipping service option in the View Item and Checkout pages. If the sortOrder field is not supplied, the order of domestic and international shipping service options is determined by the order in which they are listed in the API call.',
     )
     surcharge: Amount | None = Field(
         None,
-        description='<span class="tablenote"> <strong>Note: DO NOT USE THIS FIELD.</strong> Shipping surcharges for domestic shipping service options can no longer be set with fulfillment business policies, except through shipping rate tables. <br><br>To do this, a seller would set up a surcharge-based shipping rate table and specify the surcharge in that table. Then, the seller would need to associate this shipping rate table to the fulfillment business policy by specifying the unique ID of the shipping rate table through the <b>shippingOptions.rateTableId</b> field.</span><br>Shipping surcharges cannot be applied at all to international shipping service options.',
+        description='Note: DO NOT USE THIS FIELD. Shipping surcharges for domestic shipping service options can no longer be set with fulfillment business policies, except through shipping rate tables. To do this, a seller would set up a surcharge-based shipping rate table and specify the surcharge in that table.',
     )
 
 
 class TimeDuration(EbayModel):
     unit: TimeDurationUnitEnum | None = Field(
         None,
-        description='These enum values represent the time measurement unit, such as <code>DAY</code>. A span of time is defined when you apply the value specified in the <b>value</b> field to the value specified for <b>unit</b>. <br><br>See <b>TimeDurationUnitEnum</b> for a complete list of possible time-measurement units.',
+        description='These enum values represent the time measurement unit, such as DAY . A span of time is defined when you apply the value specified in the value field to the value specified for unit . See TimeDurationUnitEnum for a complete list of possible time-measurement units.',
     )
     value: int | None = Field(
         None,
-        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the <b>unit</b> field.',
+        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the unit field.',
     )
 
 
@@ -1195,34 +1193,34 @@ class InternationalReturnOverrideType(EbayModel):
     return_period: TimeDuration | None = Field(
         None,
         alias='returnPeriod',
-        description='This container indicates the number of calendar days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location.  <br><br>You must set the value to one that\'s accepted by the marketplace and category where the item is listed. Most categories support 30-day and 60-day return periods. For a definitive list of return periods for one or more categories, call <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies">getReturnPolicies</a> method of the <b>Metadata API</b>. <br><br>The <b>TimeDuration</b> type is used to set/indicate the return period, and you set the <b>unit</b> value to <code>DAY</code> and the <b>value</b> field to either <code>30</code> or <code>60</code> (or other value, as appropriate).  <br><br>Note that this value cannot be modified if the listing has bids or sales, or if the listing ends within 12 hours.  <br><br>This field is conditionally required if the <b>internationalOverride.returnsAccepted</b> field is set to <code>true</code>.',
+        description='This container indicates the number of calendar days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location. You must set the value to one that\'s accepted by the marketplace and category where the item is listed. Most categories support 30-day and 60-day return periods.',
     )
     returns_accepted: bool | None = Field(
         None,
         alias='returnsAccepted',
-        description='If set to <code>true</code>, the seller accepts international returns. If set to <code>false</code>, the seller does not accept international returns.  <br><br>This field is conditionally required if the seller chooses to have a separate international return policy.',
+        description='If set to true , the seller accepts international returns. If set to false , the seller does not accept international returns. This field is conditionally required if the seller chooses to have a separate international return policy.',
     )
     return_shipping_cost_payer: ReturnShippingCostPayerEnum | None = Field(
         None,
         alias='returnShippingCostPayer',
-        description="This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either <code>BUYER</code> or <code>SELLER</code>.  <br><br>Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs. Note that the seller is always responsible for return shipping costs for 'significantly not as described' (SNAD) issues.  <br><br>This field is conditionally required if the <b>internationalOverride.returnsAccepted</b> field is set to <code>true</code>.",
+        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either BUYER or SELLER . Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs.',
     )
 
 
 class PaymentMethod(EbayModel):
     brands: list[PaymentInstrumentBrandEnum] | None = Field(
         None,
-        description='<span class="tablenote"><b>Note</b>: This array is no longer applicable and should not be used. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods, including any credit card brands accepted. </span>',
+        description='Note : This array is no longer applicable and should not be used. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods, including any credit card brands accepted.',
     )
     payment_method_type: PaymentMethodTypeEnum | None = Field(
         None,
         alias='paymentMethodType',
-        description='This array is only applicable for listings supporting offline payment methods. See the <b>PaymentMethodTypeEnum</b> type for supported offline payment method enum values. If offline payments are enabled for the policy, provide at least one offline payment method.</p>',
+        description='This array is only applicable for listings supporting offline payment methods. See the PaymentMethodTypeEnum type for supported offline payment method enum values. If offline payments are enabled for the policy, provide at least one offline payment method.',
     )
     recipient_account_reference: RecipientAccountReference | None = Field(
         None,
         alias='recipientAccountReference',
-        description='<span class="tablenote"><b>Note</b>: This container is no longer applicable and should not be used. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods, including PayPal. </span>',
+        description='Note : This container is no longer applicable and should not be used. eBay now controls all electronic payment methods available for a marketplace, and a seller never has to specify any electronic payment methods, including PayPal.',
     )
 
 
@@ -1230,21 +1228,21 @@ class ReturnPolicy(EbayModel):
     category_types: list[CategoryType] | None = Field(
         None,
         alias='categoryTypes',
-        description='This container indicates which category group that the return policy applies to.<br><br><span class="tablenote"><b>Note</b>: Return business policies are not applicable to motor vehicle listings, so the <b>categoryTypes.name</b> value will always be <code>ALL_EXCLUDING_MOTORS_VEHICLES</code> for return business policies.</span>',
+        description='This container indicates which category group that the return policy applies to. Note : Return business policies are not applicable to motor vehicle listings, so the categoryTypes.name value will always be ALL_EXCLUDING_MOTORS_VEHICLES for return business policies.',
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages.  <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. Max length : 250",
     )
     extended_holiday_returns_offered: bool | None = Field(
         None,
         alias='extendedHolidayReturnsOffered',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer supports extended holiday returns. Any value supplied in this field is neither read nor returned.</p> ',
+        description='Important! This field is deprecated, since eBay no longer supports extended holiday returns. Any value supplied in this field is neither read nor returned.',
     )
     international_override: InternationalReturnOverrideType | None = Field(
         None,
         alias='internationalOverride',
-        description="This container shows the seller's international return policy settings. This container is only returned if the seller has set a separate international return policy for the business policy. International return policies are optional, even if the seller ships to international locations. If a separate international return policy is not set, all of the domestic return policy settings also apply to international orders.",
+        description="This container shows the seller's international return policy settings. This container is only returned if the seller has set a separate international return policy for the business policy. International return policies are optional, even if the seller ships to international locations.",
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1253,22 +1251,22 @@ class ReturnPolicy(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace.<br><br><b>Max length:</b> 64',
+        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace. Max length: 64',
     )
     refund_method: RefundMethodEnum | None = Field(
         None,
         alias='refundMethod',
-        description='This field indicates the refund method offered by the seller. Its value will be <code>MONEY_BACK</code> unless the seller is enabled for <b>Buy online, Pickup in Store</b> or <b>Click and Collect</b>, and then it might be <code>MERCHANDISE_CREDIT</code>. Getting their money back for returned items is always an option for buyers, regardless of what the seller sets in this field.',
+        description='This field indicates the refund method offered by the seller. Its value will be MONEY_BACK unless the seller is enabled for Buy online, Pickup in Store or Click and Collect , and then it might be MERCHANDISE_CREDIT . Getting their money back for returned items is always an option for buyers, regardless of what the seller sets in this field.',
     )
     restocking_fee_percentage: str | None = Field(
         None,
         alias='restockingFeePercentage',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns. If this field is included, it is ignored and it is no longer returned.</p>',
+        description='Important! This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns. If this field is included, it is ignored and it is no longer returned.',
     )
     return_instructions: str | None = Field(
         None,
         alias='returnInstructions',
-        description='This text-based field provides more details on seller-specified return instructions. This field is only returned if set for the return business policy.<br><p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies">getReturnPolicies</a> method of the <b>Metadata API</b>. Then you will look for the <b>policyDescriptionEnabled</b> field with a value of <code>true</code> for the eBay category.</span></p><br><b>Max length</b>: 5000 (8000 for DE)',
+        description='This text-based field provides more details on seller-specified return instructions. This field is only returned if set for the return business policy. Important! This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call getReturnPolicies method of the Metadata API .',
     )
     return_method: ReturnMethodEnum | None = Field(
         None,
@@ -1278,7 +1276,7 @@ class ReturnPolicy(EbayModel):
     return_period: TimeDuration | None = Field(
         None,
         alias='returnPeriod',
-        description='This container indicates the number of calendar days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location.  <br><br>Most categories support 30-day and 60-day return periods.<br><br><span class="tablenote"><b>Note</b>: Unless the seller has set a separate international return policy through the <b>internationalOverride</b> container, this return period will be valid for domestic and international returns (if the seller ships internationally).</span>',
+        description='This container indicates the number of calendar days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location. Most categories support 30-day and 60-day return periods.',
     )
     return_policy_id: str | None = Field(
         None,
@@ -1288,12 +1286,12 @@ class ReturnPolicy(EbayModel):
     returns_accepted: bool | None = Field(
         None,
         alias='returnsAccepted',
-        description='If this field is returned as <code>true</code>, the seller accepts returns. If set to <code>false</code>, the seller does not accept returns.<br><br><span class="tablenote"><strong>Note:</strong> Top-Rated sellers must accept item returns and the <b>handlingTime</b> should be set to zero days or one day for a listing to receive a Top-Rated Plus badge on the View Item or search result pages. For more information on eBay\'s Top-Rated seller program, see <a href="https://pages.ebay.com/help/sell/top-rated.html ">Becoming a Top Rated Seller and qualifying for Top Rated Plus benefits</a>.</span>',
+        description='If this field is returned as true , the seller accepts returns. If set to false , the seller does not accept returns. Note: Top-Rated sellers must accept item returns and the handlingTime should be set to zero days or one day for a listing to receive a Top-Rated Plus badge on the View Item or search result pages.',
     )
     return_shipping_cost_payer: ReturnShippingCostPayerEnum | None = Field(
         None,
         alias='returnShippingCostPayer',
-        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either <code>BUYER</code> or <code>SELLER</code>.  <br><br>Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs. Note that the seller is always responsible for return shipping costs for SNAD-related issues.',
+        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either BUYER or SELLER . Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs. Note that the seller is always responsible for return shipping costs for SNAD-related issues.',
     )
 
 
@@ -1301,45 +1299,45 @@ class ReturnPolicyRequest(EbayModel):
     category_types: list[CategoryType] | None = Field(
         None,
         alias='categoryTypes',
-        description='This container indicates which category group that the return policy applies to.<br><br><span class="tablenote"><b>Note</b>: Return business policies are not applicable to motor vehicle listings, so the <b>categoryTypes.name</b> value must be set to <code>ALL_EXCLUDING_MOTORS_VEHICLES</code> for return business policies.</span>',
+        description='This container indicates which category group that the return policy applies to. Note : Return business policies are not applicable to motor vehicle listings, so the categoryTypes.name value must be set to ALL_EXCLUDING_MOTORS_VEHICLES for return business policies.',
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages.  <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. Max length : 250",
     )
     extended_holiday_returns_offered: bool | None = Field(
         None,
         alias='extendedHolidayReturnsOffered',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer supports extended holiday returns. Any value supplied in this field is neither read nor returned.</p> ',
+        description='Important! This field is deprecated, since eBay no longer supports extended holiday returns. Any value supplied in this field is neither read nor returned.',
     )
     international_override: InternationalReturnOverrideType | None = Field(
         None,
         alias='internationalOverride',
-        description='This container is used by the seller to specify a separate  international return policy. If a separate international return policy is not defined by a seller, all of the domestic return policy settings will also apply to international orders.',
+        description='This container is used by the seller to specify a separate international return policy. If a separate international return policy is not defined by a seller, all of the domestic return policy settings will also apply to international orders.',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
         alias='marketplaceId',
-        description='The ID of the eBay marketplace to which this return business policy applies. ',
+        description='The ID of the eBay marketplace to which this return business policy applies.',
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace. <br><br><b>Max length</b>: 64',
+        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace. Max length : 64',
     )
     refund_method: RefundMethodEnum | None = Field(
         None,
         alias='refundMethod',
-        description='This field sets the refund method to use for returned items. Its value defaults to <code>MONEY_BACK</code> if omitted, so this field is only needed for <b>Buy online, Pickup in Store</b> or <b>Click and Collect</b> items where the seller is willing to offer merchandise credit as an additional refund method to buyers. Getting their money back for returned items is always an option for buyers, regardless of what the seller sets in this field.<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> If this field is not included in a return business policy, it will default to <code>MONEY_BACK</code>.</p>',
+        description='This field sets the refund method to use for returned items. Its value defaults to MONEY_BACK if omitted, so this field is only needed for Buy online, Pickup in Store or Click and Collect items where the seller is willing to offer merchandise credit as an additional refund method to buyers.',
     )
     restocking_fee_percentage: str | None = Field(
         None,
         alias='restockingFeePercentage',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns. If this field is included, it is ignored.</p>',
+        description='Important! This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns. If this field is included, it is ignored.',
     )
     return_instructions: str | None = Field(
         None,
         alias='returnInstructions',
-        description='This text-based field provides more details on seller-specified return instructions. <br><p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies">getReturnPolicies</a> method of the <b>Metadata API</b>. Then you will look for the <b>policyDescriptionEnabled</b> field with a value of <code>true</code> for the eBay category.</span></p><br><b>Max length</b>: 5000 (8000 for DE)',
+        description='This text-based field provides more details on seller-specified return instructions. Important! This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call getReturnPolicies method of the Metadata API . Then you will look for the policyDescriptionEnabled field with a value of true for the eBay category.',
     )
     return_method: ReturnMethodEnum | None = Field(
         None,
@@ -1349,17 +1347,17 @@ class ReturnPolicyRequest(EbayModel):
     return_period: TimeDuration | None = Field(
         None,
         alias='returnPeriod',
-        description='This container is used to specify the number of days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location.  <br><br>You must set the value to one that\'s accepted by the marketplace and category where the item is listed. Most categories support 30-day and 60-day return periods.  <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See <a href="/api-docs/user-guides/static/trading-user-guide/ebay-motors-parts-accessories-easy-returns.html"  target="_blank">Support for easy returns in Parts and Accessories</a> for details.</span></p> <br>For a definitive list of return periods for one or more categories, call <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies">getReturnPolicies</a> method of the <b>Metadata API</b>.<br><br>The return period is set using the <b>TimeDuration</b> type, where you set <b>unit</b> to <code>DAY</code> and <b>value</b> to either <code>30</code> or <code>60</code> (or other value, as appropriate).  <br><br>Note that this value cannot be modified if the listing has bids or sales, or if the listing ends within 12 hours.  <br><br><i>Required if </i> <b>returnsAccepted</b> is set to <code>true</code>.',
+        description='This container is used to specify the number of days that the buyer has to return an item. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location. You must set the value to one that\'s accepted by the marketplace and category where the item is listed. Most categories support 30-day and 60-day return periods.',
     )
     returns_accepted: bool | None = Field(
         None,
         alias='returnsAccepted',
-        description='If set to <code>true</code>, the seller accepts returns. If set to <code>false</code>, the seller does not accept returns.<br><p><span class="tablenote"><strong>Note:</strong>Top-Rated sellers must accept item returns and the <b>handlingTime</b> should be set to zero days or one day for a listing to receive a Top-Rated Plus badge on the View Item or search result pages. For more information on eBay\'s Top-Rated seller program, see <a href="http://pages.ebay.com/help/sell/top-rated.html ">Becoming a Top Rated Seller and qualifying for Top Rated Plus benefits</a>.</span></p>',
+        description='If set to true , the seller accepts returns. If set to false , the seller does not accept returns. Note: Top-Rated sellers must accept item returns and the handlingTime should be set to zero days or one day for a listing to receive a Top-Rated Plus badge on the View Item or search result pages.',
     )
     return_shipping_cost_payer: ReturnShippingCostPayerEnum | None = Field(
         None,
         alias='returnShippingCostPayer',
-        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either <code>BUYER</code> or <code>SELLER</code>. <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See <a href="/api-docs/user-guides/static/trading-user-guide/ebay-motors-parts-accessories-easy-returns.html"  target="_blank">Support for easy returns in Parts and Accessories</a> for details.</span></p> <br>Depending on the return policy and specifics of the return, either the buyer or the seller can be responsible for the return shipping costs. Note that the seller is always responsible for return shipping costs for SNAD-related issues.  <br><br>This field is conditionally required if <b>returnsAccepted</b> is set to <code>true</code>.',
+        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either BUYER or SELLER . Note: Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See Support for easy returns in Parts and Accessories for details.',
     )
 
 
@@ -1376,7 +1374,7 @@ class ReturnPolicyResponse(EbayModel):
     )
     total: int | None = Field(
         None,
-        description='The total number of return business policies retrieved in the result set.  <br><br>If no return business policies are defined for the specified marketplace, this field is returned with a value of <code>0</code>.',
+        description='The total number of return business policies retrieved in the result set. If no return business policies are defined for the specified marketplace, this field is returned with a value of 0 .',
     )
 
 
@@ -1392,21 +1390,21 @@ class SetReturnPolicyResponse(EbayModel):
     category_types: list[CategoryType] | None = Field(
         None,
         alias='categoryTypes',
-        description='This field always returns <code>ALL_EXCLUDING_MOTORS_VEHICLES</code> for return business policies, since return business policies are not applicable to motor vehicle listings.',
+        description='This field always returns ALL_EXCLUDING_MOTORS_VEHICLES for return business policies, since return business policies are not applicable to motor vehicle listings.',
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the return business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. Max length : 250",
     )
     extended_holiday_returns_offered: bool | None = Field(
         None,
         alias='extendedHolidayReturnsOffered',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer supports extended holiday returns. This field should no longer be returned.</p> ',
+        description='Important! This field is deprecated, since eBay no longer supports extended holiday returns. This field should no longer be returned.',
     )
     international_override: InternationalReturnOverrideType | None = Field(
         None,
         alias='internationalOverride',
-        description='This container is used by the seller to specify a separate  international return policy, and will only be returned if the seller has set a separate return policy for international orders. If a separate international return policy is not defined by a seller, all of the domestic return policy settings will also apply to international orders.',
+        description='This container is used by the seller to specify a separate international return policy, and will only be returned if the seller has set a separate return policy for international orders. If a separate international return policy is not defined by a seller, all of the domestic return policy settings will also apply to international orders.',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1415,22 +1413,22 @@ class SetReturnPolicyResponse(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace.<br><br><b>Max length:</b> 64',
+        description='A seller-defined name for this return business policy. Names must be unique for policies assigned to the same marketplace. Max length: 64',
     )
     refund_method: RefundMethodEnum | None = Field(
         None,
         alias='refundMethod',
-        description='If a seller indicates that they will accept buyer returns, this value will be <code>MONEY_BACK</code>.',
+        description='If a seller indicates that they will accept buyer returns, this value will be MONEY_BACK .',
     )
     restocking_fee_percentage: str | None = Field(
         None,
         alias='restockingFeePercentage',
-        description='<p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns.</p>',
+        description='Important! This field is deprecated, since eBay no longer allows sellers to charge a restocking fee for buyer remorse returns.',
     )
     return_instructions: str | None = Field(
         None,
         alias='returnInstructions',
-        description='This text-based field provides more details on seller-specified return instructions. <br><p class="tablenote"><span  style="color: #dd1e31;"><b>Important!</b></span> This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call <a href="/develop/api/sell/metadata_api#sell-metadata_api-marketplace-getreturnpolicies">getReturnPolicies</a> method of the <b>Metadata API</b>. Then you will look for the <b>policyDescriptionEnabled</b> field with a value of <code>true</code> for the eBay category.</span></p><br><b>Max length</b>: 5000 (8000 for DE)',
+        description='This text-based field provides more details on seller-specified return instructions. Important! This field is no longer supported on many eBay marketplaces. To see if a marketplace and eBay category does support this field, call getReturnPolicies method of the Metadata API . Then you will look for the policyDescriptionEnabled field with a value of true for the eBay category.',
     )
     return_method: ReturnMethodEnum | None = Field(
         None,
@@ -1440,7 +1438,7 @@ class SetReturnPolicyResponse(EbayModel):
     return_period: TimeDuration | None = Field(
         None,
         alias='returnPeriod',
-        description='This container specifies the amount of days that the buyer has to return the item after receiving it. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location. This container will be returned unless the business policy states that the seller does not accept returns. <br><p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See <a href="/api-docs/user-guides/static/trading-user-guide/ebay-motors-parts-accessories-easy-returns.html"  target="_blank">Support for easy returns in Parts and Accessories</a> for details.</span></p>',
+        description='This container specifies the amount of days that the buyer has to return the item after receiving it. The return period begins when the item is marked "delivered" at the buyer\'s specified ship-to location. This container will be returned unless the business policy states that the seller does not accept returns.',
     )
     return_policy_id: str | None = Field(
         None,
@@ -1450,12 +1448,12 @@ class SetReturnPolicyResponse(EbayModel):
     returns_accepted: bool | None = Field(
         None,
         alias='returnsAccepted',
-        description='If set to <code>true</code>, the seller accepts returns. If set to <code>false</code>, this field indicates that the seller does not accept returns.',
+        description='If set to true , the seller accepts returns. If set to false , this field indicates that the seller does not accept returns.',
     )
     return_shipping_cost_payer: ReturnShippingCostPayerEnum | None = Field(
         None,
         alias='returnShippingCostPayer',
-        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either <code>BUYER</code> or <code>SELLER</code>.  <p><span class="tablenote"><span style="color:#004680"><strong>Note: </strong>Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See <a href="/api-docs/user-guides/static/trading-user-guide/ebay-motors-parts-accessories-easy-returns.html"  target="_blank">Support for easy returns in Parts and Accessories</a> for details.</span></p> <br>Note that the seller is always responsible for return shipping costs for SNAD-related issues.  <br><br>This container will be returned unless the business policy states that the seller does not accept returns.',
+        description='This field indicates who is responsible for paying for the shipping charges for returned items. The field can be set to either BUYER or SELLER . Note: Eligible Parts & Accessories (P&A) listings require sellers to offer buyers free returns with a minimum return period of 30 days. See Support for easy returns in Parts and Accessories for details.',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1467,47 +1465,47 @@ class ShippingOption(EbayModel):
     cost_type: ShippingCostTypeEnum | None = Field(
         None,
         alias='costType',
-        description='This field defines whether the shipping cost model is <code>FLAT_RATE</code> (the same rate for all buyers, or buyers within a region if shipping rate tables are used) or <code>CALCULATED</code> (the shipping rate varies by the ship-to location and size and weight of the package). <br><br>This field is conditionally required if any shipping service options are specified (domestic and/or international).',
+        description='This field defines whether the shipping cost model is FLAT_RATE (the same rate for all buyers, or buyers within a region if shipping rate tables are used) or CALCULATED (the shipping rate varies by the ship-to location and size and weight of the package). This field is conditionally required if any shipping service options are specified (domestic and/or international).',
     )
     insurance_fee: Amount | None = Field(
         None,
         alias='insuranceFee',
-        description="This field has been deprecated. <br><br>Shipping insurance is offered only via a shipping carrier's shipping services and is no longer available via eBay shipping policies.",
+        description="This field has been deprecated. Shipping insurance is offered only via a shipping carrier's shipping services and is no longer available via eBay shipping policies.",
     )
     insurance_offered: bool | None = Field(
         None,
         alias='insuranceOffered',
-        description="This field has been deprecated. <br><br>Shipping insurance is offered only via a shipping carrier's shipping services and is no longer available via eBay shipping policies.",
+        description="This field has been deprecated. Shipping insurance is offered only via a shipping carrier's shipping services and is no longer available via eBay shipping policies.",
     )
     option_type: ShippingOptionTypeEnum | None = Field(
         None,
         alias='optionType',
-        description='This field is used to indicate if the corresponding shipping service options (under <b>shippingServices</b> array) are domestic or international shipping service options. This field is conditionally required if any shipping service options are specified (domestic and/or international).',
+        description='This field is used to indicate if the corresponding shipping service options (under shippingServices array) are domestic or international shipping service options. This field is conditionally required if any shipping service options are specified (domestic and/or international).',
     )
     package_handling_cost: Amount | None = Field(
         None,
         alias='packageHandlingCost',
-        description="This container is used if the seller adds handling charges to domestic and/or international shipments. <br><br>Sellers can not specify any domestic handling charges if they offered 'free shipping' in the policy.<br><br>This container will only be returned if set for the policy.",
+        description="This container is used if the seller adds handling charges to domestic and/or international shipments. Sellers can not specify any domestic handling charges if they offered 'free shipping' in the policy. This container will only be returned if set for the policy.",
     )
     rate_table_id: str | None = Field(
         None,
         alias='rateTableId',
-        description='This field is used if the seller wants to associate a domestic or international shipping rate table to the fulfillment business policy. The <a href="/develop/api/sell/account_api_v1#sell-account_api_v1-rate_table-getratetables">getRateTables</a> method can be used to retrieve shipping rate table IDs.<br><br>With domestic and international shipping rate tables, the seller can set different shipping costs based on shipping regions and shipping speed/level of service (one-day, expedited, standard, economy). There are also options to add additional per-weight and handling charges.<br><br>Sellers need to be careful that shipping rate tables match the corresponding shipping service options. In other words, a domestic shipping rate table must not be specified in the same container where international shipping service options are being specified, and vice versa, and the shipping speed/level of service of the provided shipping service options should match the shipping speed/level of service options that are defined in the shipping rate tables. <br><br>For example, if the corresponding shipping rate table defines costs for one-day shipping services, there should be at least one one-day shipping service option specified under the <b>shippingServices</b> array.<br><br>This field is returned if set.',
+        description='This field is used if the seller wants to associate a domestic or international shipping rate table to the fulfillment business policy. The getRateTables method can be used to retrieve shipping rate table IDs.',
     )
     shipping_discount_profile_id: str | None = Field(
         None,
         alias='shippingDiscountProfileId',
-        description="This field is the unique identifier of a seller's domestic or international shipping discount profile. If a buyer satisfies the requirements of the discount rule, this buyer will receive a shipping discount for the order. <br><br>The seller can create and manage shipping discount profiles using (Get/Set) <b>ShippingDiscountProfiles</b> calls in the <b>Trading API</b> or through the <b>Shipping Preferences</b> in <b>My eBay</b>.",
+        description="This field is the unique identifier of a seller's domestic or international shipping discount profile. If a buyer satisfies the requirements of the discount rule, this buyer will receive a shipping discount for the order. The seller can create and manage shipping discount profiles using (Get/Set) ShippingDiscountProfiles calls in the Trading API or through the Shipping Preferences in My eBay .",
     )
     shipping_promotion_offered: bool | None = Field(
         None,
         alias='shippingPromotionOffered',
-        description='This boolean indicates whether or not the seller has set up a promotional shipping discount that will be available to buyers who satisfy the requirements of the shipping discount rule. <br><br>The seller can create and manage shipping promotional discounts using (Get/Set) <b>ShippingDiscountProfiles</b> calls in the <b>Trading API</b> or through the <b>Shipping Preferences</b> in <b>My eBay</b>.',
+        description='This boolean indicates whether or not the seller has set up a promotional shipping discount that will be available to buyers who satisfy the requirements of the shipping discount rule. The seller can create and manage shipping promotional discounts using (Get/Set) ShippingDiscountProfiles calls in the Trading API or through the Shipping Preferences in My eBay .',
     )
     shipping_services: list[ShippingService] | None = Field(
         None,
         alias='shippingServices',
-        description='This array consists of the domestic or international shipping services options that are defined for the policy. The shipping service options defined under this array should match what is set in the corresponding <b>shippingOptions.optionType</b> field (which controls whether domestic or international shipping service options are being defined). If a shipping rate table is being used, the specified shipping service options should also match the shipping rate table settings (domestic or international, shipping speed/level of service, etc.) <br><br>Sellers can specify up to four domestic shipping services and up to five international shipping service options by using separate <b>shippingService</b> containers for each. If the seller is using the Global Shipping Program as an international option, only a total of four international shipping service options (including GSP) can be offered. <br><br> See <a href="/api-docs/sell/static/seller-accounts/ht_shipping-setting-shipping-carrier-and-service-values.html" target="_blank">How to set up shipping carrier and shipping service values</a>. <br><br>To use the eBay standard envelope service (eSE), see <a href="/api-docs/sell/static/seller-accounts/using-the-ebay-standard-envelope-service.html" target="_blank">Using eBay standard envelope (eSE) service</a>.<br><br>This array is conditionally required if the seller is offering one or more domestic and/or international shipping service options.',
+        description='This array consists of the domestic or international shipping services options that are defined for the policy. The shipping service options defined under this array should match what is set in the corresponding shippingOptions.optionType field (which controls whether domestic or international shipping service options are being defined).',
     )
 
 
@@ -1552,12 +1550,12 @@ class SubscriptionResponse(EbayModel):
 class Deposit(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='This value indicates the initial deposit amount required from the buyer in order to purchase a motor vehicle. This value can be as high as $2,000.00 if immediate payment is not required, and up to $500.00 if immediate payment is required.<br><br><b>Max</b>: <code>2000.0</code>',
+        description='This value indicates the initial deposit amount required from the buyer in order to purchase a motor vehicle. This value can be as high as $2,000.00 if immediate payment is not required, and up to $500.00 if immediate payment is required. Max : 2000.0',
     )
     due_in: TimeDuration | None = Field(
         None,
         alias='dueIn',
-        description='This value indicates the number of hours that the buyer has (after they commit to buy) to pay the initial deposit on a motor vehicle. Valid <b>dueIn</b> times are 24, 48, and 72 hours. <code>HOUR</code> is set as the <b>unit</b> value, and <code>24</code>, <code>48</code> or <code>72</code> are set in the <b>value</b> field.<br><br><span class="tablenote"><b>Note</b>: The <b>dueIn</b> value is overridden if the seller has set the motor vehicle listing to require immediate payment. If the listing requires immediate payment, the buyer must pay the deposit immediately in order to be eligible to purchase the motor vehicle.</span><br><b>Minimum:</b> 24 (hours)<br><b>Maximum:</b> 72 (hours)<br><b>Default:</b> 48 (hours)',
+        description='This value indicates the number of hours that the buyer has (after they commit to buy) to pay the initial deposit on a motor vehicle. Valid dueIn times are 24, 48, and 72 hours. HOUR is set as the unit value, and 24 , 48 or 72 are set in the value field. Note : The dueIn value is overridden if the seller has set the motor vehicle listing to require immediate payment.',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
@@ -1574,12 +1572,12 @@ class FulfillmentPolicy(EbayModel):
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. Max length : 250",
     )
     freight_shipping: bool | None = Field(
         None,
         alias='freightShipping',
-        description='If returned as <code>true</code>, the seller offers freight shipping. Freight shipping can be used for large items over 150 lbs.',
+        description='If returned as true , the seller offers freight shipping. Freight shipping can be used for large items over 150 lbs.',
     )
     fulfillment_policy_id: str | None = Field(
         None,
@@ -1589,17 +1587,17 @@ class FulfillmentPolicy(EbayModel):
     global_shipping: bool | None = Field(
         None,
         alias='globalShipping',
-        description='<span class="tablenote"><b>Note</b>: This field is only applicable for the eBay United Kingdom marketplace (<code>EBAY_GB</code>).</span><br>If returned as <code>true</code>, eBay\'s Global Shipping Program will be used by the seller to ship items to international locations.<br><br>eBay International Shipping is an account level setting; no field needs to be set in a Fulfillment business policy to enable eBay International Shipping. If a US seller\'s account is opted in to eBay International Shipping, this shipping option will be enabled automatically for all listings where international shipping is available. A US seller who is opted in to eBay International Shipping can also specify individual international shipping service options for a Fulfillment business policy.',
+        description="Note : This field is only applicable for the eBay United Kingdom marketplace ( EBAY_GB ). If returned as true , eBay's Global Shipping Program will be used by the seller to ship items to international locations. eBay International Shipping is an account level setting; no field needs to be set in a Fulfillment business policy to enable eBay International Shipping.",
     )
     handling_time: TimeDuration | None = Field(
         None,
         alias='handlingTime',
-        description='Specifies the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order. <p>If only local pickup or freight shipping is available for the item, this container may not get returned.</p>',
+        description='Specifies the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order. If only local pickup or freight shipping is available for the item, this container may not get returned.',
     )
     local_pickup: bool | None = Field(
         None,
         alias='localPickup',
-        description='If returned as <code>true</code>, local pickup is available for this policy.',
+        description='If returned as true , local pickup is available for this policy.',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1608,22 +1606,22 @@ class FulfillmentPolicy(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this fulfillment policy. Names must be unique for policies assigned to the same marketplace. <br><br><b>Max length</b>: 64',
+        description='A seller-defined name for this fulfillment policy. Names must be unique for policies assigned to the same marketplace. Max length : 64',
     )
     pickup_drop_off: bool | None = Field(
         None,
         alias='pickupDropOff',
-        description='If returned as <code>true</code>, the seller offers the "Click and Collect" option. <br><br>Currently, "Click and Collect" is available only to large retail merchants the eBay AU, UK, DE, FR, and IT marketplaces.',
+        description='If returned as true , the seller offers the "Click and Collect" option. Currently, "Click and Collect" is available only to large retail merchants the eBay AU, UK, DE, FR, and IT marketplaces.',
     )
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. A separate <b>ShippingOption</b> object covers domestic shipping service options and international shipping service options (if the seller ships to international locations). <br><br>The <b>optionType</b> field indicates whether the <b>ShippingOption</b> object applies to domestic or international shipping, and the <b>costType</b> field indicates whether flat-rate shipping or calculated shipping will be used. <p>A separate <b>ShippingServices</b> object is used to specify cost and other details for every available domestic and international shipping service option. </p>',
+        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. A separate ShippingOption object covers domestic shipping service options and international shipping service options (if the seller ships to international locations).',
     )
     ship_to_locations: RegionSet | None = Field(
         None,
         alias='shipToLocations',
-        description="This container consists of the <b>regionIncluded</b> and <b>regionExcluded</b> containers, which define the geographical regions/countries/states or provinces/domestic regions where the seller does and doesn't ship to with this fulfillment policy.",
+        description="This container consists of the regionIncluded and regionExcluded containers, which define the geographical regions/countries/states or provinces/domestic regions where the seller does and doesn't ship to with this fulfillment policy.",
     )
 
 
@@ -1635,27 +1633,27 @@ class FulfillmentPolicyRequest(EbayModel):
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages.  <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages. Max length : 250",
     )
     freight_shipping: bool | None = Field(
         None,
         alias='freightShipping',
-        description='This field is included and set to <code>true</code> if freight shipping is available for the item. Freight shipping can be used for large items over 150 lbs.<br><br><b>Default</b>: false',
+        description='This field is included and set to true if freight shipping is available for the item. Freight shipping can be used for large items over 150 lbs. Default : false',
     )
     global_shipping: bool | None = Field(
         None,
         alias='globalShipping',
-        description='<span class="tablenote"><b>Note</b>: This field is only applicable for the eBay United Kingdom marketplace (<code>EBAY_GB</code>).</span><br>This field is included and set to <code>true</code> if the seller wants to use the Global Shipping Program for international shipments. See the <a href="https://pages.ebay.com/help/sell/shipping-globally.html ">Global Shipping Program</a> help topic for more details and requirements on the Global Shipping Program.<br><br>A seller can use a combination of the Global Shipping Program and other international shipping services. <br><br>If set to <code>false</code> or if the field is omitted, the seller has to manually specifying individual international shipping services (if the seller ships internationally), as described in <a href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/ht_shipping-worldwide.html ">Setting up worldwide shipping</a>. <br><br>Sellers opt in or out of the Global Shipping Program through the Shipping preferences in My eBay.<br><br>eBay International Shipping is an account level setting; no field needs to be set in a Fulfillment business policy to enable eBay International Shipping. If a US seller\'s account is opted in to eBay International Shipping, this shipping option will be enabled automatically for all listings where international shipping is available. A US seller who is opted in to eBay International Shipping can also specify individual international shipping service options for a Fulfillment business policy.<p><b>Default</b>: false</p>',
+        description='Note : This field is only applicable for the eBay United Kingdom marketplace ( EBAY_GB ). This field is included and set to true if the seller wants to use the Global Shipping Program for international shipments. See the Global Shipping Program help topic for more details and requirements on the Global Shipping Program.',
     )
     handling_time: TimeDuration | None = Field(
         None,
         alias='handlingTime',
-        description='This container is used to specify the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order.<br><br>Valid values can vary by site and by category. To obtain the supported values for a site, call <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> in the Trading API with <b>DetailName</b> set to <code>DispatchTimeMaxDetails</code>, then inspect the <b>DispatchTimeMaxDetails</b> container in the response for the time values supported by the site (typical handling times are <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>10</code>, <code>15</code>, and <code>20</code>, but these can vary by site and may change over time.) <p>This field is conditionally required when the seller is offering one or more domestic or international shipping options, but it is not applicable when the item is only available through local pickup (<code>"localPickup": "true"</code>), or if it will be shipped through a freight shipping service (<code>"freightShipping": "true"</code>). </p> <span class="tablenote"><b>Note: </b> Top-Rated sellers must offer same-day or one-day handling for a listing in order for that listing to receive a Top Rated Plus seal on the View Item or Search Results pages. To offer zero-day or one-day handling, set field to \'0\' or \'1\', respectively.</span>',
+        description='This container is used to specify the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order. Valid values can vary by site and by category.',
     )
     local_pickup: bool | None = Field(
         None,
         alias='localPickup',
-        description='This field should be included and set to <code>true</code> if local pickup is one of the fulfillment options available to the buyer. It is possible for the seller to make local pickup and some shipping service options available to the buyer.<br><br>With local pickup, the buyer and seller make arrangements for pickup time and location.<br><br><b>Default</b>: <code>false</code>',
+        description='This field should be included and set to true if local pickup is one of the fulfillment options available to the buyer. It is possible for the seller to make local pickup and some shipping service options available to the buyer. With local pickup, the buyer and seller make arrangements for pickup time and location. Default : false',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1664,22 +1662,22 @@ class FulfillmentPolicyRequest(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this fulfillment policy. Names must be unique for policies assigned to the same marketplace. <br><br><b>Max length</b>: 64',
+        description='A seller-defined name for this fulfillment policy. Names must be unique for policies assigned to the same marketplace. Max length : 64',
     )
     pickup_drop_off: bool | None = Field(
         None,
         alias='pickupDropOff',
-        description='This field should be included and set to <code>true</code> if the seller offers the "Click and Collect" feature for an item. <p>To enable "Click and Collect" on a listing, a seller must be eligible for Click and Collect. Currently, Click and Collect is available to only large retail merchants selling in the eBay AU, UK, DE, FR, and IT marketplaces.</p>  <p>In addition to setting this field to <code>true</code>, the merchant must also do the following to enable the "Click and Collect" option on a listing: <ul><li>Have inventory for the product at one or more physical stores tied to the merchant\'s account. <p>Sellers can use the <b>createInventoryLocation</b> method in the Inventory API to associate physical stores to their account and they can then add inventory to specific store locations.</p></li><li>Set an immediate payment requirement on the item. The immediate payment feature requires the seller to: <ul><li>Set the <b>immediatePay</b> flag in the payment policy to \'true\'.</li><li>Have a valid store location with a complete street address.</li></ul></li></ul><p>When a merchant successfully lists an item with Click and Collect, prospective buyers within a reasonable distance from one of the merchant\'s stores (that has stock available) will see the "Available for Click and Collect" option on the listing, along with information on the closest store that has the item.</p><b>Default</b>: false',
+        description='This field should be included and set to true if the seller offers the "Click and Collect" feature for an item. To enable "Click and Collect" on a listing, a seller must be eligible for Click and Collect. Currently, Click and Collect is available to only large retail merchants selling in the eBay AU, UK, DE, FR, and IT marketplaces.',
     )
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. <br><br>A separate <b>ShippingOption</b> object is required for domestic shipping service options and for international shipping service options (if the seller ships to international locations). <ul><li>The <b>optionType</b> field is used to indicate whether the <b>ShippingOption</b> object applies to domestic or international shipping, and the <b>costType</b> field is used to indicate whether flat-rate shipping or calculated shipping will be used.</li> <li>The <b>rateTableId</b> field can be used to associate a defined shipping rate table to the policy, and the <b>packageHandlingCost</b> container can be used to set a handling charge for the policy.</li></ul> <p>A separate <b>ShippingServices</b> object will be used to specify cost and other details for every available domestic and international shipping service option. </p>',
+        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. A separate ShippingOption object is required for domestic shipping service options and for international shipping service options (if the seller ships to international locations).',
     )
     ship_to_locations: RegionSet | None = Field(
         None,
         alias='shipToLocations',
-        description='This container consists of the <b>regionIncluded</b> and <b>regionExcluded</b> arrays, which are used to define the geographical regions/countries/states or provinces/domestic regions that a seller does and does not ship to for the associated fulfillment policy. Note that this container can be considered the master list of where the seller ships and does not ship, but there is also a <b>shipToLocations</b> container that can be set at the shipping service option level.<br><br><span class="tablenote"><b>Note:</b> Any shipping exclusions specified through this container can be overridden by the eBay International Shipping exclusions toggle located under <b>Shipping Preferences</b> in <b>My eBay</b>. For more information on eBay International Shipping, see <a href="https://www.ebay.com/help/selling/shipping-items/setting-shipping-options/ebay-international-shipping-program?id=5348" target="_blank">eBay International Shipping program</a>.</span><br>To retrieve the valid geographical shipping region values, two-digit country values, or special domestic regions for an eBay marketplace, call <a href="/devzone/xml/docs/reference/ebay/GeteBayDetails.html">GeteBayDetails</a> with <b>DetailName</b> value set to <code>ExcludeShippingLocationDetails</code>, then review the <b>ExcludeShippingLocationDetails</b> containers in the response for the strings you use in both the <b>regionIncluded.regionName</b> and in the <b>regionExcluded.regionName</b> fields. <br><br>For valid geographical region names, look for the <code>ExcludeShippingLocationDetails</code> containers in the <b>GeteBayDetails</b> response where the <b>Region</b> value is <code>Worldwide</code>, and the valid values will be shown in the corresponding <b>Location</b> fields. <br><br>For valid two-digit country codes, look for <code>ExcludeShippingLocationDetails</code> in the <b>GeteBayDetails</b> response where the <b>Region</b> value is one of the defined geographical regions, and the valid values will be shown in the corresponding <b>Location</b> fields. Alternatively, you can find the two-digit country code values in the <a href="/api-docs/sell/account/types/ba:CountryCodeEnum">CountryCodeEnum</a> type definition. For valid domestic region values, look for <code>ExcludeShippingLocationDetails</code> in the <b>GeteBayDetails</b> response where the <b>Region</b> value is either <code>Domestic Location</code> or <code>Additional Locations</code>, and the valid values will be shown in the corresponding <b>Location</b> fields. <br><br>The <code>STATE_OR_PROVINCE</code> region type is only applicable to the US and Canada, and valid values for US states are the same <a href="https://about.usps.com/who-we-are/postal-history/state-abbreviations.htm ">two-digit abbreviations</a> used by the United States Postal Service, and valid values for Canadian provinces and territories are the same <a href="https://www.canadapost-postescanada.ca/cpc/en/support/articles/addressing-guidelines/symbols-and-abbreviations.page ">two-digit abbreviations</a> used by the Canada Post.',
+        description='This container consists of the regionIncluded and regionExcluded arrays, which are used to define the geographical regions/countries/states or provinces/domestic regions that a seller does and does not ship to for the associated fulfillment policy.',
     )
 
 
@@ -1696,7 +1694,7 @@ class FulfillmentPolicyResponse(EbayModel):
     prev: str | None = Field(None, description='This field is for future use.')
     total: int | None = Field(
         None,
-        description='The total number of fulfillment policies retrieved in the result set.  <br><br>If no fulfillment policies are defined for the specified marketplace, this field is returned with a value of <code>0</code>.',
+        description='The total number of fulfillment policies retrieved in the result set. If no fulfillment policies are defined for the specified marketplace, this field is returned with a value of 0 .',
     )
 
 
@@ -1708,21 +1706,21 @@ class PaymentPolicy(EbayModel):
     )
     deposit: Deposit | None = Field(
         None,
-        description='This container is applicable only if the <b>categoryTypes.name</b> field is set to <code>MOTORS_VEHICLES</code>, and is only returned if the seller requires an initial deposit on motor vehicles.<br><br>The container shows the amount due for the deposit and when it is due (within 1-3 days after commitment to purchase, unless the listing requires immediate payment). <p class="tablenote"><b>Note:</b> The due date that is specified in the <b>deposit</b> container will be overridden if the payment business policy requires immediate payment (in this case, for the deposit), and the buyer commits to purchasing the motor vehicle through a fixed-price listing or through the \'Buy it Now\' option of an auction listing. </p>',
+        description='This container is applicable only if the categoryTypes.name field is set to MOTORS_VEHICLES , and is only returned if the seller requires an initial deposit on motor vehicles. The container shows the amount due for the deposit and when it is due (within 1-3 days after commitment to purchase, unless the listing requires immediate payment).',
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the payment policy. This description is only for the seller's use, and is not exposed on any eBay pages.  <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the payment policy. This description is only for the seller's use, and is not exposed on any eBay pages. Max length : 250",
     )
     full_payment_due_in: TimeDuration | None = Field(
         None,
         alias='fullPaymentDueIn',
-        description='This container applies to motor vehicles listings only and indicates when a final payment for the vehicle is due. This value is always returned if <b>categoryTypes</b> is set to <code>MOTORS_VEHICLES</code>. <br><br>This container indicates the number of days that a buyer has to make their full payment to the seller and close the remaining balance on a motor vehicle transaction. The period starts when the buyer commits to buy. The valid values, as specified with <b>TimeDuration</b>, are:<ul><li>3 DAYS</li><li>7 DAYS (the default)</li><li>10 DAYS</li><li>14 DAYS</li></ul>A <code>MOTORS_VEHICLES</code>) payment business policy must specify at least one of the following <b>paymentMethods</b> values for the final payment: <ul> <li>CASH_ON_PICKUP<br><span class="tablenote"><b>Note:</b> This payment method is only available to sellers outside the US.</span></li> <li>CASHIER_CHECK</li> <li>MONEY_ORDER</li><li>PERSONAL_CHECK</li></ul>',
+        description='This container applies to motor vehicles listings only and indicates when a final payment for the vehicle is due. This value is always returned if categoryTypes is set to MOTORS_VEHICLES . This container indicates the number of days that a buyer has to make their full payment to the seller and close the remaining balance on a motor vehicle transaction.',
     )
     immediate_pay: bool | None = Field(
         None,
         alias='immediatePay',
-        description="If this field is returned as <code>true</code>, immediate payment is required from the buyer for: <ul><li>A fixed-price item</li><li>An auction item where the buyer uses the 'Buy it Now' option</li><li>A deposit for a motor vehicle listing</li></ul>It is possible for the seller to set this field as <code>true</code> in the payment business policy, but it will not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyer purchases that involve the Best Offer feature, or for transactions that happen offline between the buyer and seller.",
+        description="If this field is returned as true , immediate payment is required from the buyer for: A fixed-price item An auction item where the buyer uses the 'Buy it Now' option A deposit for a motor vehicle listing It is possible for the seller to set this field as true in the payment business policy, but it will not apply in some scenarios.",
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1731,17 +1729,17 @@ class PaymentPolicy(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this payment policy. Names must be unique for policies assigned to the same marketplace. <br><br><b>Max length</b>: 64',
+        description='A seller-defined name for this payment policy. Names must be unique for policies assigned to the same marketplace. Max length : 64',
     )
     payment_instructions: str | None = Field(
         None,
         alias='paymentInstructions',
-        description='Although this field may be returned for some older payment business policies, payment instructions are no longer supported by payment business policies. If this field is returned, it can be ignored and these payment instructions will not appear in any listings that use the corresponding business policy. <br><br><b>Max length</b>: 1000',
+        description='Although this field may be returned for some older payment business policies, payment instructions are no longer supported by payment business policies. If this field is returned, it can be ignored and these payment instructions will not appear in any listings that use the corresponding business policy. Max length : 1000',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
         alias='paymentMethods',
-        description='This container is returned to show the payment methods that are accepted for the payment business policy.  <br><br>Sellers do not have to specify any electronic payment methods for listings, so this array will often be returned empty unless the payment business policy is intended for motor vehicle listings or other items in categories where offline payments are required or supported. ',
+        description='This container is returned to show the payment methods that are accepted for the payment business policy. Sellers do not have to specify any electronic payment methods for listings, so this array will often be returned empty unless the payment business policy is intended for motor vehicle listings or other items in categories where offline payments are required or supported.',
     )
     payment_policy_id: str | None = Field(
         None,
@@ -1758,21 +1756,21 @@ class PaymentPolicyRequest(EbayModel):
     )
     deposit: Deposit | None = Field(
         None,
-        description='This container is used if the seller wants to require an initial deposit on a motor vehicle listing. In this container, the seller sets the deposit amount and the due date for the deposit.<br><br>Because eBay controls all electronic payment methods, sellers do not need to specify a payment method and the <b>deposit.paymentMethods</b> array is not needed.<p class="tablenote"><b>Note: </b>The \'due date\' specified in the <b>deposit</b> container will be overridden if the payment business policy requires immediate payment (in this case, for the deposit), and the buyer commits to purchase the motor vehicle through a fixed-price listing or through the \'Buy it Now\' option of an auction listing. See <a href="/develop/api/sell/account_api_v1#sell-account_api_v1-payment_policy-createpaymentpolicy.paymentpolicyrequest.immediatepay">immediatePay</a>.</p>',
+        description='This container is used if the seller wants to require an initial deposit on a motor vehicle listing. In this container, the seller sets the deposit amount and the due date for the deposit. Because eBay controls all electronic payment methods, sellers do not need to specify a payment method and the deposit.paymentMethods array is not needed.',
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the payment business policy. This description is only for the seller's use, and is not exposed on any eBay pages.  <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the payment business policy. This description is only for the seller's use, and is not exposed on any eBay pages. Max length : 250",
     )
     full_payment_due_in: TimeDuration | None = Field(
         None,
         alias='fullPaymentDueIn',
-        description='This container is used to specify the number of days that a buyer has to make their full payment to the seller and close the remaining balance on a motor vehicle transaction. This container must be specified for motor vehicles listings. <br><br>The period starts when the buyer commits to buy. The valid values, as specified with <b>TimeDuration</b>, are:<ul><li><code>3 DAYS</code></li><li><code>7 DAYS</code> (the default)</li><li><code>10 DAYS</code></li><li><code>14 DAYS</code></li></ul>In order for a buyer to make a full payment on a motor vehicle, at least one of the following <b>paymentMethods</b> values must be specified for the corresponding payment business policy: <ul> <li><code>CASH_ON_PICKUP</code></li> <li><code>CASHIER_CHECK</code></li> <li><code>MONEY_ORDER</code></li> <li><code>PERSONAL_CHECK</code></li></ul><b>Default:</b> <code>7 DAYS</code>',
+        description='This container is used to specify the number of days that a buyer has to make their full payment to the seller and close the remaining balance on a motor vehicle transaction. This container must be specified for motor vehicles listings. The period starts when the buyer commits to buy.',
     )
     immediate_pay: bool | None = Field(
         None,
         alias='immediatePay',
-        description="This field should be included and set to <code>true</code> if the seller wants to require immediate payment from the buyer for: <ul><li>A fixed-price item</li><li>An auction item where the buyer is using the 'Buy it Now' option</li><li>A deposit for a motor vehicle listing</li></ul><br><b>Default:</b> False",
+        description="This field should be included and set to true if the seller wants to require immediate payment from the buyer for: A fixed-price item An auction item where the buyer is using the 'Buy it Now' option A deposit for a motor vehicle listing Default: False",
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1781,17 +1779,17 @@ class PaymentPolicyRequest(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this payment business policy. Names must be unique for policies assigned to the same marketplace.<br><br><b>Max length:</b> 64',
+        description='A seller-defined name for this payment business policy. Names must be unique for policies assigned to the same marketplace. Max length: 64',
     )
     payment_instructions: str | None = Field(
         None,
         alias='paymentInstructions',
-        description='<p class="tablenote"><b>Note:</b> DO NOT USE THIS FIELD. Payment instructions are no longer supported by payment business policies.</p>A free-form string field that allows sellers to add detailed payment instructions to their listings.',
+        description='Note: DO NOT USE THIS FIELD. Payment instructions are no longer supported by payment business policies. A free-form string field that allows sellers to add detailed payment instructions to their listings.',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
         alias='paymentMethods',
-        description='<p class="tablenote"><b>Note:</b> This field applies only when the seller needs to specify one or more offline payment methods. eBay now manages the electronic payment options available to buyers to pay for the item.</p>This array is used to specify one or more offline payment methods that will be accepted for payment that occurs off of eBay\'s platform.',
+        description="Note: This field applies only when the seller needs to specify one or more offline payment methods. eBay now manages the electronic payment options available to buyers to pay for the item. This array is used to specify one or more offline payment methods that will be accepted for payment that occurs off of eBay's platform.",
     )
 
 
@@ -1808,7 +1806,7 @@ class PaymentPolicyResponse(EbayModel):
     prev: str | None = Field(None, description='This field is for future use.')
     total: int | None = Field(
         None,
-        description='The total number of payment business policies retrieved in the result set.  <br><br>If no payment business policies are defined for the specified marketplace, this field is returned with a value of <code>0</code>.',
+        description='The total number of payment business policies retrieved in the result set. If no payment business policies are defined for the specified marketplace, this field is returned with a value of 0 .',
     )
 
 
@@ -1820,12 +1818,12 @@ class SetFulfillmentPolicyResponse(EbayModel):
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the fulfillment policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. Max length : 250",
     )
     freight_shipping: bool | None = Field(
         None,
         alias='freightShipping',
-        description='If returned as <code>true</code>, the seller offers freight shipping. Freight shipping can be used for large items over 150 lbs.',
+        description='If returned as true , the seller offers freight shipping. Freight shipping can be used for large items over 150 lbs.',
     )
     fulfillment_policy_id: str | None = Field(
         None,
@@ -1835,17 +1833,17 @@ class SetFulfillmentPolicyResponse(EbayModel):
     global_shipping: bool | None = Field(
         None,
         alias='globalShipping',
-        description='<span class="tablenote"><b>Note</b>: This field is only applicable for the eBay United Kingdom marketplace (<code>EBAY_GB</code>).</span><br>This field is included and set to <code>true</code> if the seller wants to use the Global Shipping Program for international shipments. See the <a href="https://pages.ebay.com/help/sell/shipping-globally.html ">Global Shipping Program</a> help topic for more details and requirements on the Global Shipping Program.<br><br>A seller can use a combination of the Global Shipping Program and other international shipping services. <br><br>If set to <code>false</code> or if the field is omitted, the seller has to manually specifying individual international shipping services (if the seller ships internationally), as described in <a href="https://developer.ebay.com/api-docs/sell/static/seller-accounts/ht_shipping-worldwide.html ">Setting up worldwide shipping</a>. <br><br>Sellers opt in or out of the Global Shipping Program through the Shipping preferences in My eBay.<br><br>eBay International Shipping is an account level setting; no field needs to be set in a Fulfillment business policy to enable eBay International Shipping. If a US seller\'s account is opted in to eBay International Shipping, this shipping option will be enabled automatically for all listings where international shipping is available. A US seller who is opted in to eBay International Shipping can also specify individual international shipping service options for a Fulfillment business policy.</span>',
+        description='Note : This field is only applicable for the eBay United Kingdom marketplace ( EBAY_GB ). This field is included and set to true if the seller wants to use the Global Shipping Program for international shipments. See the Global Shipping Program help topic for more details and requirements on the Global Shipping Program.',
     )
     handling_time: TimeDuration | None = Field(
         None,
         alias='handlingTime',
-        description='Specifies the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order. <p>If only local pickup or freight shipping is available for the item, this container may not get returned.</p>',
+        description='Specifies the maximum number of business days the seller commits to for preparing and shipping an order after receiving a cleared payment for the order. This time does not include the transit time it takes the shipping carrier to deliver the order. If only local pickup or freight shipping is available for the item, this container may not get returned.',
     )
     local_pickup: bool | None = Field(
         None,
         alias='localPickup',
-        description='If returned as <code>true</code>, local pickup is available for items using this policy.',
+        description='If returned as true , local pickup is available for items using this policy.',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1854,22 +1852,22 @@ class SetFulfillmentPolicyResponse(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this fulfillment business policy. <br><br><b>Max length</b>: 64',
+        description='A seller-defined name for this fulfillment business policy. Max length : 64',
     )
     pickup_drop_off: bool | None = Field(
         None,
         alias='pickupDropOff',
-        description='If returned as <code>true</code>, the seller offers the "Click and Collect" option. <br><br>Currently, "Click and Collect" is available only to large retail merchants the eBay AU, UK, DE, FR, and IT marketplaces.',
+        description='If returned as true , the seller offers the "Click and Collect" option. Currently, "Click and Collect" is available only to large retail merchants the eBay AU, UK, DE, FR, and IT marketplaces.',
     )
     shipping_options: list[ShippingOption] | None = Field(
         None,
         alias='shippingOptions',
-        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. A separate <b>ShippingOption</b> object covers domestic shipping service options and international shipping service options (if the seller ships to international locations). <br><br>The <b>optionType</b> field indicates whether the <b>ShippingOption</b> object applies to domestic or international shipping, and the <b>costType</b> field indicates whether flat-rate shipping or calculated shipping will be used. <p>A separate <b>ShippingServices</b> object is used to specify cost and other details for every available domestic and international shipping service option. </p>',
+        description='This array is used to provide detailed information on the domestic and international shipping options available for the policy. A separate ShippingOption object covers domestic shipping service options and international shipping service options (if the seller ships to international locations).',
     )
     ship_to_locations: RegionSet | None = Field(
         None,
         alias='shipToLocations',
-        description="This container consists of the <b>regionIncluded</b> and <b>regionExcluded</b> containers, which define the geographical regions/countries/states or provinces/domestic regions where the seller does and doesn't ship to with this fulfillment policy.",
+        description="This container consists of the regionIncluded and regionExcluded containers, which define the geographical regions/countries/states or provinces/domestic regions where the seller does and doesn't ship to with this fulfillment policy.",
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -1889,17 +1887,17 @@ class SetPaymentPolicyResponse(EbayModel):
     )
     description: str | None = Field(
         None,
-        description="A seller-defined description of the payment business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. <br><br><b>Max length</b>: 250",
+        description="A seller-defined description of the payment business policy. This description is only for the seller's use, and is not exposed on any eBay pages. This field is returned if set for the policy. Max length : 250",
     )
     full_payment_due_in: TimeDuration | None = Field(
         None,
         alias='fullPaymentDueIn',
-        description='The number of days (after the buyer commits to buy) that a buyer has to pay the remaining balance of a motor vehicle transaction. Sellers can set this value to 3, 7, 10, or 14 days.<p class="tablenote"><b>Note:</b> This value is always returned if <b>categoryTypes</b> is set to <code>MOTORS_VEHICLES</code>.</p> ',
+        description='The number of days (after the buyer commits to buy) that a buyer has to pay the remaining balance of a motor vehicle transaction. Sellers can set this value to 3, 7, 10, or 14 days. Note: This value is always returned if categoryTypes is set to MOTORS_VEHICLES .',
     )
     immediate_pay: bool | None = Field(
         None,
         alias='immediatePay',
-        description="The value returned in this field will reflect the value set by the seller in the <b>immediatePay</b> request field. A value of <code>true</code> indicates that immediate payment is required from the buyer for: <ul><li>A fixed-price item</li><li>An auction item where the buyer is using the 'Buy it Now' option</li><li>A deposit for a motor vehicle listing</li></ul>It is possible for the seller to set this field as <code>true</code> in the payment business policy, but it will not apply in some scenarios. For example, immediate payment is not applicable for auction listings that have a winning bidder, for buyer purchases that involve the Best Offer feature, or for transactions that happen offline between the buyer and seller.",
+        description='The value returned in this field will reflect the value set by the seller in the immediatePay request field.',
     )
     marketplace_id: MarketplaceIdEnum | None = Field(
         None,
@@ -1908,17 +1906,17 @@ class SetPaymentPolicyResponse(EbayModel):
     )
     name: str | None = Field(
         None,
-        description='A seller-defined name for this payment business policy. Names must be unique for policies assigned to the same marketplace.<br><br><b>Max length:</b> 64',
+        description='A seller-defined name for this payment business policy. Names must be unique for policies assigned to the same marketplace. Max length: 64',
     )
     payment_instructions: str | None = Field(
         None,
         alias='paymentInstructions',
-        description='<p class="tablenote"><b>Note:</b> NO LONGER SUPPORTED. Although this field may be returned for some older payment business policies, payment instructions are no longer supported by payment business policies. If this field is returned, it can be ignored and these payment instructions will not appear in any listings that use the corresponding business policy.</p>A free-form string field that allows sellers to add detailed payment instructions to their listings.',
+        description='Note: NO LONGER SUPPORTED. Although this field may be returned for some older payment business policies, payment instructions are no longer supported by payment business policies. If this field is returned, it can be ignored and these payment instructions will not appear in any listings that use the corresponding business policy.',
     )
     payment_methods: list[PaymentMethod] | None = Field(
         None,
         alias='paymentMethods',
-        description='This array shows the available payment methods that the seller has set for the payment business policy.<br><br>Sellers do not have to specify any electronic payment methods for listings, so this array will often be returned empty unless the payment business policy is intended for motor vehicle listings or other items in categories where offline payments are required or supported.',
+        description='This array shows the available payment methods that the seller has set for the payment business policy. Sellers do not have to specify any electronic payment methods for listings, so this array will often be returned empty unless the payment business policy is intended for motor vehicle listings or other items in categories where offline payments are required or supported.',
     )
     payment_policy_id: str | None = Field(
         None,

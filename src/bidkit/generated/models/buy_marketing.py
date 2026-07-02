@@ -446,22 +446,22 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This is the actual value that was passed in for the element specified in the <b> name</b>  field.',
+        description='This is the actual value that was passed in for the element specified in the name field.',
     )
 
 
 class Image(EbayModel):
-    height: int | None = Field(None, description='<b> Reserved for future use. </b> ')
+    height: int | None = Field(None, description='Reserved for future use.')
     image_url: str | None = Field(
         None, alias='imageUrl', description='The URL of the image.'
     )
-    width: int | None = Field(None, description='<b> Reserved for future use. </b> ')
+    width: int | None = Field(None, description='Reserved for future use.')
 
 
 class ItemLocation(EbayModel):
     country: CountryCodeEnum | None = Field(
         None,
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> standard code that indicates the country in which the item is located.',
+        description='The two-letter ISO 3166 standard code that indicates the country in which the item is located.',
     )
 
 
@@ -517,12 +517,12 @@ class RangeValue(EbayModel):
     exclusive_end: bool | None = Field(
         None,
         alias='exclusiveEnd',
-        description='Specifies whether the <b> end</b> value is to be included in the range. For example, if <b> end</b> was 100, and <b> exclusiveEnd</b> was true, the end range would be &lt; 100. But if it was set to false, it would be &lt;= 100.',
+        description='Specifies whether the end value is to be included in the range. For example, if end was 100, and exclusiveEnd was true, the end range would be < 100. But if it was set to false, it would be <= 100.',
     )
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description='Specifies whether the <b> start</b> value is to be included in the range. For example, if <b> start</b> was 60, and <b> exclusiveStart</b> was true, the start range would be &gt; 60. But if it was set to false, it would be &gt;= 60.',
+        description='Specifies whether the start value is to be included in the range. For example, if start was 60, and exclusiveStart was true, the start range would be > 60. But if it was set to false, it would be >= 60.',
     )
     start: str | None = Field(
         None,
@@ -537,7 +537,7 @@ class RatingAspectDistribution(EbayModel):
     )
     percentage: str | None = Field(
         None,
-        description='The percentage of the aspect rating value. <br /><br /> <b> ratingAspectDistributions.percentage</b> =  <b> ratingAspectDistributions.count</b> /  <b>ratingAspects.count</b>',
+        description='The percentage of the aspect rating value. ratingAspectDistributions.percentage = ratingAspectDistributions.count / ratingAspects.count',
     )
     value: str | None = Field(
         None, description='The rating aspect. For example: TRUE or FALSE'
@@ -547,11 +547,11 @@ class RatingAspectDistribution(EbayModel):
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> value</b> field.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the value field.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <b> currency</b> field. ',
+        description='The monetary amount, in the currency specified by the currency field.',
     )
 
 
@@ -596,7 +596,7 @@ class Error(EbayModel):
 class ErrorDetailV3(EbayModel):
     category: str | None = Field(
         None,
-        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors. ',
+        description='This string value indicates the error category. There are three categories of errors: request errors, application errors, and system errors.',
     )
     domain: str | None = Field(
         None,
@@ -641,10 +641,10 @@ class FilterField(EbayModel):
         None, description='Provides a way to specify a field in a filter.'
     )
     negated: bool | None = Field(
-        None, description='<b> Note: </b> Currently this filter is not supported. '
+        None, description='Note: Currently this filter is not supported.'
     )
     range: RangeValue | None = Field(
-        None, description='Provides a way to specify a range of values in a filter. '
+        None, description='Provides a way to specify a range of values in a filter.'
     )
     set: list[str] | None = None
     value: str | None = Field(None, description='Provides a way a value in a filter.')
@@ -671,7 +671,7 @@ class MarketPriceDetail(EbayModel):
 class MarketingAspectFilter(EbayModel):
     filters: list[FilterField] | None = Field(
         None,
-        description='This field supports field filters that can be used to use to limit/customize the result set. ',
+        description='This field supports field filters that can be used to use to limit/customize the result set.',
     )
 
 
@@ -679,7 +679,7 @@ class MostWatchedItem(EbayModel):
     bid_count: int | None = Field(
         None,
         alias='bidCount',
-        description='This integer value indicates the total number of bids that have been placed for an auction item.<br><br>This field is only returned for auction items.',
+        description='This integer value indicates the total number of bids that have been placed for an auction item. This field is only returned for auction items.',
     )
     category: Category | None = Field(
         None, description='The ID of the leaf category for this item.'
@@ -687,7 +687,7 @@ class MostWatchedItem(EbayModel):
     current_bid_price: Amount | None = Field(
         None,
         alias='currentBidPrice',
-        description='The container that returns the current highest bid for an auction item.<br><br>The <b>value</b> field shows the dollar value of the current highest bid, and the <b>currency</b> (3-digit ISO code) field denotes the currency associated with that bid value.<br><br>This container will only be returned for auction items.',
+        description='The container that returns the current highest bid for an auction item. The value field shows the dollar value of the current highest bid, and the currency (3-digit ISO code) field denotes the currency associated with that bid value. This container will only be returned for auction items.',
     )
     gallery_image_url: str | None = Field(
         None,
@@ -697,7 +697,7 @@ class MostWatchedItem(EbayModel):
     item_end_date: str | None = Field(
         None,
         alias='itemEndDate',
-        description='A timestamp that indicates the date and time a listing is scheduled to end.<br><br>This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time a listing is scheduled to end. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which can be converted into the local time of the buyer.',
     )
     item_id: str | None = Field(
         None, alias='itemId', description='The unique RESTful identifier of the item.'
@@ -719,7 +719,7 @@ class MostWatchedItem(EbayModel):
     )
     price: Amount | None = Field(
         None,
-        description='The price of the item.<br><br>This field will only be returned for fixed-price listings and auction listings that are enabled with the Buy it Now feature.',
+        description='The price of the item. This field will only be returned for fixed-price listings and auction listings that are enabled with the Buy it Now feature.',
     )
     shipping_cost: Amount | None = Field(
         None, alias='shippingCost', description='The final shipping cost of the item.'
@@ -727,14 +727,14 @@ class MostWatchedItem(EbayModel):
     shipping_cost_type: str | None = Field(
         None,
         alias='shippingCostType',
-        description='Indicates the type of shipping used to ship the item. Possible values are <code>FIXED</code> (flat-rate shipping) and <code>CALCULATED</code> (shipping cost calculated based on item and buyer location).',
+        description='Indicates the type of shipping used to ship the item. Possible values are FIXED (flat-rate shipping) and CALCULATED (shipping cost calculated based on item and buyer location).',
     )
     subtitle: str | None = Field(
         None,
         description='A subtitle is optional and allows the seller to provide more information about the item, possibly including keywords that may assist with search results.',
     )
     title: str | None = Field(
-        None, description='The title of the item as its appears on the listing. '
+        None, description='The title of the item as its appears on the listing.'
     )
     watch_count: int | None = Field(
         None,
@@ -775,22 +775,22 @@ class SimilarItem(EbayModel):
     bid_count: int | None = Field(
         None,
         alias='bidCount',
-        description='This integer value indicates the total number of bids that have been placed for an auction item.<br><br>This field is only returned for auction items.',
+        description='This integer value indicates the total number of bids that have been placed for an auction item. This field is only returned for auction items.',
     )
     current_bid_price: Amount | None = Field(
         None,
         alias='currentBidPrice',
-        description='This integer value indicates the total number of bids that have been placed for an auction item.<br><br>This field is only returned for auction items.',
+        description='This integer value indicates the total number of bids that have been placed for an auction item. This field is only returned for auction items.',
     )
     gallery_image_url: str | None = Field(
         None,
         alias='galleryImageUrl',
-        description='The container that returns the current highest bid for an auction item.<br><br>The <b>value</b> field shows the dollar value of the current highest bid, and the <b>currency</b> (3-digit ISO code) field denotes the currency associated with that bid value.<br><br>This container will only be returned for auction items.',
+        description='The container that returns the current highest bid for an auction item. The value field shows the dollar value of the current highest bid, and the currency (3-digit ISO code) field denotes the currency associated with that bid value. This container will only be returned for auction items.',
     )
     item_end_date: str | None = Field(
         None,
         alias='itemEndDate',
-        description='A timestamp that indicates the date and time a listing is scheduled to end.<br><br>This value is returned in UTC format (<code>yyyy-MM-ddThh:mm:ss.sssZ</code>), which can be converted into the local time of the buyer.',
+        description='A timestamp that indicates the date and time a listing is scheduled to end. This value is returned in UTC format ( yyyy-MM-ddThh:mm:ss.sssZ ), which can be converted into the local time of the buyer.',
     )
     item_id: str | None = Field(
         None, alias='itemId', description='The unique RESTful identifier of the item.'
@@ -812,7 +812,7 @@ class SimilarItem(EbayModel):
     )
     price: Amount | None = Field(
         None,
-        description='The price of the item.<br><br>This field will only be returned for fixed-price listings and auction listings that are enabled with the Buy it Now feature.',
+        description='The price of the item. This field will only be returned for fixed-price listings and auction listings that are enabled with the Buy it Now feature.',
     )
     primary_category: Category | None = Field(
         None,
@@ -827,14 +827,14 @@ class SimilarItem(EbayModel):
     shipping_cost_type: str | None = Field(
         None,
         alias='shippingCostType',
-        description='Indicates the type of shipping used to ship the item. Possible values are <code>FIXED</code> (flat-rate shipping) and <code>CALCULATED</code> (shipping cost calculated based on item and buyer location).',
+        description='Indicates the type of shipping used to ship the item. Possible values are FIXED (flat-rate shipping) and CALCULATED (shipping cost calculated based on item and buyer location).',
     )
     subtitle: str | None = Field(
         None,
         description='A subtitle is optional and allows the seller to provide more information about the item, possibly including keywords that may assist with search results.',
     )
     title: str | None = Field(
-        None, description='The title of the item as its appears on the listing. '
+        None, description='The title of the item as its appears on the listing.'
     )
 
 
@@ -854,7 +854,7 @@ class MerchandisedProduct(EbayModel):
     )
     epid: str | None = Field(
         None,
-        description='The eBay product identifier of a product from the eBay product catalog. You can use this value in the Browse API <b>search</b> method to retrieve items for this product.',
+        description='The eBay product identifier of a product from the eBay product catalog. You can use this value in the Browse API search method to retrieve items for this product.',
     )
     image: Image | None = Field(None, description='The product image.')
     market_price_details: list[MarketPriceDetail] | None = Field(
@@ -875,7 +875,7 @@ class MerchandisedProduct(EbayModel):
     review_count: int | None = Field(
         None,
         alias='reviewCount',
-        description='The total number of eBay users that wrote a review for the product. ',
+        description='The total number of eBay users that wrote a review for the product.',
     )
     title: str | None = Field(None, description='The title of the product.')
 

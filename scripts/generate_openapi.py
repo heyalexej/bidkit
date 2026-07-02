@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import html
 import keyword
 import re
 import subprocess
@@ -229,8 +230,51 @@ def preprocess_spec(stem: str, spec: dict[str, Any]) -> dict[str, Any]:
     normalize_component_schemas(schemas)
     patch_missing_multipart_request_bodies(key, patched)
     patch_missing_binary_request_bodies(key, patched)
+    normalize_descriptions(patched)
 
     return patched
+
+
+def normalize_descriptions(node: Any) -> None:
+    """Clean every ``description`` in the spec for docstring/Field consumption.
+
+    eBay's descriptions carry HTML markup, entities, and run-on sentences
+    ("...parameter.Retrieving..."), and often run to whole documentation pages.
+    Cleaning at the spec level fixes both the generated method docstrings and the
+    Pydantic ``Field(description=...)`` texts, and trimming keeps IDE hovers usable
+    (and the amount of verbatim eBay prose small).
+    """
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == "description" and isinstance(value, str):
+                node[key] = trim_description(clean_description(value))
+            else:
+                normalize_descriptions(value)
+    elif isinstance(node, list):
+        for item in node:
+            normalize_descriptions(item)
+
+
+def clean_description(value: str) -> str:
+    # Strip tags BEFORE unescaping: eBay attribute values embed escaped HTML
+    # (data-mc-autonum="&lt;b&gt;..."), which unescaping first would turn into
+    # broken tags that the strip regex cannot match.
+    value = re.sub(r"<[^>]+>", " ", value)
+    value = html.unescape(value)
+    value = re.sub(r"\s+", " ", value).strip()
+    # Restore the sentence break the HTML stripping swallowed: "parameter.Retrieving".
+    value = re.sub(r"([a-z0-9\)])\.([A-Z])", r"\1. \2", value)
+    return value
+
+
+def trim_description(value: str, limit: int = 400) -> str:
+    """Cap a description at ``limit`` chars, cutting at a sentence boundary."""
+    if len(value) <= limit:
+        return value
+    cut = value.rfind(". ", 0, limit)
+    if cut == -1:
+        return value[:limit].rstrip() + "…"
+    return value[: cut + 1]
 
 
 def normalize_component_schemas(schemas: dict[str, Any]) -> None:

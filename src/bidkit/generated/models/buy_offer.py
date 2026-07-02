@@ -190,14 +190,14 @@ class UserConsent(EbayModel):
     adult_only_item: bool | None = Field(
         None,
         alias='adultOnlyItem',
-        description='The type that defines the fields for buyer consent to bid on adult-only items.<br><br>This field must be included in the <b>placeProxyBid</b> request and set to <code>true</code> if the buyer is bidding on an <i>adult-only</i> item.<br><br>For more information about adult-only items on eBay, see  <a href="https://www.ebay.com/help/terms-conditions/default/searching-adult-items?id=4661" target="_blank">Adult-Only items on eBay</a>.',
+        description='The type that defines the fields for buyer consent to bid on adult-only items. This field must be included in the placeProxyBid request and set to true if the buyer is bidding on an adult-only item. For more information about adult-only items on eBay, see Adult-Only items on eBay .',
     )
 
 
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> value</b> field. ',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the value field.',
     )
     value: str | None = Field(None, description='The monetary amount.')
 
@@ -244,12 +244,12 @@ class PlaceProxyBidRequest(EbayModel):
     max_amount: Amount | None = Field(
         None,
         alias='maxAmount',
-        description='The amount of the proxy bid to be placed. This is the maximum amount the buyer is willing to pay for the item. <br><br><b>Note: </b>  <ul>  <li>Currency for the bid must be the currency specified by the seller when listing the item.</li>    <li>VAT (value added tax) does not need to be added to the proxy bid amount even if VAT applies.  </li>  </ul>  ',
+        description='The amount of the proxy bid to be placed. This is the maximum amount the buyer is willing to pay for the item. Note: Currency for the bid must be the currency specified by the seller when listing the item. VAT (value added tax) does not need to be added to the proxy bid amount even if VAT applies.',
     )
     user_consent: UserConsent | None = Field(
         None,
         alias='userConsent',
-        description='Specifies whether the buyer wants to give their consent to bid on adult-only items. For a buyer to bid on an adult-only item, you must collect their consent using this field, and they must agree to the Terms of Use. <p>For more information about adult-only items on eBay, see  <a href="https://www.ebay.com/help/terms-conditions/default/searching-adult-items?id=4661" target="_blank">Adult-Only items on eBay</a>.</p> <p><b>Default: </b>false </p>',
+        description='Specifies whether the buyer wants to give their consent to bid on adult-only items. For a buyer to bid on an adult-only item, you must collect their consent using this field, and they must agree to the Terms of Use. For more information about adult-only items on eBay, see Adult-Only items on eBay . Default: false',
     )
 
 
@@ -271,7 +271,7 @@ class Bidding(EbayModel):
     auction_status: AuctionStatusEnum | None = Field(
         None,
         alias='auctionStatus',
-        description='An enumeration value that represents the current state of the auction, such as <code>ACTIVE</code> or <code>ENDED</code>. <br><br>If this value is <code>ENDED</code> and the value of <b>highBidder</b> is <code>true</code>, this indicates the buyer has won the auction.',
+        description='An enumeration value that represents the current state of the auction, such as ACTIVE or ENDED . If this value is ENDED and the value of highBidder is true , this indicates the buyer has won the auction.',
     )
     bid_count: int | None = Field(
         None,
@@ -286,12 +286,12 @@ class Bidding(EbayModel):
     current_proxy_bid: ProxyBid | None = Field(
         None,
         alias='currentProxyBid',
-        description="The buyer's proxy bid, which is the <b>maxAmount</b> specified in the request. ",
+        description="The buyer's proxy bid, which is the maxAmount specified in the request.",
     )
     high_bidder: bool | None = Field(
         None,
         alias='highBidder',
-        description='Indicates if the buyer is the highest bidder. <ul> <li>If the value is <code>false</code>, this indicates that either the buyer has not bid on this item or has been out-bid. </li> <li>If this value is <code>true</code>, this indicates the buyer is winning the auction and if the value of <b>auctionStatus</b> is <code>ENDED</code>, this indicates the buyer has won the auction.</ul>',
+        description='Indicates if the buyer is the highest bidder. If the value is false , this indicates that either the buyer has not bid on this item or has been out-bid. If this value is true , this indicates the buyer is winning the auction and if the value of auctionStatus is ENDED , this indicates the buyer has won the auction.',
     )
     item_id: str | None = Field(
         None,
@@ -301,10 +301,10 @@ class Bidding(EbayModel):
     reserve_price_met: bool | None = Field(
         None,
         alias='reservePriceMet',
-        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. <p>If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold.</p> <p><b>Note: </b>This is returned only for auctions that have a reserve price.</p>',
+        description='This indicates if the reserve price of the item has been met. A reserve price is set by the seller and is the minimum amount the seller is willing to sell the item for. If the highest bid is not equal to or higher than the reserve price when the auction ends, the listing ends and the item is not sold. Note: This is returned only for auctions that have a reserve price.',
     )
     suggested_bid_amounts: list[Amount] | None = Field(
         None,
         alias='suggestedBidAmounts',
-        description='The suggested bid amount for the next bid. <b>Note: </b>These are generated suggestions and do not guarantee the buyer will win the bid. This means these suggestions do not take into account the max bid amount of other bidders. The buyer can be outbid even if they submit the highest suggested bid.',
+        description='The suggested bid amount for the next bid. Note: These are generated suggestions and do not guarantee the buyer will win the bid. This means these suggestions do not take into account the max bid amount of other bidders. The buyer can be outbid even if they submit the highest suggested bid.',
     )

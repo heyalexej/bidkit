@@ -12,24 +12,24 @@ class BulkConversation(EbayModel):
     conversation_id: str | None = Field(
         None,
         alias='conversationId',
-        description='This field indicates the unique identifier of the conversation that is to be updated.<br><br>Use the <a href="/develop/api/sell/message_api#sell-message_api-conversation-getconversations">getConversations</a> method to retrieve conversation ID values.',
+        description='This field indicates the unique identifier of the conversation that is to be updated. Use the getConversations method to retrieve conversation ID values.',
     )
     conversation_status: str | None = Field(
         None,
         alias='conversationStatus',
-        description='This field indicates the status for which to update the associated conversation.<br><br><strong>Valid values:</strong><ul><li><code>ACTIVE</code></li><li><code>ARCHIVE</code></li><li><code>DELETE</code></li><li><code>READ</code></li><li><code>UNREAD</code></li></ul>',
+        description='This field indicates the status for which to update the associated conversation. Valid values: ACTIVE ARCHIVE DELETE READ UNREAD',
     )
     conversation_type: str | None = Field(
         None,
         alias='conversationType',
-        description='This field specifies the existing type of the conversation that is to be updated.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><strong><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></strong></span></span> This value <strong>cannot</strong> be updated using this method but is required for each conversation being updated.</p></div><br><strong>Valid values:</strong><ul><li><code>FROM_MEMBERS</code></li><li><code>FROM_EBAY</code></li></ul>',
+        description='This field specifies the existing type of the conversation that is to be updated. Important! This value cannot be updated using this method but is required for each conversation being updated. Valid values: FROM_MEMBERS FROM_EBAY',
     )
 
 
 class BulkUpdateConversationsRequest(EbayModel):
     conversations: list[BulkConversation] | None = Field(
         None,
-        description='This array specifies the list of conversations to update and the updated <strong>conversationStatus</strong> for each.',
+        description='This array specifies the list of conversations to update and the updated conversationStatus for each.',
     )
 
 
@@ -60,7 +60,7 @@ class ConversationsResponse(EbayModel):
     update_status: str | None = Field(
         None,
         alias='updateStatus',
-        description='The update status of the conversation, such as <code>SUCCESS</code> or <code>FAILURE</code>.',
+        description='The update status of the conversation, such as SUCCESS or FAILURE .',
     )
 
 
@@ -78,7 +78,7 @@ class MessageMedia(EbayModel):
     media_type: str | None = Field(
         None,
         alias='mediaType',
-        description='The type of media attached to the message.<br><br><strong>Valid values:</strong><ul><li><code>IMAGE</code></li><li><code>PDF</code></li><li><code>DOC</code></li><li><code>TXT</code></li></ul>',
+        description='The type of media attached to the message. Valid values: IMAGE PDF DOC TXT',
     )
     media_url: str | None = Field(
         None,
@@ -91,12 +91,12 @@ class Reference(EbayModel):
     reference_id: str | None = Field(
         None,
         alias='referenceId',
-        description='This value indicates the reference ID associated with the corresponding <strong>referenceType</strong> value.<br><br>For example, in the case of a <code>LISTING</code> reference type, this value will be the item ID value of the listing.',
+        description='This value indicates the reference ID associated with the corresponding referenceType value. For example, in the case of a LISTING reference type, this value will be the item ID value of the listing.',
     )
     reference_type: str | None = Field(
         None,
         alias='referenceType',
-        description='This value indicates the reference type to associate with the conversation.<br><br>The reference type is used to specify what the conversation is in reference to. For example, a value of <code>LISTING</code> specifies that the conversation is associated with a specific listing. The item ID associated with this listing will then be returned in the <strong>referenceId</strong> field.<br><br>Currently, only the <code>LISTING</code> reference type is supported.',
+        description='This value indicates the reference type to associate with the conversation. The reference type is used to specify what the conversation is in reference to. For example, a value of LISTING specifies that the conversation is associated with a specific listing. The item ID associated with this listing will then be returned in the referenceId field.',
     )
 
 
@@ -104,31 +104,31 @@ class SendMessageRequest(EbayModel):
     conversation_id: str | None = Field(
         None,
         alias='conversationId',
-        description='This field specifies the unique identifier of the conversation in which to send the message.<br><br>Use the <a href="/develop/api/sell/message_api#sell-message_api-conversation-getconversations">getConversations</a> method to retrieve conversation ID values.<br><br>This field is required if sending a message in an existing conversation.',
+        description='This field specifies the unique identifier of the conversation in which to send the message. Use the getConversations method to retrieve conversation ID values. This field is required if sending a message in an existing conversation.',
     )
     email_copy_to_sender: bool | None = Field(
         None,
         alias='emailCopyToSender',
-        description='This boolean indicates whether a copy of the message should be emailed to the sender.<br><br>If this boolean is input as <code>true</code>, a copy of the message will be emailed to the sender.',
+        description='This boolean indicates whether a copy of the message should be emailed to the sender. If this boolean is input as true , a copy of the message will be emailed to the sender.',
     )
     message_media: list[MessageMedia] | None = Field(
         None,
         alias='messageMedia',
-        description='This array lists the individual forms of media, if any, to be attached to the message.<br><br>Up to five individual forms of media may be sent per message. If more than five are specified in this array, an error will occur and the call will fail.',
+        description='This array lists the individual forms of media, if any, to be attached to the message. Up to five individual forms of media may be sent per message. If more than five are specified in this array, an error will occur and the call will fail.',
     )
     message_text: str | None = Field(
         None,
         alias='messageText',
-        description='The text of the message.<br><br><strong>Maximum length:</strong> 2000 characters',
+        description='The text of the message. Maximum length: 2000 characters',
     )
     other_party_username: str | None = Field(
         None,
         alias='otherPartyUsername',
-        description='This field specifies the eBay username of the entity to whom to send the message.<br><br>This field is required if starting a new conversation with another eBay user.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='This field specifies the eBay username of the entity to whom to send the message. This field is required if starting a new conversation with another eBay user. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place.',
     )
     reference: Reference | None = Field(
         None,
-        description='This container should be used if the new or existing conversation is related to a specific eBay listing.<br><br>For example, a <strong>referenceType</strong> of <code>LISTING</code> and an associated <strong>referenceId</strong> will specify the item ID value of the listing associated with the message.',
+        description='This container should be used if the new or existing conversation is related to a specific eBay listing. For example, a referenceType of LISTING and an associated referenceId will specify the item ID value of the listing associated with the message.',
     )
 
 
@@ -152,17 +152,17 @@ class SendMessageResponse(EbayModel):
     read_status: bool | None = Field(
         None,
         alias='readStatus',
-        description='The read status of the message.<br><br>If returned as <code>true</code>, the message has been read. If returned as <code>false</code>, the message has not been read.',
+        description='The read status of the message. If returned as true , the message has been read. If returned as false , the message has not been read.',
     )
     recipient_user_name: str | None = Field(
         None,
         alias='recipientUserName',
-        description='The eBay username of the recipient.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='The eBay username of the recipient. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     sender_user_name: str | None = Field(
         None,
         alias='senderUserName',
-        description='The eBay username of the sender.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='The eBay username of the sender. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     subject: str | None = Field(None, description='The subject line of the message.')
 
@@ -171,21 +171,21 @@ class UpdateConversationRequest(EbayModel):
     conversation_id: str | None = Field(
         None,
         alias='conversationId',
-        description='This field specifies the unique identifier of the conversation that is to be updated.<br><br>Use the <a href="/develop/api/sell/message_api#sell-message_api-conversation-getconversations">getConversations</a> method to retrieve conversation ID values.',
+        description='This field specifies the unique identifier of the conversation that is to be updated. Use the getConversations method to retrieve conversation ID values.',
     )
     conversation_status: str | None = Field(
         None,
         alias='conversationStatus',
-        description='This field specifies the status for which to update the specified conversation.<br><br><strong>Valid values:</strong><ul><li><code>ACTIVE</code></li><li><code>ARCHIVE</code></li><li><code>DELETE</code></li></ul><span class="tablenote"><strong>Note:</strong> This field should not be used in conjunction with the <strong>read</strong> field. If both fields are input in the request, only the <strong>read</strong> status will be updated for the specified conversation and the <strong>conversationStatus</strong> field will be ignored.</span>',
+        description='This field specifies the status for which to update the specified conversation. Valid values: ACTIVE ARCHIVE DELETE Note: This field should not be used in conjunction with the read field. If both fields are input in the request, only the read status will be updated for the specified conversation and the conversationStatus field will be ignored.',
     )
     conversation_type: str | None = Field(
         None,
         alias='conversationType',
-        description='This field specifies the existing type of the conversation being updated.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><strong><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></strong></span></span> This value <strong>cannot</strong> be updated using this method but is required as part of the request payload.</p></div><br><strong>Valid values:</strong><ul><li><code>FROM_MEMBERS</code></li><li><code>FROM_EBAY</code></li></ul>',
+        description='This field specifies the existing type of the conversation being updated. Important! This value cannot be updated using this method but is required as part of the request payload. Valid values: FROM_MEMBERS FROM_EBAY',
     )
     read: bool | None = Field(
         None,
-        description='This boolean specifies the read status for which to update the conversation.<br><br>If set to <code>true</code>, the conversation will update to \'read\', and if set to <code>false</code>, the conversation will update to \'unread\'.<br><br><span class="tablenote"><strong>Note:</strong> This field should not be used in conjunction with the <strong>conversationStatus</strong> field. If both fields are input in the request, only the <strong>read</strong> status will be updated for the specified conversation and the <strong>conversationStatus</strong> field will be ignored.</span>',
+        description="This boolean specifies the read status for which to update the conversation. If set to true , the conversation will update to 'read', and if set to false , the conversation will update to 'unread'. Note: This field should not be used in conjunction with the conversationStatus field.",
     )
 
 
@@ -244,7 +244,7 @@ class MessageDetail(EbayModel):
     created_date: str | None = Field(
         None,
         alias='createdDate',
-        description='The date,  in ISO 8601 format, the message was received.',
+        description='The date, in ISO 8601 format, the message was received.',
     )
     message_body: str | None = Field(
         None, alias='messageBody', description='The message text.'
@@ -260,17 +260,17 @@ class MessageDetail(EbayModel):
     read_status: bool | None = Field(
         None,
         alias='readStatus',
-        description='This boolean indicates if the message has been viewed by the recipient.<br><br>If this boolean is returned as <code>true</code>, the message has been read. If this boolean is returned as <code>false</code>, the message has not been read.',
+        description='This boolean indicates if the message has been viewed by the recipient. If this boolean is returned as true , the message has been read. If this boolean is returned as false , the message has not been read.',
     )
     recipient_username: str | None = Field(
         None,
         alias='recipientUsername',
-        description='The eBay username of the message recipient.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='The eBay username of the message recipient. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     sender_username: str | None = Field(
         None,
         alias='senderUsername',
-        description='The eBay username of the message sender.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='The eBay username of the message sender. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     subject: str | None = Field(None, description='The subject line of the message.')
 
@@ -284,7 +284,7 @@ class ConversationDetail(EbayModel):
     conversation_status: str | None = Field(
         None,
         alias='conversationStatus',
-        description='This value indicates the current status of the conversation, such as <code>ACTIVE</code> or <code>ARCHIVED</code>.',
+        description='This value indicates the current status of the conversation, such as ACTIVE or ARCHIVED .',
     )
     conversation_title: str | None = Field(
         None,
@@ -294,7 +294,7 @@ class ConversationDetail(EbayModel):
     conversation_type: str | None = Field(
         None,
         alias='conversationType',
-        description='This value indicates the type of the conversation, such as <code>FROM_EBAY</code> or <code>FROM_MEMBERS</code>.',
+        description='This value indicates the type of the conversation, such as FROM_EBAY or FROM_MEMBERS .',
     )
     created_date: str | None = Field(
         None,
@@ -309,12 +309,12 @@ class ConversationDetail(EbayModel):
     reference_id: str | None = Field(
         None,
         alias='referenceId',
-        description='This value indicates the reference ID associated with the corresponding <strong>referenceType</strong> value.<br><br>In the case of a <code>LISTING</code> <strong>referenceType</strong>, this value will be the item ID value of the associated listing.',
+        description='This value indicates the reference ID associated with the corresponding referenceType value. In the case of a LISTING referenceType , this value will be the item ID value of the associated listing.',
     )
     reference_type: str | None = Field(
         None,
         alias='referenceType',
-        description='This value indicates the reference type, if applicable, associated with the conversation.<br><br>The reference type is used to specify what the conversation is in reference to. For example, a value of <code>LISTING</code> specifies that the conversation is associated with a specific listing. The item ID associated with this listing will then be returned in the <strong>referenceId</strong> field.<br><br>Currently, only the <code>LISTING</code> reference type is supported.',
+        description='This value indicates the reference type, if applicable, associated with the conversation. The reference type is used to specify what the conversation is in reference to. For example, a value of LISTING specifies that the conversation is associated with a specific listing. The item ID associated with this listing will then be returned in the referenceId field.',
     )
     unread_count: int | None = Field(
         None,
@@ -326,26 +326,24 @@ class ConversationDetail(EbayModel):
 class GetAllMyConversationsResponse(EbayModel):
     conversations: list[ConversationDetail] | None = Field(
         None,
-        description='This array returns the conversations that match the filter criteria.<br><br>Each conversation is returned with information such as its ID, status, title, type, and creation date, as well as the latest message in the conversation.',
+        description='This array returns the conversations that match the filter criteria. Each conversation is returned with information such as its ID, status, title, type, and creation date, as well as the latest message in the conversation.',
     )
     href: str | None = Field(
         None, description='The URI to the current page of results.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     next: str | None = Field(
         None,
-        description='The URI for the next page of results.<br><br>This value is returned if there is an additional page of results in the result set.',
+        description='The URI for the next page of results. This value is returned if there is an additional page of results in the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <strong>offset</strong> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
-        description='The URI for the previous page of results.<br><br>This value is only returned if there is a previous page of results in the result set.',
+        description='The URI for the previous page of results. This value is only returned if there is a previous page of results in the result set.',
     )
     total: int | None = Field(
         None, description='The total number of entries returned in the result set.'
@@ -356,7 +354,7 @@ class GetMessagesByConversationIdResponse(EbayModel):
     conversation_status: str | None = Field(
         None,
         alias='conversationStatus',
-        description='The current status of the conversation, such as <code>ACTIVE</code> or <code>ARCHIVE</code>. ',
+        description='The current status of the conversation, such as ACTIVE or ARCHIVE .',
     )
     conversation_title: str | None = Field(
         None, alias='conversationTitle', description='The title of the conversation.'
@@ -364,14 +362,13 @@ class GetMessagesByConversationIdResponse(EbayModel):
     conversation_type: str | None = Field(
         None,
         alias='conversationType',
-        description='The type of the conversation, such as <code>FROM_EBAY</code> or <code>FROM_MEMBERS</code>.',
+        description='The type of the conversation, such as FROM_EBAY or FROM_MEMBERS .',
     )
     href: str | None = Field(
         None, description='The URI to the current page of results.'
     )
     limit: int | None = Field(
-        None,
-        description='The value of the <strong>limit</strong> parameter submitted in the request.',
+        None, description='The value of the limit parameter submitted in the request.'
     )
     messages: list[MessageDetail] | None = Field(
         None,
@@ -379,15 +376,14 @@ class GetMessagesByConversationIdResponse(EbayModel):
     )
     next: str | None = Field(
         None,
-        description='The URI for the next page of results.<br><br>This value is only returned if there is an additional page of results in the result set.',
+        description='The URI for the next page of results. This value is only returned if there is an additional page of results in the result set.',
     )
     offset: int | None = Field(
-        None,
-        description='The value of the <strong>offset</strong> parameter submitted in the request.',
+        None, description='The value of the offset parameter submitted in the request.'
     )
     prev: str | None = Field(
         None,
-        description='The URI for the previous page of results.<br><br>This value is only returned if there is a previous page of results in the result set.',
+        description='The URI for the previous page of results. This value is only returned if there is a previous page of results in the result set.',
     )
     total: int | None = Field(
         None, description='The total number of entries returned in the result set.'

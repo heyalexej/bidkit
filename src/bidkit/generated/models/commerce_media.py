@@ -18,19 +18,19 @@ class CreateImageFromUrlRequest(EbayModel):
     image_url: str | None = Field(
         None,
         alias='imageUrl',
-        description='The image URL of the self-hosted picture to upload to eBay Picture Services (EPS). In addition to the picture requirements in <a href="https://www.ebay.com/help/policies/listing-policies/picture-policy?id=4370" target="_blank">Picture policy</a>, the provided URL must be secured using HTTPS (HTTP is not permitted). For more information, see <a href="/api-docs/sell/static/inventory/managing-image-media.html#image-requirements" target="_blank">Image requirements</a>.',
+        description='The image URL of the self-hosted picture to upload to eBay Picture Services (EPS). In addition to the picture requirements in Picture policy , the provided URL must be secured using HTTPS (HTTP is not permitted). For more information, see Image requirements .',
     )
 
 
 class CreateVideoRequest(EbayModel):
     classification: list[Classification] | None = Field(
         None,
-        description='The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is <code>ITEM</code>.',
+        description='The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is ITEM .',
     )
     description: str | None = Field(None, description='The description of the video.')
     size: int | None = Field(
         None,
-        description='The size, in bytes, of the video content. <br><br><strong>Max:</strong> 157,286,400 bytes',
+        description='The size, in bytes, of the video content. Max: 157,286,400 bytes',
     )
     title: str | None = Field(None, description='The title of the video.')
 
@@ -39,7 +39,7 @@ class DocumentMetadata(EbayModel):
     file_name: str | None = Field(
         None,
         alias='fileName',
-        description='The name of the file including its extension (for example, <code>drone_user_warranty.pdf</code>).',
+        description='The name of the file including its extension (for example, drone_user_warranty.pdf ).',
     )
     file_size: str | None = Field(
         None,
@@ -49,7 +49,7 @@ class DocumentMetadata(EbayModel):
     file_type: str | None = Field(
         None,
         alias='fileType',
-        description='The type of the file uploaded. Supported file types include the following: <code>pdf</code>, <code>jpeg</code>, <code>jpg</code>, and <code>png</code>.',
+        description='The type of the file uploaded. Supported file types include the following: pdf , jpeg , jpg , and png .',
     )
 
 
@@ -162,12 +162,12 @@ class CreateDocumentFromUrlRequest(EbayModel):
     document_type: DocumentTypeEnum | None = Field(
         None,
         alias='documentType',
-        description='The type of the document being created. For example, a <code>USER_GUIDE_OR_MANUAL</code> or a <code>SAFETY_DATA_SHEET</code>.',
+        description='The type of the document being created. For example, a USER_GUIDE_OR_MANUAL or a SAFETY_DATA_SHEET .',
     )
     document_url: str | None = Field(
         None,
         alias='documentUrl',
-        description='The URL of the document being created.<br><br>The document referenced by the URL must be a .pdf, .png, .jpg, or .jpeg file, and must be no larger than 10 MB.',
+        description='The URL of the document being created. The document referenced by the URL must be a .pdf, .png, .jpg, or .jpeg file, and must be no larger than 10 MB.',
     )
     languages: list[LanguageEnum] | None = Field(
         None, description='This array shows the language(s) used in the document.'
@@ -178,7 +178,7 @@ class CreateDocumentRequest(EbayModel):
     document_type: DocumentTypeEnum | None = Field(
         None,
         alias='documentType',
-        description='The type of the document being uploaded. For example, a <code>USER_GUIDE_OR_MANUAL</code> or a <code>SAFETY_DATA_SHEET</code>.',
+        description='The type of the document being uploaded. For example, a USER_GUIDE_OR_MANUAL or a SAFETY_DATA_SHEET .',
     )
     languages: list[LanguageEnum] | None = Field(
         None, description='This array shows the language(s) used in the document.'
@@ -189,17 +189,17 @@ class CreateDocumentResponse(EbayModel):
     document_id: str | None = Field(
         None,
         alias='documentId',
-        description='The unique identifier of the document to be uploaded.<br><br>This value is returned in the response and <strong>location</strong> header of the <strong>createDocument</strong> and <strong>createDocumentFromUrl</strong> methods. This ID can be used with the <strong>getDocument</strong> and <strong>uploadDocument</strong> methods, and to add an uploaded document to a listing. See <a href="/api-docs/sell/static/inventory/managing-document-media.html#add-documents" target="_blank">Adding documents to listings</a> for more information. ',
+        description='The unique identifier of the document to be uploaded. This value is returned in the response and location header of the createDocument and createDocumentFromUrl methods. This ID can be used with the getDocument and uploadDocument methods, and to add an uploaded document to a listing. See Adding documents to listings for more information.',
     )
     document_status: DocumentStatusEnum | None = Field(
         None,
         alias='documentStatus',
-        description='The status of the document resource.<br><br>For example, the value <code>PENDING_UPLOAD</code> is the initial state when the reference to the document has been created using the <strong>createDocument</strong> method. When creating a document using the <strong>createDocumentFromUrl</strong> method, the initial state will be <code>SUBMITTED</code>.',
+        description='The status of the document resource. For example, the value PENDING_UPLOAD is the initial state when the reference to the document has been created using the createDocument method. When creating a document using the createDocumentFromUrl method, the initial state will be SUBMITTED .',
     )
     document_type: DocumentTypeEnum | None = Field(
         None,
         alias='documentType',
-        description='The type of the document uploaded. For example, <code>USER_GUIDE_OR_MANUAL</code>.',
+        description='The type of the document uploaded. For example, USER_GUIDE_OR_MANUAL .',
     )
     languages: list[LanguageEnum] | None = Field(
         None, description='This array shows the language(s) used in the document.'
@@ -218,12 +218,12 @@ class DocumentResponse(EbayModel):
     document_status: DocumentStatusEnum | None = Field(
         None,
         alias='documentStatus',
-        description='The status of the document resource.<br><br>Once a document has been uploaded using the <strong>uploadDocument</strong> method, the <strong>documentStatus</strong> will be <code>SUBMITTED</code>. The document will then either be accepted or rejected. Only documents with the status of <code>ACCEPTED</code> are available to be added to a listing.',
+        description='The status of the document resource. Once a document has been uploaded using the uploadDocument method, the documentStatus will be SUBMITTED . The document will then either be accepted or rejected. Only documents with the status of ACCEPTED are available to be added to a listing.',
     )
     document_type: DocumentTypeEnum | None = Field(
         None,
         alias='documentType',
-        description='The type of the document uploaded. For example, <code>USER_GUIDE_OR_MANUAL</code>.',
+        description='The type of the document uploaded. For example, USER_GUIDE_OR_MANUAL .',
     )
     languages: list[LanguageEnum] | None = Field(
         None, description='This array shows the language(s) used in the document.'
@@ -289,25 +289,25 @@ class Play(EbayModel):
 class Video(EbayModel):
     classification: list[Classification] | None = Field(
         None,
-        description='The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is <code>ITEM</code>. This array is always returned.',
+        description='The intended use for this video content. Currently, videos can only be added and associated with eBay listings, so the only supported value is ITEM . This array is always returned.',
     )
     description: str | None = Field(
         None,
-        description='The description of the video. The video description is an optional field that can be set using the <a href=" /develop/api/sell/media_api#sell-media_api-video-createvideo">createVideo</a> method.',
+        description='The description of the video. The video description is an optional field that can be set using the createVideo method.',
     )
     expiration_date: str | None = Field(
         None,
         alias='expirationDate',
-        description="The date and time when an unused video will expire and be removed from the eBay Video Services server, in Coordinated Universal Time (UTC).<br><br>As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.",
+        description="The date and time when an unused video will expire and be removed from the eBay Video Services server, in Coordinated Universal Time (UTC). As long as a video is being used in an active listing, that video will remain on the server and be accessible. If a video is not being used on an active listing, its expiration date is automatically set to 30 days after the video's initial upload.",
     )
     moderation: Moderation | None = Field(
         None,
-        description='The video moderation information that is returned if a video is blocked by moderators.<br /><br /><span class="tablenote"><span style="color:#478415"><strong>Tip:</strong></span> See <a href="https://www.ebay.com/help/selling/listings/creating-managing-listings/add-video-to-listing?id=5272#section2" target="_blank">Video moderation and restrictions</a> in the eBay Seller Center for details about video moderation.</span><br /><br />If the video status is <code>BLOCKED</code>, ensure that the video complies with eBay\'s video formatting and content guidelines. Afterwards, begin the video creation and upload procedure anew using the <strong>createVideo</strong> and <strong>uploadVideo</strong> methods.',
+        description="The video moderation information that is returned if a video is blocked by moderators. Tip: See Video moderation and restrictions in the eBay Seller Center for details about video moderation. If the video status is BLOCKED , ensure that the video complies with eBay's video formatting and content guidelines.",
     )
     play_lists: list[Play] | None = Field(
         None,
         alias='playLists',
-        description='The playlist created for the uploaded video, which provides the streaming video URLs to play the video. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming). The playlist will only be generated if a video is successfully uploaded with a status of <code>LIVE</code>.',
+        description='The playlist created for the uploaded video, which provides the streaming video URLs to play the video. The supported streaming video protocols are DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming). The playlist will only be generated if a video is successfully uploaded with a status of LIVE .',
     )
     size: int | None = Field(
         None,
@@ -319,7 +319,7 @@ class Video(EbayModel):
     status_message: str | None = Field(
         None,
         alias='statusMessage',
-        description='The <strong>statusMessage</strong> field contains additional information on the status. For example, information on why processing might have failed or if the video was blocked.',
+        description='The statusMessage field contains additional information on the status. For example, information on why processing might have failed or if the video was blocked.',
     )
     thumbnail: Image | None = Field(
         None,

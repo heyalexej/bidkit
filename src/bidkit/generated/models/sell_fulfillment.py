@@ -44,7 +44,7 @@ class AddEvidencePaymentDisputeResponse(EbayModel):
     evidence_id: str | None = Field(
         None,
         alias='evidenceId',
-        description='The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-fetchevidencecontent" target="_blank">fetchEvidenceContent</a> method.',
+        description='The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the fileId array in the request payload.',
     )
 
 
@@ -515,25 +515,25 @@ class DisputeAmount(EbayModel):
     converted_from_currency: CurrencyCodeEnum | None = Field(
         None,
         alias='convertedFromCurrency',
-        description='The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <strong> convertedFromValue</strong> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The three-letter ISO 4217 code representing the currency of the amount in the convertedFromValue field. This value is the pre-conversion currency. This field is only returned if/when currency conversion was applied by eBay.',
     )
     converted_from_value: str | None = Field(
         None,
         alias='convertedFromValue',
-        description='The monetary amount before any conversion is performed, in the currency specified by the <strong> convertedFromCurrency</strong> field. This value is the pre-conversion amount. The <strong> value</strong> field contains the converted amount of this value, in the currency specified by the <strong> currency</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The monetary amount before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is the pre-conversion amount. The value field contains the converted amount of this value, in the currency specified by the currency field. This field is only returned if/when currency conversion was applied by eBay.',
     )
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. This field is always returned with any container using <strong>Amount</strong> type. <br><br><strong>Default</strong>: The currency of the authenticated user\'s country.',
+        description="A three-letter ISO 4217 code that indicates the currency of the amount in the value field. This field is always returned with any container using Amount type. Default : The currency of the authenticated user's country.",
     )
     exchange_rate: str | None = Field(
         None,
         alias='exchangeRate',
-        description='The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <strong>value</strong> field from the dollar value in the <strong>convertedFromValue</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.',
+        description='The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the value field from the dollar value in the convertedFromValue field. This field is only returned if/when currency conversion was applied by eBay.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount, in the currency specified by the <strong>currency</strong> field. This field is always returned with any container using <strong>Amount</strong> type.',
+        description='The monetary amount, in the currency specified by the currency field. This field is always returned with any container using Amount type.',
     )
 
 
@@ -561,7 +561,7 @@ class EbayFulfillmentProgram(EbayModel):
     fulfilled_by: str | None = Field(
         None,
         alias='fulfilledBy',
-        description='The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br><strong>Valid value</strong>: <code>EBAY</code>',
+        description='The value returned in this field indicates the party that is handling fulfillment of the order line item. Valid value : EBAY',
     )
 
 
@@ -569,7 +569,7 @@ class EbayInternationalShipping(EbayModel):
     returns_managed_by: str | None = Field(
         None,
         alias='returnsManagedBy',
-        description='The value returned in this field indicates the party that is responsible for managing returns of the order line item.<br><br>Valid value: <code>EBAY</code>',
+        description='The value returned in this field indicates the party that is responsible for managing returns of the order line item. Valid value: EBAY',
     )
 
 
@@ -577,18 +577,18 @@ class EbayShipping(EbayModel):
     shipping_label_provided_by: str | None = Field(
         None,
         alias='shippingLabelProvidedBy',
-        description='This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.',
+        description='This field contains the shipping label provider. If EBAY , this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.',
     )
 
 
 class EbayTaxReference(EbayModel):
     name: str | None = Field(
         None,
-        description='This field value is returned to indicate the VAT tax type, which will vary by country/region. This string value will be one of the following:<ul><li><code>ABN</code>: If this string is returned, the ID in the <strong>value</strong> field is an Australia tax ID.</li><li><code>DDG</code>: If this string is returned, it indicates that tax has been collected and remitted for Digitally Delivered Goods (DDG).</li><li><code>IOSS</code>: If this string is returned, the ID in the <strong>value</strong> field is an eBay EU or UK IOSS number.</li><li><code>IRD</code>: If this string is returned, the ID in the <strong>value</strong> field is an eBay New Zealand tax ID.</li><li><code>SST</code>: If this string is returned, the ID in the <strong>value</strong> field is an eBay Malaysia taxNumber.</li><li><code>OSS</code>: If this string is returned, the ID in the <strong>value</strong> field is an eBay Germany VAT ID.</li><li><code>VOEC</code>: If this string is returned, the ID in the <strong>value</strong> field is an eBay Norway tax ID.</li></ul>',
+        description='This field value is returned to indicate the VAT tax type, which will vary by country/region. This string value will be one of the following: ABN : If this string is returned, the ID in the value field is an Australia tax ID. DDG : If this string is returned, it indicates that tax has been collected and remitted for Digitally Delivered Goods (DDG).',
     )
     value: str | None = Field(
         None,
-        description='The value returned in this field is the VAT identifier number (VATIN), which will vary by country/region. This field will be returned if VAT tax is applicable for the order. The <strong>name</strong> field indicates the VAT tax type, which will vary by country/region: <ul><li><strong>ABN</strong>: eBay AU tax ID</li><li><strong>IOSS</strong>: eBay EU IOSS number/eBay UK IOSS number</li><li><strong>IRD</strong>: eBay NZ tax ID</li><li><strong>OSS</strong>: eBay DE VAT ID</li><li><strong>SST</strong>: eBay MY taxNumber</li><li><strong>VOEC</strong>: eBay NO number</li></ul>',
+        description='The value returned in this field is the VAT identifier number (VATIN), which will vary by country/region. This field will be returned if VAT tax is applicable for the order.',
     )
 
 
@@ -602,7 +602,7 @@ class EbayVaultProgram(EbayModel):
     fulfillment_type: EbayVaultFulfillmentTypeEnum | None = Field(
         None,
         alias='fulfillmentType',
-        description="This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><strong>Seller to Vault</strong>: The order will be shipped by the seller to an authenticator.</li><li><strong>Vault to Vault</strong>: The order will be shipped from an eBay vault to the buyer's vault.</li><li><strong>Vault to Buyer</strong>: The order will be shipped from an eBay vault to the buyer's shipping address.</li></ul>",
+        description="This field specifies how an eBay vault order will be fulfilled. Supported options are: Seller to Vault : The order will be shipped by the seller to an authenticator. Vault to Vault : The order will be shipped from an eBay vault to the buyer's vault. Vault to Buyer : The order will be shipped from an eBay vault to the buyer's shipping address.",
     )
 
 
@@ -618,7 +618,7 @@ class ErrorParameterV3(EbayModel):
     )
     value: str | None = Field(
         None,
-        description='This is the actual value that was passed in for the element specified in the <strong>name</strong> field.',
+        description='This is the actual value that was passed in for the element specified in the name field.',
     )
 
 
@@ -638,7 +638,7 @@ class FileEvidence(EbayModel):
     file_id: str | None = Field(
         None,
         alias='fileId',
-        description='This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> method.',
+        description='This field is used to identify the evidence file to be uploaded to the evidence set. This file is created with the uploadEvidenceFile method and can be retrieved using the getPaymentDispute method.',
     )
 
 
@@ -657,7 +657,7 @@ class FileInfo(EbayModel):
     uploaded_date: str | None = Field(
         None,
         alias='uploadedDate',
-        description='The timestamp in this field shows the date/time when the seller uploaded the evidential document to eBay. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller uploaded the evidential document to eBay. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
 
 
@@ -672,17 +672,17 @@ class FulfillmentInstructionsType(OpenStrEnum):
 class GiftDetails(EbayModel):
     message: str | None = Field(
         None,
-        description='This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>message</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift. Note: The message will not be returned for any order that is more than 90 days old.',
     )
     recipient_email: str | None = Field(
         None,
         alias='recipientEmail',
-        description='The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>recipientEmail</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The email address of the gift recipient. The seller will send the digital gift card to this email address. Note: The recipientEmail will not be returned for any order that is more than 90 days old.',
     )
     sender_name: str | None = Field(
         None,
         alias='senderName',
-        description='The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>senderName</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The name of the buyer, which will appear on the email that is sent to the gift recipient. Note: The senderName will not be returned for any order that is more than 90 days old.',
     )
 
 
@@ -690,11 +690,11 @@ class ItemLocation(EbayModel):
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> code representing the country of the address.',
+        description='The two-letter ISO 3166 code representing the country of the address.',
     )
     location: str | None = Field(
         None,
-        description='Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <strong>postalCode</strong> fields).<br><br>This field provides city, province, state, or similar information.<br><br><span class="tablenote"><strong>Note:</strong> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span>',
+        description='Indicates the geographical location of the item (along with the values in the countryCode and postalCode fields). This field provides city, province, state, or similar information. Note: If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.',
     )
     postal_code: str | None = Field(
         None, alias='postalCode', description='The postal code of the address.'
@@ -705,12 +705,12 @@ class LegacyReference(EbayModel):
     legacy_item_id: str | None = Field(
         None,
         alias='legacyItemId',
-        description='The unique identifier of a listing.<br><br> This value can be found in the <strong>Transaction</strong> container in the response of the <a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">GetOrders</strong> call of the <strong>Trading API</strong>.<br><br><span class="tablenote"><strong>Note:</strong> Both <strong>legacyItemId</strong> and <strong>legacyTransactionId</strong> are needed to identify an order line item. </span>',
+        description='The unique identifier of a listing. This value can be found in the Transaction container in the response of the GetOrders call of the Trading API . Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.',
     )
     legacy_transaction_id: str | None = Field(
         None,
         alias='legacyTransactionId',
-        description='The unique identifier of a sale/transaction in legacy/Trading API format. A \'transaction ID\' is created once a buyer purchases a \'Buy It Now\' item or if an auction listing ends with a winning bidder.<br><br> This value can be found in the <strong>Transaction</strong> container in the response of the <strong>getOrder</strong> call of the <strong>Trading API</strong>. <br><br><span class="tablenote"><strong>Note:</strong> Both <strong>legacyItemId</strong> and <strong>legacyTransactionId</strong> are needed to identify an order line item. </span>',
+        description="The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API .",
     )
 
 
@@ -718,7 +718,7 @@ class LineItemFulfillmentInstructions(EbayModel):
     destination_time_zone: str | None = Field(
         None,
         alias='destinationTimeZone',
-        description='This field is reserved for internal or future use. <!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. -->',
+        description='This field is reserved for internal or future use.',
     )
     guaranteed_delivery: bool | None = Field(
         None,
@@ -728,22 +728,22 @@ class LineItemFulfillmentInstructions(EbayModel):
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='The estimated latest date and time that the buyer can expect to receive the line item based on the seller\'s stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a \'Late shipment\' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>',
+        description="The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status.",
     )
     min_estimated_delivery_date: str | None = Field(
         None,
         alias='minEstimatedDeliveryDate',
-        description='The estimated earliest date and time that the buyer can expect to receive the line item based on the seller\'s stated handling time and the transit times of the available shipping service options.<br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>',
+        description="The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. Note: This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z",
     )
     ship_by_date: str | None = Field(
         None,
         alias='shipByDate',
-        description='The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller\'s stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a \'Late shipment\' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>',
+        description="The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time.",
     )
     source_time_zone: str | None = Field(
         None,
         alias='sourceTimeZone',
-        description='This field is reserved for internal or future use. <!-- Source time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Ship by date is calculated relative to this time zone. -->',
+        description='This field is reserved for internal or future use.',
     )
 
 
@@ -757,17 +757,17 @@ class LineItemProperties(EbayModel):
     buyer_protection: bool | None = Field(
         None,
         alias='buyerProtection',
-        description="A value of <code>true</code> indicates that the line item is covered by eBay's Buyer Protection program.",
+        description="A value of true indicates that the line item is covered by eBay's Buyer Protection program.",
     )
     from_best_offer: bool | None = Field(
         None,
         alias='fromBestOffer',
-        description='This field is only returned if <code>true</code> and indicates that the purchase occurred by the buyer and seller mutually agreeing on a Best Offer amount. The Best Offer feature can be set up for any listing type, but if this feature is set up for an auction listing, it will no longer be available once a bid has been placed on the listing.',
+        description='This field is only returned if true and indicates that the purchase occurred by the buyer and seller mutually agreeing on a Best Offer amount. The Best Offer feature can be set up for any listing type, but if this feature is set up for an auction listing, it will no longer be available once a bid has been placed on the listing.',
     )
     sold_via_ad_campaign: bool | None = Field(
         None,
         alias='soldViaAdCampaign',
-        description="This field is only returned if <code>true</code> and indicates that the line item was sold as a result of a seller's ad campaign.",
+        description="This field is only returned if true and indicates that the line item was sold as a result of a seller's ad campaign.",
     )
 
 
@@ -775,11 +775,11 @@ class LineItemReference(EbayModel):
     line_item_id: str | None = Field(
         None,
         alias='lineItemId',
-        description='This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the <strong>lineItems.lineItemId</strong> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> response.',
+        description='This is the unique identifier of the eBay order line item that is part of the shipping fulfillment. Line item Ids can be found in the lineItems.lineItemId field of the getOrders response.',
     )
     quantity: int | None = Field(
         None,
-        description='This is the number of lineItems associated with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber" target="_blank">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><strong>Default:</strong> 1',
+        description='This is the number of lineItems associated with the trackingNumber specified by the seller. This must be a whole number greater than zero (0). Default: 1',
     )
 
 
@@ -840,11 +840,11 @@ class MonetaryTransactionTypeEnum(OpenStrEnum):
 class NameValuePair(EbayModel):
     name: str | None = Field(
         None,
-        description='The text representing the name of the aspect for the name-value pair. For example, <code>color</code> or <code>Tire Type</code>.',
+        description='The text representing the name of the aspect for the name-value pair. For example, color or Tire Type .',
     )
     value: str | None = Field(
         None,
-        description='The value of the aspect for the name-value pair. For example, <code>red</code> or <code>All Season</code>.',
+        description='The value of the aspect for the name-value pair. For example, red or All Season .',
     )
 
 
@@ -885,23 +885,23 @@ class PaymentDisputeActivity(EbayModel):
     activity_date: str | None = Field(
         None,
         alias='activityDate',
-        description='The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time of the payment dispute activity. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ . An example would be 2019-08-04T19:09:02.768Z .',
     )
     activity_type: ActivityEnum | None = Field(
         None,
         alias='activityType',
-        description="This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here.",
+        description='This enumeration value indicates the type of activity that occured on the payment dispute.',
     )
     actor: ActorEnum | None = Field(
         None,
-        description='This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>.',
+        description='This enumeration value indicates the actor that performed the action. Possible values include the BUYER , SELLER , CS_AGENT (eBay customer service), or SYSTEM .',
     )
 
 
 class PaymentDisputeActivityHistory(EbayModel):
     activity: list[PaymentDisputeActivity] | None = Field(
         None,
-        description='This array holds all activities of a payment dispute, from creation to resolution. For each activity, the activity type, the actor, and a timestamp is shown. The <strong>getActivities</strong> response is dynamic, and grows with each recorded activity.',
+        description='This array holds all activities of a payment dispute, from creation to resolution. For each activity, the activity type, the actor, and a timestamp is shown. The getActivities response is dynamic, and grows with each recorded activity.',
     )
 
 
@@ -926,11 +926,11 @@ class Phone(EbayModel):
     country_code: str | None = Field(
         None,
         alias='countryCode',
-        description=' The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> code associated with the seller\'s phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum">CountryCodeEnum</a> for a list of supported values.',
+        description="The two-letter, ISO 3166 code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country See CountryCodeEnum for a list of supported values.",
     )
     number: str | None = Field(
         None,
-        description='The seller\'s primary phone number associated with the return address. When this number is provided in a <strong>contestPaymentDispute</strong> or <strong>contestPaymentDispute</strong> method, it is provided as one continuous numeric string, including the area code. So, if the phone number\'s area code was \'408\', a number in this field may look something like this: <br><br><code>"number" : "4088084356"</code><br><br>If the buyer is located in a different country than the seller, the seller\'s country code will need to be specified in the <strong>countryCode</strong> field.',
+        description="The seller's primary phone number associated with the return address. When this number is provided in a contestPaymentDispute or contestPaymentDispute method, it is provided as one continuous numeric string, including the area code.",
     )
 
 
@@ -946,7 +946,7 @@ class PickupStep(EbayModel):
     merchant_location_key: str | None = Field(
         None,
         alias='merchantLocationKey',
-        description="A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <strong>pickupStep</strong> container.",
+        description="A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order. This field is always returned with the pickupStep container.",
     )
 
 
@@ -954,11 +954,11 @@ class PostSaleAuthenticationProgram(EbayModel):
     outcome_reason: AuthenticityVerificationReasonEnum | None = Field(
         None,
         alias='outcomeReason',
-        description='This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>.',
+        description='This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is PENDING or PASSED . The possible values returned here are NOT_AUTHENTIC , NOT_AS_DESCRIBED , CUSTOMIZED , MISCATEGORIZED , or NOT_AUTHENTIC_NO_RETURN .',
     )
     status: AuthenticityVerificationStatusEnum | None = Field(
         None,
-        description='The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>.',
+        description='The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are PENDING , PASSED , FAILED , or PASSED_WITH_EXCEPTION .',
     )
 
 
@@ -999,12 +999,12 @@ class Property(EbayModel):
     property_name: str | None = Field(
         None,
         alias='propertyName',
-        description="The name of the motor vehicle aspect.<br><br>For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
+        description="The name of the motor vehicle aspect. For example, typical vehicle property names are 'Make', 'Model', 'Year', 'Engine', and 'Trim', but will vary based on the eBay marketplace and the eBay category.",
     )
     property_value: str | None = Field(
         None,
         alias='propertyValue',
-        description='The value of the property specified in the <strong>propertyName</strong> field.<br><br>For example, if the <strong>propertyName</strong> is <code>Make</code>, then the <strong>propertyValue</strong> will be the specific make of the vehicle, such as <code>Toyota</code>.',
+        description='The value of the property specified in the propertyName field. For example, if the propertyName is Make , then the propertyValue will be the specific make of the vehicle, such as Toyota .',
     )
 
 
@@ -1023,12 +1023,12 @@ class RangeValue(EbayModel):
     exclusive_end: bool | None = Field(
         None,
         alias='exclusiveEnd',
-        description='A value of <code>true</code> indicates that the provided <strong>end</strong> value is not included in the range.',
+        description='A value of true indicates that the provided end value is not included in the range.',
     )
     exclusive_start: bool | None = Field(
         None,
         alias='exclusiveStart',
-        description='A value of <code>true</code> indicates that the provided <strong>start</strong> value is not included in the range.',
+        description='A value of true indicates that the provided start value is not included in the range.',
     )
     range: bool | None = Field(
         None, description='This field is reserved for internal or future use.'
@@ -1099,7 +1099,7 @@ class SellerActionsToRelease(EbayModel):
     seller_action_to_release: str | None = Field(
         None,
         alias='sellerActionToRelease',
-        description='A possible action that the seller can take to expedite the release of a payment hold. A <strong>sellerActionToRelease</strong> field is returned for each possible action that a seller may take. Possible actions may include providing shipping/tracking information, issuing a refund, providing refund information, contacting customer support, etc.',
+        description='A possible action that the seller can take to expedite the release of a payment hold. A sellerActionToRelease field is returned for each possible action that a seller may take. Possible actions may include providing shipping/tracking information, issuing a refund, providing refund information, contacting customer support, etc.',
     )
 
 
@@ -1120,7 +1120,7 @@ class ShippingFulfillment(EbayModel):
     fulfillment_id: str | None = Field(
         None,
         alias='fulfillmentId',
-        description='The unique identifier of the fulfillment; for example, <code>9405509699937003457459</code>. This eBay-generated value is created with a successful <strong>createShippingFulfillment</strong> call.',
+        description='The unique identifier of the fulfillment; for example, 9405509699937003457459 . This eBay-generated value is created with a successful createShippingFulfillment call.',
     )
     line_items: list[LineItemReference] | None = Field(
         None,
@@ -1135,12 +1135,12 @@ class ShippingFulfillment(EbayModel):
     shipped_date: str | None = Field(
         None,
         alias='shippedDate',
-        description='The date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the fulfillment package was shipped. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     shipping_carrier_code: str | None = Field(
         None,
         alias='shippingCarrierCode',
-        description='The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. <br><br><span class="tablenote"><strong>Note:</strong> The Trading API\'s <strong>ShippingCarrierCodeType</strong> enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See <a href="https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html " target="_blank">ShippingCarrierCodeType</a>.</span>',
+        description="The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. Note: The Trading API's ShippingCarrierCodeType enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See ShippingCarrierCodeType .",
     )
 
 
@@ -1153,28 +1153,28 @@ class ShippingFulfillmentDetails(EbayModel):
     shipped_date: str | None = Field(
         None,
         alias='shippedDate',
-        description='This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.',
+        description='This is the actual date and time that the fulfillment package was shipped. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.',
     )
     shipping_carrier_code: str | None = Field(
         None,
         alias='shippingCarrierCode',
-        description='The unique identifier of the shipping carrier being used to ship the line item(s). Technically, the <strong>shippingCarrierCode</strong> and <strong>trackingNumber</strong> fields are optional, but generally these fields will be provided if the shipping carrier and tracking number are known. <br><br><span class="tablenote"><strong>Note:</strong> Use the Trading API\'s <strong>GeteBayDetails</strong> call to retrieve the latest shipping carrier enumeration values. When making the <a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/GeteBayDetails.html" target="_blank">GeteBayDetails</a> call, include the <strong>DetailName</strong> field in the request payload and set its value to <code>ShippingCarrierDetails</code>. Each valid shipping carrier enumeration value is returned in a <strong>ShippingCarrierDetails.ShippingCarrier</strong> field in the response payload.</span>',
+        description="The unique identifier of the shipping carrier being used to ship the line item(s). Technically, the shippingCarrierCode and trackingNumber fields are optional, but generally these fields will be provided if the shipping carrier and tracking number are known. Note: Use the Trading API's GeteBayDetails call to retrieve the latest shipping carrier enumeration values.",
     )
     tracking_number: str | None = Field(
         None,
         alias='trackingNumber',
-        description='The tracking number provided by the shipping carrier for this fulfillment. The seller should be careful that this tracking number is accurate since the buyer will use this tracking number to track shipment, and eBay has no way to verify the accuracy of this number.<br><br>This field and the <strong>shippingCarrierCode</strong> field are mutually dependent. If you include one, you must also include the other.<br><br><span class="tablenote"><strong>Note:</strong> If you include <strong>trackingNumber</strong> (and <strong>shippingCarrierCode</strong>) in the request, the resulting fulfillment\'s ID (returned in the HTTP location response header) is the tracking number. If you do not include shipment tracking information, the resulting fulfillment ID will default to an arbitrary number such as <code>999</code>.</span><br><span class="tablenote"><strong>Note:</strong> Only alphanumeric characters are supported for shipment tracking numbers. Spaces, hyphens, and all other special characters are not supported. Do not include a space in the tracking number even if a space appears in the tracking number on the shipping label.</span>',
+        description='The tracking number provided by the shipping carrier for this fulfillment. The seller should be careful that this tracking number is accurate since the buyer will use this tracking number to track shipment, and eBay has no way to verify the accuracy of this number. This field and the shippingCarrierCode field are mutually dependent. If you include one, you must also include the other.',
     )
 
 
 class SimpleAmount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code (such as <code>USD</code> for US site) that indicates the currency of the amount in the <strong>value</strong> field. Both the <strong>value</strong> and <strong>currency</strong> fields are always returned with the <strong>amount</strong> container.',
+        description='A three-letter ISO 4217 code (such as USD for US site) that indicates the currency of the amount in the value field. Both the value and currency fields are always returned with the amount container.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount of the payment dispute. Both the <strong>value</strong> and <strong>currency</strong> fields are always returned with the <strong>amount</strong> container.',
+        description='The monetary amount of the payment dispute. Both the value and currency fields are always returned with the amount container.',
     )
 
 
@@ -1192,7 +1192,7 @@ class TaxAddress(EbayModel):
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany.',
+        description='The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166‑1 alpha‑2 country code. For example, US represents the United States, and DE represents Germany.',
     )
     postal_code: str | None = Field(
         None,
@@ -1251,21 +1251,21 @@ class UpdateEvidencePaymentDisputeRequest(EbayModel):
     evidence_id: str | None = Field(
         None,
         alias='evidenceId',
-        description='The unique identifier of the evidence set that is being updated with new evidence files.<br><br> This ID is returned under the <strong>evidence</strong> array in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> response.',
+        description='The unique identifier of the evidence set that is being updated with new evidence files. This ID is returned under the evidence array in the getPaymentDispute response.',
     )
     evidence_type: EvidenceTypeEnum | None = Field(
         None,
         alias='evidenceType',
-        description='This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field.<br><br>See the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-addevidence.evidencetypeenum" target="_blank ">EvidenceTypeEnum</a> type for the supported evidence types.',
+        description='This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field. See the EvidenceTypeEnum type for the supported evidence types.',
     )
     files: list[FileEvidence] | None = Field(
         None,
-        description='This array is used to specify one or more evidence files that will be added to the evidence set associated with a payment dispute. At least one evidence file must be specified in the <strong>files</strong> array.<br><br> The unique identifier of an evidence file is returned in the response payload of the <strong>uploadEvidence</strong> method.',
+        description='This array is used to specify one or more evidence files that will be added to the evidence set associated with a payment dispute. At least one evidence file must be specified in the files array. The unique identifier of an evidence file is returned in the response payload of the uploadEvidence method.',
     )
     line_items: list[OrderLineItems] | None = Field(
         None,
         alias='lineItems',
-        description='This required array identifies the order line item(s) for which the evidence file(s) will be applicable. <br><Br>These values are returned under the <strong>evidenceRequests.lineItems</strong> array in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> response. <br><br><span class="tablenote"><strong>Note:</strong> Both the <strong>itemId</strong> and <strong>lineItemID</strong> fields are needed to identify each order line item.</span>',
+        description='This required array identifies the order line item(s) for which the evidence file(s) will be applicable. These values are returned under the evidenceRequests.lineItems array in the getPaymentDispute response. Note: Both the itemId and lineItemID fields are needed to identify each order line item.',
     )
 
 
@@ -1277,7 +1277,7 @@ class AcceptPaymentDisputeRequest(EbayModel):
     )
     revision: int | None = Field(
         None,
-        description='This integer value indicates the revision number of the payment dispute. This field is required. The current <strong>revision</strong> number for a payment dispute can be retrieved with the <strong>getPaymentDispute</strong> method. Each time an action is taken against a payment dispute, this integer value increases by 1.',
+        description='This integer value indicates the revision number of the payment dispute. This field is required. The current revision number for a payment dispute can be retrieved with the getPaymentDispute method. Each time an action is taken against a payment dispute, this integer value increases by 1.',
     )
 
 
@@ -1285,16 +1285,16 @@ class AddEvidencePaymentDisputeRequest(EbayModel):
     evidence_type: EvidenceTypeEnum | None = Field(
         None,
         alias='evidenceType',
-        description='This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field.<br><br>See the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-addevidence.evidencetypeenum" target="_blank ">EvidenceTypeEnum</a> type for the supported evidence types.',
+        description='This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field. See the EvidenceTypeEnum type for the supported evidence types.',
     )
     files: list[FileEvidence] | None = Field(
         None,
-        description='This array is used to specify one or more evidence files that will become part of a new evidence set associated with a payment dispute. At least one evidence file must be specified in the <strong>files</strong> array.',
+        description='This array is used to specify one or more evidence files that will become part of a new evidence set associated with a payment dispute. At least one evidence file must be specified in the files array.',
     )
     line_items: list[OrderLineItems] | None = Field(
         None,
         alias='lineItems',
-        description='This array identifies the order line item(s) for which the evidence file(s) will be applicable.<br><Br>These values are returned under the <strong>evidenceRequests.lineItems</strong> array in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> response.',
+        description='This array identifies the order line item(s) for which the evidence file(s) will be applicable. These values are returned under the evidenceRequests.lineItems array in the getPaymentDispute response.',
     )
 
 
@@ -1302,18 +1302,18 @@ class Address(EbayModel):
     address_line1: str | None = Field(
         None,
         alias='addressLine1',
-        description='The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine1</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The first line of the street address. Note: addressLine1 will not be returned for any order that is more than 90 days old.',
     )
     address_line2: str | None = Field(
         None,
         alias='addressLine2',
-        description='The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine2</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address. Note: addressLine2 will not be returned for any order that is more than 90 days old.',
     )
     city: str | None = Field(None, description='The city of the shipping destination.')
     country_code: CountryCodeEnum | None = Field(
         None,
         alias='countryCode',
-        description='The country of the shipping destination, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany.',
+        description='The country of the shipping destination, represented as a two-letter ISO 3166‑1 alpha‑2 country code. For example, US represents the United States, and DE represents Germany.',
     )
     county: str | None = Field(
         None,
@@ -1335,20 +1335,20 @@ class Amount(EbayModel):
     converted_from_currency: CurrencyCodeEnum | None = Field(
         None,
         alias='convertedFromCurrency',
-        description='A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>convertedFromValue</strong> field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.',
+        description='A three-letter ISO 4217 code that indicates the currency of the amount in the convertedFromValue field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.',
     )
     converted_from_value: str | None = Field(
         None,
         alias='convertedFromValue',
-        description='The monetary amount, before any conversion is performed, in the currency specified by the <strong>convertedFromCurrency</strong> field. This value is required or returned only if currency conversion/localization is required. The <strong>value</strong> field contains the converted amount of this value in the currency specified by the <strong>currency</strong> field.',
+        description='The monetary amount, before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is required or returned only if currency conversion/localization is required. The value field contains the converted amount of this value in the currency specified by the currency field.',
     )
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <strong>value</strong> field.<br><br><strong>Default:</strong> The default currency with be that of the eBay marketplace that hosts the listing.',
+        description='A three-letter ISO 4217 code that indicates the currency of the amount in the value field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the value field. Default: The default currency with be that of the eBay marketplace that hosts the listing.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount in the currency specified by the <strong>currency</strong> field. If currency conversion/localization is required, this value is the converted amount, and the <strong>convertedFromValue</strong> field contains the amount in the original currency.  <br><br><em>Required</em> in the <strong>amount</strong> type.',
+        description='The monetary amount in the currency specified by the currency field. If currency conversion/localization is required, this value is the converted amount, and the convertedFromValue field contains the amount in the original currency. Required in the amount type.',
     )
 
 
@@ -1364,7 +1364,7 @@ class AppliedPromotion(EbayModel):
     promotion_id: str | None = Field(
         None,
         alias='promotionId',
-        description="An eBay-generated unique identifier of the sales promotion.<br><br> Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay or by using the Marketing API's <strong>createItemPromotion</strong> method.",
+        description="An eBay-generated unique identifier of the sales promotion. Multiple types of sales promotions are available to eBay Store owners, including order size/volume discounts, shipping discounts, special coupons, and price markdowns. Sales promotions can be managed through the Marketing tab of Seller Hub in My eBay or by using the Marketing API's createItemPromotion method.",
     )
 
 
@@ -1372,12 +1372,12 @@ class AppointmentDetails(EbayModel):
     appointment_end_time: str | None = Field(
         None,
         alias='appointmentEndTime',
-        description='The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>',
+        description='The date and time the appointment ends, formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2022-10-28T00:00:00.000Z',
     )
     appointment_start_time: str | None = Field(
         None,
         alias='appointmentStartTime',
-        description='The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>',
+        description='The date and time the appointment begins, formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2022-10-28T00:10:00.000Z',
     )
     appointment_status: AppointmentStatusEnum | None = Field(
         None, alias='appointmentStatus', description='The status of the appointment.'
@@ -1385,17 +1385,17 @@ class AppointmentDetails(EbayModel):
     appointment_type: AppointmentTypeEnum | None = Field(
         None,
         alias='appointmentType',
-        description='The type of appointment. <code>MACRO</code> appointments only have a start time (not bounded with end time). <code>TIME_SLOT</code> appointments have a period (both start time and end time). Required for tire installation.',
+        description='The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation.',
     )
     appointment_window: AppointmentWindowEnum | None = Field(
         None,
         alias='appointmentWindow',
-        description='Appointment window for <code>MACRO</code> appointments.',
+        description='Appointment window for MACRO appointments.',
     )
     service_provider_appointment_date: str | None = Field(
         None,
         alias='serviceProviderAppointmentDate',
-        description='Service provider date of the appointment (no time stamp). Returned only for <code>MACRO</code> appointment types.',
+        description='Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.',
     )
 
 
@@ -1403,7 +1403,7 @@ class CancelRequest(EbayModel):
     cancel_completed_date: str | None = Field(
         None,
         alias='cancelCompletedDate',
-        description='This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     cancel_initiator: str | None = Field(
         None,
@@ -1413,12 +1413,12 @@ class CancelRequest(EbayModel):
     cancel_reason: str | None = Field(
         None,
         alias='cancelReason',
-        description="This string indicates the reason why the <strong>cancelInitiator</strong> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.",
+        description="This string indicates the reason why the cancelInitiator initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.",
     )
     cancel_requested_date: str | None = Field(
         None,
         alias='cancelRequestedDate',
-        description='This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='This string is the date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     cancel_request_id: str | None = Field(
         None,
@@ -1436,17 +1436,17 @@ class CancelStatus(EbayModel):
     cancelled_date: str | None = Field(
         None,
         alias='cancelledDate',
-        description='The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     cancel_requests: list[CancelRequest] | None = Field(
         None,
         alias='cancelRequests',
-        description='This array contains details of one or more buyer requests to cancel the order. <br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call:</strong>  This array is returned but is always empty.<br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call:</strong> This array is returned fully populated with information about any cancellation requests.',
+        description='This array contains details of one or more buyer requests to cancel the order. For the getOrders call: This array is returned but is always empty. For the getOrder call: This array is returned fully populated with information about any cancellation requests.',
     )
     cancel_state: CancelStateEnum | None = Field(
         None,
         alias='cancelState',
-        description='The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned. ',
+        description='The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of NONE_REQUESTED is returned.',
     )
 
 
@@ -1457,23 +1457,23 @@ class Charge(EbayModel):
     charge_type: ChargeTypeEnum | None = Field(
         None,
         alias='chargeType',
-        description='This field shows the type of buyer charge. <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>. </span>',
+        description='This field shows the type of buyer charge. Note: Currently, the only supported charge type is BUYER_PROTECTION .',
     )
 
 
 class ContestPaymentDisputeRequest(EbayModel):
     note: str | None = Field(
         None,
-        description='This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><strong>Max Length:</strong> 1000 characters.',
+        description='This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth. Max Length: 1000 characters.',
     )
     return_address: ReturnAddress | None = Field(
         None,
         alias='returnAddress',
-        description='This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including <strong>fullName</strong> and <strong>primaryPhone</strong>.<br><br><span class="tablenote"><strong>Note:</strong> If the <a href ="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum" target="_blank">Dispute Reason</a> is <code>SIGNIFICANTLY_NOT_AS_DESCRIBED</code>, <strong>returnAddress</strong> is required.</span>',
+        description='This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including fullName and primaryPhone . Note: If the Dispute Reason is SIGNIFICANTLY_NOT_AS_DESCRIBED , returnAddress is required.',
     )
     revision: int | None = Field(
         None,
-        description='This integer value indicates the revision number of the payment dispute. This field is required. The current <strong>revision</strong> number for a payment dispute can be retrieved with the <strong>getPaymentDispute</strong> method. Each time an action is taken against a payment dispute, this integer value increases by 1.',
+        description='This integer value indicates the revision number of the payment dispute. This field is required. The current revision number for a payment dispute can be retrieved with the getPaymentDispute method. Each time an action is taken against a payment dispute, this integer value increases by 1.',
     )
 
 
@@ -1496,12 +1496,12 @@ class DeliveryCost(EbayModel):
     shipping_cost: Amount | None = Field(
         None,
         alias='shippingCost',
-        description='The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the <strong>value</strong> field will show <code>0.0</code> (dollars).',
+        description='The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the value field will show 0.0 (dollars).',
     )
     shipping_intermediation_fee: Amount | None = Field(
         None,
         alias='shippingIntermediationFee',
-        description='This field shows the fee due to eBay\'s international shipping provider for a line item that is being shipped through the Global Shipping Program.<br><br>This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> The value returned for this field will always be <code>0.0</code> for line items sold in the UK marketplace.</span>',
+        description="This field shows the fee due to eBay's international shipping provider for a line item that is being shipped through the Global Shipping Program. This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.",
     )
 
 
@@ -1528,44 +1528,43 @@ class DisputeEvidence(EbayModel):
     provided_date: str | None = Field(
         None,
         alias='providedDate',
-        description='The timestamp in this field shows the date/time when the seller provided a requested evidential document to eBay. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller provided a requested evidential document to eBay. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     request_date: str | None = Field(
         None,
         alias='requestDate',
-        description='The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     respond_by_date: str | None = Field(
         None,
         alias='respondByDate',
-        description='The timestamp in this field shows the date/time when the seller was expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller was expected to provide a requested evidential document to eBay. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     shipment_tracking: list[TrackingInfo] | None = Field(
         None,
         alias='shipmentTracking',
-        description='This array shows the shipping carrier and shipment tracking number associated with each shipment package of the order. This array is returned under the <strong>evidence</strong> container if the seller has provided shipment tracking information as evidence to support <code>PROOF_OF_DELIVERY</code> for an INR-related payment dispute.',
+        description='This array shows the shipping carrier and shipment tracking number associated with each shipment package of the order. This array is returned under the evidence container if the seller has provided shipment tracking information as evidence to support PROOF_OF_DELIVERY for an INR-related payment dispute.',
     )
 
 
 class EbayCollectAndRemitTax(EbayModel):
     amount: Amount | None = Field(
-        None,
-        description='The monetary amount of the \'Collect and Remit\' tax. This currently includes the following:<br><ul><li>US state-mandated sales tax</li><li>Federal and Provincial Sales Tax in Canada</li><li>\'Goods and Services\' tax in Canada, Australia, New Zealand, and Jersey</li><li>VAT collected for the UK, EU countries, Kazakhstan, and Belarus</li><li>Sales & Service Tax (SST) in Malaysia</li></ul><br><span class="tablenote"><strong>Note:</strong> If the corresponding <strong>taxType</strong> is <code>STATE_SALES_TAX</code>, <code>PROVINCE_SALES_TAX</code>, <code>GST</code>, <code>VAT</code>, or <code>SST</code> and the <strong>lineItems.taxes</strong> container also appears for this line item with the same tax amount, the order is subject to \'eBay Collect and Remit\' tax. For orders that are subject to \'eBay Collect and Remit\' tax, the tax amount in this field will be included in the <strong>lineItems.total</strong>, <strong>paymentSummary.payments.amount</strong>, <strong>paymentSummary.totalDueSeller</strong>, and <strong>pricingSummary.total</strong> fields.</span>',
+        None, description="The monetary amount of the 'Collect and Remit' tax."
     )
     ebay_reference: EbayTaxReference | None = Field(
         None,
         alias='ebayReference',
-        description='This container field describes the line-item level VAT tax details.<br>',
+        description='This container field describes the line-item level VAT tax details.',
     )
     tax_type: TaxTypeEnum | None = Field(
         None,
         alias='taxType',
-        description='The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type.',
+        description='The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the TaxTypeEnum type definition for more information about each tax or fee type.',
     )
     collection_method: CollectionMethodEnum | None = Field(
         None,
         alias='collectionMethod',
-        description='This field indicates the collection method used to collect the \'Collect and Remit\' tax for the order. This field is always returned for orders subject to \'Collect and Remit\' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to \'Collect and Remit\' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span>',
+        description="This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always NET .",
     )
 
 
@@ -1577,7 +1576,7 @@ class EbayCollectedCharges(EbayModel):
     )
     charges: list[Charge] | None = Field(
         None,
-        description='This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>.</span>',
+        description='This array shows any charges that eBay collects from the buyer. Note: Currently, the only supported charge type is BUYER_PROTECTION .',
     )
 
 
@@ -1625,7 +1624,7 @@ class ErrorDetailV3(EbayModel):
     )
     domain: str | None = Field(
         None,
-        description='The name of the domain containing the service or application. For example, <code>sell</code> is a domain.',
+        description='The name of the domain containing the service or application. For example, sell is a domain.',
     )
     error_id: int | None = Field(
         None,
@@ -1640,11 +1639,11 @@ class ErrorDetailV3(EbayModel):
     long_message: str | None = Field(
         None,
         alias='longMessage',
-        description='An expanded version of the <strong>message</strong> field. <br><br><strong>Maximum length:</strong> 200 characters',
+        description='An expanded version of the message field. Maximum length: 200 characters',
     )
     message: str | None = Field(
         None,
-        description="A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><strong>Maximum length:</strong> 50 characters",
+        description="A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. Maximum length: 50 characters",
     )
     output_ref_ids: list[str] | None = Field(
         None,
@@ -1657,7 +1656,7 @@ class ErrorDetailV3(EbayModel):
     )
     subdomain: str | None = Field(
         None,
-        description="The name of the domain's subsystem or subdivision. For example, <code>fulfillment</code> is a subdomain in the <code>sell</code> domain.",
+        description="The name of the domain's subsystem or subdivision. For example, fulfillment is a subdomain in the sell domain.",
     )
 
 
@@ -1680,12 +1679,12 @@ class EvidenceRequest(EbayModel):
     request_date: str | None = Field(
         None,
         alias='requestDate',
-        description='The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     respond_by_date: str | None = Field(
         None,
         alias='respondByDate',
-        description='The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
 
 
@@ -1702,47 +1701,47 @@ class ExtendedContact(EbayModel):
     )
     email: str | None = Field(
         None,
-        description='This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <strong>email</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned. Note: If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments. The email will not be returned for any order that is more than 90 days old.',
     )
     full_name: str | None = Field(
         None,
         alias='fullName',
-        description='The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>fullName</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The full name of the buyer or eBay shipping partner. Note: The fullName will not be returned for any order that is more than 90 days old.',
     )
     primary_phone: PhoneNumber | None = Field(
         None,
         alias='primaryPhone',
-        description='The primary telephone number of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>primaryPhone</strong> will not be returned for any order that is more than 90 days old.</span>',
+        description='The primary telephone number of the buyer or eBay shipping partner. Note: The primaryPhone will not be returned for any order that is more than 90 days old.',
     )
 
 
 class Fee(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='The monetary amount of the special fee. This field is always returned for each fee that is returned under the <strong>fee</strong> container.',
+        description='The monetary amount of the special fee. This field is always returned for each fee that is returned under the fee container.',
     )
     description: str | None = Field(
         None,
-        description='An explanation of the special fee charged to the buyer, such as a Electronic Waste Recycling Fee, or a Tire Recycling Fee. This field is always returned for each fee that is returned under the <strong>fee</strong> container.',
+        description='An explanation of the special fee charged to the buyer, such as a Electronic Waste Recycling Fee, or a Tire Recycling Fee. This field is always returned for each fee that is returned under the fee container.',
     )
 
 
 class FilterField(EbayModel):
     field: str | None = Field(
         None,
-        description='The name of a field to be used in the filter. Currently, three fields can be used: <strong>creationdate</strong>, <strong>lastmodifieddate</strong>, and <strong>orderfulfillmentstatus</strong>.',
+        description='The name of a field to be used in the filter. Currently, three fields can be used: creationdate , lastmodifieddate , and orderfulfillmentstatus .',
     )
     range: RangeValue | None = Field(
         None,
-        description='Contains the criteria for specifying a range of values of the specified <strong>field</strong>.',
+        description='Contains the criteria for specifying a range of values of the specified field .',
     )
     set: list[str] | None = Field(
         None,
-        description='An enumerated set of values of the specified <strong>field</strong> that apply simultaneously to the filter.',
+        description='An enumerated set of values of the specified field that apply simultaneously to the filter.',
     )
     value: str | None = Field(
         None,
-        description='A single value of the specified <strong>field</strong> that applies to the filter.',
+        description='A single value of the specified field that applies to the filter.',
     )
 
 
@@ -1750,7 +1749,7 @@ class InfoFromBuyer(EbayModel):
     content_on_hold: bool | None = Field(
         None,
         alias='contentOnHold',
-        description="When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <strong>buyerProvided.note</strong> field,) is on hold. When this is the case, the <strong>buyerProvided.note</strong> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.",
+        description="When the value of this field is true it indicates that the buyer's note regarding the payment dispute (i.e., the buyerProvided.note field,) is on hold. When this is the case, the buyerProvided.note field will not be returned. When the value of this field is false , it is not returned.",
     )
     note: str | None = Field(
         None,
@@ -1766,17 +1765,17 @@ class InfoFromBuyer(EbayModel):
 class LineItemRefund(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='This field shows the refund amount for a line item. This field is only returned if the buyer is due a refund for the line item.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller\'s <em>net amount</em> received from the sale/transaction. EBay-collected tax will not be included in this amount, so the actual amount of the buyer\'s refund may be higher than this value.</span>',
+        description="This field shows the refund amount for a line item. This field is only returned if the buyer is due a refund for the line item. Note: The refund amount shown is the seller's net amount received from the sale/transaction. EBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.",
     )
     refund_date: str | None = Field(
         None,
         alias='refundDate',
-        description='The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the refund was issued for the line item. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     refund_id: str | None = Field(
         None,
         alias='refundId',
-        description='Unique identifier of a refund that was initiated for an order\'s line item through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<strong>paymentSummary.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds.',
+        description="Unique identifier of a refund that was initiated for an order's line item through the issueRefund method. If the issueRefund method was used to issue a refund at the order level, this identifier is returned at the order level instead ( paymentSummary.refunds.refundId field).",
     )
     refund_reference_id: str | None = Field(
         None,
@@ -1789,7 +1788,7 @@ class LinkedOrderLineItem(EbayModel):
     line_item_aspects: list[NameValuePair] | None = Field(
         None,
         alias='lineItemAspects',
-        description='This array contains the complete set of item aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item\'s listing site, which may vary from the seller\'s language.</span>',
+        description='This array contains the complete set of item aspects for the linked line item. For example: "lineItemAspects": [ { "name": "Tire Type", "value": "All Season" }, ... { "name": "Car Type", "value": "Performance" } ] Note: All item specifics for the listing are returned.',
     )
     line_item_id: str | None = Field(
         None,
@@ -1814,7 +1813,7 @@ class LinkedOrderLineItem(EbayModel):
     seller_id: str | None = Field(
         None,
         alias='sellerId',
-        description='The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description='The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     shipments: list[TrackingInfo] | None = Field(
         None,
@@ -1822,14 +1821,14 @@ class LinkedOrderLineItem(EbayModel):
     )
     title: str | None = Field(
         None,
-        description='The listing title of the linked line item.<br><br><span class="tablenote"><strong>Note:</strong> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>',
+        description='The listing title of the linked line item. Note: The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.',
     )
 
 
 class MonetaryTransaction(EbayModel):
     date: str | None = Field(
         None,
-        description='This timestamp indicates when the monetary transaction occurred. A date is returned for all monetary transactions.<br><br> The following format is used: <code>YYYY-MM-DDTHH:MM:SS.SSSZ</code>. For example, <code>2015-08-04T19:09:02.768Z</code>.',
+        description='This timestamp indicates when the monetary transaction occurred. A date is returned for all monetary transactions. The following format is used: YYYY-MM-DDTHH:MM:SS.SSSZ . For example, 2015-08-04T19:09:02.768Z .',
     )
     type: MonetaryTransactionTypeEnum | None = Field(
         None,
@@ -1841,24 +1840,24 @@ class MonetaryTransaction(EbayModel):
     )
     amount: DisputeAmount | None = Field(
         None,
-        description='The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and <strong>exchangeRate</strong> fields will be displayed as well.',
+        description='The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and exchangeRate fields will be displayed as well.',
     )
 
 
 class OrderRefund(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='This field shows the refund amount for an order. This container is always returned for each refund.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller\'s <em>net amount</em> received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer\'s refund may be higher than this value.</span>',
+        description="This field shows the refund amount for an order. This container is always returned for each refund. Note: The refund amount shown is the seller's net amount received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.",
     )
     refund_date: str | None = Field(
         None,
         alias='refundDate',
-        description='The date and time that the refund was issued. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     refund_id: str | None = Field(
         None,
         alias='refundId',
-        description='Unique identifier of a refund that was initiated for an order through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<strong>lineItems.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds. For other refunds, see the <strong>refundReferenceId</strong> field.',
+        description='Unique identifier of a refund that was initiated for an order through the issueRefund method. If the issueRefund method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead ( lineItems.refunds.refundId field).',
     )
     refund_reference_id: str | None = Field(
         None,
@@ -1912,17 +1911,17 @@ class PaymentDisputeSummary(EbayModel):
     buyer_username: str | None = Field(
         None,
         alias='buyerUsername',
-        description='This is the buyer\'s eBay user ID. This field is returned for all payment disputes returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description="This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .",
     )
     closed_date: str | None = Field(
         None,
         alias='closedDate',
-        description='The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the CLOSED state. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu.',
     )
     open_date: str | None = Field(
         None,
         alias='openDate',
-        description='The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     order_id: str | None = Field(
         None,
@@ -1932,7 +1931,7 @@ class PaymentDisputeSummary(EbayModel):
     payment_dispute_id: str | None = Field(
         None,
         alias='paymentDisputeId',
-        description='This is the unique identifier of the payment dispute. This identifier is automatically created by eBay once the payment dispute comes into the eBay system. This identifier is passed in at the end of the <strong>getPaymentDispute</strong> call URI to retrieve a specific payment dispute. The <strong>getPaymentDispute</strong> method returns more details about a payment dispute than the <strong>getPaymentDisputeSummaries</strong> method.',
+        description='This is the unique identifier of the payment dispute. This identifier is automatically created by eBay once the payment dispute comes into the eBay system. This identifier is passed in at the end of the getPaymentDispute call URI to retrieve a specific payment dispute. The getPaymentDispute method returns more details about a payment dispute than the getPaymentDisputeSummaries method.',
     )
     payment_dispute_status: DisputeStateEnum | None = Field(
         None,
@@ -1941,12 +1940,12 @@ class PaymentDisputeSummary(EbayModel):
     )
     reason: DisputeReasonEnum | None = Field(
         None,
-        description='The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.',
+        description='The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See DisputeReasonEnum type for a description of the supported reasons that buyers can give for initiating a payment dispute.',
     )
     respond_by_date: str | None = Field(
         None,
         alias='respondByDate',
-        description='The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the ACTION_NEEDED state. For payment disputes that require action by the seller, that same seller must call getPaymentDispute to see the next action(s) that they can take against the payment dispute.',
     )
 
 
@@ -1954,27 +1953,27 @@ class PaymentHold(EbayModel):
     expected_release_date: str | None = Field(
         None,
         alias='expectedReleaseDate',
-        description='The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the payment being held is expected to be released to the seller. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     hold_amount: Amount | None = Field(
         None,
         alias='holdAmount',
-        description='The monetary amount of the payment being held. This field is always returned with the <strong>paymentHolds</strong> array. ',
+        description='The monetary amount of the payment being held. This field is always returned with the paymentHolds array.',
     )
     hold_reason: str | None = Field(
         None,
         alias='holdReason',
-        description="The reason that the payment is being held. A seller's payment may be held for a number of reasons, including when the seller is new, the seller's level is below standard, or if a return case or 'Significantly not as described' case is pending against the seller. This field is always returned with the <strong>paymentHolds</strong> array.",
+        description="The reason that the payment is being held. A seller's payment may be held for a number of reasons, including when the seller is new, the seller's level is below standard, or if a return case or 'Significantly not as described' case is pending against the seller. This field is always returned with the paymentHolds array.",
     )
     hold_state: str | None = Field(
         None,
         alias='holdState',
-        description='The current stage or condition of the hold. This field is always returned with the <strong>paymentHolds</strong> array.<br><br><strong>Applicable values:</strong><ul><li><code>HELD</code></li><li><code>HELD_PENDING</code></li><li><code>NOT_HELD</code></li><li><code>RELEASE_CONFIRMED</code></li><li><code>RELEASE_FAILED</code></li><li><code>RELEASE_PENDING</code></li><li><code>RELEASED</code></li></ul>',
+        description='The current stage or condition of the hold. This field is always returned with the paymentHolds array. Applicable values: HELD HELD_PENDING NOT_HELD RELEASE_CONFIRMED RELEASE_FAILED RELEASE_PENDING RELEASED',
     )
     release_date: str | None = Field(
         None,
         alias='releaseDate',
-        description='The date and time that the payment being held was actually released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller\'s payment is actually released into the seller\'s account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description="The date and time that the payment being held was actually released to the seller. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z",
     )
     seller_actions_to_release: list[SellerActionsToRelease] | None = Field(
         None,
@@ -1986,7 +1985,7 @@ class PaymentHold(EbayModel):
 class PricingSummary(EbayModel):
     adjustment: Amount | None = Field(
         None,
-        description='This container shows the total amount of any adjustments that were applied to the cost of the item(s) in the order. This amount does not include shipping, discounts, fixed fees, or taxes.<br><br>This container is only returned if price adjustments were made to the order after the initial transaction/commitment to buy occurred.',
+        description='This container shows the total amount of any adjustments that were applied to the cost of the item(s) in the order. This amount does not include shipping, discounts, fixed fees, or taxes. This container is only returned if price adjustments were made to the order after the initial transaction/commitment to buy occurred.',
     )
     delivery_cost: Amount | None = Field(
         None,
@@ -1996,16 +1995,16 @@ class PricingSummary(EbayModel):
     delivery_discount: Amount | None = Field(
         None,
         alias='deliveryDiscount',
-        description='This container shows the total amount of delivery discounts (including shipping discounts) that apply to the order. This should be a negative real number.<br><br>This container is only returned if delivery discounts are being applied to the order.',
+        description='This container shows the total amount of delivery discounts (including shipping discounts) that apply to the order. This should be a negative real number. This container is only returned if delivery discounts are being applied to the order.',
     )
     fee: Amount | None = Field(
         None,
-        description='This container shows the total amount of any special fees applied to the order, such as a tire recycling fee or an electronic waste fee. <br><br>This container is returned if special fees are being applied to the order and if the <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>.',
+        description='This container shows the total amount of any special fees applied to the order, such as a tire recycling fee or an electronic waste fee. This container is returned if special fees are being applied to the order and if the fieldGroups is set to TAX_BREAKDOWN .',
     )
     price_discount: Amount | None = Field(
         None,
         alias='priceDiscount',
-        description='This container shows the total amount of all item price discounts (including promotions) that apply to the order and reduce its cost to the buyer. This should be a negative real number. <br><br>This container is only returned if special discounts are being applied to the order.',
+        description='This container shows the total amount of all item price discounts (including promotions) that apply to the order and reduce its cost to the buyer. This should be a negative real number. This container is only returned if special discounts are being applied to the order.',
     )
     price_subtotal: Amount | None = Field(
         None,
@@ -2014,11 +2013,11 @@ class PricingSummary(EbayModel):
     )
     tax: Amount | None = Field(
         None,
-        description='This container shows the total amount of tax for the order. To calculate the tax percentage rate, divide this value by the value of the <strong>total</strong> field. <br><br>This container is only returned if any type of tax (sales tax, tax on shipping, tax on handling, import tax, etc.) is applied to the order.',
+        description='This container shows the total amount of tax for the order. To calculate the tax percentage rate, divide this value by the value of the total field. This container is only returned if any type of tax (sales tax, tax on shipping, tax on handling, import tax, etc.) is applied to the order.',
     )
     total: Amount | None = Field(
         None,
-        description='The total cost of the order after adding all line item costs, delivery costs, sales tax, and special fees and then subtracting all special discounts and price adjustments.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay \'Collect and Remit\' tax, the \'Collect and Remit\' tax amount for the order will be included in this <strong>total</strong> value only when the <strong>fieldGroups</strong> query parameter is set to <code>TAX_BREAKDOWN</code>. If the <strong>fieldGroups</strong> query parameter is not set to <code>TAX_BREAKDOWN</code>, \'Collect and Remit\' will not be added into this <strong>total</strong> value.<br><br>To determine if \'Collect and Remit\' taxes were added into this <strong>total</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the \'Collect and Remit\' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US state-mandated sales tax</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: \'Good and Services\' tax in Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>',
+        description="The total cost of the order after adding all line item costs, delivery costs, sales tax, and special fees and then subtracting all special discounts and price adjustments. Note: For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this total value only when the fieldGroups query parameter is set to TAX_BREAKDOWN .",
     )
 
 
@@ -2026,12 +2025,12 @@ class Refund(EbayModel):
     refund_id: str | None = Field(
         None,
         alias='refundId',
-        description='The unique identifier of the order refund. This value is returned unless the refund operation fails (<strong>refundStatus</strong> value shows <code>FAILED</code>). This identifier can be used to track the status of the refund through a <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> or <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call. For order-level refunds, check the <strong>paymentSummary.refunds.refundId</strong> field in the <strong>getOrder</strong>/<strong>getOrders</strong> response, and for line item level refunds, check the <strong>lineItems.refunds.refundId</strong> field(s) in the <strong>getOrder</strong>/<strong>getOrders</strong> response.',
+        description='The unique identifier of the order refund. This value is returned unless the refund operation fails ( refundStatus value shows FAILED ). This identifier can be used to track the status of the refund through a getOrder or getOrders call.',
     )
     refund_status: RefundStatusEnum | None = Field(
         None,
         alias='refundStatus',
-        description='The value returned in this field indicates the success or failure of the refund operation. A successful <strong>issueRefund</strong> operation should result in a value of <code>PENDING</code>. A failed <strong>issueRefund</strong> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as \'Refunded\' right away. A seller will have to make a subsequent <strong>getOrder</strong> call to check the status of the refund.  The status of an order refund can be found in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder.orderrefund.refundstatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> response.',
+        description='The value returned in this field indicates the success or failure of the refund operation. A successful issueRefund operation should result in a value of PENDING . A failed issueRefund operation should result in a value of FAILED , and an HTTP status code and/or API error code may also get returned to possibly indicate the issue.',
     )
 
 
@@ -2039,17 +2038,17 @@ class RefundItem(EbayModel):
     refund_amount: SimpleAmount | None = Field(
         None,
         alias='refundAmount',
-        description='This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the <strong>orderLevelRefundAmount</strong> container instead.',
+        description='This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the orderLevelRefundAmount container instead.',
     )
     line_item_id: str | None = Field(
         None,
         alias='lineItemId',
-        description='The unique identifier of an order line item. This identifier is created once a buyer purchases a \'Buy It Now\' item or if an auction listing ends with a winning bidder.<br><br>Either this field or the <strong>legacyReference</strong> container is needed to identify an individual order line item that will receive a refund.<br><br> This value is returned using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> method.',
+        description="The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.",
     )
     legacy_reference: LegacyReference | None = Field(
         None,
         alias='legacyReference',
-        description='This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.<br><br>Either this container or the <strong>lineItemId</strong> field is needed to identify an individual order line item that will receive a refund. <br><br><span class="tablenote"><strong>Note:</strong> This container should <strong>only</strong> be used if a seller is using the<a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrders</a> method of the <strong>Trading API</strong>.</span>',
+        description='This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item. Either this container or the lineItemId field is needed to identify an individual order line item that will receive a refund.',
     )
 
 
@@ -2060,7 +2059,7 @@ class ShippingFulfillmentPagedCollection(EbayModel):
     )
     total: int | None = Field(
         None,
-        description='The total number of fulfillments in the specified order.<br><br><span class="tablenote"><strong>Note:</strong> If no fulfillments are found for the order, this field is returned with a value of <code>0</code>.</span>',
+        description='The total number of fulfillments in the specified order. Note: If no fulfillments are found for the order, this field is returned with a value of 0 .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,
@@ -2072,34 +2071,34 @@ class ShippingStep(EbayModel):
     shipping_carrier_code: str | None = Field(
         None,
         alias='shippingCarrierCode',
-        description='The unique identifier of the shipping carrier being used to ship the line item. <br><br><span class="tablenote"><strong>Note:</strong> The Trading API\'s <a href="https://developer.ebay.com/devzone/XML/docs/Reference/eBay/GeteBayDetails.html " target="_blank">GeteBayDetails</a> call can be used to retrieve the latest shipping carrier and shipping service option enumeration values.</span>',
+        description="The unique identifier of the shipping carrier being used to ship the line item. Note: The Trading API's GeteBayDetails call can be used to retrieve the latest shipping carrier and shipping service option enumeration values.",
     )
     shipping_service_code: str | None = Field(
         None,
         alias='shippingServiceCode',
-        description='The unique identifier of the shipping service option being used to ship the line item.<br><br><span class="tablenote"><strong>Note:</strong> Use the Trading API\'s <strong>GeteBayDetails</strong> call to retrieve the latest shipping carrier and shipping service option enumeration values. When making the <a href="/devzone/XML/docs/Reference/eBay/GeteBayDetails.html " target="_blank">GeteBayDetails</a> call, include the <strong>DetailName</strong> field in the request payload and set its value to <code>ShippingServiceDetails</code>. Each valid shipping service option (returned in <strong>ShippingServiceDetails.ShippingService</strong> field) and corresponding shipping carrier (returned in <strong>ShippingServiceDetails.ShippingCarrier</strong> field) is returned in response payload.</span>',
+        description="The unique identifier of the shipping service option being used to ship the line item. Note: Use the Trading API's GeteBayDetails call to retrieve the latest shipping carrier and shipping service option enumeration values. When making the GeteBayDetails call, include the DetailName field in the request payload and set its value to ShippingServiceDetails .",
     )
     ship_to: ExtendedContact | None = Field(
         None,
         alias='shipTo',
-        description='This container consists of shipping and contact information about the individual or organization to whom the fulfillment package will be shipped.<br><span class="tablenote"><strong>Note:</strong> When <strong>FulfillmentInstructionsType</strong> is <code>FULFILLED_BY_EBAY</code>, there will be no <strong>shipTo</strong> address displayed.</span><br><span class="tablenote"><strong>Note:</strong> For Digitally Delivered Goods (DDG), this address is the same as the Buyer\'s Registration Address.</span><br><span class="tablenote"><strong>Note:</strong> For a Global Shipping Program shipment, this is the address of the international shipping provider\'s domestic warehouse. The international shipping provider is responsible for delivery to the final destination address. For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/global-shipping-addressing.html" target="_blank">Addressing Shipments</a>.</span>',
+        description="This container consists of shipping and contact information about the individual or organization to whom the fulfillment package will be shipped. Note: When FulfillmentInstructionsType is FULFILLED_BY_EBAY , there will be no shipTo address displayed. Note: For Digitally Delivered Goods (DDG), this address is the same as the Buyer's Registration Address.",
     )
     ship_to_reference_id: str | None = Field(
         None,
         alias='shipToReferenceId',
-        description='This is the unique identifer of the Global Shipping Program (GSP) shipment. This field is only returned if the line item is being shipped via GSP (the value of the <strong>fulfillmentStartInstructions.ebaySupportedFulfillment</strong> field will be <code>true</code>. The international shipping provider uses the <strong>shipToReferenceId</strong> value as the primary reference number to retrieve the relevant details about the buyer, the order, and the fulfillment, so the shipment can be completed. <br><br>Sellers must include this value on the shipping label immediately above the street address of the international shipping provider. <br><br>Example: "Reference #1234567890123456" <br><br><span class="tablenote"><strong>Note:</strong> This value is the same as the <strong>ShipToAddress.ReferenceID</strong> value returned by the Trading API\'s GetOrders call.</span>',
+        description='This is the unique identifer of the Global Shipping Program (GSP) shipment. This field is only returned if the line item is being shipped via GSP (the value of the fulfillmentStartInstructions.ebaySupportedFulfillment field will be true .',
     )
 
 
 class Tax(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='The monetary amount of the tax. The <strong>taxes</strong> array is always returned for each line item in the order, but this <strong>amount</strong> will only be returned when the line item is subject to any type of sales tax. ',
+        description='The monetary amount of the tax. The taxes array is always returned for each line item in the order, but this amount will only be returned when the line item is subject to any type of sales tax.',
     )
     tax_type: TaxTypeEnum | None = Field(
         None,
         alias='taxType',
-        description='Tax type. This field is only available when <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>. If the order has fees, a breakdown of the fees is also provided.',
+        description='Tax type. This field is only available when fieldGroups is set to TAX_BREAKDOWN . If the order has fees, a breakdown of the fees is also provided.',
     )
 
 
@@ -2107,17 +2106,17 @@ class TaxIdentifier(EbayModel):
     taxpayer_id: str | None = Field(
         None,
         alias='taxpayerId',
-        description='This value is the unique tax ID associated with the buyer. The type of tax identification is shown in the <strong>taxIdentifierType</strong> field.',
+        description='This value is the unique tax ID associated with the buyer. The type of tax identification is shown in the taxIdentifierType field.',
     )
     tax_identifier_type: TaxIdentifierTypeEnum | None = Field(
         None,
         alias='taxIdentifierType',
-        description='This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type.',
+        description='This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the TaxIdentifierTypeEnum type.',
     )
     issuing_country: CountryCodeEnum | None = Field(
         None,
         alias='issuingCountry',
-        description='This two-letter code indicates the country that issued the buyer\'s tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type or in the  <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> standard.',
+        description="This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the CountryCodeEnum type or in the ISO 3166 standard.",
     )
 
 
@@ -2130,35 +2129,35 @@ class Buyer(EbayModel):
     tax_address: TaxAddress | None = Field(
         None,
         alias='taxAddress',
-        description='This container consists of address information that can be used by sellers for tax purpose.<br><br><span class="tablenote"><strong>Note:</strong> When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.</span>',
+        description='This container consists of address information that can be used by sellers for tax purpose. Note: When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.',
     )
     tax_identifier: TaxIdentifier | None = Field(
         None,
         alias='taxIdentifier',
-        description='This container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and not in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a>. So, if a seller wants to view a buyer\'s tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order and then run a <strong>getOrder</strong> call against that order ID. </span>',
+        description='This container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces. Note: Currently, the taxIdentifier container is only returned in getOrder and not in getOrders .',
     )
     username: str | None = Field(
         None,
-        description='The buyer\'s eBay user ID.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description="The buyer's eBay user ID. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .",
     )
 
 
 class DisputeSummaryResponse(EbayModel):
     href: str | None = Field(
         None,
-        description='The URI of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call request that produced the current page of the result set.',
+        description='The URI of the getPaymentDisputeSummaries call request that produced the current page of the result set.',
     )
     limit: int | None = Field(
         None,
-        description='This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><strong>Min</strong>: 1; <strong>Max</strong>: 200; <strong>Default</strong>: 200',
+        description='This value shows the maximum number of payment disputes that will appear on one page of the result set. The limit value can be passed in as a query parameter in the request, or if it is not used, it defaults to 200 . If the value in the total field exceeds this limit value, there are multiple pages in the current result set. Min : 1; Max : 200; Default : 200',
     )
     next: str | None = Field(
         None,
-        description='The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.',
+        description='The getPaymentDisputeSummaries call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes: path/payment_dispute_summary?limit=10&offset=10 This field is only returned if there is a next page of results to view based on the current input criteria.',
     )
     offset: int | None = Field(
         None,
-        description='This integer value indicates the number of payment disputes skipped before listing the first payment dispute from the result set. The <strong>offset</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>0</code> and the first payment dispute of the result set is shown at the top of the response.',
+        description='This integer value indicates the number of payment disputes skipped before listing the first payment dispute from the result set. The offset value can be passed in as a query parameter in the request, or if it is not used, it defaults to 0 and the first payment dispute of the result set is shown at the top of the response.',
     )
     payment_dispute_summaries: list[PaymentDisputeSummary] | None = Field(
         None,
@@ -2167,11 +2166,11 @@ class DisputeSummaryResponse(EbayModel):
     )
     prev: str | None = Field(
         None,
-        description='The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.',
+        description='The getPaymentDisputeSummaries call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes: path/payment_dispute_summary?limit=10&offset=0 This field is only returned if there is a previous page of results to view based on the current input criteria.',
     )
     total: int | None = Field(
         None,
-        description='This integer value is the total number of payment disputes that matched the input criteria. If the total number of entries exceeds the value that was set for <strong>limit</strong> in the request payload, you will have to make multiple API calls to see all pages of the results set. This field is returned even if it is <code>0</code>.',
+        description='This integer value is the total number of payment disputes that matched the input criteria. If the total number of entries exceeds the value that was set for limit in the request payload, you will have to make multiple API calls to see all pages of the results set. This field is returned even if it is 0 .',
     )
 
 
@@ -2183,32 +2182,32 @@ class FulfillmentStartInstruction(EbayModel):
     destination_time_zone: str | None = Field(
         None,
         alias='destinationTimeZone',
-        description='This field is reserved for internal or future use. <!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. -->',
+        description='This field is reserved for internal or future use.',
     )
     ebay_supported_fulfillment: bool | None = Field(
         None,
         alias='ebaySupportedFulfillment',
-        description='This field is only returned if its value is <code>true</code> and indicates that the fulfillment will be shipped via eBay\'s Global Shipping Program, eBay International Shipping, or the Authenticity Guarantee service program. <br><br>For more information, see the <a href="https://www.ebay.com/help/selling/shipping-items/setting-shipping-options/global-shipping-program?id=4646 " target="_blank">Global Shipping Program</a> help topic.',
+        description="This field is only returned if its value is true and indicates that the fulfillment will be shipped via eBay's Global Shipping Program, eBay International Shipping, or the Authenticity Guarantee service program. For more information, see the Global Shipping Program help topic.",
     )
     final_destination_address: Address | None = Field(
         None,
         alias='finalDestinationAddress',
-        description='This container is only returned if the value of <strong>ebaySupportedFulfillment</strong> field is <code>true</code>. <br><br>This is the final destination address for a Global Shipping Program shipment or an eBay International Shipping shipment, which is usually the recipient\'s home. Sellers should not ship directly to this address; instead they should ship this package to their international shipping provider\'s domestic warehouse. The international shipping provider is responsible for delivery to the final destination address.<br><br>For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/global-shipping-addressing.html" target="_blank">Addressing Shipments</a>.<p> <span class="tablenote"><strong>Note:</strong> For Authenticity Guarantee program shipment, this is the address of the authenticator\'s warehouse. The authenticator is responsible for delivery to the buyer shipping address.</span></p>',
+        description="This container is only returned if the value of ebaySupportedFulfillment field is true . This is the final destination address for a Global Shipping Program shipment or an eBay International Shipping shipment, which is usually the recipient's home. Sellers should not ship directly to this address; instead they should ship this package to their international shipping provider's domestic warehouse.",
     )
     fulfillment_instructions_type: FulfillmentInstructionsType | None = Field(
         None,
         alias='fulfillmentInstructionsType',
-        description='The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <strong>ebaySupportedFulfillment</strong> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types.',
+        description='The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of SHIP_TO if the ebaySupportedFulfillment field is returned with a value of true . See the FulfillmentInstructionsType definition for more information about different fulfillment types.',
     )
     max_estimated_delivery_date: str | None = Field(
         None,
         alias='maxEstimatedDeliveryDate',
-        description='This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='This is the estimated latest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the fulfillmentInstructionsType field is DIGITAL or PREPARE_FOR_PICKUP . Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     min_estimated_delivery_date: str | None = Field(
         None,
         alias='minEstimatedDeliveryDate',
-        description='This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='This is the estimated earliest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if the value of the fulfillmentInstructionsType field is DIGITAL or PREPARE_FOR_PICKUP . Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     pickup_step: PickupStep | None = Field(
         None,
@@ -2218,7 +2217,7 @@ class FulfillmentStartInstruction(EbayModel):
     shipping_step: ShippingStep | None = Field(
         None,
         alias='shippingStep',
-        description='This container consists of shipping information for this fulfillment, including the shipping carrier, the shipping service option, and the shipment destination. This container is not returned if the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code>, or for In-Store Pickup orders. <br><br> For Click and Collect orders, the shipping destination will be a brick-and-mortar store where the buyer will pick up the order.',
+        description='This container consists of shipping information for this fulfillment, including the shipping carrier, the shipping service option, and the shipment destination. This container is not returned if the value of the fulfillmentInstructionsType field is DIGITAL , or for In-Store Pickup orders.',
     )
 
 
@@ -2226,21 +2225,21 @@ class IssueRefundRequest(EbayModel):
     reason_for_refund: ReasonForRefundEnum | None = Field(
         None,
         alias='reasonForRefund',
-        description='The enumeration value passed in this field indicates the reason for the refund. One of the defined enumeration values in the <strong>ReasonForRefundEnum</strong> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or \'buyer remorse\' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <strong>issueRefund</strong> calls, one for each refund reason. </span>',
+        description='The enumeration value passed in this field indicates the reason for the refund. One of the defined enumeration values in the ReasonForRefundEnum type must be used.',
     )
     comment: str | None = Field(
         None,
-        description='This free-text field allows the seller to clarify why the refund is being issued to the buyer.<br><br><strong>Max Length</strong>: 100',
+        description='This free-text field allows the seller to clarify why the refund is being issued to the buyer. Max Length : 100',
     )
     refund_items: list[RefundItem] | None = Field(
         None,
         alias='refundItems',
-        description='The <strong>refundItems</strong> array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <strong>orderLevelRefundAmount</strong> container to specify the amount of the refund for the entire order.',
+        description='The refundItems array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.',
     )
     order_level_refund_amount: SimpleAmount | None = Field(
         None,
         alias='orderLevelRefundAmount',
-        description='This container is used to specify the amount of the refund for the entire order. If a seller wants to issue a refund for an individual line item within a multiple line item order, the seller would use the <strong>refundItems</strong> array instead.',
+        description='This container is used to specify the amount of the refund for the entire order. If a seller wants to issue a refund for an individual line item within a multiple line item order, the seller would use the refundItems array instead.',
     )
 
 
@@ -2268,12 +2267,12 @@ class LineItem(EbayModel):
     ebay_collect_and_remit_taxes: list[EbayCollectAndRemitTax] | None = Field(
         None,
         alias='ebayCollectAndRemitTaxes',
-        description="This container will be returned if the order line item is subject to a 'Collect and Remit' tax that eBay will collect and remit to the proper taxing authority on the buyer's behalf.<br><br>'Collect and Remit' tax includes:<ul><li>US state-mandated sales tax</li><li>Federal and Provincial Sales Tax in Canada</li><li>'Goods and Services' tax in Canada, Australia, New Zealand, and Jersey</li><li>VAT collected for the UK, EU countries, Kazakhstan, and Belarus</li><li>Sales & Service Tax (SST) in Malaysia</li></ul>The amount of this tax is shown in the <strong>amount</strong> field, and the type of tax is shown in the <strong>taxType</strong> field.<br><br>EBay will display the tax type and amount during checkout in accordance with the buyer's address, and handle collection and remittance of the tax without requiring the seller to take any action.",
+        description="This container will be returned if the order line item is subject to a 'Collect and Remit' tax that eBay will collect and remit to the proper taxing authority on the buyer's behalf.",
     )
     ebay_collected_charges: EbayCollectedCharges | None = Field(
         None,
         alias='ebayCollectedCharges',
-        description='This container consists of a breakdown of costs that are collected by eBay from the buyer for this order. <br><br><span class="tablenote"><strong>Note:</strong> Currently, this container is returned only if eBay is directly charging the buyer for eBay shipping.</span>',
+        description='This container consists of a breakdown of costs that are collected by eBay from the buyer for this order. Note: Currently, this container is returned only if eBay is directly charging the buyer for eBay shipping.',
     )
     gift_details: GiftDetails | None = Field(
         None,
@@ -2283,12 +2282,12 @@ class LineItem(EbayModel):
     item_location: ItemLocation | None = Field(
         None,
         alias='itemLocation',
-        description='This container field describes the physical location of the order line item.<br><br><span class="tablenote"><strong>Note:</strong> If the item is shipped from a fulfillment center location through the Multi&#8209;Warehouse Program, this container will return the location details of the fulfillment center closest to the buyer.</span>',
+        description='This container field describes the physical location of the order line item. Note: If the item is shipped from a fulfillment center location through the Multi‑Warehouse Program, this container will return the location details of the fulfillment center closest to the buyer.',
     )
     legacy_item_id: str | None = Field(
         None,
         alias='legacyItemId',
-        description='The eBay-generated legacy listing item ID of the listing. Note that the unique identifier of a listing in REST-based APIs is called the <strong>listingId</strong> instead.',
+        description='The eBay-generated legacy listing item ID of the listing. Note that the unique identifier of a listing in REST-based APIs is called the listingId instead.',
     )
     legacy_variation_id: str | None = Field(
         None,
@@ -2298,12 +2297,12 @@ class LineItem(EbayModel):
     line_item_cost: Amount | None = Field(
         None,
         alias='lineItemCost',
-        description='The selling price of the line item before applying any discounts. The value of this field is calculated by multiplying the single unit price by the number of units purchased (value of the <strong>quantity</strong> field).',
+        description='The selling price of the line item before applying any discounts. The value of this field is calculated by multiplying the single unit price by the number of units purchased (value of the quantity field).',
     )
     line_item_fulfillment_instructions: LineItemFulfillmentInstructions | None = Field(
         None,
         alias='lineItemFulfillmentInstructions',
-        description="This container consists of information related to shipping dates and expectations, including the 'ship-by date' and expected delivery windows that are based on the seller's stated handling time and the shipping service option that will be used. These fields provide guidance on making sure expected delivery dates are made, whether the order is an <em>eBay Guaranteed Delivery</em> order or a non-guaranteed delivery order.",
+        description="This container consists of information related to shipping dates and expectations, including the 'ship-by date' and expected delivery windows that are based on the seller's stated handling time and the shipping service option that will be used.",
     )
     line_item_fulfillment_status: LineItemFulfillmentStatusEnum | None = Field(
         None,
@@ -2332,11 +2331,11 @@ class LineItem(EbayModel):
     purchase_marketplace_id: MarketplaceIdEnum | None = Field(
         None,
         alias='purchaseMarketplaceId',
-        description='The unique identifier of the eBay marketplace where the line item was listed. Often, the <strong>listingMarketplaceId</strong> and the <strong>purchaseMarketplaceId</strong> identifier are the same, but there are occasions when an item will surface on multiple eBay marketplaces.',
+        description='The unique identifier of the eBay marketplace where the line item was listed. Often, the listingMarketplaceId and the purchaseMarketplaceId identifier are the same, but there are occasions when an item will surface on multiple eBay marketplaces.',
     )
     quantity: int | None = Field(
         None,
-        description='The number of units of the line item in the order. These are represented as a group by a single <strong>lineItemId</strong>.',
+        description='The number of units of the line item in the order. These are represented as a group by a single lineItemId .',
     )
     refunds: list[LineItemRefund] | None = Field(
         None,
@@ -2349,7 +2348,7 @@ class LineItem(EbayModel):
     sold_format: SoldFormatEnum | None = Field(
         None,
         alias='soldFormat',
-        description='The eBay listing type of the line item. The most common listing types are <code>AUCTION</code> and <code>FIXED_PRICE</code>.',
+        description='The eBay listing type of the line item. The most common listing types are AUCTION and FIXED_PRICE .',
     )
     taxes: list[Tax] | None = Field(
         None,
@@ -2357,28 +2356,28 @@ class LineItem(EbayModel):
     )
     title: str | None = Field(
         None,
-        description='The title of the listing.<br><br><span class="tablenote"><strong>Note:</strong> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>',
+        description='The title of the listing. Note: The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.',
     )
     total: Amount | None = Field(
         None,
-        description='This is the total price that the buyer must pay for the line item after all costs (item cost, delivery cost, taxes) are added, minus any discounts and/or promotions.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay \'Collect and Remit\' tax, the \'Collect and Remit\' tax amount for the order will be included in this <strong>total</strong> value only when the <strong>fieldGroups</strong> query parameter is set to <code>TAX_BREAKDOWN</code>. If the <strong>fieldGroups</strong> query parameter is not set to <code>TAX_BREAKDOWN</code>, \'Collect and Remit\' will not be added into this <strong>total</strong> value.<br><br>To determine if \'Collect and Remit\' taxes were added into this <strong>total</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the \'Collect and Remit\' tax amount that the buyer paid is in this amount:<ul><li><code>STATE_SALES_TAX</code>: US state-mandated sales tax</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: \'Goods and Services\' tax in Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>',
+        description="This is the total price that the buyer must pay for the line item after all costs (item cost, delivery cost, taxes) are added, minus any discounts and/or promotions. Note: For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this total value only when the fieldGroups query parameter is set to TAX_BREAKDOWN .",
     )
     variation_aspects: list[NameValuePair] | None = Field(
         None,
         alias='variationAspects',
-        description='An array of aspect name-value pairs that identifies the specific variation of a multi-variation listing. This array can contain multiple name-value pairs, such as <code>color:blue</code> and <code>size:large</code>, and will only be returned for orders created from a multiple-variation listing.',
+        description='An array of aspect name-value pairs that identifies the specific variation of a multi-variation listing. This array can contain multiple name-value pairs, such as color:blue and size:large , and will only be returned for orders created from a multiple-variation listing.',
     )
 
 
 class Payment(EbayModel):
     amount: Amount | None = Field(
         None,
-        description='The amount that seller receives for the order via the payment method mentioned in <strong>Payment.paymentMethod</strong>.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay \'Collect and Remit\' tax, which includes US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, \'Good and Services\' tax in Canada, Australia, and New Zealand, and VAT collected for UK or EU, the \'Collect and Remit\' tax amount for the order will be included in this <strong>amount.value</strong> field (and in the <strong>amount.convertedFromValue</strong> field if currency conversion is applicable).<br><br> To determine if \'Collect and Remit\' taxes were added into this <strong>totalDueSeller</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the \'Collect and Remit\' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: Canada, Australia, and New Zealand</li><li><code>VAT</code>: UK and EU countries</li></ul></span>',
+        description='The amount that seller receives for the order via the payment method mentioned in Payment.paymentMethod .',
     )
     payment_date: str | None = Field(
         None,
         alias='paymentDate',
-        description='The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     payment_holds: list[PaymentHold] | None = Field(
         None,
@@ -2388,17 +2387,17 @@ class Payment(EbayModel):
     payment_method: PaymentMethodTypeEnum | None = Field(
         None,
         alias='paymentMethod',
-        description='The payment method used to pay for the order. See the <strong>PaymentMethodTypeEnum</strong> type for more information on the payment methods.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, access to buyer payment details for U.S. users will be limited to select developers. All other developers will receive a value of "CustomCode" in place of buyer payment details. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>',
+        description='The payment method used to pay for the order. See the PaymentMethodTypeEnum type for more information on the payment methods. Note: Effective September 26, 2025, access to buyer payment details for U.S. users will be limited to select developers. All other developers will receive a value of "CustomCode" in place of buyer payment details.',
     )
     payment_reference_id: str | None = Field(
         None,
         alias='paymentReferenceId',
-        description='This field is only returned if payment has been made by the buyer, and the <strong>paymentMethod</strong> is <code>ESCROW</code>. This field contains a special ID for ESCROW.',
+        description='This field is only returned if payment has been made by the buyer, and the paymentMethod is ESCROW . This field contains a special ID for ESCROW.',
     )
     payment_status: PaymentStatusEnum | None = Field(
         None,
         alias='paymentStatus',
-        description='The enumeration value returned in this field indicates the status of the payment for the order. See the <strong>PaymentStatusEnum</strong> type definition for more information on the possible payment states.',
+        description='The enumeration value returned in this field indicates the status of the payment for the order. See the PaymentStatusEnum type definition for more information on the possible payment states.',
     )
 
 
@@ -2410,7 +2409,7 @@ class PaymentDispute(EbayModel):
     available_choices: list[SellerDecisionEnum] | None = Field(
         None,
         alias='availableChoices',
-        description='The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the <strong>sellerResponse</strong> field will show the decision that the seller made.',
+        description='The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the sellerResponse field will show the decision that the seller made.',
     )
     buyer_provided: InfoFromBuyer | None = Field(
         None,
@@ -2420,16 +2419,16 @@ class PaymentDispute(EbayModel):
     buyer_username: str | None = Field(
         None,
         alias='buyerUsername',
-        description='This is the eBay user ID of the buyer that initiated the payment dispute.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description='This is the eBay user ID of the buyer that initiated the payment dispute. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     closed_date: str | None = Field(
         None,
         alias='closedDate',
-        description='The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the CLOSED state. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu.',
     )
     evidence: list[DisputeEvidence] | None = Field(
         None,
-        description='This container shows any evidence that has been provided by the seller to contest the payment dispute. Evidence may include shipment tracking information, proof of authentication documentation, image(s) to proof that an item is as described, or financial documentation/invoice.<br><br>This container is only returned if the seller has provided at least one document used as evidence against the payment dispute.',
+        description='This container shows any evidence that has been provided by the seller to contest the payment dispute. Evidence may include shipment tracking information, proof of authentication documentation, image(s) to proof that an item is as described, or financial documentation/invoice.',
     )
     evidence_requests: list[EvidenceRequest] | None = Field(
         None,
@@ -2439,7 +2438,7 @@ class PaymentDispute(EbayModel):
     line_items: list[OrderLineItems] | None = Field(
         None,
         alias='lineItems',
-        description='This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <strong>itemId</strong>/<strong>lineItemId</strong> pair returned in this array.',
+        description='This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one itemId / lineItemId pair returned in this array.',
     )
     monetary_transactions: list[MonetaryTransaction] | None = Field(
         None,
@@ -2448,12 +2447,12 @@ class PaymentDispute(EbayModel):
     )
     note: str | None = Field(
         None,
-        description='This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br>This field is limited to 1000 characters.',
+        description='This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth. This field is limited to 1000 characters.',
     )
     open_date: str | None = Field(
         None,
         alias='openDate',
-        description='The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states. The timestamps returned here use the ISO 8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: yyyy-MM-ddThh:mm.ss.sssZ .',
     )
     order_id: str | None = Field(
         None,
@@ -2472,7 +2471,7 @@ class PaymentDispute(EbayModel):
     )
     reason: DisputeReasonEnum | None = Field(
         None,
-        description='The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.',
+        description='The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See DisputeReasonEnum type for a description of the supported reasons that buyers can give for initiating a payment dispute.',
     )
     resolution: PaymentDisputeOutcomeDetail | None = Field(
         None,
@@ -2481,7 +2480,7 @@ class PaymentDispute(EbayModel):
     respond_by_date: str | None = Field(
         None,
         alias='respondByDate',
-        description='The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.',
+        description='The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the ACTION_NEEDED state. For payment disputes that currently require action by the seller, that same seller should look at the availableChoices array to see the available actions.',
     )
     return_address: ReturnAddress | None = Field(
         None,
@@ -2495,7 +2494,7 @@ class PaymentDispute(EbayModel):
     seller_response: SellerResponseEnum | None = Field(
         None,
         alias='sellerResponse',
-        description='The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.',
+        description='The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute.',
     )
 
 
@@ -2511,49 +2510,49 @@ class PaymentSummary(EbayModel):
     total_due_seller: Amount | None = Field(
         None,
         alias='totalDueSeller',
-        description='This is the total price that the seller receives for the entire order after all costs (item cost, delivery cost, taxes) are added for all line items, minus any discounts and/or promotions for any of the line items. Note that this value is subject to change before payment is actually made by the buyer (if the <strong>paymentStatus</strong> value was <code>PENDING</code> or <code>FAILED</code>), or if a partial or full refund occurs with the order.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay \'Collect and Remit\' tax, the \'Collect and Remit\' tax amount for the order will be included in this <strong>totalDueSeller</strong> value.<br><br>To determine if \'Collect and Remit\' taxes were added into this <strong>totalDueSeller</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the \'Collect and Remit\' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>',
+        description='This is the total price that the seller receives for the entire order after all costs (item cost, delivery cost, taxes) are added for all line items, minus any discounts and/or promotions for any of the line items.',
     )
 
 
 class Order(EbayModel):
     buyer: Buyer | None = Field(
         None,
-        description='This container consists of information about the order\'s buyer. At this time, only the buyer\'s eBay user ID is returned, but it\'s possible that more buyer information can be added to this container in the future.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description="This container consists of information about the order's buyer. At this time, only the buyer's eBay user ID is returned, but it's possible that more buyer information can be added to this container in the future. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place.",
     )
     buyer_checkout_notes: str | None = Field(
         None,
         alias='buyerCheckoutNotes',
-        description='This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. ',
+        description='This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time.',
     )
     cancel_status: CancelStatus | None = Field(
         None,
         alias='cancelStatus',
-        description='This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the <strong>cancelState</strong> field is returned with a value of <code>NONE_REQUESTED</code>, and an empty <strong>cancelRequests</strong> array is also returned.',
+        description='This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the cancelState field is returned with a value of NONE_REQUESTED , and an empty cancelRequests array is also returned.',
     )
     creation_date: str | None = Field(
         None,
         alias='creationDate',
-        description='The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     ebay_collect_and_remit_tax: bool | None = Field(
         None,
         alias='ebayCollectAndRemitTax',
-        description="This field is only returned if <code>true</code> and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.",
+        description="This field is only returned if true and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence.",
     )
     fulfillment_hrefs: list[str] | None = Field(
         None,
         alias='fulfillmentHrefs',
-        description='This array contains a list of one or more <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment" target="_blank">getShippingFulfillment</a> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.',
+        description='This array contains a list of one or more getShippingFulfillment call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.',
     )
     fulfillment_start_instructions: list[FulfillmentStartInstruction] | None = Field(
         None,
         alias='fulfillmentStartInstructions',
-        description='This container consists of a set of specifications for fulfilling the order, including the type of fulfillment, shipping carrier and service, shipping address, and estimated delivery window. These instructions are derived from the buyer\'s and seller\'s eBay account preferences, the listing parameters, and the buyer\'s checkout selections. The seller can use them as a starting point for packaging, addressing, and shipping the order.<br><br><span class="tablenote"><strong>Note:</strong> Although this container is presented as an array, it currently returns only one set of fulfillment specifications. Additional array members will be supported in future functionality.</span>',
+        description="This container consists of a set of specifications for fulfilling the order, including the type of fulfillment, shipping carrier and service, shipping address, and estimated delivery window. These instructions are derived from the buyer's and seller's eBay account preferences, the listing parameters, and the buyer's checkout selections.",
     )
     last_modified_date: str | None = Field(
         None,
         alias='lastModifiedDate',
-        description='The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>',
+        description='The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2015-08-04T19:09:02.768Z',
     )
     line_items: list[LineItem] | None = Field(
         None,
@@ -2563,7 +2562,7 @@ class Order(EbayModel):
     order_fulfillment_status: OrderFulfillmentStatus | None = Field(
         None,
         alias='orderFulfillmentStatus',
-        description='The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state.',
+        description='The degree to which fulfillment of the order is complete. See the OrderFulfillmentStatus type definition for more information about each possible fulfillment state.',
     )
     order_id: str | None = Field(
         None,
@@ -2573,7 +2572,7 @@ class Order(EbayModel):
     order_payment_status: OrderPaymentStatusEnum | None = Field(
         None,
         alias='orderPaymentStatus',
-        description='The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state.',
+        description='The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the OrderPaymentStatusEnum type definition for more information about each possible payment/refund state.',
     )
     payment_summary: PaymentSummary | None = Field(
         None,
@@ -2587,22 +2586,22 @@ class Order(EbayModel):
     )
     program: Program | None = Field(
         None,
-        description="This container is returned for orders that are eligible for eBay's Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the <code>fulfillmentStartInstructions.shippingStep.shipTo</code> container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.",
+        description="This container is returned for orders that are eligible for eBay's Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the fulfillmentStartInstructions.shippingStep.shipTo container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.",
     )
     sales_record_reference: str | None = Field(
         None,
         alias='salesRecordReference',
-        description='An eBay-generated identifier that is used to identify and manage orders through the Selling Manager and Selling Manager Pro tools. This order identifier can also be found on the Orders grid page and in the Sales Record pages in Seller Hub. A <strong>salesRecordReference</strong> number is only generated and returned at the order level, and not at the order line item level.<br><br> In cases where the seller does not have a Selling Manager or Selling Manager Pro subscription nor access to Seller Hub, this field may not be returned.',
+        description='An eBay-generated identifier that is used to identify and manage orders through the Selling Manager and Selling Manager Pro tools. This order identifier can also be found on the Orders grid page and in the Sales Record pages in Seller Hub. A salesRecordReference number is only generated and returned at the order level, and not at the order line item level.',
     )
     seller_id: str | None = Field(
         None,
         alias='sellerId',
-        description='The unique eBay user ID of the seller who sold the order.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>',
+        description='The unique eBay user ID of the seller who sold the order. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     total_fee_basis_amount: Amount | None = Field(
         None,
         alias='totalFeeBasisAmount',
-        description='This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. ',
+        description='This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category.',
     )
     total_marketplace_fee: Amount | None = Field(
         None,
@@ -2614,31 +2613,31 @@ class Order(EbayModel):
 class OrderSearchPagedCollection(EbayModel):
     href: str | None = Field(
         None,
-        description='The URI of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call request that produced the current page of the result set.',
+        description='The URI of the getOrders call request that produced the current page of the result set.',
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of orders returned per page of the result set. The <strong>limit</strong> value can be passed in as a query parameter, or if omitted, its value defaults to <code>50</code>. <br><br><span class="tablenote"><strong>Note:</strong> If this is the last or only page of the result set, the page may contain fewer orders than the <strong>limit</strong> value.  To determine the number of pages in a result set, divide the <strong>total</strong> value (total number of orders matching input criteria) by this <strong>limit</strong> value, and then round up to the next integer. For example, if the <strong>total</strong> value was <code>120</code> (120 total orders) and the <strong>limit</strong> value was <code>50</code> (show 50 orders per page), the total number of pages in the result set is three, so the seller would have to make three separate <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> calls to view all orders matching the input criteria. </span><strong>Default:</strong> <code>50</code>',
+        description='The maximum number of orders returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 50 . Note: If this is the last or only page of the result set, the page may contain fewer orders than the limit value.',
     )
     next: str | None = Field(
         None,
-        description='The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call URI to use if you wish to view the  next page of the result set. For example, the following URI returns records 41 through 50 from the collection of orders: <br><br><code><i>path</i>/order?limit=10&offset=40 </code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.<br>',
+        description='The getOrders call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 41 through 50 from the collection of orders: path /order?limit=10&offset=40 This field is only returned if there is a next page of results to view based on the current input criteria.',
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     orders: list[Order] | None = Field(
         None,
-        description='This array contains one or more orders that are part of the current result set, that is controlled by the input criteria. The details of each order include information about the buyer, order history, shipping fulfillments, line items, costs, payments, and order fulfillment status. <br><br>By default, orders are returned according to creation date (oldest to newest), but the order will vary according to any filter that is set in request.',
+        description='This array contains one or more orders that are part of the current result set, that is controlled by the input criteria. The details of each order include information about the buyer, order history, shipping fulfillments, line items, costs, payments, and order fulfillment status.',
     )
     prev: str | None = Field(
         None,
-        description='The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call URI for the previous result set. For example, the following URI returns orders 21 through 30 from the collection of orders: <br><br><code><i>path</i>/order?limit=10&offset=20</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.',
+        description='The getOrders call URI for the previous result set. For example, the following URI returns orders 21 through 30 from the collection of orders: path /order?limit=10&offset=20 This field is only returned if there is a previous page of results to view based on the current input criteria.',
     )
     total: int | None = Field(
         None,
-        description='The total number of orders in the results set based on the current input criteria.<br><br><span class="tablenote"><strong>Note:</strong> If no orders are found, this field is returned with a value of <code>0</code>.</span>',
+        description='The total number of orders in the results set based on the current input criteria. Note: If no orders are found, this field is returned with a value of 0 .',
     )
     warnings: list[ErrorDetailV3] | None = Field(
         None,

@@ -16,11 +16,11 @@ class ErrorParameter(EbayModel):
 class Rate(EbayModel):
     count: int | None = Field(
         None,
-        description='The number of calls a user has made to this resource within a set time period. This time period is defined by the associated <b>timeWindow</b> value.',
+        description='The number of calls a user has made to this resource within a set time period. This time period is defined by the associated timeWindow value.',
     )
     limit: int | None = Field(
         None,
-        description='The maximum number of requests that can be made to this resource during a set time period. The length of time to which the limit is applied is defined by the associated <b>timeWindow</b> value.  <br><br>This value is often referred to as the "call quota" for the resource.',
+        description='The maximum number of requests that can be made to this resource during a set time period. The length of time to which the limit is applied is defined by the associated timeWindow value. This value is often referred to as the "call quota" for the resource.',
     )
     remaining: int | None = Field(
         None,
@@ -28,7 +28,7 @@ class Rate(EbayModel):
     )
     reset: str | None = Field(
         None,
-        description='The data and time the time window and accumulated calls for this resource reset.  <br><br>When the <b>reset</b> time is reached, the <b>remaining</b> value is reset to the value of <b>limit</b>, and this <b>reset</b> value is reset to the current time plus the number of seconds defined by the <b>timeWindow</b> value. <br><br>The time stamp is formatted as an <a href="http://www.iso.org/iso/home/standards/iso8601.htm " target="_blank">ISO 8601</a> string, which is based on the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-04T07:09:00.000Z</code>',
+        description='The data and time the time window and accumulated calls for this resource reset. When the reset time is reached, the remaining value is reset to the value of limit , and this reset value is reset to the current time plus the number of seconds defined by the timeWindow value. The time stamp is formatted as an ISO 8601 string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.',
     )
     time_window: int | None = Field(
         None,
@@ -90,21 +90,21 @@ class RateLimit(EbayModel):
     api_context: str | None = Field(
         None,
         alias='apiContext',
-        description='The context of the API for which rate-limit data is returned. For example <code>buy</code>, <code>sell</code>, <code>commerce</code>, <code>developer</code> or <code>tradingapi</code>.',
+        description='The context of the API for which rate-limit data is returned. For example buy , sell , commerce , developer or tradingapi .',
     )
     api_name: str | None = Field(
         None,
         alias='apiName',
-        description='The name of the API for which rate-limit data is returned. For example <code>browse</code> for the Buy API, <code>inventory</code> for the Sell API, <code>taxonomy</code> for the Commerce API, or <code>tradingapi</code> for Trading API.',
+        description='The name of the API for which rate-limit data is returned. For example browse for the Buy API, inventory for the Sell API, taxonomy for the Commerce API, or tradingapi for Trading API.',
     )
     api_version: str | None = Field(
         None,
         alias='apiVersion',
-        description='The version of the API for which rate-limit data is returned. For example <code>v1</code> or <code>v2</code>.',
+        description='The version of the API for which rate-limit data is returned. For example v1 or v2 .',
     )
     resources: list[Resource] | None = Field(
         None,
-        description='A list of the methods for which rate-limit data is returned. For example <code>item</code> for the Feed API, <code>getOrder</code> for the Fulfillment API, <code>getProduct</code> for the Catalog API, <code>AddItems</code> for the Trading API.',
+        description='A list of the methods for which rate-limit data is returned. For example item for the Feed API, getOrder for the Fulfillment API, getProduct for the Catalog API, AddItems for the Trading API.',
     )
 
 

@@ -172,7 +172,7 @@ class EligibleItem(EbayModel):
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='The unique eBay-assigned ID for an eBay listing.  <br><br>A <strong>listingId</strong> is assigned by eBay when a seller creates a listing with the Trading API.',
+        description='The unique eBay-assigned ID for an eBay listing. A listingId is assigned by eBay when a seller creates a listing with the Trading API.',
     )
 
 
@@ -201,30 +201,30 @@ class PagedEligibleItemCollection(EbayModel):
     eligible_items: list[EligibleItem] | None = Field(
         None,
         alias='eligibleItems',
-        description='A list of items that are eligible for a seller-initiated offer to a buyer.  <br><br>Each element in the list contains the listing ID<!-- <i>or</i> the SKU value--> of a listed item. These IDs represent the listings for which buyers have shown an interest.',
+        description='A list of items that are eligible for a seller-initiated offer to a buyer. Each element in the list contains the listing ID or the SKU value--> of a listed item. These IDs represent the listings for which buyers have shown an interest.',
     )
     href: str | None = Field(
         None, description='The URI of the current page of results from the result set.'
     )
     limit: int | None = Field(
         None,
-        description='The number of items returned on a single page from the result set. This value can be set in the request with the <strong>limit</strong> query parameter.',
+        description='The number of items returned on a single page from the result set. This value can be set in the request with the limit query parameter.',
     )
     next: str | None = Field(
         None,
-        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. <br><br><strong>Maximum length</strong>: 2048',
+        description='The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. Maximum length : 2048',
     )
     offset: int | None = Field(
         None,
-        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the <strong>offset</strong> query parameter. <p class="tablenote"><strong>Note: </strong>The items in a paginated result set use a zero-based list where the first item in the list has an offset of <code>0</code>.</p>',
+        description='The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0 .',
     )
     prev: str | None = Field(
         None,
-        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. <br><br><strong>Maximum length</strong>: 2048',
+        description='The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. Maximum length : 2048',
     )
     total: int | None = Field(
         None,
-        description='The total number of items retrieved in the result set.  <br><br>If no items match the search criteria, the server returns the HTTP status code <br><code>204 No Content</code>.',
+        description='The total number of items retrieved in the result set. If no items match the search criteria, the server returns the HTTP status code 204 No Content .',
     )
 
 
@@ -244,18 +244,18 @@ class User(EbayModel):
     masked_username: str | None = Field(
         None,
         alias='maskedUsername',
-        description='The masked username is a username that has certain characters hidden for privacy of the user.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html">Data Handling Compliance</a>.</span> <!-- This field is populated only when the full username cannot be used.-->',
+        description='The masked username is a username that has certain characters hidden for privacy of the user. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
 
 
 class Amount(EbayModel):
     currency: CurrencyCodeEnum | None = Field(
         None,
-        description='The base currency applied to the <strong>value</strong> field to establish a monetary amount.  <br><br>The currency is represented as a 3-letter <a href="http://www.currency-iso.org/en/home/tables/table-a1.html" title="www.currency-iso.org" target="_blank">ISO4217</a> currency code. For example, the code for the Canadian Dollar is <code>CAD</code>.  <br><br><strong>Default:</strong> The default currency of the eBay marketplace that hosts the listing.',
+        description='The base currency applied to the value field to establish a monetary amount. The currency is represented as a 3-letter ISO4217 currency code. For example, the code for the Canadian Dollar is CAD . Default: The default currency of the eBay marketplace that hosts the listing.',
     )
     value: str | None = Field(
         None,
-        description='The monetary amount in the specified <strong>currency</strong>.<br><br><div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><strong><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></strong></span></span> For listings on the following marketplaces, a comma (<code>,</code>) must be used as the decimal separator:<br><ul><li>France</li><li>Canada (French Language)</li><li>Germany</li><li>Italy</li><li>Spain</li></ul>All other sites should use a period (<code>.</code>) as the decimal separator. If the incorrect decimal separator is used, the decimal point will be ignored.</p></div>',
+        description='The monetary amount in the specified currency . Important! For listings on the following marketplaces, a comma ( , ) must be used as the decimal separator: France Canada (French Language) Germany Italy Spain All other sites should use a period ( . ) as the decimal separator. If the incorrect decimal separator is used, the decimal point will be ignored.',
     )
 
 
@@ -301,31 +301,31 @@ class OfferedItem(EbayModel):
     discount_percentage: str | None = Field(
         None,
         alias='discountPercentage',
-        description='This value denotes the percentage (as either a whole number or decimal value) that the listing in the offer will be discounted from its original listed price.<br><br>The seller can specify either the exact price of the discounted items with the <strong>price</strong> field or they can use this field to specify the percentage that the listing will be discounted, but not both.<br><br><strong>Minimum:</strong> <code>5.0</code>  <br><br>This field is <i>required</i> if you do not specify a <strong>price</strong> value.',
+        description='This value denotes the percentage (as either a whole number or decimal value) that the listing in the offer will be discounted from its original listed price. The seller can specify either the exact price of the discounted items with the price field or they can use this field to specify the percentage that the listing will be discounted, but not both.',
     )
     listing_id: str | None = Field(
         None,
         alias='listingId',
-        description='This value is a unique eBay-assigned ID that identifies the listing to which the offer pertains.  <br><br>A <strong>listingId</strong> value is generated by eBay when you list an item with the Trading API.<!--  <br><br><i>Required</i> if you do not specify an <strong>sku</strong> value.-->',
+        description='This value is a unique eBay-assigned ID that identifies the listing to which the offer pertains. A listingId value is generated by eBay when you list an item with the Trading API. Required if you do not specify an sku value.-->',
     )
     price: Amount | None = Field(
         None,
-        description='This value denotes the final discounted price of the listing in the offer being made to the buyer. This value must be lower than the original price of the item as stated in the original listing.  <br><br>The seller can use either this field to specify the exact discounted price of the listing or they can use the <strong>discountPercentage</strong> field to specify the percentage that the listing will be discounted, but not both.  <br><br><i>Required</i> if you do not specify a <strong>discountPercentage</strong> value.',
+        description='This value denotes the final discounted price of the listing in the offer being made to the buyer. This value must be lower than the original price of the item as stated in the original listing.',
     )
     quantity: int | None = Field(
         None,
-        description='This integer value indicates the number of items in the eBay listing for which the offer is being made.  <br><br>The offer being made by the seller is an "all or nothing" offer, meaning the buyer must purchase the indicated quantity of items in order to receive the discount on the transaction.  <br><br><strong>Default:</strong> <code>1</code>',
+        description='This integer value indicates the number of items in the eBay listing for which the offer is being made. The offer being made by the seller is an "all or nothing" offer, meaning the buyer must purchase the indicated quantity of items in order to receive the discount on the transaction. Default: 1',
     )
 
 
 class TimeDuration(EbayModel):
     unit: TimeDurationUnitEnum | None = Field(
         None,
-        description='A time-measurement unit that specifies a singular period of time.  <br><br>A span of time is defined when you apply the value specified in the <strong>value</strong> field to the value specified for <strong>unit</strong>.  <br><br>Time-measurement units can be YEAR, MONTH, DAY, and so on. See <strong>TimeDurationUnitEnum</strong> for a complete list of possible time-measurement units.',
+        description='A time-measurement unit that specifies a singular period of time. A span of time is defined when you apply the value specified in the value field to the value specified for unit . Time-measurement units can be YEAR, MONTH, DAY, and so on. See TimeDurationUnitEnum for a complete list of possible time-measurement units.',
     )
     value: int | None = Field(
         None,
-        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the <strong>unit</strong> field.',
+        description='An integer that represents an amount of time, as measured by the time-measurement unit specified in the unit field.',
     )
 
 
@@ -333,21 +333,21 @@ class CreateOffersRequest(EbayModel):
     allow_counter_offer: bool | None = Field(
         None,
         alias='allowCounterOffer',
-        description='If set to <code>true</code>, the buyer is allowed to make a counter-offer to the seller\'s offer.  <br><br><span class="tablenote"><strong>Note:</strong> Currently, you must set this field to <code>false</code>; counter-offers are not supported in this release.</span>  <br><strong>Default:</strong> <code>false</code>',
+        description="If set to true , the buyer is allowed to make a counter-offer to the seller's offer. Note: Currently, you must set this field to false ; counter-offers are not supported in this release. Default: false",
     )
     message: str | None = Field(
         None,
-        description='A seller-defined message related to the offer being made.  <br><br>This message is sent to the list of "interested" buyers.  <br><br>To increase the conversion rate of the offers a seller makes to buyers, eBay recommends you always add a customized message to your offers.  <br><br><strong>Maximum length:</strong> 2,000 characters',
+        description='A seller-defined message related to the offer being made. This message is sent to the list of "interested" buyers. To increase the conversion rate of the offers a seller makes to buyers, eBay recommends you always add a customized message to your offers. Maximum length: 2,000 characters',
     )
     offer_duration: TimeDuration | None = Field(
         None,
         alias='offerDuration',
-        description='<div class="msgbox_important"><p class="msgbox_importantInDiv" data-mc-autonum="&lt;b&gt;&lt;span style=&quot;color: #dd1e31;&quot; class=&quot;mcFormatColor&quot;&gt;Important! &lt;/span&gt;&lt;/b&gt;"><span class="autonumber"><span><strong><span style="color: #dd1e31;" class="mcFormatColor">Important!</span></strong></span></span> The <strong>offerDuration</strong> value will be set automatically based on the eBay marketplace, and each marketplace has one supported value. Due to this fact, we suggest that this container no longer be used. See <a href="/api-docs/sell/negotiation/overview.html#requirements" target="_blank">Negotiation API requirements and restrictions</a> for the <strong>offerDuration</strong> value for each marketplace.</p></div><br>The length of time, in days, the offer is valid from when it is created.<br><br>The duration of the offer begins at the date and time the offer is sent. When the span of time specified by <strong>offerDuration</strong> passes beyond the <strong>creationDate</strong>, the offer expires.',
+        description='Important! The offerDuration value will be set automatically based on the eBay marketplace, and each marketplace has one supported value. Due to this fact, we suggest that this container no longer be used. See Negotiation API requirements and restrictions for the offerDuration value for each marketplace. The length of time, in days, the offer is valid from when it is created.',
     )
     offered_items: list[OfferedItem] | None = Field(
         None,
         alias='offeredItems',
-        description='An array of objects where each object contains the details of an offer and the ID of the listing on which the offer is being made.  <br><br>Note that the service does not currently support the creation of multiple offers with a single call to <strong>sendOfferToInterestedBuyer</strong>. With this, each request can target only one listing at a time and you must populate this array with a single element that contains the details of one offer.',
+        description='An array of objects where each object contains the details of an offer and the ID of the listing on which the offer is being made. Note that the service does not currently support the creation of multiple offers with a single call to sendOfferToInterestedBuyer .',
     )
 
 
@@ -355,7 +355,7 @@ class Offer(EbayModel):
     allow_counter_offer: bool | None = Field(
         None,
         alias='allowCounterOffer',
-        description="If set to <code>true</code>, the buyer is allowed to make a counter-offer to the seller's offer.",
+        description="If set to true , the buyer is allowed to make a counter-offer to the seller's offer.",
     )
     buyer: User | None = Field(
         None, description='The buyer who has been sent the offer.'
@@ -363,17 +363,17 @@ class Offer(EbayModel):
     creation_date: str | None = Field(
         None,
         alias='creationDate',
-        description='The date and time when the seller\'s offer was created.  <br><br>The returned timestamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>',
+        description="The date and time when the seller's offer was created. The returned timestamp is formatted as an ISO 8601 string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Format: [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z Example: 2018-08-20T07:09:00.000Z",
     )
     initiated_by: str | None = Field(
         None,
         alias='initiatedBy',
-        description='The eBay <strong>UserName</strong> of the user (seller) who initiated the offer.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html">Data Handling Compliance</a>.</span>',
+        description='The eBay UserName of the user (seller) who initiated the offer. Note: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to Data Handling Compliance .',
     )
     last_modified_date: str | None = Field(
         None,
         alias='lastModifiedDate',
-        description='The date and time when the offer was last modified.  <br><br>The returned timestamp is formatted as an <a href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO 8601</a> string.',
+        description='The date and time when the offer was last modified. The returned timestamp is formatted as an ISO 8601 string.',
     )
     message: str | None = Field(
         None,
@@ -382,12 +382,12 @@ class Offer(EbayModel):
     offer_duration: TimeDuration | None = Field(
         None,
         alias='offerDuration',
-        description='The length of time that the offer is valid.  <br><br>The duration of the offer begins at the date and time denoted by <strong>creationDate</strong>. When the span of time specified by <strong>offerDuration</strong> passes beyond the <strong>creationDate</strong>, the offer expires.',
+        description='The length of time that the offer is valid. The duration of the offer begins at the date and time denoted by creationDate . When the span of time specified by offerDuration passes beyond the creationDate , the offer expires.',
     )
     offered_items: list[OfferedItem] | None = Field(
         None,
         alias='offeredItems',
-        description='The list of items associated with the offer. <br><br>Currently, the offer list is restricted to a single offer.',
+        description='The list of items associated with the offer. Currently, the offer list is restricted to a single offer.',
     )
     offer_id: str | None = Field(
         None,
@@ -397,7 +397,7 @@ class Offer(EbayModel):
     offer_status: OfferStatusEnum | None = Field(
         None,
         alias='offerStatus',
-        description='The current state, or status, of an offer.  <br><br>Status states include <code>PENDING</code>, <code>COUNTERED</code>, <code>ACCEPTED</code>, and <code>DECLINED</code>.',
+        description='The current state, or status, of an offer. Status states include PENDING , COUNTERED , ACCEPTED , and DECLINED .',
     )
     offer_type: OfferTypeEnum | None = Field(
         None, alias='offerType', description='The type of offer being made.'
@@ -410,5 +410,5 @@ class Offer(EbayModel):
 class SendOfferToInterestedBuyersCollectionResponse(EbayModel):
     offers: list[Offer] | None = Field(
         None,
-        description='The <strong>offers</strong> container returns a list of the offers sent to buyers who have shown an interest in listings included in the offer.',
+        description='The offers container returns a list of the offers sent to buyers who have shown an interest in listings included in the offer.',
     )
