@@ -5,17 +5,35 @@ build-backend = "hatchling.build"
 [project]
 name = "ebay-sdk"
 version = "0.1.0"
-description = "A modern typed Python SDK for eBay REST and Traditional APIs."
+description = "A modern, typed Python SDK for the eBay REST APIs (unofficial)."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-authors = [{ name = "Parity SDK Contributors" }]
+authors = [{ name = "bidkit contributors" }]
+keywords = ["ebay", "sdk", "api", "rest", "sell", "buy", "commerce", "marketplace"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Office/Business",
+  "Typing :: Typed",
+]
 dependencies = [
   "cryptography>=49.0.0",
   "httpx>=0.27",
   "orjson>=3.10",
   "pydantic>=2.7",
 ]
+
+[project.urls]
+Homepage = "https://github.com/heyalexej/bidkit"
+Repository = "https://github.com/heyalexej/bidkit"
+Issues = "https://github.com/heyalexej/bidkit/issues"
 
 [project.optional-dependencies]
 dev = [
