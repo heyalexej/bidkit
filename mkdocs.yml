@@ -33,6 +33,9 @@ theme:
 
 plugins:
   - search
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
   - mkdocstrings:
       handlers:
         python:
@@ -69,4 +72,5 @@ nav:
       - Auth & token caches: reference/auth.md
       - Notifications: reference/notifications.md
       - Pagination & errors: reference/helpers.md
+      - Generated (all 41 APIs): reference/generated/index.md
   - bidkit vs ebaysdk: comparison.md

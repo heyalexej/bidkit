@@ -19,7 +19,9 @@ client.sell.logistics.stream_download_label_file(shipment_id, accept="applicatio
 ```
 
 Each method carries the operation's documentation as its docstring, has a `raw_response`
-overload, and binary downloads add a `stream_*` variant. Full endpoint semantics live in
+overload, and binary downloads add a `stream_*` variant. The
+[generated reference](generated/index.md) renders every operation and model per service;
+full endpoint semantics live in
 [eBay's API documentation](https://developer.ebay.com/develop/apis).
 
 ## Buy — `client.buy` (29 ops)
