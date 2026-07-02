@@ -1,10 +1,8 @@
 name: Docs
 
 on:
-  # Manual until the repository is public and GitHub Pages is enabled
-  # (Settings -> Pages -> Source: GitHub Actions); then add:
-  #   push:
-  #     branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
