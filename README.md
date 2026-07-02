@@ -7,8 +7,8 @@ OpenAPI contracts.
 > trademark of eBay Inc. See [NOTICE](NOTICE).
 
 [![CI](https://github.com/heyalexej/bidkit/actions/workflows/ci.yml/badge.svg)](https://github.com/heyalexej/bidkit/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/bidkit)](https://pypi.org/project/bidkit/)
-[![Python](https://img.shields.io/pypi/pyversions/bidkit)](https://pypi.org/project/bidkit/)
+[![PyPI](https://img.shields.io/pypi/v/bidkit?cacheSeconds=3600)](https://pypi.org/project/bidkit/)
+[![Python](https://img.shields.io/pypi/pyversions/bidkit?cacheSeconds=3600)](https://pypi.org/project/bidkit/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 - **41 eBay APIs, 455 typed operations** across `buy`, `commerce`, `developer`, `post_order`,
