@@ -5,22 +5,14 @@ from pydantic import ValidationError
 from bidkit import EbayAPIError, EbayClient, EbayConfig
 
 
-def _client(handler, **config_kwargs) -> EbayClient:
-    config_kwargs.setdefault("access_token", "token")
-    return EbayClient(
-        EbayConfig(**config_kwargs),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
-    )
-
-
-def test_with_options_overrides_retries_without_touching_the_base_client() -> None:
+def test_with_options_overrides_retries_without_touching_the_basemake_client(make_client) -> None:
     requests: list[httpx.Request] = []
 
     def handler(request: httpx.Request) -> httpx.Response:
         requests.append(request)
         return httpx.Response(429, headers={"retry-after": "0"})
 
-    client = _client(handler, max_retries=1)
+    client = make_client(handler, max_retries=1)
 
     with pytest.raises(EbayAPIError):
         client.with_options(max_retries=0).buy.browse.get_item("v1|1|0")
@@ -32,14 +24,14 @@ def test_with_options_overrides_retries_without_touching_the_base_client() -> No
     assert len(requests) == 2  # base client still retries once
 
 
-def test_with_options_timeout_applies_per_request() -> None:
+def test_with_options_timeout_applies_per_request(make_client) -> None:
     seen: list[httpx.Request] = []
 
     def handler(request: httpx.Request) -> httpx.Response:
         seen.append(request)
         return httpx.Response(200, json={})
 
-    client = _client(handler)
+    client = make_client(handler)
     client.with_options(timeout=7.5).buy.browse.get_item("v1|1|0", raw_response=True)
     client.buy.browse.get_item("v1|1|0", raw_response=True)
 
@@ -77,21 +69,21 @@ def test_round_tripped_config_does_not_clobber_injected_client_timeout() -> None
     }
 
 
-def test_with_options_overrides_marketplace_header() -> None:
+def test_with_options_overrides_marketplace_header(make_client) -> None:
     seen: list[httpx.Request] = []
 
     def handler(request: httpx.Request) -> httpx.Response:
         seen.append(request)
         return httpx.Response(200, json={})
 
-    client = _client(handler, marketplace_id="EBAY_DE")
+    client = make_client(handler, marketplace_id="EBAY_DE")
     client.with_options(marketplace_id="EBAY_US").buy.browse.get_item("v1|1|0", raw_response=True)
 
     assert seen[0].headers["x-ebay-c-marketplace-id"] == "EBAY_US"
     assert client.config.marketplace_id == "EBAY_DE"
 
 
-def test_with_options_shares_token_cache_and_http_client() -> None:
+def test_with_options_shares_token_cache_and_httpmake_client(make_client) -> None:
     token_requests = {"n": 0}
 
     def handler(request: httpx.Request) -> httpx.Response:
@@ -113,16 +105,16 @@ def test_with_options_shares_token_cache_and_http_client() -> None:
     assert scoped.http is client.http
 
 
-def test_with_options_close_never_closes_the_shared_pool() -> None:
-    client = _client(lambda request: httpx.Response(200, json={}))
+def test_with_options_close_never_closes_the_shared_pool(make_client) -> None:
+    client = make_client(lambda request: httpx.Response(200, json={}))
     scoped = client.with_options(timeout=1.0)
 
     scoped.close()
     client.buy.browse.get_item("v1|1|0", raw_response=True)  # still usable
 
 
-def test_with_options_rejects_unknown_fields() -> None:
-    client = _client(lambda request: httpx.Response(200, json={}))
+def test_with_options_rejects_unknown_fields(make_client) -> None:
+    client = make_client(lambda request: httpx.Response(200, json={}))
 
     with pytest.raises(ValidationError):
         client.with_options(not_a_field=1)

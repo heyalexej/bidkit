@@ -3,27 +3,18 @@ import logging
 import httpx
 import pytest
 
-from bidkit import EbayClient, EbayConfig
-
 
 def _field(record: logging.LogRecord, name: str) -> object:
     """Read a structured `extra` field; they are dynamic attributes on the record."""
     return record.__dict__[name]
 
 
-def _client(handler, **config_kwargs) -> EbayClient:
-    config_kwargs.setdefault("access_token", "static-secret-token")
-    return EbayClient(
-        EbayConfig(**config_kwargs),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
-    )
-
-
 def test_requests_are_logged_at_debug_with_structured_fields(
+    make_client,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
     with caplog.at_level(logging.DEBUG, logger="bidkit"):
-        client = _client(lambda request: httpx.Response(200, json={}))
+        client = make_client(lambda request: httpx.Response(200, json={}))
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     record = next(r for r in caplog.records if r.name == "bidkit.transport")
@@ -37,15 +28,15 @@ def test_requests_are_logged_at_debug_with_structured_fields(
     assert "200" in record.getMessage()
 
 
-def test_nothing_is_logged_by_default(caplog: pytest.LogCaptureFixture) -> None:
+def test_nothing_is_logged_by_default(make_client, caplog: pytest.LogCaptureFixture) -> None:
     with caplog.at_level(logging.INFO, logger="bidkit"):
-        client = _client(lambda request: httpx.Response(200, json={}))
+        client = make_client(lambda request: httpx.Response(200, json={}))
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     assert [r for r in caplog.records if r.name.startswith("bidkit")] == []
 
 
-def test_status_retry_is_logged_at_warning(caplog: pytest.LogCaptureFixture) -> None:
+def test_status_retry_is_logged_at_warning(make_client, caplog: pytest.LogCaptureFixture) -> None:
     calls = {"n": 0}
 
     def handler(request: httpx.Request) -> httpx.Response:
@@ -55,7 +46,7 @@ def test_status_retry_is_logged_at_warning(caplog: pytest.LogCaptureFixture) -> 
         return httpx.Response(200, json={})
 
     with caplog.at_level(logging.DEBUG, logger="bidkit"):
-        client = _client(handler)
+        client = make_client(handler)
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     warning = next(r for r in caplog.records if r.name == "bidkit.retry")
@@ -70,7 +61,9 @@ def test_status_retry_is_logged_at_warning(caplog: pytest.LogCaptureFixture) -> 
     assert "(Retry-After)" in warning.getMessage()
 
 
-def test_connection_retry_logs_exception_name(caplog: pytest.LogCaptureFixture) -> None:
+def test_connection_retry_logs_exception_name(
+    make_client, caplog: pytest.LogCaptureFixture
+) -> None:
     calls = {"n": 0}
 
     def handler(request: httpx.Request) -> httpx.Response:
@@ -80,7 +73,7 @@ def test_connection_retry_logs_exception_name(caplog: pytest.LogCaptureFixture) 
         return httpx.Response(200, json={})
 
     with caplog.at_level(logging.WARNING, logger="bidkit"):
-        client = _client(handler, retry_backoff=0.0)
+        client = make_client(handler, retry_backoff=0.0)
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     warning = next(r for r in caplog.records if r.name == "bidkit.retry")
@@ -89,6 +82,7 @@ def test_connection_retry_logs_exception_name(caplog: pytest.LogCaptureFixture) 
 
 
 def test_token_acquisition_logged_at_info_without_leaking_secrets(
+    make_client,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
@@ -99,7 +93,7 @@ def test_token_acquisition_logged_at_info_without_leaking_secrets(
         return httpx.Response(200, json={})
 
     with caplog.at_level(logging.INFO, logger="bidkit"):
-        client = _client(
+        client = make_client(
             handler,
             access_token=None,
             app_id="app",

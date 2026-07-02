@@ -77,8 +77,9 @@ def _load_public_key(
     """Parse the getPublicKey response into a key + hash pair."""
     if not key:
         raise ValueError("getPublicKey returned no key material")
-    # eBay returns the PEM armor and Base64 body on a single line; re-insert newlines.
-    pem = key.replace(_BEGIN, _BEGIN + "\n").replace(_END, "\n" + _END)
+    # eBay returns the PEM armor and Base64 body on a single line; re-insert newlines,
+    # but leave keys that already contain them untouched.
+    pem = key if "\n" in key else key.replace(_BEGIN, _BEGIN + "\n").replace(_END, "\n" + _END)
     public_key = serialization.load_pem_public_key(pem.encode("ascii"))
     if not isinstance(public_key, ec.EllipticCurvePublicKey):
         raise TypeError(f"Expected an ECDSA public key, got {type(public_key).__name__}")

@@ -10,6 +10,29 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  static:
+    name: Lint, format, types
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --extra dev
+
+      - name: Lint (ruff)
+        run: uv run ruff check .
+
+      - name: Format (ruff)
+        run: uv run ruff format --check .
+
+      - name: Type check (ty)
+        run: uv run ty check src tests
+
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -26,15 +49,6 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --extra dev
-
-      - name: Lint (ruff)
-        run: uv run ruff check .
-
-      - name: Format (ruff)
-        run: uv run ruff format --check .
-
-      - name: Type check (ty)
-        run: uv run ty check src tests
 
       - name: Test (pytest + coverage)
         run: uv run pytest -q --cov --cov-fail-under=88
@@ -92,6 +106,7 @@ jobs:
         run: uvx twine check dist/*.whl dist/*.tar.gz
 
   docs:
+    # Keep in sync with the build job in docs.yml (the Pages deploy).
     name: Docs build
     runs-on: ubuntu-latest
     steps:

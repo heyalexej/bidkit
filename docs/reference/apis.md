@@ -15,7 +15,7 @@ Every operation is a typed method — your editor is the API reference:
 ```python
 client.sell.finances.get_payouts(limit=10)        # -> Payouts (Pydantic model)
 client.sell.finances.get_payouts(raw_response=True)  # -> httpx.Response
-client.sell.logistics.stream_download_label_file(shipment_id)  # streamed binary
+client.sell.logistics.stream_download_label_file(shipment_id, accept="application/pdf")
 ```
 
 Each method carries the operation's documentation as its docstring, has a `raw_response`
