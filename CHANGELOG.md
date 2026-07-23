@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/heyalexej/bidkit/compare/v0.1.1...v0.1.2) (2026-07-23)
+
+
+### Documentation
+
+* **pagination:** document Feedback API paging quirks ([#16](https://github.com/heyalexej/bidkit/issues/16)) ([59b3feb](https://github.com/heyalexej/bidkit/commit/59b3feb1e980576e5eeda76273f75e788637943c))
+
 ## [0.1.1](https://github.com/heyalexej/bidkit/compare/v0.1.0...v0.1.1) (2026-07-02)
 
 
