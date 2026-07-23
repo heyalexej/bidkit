@@ -34,13 +34,18 @@ async for item in paginate_async(client.sell.inventory.get_inventory_items, limi
 - A guard stops iteration if a server ever repeats an offset, so a misbehaving endpoint
   cannot loop forever.
 
-## Server quirk: the Feedback API breaks hand-rolled offset loops
+## Server quirk: the Feedback API can break hand-rolled offset loops
 
-`commerce.feedback.get_feedback` does not behave like the rest of the platform, and the
-two stop conditions people normally reach for both fail on it. Use `paginate` — it follows
-`pagination.next` and is unaffected — or reproduce the behaviour below carefully.
+`commerce.feedback.get_feedback` has been observed to differ from the rest of the
+platform: the two stop conditions people normally reach for can both fail on it. Use
+`paginate` — it follows `pagination.next` and is unaffected — or reproduce the behaviour
+below carefully.
 
-**Short pages appear mid-stream.** A page can come back with far fewer entries than
+This behaviour is not universal; some users return conventional full pages and empty
+past-the-end pages. The safe implementation still should not depend on those lucky
+responses, because eBay exposes the reliable terminal signal as `pagination.next`.
+
+**Short pages can appear mid-stream.** A page can come back with far fewer entries than
 `limit` while `pagination.next` is still set and `pagination.total` is orders of magnitude
 higher. Observed on a real account with `limit=50`:
 
@@ -53,11 +58,11 @@ higher. Observed on a real account with `limit=50`:
 So `len(entries) < limit` does **not** mean end of data. A loop that stops there returns 5
 of 8301 entries and reports success.
 
-**Past-the-end offsets repeat the last page instead of returning nothing.** For an account
-with `pagination.total = 100`, every offset from 100 upwards — including 500 — still
-returns a full page of 50 entries, identical to the previous one, with `pagination.next`
-correctly set to `None`. So "stop when a page comes back empty" never fires and the loop
-runs forever.
+**Past-the-end offsets can repeat the last page instead of returning nothing.** For an
+account with `pagination.total = 100`, every offset from 100 upwards — including 500 — was
+observed to return a full page of 50 entries, identical to the previous one, with
+`pagination.next` correctly set to `None`. So "stop when a page comes back empty" would
+never fire and the loop would run forever.
 
 **Pages can overlap.** The same `feedback_id` may appear on more than one page; one 3000-item
 run contained 2957 distinct ids. Deduplicate by `feedback_id` when exact counts matter.
