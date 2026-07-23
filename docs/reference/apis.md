@@ -24,6 +24,15 @@ overload, and binary downloads add a `stream_*` variant. The
 full endpoint semantics live in
 [eBay's API documentation](https://developer.ebay.com/develop/apis).
 
+## Known eBay API quirks
+
+- `commerce.feedback.get_feedback` pagination can return short pages mid-stream, repeated
+  past-the-end bodies, or overlapping entries on some accounts. Follow `pagination.next`
+  via [`paginate`](../guides/pagination.md#server-quirk-the-feedback-api-can-break-hand-rolled-offset-loops)
+  instead of stopping on `len(items) < limit` or an empty page.
+- `developer.analytics` quota filters are case-sensitive and unreliable; fetch unfiltered
+  and filter client-side — see [Retries & rate limits](../guides/retries.md#checking-your-remaining-quota).
+
 ## Buy — `client.buy` (29 ops)
 
 | Accessor | API | Version | Ops | Maturity |
