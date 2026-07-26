@@ -7,8 +7,9 @@ browser's address bar and paste it back here (the ``code`` is in its query strin
     uv run --extra dev scripts/oauth_login.py
     uv run --extra dev scripts/oauth_login.py --sandbox --no-browser
 
-Credentials are read from the ebay-cli config (~/.config/ebay-cli/config.json) by default;
-override with --app-id/--cert-id/--ru-name/--scopes.
+Credentials are read from the bidkit config (~/.config/bidkit/config.json; legacy
+~/.config/ebay-cli/config.json read as fallback) by default; override with
+--app-id/--cert-id/--ru-name/--scopes.
 """
 
 from __future__ import annotations
@@ -75,8 +76,18 @@ def keyset_env(app_id: str) -> str | None:
     return None
 
 
+def _resolve_config_path(config_arg: str | None) -> Path:
+    """Resolve the config path: an explicit --config wins, otherwise the bidkit default
+    (modern path first, legacy ebay-cli path as a fallback)."""
+    if config_arg:
+        return Path(config_arg).expanduser()
+    from bidkit.config import _resolve_default_config_path
+
+    return _resolve_default_config_path()
+
+
 def load_config(args: argparse.Namespace) -> EbayConfig:
-    config_path = Path(args.config).expanduser()
+    config_path = _resolve_config_path(args.config)
     base = EbayConfig.from_file(config_path) if config_path.exists() else EbayConfig()
 
     app_id = args.app_id or base.app_id
@@ -106,7 +117,7 @@ def load_config(args: argparse.Namespace) -> EbayConfig:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default="~/.config/ebay-cli/config.json")
+    parser.add_argument("--config", default=None)
     parser.add_argument("--app-id")
     parser.add_argument("--cert-id")
     parser.add_argument("--ru-name")
@@ -183,7 +194,7 @@ def main() -> None:
     print(f"   access_token (short-lived): {tokens.access_token[:24]}...")
 
     if args.write_config:
-        target = Path(args.config).expanduser()
+        target = _resolve_config_path(args.config)
         write_tokens_to_config(target, tokens)
         print(f"\n   wrote refresh_token + expiries to {target}")
 

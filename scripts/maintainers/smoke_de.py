@@ -5,7 +5,7 @@ Covers the read-only (GET) surface, chaining real IDs discovered at runtime
 auto-paging helpers against high-volume account data (inventory, orders,
 transactions).
 
-Creds come from the ebay-cli skill config (~/.config/ebay-cli/config.json).
+Creds come from the bidkit config (~/.config/bidkit/config.json; legacy ~/.config/ebay-cli/config.json read as fallback).
 Every op is GET / read-only. Run from the repo root:
 
     uv run --extra dev scripts/maintainers/smoke_de.py
@@ -31,10 +31,12 @@ from bidkit import (  # noqa: E402
     EbaySigningConfig,
     paginate,
 )
+from bidkit.config import _resolve_default_config_path  # noqa: E402
 
 MKT = "EBAY_DE"
 COUNTRY = "DE"
-cr = json.loads((Path.home() / ".config/ebay-cli/config.json").read_text())["credentials"]
+resolved = _resolve_default_config_path()
+cr = json.loads(resolved.read_text())["credentials"]
 
 GREEN, RED, YEL, BLU, DIM, RST = (
     "\033[32m",
@@ -46,7 +48,7 @@ GREEN, RED, YEL, BLU, DIM, RST = (
 )
 
 # Load digital-signature material if present so the Finances API works (otherwise 403).
-_signing_key = Path.home() / ".config/ebay-cli/signing-key.json"
+_signing_key = resolved.with_name("signing-key.json")
 signing = EbaySigningConfig.from_key_file(_signing_key) if _signing_key.exists() else None
 
 client = EbayClient(

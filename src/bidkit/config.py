@@ -15,6 +15,24 @@ logger = logging.getLogger("bidkit.config")
 # Timeout for HTTP clients the SDK creates itself when EbayConfig.timeout is unset.
 DEFAULT_TIMEOUT = 30.0
 
+DEFAULT_CONFIG_PATH = "~/.config/bidkit/config.json"
+# Config location used by this tool's predecessor (ebay-cli); still read as a
+# silent fallback so existing setups keep working.
+LEGACY_CONFIG_PATH = "~/.config/ebay-cli/config.json"
+
+
+def _resolve_default_config_path() -> Path:
+    """The bidkit path when present, else the legacy ebay-cli path when present,
+    else the bidkit path (so error messages and file creation point at the
+    modern location)."""
+    default = Path(DEFAULT_CONFIG_PATH).expanduser()
+    if default.exists():
+        return default
+    legacy = Path(LEGACY_CONFIG_PATH).expanduser()
+    if legacy.exists():
+        return legacy
+    return default
+
 
 class EbaySigningConfig(BaseModel):
     """Credentials for eBay digital-signature (message signing).
@@ -44,7 +62,7 @@ class EbaySigningConfig(BaseModel):
 
     @classmethod
     def from_key_file(cls, path: str | Path) -> EbaySigningConfig:
-        """Load signing material from an ebay-cli style ``signing-key.json``."""
+        """Load signing material from a ``signing-key.json`` (ebay-cli compatible layout)."""
         data = json.loads(Path(path).expanduser().read_text())
         private_key = data.get("privateKeyPem") or data.get("privateKey")
         if not data.get("jwe") or not private_key:
@@ -134,20 +152,27 @@ class EbayConfig(BaseModel):
     @classmethod
     def from_file(
         cls,
-        path: str | Path = "~/.config/ebay-cli/config.json",
+        path: str | Path | None = None,
         *,
         signing_key_file: str | Path | None = None,
     ) -> EbayConfig:
-        """Load an ebay-cli style ``config.json``.
+        """Load a bidkit ``config.json``.
+
+        With no ``path``, ``~/.config/bidkit/config.json`` is used; if only the
+        legacy ``~/.config/ebay-cli/config.json`` (this tool's predecessor, same
+        JSON layout) exists, that one is read as a silent fallback.
 
         Credentials live under a ``credentials`` object (or at the top level) with the
-        aliases ebay-cli uses: ``app_id``/``client_id``, ``cert_id``/``client_secret``,
+        accepted aliases: ``app_id``/``client_id``, ``cert_id``/``client_secret``,
         ``ru_name``/``redirect_uri``, ``granted_scopes``/``scopes``. Top-level
         ``environment`` ("sandbox"/"production") and ``marketplace_default`` map to
         ``sandbox`` and ``marketplace_id``. A ``signing-key.json`` next to the config is
         picked up automatically; pass ``signing_key_file`` to point elsewhere.
         """
-        config_path = Path(path).expanduser()
+        if path is not None:
+            config_path = Path(path).expanduser()
+        else:
+            config_path = _resolve_default_config_path()
         raw = json.loads(config_path.read_text())
         creds = raw.get("credentials", raw)
         if not isinstance(creds, dict):

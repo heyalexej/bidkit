@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from bidkit.config import EbayConfig, EbaySigningConfig
@@ -189,6 +191,32 @@ def test_key_file_cipher_naming_key_algorithm_falls_back_to_sha256(
 def test_from_file_missing_file_raises() -> None:
     with pytest.raises(FileNotFoundError):
         EbayConfig.from_file("/nonexistent/config.json")
+
+
+def test_from_file_default_prefers_bidkit_path_over_legacy(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """No explicit path: ~/.config/bidkit wins; the legacy ebay-cli file is a fallback."""
+    monkeypatch.setenv("HOME", str(tmp_path))
+    legacy = tmp_path / ".config" / "ebay-cli"
+    legacy.mkdir(parents=True)
+    (legacy / "config.json").write_text('{"credentials": {"app_id": "legacy-app"}}')
+
+    assert EbayConfig.from_file().app_id == "legacy-app"
+
+    modern = tmp_path / ".config" / "bidkit"
+    modern.mkdir(parents=True)
+    (modern / "config.json").write_text('{"credentials": {"app_id": "modern-app"}}')
+
+    assert EbayConfig.from_file().app_id == "modern-app"
+
+
+def test_from_file_default_missing_both_reports_modern_path(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("HOME", str(tmp_path))
+    with pytest.raises(FileNotFoundError, match="bidkit"):
+        EbayConfig.from_file()
 
 
 def test_api_root_and_oauth_url_respect_sandbox_and_override() -> None:
