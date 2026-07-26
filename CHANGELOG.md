@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0](https://github.com/heyalexej/bidkit/compare/v0.1.1...v0.2.0) (2026-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* bidkit's public surface now speaks httpx2: pass http_client as an httpx2.Client/httpx2.AsyncClient, raw/streamed responses are httpx2.Response, and transport errors derive from httpx2 exception types. The default User-Agent and wire-debug logger names (httpx2/httpcore2) change accordingly, and TLS verification uses the operating system trust store.
+
+### Features
+
+* **config:** resolve ~/.config/bidkit/config.json first, keep the ebay-cli fallback ([5472312](https://github.com/heyalexej/bidkit/commit/5472312cc7d4ec737c3fab05b69898fc48e96b27))
+* switch the HTTP client from httpx to httpx2 ([7fdffe0](https://github.com/heyalexej/bidkit/commit/7fdffe0824d360ef208a1bafd26bb645d67d4c70))
+
+
+### Documentation
+
+* document httpx2 and the bidkit config path ([037286c](https://github.com/heyalexej/bidkit/commit/037286cc4c750942adb799d8d07a3163802a38a8))
+* **pagination:** document Feedback API paging quirks ([#16](https://github.com/heyalexej/bidkit/issues/16)) ([59b3feb](https://github.com/heyalexej/bidkit/commit/59b3feb1e980576e5eeda76273f75e788637943c))
+
 ## [0.1.1](https://github.com/heyalexej/bidkit/compare/v0.1.0...v0.1.1) (2026-07-02)
 
 
