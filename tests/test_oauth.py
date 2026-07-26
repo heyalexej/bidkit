@@ -3,7 +3,7 @@ from __future__ import annotations
 import base64
 from urllib.parse import parse_qs, urlsplit
 
-import httpx
+import httpx2
 import pytest
 
 from bidkit import AsyncEbayClient, EbayClient, EbayConfig, OAuthTokens
@@ -29,7 +29,7 @@ def _config(**overrides) -> EbayConfig:
 
 
 def test_authorization_url_includes_client_and_scopes() -> None:
-    client = EbayClient(_config(), http_client=httpx.Client())
+    client = EbayClient(_config(), http_client=httpx2.Client())
     url = client.authorization_url(state="xyz", prompt="login")
     parts = urlsplit(url)
     query = parse_qs(parts.query)
@@ -44,21 +44,21 @@ def test_authorization_url_includes_client_and_scopes() -> None:
 
 
 def test_authorization_url_requires_app_id_and_ru_name() -> None:
-    client = EbayClient(EbayConfig(app_id="App-Id"), http_client=httpx.Client())
+    client = EbayClient(EbayConfig(app_id="App-Id"), http_client=httpx2.Client())
     with pytest.raises(EbayConfigError):
         client.authorization_url()
 
 
 def test_exchange_code_builds_request_and_parses_tokens() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json=TOKEN_RESPONSE)
+        return httpx2.Response(200, json=TOKEN_RESPONSE)
 
     client = EbayClient(
         _config(),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     tokens = client.exchange_code("auth-code-123")
@@ -80,42 +80,42 @@ def test_exchange_code_builds_request_and_parses_tokens() -> None:
 
 
 def test_exchange_code_seeds_client_so_next_call_uses_the_access_token() -> None:
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
-            return httpx.Response(200, json=TOKEN_RESPONSE)
-        return httpx.Response(200, json={"itemId": "v1|1|0"})
+            return httpx2.Response(200, json=TOKEN_RESPONSE)
+        return httpx2.Response(200, json={"itemId": "v1|1|0"})
 
     client = EbayClient(
         _config(),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     client.exchange_code("auth-code-123")
     # The refresh token is now stored, and the access token is cached: no further token call.
     assert client.config.refresh_token_value == "refresh-token-value"
 
-    captured: list[httpx.Request] = []
+    captured: list[httpx2.Request] = []
 
-    def capture(request: httpx.Request) -> httpx.Response:
+    def capture(request: httpx2.Request) -> httpx2.Response:
         captured.append(request)
-        return httpx.Response(200, json={"itemId": "v1|1|0"})
+        return httpx2.Response(200, json={"itemId": "v1|1|0"})
 
-    client.http = httpx.Client(transport=httpx.MockTransport(capture))
+    client.http = httpx2.Client(transport=httpx2.MockTransport(capture))
     client._transport.client = client.http
     client.buy.browse.get_item("v1|1|0")
     assert captured[0].headers["authorization"] == "Bearer user-access-token"
 
 
 def test_exchange_code_override_ru_name() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json=TOKEN_RESPONSE)
+        return httpx2.Response(200, json=TOKEN_RESPONSE)
 
     client = EbayClient(
         EbayConfig(app_id="App-Id", cert_id="Cert-Id"),  # no ru_name configured
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     client.exchange_code("code", ru_name="Explicit-Ru")
@@ -125,7 +125,7 @@ def test_exchange_code_override_ru_name() -> None:
 def test_exchange_code_without_ru_name_raises() -> None:
     client = EbayClient(
         EbayConfig(app_id="App-Id", cert_id="Cert-Id"),
-        http_client=httpx.Client(transport=httpx.MockTransport(lambda _r: httpx.Response(200))),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(lambda _r: httpx2.Response(200))),
     )
     with pytest.raises(EbayConfigError):
         client.exchange_code("code")
@@ -134,13 +134,13 @@ def test_exchange_code_without_ru_name_raises() -> None:
 def test_async_exchange_code() -> None:
     import asyncio
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, json=TOKEN_RESPONSE)
+    def handler(_request: httpx2.Request) -> httpx2.Response:
+        return httpx2.Response(200, json=TOKEN_RESPONSE)
 
     async def run() -> None:
         client = AsyncEbayClient(
             _config(),
-            http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler)),
+            http_client=httpx2.AsyncClient(transport=httpx2.MockTransport(handler)),
         )
         try:
             tokens = await client.exchange_code("auth-code-123")

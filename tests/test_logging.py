@@ -1,6 +1,6 @@
 import logging
 
-import httpx
+import httpx2
 import pytest
 
 
@@ -14,7 +14,7 @@ def test_requests_are_logged_at_debug_with_structured_fields(
     caplog: pytest.LogCaptureFixture,
 ) -> None:
     with caplog.at_level(logging.DEBUG, logger="bidkit"):
-        client = make_client(lambda request: httpx.Response(200, json={}))
+        client = make_client(lambda request: httpx2.Response(200, json={}))
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     record = next(r for r in caplog.records if r.name == "bidkit.transport")
@@ -30,7 +30,7 @@ def test_requests_are_logged_at_debug_with_structured_fields(
 
 def test_nothing_is_logged_by_default(make_client, caplog: pytest.LogCaptureFixture) -> None:
     with caplog.at_level(logging.INFO, logger="bidkit"):
-        client = make_client(lambda request: httpx.Response(200, json={}))
+        client = make_client(lambda request: httpx2.Response(200, json={}))
         client.buy.browse.get_item("v1|1|0", raw_response=True)
 
     assert [r for r in caplog.records if r.name.startswith("bidkit")] == []
@@ -39,11 +39,11 @@ def test_nothing_is_logged_by_default(make_client, caplog: pytest.LogCaptureFixt
 def test_status_retry_is_logged_at_warning(make_client, caplog: pytest.LogCaptureFixture) -> None:
     calls = {"n": 0}
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         calls["n"] += 1
         if calls["n"] == 1:
-            return httpx.Response(429, headers={"retry-after": "0"})
-        return httpx.Response(200, json={})
+            return httpx2.Response(429, headers={"retry-after": "0"})
+        return httpx2.Response(200, json={})
 
     with caplog.at_level(logging.DEBUG, logger="bidkit"):
         client = make_client(handler)
@@ -66,11 +66,11 @@ def test_connection_retry_logs_exception_name(
 ) -> None:
     calls = {"n": 0}
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         calls["n"] += 1
         if calls["n"] == 1:
-            raise httpx.ConnectTimeout("boom")
-        return httpx.Response(200, json={})
+            raise httpx2.ConnectTimeout("boom")
+        return httpx2.Response(200, json={})
 
     with caplog.at_level(logging.WARNING, logger="bidkit"):
         client = make_client(handler, retry_backoff=0.0)
@@ -85,12 +85,12 @@ def test_token_acquisition_logged_at_info_without_leaking_secrets(
     make_client,
     caplog: pytest.LogCaptureFixture,
 ) -> None:
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
-            return httpx.Response(
+            return httpx2.Response(
                 200, json={"access_token": "user-token-secret", "expires_in": 7200}
             )
-        return httpx.Response(200, json={})
+        return httpx2.Response(200, json={})
 
     with caplog.at_level(logging.INFO, logger="bidkit"):
         client = make_client(

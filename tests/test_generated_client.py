@@ -7,7 +7,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import assert_type
 
-import httpx
+import httpx2
 
 from bidkit import AsyncEbayClient, EbayClient
 from bidkit.config import EbayConfig
@@ -64,21 +64,21 @@ def test_generated_enum_models_accept_live_string_values() -> None:
 
 
 def test_get_item_builds_request_and_parses_model() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={"itemId": "v1|1|0", "title": "Test item"})
+        return httpx2.Response(200, json={"itemId": "v1|1|0", "title": "Test item"})
 
     client = EbayClient(
         EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     item = client.buy.browse.get_item("v1|1|0")
     assert_type(item, Item)
     raw = client.buy.browse.get_item("v1|1|0", raw_response=True)
-    assert_type(raw, httpx.Response)
+    assert_type(raw, httpx2.Response)
 
     assert isinstance(item, Item)
     assert item.item_id == "v1|1|0"
@@ -91,15 +91,15 @@ def test_get_item_builds_request_and_parses_model() -> None:
 
 
 def test_marketplace_header_is_optional_and_globally_overrideable() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={})
+        return httpx2.Response(200, json={})
 
     client = EbayClient(
         EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     client.sell.finances.get_payouts(raw_response=True)
@@ -113,15 +113,15 @@ def test_marketplace_header_is_optional_and_globally_overrideable() -> None:
 
 
 def test_feedback_query_uses_generated_feedback_api() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={"feedbackEntries": [{"feedbackId": "fb-1"}]})
+        return httpx2.Response(200, json={"feedbackEntries": [{"feedbackId": "fb-1"}]})
 
     client = EbayClient(
         EbayConfig(access_token="token"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     response = client.commerce.feedback.get_feedback(
@@ -140,15 +140,15 @@ def test_feedback_query_uses_generated_feedback_api() -> None:
 
 
 def test_media_upload_uses_apim_subdomain_and_binary_body() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(204)
+        return httpx2.Response(204)
 
     client = EbayClient(
         EbayConfig(access_token="token"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     result = client.commerce.media.upload_video(
@@ -165,11 +165,11 @@ def test_media_upload_uses_apim_subdomain_and_binary_body() -> None:
 
 
 def test_media_image_upload_uses_multipart_file_body() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(
+        return httpx2.Response(
             201,
             json={
                 "expirationDate": "2026-07-28T00:00:00.000Z",
@@ -180,7 +180,7 @@ def test_media_image_upload_uses_multipart_file_body() -> None:
 
     client = EbayClient(
         EbayConfig(access_token="token"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     result = client.commerce.media.create_image_from_file(
@@ -195,11 +195,11 @@ def test_media_image_upload_uses_multipart_file_body() -> None:
 
 
 def test_post_order_uses_token_auth_and_typed_search_params() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(
+        return httpx2.Response(
             200,
             json={
                 "members": [{"caseId": 5381706738, "buyer": "buyer"}],
@@ -210,13 +210,13 @@ def test_post_order_uses_token_auth_and_typed_search_params() -> None:
 
     client = EbayClient(
         EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     response = client.post_order.case.search(limit=1, case_status_filter="CS_CLOSED")
     assert_type(response, CaseSearchResponse)
     raw = client.post_order.case.search(limit=1, raw_response=True)
-    assert_type(raw, httpx.Response)
+    assert_type(raw, httpx2.Response)
 
     assert response.members is not None
     assert response.members[0].case_id == 5381706738
@@ -257,11 +257,11 @@ def test_inventory_aspects_accept_live_mapping_shape() -> None:
 
 
 def test_get_offers_requires_sku_and_keeps_sku_query_param() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(
+        return httpx2.Response(
             200,
             json={
                 "offers": [{"offerId": "1074290655016", "sku": "10010350"}],
@@ -271,7 +271,7 @@ def test_get_offers_requires_sku_and_keeps_sku_query_param() -> None:
 
     client = EbayClient(
         EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     signature = inspect.signature(client.sell.inventory.get_offers)
@@ -289,11 +289,11 @@ def test_get_offers_requires_sku_and_keeps_sku_query_param() -> None:
 
 
 def test_binary_download_returns_bytes() -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(
+        return httpx2.Response(
             200,
             content=b"%PDF-1.7",
             headers={"content-type": "application/pdf"},
@@ -301,7 +301,7 @@ def test_binary_download_returns_bytes() -> None:
 
     client = EbayClient(
         EbayConfig(access_token="token"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     payload = client.sell.logistics.download_label_file("shipment-1", accept="application/pdf")
@@ -311,12 +311,12 @@ def test_binary_download_returns_bytes() -> None:
         accept="application/pdf",
         raw_response=True,
     )
-    assert_type(raw, httpx.Response)
+    assert_type(raw, httpx2.Response)
     with client.sell.logistics.stream_download_label_file(
         "shipment-1",
         accept="application/pdf",
     ) as response:
-        assert_type(response, httpx.Response)
+        assert_type(response, httpx2.Response)
         streamed = response.read()
 
     assert payload == b"%PDF-1.7"
@@ -328,32 +328,32 @@ def test_binary_download_returns_bytes() -> None:
 
 def test_async_client_uses_same_generated_surface() -> None:
     async def run() -> None:
-        seen: list[httpx.Request] = []
+        seen: list[httpx2.Request] = []
 
-        async def handler(request: httpx.Request) -> httpx.Response:
+        async def handler(request: httpx2.Request) -> httpx2.Response:
             seen.append(request)
             if request.url.path.endswith("/download_label_file"):
-                return httpx.Response(
+                return httpx2.Response(
                     200,
                     content=b"%PDF-async",
                     headers={"content-type": "application/pdf"},
                 )
-            return httpx.Response(200, json={"itemId": "v1|2|0"})
+            return httpx2.Response(200, json={"itemId": "v1|2|0"})
 
         client = AsyncEbayClient(
             EbayConfig(access_token="token"),
-            http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler)),
+            http_client=httpx2.AsyncClient(transport=httpx2.MockTransport(handler)),
         )
         try:
             item = await client.buy.browse.get_item("v1|2|0")
             assert_type(item, Item)
             raw = await client.buy.browse.get_item("v1|2|0", raw_response=True)
-            assert_type(raw, httpx.Response)
+            assert_type(raw, httpx2.Response)
             async with client.sell.logistics.stream_download_label_file(
                 "shipment-2",
                 accept="application/pdf",
             ) as response:
-                assert_type(response, httpx.Response)
+                assert_type(response, httpx2.Response)
                 streamed = await response.aread()
         finally:
             await client.close()
@@ -366,8 +366,8 @@ def test_async_client_uses_same_generated_surface() -> None:
     asyncio.run(run())
 
 
-def _mock_client(payload: dict[str, object]) -> httpx.Client:
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, json=payload)
+def _mock_client(payload: dict[str, object]) -> httpx2.Client:
+    def handler(_request: httpx2.Request) -> httpx2.Response:
+        return httpx2.Response(200, json=payload)
 
-    return httpx.Client(transport=httpx.MockTransport(handler))
+    return httpx2.Client(transport=httpx2.MockTransport(handler))

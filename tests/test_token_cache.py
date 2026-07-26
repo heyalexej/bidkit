@@ -2,7 +2,7 @@ import stat
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
-import httpx
+import httpx2
 
 from bidkit import EbayClient, EbayConfig, FileTokenCache
 from bidkit.auth import TokenData
@@ -97,16 +97,16 @@ def test_get_serves_from_snapshot_until_file_changes(tmp_path: Path) -> None:
 def test_second_client_reuses_persisted_token_without_oauth_call(tmp_path: Path) -> None:
     token_requests = {"n": 0}
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
             token_requests["n"] += 1
-            return httpx.Response(200, json={"access_token": "minted", "expires_in": 7200})
-        return httpx.Response(200, json={})
+            return httpx2.Response(200, json={"access_token": "minted", "expires_in": 7200})
+        return httpx2.Response(200, json={})
 
     def make_client() -> EbayClient:
         return EbayClient(
             EbayConfig(app_id="app", cert_id="cert", refresh_token="refresh"),
-            http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+            http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
             token_cache=FileTokenCache(tmp_path / "tokens.json"),
         )
 

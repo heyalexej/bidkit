@@ -1,4 +1,4 @@
-import httpx
+import httpx2
 
 from bidkit.errors import EbayAPIError
 
@@ -9,11 +9,11 @@ def _response(
     json_body: dict | None = None,
     text: str | None = None,
     headers: dict | None = None,
-) -> httpx.Response:
-    request = httpx.Request("GET", "https://api.ebay.com/x")
+) -> httpx2.Response:
+    request = httpx2.Request("GET", "https://api.ebay.com/x")
     if json_body is not None:
-        return httpx.Response(status, json=json_body, headers=headers, request=request)
-    return httpx.Response(status, text=text or "", headers=headers, request=request)
+        return httpx2.Response(status, json=json_body, headers=headers, request=request)
+    return httpx2.Response(status, text=text or "", headers=headers, request=request)
 
 
 def test_message_comes_from_first_ebay_error_entry() -> None:

@@ -8,7 +8,7 @@ from contextlib import asynccontextmanager, contextmanager
 from typing import Any
 from urllib.parse import quote
 
-import httpx
+import httpx2
 import orjson
 from pydantic import BaseModel, TypeAdapter
 
@@ -73,7 +73,7 @@ def _body_kwargs(*, body: Any, files: Mapping[str, Any] | None) -> dict[str, Any
     return {"content": orjson.dumps(payload)}
 
 
-def _handle_response(response: httpx.Response, response_model: Any, raw_response: bool) -> Any:
+def _handle_response(response: httpx2.Response, response_model: Any, raw_response: bool) -> Any:
     if raw_response:
         return response
     if response.status_code >= 400:
@@ -114,7 +114,7 @@ def _build_signer(config: EbayConfig) -> MessageSigner | None:
 
 
 def _log_response(
-    operation_id: str, request: httpx.Request, response: httpx.Response, started: float
+    operation_id: str, request: httpx2.Request, response: httpx2.Response, started: float
 ) -> None:
     if not logger.isEnabledFor(logging.DEBUG):
         return
@@ -137,7 +137,7 @@ def _log_response(
 
 
 def _log_status_retry(
-    operation_id: str, attempt: int, config: EbayConfig, response: httpx.Response, delay: float
+    operation_id: str, attempt: int, config: EbayConfig, response: httpx2.Response, delay: float
 ) -> None:
     from_header = config.respect_retry_after and "retry-after" in response.headers
     retry_logger.warning(
@@ -193,7 +193,7 @@ def _should_sign(config: EbayConfig, service: Service, sign: bool | None) -> boo
     return bool(service.get("requires_signature"))
 
 
-def _sign_request(signer: MessageSigner | None, request: httpx.Request) -> None:
+def _sign_request(signer: MessageSigner | None, request: httpx2.Request) -> None:
     if signer is None:
         return
     signature_headers = signer.headers(
@@ -208,7 +208,7 @@ def _sign_request(signer: MessageSigner | None, request: httpx.Request) -> None:
 
 
 class EbayTransport:
-    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx.Client) -> None:
+    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx2.Client) -> None:
         self.config = config
         self.auth = auth
         self.client = client
@@ -234,12 +234,12 @@ class EbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # A set config timeout (e.g. via with_options) wins over the shared httpx2
         # client's default; None (the default) inherits the client's own timeout.
         if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
-        response: httpx.Response | None = None
+        response: httpx2.Response | None = None
         for attempt in range(self.config.max_retries + 1):
             # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
@@ -258,14 +258,14 @@ class EbayTransport:
             started = time.monotonic()
             try:
                 response = self.client.send(request)
-            except httpx.TransportError as exc:
+            except httpx2.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
                 _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 time.sleep(delay)
                 continue
-            except httpx.HTTPError as exc:
+            except httpx2.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
             delay = status_retry_delay(attempt, response, method, self.config)
@@ -294,17 +294,17 @@ class EbayTransport:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
         sign: bool | None = None,
-    ) -> Iterator[httpx.Response]:
+    ) -> Iterator[httpx2.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # A set config timeout (e.g. via with_options) wins over the shared httpx2
         # client's default; None (the default) inherits the client's own timeout.
         if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
-        response: httpx.Response | None = None
+        response: httpx2.Response | None = None
         for attempt in range(self.config.max_retries + 1):
             # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
@@ -323,14 +323,14 @@ class EbayTransport:
             started = time.monotonic()
             try:
                 response = self.client.send(request, stream=True)
-            except httpx.TransportError as exc:
+            except httpx2.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
                 _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 time.sleep(delay)
                 continue
-            except httpx.HTTPError as exc:
+            except httpx2.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
 
             delay = status_retry_delay(attempt, response, method, self.config)
@@ -354,7 +354,7 @@ class EbayTransport:
 
 
 class AsyncEbayTransport:
-    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx.AsyncClient) -> None:
+    def __init__(self, config: EbayConfig, auth: EbayAuth, client: httpx2.AsyncClient) -> None:
         self.config = config
         self.auth = auth
         self.client = client
@@ -380,12 +380,12 @@ class AsyncEbayTransport:
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # A set config timeout (e.g. via with_options) wins over the shared httpx2
         # client's default; None (the default) inherits the client's own timeout.
         if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
-        response: httpx.Response | None = None
+        response: httpx2.Response | None = None
         for attempt in range(self.config.max_retries + 1):
             # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
@@ -404,14 +404,14 @@ class AsyncEbayTransport:
             started = time.monotonic()
             try:
                 response = await self.client.send(request)
-            except httpx.TransportError as exc:
+            except httpx2.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
                 _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 await asyncio.sleep(delay)
                 continue
-            except httpx.HTTPError as exc:
+            except httpx2.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} transport failure: {exc}") from exc
 
             delay = status_retry_delay(attempt, response, method, self.config)
@@ -440,17 +440,17 @@ class AsyncEbayTransport:
         body: Any = None,
         files: Mapping[str, Any] | None = None,
         sign: bool | None = None,
-    ) -> AsyncIterator[httpx.Response]:
+    ) -> AsyncIterator[httpx2.Response]:
         url = _url(self.config, service, path, path_params)
         compacted = _compact(params)
         body_kwargs = _body_kwargs(body=body, files=files)
         signer = self._signer if _should_sign(self.config, service, sign) else None
-        # A set config timeout (e.g. via with_options) wins over the shared httpx
+        # A set config timeout (e.g. via with_options) wins over the shared httpx2
         # client's default; None (the default) inherits the client's own timeout.
         if self.config.timeout is not None:
             body_kwargs["timeout"] = self.config.timeout
 
-        response: httpx.Response | None = None
+        response: httpx2.Response | None = None
         for attempt in range(self.config.max_retries + 1):
             # Re-fetch auth per attempt so a token that goes stale during a retry sleep is
             # not resent; access_token() is cache-backed, so this is a cheap lookup unless a
@@ -469,14 +469,14 @@ class AsyncEbayTransport:
             started = time.monotonic()
             try:
                 response = await self.client.send(request, stream=True)
-            except httpx.TransportError as exc:
+            except httpx2.TransportError as exc:
                 delay = exception_retry_delay(attempt, method, self.config)
                 if delay is None:
                     raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
                 _log_exception_retry(operation_id, attempt, self.config, exc, delay)
                 await asyncio.sleep(delay)
                 continue
-            except httpx.HTTPError as exc:
+            except httpx2.HTTPError as exc:
                 raise EbayTransportError(f"{operation_id} stream failure: {exc}") from exc
 
             delay = status_retry_delay(attempt, response, method, self.config)

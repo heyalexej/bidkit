@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Protocol
 from urllib.parse import urlencode
 
-import httpx
+import httpx2
 import orjson
 from pydantic import BaseModel, ValidationError, field_validator
 
@@ -213,7 +213,7 @@ class EbayAuth:
 
     def exchange_code(
         self,
-        client: httpx.Client,
+        client: httpx2.Client,
         code: str,
         *,
         ru_name: str | None = None,
@@ -229,7 +229,7 @@ class EbayAuth:
 
     async def async_exchange_code(
         self,
-        client: httpx.AsyncClient,
+        client: httpx2.AsyncClient,
         code: str,
         *,
         ru_name: str | None = None,
@@ -254,7 +254,7 @@ class EbayAuth:
 
     def authorization_header(
         self,
-        client: httpx.Client,
+        client: httpx2.Client,
         *,
         scheme: str = "Bearer",
     ) -> dict[str, str]:
@@ -262,13 +262,13 @@ class EbayAuth:
 
     async def async_authorization_header(
         self,
-        client: httpx.AsyncClient,
+        client: httpx2.AsyncClient,
         *,
         scheme: str = "Bearer",
     ) -> dict[str, str]:
         return {"Authorization": f"{scheme} {await self.async_access_token(client)}"}
 
-    def access_token(self, client: httpx.Client) -> str:
+    def access_token(self, client: httpx2.Client) -> str:
         static_token = self.config.bearer_token
         if static_token:
             return static_token
@@ -292,7 +292,7 @@ class EbayAuth:
             self._log_token_acquired(token)
             return token.access_token
 
-    async def async_access_token(self, client: httpx.AsyncClient) -> str:
+    async def async_access_token(self, client: httpx2.AsyncClient) -> str:
         static_token = self.config.bearer_token
         if static_token:
             return static_token
@@ -372,7 +372,7 @@ class EbayAuth:
         app_id = self.config.app_id or "-"
         return f"{grant}:{app_id}:{env}:{' '.join(self.config.scopes)}"
 
-    def _client_token(self, client: httpx.Client) -> TokenData:
+    def _client_token(self, client: httpx2.Client) -> TokenData:
         client_auth = self._client_credentials()
         response = client.post(
             self.config.oauth_token_url,
@@ -385,7 +385,7 @@ class EbayAuth:
         )
         return self._parse_token_response(response)
 
-    async def _async_client_token(self, client: httpx.AsyncClient) -> TokenData:
+    async def _async_client_token(self, client: httpx2.AsyncClient) -> TokenData:
         client_auth = self._client_credentials()
         response = await client.post(
             self.config.oauth_token_url,
@@ -398,7 +398,7 @@ class EbayAuth:
         )
         return self._parse_token_response(response)
 
-    def _refresh_user_token(self, client: httpx.Client) -> TokenData:
+    def _refresh_user_token(self, client: httpx2.Client) -> TokenData:
         client_auth = self._client_credentials()
         refresh_token = self._refresh_token()
         response = client.post(
@@ -413,7 +413,7 @@ class EbayAuth:
         )
         return self._parse_token_response(response)
 
-    async def _async_refresh_user_token(self, client: httpx.AsyncClient) -> TokenData:
+    async def _async_refresh_user_token(self, client: httpx2.AsyncClient) -> TokenData:
         client_auth = self._client_credentials()
         refresh_token = self._refresh_token()
         response = await client.post(
@@ -440,7 +440,7 @@ class EbayAuth:
             raise EbayConfigError("refresh_token is required to refresh a user token")
         return refresh_token
 
-    def _decode_token_response(self, response: httpx.Response) -> dict:
+    def _decode_token_response(self, response: httpx2.Response) -> dict:
         if response.status_code >= 400:
             try:
                 detail = orjson.loads(response.content)
@@ -453,7 +453,7 @@ class EbayAuth:
             raise EbayAuthError("OAuth token response did not include access_token")
         return payload
 
-    def _parse_token_response(self, response: httpx.Response) -> TokenData:
+    def _parse_token_response(self, response: httpx2.Response) -> TokenData:
         payload = self._decode_token_response(response)
         expires_in = int(payload.get("expires_in", 7200))
         return TokenData(
@@ -462,7 +462,7 @@ class EbayAuth:
             token_type=payload.get("token_type", "Bearer"),
         )
 
-    def _parse_oauth_tokens(self, response: httpx.Response) -> OAuthTokens:
+    def _parse_oauth_tokens(self, response: httpx2.Response) -> OAuthTokens:
         payload = self._decode_token_response(response)
         now = datetime.now(UTC)
         refresh_expiry = None

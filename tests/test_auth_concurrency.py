@@ -5,7 +5,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-import httpx
+import httpx2
 
 from bidkit import AsyncEbayClient, EbayClient, EbayConfig
 
@@ -31,16 +31,16 @@ def test_sync_concurrent_callers_refresh_once() -> None:
     calls = 0
     counter_lock = threading.Lock()
 
-    def handler(_request: httpx.Request) -> httpx.Response:
+    def handler(_request: httpx2.Request) -> httpx2.Response:
         nonlocal calls
         with counter_lock:
             calls += 1
         time.sleep(0.02)  # hold the refresh in-flight so other threads pile up on the lock
-        return httpx.Response(200, json=TOKEN_RESPONSE)
+        return httpx2.Response(200, json=TOKEN_RESPONSE)
 
     client = EbayClient(
         _config(),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -56,15 +56,15 @@ def test_async_concurrent_callers_refresh_once() -> None:
     async def run() -> None:
         calls = 0
 
-        async def handler(_request: httpx.Request) -> httpx.Response:
+        async def handler(_request: httpx2.Request) -> httpx2.Response:
             nonlocal calls
             calls += 1
             await asyncio.sleep(0.02)  # yield while the refresh is in-flight
-            return httpx.Response(200, json=TOKEN_RESPONSE)
+            return httpx2.Response(200, json=TOKEN_RESPONSE)
 
         client = AsyncEbayClient(
             _config(),
-            http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler)),
+            http_client=httpx2.AsyncClient(transport=httpx2.MockTransport(handler)),
         )
 
         tokens = await asyncio.gather(

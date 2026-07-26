@@ -804,7 +804,7 @@ def write_resources(path: Path, services: list[Service]) -> None:
         "from contextlib import AbstractAsyncContextManager, AbstractContextManager",
         "from typing import TYPE_CHECKING, Any, Literal, overload",
         "",
-        "import httpx",
+        "import httpx2",
         "",
         "from bidkit.resource import AsyncBaseResource, BaseResource, _LazyModule",
         "",
@@ -978,10 +978,10 @@ def render_method(
         "@overload",
         f"{prefix}def {method_name}({', '.join(raw_false_signature_parts)}) -> {return_type}: ...",
         "@overload",
-        f"{prefix}def {method_name}({', '.join(raw_true_signature_parts)}) -> httpx.Response: ...",
+        f"{prefix}def {method_name}({', '.join(raw_true_signature_parts)}) -> httpx2.Response: ...",
         (
             f"{prefix}def {method_name}({', '.join(signature_parts)}) "
-            f"-> {return_type} | httpx.Response:"
+            f"-> {return_type} | httpx2.Response:"
         ),
     ]
     summary = clean_doc(operation.get("summary") or operation.get("description") or "")
@@ -1062,7 +1062,7 @@ def render_stream_method(
     lines = [
         (
             f"def stream_{method_name}({', '.join(signature_parts)}) "
-            f"-> {context_manager}[httpx.Response]:"
+            f"-> {context_manager}[httpx2.Response]:"
         ),
         "    return self._stream(",
         f"        {operation_id!r},",

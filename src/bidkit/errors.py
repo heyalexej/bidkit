@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-import httpx
+import httpx2
 import orjson
 
 
@@ -28,7 +28,7 @@ class EbayAPIError(EbaySDKError):
         message: str,
         *,
         status_code: int,
-        response: httpx.Response | None = None,
+        response: httpx2.Response | None = None,
         payload: Any = None,
         request_id: str | None = None,
     ) -> None:
@@ -39,7 +39,7 @@ class EbayAPIError(EbaySDKError):
         self.request_id = request_id
 
     @classmethod
-    def from_response(cls, response: httpx.Response) -> EbayAPIError:
+    def from_response(cls, response: httpx2.Response) -> EbayAPIError:
         payload: Any
         try:
             payload = orjson.loads(response.content)

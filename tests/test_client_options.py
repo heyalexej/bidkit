@@ -1,4 +1,4 @@
-import httpx
+import httpx2
 import pytest
 from pydantic import ValidationError
 
@@ -6,11 +6,11 @@ from bidkit import EbayAPIError, EbayClient, EbayConfig
 
 
 def test_with_options_overrides_retries_without_touching_the_basemake_client(make_client) -> None:
-    requests: list[httpx.Request] = []
+    requests: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         requests.append(request)
-        return httpx.Response(429, headers={"retry-after": "0"})
+        return httpx2.Response(429, headers={"retry-after": "0"})
 
     client = make_client(handler, max_retries=1)
 
@@ -25,11 +25,11 @@ def test_with_options_overrides_retries_without_touching_the_basemake_client(mak
 
 
 def test_with_options_timeout_applies_per_request(make_client) -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={})
+        return httpx2.Response(200, json={})
 
     client = make_client(handler)
     client.with_options(timeout=7.5).buy.browse.get_item("v1|1|0", raw_response=True)
@@ -37,26 +37,26 @@ def test_with_options_timeout_applies_per_request(make_client) -> None:
 
     override = {"connect": 7.5, "read": 7.5, "write": 7.5, "pool": 7.5}
     assert seen[0].extensions["timeout"] == override
-    # The base client keeps the httpx client's own default (no per-request override).
+    # The base client keeps the httpx2 client's own default (no per-request override).
     assert seen[1].extensions.get("timeout") != override
 
 
 def test_round_tripped_config_does_not_clobber_injected_client_timeout() -> None:
     """Serializing a config (model_dump/validate) must not turn the timeout default
     into a per-request override that beats an injected client's own timeout."""
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={})
+        return httpx2.Response(200, json={})
 
     original = EbayConfig(access_token="token")
     round_tripped = EbayConfig(**original.model_dump())
     client = EbayClient(
         round_tripped,
-        http_client=httpx.Client(
-            transport=httpx.MockTransport(handler),
-            timeout=httpx.Timeout(connect=2.0, read=120.0, write=10.0, pool=5.0),
+        http_client=httpx2.Client(
+            transport=httpx2.MockTransport(handler),
+            timeout=httpx2.Timeout(connect=2.0, read=120.0, write=10.0, pool=5.0),
         ),
     )
     client.buy.browse.get_item("v1|1|0", raw_response=True)
@@ -70,11 +70,11 @@ def test_round_tripped_config_does_not_clobber_injected_client_timeout() -> None
 
 
 def test_with_options_overrides_marketplace_header(make_client) -> None:
-    seen: list[httpx.Request] = []
+    seen: list[httpx2.Request] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         seen.append(request)
-        return httpx.Response(200, json={})
+        return httpx2.Response(200, json={})
 
     client = make_client(handler, marketplace_id="EBAY_DE")
     client.with_options(marketplace_id="EBAY_US").buy.browse.get_item("v1|1|0", raw_response=True)
@@ -86,15 +86,15 @@ def test_with_options_overrides_marketplace_header(make_client) -> None:
 def test_with_options_shares_token_cache_and_httpmake_client(make_client) -> None:
     token_requests = {"n": 0}
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
             token_requests["n"] += 1
-            return httpx.Response(200, json={"access_token": "minted", "expires_in": 7200})
-        return httpx.Response(200, json={})
+            return httpx2.Response(200, json={"access_token": "minted", "expires_in": 7200})
+        return httpx2.Response(200, json={})
 
     client = EbayClient(
         EbayConfig(app_id="app", cert_id="cert", refresh_token="refresh"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
     scoped = client.with_options(max_retries=0)
 
@@ -106,7 +106,7 @@ def test_with_options_shares_token_cache_and_httpmake_client(make_client) -> Non
 
 
 def test_with_options_close_never_closes_the_shared_pool(make_client) -> None:
-    client = make_client(lambda request: httpx.Response(200, json={}))
+    client = make_client(lambda request: httpx2.Response(200, json={}))
     scoped = client.with_options(timeout=1.0)
 
     scoped.close()
@@ -114,7 +114,7 @@ def test_with_options_close_never_closes_the_shared_pool(make_client) -> None:
 
 
 def test_with_options_rejects_unknown_fields(make_client) -> None:
-    client = make_client(lambda request: httpx.Response(200, json={}))
+    client = make_client(lambda request: httpx2.Response(200, json={}))
 
     with pytest.raises(ValidationError):
         client.with_options(not_a_field=1)

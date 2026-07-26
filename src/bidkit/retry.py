@@ -12,7 +12,7 @@ from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 from typing import TYPE_CHECKING
 
-import httpx
+import httpx2
 
 if TYPE_CHECKING:
     from .config import EbayConfig
@@ -34,7 +34,7 @@ def should_retry_exception(method: str) -> bool:
     return method.upper() in _IDEMPOTENT_METHODS
 
 
-def _retry_after_seconds(response: httpx.Response) -> float | None:
+def _retry_after_seconds(response: httpx2.Response) -> float | None:
     value = response.headers.get("retry-after")
     if not value:
         return None
@@ -50,7 +50,7 @@ def _retry_after_seconds(response: httpx.Response) -> float | None:
 
 
 def status_retry_delay(
-    attempt: int, response: httpx.Response, method: str, config: EbayConfig
+    attempt: int, response: httpx2.Response, method: str, config: EbayConfig
 ) -> float | None:
     """Delay before retrying a response, or ``None`` if it should not be retried."""
     if attempt >= config.max_retries or not should_retry_status(
@@ -67,7 +67,7 @@ def exception_retry_delay(attempt: int, method: str, config: EbayConfig) -> floa
     return compute_delay(attempt, None, config)
 
 
-def compute_delay(attempt: int, response: httpx.Response | None, config: EbayConfig) -> float:
+def compute_delay(attempt: int, response: httpx2.Response | None, config: EbayConfig) -> float:
     """Seconds to wait before the next attempt (0-indexed ``attempt``).
 
     Honors ``Retry-After`` when present; otherwise uses exponential backoff with full jitter,

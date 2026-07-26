@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from contextlib import AbstractAsyncContextManager, AbstractContextManager
 from typing import Any, NotRequired, TypedDict
 
-import httpx
+import httpx2
 
 
 class _LazyModule:
@@ -91,7 +91,7 @@ class BaseResource:
         headers: Mapping[str, str | None] | None = None,
         body: Any = None,
         files: Mapping[str, Any] | None = None,
-    ) -> AbstractContextManager[httpx.Response]:
+    ) -> AbstractContextManager[httpx2.Response]:
         return self._client._stream(
             service=self.service,
             operation_id=operation_id,
@@ -152,7 +152,7 @@ class AsyncBaseResource:
         headers: Mapping[str, str | None] | None = None,
         body: Any = None,
         files: Mapping[str, Any] | None = None,
-    ) -> AbstractAsyncContextManager[httpx.Response]:
+    ) -> AbstractAsyncContextManager[httpx2.Response]:
         return self._client._stream(
             service=self.service,
             operation_id=operation_id,

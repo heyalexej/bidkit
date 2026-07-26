@@ -10,7 +10,7 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any, cast
 
-import httpx
+import httpx2
 import orjson
 
 from bidkit import EbayClient, EbayConfig
@@ -121,8 +121,8 @@ class SmokeRunner:
     def run(
         self,
         label: str,
-        call: Callable[[], httpx.Response],
-        summarize: Callable[[Any, httpx.Response], Any] | None = None,
+        call: Callable[[], httpx2.Response],
+        summarize: Callable[[Any, httpx2.Response], Any] | None = None,
     ) -> Any:
         print(f"RUN {label}", flush=True)
         started = time.time()
@@ -997,7 +997,7 @@ def run_inventory_probe(client: EbayClient, runner: SmokeRunner, args: argparse.
 def run_media_probe(client: EbayClient, runner: SmokeRunner, args: argparse.Namespace) -> None:
     if args.image.exists():
 
-        def upload_image() -> httpx.Response:
+        def upload_image() -> httpx2.Response:
             content_type = mimetypes.guess_type(args.image.name)[0] or "image/jpeg"
             with args.image.open("rb") as file:
                 return client.commerce.media.create_image_from_file(
@@ -1085,7 +1085,7 @@ def run_media_probe(client: EbayClient, runner: SmokeRunner, args: argparse.Name
         print(f"Progress: video missing at {args.video}", flush=True)
 
 
-def parse_response(response: httpx.Response) -> Any:
+def parse_response(response: httpx2.Response) -> Any:
     if not response.content:
         return None
     content_type = response.headers.get("content-type", "")
@@ -1156,7 +1156,7 @@ def get(payload: Any, key: str, default: Any = None) -> Any:
     return payload.get(key, default) if isinstance(payload, dict) else default
 
 
-def image_id_from_location(response: httpx.Response) -> str | None:
+def image_id_from_location(response: httpx2.Response) -> str | None:
     location = response.headers.get("Location") or response.headers.get("location")
     return video_id_from_location(location)
 

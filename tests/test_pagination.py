@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 
-import httpx
+import httpx2
 
 from bidkit import AsyncEbayClient, EbayClient, EbayConfig, paginate, paginate_async
 
@@ -11,10 +11,10 @@ def _inventory_handler(pages: dict[str, dict]):
     """Serve inventory pages keyed by the requested offset."""
     seen: list[str] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         offset = request.url.params.get("offset", "0")
         seen.append(offset)
-        return httpx.Response(200, json=pages[offset])
+        return httpx2.Response(200, json=pages[offset])
 
     return handler, seen
 
@@ -22,7 +22,7 @@ def _inventory_handler(pages: dict[str, dict]):
 def _client(handler) -> EbayClient:
     return EbayClient(
         EbayConfig(access_token="token", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
 
@@ -111,10 +111,10 @@ def test_paginate_follows_nested_pagination_object() -> None:
     }
     seen: list[str] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         offset = request.url.params.get("offset", "0")
         seen.append(offset)
-        return httpx.Response(200, json=pages[offset])
+        return httpx2.Response(200, json=pages[offset])
 
     client = _client(handler)
     ids = [
@@ -143,12 +143,12 @@ def test_paginate_async_follows_next_url() -> None:
             "1": {"inventoryItems": [{"sku": "b"}], "total": 2, "limit": 1},
         }
 
-        async def handler(request: httpx.Request) -> httpx.Response:
-            return httpx.Response(200, json=pages[request.url.params.get("offset", "0")])
+        async def handler(request: httpx2.Request) -> httpx2.Response:
+            return httpx2.Response(200, json=pages[request.url.params.get("offset", "0")])
 
         client = AsyncEbayClient(
             EbayConfig(access_token="token"),
-            http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler)),
+            http_client=httpx2.AsyncClient(transport=httpx2.MockTransport(handler)),
         )
         try:
             skus = [

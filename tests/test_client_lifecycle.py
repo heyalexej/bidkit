@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 
-import httpx
+import httpx2
 
 from bidkit import AsyncEbayClient, EbayClient, EbayConfig
 from bidkit.auth import EbayAuth
@@ -47,7 +47,7 @@ def test_cache_key_does_not_leak_the_refresh_token() -> None:
 
 
 def test_injected_http_client_is_not_closed() -> None:
-    http = httpx.Client()
+    http = httpx2.Client()
     client = EbayClient(EbayConfig(access_token="t"), http_client=http)
     client.close()
     assert not http.is_closed  # caller still owns it
@@ -63,7 +63,7 @@ def test_owned_http_client_is_closed() -> None:
 
 def test_async_injected_http_client_is_not_closed() -> None:
     async def run() -> None:
-        http = httpx.AsyncClient()
+        http = httpx2.AsyncClient()
         client = AsyncEbayClient(EbayConfig(access_token="t"), http_client=http)
         await client.close()
         assert not http.is_closed
@@ -76,12 +76,12 @@ def test_async_injected_http_client_is_not_closed() -> None:
 
 
 def test_schemaless_get_returns_parsed_json() -> None:
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, json={"cancelId": "5381706738", "cancelState": "CLOSED"})
+    def handler(_request: httpx2.Request) -> httpx2.Response:
+        return httpx2.Response(200, json={"cancelId": "5381706738", "cancelState": "CLOSED"})
 
     client = EbayClient(
         EbayConfig(access_token="t", marketplace_id="EBAY_DE"),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
 
     # cancellation_oas3 documents a 200 with no schema; the SDK returns the parsed body.

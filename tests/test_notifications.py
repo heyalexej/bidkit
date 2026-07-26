@@ -2,7 +2,7 @@ import asyncio
 import base64
 import json
 
-import httpx
+import httpx2
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 
@@ -49,12 +49,12 @@ def _signature_header(private_key: ec.EllipticCurvePrivateKey, body: bytes) -> s
 
 
 def _handler(single_line_key: str, key_requests: dict[str, int]):
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
-            return httpx.Response(200, json={"access_token": "app-token", "expires_in": 7200})
+            return httpx2.Response(200, json={"access_token": "app-token", "expires_in": 7200})
         assert request.url.path == f"/commerce/notification/v1/public_key/{KID}"
         key_requests["n"] += 1
-        return httpx.Response(
+        return httpx2.Response(
             200, json={"key": single_line_key, "algorithm": "ECDSA", "digest": "SHA1"}
         )
 
@@ -66,8 +66,8 @@ def test_verify_accepts_valid_and_rejects_tampered_and_caches_the_key() -> None:
     key_requests = {"n": 0}
     client = EbayClient(
         EbayConfig(app_id="app", cert_id="cert"),
-        http_client=httpx.Client(
-            transport=httpx.MockTransport(_handler(single_line, key_requests))
+        http_client=httpx2.Client(
+            transport=httpx2.MockTransport(_handler(single_line, key_requests))
         ),
     )
     verifier = NotificationVerifier(client)
@@ -83,7 +83,7 @@ def test_verify_rejects_malformed_headers_without_key_fetch() -> None:
     key_requests = {"n": 0}
     client = EbayClient(
         EbayConfig(app_id="app", cert_id="cert"),
-        http_client=httpx.Client(transport=httpx.MockTransport(_handler("", key_requests))),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(_handler("", key_requests))),
     )
     verifier = NotificationVerifier(client)
 
@@ -99,8 +99,8 @@ def test_async_verifier_matches_sync_behavior() -> None:
     async def run() -> None:
         client = AsyncEbayClient(
             EbayConfig(app_id="app", cert_id="cert"),
-            http_client=httpx.AsyncClient(
-                transport=httpx.MockTransport(_handler(single_line, key_requests))
+            http_client=httpx2.AsyncClient(
+                transport=httpx2.MockTransport(_handler(single_line, key_requests))
             ),
         )
         verifier = AsyncNotificationVerifier(client)
@@ -121,11 +121,11 @@ def test_verifier_fetches_keys_with_app_credentials_even_on_a_seller_client() ->
     private_key, single_line = _keypair()
     token_grants: list[str] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/oauth2/token"):
             token_grants.append(request.content.decode())
-            return httpx.Response(200, json={"access_token": "tok", "expires_in": 7200})
-        return httpx.Response(
+            return httpx2.Response(200, json={"access_token": "tok", "expires_in": 7200})
+        return httpx2.Response(
             200, json={"key": single_line, "algorithm": "ECDSA", "digest": "SHA1"}
         )
 
@@ -136,7 +136,7 @@ def test_verifier_fetches_keys_with_app_credentials_even_on_a_seller_client() ->
             refresh_token="v^1.seller",
             scopes=("https://api.ebay.com/oauth/api_scope/sell.inventory",),
         ),
-        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+        http_client=httpx2.Client(transport=httpx2.MockTransport(handler)),
     )
     verifier = NotificationVerifier(seller_client)
 

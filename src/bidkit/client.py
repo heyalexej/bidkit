@@ -4,7 +4,7 @@ from collections.abc import Mapping
 from contextlib import AbstractAsyncContextManager, AbstractContextManager
 from typing import TYPE_CHECKING, Any
 
-import httpx
+import httpx2
 
 from .auth import EbayAuth, OAuthTokens, TokenCache
 from .config import DEFAULT_TIMEOUT, EbayConfig
@@ -63,14 +63,14 @@ class EbayClient:
         self,
         config: EbayConfig | Mapping[str, Any] | None = None,
         *,
-        http_client: httpx.Client | None = None,
+        http_client: httpx2.Client | None = None,
         token_cache: TokenCache | None = None,
     ) -> None:
         self.config = (
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
         self._owns_http = http_client is None
-        self.http = http_client or httpx.Client(timeout=self.config.timeout or DEFAULT_TIMEOUT)
+        self.http = http_client or httpx2.Client(timeout=self.config.timeout or DEFAULT_TIMEOUT)
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = EbayTransport(self.config, self.auth, self.http)
 
@@ -132,7 +132,7 @@ class EbayClient:
     def _request(self, **kwargs: Any) -> Any:
         return self._transport.request(**kwargs)
 
-    def _stream(self, **kwargs: Any) -> AbstractContextManager[httpx.Response]:
+    def _stream(self, **kwargs: Any) -> AbstractContextManager[httpx2.Response]:
         return self._transport.stream(**kwargs)
 
 
@@ -147,14 +147,16 @@ class AsyncEbayClient:
         self,
         config: EbayConfig | Mapping[str, Any] | None = None,
         *,
-        http_client: httpx.AsyncClient | None = None,
+        http_client: httpx2.AsyncClient | None = None,
         token_cache: TokenCache | None = None,
     ) -> None:
         self.config = (
             config if isinstance(config, EbayConfig) else EbayConfig.model_validate(config or {})
         )
         self._owns_http = http_client is None
-        self.http = http_client or httpx.AsyncClient(timeout=self.config.timeout or DEFAULT_TIMEOUT)
+        self.http = http_client or httpx2.AsyncClient(
+            timeout=self.config.timeout or DEFAULT_TIMEOUT
+        )
         self.auth = EbayAuth(self.config, token_cache)
         self._transport = AsyncEbayTransport(self.config, self.auth, self.http)
 
@@ -208,5 +210,5 @@ class AsyncEbayClient:
     async def _request(self, **kwargs: Any) -> Any:
         return await self._transport.request(**kwargs)
 
-    def _stream(self, **kwargs: Any) -> AbstractAsyncContextManager[httpx.Response]:
+    def _stream(self, **kwargs: Any) -> AbstractAsyncContextManager[httpx2.Response]:
         return self._transport.stream(**kwargs)
