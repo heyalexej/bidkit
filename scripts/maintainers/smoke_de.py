@@ -5,7 +5,8 @@ Covers the read-only (GET) surface, chaining real IDs discovered at runtime
 auto-paging helpers against high-volume account data (inventory, orders,
 transactions).
 
-Creds come from the bidkit config (~/.config/bidkit/config.json; legacy ~/.config/ebay-cli/config.json read as fallback).
+Creds come from the bidkit config (~/.config/bidkit/config.json; the legacy
+~/.config/ebay-cli/config.json is read as a fallback).
 Every op is GET / read-only. Run from the repo root:
 
     uv run --extra dev scripts/maintainers/smoke_de.py
