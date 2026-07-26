@@ -14,7 +14,7 @@ body:
     attributes:
       label: Minimal reproduction
       description: >-
-        Smallest snippet that shows the problem. Strip credentials; an httpx.MockTransport
+        Smallest snippet that shows the problem. Strip credentials; an httpx2.MockTransport
         repro is ideal.
       render: python
   - type: input

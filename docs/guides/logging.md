@@ -44,6 +44,6 @@ user grants are identified only by a hashed refresh-token prefix.
 
 ## Wire-level detail and tracing
 
-For socket-level detail, enable httpx's own loggers (`httpx`, `httpcore`) at DEBUG. For
-distributed tracing, the OpenTelemetry httpx instrumentation works out of the box, since
-bidkit rides on httpx.
+For socket-level detail, enable httpx2's own loggers (`httpx2`, `httpcore2`) at DEBUG. For
+distributed tracing, note that OpenTelemetry's httpx instrumentation targets the original
+`httpx` package — check current instrumentation support for `httpx2` before relying on it.

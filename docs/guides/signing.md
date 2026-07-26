@@ -37,5 +37,5 @@ The `jwe` and private key come from eBay's Key Management API
 (`client.developer.key_management`). Ed25519 (eBay's default) and RSA keys are supported;
 the private key may be a full PEM block or the bare base64 PKCS#8 body. Signing material
 can also come from the environment (`EBAY_SIGNING_KEY_FILE`, or `EBAY_SIGNING_JWE` +
-`EBAY_SIGNING_PRIVATE_KEY`) or from an ebay-cli style `signing-key.json` next to your
+`EBAY_SIGNING_PRIVATE_KEY`) or from a `signing-key.json` (ebay-cli compatible layout) next to your
 config file.

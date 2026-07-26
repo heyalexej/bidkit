@@ -23,8 +23,9 @@ signing variables (`EBAY_SIGNING_KEY_FILE`, or `EBAY_SIGNING_JWE` +
 
 ## From a config file
 
-`EbayConfig.from_file()` loads an ebay-cli style `config.json`
-(default `~/.config/ebay-cli/config.json`):
+`EbayConfig.from_file()` loads a bidkit `config.json` (ebay-cli compatible layout); with
+no path it resolves `~/.config/bidkit/config.json` first, falling back to the legacy
+`~/.config/ebay-cli/config.json` if the modern path does not exist:
 
 ```python
 client = EbayClient(EbayConfig.from_file())
@@ -56,11 +57,11 @@ de = client.with_options(marketplace_id="EBAY_DE")
 The scoped client shares the HTTP connection pool and token cache — no new connections, no
 re-auth — and closing it never closes the shared pool.
 
-## Injecting your own httpx client
+## Injecting your own httpx2 client
 
 Pass `http_client=` for custom proxies, transports, or event hooks. bidkit never closes a
 client it didn't create:
 
 ```python
-client = EbayClient(config, http_client=httpx.Client(proxy="http://proxy:3128"))
+client = EbayClient(config, http_client=httpx2.Client(proxy="http://proxy:3128"))
 ```

@@ -18,7 +18,7 @@ API reference, and the full generated reference for all 41 APIs.
   and `sell` namespaces — one client: `client.buy.browse.search(q="...")`
 - **Pydantic v2 models** for every request and response, generated from eBay's own OpenAPI
   contracts; unknown fields and new enum values never break validation
-- **Sync and async** (`EbayClient` / `AsyncEbayClient`) on `httpx`, with `orjson` serialization
+- **Sync and async** (`EbayClient` / `AsyncEbayClient`) on `httpx2`, with `orjson` serialization
 - **OAuth built in**: client-credentials and user tokens, automatic refresh with
   stampede-proof caching, authorization-code flow helpers
 - **Automatic retries** for 429/transient 5xx with `Retry-After` support and full-jitter backoff
@@ -85,7 +85,7 @@ prompts for the redirect URL; or pass the value as a flag to skip the prompt ent
 
 ```bash
 # interactive: opens the browser, then paste the redirect URL at the prompt
-uv run --extra dev scripts/oauth_login.py        # reads app/cert/ru/scopes from ebay-cli config
+uv run --extra dev scripts/oauth_login.py        # reads app/cert/ru/scopes from bidkit config
 
 # two-step (no interactive prompt): print the URL, consent, then pass the redirect back
 uv run --extra dev scripts/oauth_login.py --no-browser
@@ -200,8 +200,9 @@ Levels: requests at `DEBUG` (`bidkit.transport`), token acquisition at `INFO`
 being logged twice. Every record also carries structured fields (`operation`, `method`,
 `status`, `elapsed_ms`, `attempt`, `delay_s`, …) for JSON/structured formatters. Secrets —
 tokens, Authorization headers, request bodies — are never logged. For wire-level detail,
-enable the `httpx`/`httpcore` loggers; for tracing, the OpenTelemetry httpx instrumentation
-works out of the box since bidkit rides on httpx.
+enable the `httpx2`/`httpcore2` loggers; for tracing, note that OpenTelemetry's httpx
+instrumentation targets the original `httpx` package — check current instrumentation support
+for `httpx2` before relying on it.
 
 ## Digital signatures (Finances API)
 
@@ -359,9 +360,9 @@ uv run --extra dev pytest                        # tests
 ```
 
 The bundled scripts (`scripts/oauth_login.py` and the maintainer smoke scripts) read
-credentials from an ebay-cli style config; see [`examples/`](examples/) for templates.
+credentials from a bidkit config.json (ebay-cli compatible layout); see [`examples/`](examples/) for templates.
 
-`~/.config/ebay-cli/config.json`:
+`~/.config/bidkit/config.json` (legacy `~/.config/ebay-cli/config.json` is read as a fallback):
 
 | Field (`credentials.*`) | Used for | Notes |
 |---|---|---|
@@ -372,7 +373,7 @@ credentials from an ebay-cli style config; see [`examples/`](examples/) for temp
 | `granted_scopes` | OAuth + scopes | aka `scopes`; list of scope URLs |
 | `dev_id` | optional | |
 
-Top-level `environment` and `marketplace_default` are convenience hints. `~/.config/ebay-cli/
+Top-level `environment` and `marketplace_default` are convenience hints. `~/.config/bidkit/
 signing-key.json` (`jwe` + `privateKeyPem`, optional `cipher`) feeds the Finances signing layer
 and maps to `EbaySigningConfig.from_key_file(...)`.
 
@@ -380,7 +381,7 @@ and maps to `EbaySigningConfig.from_key_file(...)`.
 `marketplace_default`, and a sibling `signing-key.json` included):
 
 ```python
-client = EbayClient(EbayConfig.from_file())   # ~/.config/ebay-cli/config.json
+client = EbayClient(EbayConfig.from_file())   # ~/.config/bidkit/config.json
 ```
 
 ## License

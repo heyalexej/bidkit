@@ -79,7 +79,7 @@ under the eBay API License Agreement (see [NOTICE](NOTICE)).
 
 - Keep PRs focused; one logical change per PR.
 - PR titles must be valid Conventional Commit headers (they become the squash commit).
-- Add or update tests for behavior changes; tests are wire-level (`httpx.MockTransport`),
+- Add or update tests for behavior changes; tests are wire-level (`httpx2.MockTransport`),
   fast, and offline — no eBay credentials needed.
 - Don't commit anything derived from real credentials, tokens, or account data.
 

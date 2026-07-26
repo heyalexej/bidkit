@@ -39,8 +39,8 @@ request/response models — see [Supported eBay APIs](reference/apis.md).
 
 - **Typed end to end** — Pydantic v2 models generated from eBay's own contracts; unknown
   fields and new enum values never break validation; `raw_response=True` narrows to
-  `httpx.Response` in your type checker.
-- **Sync and async** on httpx, with orjson serialization.
+  `httpx2.Response` in your type checker.
+- **Sync and async** on httpx2, with orjson serialization.
 - **OAuth built in** — client-credentials and user tokens, stampede-proof refresh caching,
   a persistent [`FileTokenCache`](guides/authentication.md#token-caching), and the
   authorization-code flow as three lines of code.
