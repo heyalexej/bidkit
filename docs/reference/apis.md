@@ -1,13 +1,13 @@
 ---
 description: >-
-  All 41 eBay REST APIs supported by bidkit — 455 typed Python operations across the Buy,
+  All 40 eBay REST APIs supported by bidkit — 452 typed Python operations across the Buy,
   Sell, Commerce, Developer, and Post-Order namespaces.
 ---
 
 # Supported eBay APIs
 
-All **41 eBay REST APIs** are generated and wired into the client across **5 namespaces**,
-exposing **455 typed operations** on both `EbayClient` and `AsyncEbayClient`. Versions are
+All **40 eBay REST APIs** are generated and wired into the client across **5 namespaces**,
+exposing **452 typed operations** on both `EbayClient` and `AsyncEbayClient`. Versions are
 pinned to the OpenAPI contracts bundled in the repository.
 
 Every operation is a typed method — your editor is the API reference:
@@ -79,14 +79,13 @@ full endpoint semantics live in
 
 \* Post-Order specs carry `info.version` `0.1`, but the API is served at `/post-order/v2`.
 
-## Sell — `client.sell` (298 ops)
+## Sell — `client.sell` (295 ops)
 
 | Accessor | API | Version | Ops | Maturity |
 |---|---|---|---|---|
 | `sell.account` | Account v1 | `v1.9.3` | 37 | Stable |
 | `sell.account_v2` | Account v2 | `2.2.0` | 14 | Stable |
 | `sell.analytics` | Analytics | `1.3.2` | 4 | Stable |
-| `sell.compliance` | Compliance | `1.4.1` | 3 | Stable |
 | `sell.edelivery_international_shipping` | eDelivery Intl Shipping (EDIS) | `1.1.0` | 27 | Stable |
 | `sell.feed` | Feed | `v1.3.1` | 23 | Stable |
 | `sell.finances` | Finances | `v1.19.0` | 11 | Stable † |

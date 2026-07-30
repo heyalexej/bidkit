@@ -12,9 +12,9 @@ OpenAPI contracts.
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Documentation: [heyalexej.github.io/bidkit](https://heyalexej.github.io/bidkit/)** — guides,
-API reference, and the full generated reference for all 41 APIs.
+API reference, and the full generated reference for all 40 APIs.
 
-- **41 eBay APIs, 455 typed operations** across `buy`, `commerce`, `developer`, `post_order`,
+- **40 eBay APIs, 452 typed operations** across `buy`, `commerce`, `developer`, `post_order`,
   and `sell` namespaces — one client: `client.buy.browse.search(q="...")`
 - **Pydantic v2 models** for every request and response, generated from eBay's own OpenAPI
   contracts; unknown fields and new enum values never break validation
@@ -254,8 +254,8 @@ respond `500` for those so eBay retries later.
 
 ## Supported APIs
 
-All **41 eBay APIs** below are generated and wired into the client across **5 namespaces**
-(`buy`, `commerce`, `developer`, `post_order`, `sell`), exposing **455 typed operations** with
+All **40 eBay APIs** below are generated and wired into the client across **5 namespaces**
+(`buy`, `commerce`, `developer`, `post_order`, `sell`), exposing **452 typed operations** with
 both sync (`EbayClient`) and async (`AsyncEbayClient`) surfaces. Versions are pinned to the
 bundled OpenAPI specs in `specs/ebay/`. "Ops" counts callable operations (each also has a
 `raw_response` overload and binary downloads add a `stream_*` variant).
@@ -308,14 +308,13 @@ Latest complete upstream monitor sweep: **2026-07-30** (27 static OpenAPI contra
 
 \* Post-Order specs carry `info.version` `0.1`, but the API is served at `/post-order/v2`.
 
-### Sell — `client.sell` (298 ops)
+### Sell — `client.sell` (295 ops)
 
 | Accessor | API | Version | Ops | Maturity |
 |---|---|---|---|---|
 | `sell.account` | Account v1 | `v1.9.3` | 37 | Stable |
 | `sell.account_v2` | Account v2 | `2.2.0` | 14 | Stable |
 | `sell.analytics` | Analytics | `1.3.2` | 4 | Stable |
-| `sell.compliance` | Compliance | `1.4.1` | 3 | Stable |
 | `sell.edelivery_international_shipping` | eDelivery Intl Shipping (EDIS) | `1.1.0` | 27 | Stable |
 | `sell.feed` | Feed | `v1.3.1` | 23 | Stable |
 | `sell.finances` | Finances | `v1.19.0` | 11 | Stable † |

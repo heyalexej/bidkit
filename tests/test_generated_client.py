@@ -11,6 +11,7 @@ import httpx2
 
 from bidkit import AsyncEbayClient, EbayClient
 from bidkit.config import EbayConfig
+from bidkit.generated import resources
 from bidkit.generated.models.buy_browse import Item
 from bidkit.generated.models.case import CaseSearchResponse
 from bidkit.generated.models.commerce_identity import MarketplaceIdEnum, UserResponse
@@ -27,6 +28,28 @@ def test_generated_namespaces_are_installed() -> None:
     assert client.post_order.return_.__class__.__name__ == "ReturnResource"
     assert client.sell.account.__class__.__name__ == "SellAccountV1Resource"
     assert client.sell.account_v2.__class__.__name__ == "SellAccountV2Resource"
+
+
+def test_decommissioned_sell_compliance_is_absent_from_distribution() -> None:
+    """eBay fully decommissioned the Sell Compliance API; it must not ship in the SDK."""
+    # No source spec drives generation of the service...
+    assert not Path("specs/ebay/sell_compliance_v1_oas3.json").exists()
+    # ...and no generated model module or resource survives.
+    model_modules = {path.name for path in Path("src/bidkit/generated/models").glob("*.py")}
+    assert "sell_compliance.py" not in model_modules
+    services = {
+        resource.service["key"]
+        for resource in vars(resources).values()
+        if isinstance(resource, type) and getattr(resource, "service", None)
+    }
+    assert "sell_compliance" not in services
+
+
+def test_decommissioned_sell_compliance_is_not_exposed_on_client() -> None:
+    """The public client surface must not expose the removed `sell.compliance` resource."""
+    client = EbayClient(EbayConfig(access_token="token"), http_client=_mock_client({}))
+
+    assert not hasattr(client.sell, "compliance")
 
 
 def test_generated_enum_models_are_scalar_enums() -> None:

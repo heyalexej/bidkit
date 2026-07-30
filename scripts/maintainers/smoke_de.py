@@ -243,19 +243,6 @@ if order_id:
     )
 run("get_payment_dispute_summaries", lambda: s.fulfillment.get_payment_dispute_summaries())
 
-# ---- sell.compliance ----
-section("sell.compliance")
-run(
-    "get_listing_violations_summary",
-    lambda: s.compliance.get_listing_violations_summary(x_ebay_c_marketplace_id=MKT),
-)
-run(
-    "get_listing_violations",
-    lambda: s.compliance.get_listing_violations(
-        x_ebay_c_marketplace_id=MKT, compliance_type="PRODUCT_ADOPTION"
-    ),
-)
-
 # ---- sell.analytics (rest) ----
 section("sell.analytics")
 run(
