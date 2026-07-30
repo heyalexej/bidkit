@@ -21,6 +21,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Fail fast on a stale lockfile: `uv sync` silently re-locks, masking
+      # drift between pyproject's version and the root package version uv
+      # records in uv.lock. This catches it on the post-merge main run -- CI
+      # does not run on release-please's own PRs (opened with the default
+      # GITHUB_TOKEN), which is why the lock is kept fresh by the sync-uv-lock
+      # job in release-please.yml instead.
+      - name: Check lockfile is up to date
+        run: uv lock --check
+
       - name: Install dependencies
         run: uv sync --extra dev
 

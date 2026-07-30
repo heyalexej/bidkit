@@ -8,10 +8,67 @@ permissions:
   contents: write
   pull-requests: write
 
+# Serialize runs: they all push to the shared release-please--branches--main
+# branch, so concurrent runs race -- a sync step's normal push can be rejected
+# as non-fast-forward by release-please's own force-push of that branch, and
+# two runs can clobber each other's work. cancel-in-progress is safe because
+# every job here is convergent and re-entrant: release-please reconciles the
+# release PR to the latest state, and sync-uv-lock re-locks from the current
+# pyproject, so the newest run reaches the correct end state on its own.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      prs_created: ${{ steps.release.outputs.prs_created }}
     steps:
       # Manifest mode: version semantics live in release-please-config.json
       # (bump-minor-pre-major keeps breaking changes at a minor bump pre-1.0).
       - uses: googleapis/release-please-action@v5
+        id: release
+
+  sync-uv-lock:
+    # release-please bumps version in pyproject.toml and src/bidkit/__init__.py,
+    # but uv ALSO records the editable root package's version in uv.lock.
+    # release-please can bump that entry natively today via a toml extra-file
+    # using `$.package[?(@.name.value=="bidkit")].version` -- but only because
+    # of an open upstream bug (googleapis/release-please#2455): the generic-toml
+    # parser wraps every TOML scalar in a {start,end,value} object before running
+    # JSONPath, so `.value` is the raw string. If the parser is ever fixed to
+    # hand JSONPath raw scalars, that filter silently reverts to a no-op and
+    # ships a stale lock. Re-locking here fails visibly instead, so we trade an
+    # extra job for that robustness. `uv lock` (no --upgrade) only rewrites the
+    # root version line, so this never drifts the dependency set.
+    # Runs in this push-triggered workflow (not on pull_request) because events
+    # raised by the default GITHUB_TOKEN do not start new workflow runs.
+    needs: release-please
+    if: ${{ needs.release-please.outputs.prs_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release PR branch
+        uses: actions/checkout@v7
+        with:
+          ref: release-please--branches--main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Re-lock to match the bumped pyproject
+        run: uv lock
+
+      - name: Commit synced uv.lock to the release PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --exit-code -- uv.lock; then
+            echo "uv.lock already in sync; nothing to commit"
+          else
+            git add uv.lock
+            git commit -m "chore(release): keep uv.lock root package version in sync"
+            git push origin HEAD:release-please--branches--main
+          fi
