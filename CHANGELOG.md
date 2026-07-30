@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/heyalexej/bidkit/compare/v0.2.0...v0.3.0) (2026-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** `client.sell.compliance`, its sync and async resources, the three Sell Compliance operations, and `bidkit.generated.models.sell_compliance` are removed because the upstream API no longer exists.
+
+### Features
+
+* **api:** remove decommissioned Sell Compliance API ([e4f10da](https://github.com/heyalexej/bidkit/commit/e4f10da4a34a9e2e7fd916904a61e390e01a835d))
+
+
+### Documentation
+
+* **readme:** add upstream monitor date ([#22](https://github.com/heyalexej/bidkit/issues/22)) ([f50a061](https://github.com/heyalexej/bidkit/commit/f50a0617324f1c0bf60cfedff111fe896d802b7d))
+
 ## [0.2.0](https://github.com/heyalexej/bidkit/compare/v0.1.1...v0.2.0) (2026-07-26)
 
 
