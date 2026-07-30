@@ -260,6 +260,8 @@ both sync (`EbayClient`) and async (`AsyncEbayClient`) surfaces. Versions are pi
 bundled OpenAPI specs in `specs/ebay/`. "Ops" counts callable operations (each also has a
 `raw_response` overload and binary downloads add a `stream_*` variant).
 
+Latest complete upstream monitor sweep: **2026-07-30** (27 static OpenAPI contracts plus release and deprecation notices).
+
 ### Buy — `client.buy` (29 ops)
 
 | Accessor | API | Version | Ops | Maturity |
