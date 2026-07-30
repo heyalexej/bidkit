@@ -853,23 +853,6 @@ def run_store_and_restricted_smokes(
         lambda: client.sell.analytics.find_seller_standards_profiles(raw_response=True),
         lambda p, _r: {"count": count_key(p, "standardsProfiles"), "total": get(p, "total")},
     )
-    runner.run(
-        "sell.compliance.get_listing_violations_summary",
-        lambda: client.sell.compliance.get_listing_violations_summary(
-            x_ebay_c_marketplace_id=marketplace,
-            raw_response=True,
-        ),
-        lambda p, _r: {"summaryKeys": sorted(p)[:6] if isinstance(p, dict) else None},
-    )
-    runner.run(
-        "sell.compliance.get_listing_violations",
-        lambda: client.sell.compliance.get_listing_violations(
-            x_ebay_c_marketplace_id=marketplace,
-            limit="1",
-            raw_response=True,
-        ),
-        lambda p, _r: {"count": count_key(p, "complianceViolations"), "total": get(p, "total")},
-    )
 
 
 def run_buy_smokes(

@@ -32,7 +32,7 @@ for item in results.item_summaries or []:
     print(item.title, item.price.value if item.price else "?")
 ```
 
-Every one of the **455 operations across 41 eBay APIs** is a typed method with Pydantic
+Every one of the **452 operations across 40 eBay APIs** is a typed method with Pydantic
 request/response models — see [Supported eBay APIs](reference/apis.md).
 
 ## Why bidkit

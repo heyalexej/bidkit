@@ -37,7 +37,6 @@ if TYPE_CHECKING:
     from .models import sell_account_v1 as sell_account_v1_models
     from .models import sell_account_v2 as sell_account_v2_models
     from .models import sell_analytics as sell_analytics_models
-    from .models import sell_compliance as sell_compliance_models
     from .models import sell_edelivery_international_shipping as sell_edelivery_international_shipping_models
     from .models import sell_feed as sell_feed_models
     from .models import sell_finances as sell_finances_models
@@ -79,7 +78,6 @@ else:
     sell_account_v1_models = _LazyModule("bidkit.generated.models.sell_account_v1")
     sell_account_v2_models = _LazyModule("bidkit.generated.models.sell_account_v2")
     sell_analytics_models = _LazyModule("bidkit.generated.models.sell_analytics")
-    sell_compliance_models = _LazyModule("bidkit.generated.models.sell_compliance")
     sell_edelivery_international_shipping_models = _LazyModule("bidkit.generated.models.sell_edelivery_international_shipping")
     sell_feed_models = _LazyModule("bidkit.generated.models.sell_feed")
     sell_finances_models = _LazyModule("bidkit.generated.models.sell_finances")
@@ -8991,156 +8989,6 @@ class AsyncSellAnalyticsResource(AsyncBaseResource):
             params={'dimension': dimension, 'filter': filter, 'metric': metric, 'sort': sort},
             headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
             response_model=sell_analytics_models.Report,
-            raw_response=raw_response,
-        )
-
-
-class SellComplianceResource(BaseResource):
-    service = {
-        'key': 'sell_compliance',
-        'title': 'Compliance API',
-        'version': '1.4.1',
-        'base_path': '/sell/compliance/v1',
-        'subdomain': 'api',
-    }
-
-    @overload
-    def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.ComplianceSummary: ...
-    @overload
-    def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: bool = False) -> sell_compliance_models.ComplianceSummary | httpx2.Response:
-        """This call returns listing violation counts for a seller. A user can pass in one or more
-        compliance types through the compliance_type query parameter. See ComplianceTypeEnum for
-        more information on the supported listing compliance types. Listing violations are returned
-        for multiple marketplaces if the seller sells on multiple eBay marketplaces.
-        """
-        return self._request(
-            'getListingViolationsSummary',
-            'GET',
-            '/listing_violation_summary',
-            path_params={},
-            params={'compliance_type': compliance_type},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=sell_compliance_models.ComplianceSummary,
-            raw_response=raw_response,
-        )
-
-    @overload
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
-    @overload
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx2.Response:
-        """This call returns specific listing violations for the supported listing compliance types.
-        Only one compliance type can be passed in per call, and the response will include all the
-        listing violations for this compliance type, and listing violations are grouped together by
-        eBay listing ID. See ComplianceTypeEnum for more information on the supported listing
-        compliance types.
-        """
-        return self._request(
-            'getListingViolations',
-            'GET',
-            '/listing_violation',
-            path_params={},
-            params={'compliance_type': compliance_type, 'offset': offset, 'listing_id': listing_id, 'limit': limit, 'filter': filter},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=sell_compliance_models.PagedComplianceViolationCollection,
-            raw_response=raw_response,
-        )
-
-    @overload
-    def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
-    @overload
-    def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx2.Response:
-        """This call suppresses a listing violation for a specific listing. Only listing violations in
-        the AT_RISK state (returned in the violations.complianceState field of the
-        getListingViolations call) can be suppressed. Note: At this time, the suppressViolation call
-        only supports the suppressing of ASPECTS_ADOPTION listing violations in the AT_RISK state.
-        """
-        return self._request(
-            'suppressViolation',
-            'POST',
-            '/suppress_listing_violation',
-            path_params={},
-            params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
-            body=body,
-            response_model=None,
-            raw_response=raw_response,
-        )
-
-
-class AsyncSellComplianceResource(AsyncBaseResource):
-    service = {
-        'key': 'sell_compliance',
-        'title': 'Compliance API',
-        'version': '1.4.1',
-        'base_path': '/sell/compliance/v1',
-        'subdomain': 'api',
-    }
-
-    @overload
-    async def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.ComplianceSummary: ...
-    @overload
-    async def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    async def get_listing_violations_summary(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, raw_response: bool = False) -> sell_compliance_models.ComplianceSummary | httpx2.Response:
-        """This call returns listing violation counts for a seller. A user can pass in one or more
-        compliance types through the compliance_type query parameter. See ComplianceTypeEnum for
-        more information on the supported listing compliance types. Listing violations are returned
-        for multiple marketplaces if the seller sells on multiple eBay marketplaces.
-        """
-        return await self._request(
-            'getListingViolationsSummary',
-            'GET',
-            '/listing_violation_summary',
-            path_params={},
-            params={'compliance_type': compliance_type},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=sell_compliance_models.ComplianceSummary,
-            raw_response=raw_response,
-        )
-
-    @overload
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[False] = False) -> sell_compliance_models.PagedComplianceViolationCollection: ...
-    @overload
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    async def get_listing_violations(self, *, x_ebay_c_marketplace_id: str | None = None, compliance_type: str | None = None, offset: int | str | None = None, listing_id: str | None = None, limit: int | str | None = None, filter: str | None = None, raw_response: bool = False) -> sell_compliance_models.PagedComplianceViolationCollection | httpx2.Response:
-        """This call returns specific listing violations for the supported listing compliance types.
-        Only one compliance type can be passed in per call, and the response will include all the
-        listing violations for this compliance type, and listing violations are grouped together by
-        eBay listing ID. See ComplianceTypeEnum for more information on the supported listing
-        compliance types.
-        """
-        return await self._request(
-            'getListingViolations',
-            'GET',
-            '/listing_violation',
-            path_params={},
-            params={'compliance_type': compliance_type, 'offset': offset, 'listing_id': listing_id, 'limit': limit, 'filter': filter},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id},
-            response_model=sell_compliance_models.PagedComplianceViolationCollection,
-            raw_response=raw_response,
-        )
-
-    @overload
-    async def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[False] = False) -> None: ...
-    @overload
-    async def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: Literal[True]) -> httpx2.Response: ...
-    async def suppress_violation(self, *, body: sell_compliance_models.SuppressViolationRequest, x_ebay_c_marketplace_id: str | None = None, raw_response: bool = False) -> None | httpx2.Response:
-        """This call suppresses a listing violation for a specific listing. Only listing violations in
-        the AT_RISK state (returned in the violations.complianceState field of the
-        getListingViolations call) can be suppressed. Note: At this time, the suppressViolation call
-        only supports the suppressing of ASPECTS_ADOPTION listing violations in the AT_RISK state.
-        """
-        return await self._request(
-            'suppressViolation',
-            'POST',
-            '/suppress_listing_violation',
-            path_params={},
-            params={},
-            headers={'X-EBAY-C-MARKETPLACE-ID': x_ebay_c_marketplace_id, 'Content-Type': 'application/json'},
-            body=body,
-            response_model=None,
             raw_response=raw_response,
         )
 
@@ -19819,7 +19667,6 @@ class SellNamespace:
     account: SellAccountV1Resource
     account_v2: SellAccountV2Resource
     analytics: SellAnalyticsResource
-    compliance: SellComplianceResource
     edelivery_international_shipping: SellEdeliveryInternationalShippingResource
     feed: SellFeedResource
     finances: SellFinancesResource
@@ -19838,7 +19685,6 @@ class SellNamespace:
         self.account = SellAccountV1Resource(client)
         self.account_v2 = SellAccountV2Resource(client)
         self.analytics = SellAnalyticsResource(client)
-        self.compliance = SellComplianceResource(client)
         self.edelivery_international_shipping = SellEdeliveryInternationalShippingResource(client)
         self.feed = SellFeedResource(client)
         self.finances = SellFinancesResource(client)
@@ -19858,7 +19704,6 @@ class AsyncSellNamespace:
     account: AsyncSellAccountV1Resource
     account_v2: AsyncSellAccountV2Resource
     analytics: AsyncSellAnalyticsResource
-    compliance: AsyncSellComplianceResource
     edelivery_international_shipping: AsyncSellEdeliveryInternationalShippingResource
     feed: AsyncSellFeedResource
     finances: AsyncSellFinancesResource
@@ -19877,7 +19722,6 @@ class AsyncSellNamespace:
         self.account = AsyncSellAccountV1Resource(client)
         self.account_v2 = AsyncSellAccountV2Resource(client)
         self.analytics = AsyncSellAnalyticsResource(client)
-        self.compliance = AsyncSellComplianceResource(client)
         self.edelivery_international_shipping = AsyncSellEdeliveryInternationalShippingResource(client)
         self.feed = AsyncSellFeedResource(client)
         self.finances = AsyncSellFinancesResource(client)
