@@ -30,13 +30,13 @@ before parsing anything:
 ```python
 from bidkit import EbayClient, EbayConfig, NotificationVerifier
 
-client = EbayClient(EbayConfig(app_id="...", cert_id="..."))   # app credentials suffice
-verifier = NotificationVerifier(client)                        # keys cached ~1 hour
+client = EbayClient(EbayConfig(app_id="...", cert_id="..."))  # app credentials suffice
+verifier = NotificationVerifier(client)  # keys cached ~1 hour
 
 if verifier.verify(raw_body_bytes, request.headers["x-ebay-signature"]):
-    ...   # handle the event; respond 204
+    ...  # handle the event; respond 204
 else:
-    ...   # respond 412 Precondition Failed; eBay retries
+    ...  # respond 412 Precondition Failed; eBay retries
 ```
 
 `AsyncNotificationVerifier` is the drop-in for async frameworks (FastAPI, aiohttp, …).
@@ -47,6 +47,7 @@ else:
 @app.get("/ebay/hook")
 def challenge(challenge_code: str):
     return challenge_response(challenge_code, TOKEN, ENDPOINT)
+
 
 @app.post("/ebay/hook")
 async def notification(request: Request):

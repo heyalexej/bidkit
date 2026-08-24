@@ -14,12 +14,14 @@ an EU/UK payments-regulation requirement. Provide signing material and bidkit si
 ```python
 from bidkit import EbayClient, EbayConfig, EbaySigningConfig
 
-client = EbayClient(EbayConfig(
-    refresh_token="...",
-    signing=EbaySigningConfig(jwe="<jwe>", private_key="<pem>"),  # or .from_key_file(path)
-))
-client.sell.finances.get_payouts(limit=3)   # signed; 200 instead of 403
-client.buy.browse.search(q="...")           # NOT signed — eBay doesn't expect it here
+client = EbayClient(
+    EbayConfig(
+        refresh_token="...",
+        signing=EbaySigningConfig(jwe="<jwe>", private_key="<pem>"),  # or .from_key_file(path)
+    )
+)
+client.sell.finances.get_payouts(limit=3)  # signed; 200 instead of 403
+client.buy.browse.search(q="...")  # NOT signed — eBay doesn't expect it here
 ```
 
 ## What gets signed
