@@ -47,7 +47,7 @@ print(client.authorization_url(state="..."))
 # 2. eBay redirects to your RuName's accepted URL with ?code=<...>; capture that code.
 # 3. Exchange it — this also authenticates the client immediately.
 tokens = client.exchange_code(code)
-print(tokens.refresh_token)   # persist; pass back as EbayConfig(refresh_token=...)
+print(tokens.refresh_token)  # persist; pass back as EbayConfig(refresh_token=...)
 ```
 
 Only the redirect capture (step 2) needs the HTTPS "accepted URL" registered for your

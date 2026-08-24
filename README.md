@@ -145,9 +145,9 @@ before processing). Tune via `EbayConfig`:
 
 ```python
 EbayConfig(
-    max_retries=2,                       # 0 disables retries
+    max_retries=2,  # 0 disables retries
     retry_statuses=(429, 500, 502, 503, 504),
-    retry_backoff=0.5,                   # base seconds; delay = backoff * 2**attempt (jittered)
+    retry_backoff=0.5,  # base seconds; delay = backoff * 2**attempt (jittered)
     retry_max_backoff=60.0,
     respect_retry_after=True,
 )
@@ -186,7 +186,7 @@ JSON formatters, OpenTelemetry handlers). Opt in per subsystem:
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logging.getLogger("bidkit").setLevel(logging.DEBUG)   # or just "bidkit.retry"
+logging.getLogger("bidkit").setLevel(logging.DEBUG)  # or just "bidkit.retry"
 ```
 
 ```
@@ -216,10 +216,12 @@ before the SDK catches up, `EbaySigningConfig(..., sign_all=True)` signs every r
 ```python
 from bidkit import EbayClient, EbayConfig, EbaySigningConfig
 
-client = EbayClient(EbayConfig(
-    refresh_token="...",
-    signing=EbaySigningConfig(jwe="<jwe>", private_key="<pem>"),  # or .from_key_file(path)
-))
+client = EbayClient(
+    EbayConfig(
+        refresh_token="...",
+        signing=EbaySigningConfig(jwe="<jwe>", private_key="<pem>"),  # or .from_key_file(path)
+    )
+)
 client.sell.finances.get_payouts(limit=3)  # signed; returns 200 instead of 403
 ```
 
@@ -236,7 +238,7 @@ endpoint-validation challenge:
 ```python
 from bidkit import EbayClient, NotificationVerifier, challenge_response
 
-verifier = NotificationVerifier(client)   # app credentials suffice; keys are cached ~1 h
+verifier = NotificationVerifier(client)  # app credentials suffice; keys are cached ~1 h
 
 # GET ?challenge_code=...  ->  200, application/json
 challenge_response(challenge_code, VERIFICATION_TOKEN, "https://your.app/ebay/notifications")
@@ -382,7 +384,7 @@ and maps to `EbaySigningConfig.from_key_file(...)`.
 `marketplace_default`, and a sibling `signing-key.json` included):
 
 ```python
-client = EbayClient(EbayConfig.from_file())   # ~/.config/bidkit/config.json
+client = EbayClient(EbayConfig.from_file())  # ~/.config/bidkit/config.json
 ```
 
 ## License

@@ -14,7 +14,7 @@ OpenTelemetry handlers alike. Opt in per subsystem:
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logging.getLogger("bidkit").setLevel(logging.DEBUG)   # or just "bidkit.retry"
+logging.getLogger("bidkit").setLevel(logging.DEBUG)  # or just "bidkit.retry"
 ```
 
 ```

@@ -16,9 +16,9 @@ processing). Connection errors retry for idempotent methods.
 
 ```python
 EbayConfig(
-    max_retries=2,                       # 0 disables retries
+    max_retries=2,  # 0 disables retries
     retry_statuses=(429, 500, 502, 503, 504),
-    retry_backoff=0.5,                   # base seconds; delay = backoff * 2**attempt
+    retry_backoff=0.5,  # base seconds; delay = backoff * 2**attempt
     retry_max_backoff=60.0,
     respect_retry_after=True,
 )

@@ -73,12 +73,14 @@ The reliable signals are `pagination.next` (becomes `None` at the end) and
 ```python
 from bidkit import paginate
 
-entries = list(paginate(
-    client.commerce.feedback.get_feedback,
-    user_id="some_user",
-    feedback_type="FEEDBACK_RECEIVED",
-    limit=50,
-))
+entries = list(
+    paginate(
+        client.commerce.feedback.get_feedback,
+        user_id="some_user",
+        feedback_type="FEEDBACK_RECEIVED",
+        limit=50,
+    )
+)
 ```
 
 Note that the built-in repeated-offset guard does not help here: a hand-rolled loop
